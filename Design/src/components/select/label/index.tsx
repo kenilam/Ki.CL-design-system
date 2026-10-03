@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { SelectLabelProps } from '@/components/select/spec';
+import type { SelectLabelProps } from '../spec';
 
 /**
  * Names a SelectGroup. The group reads the text into the native optgroup

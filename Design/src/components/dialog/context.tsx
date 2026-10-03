@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 // Icons
-import { IconType } from '@/icons';
+import { IconType } from '../../icons';
 
 type ContextValue = {
   closable?: boolean | 'keyboard';

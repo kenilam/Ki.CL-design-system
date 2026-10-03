@@ -1,10 +1,10 @@
 import React from 'react';
 
 // Components
-import { Calendar as MonthGrid } from '@/components/calendar';
+import { Calendar as MonthGrid } from '../calendar';
 
 // Context
-import { useDatePicker } from '@/components/date-picker/context';
+import { useDatePicker } from './context';
 
 const Calendar: React.FunctionComponent = () => {
   const { mode, onSelectRange, onSelectSingle, selectedRange, selectedSingle } =

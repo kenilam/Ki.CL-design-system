@@ -6,7 +6,7 @@ Ki.CL's design system, built as the Module Federation remote `design`. See READM
 
 - `Design/` is the federated package (`@ki-cl/design`). Source lives in `Design/src`, the Vite config in `Design/vite.config.ts`, and the cascade layers in `Design/scripts/get-style-layer.ts`.
 - `Server/` is the Express server that serves `Design/dist` at `/design` with CORS.
-- `@/*` → `Design/src/*`.
+- Imports inside `Design/src` are relative. The generated types keep import paths as written, and in the host `@/` means `App/`, so an aliased import would resolve to the wrong module or to nothing.
 
 ## Rules
 

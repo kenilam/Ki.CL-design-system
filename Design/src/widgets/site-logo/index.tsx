@@ -4,10 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { HyperLink, Layout, Text } from '@/components';
+import { HyperLink, Layout, Text } from '../../components';
 
 // Icons
-import { Logo } from '@/icons';
+import { Logo } from '../../icons';
 
 // Spec
 import * as Spec from './spec';

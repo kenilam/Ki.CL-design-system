@@ -4,7 +4,7 @@ import React, { useEffect, useId, useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Heading, Layout } from '@/components';
+import { Heading, Layout } from '..';
 
 // Spec
 import * as Spec from './spec';

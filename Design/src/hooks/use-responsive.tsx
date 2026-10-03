@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // Libraries
 import { useMediaQuery } from 'react-responsive';
 
-import { CSSUnit } from '@/helper';
+import { CSSUnit } from '../helper';
 
 // Hooks
 import { useTheme } from './use-theme';

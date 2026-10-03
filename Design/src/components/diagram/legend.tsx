@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Layout, Text } from '@/components';
+import { Layout, Text } from '..';
 
 // Spec
 import type { LegendItem } from './spec';

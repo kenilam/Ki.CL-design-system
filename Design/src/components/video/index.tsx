@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout, Spinner } from '@/components';
+import { Layout, Spinner } from '..';
 
 // Spec
 import * as Spec from './spec';

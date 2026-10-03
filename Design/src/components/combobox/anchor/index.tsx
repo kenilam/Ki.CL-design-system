@@ -4,17 +4,17 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames';
 
 // Spec
-import type { ComboboxAnchorProps } from '@/components/combobox/spec';
+import type { ComboboxAnchorProps } from '../spec';
 
 // Constants
 import {
   CLASS_NAME as COMBOBOX,
   FOCUSABLE,
-} from '@/components/combobox/constants';
+} from '../constants';
 
 // Context
-import { focusables, useCombobox } from '@/components/combobox/context';
-import { usePopover } from '@/components/popover/context';
+import { focusables, useCombobox } from '../context';
+import { usePopover } from '../../popover/context';
 
 const CLASS_NAME = `${COMBOBOX}__anchor`;
 

@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button } from '@/components';
+import { Button } from '../..';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -13,10 +13,10 @@ import * as Ri from 'react-icons/ri';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as DIALOG } from '@/components/dialog/constants';
+import { CLASS_NAME as DIALOG } from '../constants';
 
 // Context
-import { useDialog } from '@/components/dialog/context';
+import { useDialog } from '../context';
 
 const CLASS_NAME = `${DIALOG}--close`;
 

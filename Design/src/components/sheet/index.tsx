@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Card } from '@/components/card';
+import { Card } from '../card';
 
 // Spec
 import type { SheetProps } from './spec';

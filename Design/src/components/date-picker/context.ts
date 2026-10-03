@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import type { DateRange } from '@/components/calendar';
+import type { DateRange } from '../calendar';
 
 import type { DatePickerMode } from './spec';
 

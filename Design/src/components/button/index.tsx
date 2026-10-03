@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { getHyperLinkClassNames, Layout } from '@/components';
+import { getHyperLinkClassNames, Layout } from '..';
 
 // Spec
 import * as Spec from './spec';

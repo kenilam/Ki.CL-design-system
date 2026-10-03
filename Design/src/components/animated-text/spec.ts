@@ -1,4 +1,4 @@
-import type { AnimationProps, TextProps } from '@/components';
+import type { AnimationProps, TextProps } from '..';
 
 type Children =
   Extract<TextProps['children'], string | number | null | undefined> | false;

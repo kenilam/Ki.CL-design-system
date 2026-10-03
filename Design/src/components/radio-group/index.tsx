@@ -4,7 +4,7 @@ import React, { useId } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '@/components/layout';
+import { Layout } from '../layout';
 
 // Spec
 import type { RadioGroupProps } from './spec';

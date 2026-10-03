@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Input } from '@/components/input';
+import { Input } from '../input';
 
 // Spec
 import type { InputGroupInputProps } from './spec';

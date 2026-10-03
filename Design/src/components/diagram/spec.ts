@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import type { IconType } from '@/icons';
-import type { TextAccent } from '@/components/text/spec';
+import type { IconType } from '../../icons';
+import type { TextAccent } from '../text/spec';
 
 export type Accent = 'blue' | 'green' | 'orange' | 'red' | 'yellow';
 

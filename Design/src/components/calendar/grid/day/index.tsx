@@ -7,13 +7,13 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as CALENDAR } from '@/components/calendar/constants';
+import { CLASS_NAME as CALENDAR } from '../../constants';
 
 // Context
-import { useCalendar } from '@/components/calendar/context';
+import { useCalendar } from '../../context';
 
 // Helpers
-import { dayLabel, isInRange, sameDay } from '@/components/calendar/helpers';
+import { dayLabel, isInRange, sameDay } from '../../helpers';
 
 const CLASS_NAME = `${CALENDAR}__day`;
 

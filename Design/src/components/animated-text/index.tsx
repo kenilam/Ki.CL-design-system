@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Components
-import { Animation, Text } from '@/components';
-import type { TextNode } from '@/components/text/spec';
+import { Animation, Text } from '..';
+import type { TextNode } from '../text/spec';
 
 // Spec
 import * as Spec from './spec';

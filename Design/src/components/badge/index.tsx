@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 //Components
-import { Layout } from '@/components/layout';
+import { Layout } from '../layout';
 
 import type { BadgeIs, Props } from './spec';
 import { BadgeLabel } from './badge-label';

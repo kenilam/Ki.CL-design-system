@@ -4,13 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Spec
-import type { InputGroupTextProps } from '@/components/input-group/spec';
+import type { InputGroupTextProps } from '../spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as INPUT_GROUP } from '@/components/input-group/constants';
+import { CLASS_NAME as INPUT_GROUP } from '../constants';
 
 const CLASS_NAME = `${INPUT_GROUP}__text`;
 

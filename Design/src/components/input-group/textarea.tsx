@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Textarea } from '@/components/textarea';
+import { Textarea } from '../textarea';
 
 // Spec
 import type { InputGroupTextareaProps } from './spec';

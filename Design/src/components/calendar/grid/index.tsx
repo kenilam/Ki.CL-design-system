@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 
 // Context
-import { useCalendar } from '@/components/calendar/context';
+import { useCalendar } from '../context';
 
 // Helpers
-import { startOfDay } from '@/components/calendar/helpers';
+import { startOfDay } from '../helpers';
 
 // Partials
 import { Day } from './day';

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 // Components
-import { getButtonClassNames, Layout } from '@/components';
+import { getButtonClassNames, Layout } from '..';
 
 // Hooks
 import { useURLStatus } from './hooks';

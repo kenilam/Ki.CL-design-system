@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { CardHeader, type CardHeaderProps } from '@/components/card';
+import { CardHeader, type CardHeaderProps } from '../card';
 
 const CLASS_NAME = 'kicl--components--sheet__header';
 

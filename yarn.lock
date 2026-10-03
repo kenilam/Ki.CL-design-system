@@ -400,6 +400,7 @@ __metadata:
     sass: "npm:1.105.1"
     typescript: "npm:7"
     units-css: "npm:0.4.0"
+    urlpattern-polyfill: "npm:10.1.0"
     vite: "npm:8.1.5"
   languageName: unknown
   linkType: soft
@@ -4047,6 +4048,13 @@ __metadata:
   version: 1.0.0
   resolution: "unpipe@npm:1.0.0"
   checksum: 10c0/193400255bd48968e5c5383730344fbb4fa114cdedfab26e329e50dd2d81b134244bb8a72c6ac1b10ab0281a58b363d06405632c9d49ca9dfd5e90cbd7d0f32c
+  languageName: node
+  linkType: hard
+
+"urlpattern-polyfill@npm:10.1.0":
+  version: 10.1.0
+  resolution: "urlpattern-polyfill@npm:10.1.0"
+  checksum: 10c0/5b124fd8d0ae920aa2a48b49a7a3b9ad1643b5ce7217b808fb6877826e751cabc01897fd4c85cd1989c4e729072b63aad5c3ba1c1325e4433e0d2f6329156bf1
   languageName: node
   linkType: hard
 

@@ -27,12 +27,13 @@ The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types ar
 | `design/core/constants` | `Design/src/core/constants.ts` |
 | `design/hooks` | `useTheme`, `useResponsive`, `useResizeObserver` |
 | `design/icons` | `Company`, `Logo`, `Menu` and the `IconType` type |
+| `design/router` | The `Router`, `MatchedRoute`, `useMatchPattern`, and the `react-router-dom` APIs the site uses |
 | `design/status` | The HTTP status pages and the route `ErrorElement` |
 | `design/widgets` | `GlobalHeader` and `SiteLogo` |
 
 All the CSS goes out as one stylesheet (`bundleAllCSS`). It loads with whichever module the host imports first.
 
-`react`, `react-dom`, `react-router-dom` and `react-hook-form` are shared singletons. The host has to share the same four. `HyperLink` and the status pages use the host's router context, and the form components use the form context a view creates with `useForm`.
+`react`, `react-dom`, `react-router-dom` and `react-hook-form` are shared singletons. Views import routing from `design/router`, never from `react-router-dom` directly. Inside this repo, `HyperLink` and the status pages import `react-router-dom` directly, because importing `router` from inside `components` would create an import cycle through `MatchedRoute`. The host has to share the same four. `HyperLink` and the status pages use the host's router context, and the form components use the form context a view creates with `useForm`.
 
 ## Decisions
 

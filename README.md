@@ -5,7 +5,7 @@ The components, styles, icons and widgets that [Ki.CL](https://github.com/kenila
 ## Run it
 
 ```bash
-cp .env.template .env   # NODE_ENV, PORT (3200 by default), CORS_ORIGINS
+cp .env.template .env   # NODE_ENV, PORT (3200 by default)
 make start              # install, build the remote, serve it
 ```
 
@@ -42,4 +42,4 @@ All the CSS goes out as one stylesheet (`bundleAllCSS`). It loads with whichever
 
 ## Hosting
 
-It's set up the same way as Ki.CL-back. The `Dockerfile` builds the remote into the image, and `Server/index.ts` serves it on Cloud Run under `/design`, with CORS limited to `CORS_ORIGINS`. `remoteEntry.js` is served `no-cache` and the hashed assets as immutable. The host reaches it same-origin through its `/design` proxy.
+It's set up the same way as Ki.CL-back. The `Dockerfile` builds the remote into the image, and `Server/index.ts` serves it on Cloud Run under `/design`. The service only accepts internal traffic and only the host's service account may call it, so it has no CORS: browsers always load it through the host's same-origin `/design` proxy. `remoteEntry.js` is served `no-cache` and the hashed assets as immutable.

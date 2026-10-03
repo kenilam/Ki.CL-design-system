@@ -1,5 +1,4 @@
 import appRoot from 'app-root-path';
-import cors from 'cors';
 import * as dotenv from 'dotenv';
 import express from 'express';
 
@@ -7,23 +6,11 @@ dotenv.config({ path: appRoot.resolve('.env') });
 
 const PORT = Number(process.env.PORT) || 3200;
 const DIST = appRoot.resolve('Design/dist');
-const origins = process.env.CORS_ORIGINS?.split(',') ?? [];
-
-// The host loads the remote as ES modules, which browsers fetch with CORS.
-const corsMiddleware = cors({
-  origin(origin, callback) {
-    if (!origin || process.env.NODE_ENV === 'development') {
-      callback(null, true);
-      return;
-    }
-
-    if (origins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`Origin ${origin} not allowed by CORS`));
-    }
-  },
-});
+/*
+ * No CORS. Browsers never call this server directly: Cloud Run only accepts
+ * internal traffic, and the host proxies /design to it same-origin, in Vite
+ * locally and in its Express server on Cloud Run.
+ */
 
 const app = express();
 
@@ -32,13 +19,12 @@ app.get('/health', (_request, response) => {
 });
 
 // Module Federation hosts look for @mf-types.zip by default.
-app.get('/design/@mf-types.zip', corsMiddleware, (_request, response) => {
+app.get('/design/@mf-types.zip', (_request, response) => {
   response.sendFile(`${DIST}/types.zip`);
 });
 
 app.use(
   '/design',
-  corsMiddleware,
   express.static(DIST, {
     setHeaders(response, path) {
       // The entry keeps its name across releases, so it has to be revalidated.
@@ -54,5 +40,7 @@ app.use(
 );
 
 app.listen(PORT, () => {
-  console.log(`Design system on http://localhost:${PORT}/design/remoteEntry.js`);
+  console.log(
+    `Design system on http://localhost:${PORT}/design/remoteEntry.js`
+  );
 });

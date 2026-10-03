@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.template
+
+node_modules
+**/node_modules
+
+.git
+.github
+.claude
+.cursor
+
+Design/dist
+
+*.log
+.DS_Store

@@ -1,0 +1,65 @@
+{
+  "plugins": [
+    "stylelint-order",
+    "stylelint-prettier",
+    "stylelint-scss"
+  ],
+  "extends": [
+    "stylelint-config-css-modules",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-recommended",
+    "stylelint-config-recommended-scss"
+  ],
+  "ignoreFiles": ["node_modules/**/*."],
+  "rules": {
+    "custom-property-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "declaration-property-value-disallowed-list": null,
+    "keyframes-name-pattern": null,
+    "max-nesting-depth": 6,
+    "no-descending-specificity": null,
+    "scss/at-import-partial-extension-disallowed-list": "never",
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "if",
+          "include",
+          "mixin",
+          "value"
+        ]
+      }
+    ],
+    "scss/dollar-variable-pattern": [
+      "[^\\d]"
+    ],
+    "scss/load-no-partial-leading-underscore": null,
+    "scss/operator-no-newline-after": null,
+    "selector-class-pattern": [
+      "(kicl-[a-z]+)|(kicl--[a-z]+)|(has-[a-z]+)|(is-[a-z]+)|(enter|enter-[a-z]+|entering|entering-[a-z]+|exit|exit-[a-z]+)|(keen-([a-z]+))|disabled|react-datepicker",
+      {
+        "resolveNestedSelectors": false
+      }
+    ],
+    "selector-max-compound-selectors": 4,
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": ["attribute", "class", "id"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "export",
+          "import",
+          "global",
+          "local"
+        ]
+      }
+    ]
+  }
+}

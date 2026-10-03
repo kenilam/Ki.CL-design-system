@@ -7,10 +7,10 @@ import classNames from 'classnames';
 import * as Ri from 'react-icons/ri';
 
 // Components
-import { Animation, Heading, Layout, Text } from '@/components';
+import { Animation, Heading, Layout, Text } from '../../../components';
 
 // Partials
-import { GoBack } from '@/status/http-status/go-back';
+import { GoBack } from '../go-back';
 
 const CLASS_NAME = 'kicl--router--http-status--204';
 

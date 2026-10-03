@@ -4,12 +4,12 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Constants
-import { CLASS_NAME as SELECT } from '@/components/select/constants';
+import { CLASS_NAME as SELECT } from '../constants';
 
 // Partials
-import { SelectLabel } from '@/components/select/label';
+import { SelectLabel } from '../label';
 
-import type { SelectGroupProps } from '@/components/select/spec';
+import type { SelectGroupProps } from '../spec';
 
 const CLASS_NAME = `${SELECT}__group`;
 

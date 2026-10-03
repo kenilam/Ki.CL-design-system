@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useRouteError } from 'react-router-dom';
 
 // Components
-import { Heading, Text } from '@/components';
+import { Heading, Text } from '../../components';
 
 // Spec
 import * as Spec from './spec';

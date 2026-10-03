@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '@/components/layout';
+import { Layout } from '../layout';
 
 import type { BubbleReactionsIs, BubbleReactionsProps } from './spec';
 

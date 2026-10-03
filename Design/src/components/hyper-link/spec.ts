@@ -6,7 +6,7 @@ import { PropsWithChildren } from 'react';
 import { NavLinkProps } from 'react-router-dom';
 
 // Components
-import { GetButtonClassNamesProps } from '@/components';
+import { GetButtonClassNamesProps } from '..';
 
 export type Props = Required<PropsWithChildren> &
   GetButtonClassNamesProps &

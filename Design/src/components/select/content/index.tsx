@@ -3,7 +3,7 @@ import React from 'react';
 // Styles
 import './styles.scss';
 
-import type { SelectContentProps } from '@/components/select/spec';
+import type { SelectContentProps } from '../spec';
 
 /**
  * The options sit straight inside the `<select>` - a wrapper would hide them

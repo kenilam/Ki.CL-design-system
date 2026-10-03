@@ -4,16 +4,16 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button } from '@/components/button';
+import { Button } from '../../button';
 
 // Spec
-import type { InputGroupButtonProps } from '@/components/input-group/spec';
+import type { InputGroupButtonProps } from '../spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as INPUT_GROUP } from '@/components/input-group/constants';
+import { CLASS_NAME as INPUT_GROUP } from '../constants';
 
 const CLASS_NAME = `${INPUT_GROUP}__button`;
 

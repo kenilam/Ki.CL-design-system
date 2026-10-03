@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import * as Ri from 'react-icons/ri';
 
 // Components
-import { Animation, Layout, Spinner } from '@/components';
+import { Animation, Layout, Spinner } from '..';
 
 // Styles
 import './styles.scss';

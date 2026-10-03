@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import { IconType } from '@/icons';
+import { IconType } from '../../icons';
 
 /**
  * Name the dialog with `title` (a visible heading it is labelled by), or with

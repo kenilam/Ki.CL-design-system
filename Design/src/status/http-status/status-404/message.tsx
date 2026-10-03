@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Components
-import { Text } from '@/components';
+import { Text } from '../../../components';
 
 const COPY = {
   before: 'The page ',

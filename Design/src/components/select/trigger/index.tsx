@@ -10,9 +10,9 @@ import * as Ri from 'react-icons/ri';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as SELECT } from '@/components/select/constants';
+import { CLASS_NAME as SELECT } from '../constants';
 
-import type { SelectTriggerProps } from '@/components/select/spec';
+import type { SelectTriggerProps } from '../spec';
 
 const CLASS_NAME = `${SELECT}__trigger`;
 

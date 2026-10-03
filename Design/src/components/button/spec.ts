@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
-import { LayoutProps } from '@/components';
+import { LayoutProps } from '..';
 
 type Size = 'large' | 'small';
 type Level = 'confirm' | 'error' | 'info' | 'warning';

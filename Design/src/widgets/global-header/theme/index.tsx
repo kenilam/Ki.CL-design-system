@@ -4,10 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button, Text } from '@/components';
+import { Button, Text } from '../../../components';
 
 // Hooks
-import { useTheme } from '@/hooks';
+import { useTheme } from '../../../hooks';
 
 // Icons
 import * as Ri from 'react-icons/ri';

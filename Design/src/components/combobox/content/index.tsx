@@ -4,19 +4,19 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { PopoverContent } from '@/components/popover';
+import { PopoverContent } from '../../popover';
 
 // Spec
-import type { ComboboxContentProps } from '@/components/combobox/spec';
+import type { ComboboxContentProps } from '../spec';
 
 // Constants
 import {
   CLASS_NAME as COMBOBOX,
   FOCUSABLE,
-} from '@/components/combobox/constants';
+} from '../constants';
 
 // Context
-import { focusables, useCombobox } from '@/components/combobox/context';
+import { focusables, useCombobox } from '../context';
 
 const CLASS_NAME = `${COMBOBOX}__content`;
 

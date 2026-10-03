@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout, ListItem } from '@/components';
+import { Layout, ListItem } from '..';
 
 // Styles
 import './styles.scss';

@@ -35,6 +35,7 @@ export default defineConfig({
         './core/constants': './src/core/constants.ts',
         './hooks': './src/hooks/index.ts',
         './icons': './src/icons/index.ts',
+        './router': './src/router/index.tsx',
         './status': './src/status/index.ts',
         './widgets': './src/widgets/index.ts',
       },

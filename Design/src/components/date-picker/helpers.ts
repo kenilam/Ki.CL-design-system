@@ -1,4 +1,4 @@
-import type { DateRange } from '@/components/calendar';
+import type { DateRange } from '../calendar';
 
 export const defaultFormatDate = (date: Date) =>
   date.toLocaleDateString(undefined, {

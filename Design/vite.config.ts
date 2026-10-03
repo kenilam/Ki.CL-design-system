@@ -15,7 +15,7 @@ const src = path.resolve(root, 'src');
 // was in the host. Only this package compiles them; the host reads the CSS.
 const partials = glob
   .sync('**/_*.scss', { cwd: src, posix: true })
-  .map((file) => `@use '@/${file}' as *;`)
+  .map((file) => `@use '${path.join(src, file)}' as *;`)
   .join('');
 
 const prelude = `@use 'sass:color';@use 'sass:list';@use 'sass:math';${partials}`;
@@ -35,6 +35,7 @@ export default defineConfig({
         './core/constants': './src/core/constants.ts',
         './hooks': './src/hooks/index.ts',
         './icons': './src/icons/index.ts',
+        './router': './src/router/index.tsx',
         './status': './src/status/index.ts',
         './widgets': './src/widgets/index.ts',
       },
@@ -56,12 +57,6 @@ export default defineConfig({
       },
     }),
   ],
-  resolve: {
-    // Keep in sync with Design/tsconfig.json paths.
-    alias: {
-      '@': src,
-    },
-  },
   css: {
     preprocessorOptions: {
       scss: {

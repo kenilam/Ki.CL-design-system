@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button, Layout, Text } from '@/components';
+import { Button, Layout, Text } from '..';
 
 // Styles
 import './styles.scss';

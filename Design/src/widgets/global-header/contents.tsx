@@ -4,13 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Widgets
-import { SiteLogo } from '@/widgets';
+import { SiteLogo } from '..';
 
 // Components
-import { Animation, Layout } from '@/components';
+import { Animation, Layout } from '../../components';
 
 // Hooks
-import { useResponsive } from '@/hooks';
+import { useResponsive } from '../../hooks';
 
 // Partials
 import { Theme } from './theme';

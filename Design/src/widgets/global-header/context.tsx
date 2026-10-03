@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useContext, useState } from 'react';
 
 // Hooks
-import { useResizeObserver } from '@/hooks';
+import { useResizeObserver } from '../../hooks';
 
 // Spec
 import * as Spec from './spec';

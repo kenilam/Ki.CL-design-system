@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
-import type { CardVariant } from '@/components/card/spec';
-import type { ColumnSpan } from '@/components/layout/spec';
+import type { CardVariant } from '../card/spec';
+import type { ColumnSpan } from '../layout/spec';
 
 /**
  * Starts open when `defaultOpen`; after that its own buttons open and close

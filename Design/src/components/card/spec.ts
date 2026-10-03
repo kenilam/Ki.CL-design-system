@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import type { ColumnSpan } from '@/components/layout/spec';
-import type { PolymorphicIsProps } from '@/components/polymorphic';
+import type { ColumnSpan } from '../layout/spec';
+import type { PolymorphicIsProps } from '../polymorphic';
 
 /**
  * `default` = full width; `fit` = as wide as the content; named sizes map to

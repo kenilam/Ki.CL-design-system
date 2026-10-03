@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Components
-import { Popover, PopoverContent } from '@/components/popover';
+import { Popover, PopoverContent } from '../popover';
 
 // Context
 import { DatePickerContext, type DatePickerContextValue } from './context';
@@ -119,5 +119,5 @@ export type {
   DatePickerRangeProps,
   DatePickerSingleProps,
 } from './spec';
-export type { DateRange } from '@/components/calendar';
+export type { DateRange } from '../calendar';
 export { DatePicker };

@@ -1,7 +1,7 @@
 import type { JSX, ReactNode } from 'react';
 
-import type { Props as ButtonProps } from '@/components/button/spec';
-import type { PolymorphicIsProps } from '@/components/polymorphic';
+import type { Props as ButtonProps } from '../button/spec';
+import type { PolymorphicIsProps } from '../polymorphic';
 
 export const BADGE_VARIANTS = [
   'default',

@@ -4,21 +4,21 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { PopoverTrigger } from '@/components/popover';
+import { PopoverTrigger } from '../../popover';
 import * as Ri from 'react-icons/ri';
 
 // Spec
-import type { DatePickerTriggerProps } from '@/components/date-picker/spec';
+import type { DatePickerTriggerProps } from '../spec';
 
 // Styles
-import '@/components/input/styles.scss';
+import '../../input/styles.scss';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as DATE_PICKER } from '@/components/date-picker/constants';
+import { CLASS_NAME as DATE_PICKER } from '../constants';
 
 // Context
-import { useDatePicker } from '@/components/date-picker/context';
+import { useDatePicker } from '../context';
 
 const Trigger: React.FunctionComponent<DatePickerTriggerProps> = (props) => {
   const { disabled, label, placeholder } = useDatePicker();

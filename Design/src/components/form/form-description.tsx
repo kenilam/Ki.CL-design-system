@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Text } from '@/components/text';
+import { Text } from '../text';
 
 import { useFormFieldContext } from './context';
 import type { FormDescriptionProps } from './spec';

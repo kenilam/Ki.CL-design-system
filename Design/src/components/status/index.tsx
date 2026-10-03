@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Animation, Heading, Layout, Text } from '@/components';
+import { Animation, Heading, Layout, Text } from '..';
 
 // Icons
 import * as Ri from 'react-icons/ri';

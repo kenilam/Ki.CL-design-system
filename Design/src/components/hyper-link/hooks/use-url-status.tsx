@@ -1,5 +1,5 @@
 // Spec
-import * as Spec from '@/components/hyper-link/spec';
+import * as Spec from '../spec';
 
 const useURLStatus = (to: Spec.Props['to']) => {
   if (typeof to === 'string') {

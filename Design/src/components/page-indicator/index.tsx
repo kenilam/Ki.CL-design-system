@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { HyperLink, Layout, List, ListItem, Text } from '@/components';
+import { HyperLink, Layout, List, ListItem, Text } from '..';
 
 // Spec
 import * as Spec from './spec';

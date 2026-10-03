@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '@/components';
+import { Layout } from '..';
 
 // Spec
 import * as Spec from './spec';

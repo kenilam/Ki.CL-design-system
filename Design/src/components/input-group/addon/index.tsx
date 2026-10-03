@@ -4,16 +4,16 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '@/components/layout';
+import { Layout } from '../../layout';
 
 // Spec
-import type { InputGroupAddonProps } from '@/components/input-group/spec';
+import type { InputGroupAddonProps } from '../spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as INPUT_GROUP } from '@/components/input-group/constants';
+import { CLASS_NAME as INPUT_GROUP } from '../constants';
 
 const CLASS_NAME = `${INPUT_GROUP}__addon`;
 

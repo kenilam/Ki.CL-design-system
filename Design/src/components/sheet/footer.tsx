@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { CardFooter, type CardFooterProps } from '@/components/card';
+import { CardFooter, type CardFooterProps } from '../card';
 
 const CLASS_NAME = 'kicl--components--sheet__footer';
 

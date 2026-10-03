@@ -1,6 +1,6 @@
 import type { JSX, PropsWithChildren } from 'react';
 
-import type { PolymorphicIsProps } from '@/components/polymorphic';
+import type { PolymorphicIsProps } from '../polymorphic';
 
 /** Semantic hosts for body copy, quotes and inline meaning (code, emphasis, dates). */
 export type TextIs = Extract<

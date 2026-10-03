@@ -4,20 +4,20 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '@/components/layout';
+import { Layout } from '../../layout';
 import * as Ri from 'react-icons/ri';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as CALENDAR } from '@/components/calendar/constants';
+import { CLASS_NAME as CALENDAR } from '../constants';
 
 // Context
-import { useCalendar } from '@/components/calendar/context';
+import { useCalendar } from '../context';
 
 // Helpers
-import { monthLabel } from '@/components/calendar/helpers';
+import { monthLabel } from '../helpers';
 
 const COPY = {
   next: 'Next month',

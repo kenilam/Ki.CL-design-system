@@ -1,6 +1,6 @@
 import type { JSX, PropsWithChildren } from 'react';
 
-import type { PolymorphicIsProps } from '@/components/polymorphic';
+import type { PolymorphicIsProps } from '../polymorphic';
 
 export type HeadingIs = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 

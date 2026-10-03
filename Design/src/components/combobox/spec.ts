@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import type { PopoverContentProps } from '@/components/popover/spec';
+import type { PopoverContentProps } from '../popover/spec';
 
 export type ComboboxProps = ComponentPropsWithoutRef<'div'> & {
   /** Controlled: the panel shows while this is true. */

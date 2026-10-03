@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as SELECT } from '@/components/select/constants';
+import { CLASS_NAME as SELECT } from '../constants';
 
-import type { SelectSeparatorProps } from '@/components/select/spec';
+import type { SelectSeparatorProps } from '../spec';
 
 const CLASS_NAME = `${SELECT}__separator`;
 

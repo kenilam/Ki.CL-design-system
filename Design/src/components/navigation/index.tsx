@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Animation, type AnimationProps, List, ListItem } from '@/components';
+import { Animation, type AnimationProps, List, ListItem } from '..';
 
 // Styles
 import './styles.scss';

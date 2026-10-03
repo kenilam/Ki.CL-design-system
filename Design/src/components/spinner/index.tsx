@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 // Components
-import { Animation, AnimationProps, Layout, Text } from '@/components';
+import { Animation, AnimationProps, Layout, Text } from '..';
 
 // Icons
 import * as Ri from 'react-icons/ri';

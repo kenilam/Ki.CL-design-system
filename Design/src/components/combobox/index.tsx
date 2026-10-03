@@ -4,7 +4,7 @@ import React, { useCallback, useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Popover } from '@/components/popover';
+import { Popover } from '../popover';
 
 // Spec
 import type { ComboboxProps } from './spec';

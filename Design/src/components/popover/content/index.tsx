@@ -4,16 +4,16 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
 // Spec
-import type { PopoverContentProps } from '@/components/popover/spec';
+import type { PopoverContentProps } from '../spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as POPOVER } from '@/components/popover/constants';
+import { CLASS_NAME as POPOVER } from '../constants';
 
 // Context
-import { usePopover } from '@/components/popover/context';
+import { usePopover } from '../context';
 
 const CLASS_NAME = `${POPOVER}__content`;
 

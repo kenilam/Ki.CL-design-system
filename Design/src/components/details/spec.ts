@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
-import type { Gap } from '@/components/layout/spec';
+import type { Gap } from '../layout/spec';
 
 export type Props = ComponentPropsWithoutRef<'details'> & {
   summary: ComponentPropsWithoutRef<'details'>['children'];

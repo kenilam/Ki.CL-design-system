@@ -4,7 +4,7 @@ import React, { useId, useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '@/components/layout';
+import { Layout } from '../layout';
 
 // Styles
 import './styles.scss';

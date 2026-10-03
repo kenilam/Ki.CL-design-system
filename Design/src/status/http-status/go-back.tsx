@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Components
-import { HyperLink, HyperLinkProps } from '@/components';
+import { HyperLink, HyperLinkProps } from '../../components';
 
 const COPY = {
   back: 'Go Back',

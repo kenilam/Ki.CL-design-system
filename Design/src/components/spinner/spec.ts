@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AnimationProps } from '@/components';
+import { AnimationProps } from '..';
 
 type Position = 'inline' | 'overlay';
 /** `inherit` takes its size from the element it sits in. */

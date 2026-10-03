@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { DateRange } from '@/components/calendar';
+import type { DateRange } from '../calendar';
 
 export type DatePickerMode = 'single' | 'range';
 

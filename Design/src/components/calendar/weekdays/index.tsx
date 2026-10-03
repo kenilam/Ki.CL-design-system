@@ -7,10 +7,10 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as CALENDAR } from '@/components/calendar/constants';
+import { CLASS_NAME as CALENDAR } from '../constants';
 
 // Helpers
-import { weekdays } from '@/components/calendar/helpers';
+import { weekdays } from '../helpers';
 
 /** Column headers; `abbr` gives each column its full day name. */
 const Weekdays: React.FunctionComponent = () => (

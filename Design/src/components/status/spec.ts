@@ -1,9 +1,9 @@
 // Components
-import { AnimationProps, HeadingProps, TextProps } from '@/components';
-import type { HeadingIs } from '@/components/heading/spec';
+import { AnimationProps, HeadingProps, TextProps } from '..';
+import type { HeadingIs } from '../heading/spec';
 
 // Icons
-import { IconType } from '@/icons';
+import { IconType } from '../../icons';
 
 type Level = 'error' | 'info' | 'warning';
 

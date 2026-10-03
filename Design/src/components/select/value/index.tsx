@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as SELECT } from '@/components/select/constants';
+import { CLASS_NAME as SELECT } from '../constants';
 
-import type { SelectValueProps } from '@/components/select/spec';
+import type { SelectValueProps } from '../spec';
 
 const CLASS_NAME = `${SELECT}__value`;
 

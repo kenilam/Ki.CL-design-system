@@ -1,5 +1,5 @@
-import type { LayoutProps } from '@/components';
-import type { PolymorphicIsProps } from '@/components/polymorphic';
+import type { LayoutProps } from '..';
+import type { PolymorphicIsProps } from '../polymorphic';
 
 export type ListIs = 'ol' | 'ul';
 

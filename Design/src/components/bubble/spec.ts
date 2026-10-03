@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { PolymorphicIsProps } from '@/components/polymorphic';
+import type { PolymorphicIsProps } from '../polymorphic';
 
 export const BUBBLE_VARIANTS = [
   'default',

@@ -4,19 +4,19 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '@/components/layout';
+import { Layout } from '../../layout';
 
 // Spec
-import type { RadioGroupItemProps } from '@/components/radio-group/spec';
+import type { RadioGroupItemProps } from '../spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as RADIO_GROUP } from '@/components/radio-group/constants';
+import { CLASS_NAME as RADIO_GROUP } from '../constants';
 
 // Context
-import { useRadioGroup } from '@/components/radio-group/context';
+import { useRadioGroup } from '../context';
 
 const CLASS_NAME = `${RADIO_GROUP}__item`;
 

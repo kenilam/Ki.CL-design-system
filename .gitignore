@@ -5,6 +5,7 @@ dist/
 .env
 .env.local
 
+.history/
 .idea/
 .vscode/
 .DS_Store

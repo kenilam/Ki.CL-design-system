@@ -15,16 +15,26 @@
   padding-block: var(--kicl--components--input-group--padding-block);
   padding-inline: var(--kicl--components--input-group--padding-inline);
 
+  .kicl--components--input {
+    --kicl--components--input--border-radius: 0;
+  }
+
   // The control's column takes the width the addons beside it leave; a column exists only for a side that has one, so an empty side adds no gap.
   &:has(> &__addon--inline-start):not(:has(> &__addon--inline-end)) {
+    --kicl--components--input-group--padding-inline: var(--kicl-gutter-narrow) var(--kicl-gutter);
+
     grid-template-columns: max-content 1fr;
   }
 
   &:not(:has(> &__addon--inline-start)):has(> &__addon--inline-end) {
+    --kicl--components--input-group--padding-inline: var(--kicl-gutter) var(--kicl-gutter-narrow);
+
     grid-template-columns: 1fr max-content;
   }
 
   &:has(> &__addon--inline-start):has(> &__addon--inline-end) {
+    --kicl--components--input-group--padding-inline: var(--kicl-gutter-narrow);
+
     grid-template-columns: max-content 1fr max-content;
   }
 
@@ -34,7 +44,7 @@
   }
 
   &:has([aria-invalid='true'], :user-invalid) {
-    border-color: var(--kicl-color-error);
+    --kicl-outline-color: var(--kicl-color-error);
   }
 
   /*

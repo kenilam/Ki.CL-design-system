@@ -2,7 +2,8 @@ app-root {
   display: contents;
 }
 
-.kicl-hidden {
+// Out of sight, still in the accessibility tree.
+@mixin -visually-hidden {
   border-width: 0;
   clip-path: inset(50%);
   block-size: 1px;
@@ -14,15 +15,24 @@ app-root {
   inline-size: 1px;
 }
 
+.kicl-hidden {
+  @include -visually-hidden;
+}
+
 /* Visually hidden until it takes keyboard focus, for skip links. */
 .kicl-hidden-focusable:not(:focus-visible) {
-  border-width: 0;
-  clip-path: inset(50%);
-  block-size: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  inline-size: 1px;
+  @include -visually-hidden;
+}
+
+/*
+ * Visually hidden at that width and narrower, matching the
+ * `--kicl-viewport-up-to-*` flags: a label another control stands in for on
+ * small screens, still read by assistive tech.
+ */
+@each $name in (narrow, mobile, tablet, desktop, wide, wider) {
+  @include query('≤#{$name}') {
+    .kicl-hidden-up-to-#{$name} {
+      @include -visually-hidden;
+    }
+  }
 }

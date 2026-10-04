@@ -17,6 +17,7 @@ import { PopoverContext } from './context';
 
 // Partials
 import { PopoverContent } from './content';
+import { PopoverHint } from './hint';
 import { PopoverTrigger } from './trigger';
 
 /**
@@ -36,13 +37,17 @@ import { PopoverTrigger } from './trigger';
 const Popover: React.FC<PopoverProps> = ({
   children,
   className,
+  block = false,
   defaultOpen = false,
+  inline = false,
   onOpenChange,
   open,
   ...rest
 }) => {
   const isControlled = open !== undefined;
   const [uncontrolled, setUncontrolled] = useState(defaultOpen);
+  const [content, setContent] = useState(false);
+  const [hint, setHint] = useState(false);
   const isOpen = isControlled ? Boolean(open) : uncontrolled;
 
   /*
@@ -61,25 +66,57 @@ const Popover: React.FC<PopoverProps> = ({
     onOpenChange?.(next);
   };
 
+  /*
+   * Declared on the wrapper so both the trigger and the panel inherit one
+   * name. An anchor name has to be a literal in the stylesheet, and a
+   * component may be on the page many times over - passing it through a
+   * custom property is what keeps each pair talking only to itself.
+   */
+  const style = { [`--${CLASS_NAME}--anchor`]: anchor } as React.CSSProperties;
+  const state = isOpen ? 'open' : 'closed';
+
   return (
-    <PopoverContext.Provider value={{ id, anchor, open: isOpen, setOpen }}>
-      <Layout display='inline-grid' gap='none'>
-        <div
+    <PopoverContext.Provider
+      value={{
+        id,
+        anchor,
+        content,
+        hint,
+        inline,
+        open: isOpen,
+        setContent,
+        setHint,
+        setOpen,
+      }}
+    >
+      {inline ? (
+        /*
+         * `display: contents`, so the trigger sits in the line as if the
+         * wrapper weren't there. The custom property still inherits, because
+         * inheritance follows the elements, not the boxes.
+         */
+        <span
           data-slot='popover'
-          className={classNames(CLASS_NAME, className)}
-          data-state={isOpen ? 'open' : 'closed'}
-          /*
-           * Declared on the wrapper so both the trigger and the panel inherit
-           * one name. An anchor name has to be a literal in the stylesheet, and
-           * a component may be on the page many times over - passing it through
-           * a custom property is what keeps each pair talking only to itself.
-           */
-          style={{ [`--${CLASS_NAME}--anchor`]: anchor } as React.CSSProperties}
-          {...rest}
+          className={classNames(CLASS_NAME, `${CLASS_NAME}--inline`, className)}
+          data-state={state}
+          style={style}
+          {...(rest as React.HTMLAttributes<HTMLSpanElement>)}
         >
           {children}
-        </div>
-      </Layout>
+        </span>
+      ) : (
+        <Layout display={block ? 'grid' : 'inline-grid'} gap='none'>
+          <div
+            data-slot='popover'
+            className={classNames(CLASS_NAME, className)}
+            data-state={state}
+            style={style}
+            {...rest}
+          >
+            {children}
+          </div>
+        </Layout>
+      )}
     </PopoverContext.Provider>
   );
 };
@@ -88,10 +125,11 @@ Popover.displayName = 'Popover';
 
 export type {
   PopoverContentProps,
+  PopoverHintProps,
   PopoverPlacement,
   PopoverProps,
   PopoverTriggerProps,
   PopoverVariant,
 } from './spec';
 
-export { PopoverContent, PopoverTrigger, Popover };
+export { PopoverContent, PopoverHint, PopoverTrigger, Popover };

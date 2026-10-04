@@ -1,6 +1,11 @@
 /*
- * The options share one track, each an equal share of it. The highlight is
- * the track's own `::before`, anchored to whichever option is checked: it
+ * Two boxes. The fieldset is the track: its colour, its rounded ends. The
+ * options sit in `__options`, which lays them out and is the box that scrolls
+ * and fades in `collapse='scroll'` - kept apart so a fade dissolves the
+ * options into the track rather than the track into the page.
+ *
+ * The options share the track, each an equal share. The highlight is
+ * `__options`'s own `::before`, anchored to whichever option is checked: it
  * takes that option's box, and slides when the choice changes, since its
  * insets transition. `anchor-scope` keeps each control's anchor its own.
  */
@@ -16,14 +21,21 @@
     transparent
   );
 
-  anchor-scope: --kicl--components--segmented--checked;
   background-color: var(--kicl--components--segmented--track);
   border: 0;
   display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
   margin: 0;
   min-inline-size: 0;
+}
+
+.kicl--components--segmented__options {
+  anchor-scope: --kicl--components--segmented--checked;
+  border-radius: inherit;
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  min-inline-size: 0;
+  position: relative;
 
   &::before {
     background-color: var(--kicl--components--segmented--thumb);
@@ -83,4 +95,173 @@
   appearance: none;
   margin: 0;
   opacity: 0;
+}
+
+// `collapse='scroll'`: below tablet the row keeps its options whole and
+// scrolls sideways instead, settling on one option at a time.
+.kicl--components--segmented--collapse--scroll
+.kicl--components--segmented__options {
+  @include query('≤tablet') {
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+
+    .kicl--components--segmented__item {
+      scroll-snap-align: start;
+      white-space: nowrap;
+
+      // On load, the row starts scrolled to the chosen option.
+      &:has(:checked) {
+        scroll-initial-target: nearest;
+      }
+    }
+
+    /*
+     * The edges fade where there's more to scroll to, so a cut-off option
+     * reads as "more this way". A mask, not an overlay, so it works on any
+     * background. The scroll position drives it: no fade at the start until
+     * the row has moved, none at the end once it gets there, and none at all
+     * when everything fits, because then there's no scroll to follow.
+     */
+    @supports (animation-timeline: scroll()) {
+      --kicl--components--segmented--fade: var(--kicl-gutter-wide);
+
+      /*
+       * Longhands: written as the `animation` shorthand, the minifier folds
+       * the timeline into it, which the shorthand doesn't accept, and the
+       * browser drops the whole declaration.
+       */
+      animation-fill-mode: both;
+      animation-name: kicl--components--segmented--fade;
+      animation-timeline: scroll(self inline);
+      animation-timing-function: linear;
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 var(--kicl--components--segmented--fade-start),
+        #000 calc(100% - var(--kicl--components--segmented--fade-end)),
+        transparent
+      );
+    }
+  }
+}
+
+// Registered, so the fade lengths animate rather than jump.
+@property --kicl--components--segmented--fade-start {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --kicl--components--segmented--fade-end {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes kicl--components--segmented--fade {
+  0% {
+    --kicl--components--segmented--fade-start: 0;
+    --kicl--components--segmented--fade-end: var(
+      --kicl--components--segmented--fade
+    );
+  }
+
+  10%,
+  90% {
+    --kicl--components--segmented--fade-start: var(
+      --kicl--components--segmented--fade
+    );
+    --kicl--components--segmented--fade-end: var(
+      --kicl--components--segmented--fade
+    );
+  }
+
+  100% {
+    --kicl--components--segmented--fade-start: var(
+      --kicl--components--segmented--fade
+    );
+    --kicl--components--segmented--fade-end: 0;
+  }
+}
+
+/*
+ * `collapse='popover'`: one set of radios, in a popover panel. Above tablet
+ * the panel is laid out in place as the usual row, so it overrides what the
+ * popover would do, and the trigger isn't needed. Below it the trigger shows
+ * the choice and the panel opens as a list.
+ */
+.kicl--components--segmented__trigger {
+  align-items: center;
+  background-color: var(--kicl--components--segmented--track);
+  border: 0;
+  cursor: pointer;
+  display: grid;
+  font-size: var(--kicl-font-size-small);
+  gap: var(--kicl-gutter-narrowest);
+  grid-auto-flow: column;
+
+  // As wide as the choice, the arrow right after it.
+  justify-content: start;
+  justify-self: start;
+  text-transform: uppercase;
+}
+
+.kicl--components--segmented__panel {
+  // The panel is the surface now, so the options sit on it without a track.
+  .kicl--components--segmented {
+    background-color: transparent;
+  }
+
+  .kicl--components--segmented__options {
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+  }
+
+  // The options line up the way the panel does, from the popover's placement.
+  .kicl--components--segmented__item {
+    justify-items: var(--kicl--components--popover--align, start);
+  }
+}
+
+@include query('>tablet') {
+  .kicl--components--segmented__popover {
+    .kicl--components--segmented__trigger {
+      display: none;
+    }
+
+    .kicl--components--segmented__panel {
+      background: none;
+      border: 0;
+      display: block;
+      inline-size: auto;
+      inset: auto;
+      margin: 0;
+      opacity: 1;
+      overflow: visible;
+      padding: 0;
+      position: static;
+      translate: none;
+
+      .kicl--components--segmented {
+        background-color: var(--kicl--components--segmented--track);
+      }
+
+      .kicl--components--segmented__options {
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
+      }
+
+      .kicl--components--segmented__item {
+        justify-items: center;
+      }
+    }
+  }
 }

@@ -53,3 +53,20 @@
 .kicl-min-block-size-screen {
   min-block-size: 100dvb;
 }
+
+/*
+ * Caps by share of the screen, for a panel that shouldn't cover it - a sheet
+ * held at the foot, say - paired with an overflow utility to scroll inside.
+ * `dvb` follows the visible viewport as mobile browser bars come and go.
+ */
+.kicl-max-block-size-screen {
+  max-block-size: 100dvb;
+}
+
+.kicl-max-block-size-screen-half {
+  max-block-size: 50dvb;
+}
+
+.kicl-max-block-size-screen-third {
+  max-block-size: calc(100dvb / 3);
+}

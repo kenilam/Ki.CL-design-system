@@ -66,6 +66,11 @@ html {
   scroll-padding-block-start: var(--kicl--widgets--global-header--block-size);
 }
 
+/* And a little short of it, so a jump never lands flush against the edge. */
+:target {
+  scroll-margin-block: var(--kicl-gutter-wide);
+}
+
 body {
   background-color: var(--kicl-body-background-color);
   color: var(--kicl-body-color);

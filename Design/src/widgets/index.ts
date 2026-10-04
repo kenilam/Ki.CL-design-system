@@ -4,11 +4,14 @@ import {
   useGlobalHeaderContext,
 } from './global-header';
 import { SiteLogo, SiteLogoProps } from './site-logo';
+import { ThemeToggle, type ThemeToggleProps } from './theme-toggle';
 
 export {
   GlobalHeader,
   GlobalHeaderProvider,
   SiteLogo,
   type SiteLogoProps,
+  ThemeToggle,
+  type ThemeToggleProps,
   useGlobalHeaderContext,
 };

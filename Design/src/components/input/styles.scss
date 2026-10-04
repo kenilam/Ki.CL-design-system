@@ -19,6 +19,17 @@
   padding-block: var(--kicl--components--input--padding-block);
   padding-inline: var(--kicl--components--input--padding-inline);
 
+  // A long value or placeholder ends in an ellipsis instead of being cut.
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &::placeholder {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   &[aria-invalid='true'],
   &:user-invalid {
     border-color: var(--kicl-color-error);

@@ -105,21 +105,20 @@
     }
   }
 
-  // A `pre` scrolls its own long lines. Without it, its longest line is the
-  // narrowest the page can be, and on a phone the page runs off the screen.
+  // A `pre` wraps its long lines, breaking anywhere. Kept on one line, the
+  // longest is the narrowest the page can be, and on a phone the page runs
+  // off the screen.
   &[data-is='pre'] {
-    max-inline-size: 100%;
-    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 
-  // A code block: code inside `pre` is one box that scrolls sideways, not a
-  // fill around each line.
+  // A code block: code inside `pre` is one box, not a fill around each line.
   &[data-is='pre'] > &[data-is='code'] {
     display: block;
     font-weight: var(--kicl-font-weight);
-    overflow-x: auto;
     padding: var(--kicl-gutter-narrow) var(--kicl-gutter);
-    white-space: pre;
+    white-space: pre-wrap;
   }
 
   // Inline code, after shadcn's typography example. The fill mixes from the

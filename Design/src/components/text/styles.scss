@@ -105,6 +105,13 @@
     }
   }
 
+  // A `pre` scrolls its own long lines. Without it, its longest line is the
+  // narrowest the page can be, and on a phone the page runs off the screen.
+  &[data-is='pre'] {
+    max-inline-size: 100%;
+    overflow-x: auto;
+  }
+
   // A code block: code inside `pre` is one box that scrolls sideways, not a
   // fill around each line.
   &[data-is='pre'] > &[data-is='code'] {

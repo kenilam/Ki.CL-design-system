@@ -1,0 +1,11 @@
+.kicl--components--input--search {
+  // Nothing to clear while the placeholder shows.
+  &:has(input:placeholder-shown) &__clear {
+    display: none;
+  }
+
+  // The browser's own clear button would make two.
+  input::-webkit-search-cancel-button {
+    appearance: none;
+  }
+}

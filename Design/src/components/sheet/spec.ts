@@ -8,7 +8,7 @@ import type { ColumnSpan } from '../layout/spec';
  * it, through `popovertarget`, and `onOpenChange` reports each change. `size`
  * is how many columns wide it is beside the page.
  */
-export type SheetProps = Omit<ComponentPropsWithoutRef<'aside'>, 'popover'> & {
+export type SheetProps = Omit<ComponentPropsWithoutRef<'dialog'>, 'popover'> & {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   size?: ColumnSpan;

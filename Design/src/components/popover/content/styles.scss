@@ -1,3 +1,35 @@
+// The four sides, each with the axis it sits on.
+$sides: (
+  block-end: block,
+  block-start: block,
+  inline-start: inline,
+  inline-end: inline,
+);
+
+// The gutter scale `Layout` takes for `gap`. `normal` is the gutter itself.
+$gaps: (
+  none,
+  narrowest,
+  narrower,
+  narrow,
+  normal,
+  wide,
+  wider,
+  widest,
+  extreme
+);
+
+/*
+ * A panel is as wide as what it holds. Placed by `position-area` it would
+ * otherwise fill the area beside the trigger, and a width cap on its contents
+ * can't help: `min(100%, ...)` doesn't resolve while the panel measures
+ * them. Cap the panel itself instead. `:where()` keeps this a default that
+ * any component's own width - the combobox's, say - wins over.
+ */
+:where(.kicl--components--popover__content) {
+  inline-size: fit-content;
+}
+
 .kicl--components--popover {
   &__content {
     --kicl--components--popover--background-color: var(--kicl-surface-color);
@@ -7,6 +39,22 @@
 
     /* Which side of the trigger the panel prefers. Modifiers move this. */
     --kicl--components--popover--position-area: block-end span-inline-end;
+
+    /* The gap to the trigger, and the axis it sits on. Modifiers set both. */
+    --kicl--components--popover--offset: var(--kicl-gutter-narrow);
+    --kicl--components--popover--margin-block: var(
+      --kicl--components--popover--offset
+    );
+    --kicl--components--popover--margin-inline: 0;
+
+    /* Where it slides in from: half the gap, back towards the trigger. */
+    --kicl--components--popover--back: calc(
+      var(--kicl--components--popover--offset) * -0.5
+    );
+    --kicl--components--popover--ahead: calc(
+      var(--kicl--components--popover--offset) * 0.5
+    );
+    --kicl--components--popover--enter: 0 var(--kicl--components--popover--back);
 
     background-color: var(--kicl--components--popover--background-color);
     border: var(--kicl-size-1px) solid
@@ -29,7 +77,14 @@
      */
     @supports (position-area: block-end) {
       inset: auto;
-      margin: var(--kicl-gutter-narrowest);
+
+      /*
+       * Only on the axis facing the trigger, so the panel's edge still lines
+       * up with the trigger's. Both ends of that axis carry it, so the gap
+       * survives a flip to the other side.
+       */
+      margin-block: var(--kicl--components--popover--margin-block);
+      margin-inline: var(--kicl--components--popover--margin-inline);
       position-anchor: var(--kicl--components--popover--anchor);
       position-area: var(--kicl--components--popover--position-area);
 
@@ -57,7 +112,7 @@
       translate var(--kicl-transition-duration-fast),
       display var(--kicl-transition-duration-fast) allow-discrete,
       overlay var(--kicl-transition-duration-fast) allow-discrete;
-    translate: 0 calc(var(--kicl-gutter-narrowest) * -1);
+    translate: var(--kicl--components--popover--enter);
 
     &:popover-open {
       opacity: 1;
@@ -65,24 +120,94 @@
 
       @starting-style {
         opacity: 0;
-        translate: 0 calc(var(--kicl-gutter-narrowest) * -1);
+        translate: var(--kicl--components--popover--enter);
       }
     }
 
-    &--block-end {
-      --kicl--components--popover--position-area: block-end span-inline-end;
+    /*
+     * Side and alignment. The span is the direction the panel grows in from
+     * the trigger: towards the end to line up with its start, away from it to
+     * line up with its end, and across both for the centre.
+     */
+    @each $side, $axis in $sides {
+      $across: block;
+
+      @if $axis == block {
+        $across: inline;
+      }
+
+      $spans: (
+        start: span-#{$across}-end,
+        center: span-all,
+        end: span-#{$across}-start,
+      );
+
+      @each $align, $span in $spans {
+        /*
+         * `--align` is for what's inside: text and items line up the way the
+         * panel does. Above or below the trigger that's the panel's own
+         * alignment; beside it, the side facing the trigger.
+         */
+        $text: $align;
+
+        @if $side == inline-start {
+          $text: end;
+        } @else if $side == inline-end {
+          $text: start;
+        }
+
+        &--#{$side}--#{$align} {
+          --kicl--components--popover--align: #{$text};
+          --kicl--components--popover--position-area: #{$side} #{$span};
+        }
+      }
     }
 
-    &--block-start {
-      --kicl--components--popover--position-area: block-start span-inline-end;
+    &--block-start--start,
+    &--block-start--center,
+    &--block-start--end {
+      --kicl--components--popover--enter: 0
+        var(--kicl--components--popover--ahead);
     }
 
-    &--inline-start {
-      --kicl--components--popover--position-area: inline-start span-block-end;
+    &--inline-start--start,
+    &--inline-start--center,
+    &--inline-start--end,
+    &--inline-end--start,
+    &--inline-end--center,
+    &--inline-end--end {
+      --kicl--components--popover--margin-block: 0;
+      --kicl--components--popover--margin-inline: var(
+        --kicl--components--popover--offset
+      );
     }
 
-    &--inline-end {
-      --kicl--components--popover--position-area: inline-end span-block-end;
+    &--inline-start--start,
+    &--inline-start--center,
+    &--inline-start--end {
+      --kicl--components--popover--enter: var(
+        --kicl--components--popover--ahead
+      )
+        0;
+    }
+
+    &--inline-end--start,
+    &--inline-end--center,
+    &--inline-end--end {
+      --kicl--components--popover--enter: var(--kicl--components--popover--back)
+        0;
+    }
+
+    @each $gap in $gaps {
+      $token: --kicl-gutter-#{$gap};
+
+      @if $gap == normal {
+        $token: --kicl-gutter;
+      }
+
+      &--offset--#{$gap} {
+        --kicl--components--popover--offset: var(#{$token});
+      }
     }
 
     /*

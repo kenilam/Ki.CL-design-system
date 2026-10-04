@@ -2,13 +2,18 @@ import type { JSX, PropsWithChildren } from 'react';
 
 import type { PolymorphicIsProps } from '../polymorphic';
 
-/** Semantic hosts for body copy, quotes and inline meaning (code, emphasis, dates). */
+/**
+ * Semantic hosts for body copy, quotes and inline meaning (code, emphasis,
+ * dates, and text removed or added by an edit).
+ */
 export type TextIs = Extract<
   keyof JSX.IntrinsicElements,
   | 'blockquote'
   | 'cite'
   | 'code'
+  | 'del'
   | 'em'
+  | 'ins'
   | 'p'
   | 'pre'
   | 'q'

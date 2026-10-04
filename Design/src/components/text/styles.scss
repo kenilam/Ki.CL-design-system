@@ -40,7 +40,13 @@
     --kicl--components--text--context-color: var(--kicl--components--text--ink);
   }
 
-  & + &:not(&--is-dense, span:not(&), [data-is='code']) {
+  & + &:not(
+    &--is-dense,
+    span:not(&),
+    [data-is='code'],
+    [data-is='del'],
+    [data-is='ins']
+  ) {
     --kicl--components--text--padding-block-start: var(--kicl-gutter);
   }
 
@@ -99,6 +105,16 @@
     }
   }
 
+  // A code block: code inside `pre` is one box that scrolls sideways, not a
+  // fill around each line.
+  &[data-is='pre'] > &[data-is='code'] {
+    display: block;
+    font-weight: var(--kicl-font-weight);
+    overflow-x: auto;
+    padding: var(--kicl-gutter-narrow) var(--kicl-gutter);
+    white-space: pre;
+  }
+
   // Inline code, after shadcn's typography example. The fill mixes from the
   // text colour so it follows the theme and any link it sits in. Block padding
   // on an inline box doesn't move the lines. Inline padding does take space,
@@ -135,6 +151,37 @@
         transparent
       );
     }
+  }
+
+  // Text an edit removes or adds, as in a diff. The tint mixes from the
+  // error or confirm colour; the words keep the body colour so they stay
+  // readable. Removed text keeps its strike, so the meaning doesn't rest on
+  // colour alone, and added text drops the underline that reads as a link.
+  &[data-is='del'],
+  &[data-is='ins'] {
+    --kicl--components--text--background-color: color-mix(
+      in oklab,
+      var(--kicl--components--text--edit-color) 18%,
+      transparent
+    );
+    --kicl--components--text--border-radius: var(--kicl-size-3px);
+
+    background-color: var(--kicl--components--text--background-color);
+    border-radius: var(--kicl--components--text--border-radius);
+    box-decoration-break: clone;
+  }
+
+  &[data-is='del'] {
+    --kicl--components--text--edit-color: var(--kicl-color-error);
+
+    text-decoration-color: var(--kicl--components--text--edit-color);
+    text-decoration-line: line-through;
+  }
+
+  &[data-is='ins'] {
+    --kicl--components--text--edit-color: var(--kicl-color-confirm);
+
+    text-decoration-line: none;
   }
 
   // Citation / source title

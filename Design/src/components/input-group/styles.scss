@@ -3,6 +3,13 @@
   --kicl--components--input-group--border-color: var(--kicl-color-grey-darker);
   --kicl--components--input-group--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input-group--border-width: var(--kicl-size-1px);
+
+  // Softer than the error colour itself, which the focus outline uses.
+  --kicl--components--input-group--invalid-border-color: color-mix(
+    in oklab,
+    var(--kicl-color-error) 50%,
+    transparent
+  );
   --kicl--components--input-group--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input-group--padding-inline: var(--kicl-gutter);
 
@@ -45,6 +52,17 @@
 
   &:has([aria-invalid='true'], :user-invalid) {
     --kicl-outline-color: var(--kicl-color-error);
+    --kicl--components--input-group--border-color: var(
+      --kicl--components--input-group--invalid-border-color
+    );
+
+    // The theme rules below set the border colour too, and come later.
+    @at-root .kicl--theme--dark &,
+    .kicl--theme--light & {
+      --kicl--components--input-group--border-color: var(
+        --kicl--components--input-group--invalid-border-color
+      );
+    }
   }
 
   /*

@@ -4,16 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Widgets
-import { SiteLogo } from '..';
+import { SiteLogo, ThemeToggle } from '..';
 
 // Components
 import { Animation, Layout } from '../../components';
 
 // Hooks
 import { useResponsive } from '../../hooks';
-
-// Partials
-import { Theme } from './theme';
 
 // Context
 import { useGlobalHeaderContext } from './context';
@@ -53,7 +50,7 @@ const Contents: React.FunctionComponent<React.PropsWithChildren> = ({
           <SiteLogo className='kicl-margin-inline-end-auto' />
           {/* On mobile the menu button ends the row. */}
           {isMobile ? null : children}
-          <Theme />
+          <ThemeToggle />
           {isMobile ? children : null}
         </header>
       </Layout>

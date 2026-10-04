@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
-// Libraries
-import classNames from 'classnames';
+import { createPortal } from 'react-dom';
 
 // Spec
 import type { PopoverContentProps } from '../spec';
@@ -12,25 +10,37 @@ import './styles.scss';
 // Constants
 import { CLASS_NAME as POPOVER } from '../constants';
 
+// Class names
+import { getContentClassNames } from './class-names';
+
 // Context
 import { usePopover } from '../context';
-
-const CLASS_NAME = `${POPOVER}__content`;
 
 const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
   (
     {
       children,
       className,
+      offset = 'narrow',
       placement = 'block-end',
+      style,
       variant = 'default',
       ...rest
     },
     ref
   ) => {
     const popover = usePopover();
+
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
     const nodeRef = useRef<HTMLDivElement | null>(null);
+    const { setContent } = popover;
+
+    // Lets the trigger know there is a panel to open.
+    useEffect(() => {
+      setContent(true);
+
+      return () => setContent(false);
+    }, [setContent]);
 
     /* The browser is the source of truth; this reports what it decided. */
     useEffect(() => {
@@ -76,7 +86,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       }
     }, [popover.open]);
 
-    return (
+    const panel = (
       <div
         ref={(node) => {
           nodeRef.current = node;
@@ -93,17 +103,34 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         /* Named by its trigger unless the caller gives it a name. */
         aria-labelledby={isLabelled ? undefined : `${popover.id}__trigger`}
         data-slot='popover-content'
-        className={classNames(
-          CLASS_NAME,
-          `${CLASS_NAME}--${placement}`,
-          `${CLASS_NAME}--variant--${variant}`,
-          className
-        )}
+        className={getContentClassNames({
+          className,
+          offset,
+          placement,
+          variant,
+        })}
+        /*
+         * Its own copy of the anchor name: an inline popover's panel is
+         * rendered outside the wrapper, so it can't inherit it.
+         */
+        style={
+          {
+            [`--${POPOVER}--anchor`]: popover.anchor,
+            ...style,
+          } as React.CSSProperties
+        }
         {...rest}
       >
         {children}
       </div>
     );
+
+    /*
+     * A panel inside running text would be a block inside a phrase, which is
+     * invalid markup. It shows in the top layer either way, so where it sits
+     * in the document only matters for validity.
+     */
+    return popover.inline ? createPortal(panel, document.body) : panel;
   }
 );
 

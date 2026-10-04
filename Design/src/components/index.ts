@@ -109,6 +109,10 @@ import {
 } from './hyper-link';
 import { Image, ImageProps } from './image';
 import { Input, type InputProps } from './input';
+import { CopyInput } from './input/copy';
+import { EmailInput } from './input/email';
+import { PasswordInput } from './input/password';
+import { SearchInput } from './input/search';
 import {
   InputGroup,
   InputGroupAddon,
@@ -259,6 +263,7 @@ export {
   ComboboxContent,
   type ComboboxContentProps,
   type ComboboxProps,
+  CopyInput,
   DatePicker,
   type DatePickerMode,
   type DatePickerProps,
@@ -274,6 +279,7 @@ export {
   type DiagramState,
   Dialog,
   type DialogProps,
+  EmailInput,
   Frame,
   type FrameProps,
   Form,
@@ -328,6 +334,7 @@ export {
   PageIndicator,
   type PageIndicatorPage,
   type PageIndicatorProps,
+  PasswordInput,
   Popover,
   PopoverContent,
   type PopoverContentProps,
@@ -340,6 +347,7 @@ export {
   RadioGroupItem,
   type RadioGroupItemProps,
   type RadioGroupProps,
+  SearchInput,
   Segmented,
   SegmentedItem,
   type SegmentedItemProps,

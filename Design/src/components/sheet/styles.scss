@@ -16,8 +16,9 @@
     translate var(--kicl-transition-duration-fast);
   translate: 0 0;
 
-  // Card's own `display` would otherwise keep it on screen while closed.
-  &:not(:popover-open) {
+  // Card's own `display` would otherwise keep it on screen while closed. Open
+  // modal on small screens, it's a dialog with `[open]` instead of a popover.
+  &:not(:popover-open, [open]) {
     display: none;
     opacity: 0;
     translate: var(--kicl-gutter-wide) 0;
@@ -43,6 +44,11 @@
     border-radius: 0;
     inline-size: auto;
     inset: 0;
+
+    // The browser keeps a modal dialog off the screen's edges; a sheet fills it.
+    max-block-size: none;
+    max-inline-size: none;
+    overscroll-behavior: contain;
   }
 
   // Notices shown between the header and the content (a `Status` that is in) take rows of their own.
@@ -82,4 +88,9 @@
   &__footer {
     background-color: var(--kicl--components--card--background-color);
   }
+}
+
+// A modal sheet covers the page, so the page behind it doesn't scroll either.
+:root:has(.kicl--components--sheet:modal) {
+  overflow: hidden;
 }

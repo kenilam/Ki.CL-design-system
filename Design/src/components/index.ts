@@ -137,8 +137,10 @@ import {
 import {
   Popover,
   PopoverContent,
+  PopoverHint,
   PopoverTrigger,
   type PopoverContentProps,
+  type PopoverHintProps,
   type PopoverProps,
   type PopoverTriggerProps,
 } from './popover';
@@ -329,6 +331,8 @@ export {
   Popover,
   PopoverContent,
   type PopoverContentProps,
+  PopoverHint,
+  type PopoverHintProps,
   type PopoverProps,
   PopoverTrigger,
   type PopoverTriggerProps,

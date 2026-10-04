@@ -1,43 +1,33 @@
 // Spec
 import * as Spec from '../spec';
 
+/**
+ * Another site, which opens in a new tab. A `mailto:` or `tel:` link parses as
+ * a URL too, but hands off to an app, and a new tab for it stays blank.
+ */
+const isExternal = (value: string) => {
+  try {
+    return ['http:', 'https:'].includes(new URL(value).protocol);
+  } catch {
+    return false;
+  }
+};
+
 const useURLStatus = (to: Spec.Props['to']) => {
   if (typeof to === 'string') {
-    const isHash = to.startsWith('#');
-    const isSearch = to.startsWith('?');
-
-    try {
-      return {
-        isExternal: Boolean(new URL(to)),
-        isHash,
-        isSearch,
-      };
-    } catch (_) {
-      return {
-        isExternal: false,
-        isHash,
-        isSearch,
-      };
-    }
+    return {
+      isExternal: isExternal(to),
+      isHash: to.startsWith('#'),
+      isSearch: to.startsWith('?'),
+    };
   }
 
   if (to.pathname) {
-    const isHash = !!to.hash;
-    const isSearch = !!to.search;
-
-    try {
-      return {
-        isExternal: Boolean(new URL(to.pathname)),
-        isHash,
-        isSearch,
-      };
-    } catch (_) {
-      return {
-        isExternal: false,
-        isHash,
-        isSearch,
-      };
-    }
+    return {
+      isExternal: isExternal(to.pathname),
+      isHash: !!to.hash,
+      isSearch: !!to.search,
+    };
   }
 
   return {

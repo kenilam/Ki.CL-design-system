@@ -146,11 +146,6 @@
     &:hover {
       background-color: var(--kicl--components--bubble--hover-background-color);
     }
-
-    &:focus-visible {
-      outline: var(--kicl-size-2px) solid var(--kicl-color-info);
-      outline-offset: var(--kicl-size-2px);
-    }
   }
 }
 

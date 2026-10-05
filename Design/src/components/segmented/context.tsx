@@ -5,6 +5,8 @@ import type { SegmentedProps } from './spec';
 type ContextValue = Pick<SegmentedProps, 'defaultValue' | 'value'> & {
   name: string;
   onValueChange: (value: string) => void;
+  /** The radios report each press: a pointer, or a key. */
+  onPress: (pointer: boolean) => void;
 };
 
 const SegmentedContext = createContext<ContextValue | null>(null);

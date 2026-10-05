@@ -67,9 +67,11 @@ select {
 a,
 textarea,
 select,
+option,
 input,
 button,
-summary {
+summary,
+video {
   outline-color: var(--kicl-outline-color);
   outline-style: var(--kicl-outline-style);
   outline-offset: var(--kicl-size-2px);

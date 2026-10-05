@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "build": "yarn workspace @ki-cl/design run build",
-    "development": "yarn build && NODE_ENV=development tsx watch Server/index.ts",
+    "development": "yarn workspace @ki-cl/design run dev",
     "production": "yarn build && NODE_ENV=production tsx Server/index.ts",
     "start": "yarn run development",
     "typecheck": "yarn workspace @ki-cl/design run typecheck",

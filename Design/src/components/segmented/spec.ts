@@ -8,7 +8,11 @@ export type SegmentedProps = Omit<
 > & {
   value?: string;
   defaultValue?: string;
-  onValueChange?: (value: string) => void;
+  /**
+   * `pointer` is true when a click or tap made the choice, false for the arrow
+   * keys, which move through the options one press at a time.
+   */
+  onValueChange?: (value: string, details: { pointer: boolean }) => void;
   /** Shared by every option, so the browser groups them. */
   name?: string;
   /**

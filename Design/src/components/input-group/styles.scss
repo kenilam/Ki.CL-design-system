@@ -48,6 +48,7 @@
   // The ring moves from the borderless control to the group.
   &:has(&__control:focus-visible) {
     outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
+    outline-offset: var(--kicl-size-2px);
   }
 
   &:has([aria-invalid='true'], :user-invalid) {

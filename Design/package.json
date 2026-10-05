@@ -29,7 +29,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
-    "glob": "11.1.0",
+    "glob": "13.0.6",
     "sass": "1.105.1",
     "typescript": "7",
     "vite": "8.3.2"

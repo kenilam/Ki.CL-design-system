@@ -57,7 +57,6 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
         CLASS_NAME,
         'kicl-display-inline-flex',
         'kicl-font-size-small',
-        'kicl-line-height-narrower',
         {
           [`${CLASS_NAME}--outside`]: outside,
           [`${CLASS_NAME}--selected`]: isSelected,

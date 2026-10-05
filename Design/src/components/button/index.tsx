@@ -17,27 +17,19 @@ import './styles.variant.scss';
 
 const CLASS_NAME = 'kicl--components--button';
 
-const isText = (child: React.ReactNode) =>
-  (typeof child === 'string' && child.trim() !== '') ||
-  typeof child === 'number';
-
 /*
- * Text beside an element goes in a span. The icon-button look is chosen in CSS
- * by what elements a button holds, and CSS can't see a text node, so without
- * it a label beside an icon or a spinner reads as an icon button and goes
- * round. Text on its own stays bare.
+ * Bare text goes in a span. The icon-button look is chosen in CSS by what
+ * elements a button holds, and CSS can't see a text node, so without it a
+ * label beside an icon or a spinner reads as an icon button and goes round.
  */
-const label = (children: React.ReactNode) => {
-  const items = React.Children.toArray(children);
-
-  if (!items.some(React.isValidElement)) {
-    return children;
-  }
-
-  return React.Children.map(children, (child) =>
-    isText(child) ? <span>{child}</span> : child
+const label = (children: React.ReactNode) =>
+  React.Children.map(children, (child) =>
+    (typeof child === 'string' && child.trim()) || typeof child === 'number' ? (
+      <span>{child}</span>
+    ) : (
+      child
+    )
   );
-};
 
 const getButtonClassNames = ({
   bold,
@@ -57,7 +49,6 @@ const getButtonClassNames = ({
       [`${CLASS_NAME}--level--${level}`]: !unstyled && level,
       [`${CLASS_NAME}--variant--${variant}`]: !unstyled && variant,
       [`${CLASS_NAME}--unstyled`]: unstyled,
-      'kicl-line-height-narrower': !unstyled,
       'kicl-text-transform-uppercase': !unstyled,
     },
     className

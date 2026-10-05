@@ -28,7 +28,6 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
       className={classNames(
         CLASS_NAME,
         'kicl-inline-size-full',
-        'kicl-line-height-narrower',
         'kicl-text-align-start',
         className
       )}

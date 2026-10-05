@@ -1,4 +1,4 @@
-import React, { useId, useState } from 'react';
+import React, { useId, useRef, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
@@ -64,6 +64,13 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
     const [open, setOpen] = useState(false);
     const current = value ?? chosen;
 
+    /*
+     * Whether the last press was a pointer. A click picks and is done, so the
+     * popover closes; an arrow key only moves to the next option, so it stays
+     * open and focus stays on the options.
+     */
+    const pointer = useRef(false);
+
     // A legend has to stay the fieldset's first child to name it.
     const [first, ...others] = React.Children.toArray(children);
     const hasLegend = React.isValidElement(first) && first.type === 'legend';
@@ -75,10 +82,20 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
         value={{
           defaultValue,
           name: name ?? id,
+          onPress: (byPointer) => {
+            pointer.current = byPointer;
+          },
           onValueChange: (next) => {
+            const details = { pointer: pointer.current };
+
+            pointer.current = false;
             setChosen(next);
-            setOpen(false);
-            onValueChange?.(next);
+
+            if (details.pointer) {
+              setOpen(false);
+            }
+
+            onValueChange?.(next, details);
           },
           value,
         }}

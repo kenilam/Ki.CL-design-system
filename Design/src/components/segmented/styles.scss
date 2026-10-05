@@ -65,6 +65,8 @@
 }
 
 .kicl--components--segmented__item {
+  // The highlight's corners, so the focus ring follows them.
+  border-radius: inherit;
   color: var(--kicl-color-grey);
   cursor: pointer;
   display: grid;
@@ -84,8 +86,9 @@
     }
   }
 
+  // The radio is unseen, so its label draws the ring every other control does.
   &:has(:focus-visible) {
-    outline: var(--kicl-size-2px) solid var(--kicl-body-color);
+    outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
     outline-offset: var(--kicl-size-2px);
   }
 }

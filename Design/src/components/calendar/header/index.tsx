@@ -41,6 +41,7 @@ const Header: React.FunctionComponent = () => {
             `${CALENDAR}__nav`,
             'kicl-border-radius-sm',
             'kicl-display-inline-flex',
+            'kicl-line-height-narrower',
             'kicl-padding-block-narrowest',
             'kicl-padding-inline-narrowest'
           )}
@@ -69,6 +70,7 @@ const Header: React.FunctionComponent = () => {
             `${CALENDAR}__nav`,
             'kicl-border-radius-sm',
             'kicl-display-inline-flex',
+            'kicl-line-height-narrower',
             'kicl-padding-block-narrowest',
             'kicl-padding-inline-narrowest'
           )}

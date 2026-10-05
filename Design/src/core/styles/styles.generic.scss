@@ -1,14 +1,19 @@
+/*
+ * Type is set once on `body` and inherited, so a class on a parent reaches the
+ * text inside it. `inherit` also overrides the browser's own font on form
+ * controls.
+ */
 * {
   @include font-smoothing;
 
   background: 0;
   border: 0;
   box-sizing: border-box;
-  font-family: var(--kicl-font-family);
+  font-family: inherit;
   font-size: inherit;
-  font-weight: var(--kicl-font-weight-light);
-  letter-spacing: var(--kicl-letter-spacing);
-  line-height: var(--kicl-line-height);
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
   margin: 0;
   padding: 0;
 }
@@ -93,8 +98,7 @@ summary {
 }
 
 select,
-input,
-button {
+input {
   line-height: 1;
 }
 

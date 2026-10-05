@@ -21,12 +21,8 @@ import {
   type BubbleReactionsProps,
   type BubbleVariant,
 } from './bubble';
-import {
-  Button,
-  getButtonClassNames,
-  GetButtonClassNamesProps,
-  ButtonProps,
-} from './button';
+import { Button, GetButtonClassNamesProps, ButtonProps } from './button';
+import { getButtonClassNames } from './button/class-names';
 import {
   Calendar,
   type CalendarMode,
@@ -104,9 +100,9 @@ import { Heading, HeadingProps } from './heading';
 import {
   HyperLink,
   GetHyperLinkClassNamesProps,
-  getHyperLinkClassNames,
   HyperLinkProps,
 } from './hyper-link';
+import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
 import { Input, type InputProps } from './input';
 import { CopyInput } from './input/copy';

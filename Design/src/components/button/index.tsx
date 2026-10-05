@@ -9,13 +9,14 @@ import { getHyperLinkClassNames, Layout } from '..';
 // Spec
 import * as Spec from './spec';
 
+// Class names
+import { CLASS_NAME, getButtonClassNames } from './class-names';
+
 // Styles
 import './styles.scss';
 import './styles.level.scss';
 import './styles.size.scss';
 import './styles.variant.scss';
-
-const CLASS_NAME = 'kicl--components--button';
 
 const isText = (child: React.ReactNode) =>
   (typeof child === 'string' && child.trim() !== '') ||
@@ -36,31 +37,6 @@ const label = (children: React.ReactNode) => {
 
   return React.Children.map(children, (child) =>
     isText(child) ? <span>{child}</span> : child
-  );
-};
-
-const getButtonClassNames = ({
-  bold,
-  className = '',
-  disabled,
-  level,
-  size,
-  unstyled,
-  variant = 'primary',
-}: Spec.GetButtonClassNamesProps = {}) => {
-  return classNames(
-    CLASS_NAME,
-    {
-      [`${CLASS_NAME}--bold`]: !unstyled && bold,
-      [`${CLASS_NAME}--disabled`]: disabled,
-      [`${CLASS_NAME}--size--${size}`]: !unstyled && size,
-      [`${CLASS_NAME}--level--${level}`]: !unstyled && level,
-      [`${CLASS_NAME}--variant--${variant}`]: !unstyled && variant,
-      [`${CLASS_NAME}--unstyled`]: unstyled,
-      'kicl-line-height-narrower': !unstyled,
-      'kicl-text-transform-uppercase': !unstyled,
-    },
-    className
   );
 };
 
@@ -134,9 +110,4 @@ type ButtonProps = Spec.Props;
 
 type GetButtonClassNamesProps = Spec.GetButtonClassNamesProps;
 
-export {
-  getButtonClassNames,
-  Button,
-  type ButtonProps,
-  type GetButtonClassNamesProps,
-};
+export { Button, type ButtonProps, type GetButtonClassNamesProps };

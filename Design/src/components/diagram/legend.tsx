@@ -48,7 +48,16 @@ const Legend: React.FunctionComponent<Props> = ({ items }) => (
             >
               {label}
             </Text>
-            <Text is='span' dense className='kicl-line-height-narrower'>
+            {/* The chip is a `code` for its outline; the meaning is plain copy. */}
+            <Text
+              is='span'
+              dense
+              className={classNames(
+                'kicl-font-family',
+                'kicl-font-weight-light',
+                'kicl-line-height-narrower'
+              )}
+            >
               {value}
             </Text>
           </Text>

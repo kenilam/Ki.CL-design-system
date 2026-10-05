@@ -16,7 +16,10 @@ const CLASS_NAME = 'kicl--components--segmented__item';
  * label is what's seen and clicked; the radio carries the keyboard and value.
  */
 const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
-  ({ children, className, onChange, value, ...rest }, ref) => {
+  (
+    { children, className, onChange, onKeyDown, onPointerDown, value, ...rest },
+    ref
+  ) => {
     const group = useSegmented();
     const controlled = group.value !== undefined;
 
@@ -24,7 +27,6 @@ const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
       <label
         className={classNames(
           CLASS_NAME,
-          'kicl-border-radius-sm',
           'kicl-font-size-small',
           'kicl-padding-block-narrower',
           'kicl-padding-inline-narrow',
@@ -56,6 +58,14 @@ const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
               block: 'nearest',
               inline: 'nearest',
             });
+          }}
+          onKeyDown={(event) => {
+            group.onPress(false);
+            onKeyDown?.(event);
+          }}
+          onPointerDown={(event) => {
+            group.onPress(true);
+            onPointerDown?.(event);
           }}
           ref={ref}
           type='radio'

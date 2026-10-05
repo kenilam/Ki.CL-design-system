@@ -100,7 +100,11 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
         ref={ref}
         type='button'
         {...shared}
-        className={classNames(CLASS_NAME, className)}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-line-height-narrower',
+          className
+        )}
         /*
          * The browser toggles the panel from this attribute. The handler is
          * passed through untouched and no longer sets state - whatever

@@ -30,7 +30,7 @@
   // The card an in-page link jumped to, so it's clear which one of a list was
   // meant. An outline, so nothing moves and the level's edge still shows.
   &:target {
-    outline: var(--kicl-size-2px) solid var(--kicl-color-info);
+    outline: var(--kicl-outline-width) dashed var(--kicl-color-info);
     outline-offset: var(--kicl-size-2px);
   }
 

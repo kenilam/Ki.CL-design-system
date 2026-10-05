@@ -74,7 +74,11 @@ html {
 body {
   background-color: var(--kicl-body-background-color);
   color: var(--kicl-body-color);
+  font-family: var(--kicl-font-family);
   font-size: var(--kicl-font-size);
+  font-weight: var(--kicl-font-weight-light);
+  letter-spacing: var(--kicl-letter-spacing);
+  line-height: var(--kicl-line-height);
   min-block-size: 100dvh;
   position: relative;
   text-wrap: pretty;

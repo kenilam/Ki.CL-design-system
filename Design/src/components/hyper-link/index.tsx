@@ -15,25 +15,13 @@ import { useURLStatus } from './hooks';
 // Spec
 import * as Spec from './spec';
 
+// Class names
+import { CLASS_NAME, getHyperLinkClassNames } from './class-names';
+
 // Styles
 import './styles.scss';
 
-const CLASS_NAME = 'kicl--components--hyper-link';
-
 const NEW_TAB = '(opens in a new tab)';
-
-const getHyperLinkClassNames = ({
-  className,
-  unstyled = false,
-}: Spec.GetHyperLinkClassNamesProps = {}) => {
-  return classNames(
-    CLASS_NAME,
-    {
-      [`${CLASS_NAME}--unstyled`]: unstyled,
-    },
-    className
-  );
-};
 
 /** Drops the router-only props a native anchor would render as attributes. */
 const getAnchorProps = ({
@@ -163,9 +151,4 @@ type HyperLinkProps = Spec.Props;
 
 type GetHyperLinkClassNamesProps = Spec.GetHyperLinkClassNamesProps;
 
-export {
-  getHyperLinkClassNames,
-  HyperLink,
-  type GetHyperLinkClassNamesProps,
-  type HyperLinkProps,
-};
+export { HyperLink, type GetHyperLinkClassNamesProps, type HyperLinkProps };

@@ -6,14 +6,14 @@ The components, styles, icons and widgets that [Ki.CL](https://github.com/kenila
 
 ```bash
 cp .env.template .env   # NODE_ENV, PORT (3200 by default)
-make start              # install, build the remote, serve it
+make start              # install, serve the remote with Vite
 ```
 
-The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types are at `/design/@mf-types.zip`.
+The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types are at `/design/types.zip`.
 
 | Command | What it does |
 | --- | --- |
-| `make run` | Build `Design/dist` and serve it with `tsx watch` |
+| `make run` | Serve the remote and its types with Vite, with hot updates in the host |
 | `make build` | Build `Design/dist` only |
 | `make lint` | oxlint and stylelint |
 | `make typecheck` | `tsc --noEmit` on `Design` |

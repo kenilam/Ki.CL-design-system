@@ -103,7 +103,7 @@
 // `collapse='scroll'`: below tablet the row keeps its options whole and
 // scrolls sideways instead, settling on one option at a time.
 .kicl--components--segmented--collapse--scroll
-  .kicl--components--segmented__options {
+.kicl--components--segmented__options {
   @include query('≤tablet') {
     grid-auto-columns: max-content;
     overflow-x: auto;

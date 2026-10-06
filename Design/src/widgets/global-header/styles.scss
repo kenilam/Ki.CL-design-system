@@ -11,8 +11,8 @@
 
 .kicl--widgets--global-header {
   --kicl--components--animation--property--slide-from-top--distance: 100%;
-  --kicl--components--hyper-link--text-color: var(--kicl-body-color);
   --kicl--components--animation--transition-property: opacity, translate, background-color, padding;
+  --kicl--components--hyper-link--text-color: var(--kicl-body-color);
 
   // The Frame's page inset, which no utility reads.
   padding-inline: var(--kicl--widgets--global-header--padding-inline);

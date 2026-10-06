@@ -1,3 +1,4 @@
+import { Background, type BackgroundProps } from './background';
 import {
   GlobalHeader,
   GlobalHeaderProvider,
@@ -7,6 +8,8 @@ import { SiteLogo, SiteLogoProps } from './site-logo';
 import { ThemeToggle, type ThemeToggleProps } from './theme-toggle';
 
 export {
+  Background,
+  type BackgroundProps,
   GlobalHeader,
   GlobalHeaderProvider,
   SiteLogo,

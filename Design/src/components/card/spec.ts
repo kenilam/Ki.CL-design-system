@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { ColumnSpan } from '../layout/spec';
+import type { ColumnSpan, JustifyContent } from '../layout/spec';
 import type { PolymorphicIsProps } from '../polymorphic';
 
 /**
@@ -100,4 +100,7 @@ export type CardFooterProps = PolymorphicIsProps<
   CardSectionIs,
   SectionOwnProps,
   'div'
->;
+> & {
+  /** Where the actions sit along the footer. They fill it unless told otherwise. */
+  justifyContent?: JustifyContent;
+};

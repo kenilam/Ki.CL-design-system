@@ -8,7 +8,10 @@ import type { CardFooterProps, CardSectionIs } from './spec';
 const CLASS_NAME = 'kicl--components--card__footer';
 
 const CardFooter = React.forwardRef<HTMLElement, CardFooterProps>(
-  ({ children, className, is = 'footer', ...rest }, ref) => {
+  (
+    { children, className, is = 'footer', justifyContent = 'stretch', ...rest },
+    ref
+  ) => {
     const Component = is as CardSectionIs;
 
     return (
@@ -16,7 +19,7 @@ const CardFooter = React.forwardRef<HTMLElement, CardFooterProps>(
         alignItems='center'
         autoFlow='column'
         gap='narrowest'
-        justifyContent='stretch'
+        justifyContent={justifyContent}
         ref={ref}
       >
         <Component

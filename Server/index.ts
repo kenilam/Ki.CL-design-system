@@ -2,6 +2,8 @@ import appRoot from 'app-root-path';
 import * as dotenv from 'dotenv';
 import express from 'express';
 
+import { precompressed } from './precompressed';
+
 dotenv.config({ path: appRoot.resolve('.env') });
 
 const PORT = Number(process.env.PORT) || 3200;
@@ -25,15 +27,16 @@ app.get('/design/@mf-types.zip', (_request, response) => {
 
 app.use(
   '/design',
+  precompressed(DIST),
   express.static(DIST, {
     setHeaders(response, path) {
-      // The entry keeps its name across releases, so it has to be revalidated.
-      // Everything else is content-hashed.
+      // The entry keeps its name across releases, so it is checked every time.
+      // The files under assets are content-hashed.
       response.setHeader(
         'Cache-Control',
-        path.endsWith('remoteEntry.js')
-          ? 'no-cache'
-          : 'public, max-age=31536000, immutable'
+        path.includes('/assets/')
+          ? 'public, max-age=31536000, immutable'
+          : 'no-cache'
       );
     },
   })

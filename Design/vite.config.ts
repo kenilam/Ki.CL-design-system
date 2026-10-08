@@ -5,6 +5,7 @@ import { glob } from 'glob';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { federation } from '@module-federation/vite';
+import { compression } from 'vite-plugin-compression2';
 
 import { getStyleLayer, LAYER_ORDER } from './scripts/get-style-layer';
 
@@ -26,6 +27,8 @@ export default defineConfig({
   root,
   base: '/design/',
   plugins: [
+    // A .gz and a .br beside each built file, which the server sends as they are.
+    compression({ algorithms: ['gzip', 'brotliCompress'] }),
     react(),
     federation({
       name: 'design',

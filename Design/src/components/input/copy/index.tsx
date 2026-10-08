@@ -44,9 +44,11 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
         after={
           <InputGroupButton
             aria-label={copied ? 'Copied' : 'Copy'}
-            onClick={() =>
-              navigator.clipboard.writeText(value).then(() => setCopied(true))
-            }
+            onClick={async () => {
+              await navigator.clipboard.writeText(value);
+
+              setCopied(true);
+            }}
             size='icon-xs'
             type='button'
           >

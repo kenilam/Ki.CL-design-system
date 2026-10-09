@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { ColumnSpan, JustifyContent } from '../layout/spec';
+import type { ColumnSpan, Gap, JustifyContent } from '../layout/spec';
 import type { PolymorphicIsProps } from '../polymorphic';
 
 /**
@@ -55,6 +55,8 @@ type CardOwnProps = {
   size?: CardSize;
   variant?: CardVariant;
   level?: CardLevel;
+  /** Between its parts. `narrow` for `xs` and `sm`, `normal` otherwise. */
+  gap?: Gap;
   children?: ReactNode;
 };
 

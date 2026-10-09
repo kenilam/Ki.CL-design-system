@@ -134,6 +134,7 @@ import {
   type PageIndicatorPage,
   type PageIndicatorProps,
 } from './page-indicator';
+import { ScrollIndicator, type ScrollIndicatorProps } from './scroll-indicator';
 import {
   Popover,
   PopoverContent,
@@ -344,6 +345,8 @@ export {
   type RadioGroupItemProps,
   type RadioGroupProps,
   SearchInput,
+  ScrollIndicator,
+  type ScrollIndicatorProps,
   Segmented,
   SegmentedItem,
   type SegmentedItemProps,

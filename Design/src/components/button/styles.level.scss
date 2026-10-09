@@ -1,5 +1,5 @@
 .kicl--components--button {
-  &:not(&--unstyled, &--look-like-hyperlink) {
+  &:not(&--unstyled) {
     &.kicl--components--button--level {
       &--confirm {
         --kicl--components--button--background-color: var(--kicl-color-confirm);

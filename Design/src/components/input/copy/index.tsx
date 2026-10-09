@@ -49,7 +49,6 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
 
               setCopied(true);
             }}
-            size='icon-xs'
             type='button'
           >
             <Icon aria-hidden />

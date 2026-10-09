@@ -1,7 +1,18 @@
 /*
- * The top clears the global header while it shows and moves up to the gap
- * when it hides, at the header's pace. The header publishes how much of the
- * window it covers as `--kicl--widgets--global-header--offset`.
+ * A frame is what the window has left: its height less a gap on every side,
+ * and less the global header while the header shows. The header sits over the
+ * top of the page and publishes how much of the window it covers as
+ * `--kicl--widgets--global-header--offset`, and its height on a page that has
+ * one as `--room`.
+ *
+ * A frame of the window's height follows the header: it starts under it and
+ * takes the header's room when the header slides away. The offset is eased
+ * where it is set, so the frame needs no transition of its own, and whatever
+ * else reads the offset moves with it. A growing frame is
+ * longer than the window, so moving its top would move the whole page each
+ * time. It keeps the header's room above it for good, and follows the header
+ * with its least height: it gets longer at the foot as the header slides
+ * away, so once its top reaches the window's it still fills the window.
  */
 :root {
   $frame: '--kicl--components--frame';
@@ -40,17 +51,35 @@
       2
     )
   );
+
+  // A held frame moved as the header hid. The frame no longer follows the
+  // header, so there is nothing to hold and `hold` does nothing.
+  --kicl--components--frame--hold-distance: 0px;
+
+  // On paper the gap round a frame is the page's margin, and the inset is a
+  // fixed step: there is no window for it to scale with.
+  @media print {
+    --kicl--components--frame--gap: 0px;
+    --kicl--components--frame--inset: var(--kicl-gutter-wide);
+  }
+}
+
+/*
+ * On the body, where the header's offset is set, and not on the root, where
+ * it would be read before the body had said it. `--top` is where a frame's
+ * top edge is in the window: against the header's bottom edge, or a gap from
+ * the top once the header has gone. There is no gap under the header: a
+ * picture that bleeds past the frame would show in it.
+ */
+body {
+  $frame: '--kicl--components--frame';
+
   --kicl--components--frame--top: max(
     var(#{$frame}--gap),
     var(--kicl--widgets--global-header--offset, 0px)
   );
   --kicl--components--frame--block-size: calc(
     100dvb - var(#{$frame}--top) - var(#{$frame}--gap)
-  );
-
-  // How far a held frame moves: as much as it grows when the header hides.
-  --kicl--components--frame--hold-distance: var(
-    --kicl--widgets--global-header--block-size
   );
 }
 
@@ -108,9 +137,6 @@
     animation-fill-mode: backwards, both;
     animation-name: var(#{$frame}--in, none), var(#{$frame}--hold, none);
     animation-timing-function: var(--kicl-ease-sine-out), linear;
-    transition-duration: var(--kicl-transition-duration);
-    transition-property: block-size, margin-block-start, min-block-size;
-    transition-timing-function: var(--kicl-ease-sine-out);
 
     &.kicl--components--frame--in {
       #{$frame}--in: kicl--components--frame--in;
@@ -134,14 +160,95 @@
     }
   }
 
+  /*
+   * The page comes to rest with a held frame filling the window: its top a
+   * gap from the window's, where it is once the header has slid away. The
+   * root's scroll padding is the header's height, which would stop the frame
+   * that much short, so the margin takes it back off.
+   */
+  &.kicl--components--frame--hold {
+    scroll-margin-block-start: calc(
+      var(#{$frame}--gap) - var(--kicl--widgets--global-header--block-size)
+    );
+    scroll-snap-align: start;
+  }
+
   &.kicl--components--frame--grow {
     block-size: auto;
+    margin-block-start: max(
+      var(#{$frame}--gap),
+      var(--kicl--widgets--global-header--room, 0px)
+    );
     min-block-size: var(#{$frame}--block-size);
 
     // Growing content has no fixed height to ease from.
     &.kicl--components--frame--in {
       #{$frame}--in: kicl--components--frame--grow-in;
     }
+  }
+
+  /*
+   * On paper a frame is the sheet less the page's margin, once on every
+   * sheet. The element lets go of its size and its clipping so what it holds
+   * runs on from sheet to sheet, and keeps its padding on each one. The frame
+   * itself is a border, drawn by a fixed box, which a browser repeats on
+   * every printed page at the size of the page.
+   */
+  @media print {
+    &,
+    &.kicl--components--frame--grow {
+      animation: none;
+      background-color: transparent;
+      block-size: auto;
+      border: 0;
+      border-radius: 0;
+      box-decoration-break: clone;
+      contain: none;
+
+      // A block breaks between sheets more cleanly than a grid does.
+      display: block;
+      inline-size: auto;
+      margin: 0;
+      min-block-size: 0;
+      overflow: visible;
+    }
+
+    &::before {
+      border: var(--kicl-size-1px) solid var(#{$frame}--border-color);
+      border-radius: var(#{$frame}--radius);
+      content: '';
+      inset: 0;
+      position: fixed;
+      z-index: -1;
+    }
+  }
+}
+
+/*
+ * The gap round a printed frame. The whole document takes the page, not the
+ * frame alone: a change of page between the frame and what follows it would
+ * force a break, and print an empty last sheet.
+ */
+@media print {
+  :root:has(.kicl--components--frame) {
+    page: kicl-frame;
+  }
+}
+
+@page kicl-frame {
+  margin: 6mm;
+}
+
+/*
+ * A page with a held frame snaps to it. The top of the page is a place to
+ * rest too: without it the nearest stop from there would be the frame, the
+ * page would move down to it, and the header could never stay in view.
+ */
+:root:has(.kicl--components--frame--hold) {
+  scroll-snap-type: block proximity;
+
+  body {
+    scroll-snap-align: start;
   }
 }
 

@@ -15,16 +15,26 @@ export type SegmentedProps = Omit<
   onValueChange?: (value: string, details: { pointer: boolean }) => void;
   /** Shared by every option, so the browser groups them. */
   name?: string;
-  /**
-   * What happens at tablet width and below. `scroll` keeps the row, never
-   * wraps an option, and scrolls sideways one option at a time. `popover`
-   * shows only the choice, and opens the options in a popover. Leave it out
-   * and the options keep sharing the width.
-   */
-  collapse?: 'popover' | 'scroll';
-  /** Where the panel opens with `collapse='popover'`. Its options align to match. */
-  placement?: PopoverPlacement;
-};
+} & (
+    | {
+        /**
+         * What happens at tablet width and below. `popover` shows only the
+         * choice, and opens the options in a popover.
+         */
+        collapse: 'popover';
+        /** Where the panel opens. Its options align to match. */
+        placement?: PopoverPlacement;
+      }
+    | {
+        /**
+         * `scroll` keeps the row, never wraps an option, and scrolls sideways
+         * one option at a time. Leave it out and the options keep sharing the
+         * width.
+         */
+        collapse?: 'scroll';
+        placement?: never;
+      }
+  );
 
 export type SegmentedItemProps = Omit<
   React.ComponentPropsWithoutRef<'input'>,

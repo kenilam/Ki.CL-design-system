@@ -16,6 +16,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
     {
       children,
       className,
+      gap,
       is = 'div',
       size = 'default',
       level,
@@ -30,7 +31,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
     return (
       <Layout
         alignContent='start'
-        gap={size === 'xs' || size === 'sm' ? 'narrow' : 'normal'}
+        gap={gap ?? (size === 'xs' || size === 'sm' ? 'narrow' : 'normal')}
         ref={ref}
       >
         <Component

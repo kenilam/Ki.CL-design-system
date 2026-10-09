@@ -16,7 +16,10 @@ const CLASS_NAME = `${DETAILS}__marker`;
 
 /** Two stacked icons; the open state on `<details>` decides which one shows. */
 const Marker: React.FunctionComponent = () => (
-  <span aria-hidden className={classNames(CLASS_NAME, 'kicl-display-grid')}>
+  <span
+    aria-hidden
+    className={classNames(CLASS_NAME, 'kicl-display-grid', 'kicl-print-hidden')}
+  >
     <Ri.RiSubtractLine
       className={classNames(
         `${CLASS_NAME}-icon`,

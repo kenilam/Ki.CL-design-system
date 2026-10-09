@@ -16,6 +16,11 @@
   overflow: hidden;
   padding: var(--kicl--components--card--spacing);
 
+  // A card split between two sheets keeps its edge and its padding on both.
+  @media print {
+    box-decoration-break: clone;
+  }
+
   &--size--fit {
     inline-size: fit-content;
   }
@@ -58,6 +63,11 @@
     );
 
     backdrop-filter: blur(var(--kicl-size-2x));
+
+    // A blur can't be printed.
+    @media print {
+      backdrop-filter: none;
+    }
   }
 }
 

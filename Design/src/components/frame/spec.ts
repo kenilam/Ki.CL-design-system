@@ -16,8 +16,8 @@ export type Props = {
   /** A minimum height instead of a fixed one, for content taller than the window. */
   grow?: boolean;
   /**
-   * For a frame at the top of the page: it holds still while the header hides
-   * and the frame grows into its space, then scrolls.
+   * For a frame at the top of the page: the page snaps to it, so it comes to
+   * rest filling the window once the header has hidden.
    */
   hold?: boolean;
 };

@@ -6,17 +6,24 @@ export type PopoverProps = ComponentPropsWithoutRef<'div'> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  /**
-   * For a trigger inside running text, such as a highlighted phrase. The
-   * wrapper leaves the line alone, so the trigger can wrap like the words
-   * around it, and the panel is rendered at the end of the page, where a block
-   * is valid markup.
-   */
-  inline?: boolean;
-  /** Takes its whole row, like a field, instead of sitting inline. */
-  block?: boolean;
   children?: ReactNode;
-};
+} & (
+    | {
+        /**
+         * For a trigger inside running text, such as a highlighted phrase.
+         * The wrapper leaves the line alone, so the trigger can wrap like the
+         * words around it, and the panel is rendered at the end of the page,
+         * where a block is valid markup.
+         */
+        inline: true;
+        block?: never;
+      }
+    | {
+        inline?: false;
+        /** Takes its whole row, like a field, instead of sitting inline. */
+        block?: boolean;
+      }
+  );
 
 export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> & {
   /**

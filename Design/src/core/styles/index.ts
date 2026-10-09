@@ -32,6 +32,7 @@ import './scrim.scss';
 import './scroll-reveal.scss';
 import './pointer-events.scss';
 import './position.scss';
+import './print.scss';
 import './size.scss';
 import './stuck-line.scss';
 import './z-index.scss';

@@ -7,16 +7,20 @@ import { CssVariables } from './css-variables';
 // Context
 import { useGlobalHeaderContext, GlobalHeaderProvider } from './context';
 
+// Spec
+import * as Spec from './spec';
+
 // Styles
 import './styles.scss';
 
-const GlobalHeader: React.FunctionComponent<React.PropsWithChildren> = ({
+const GlobalHeader: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
   children,
+  hidden,
 }) => {
   return (
     <>
       <CssVariables />
-      <Contents>{children}</Contents>
+      <Contents hidden={hidden}>{children}</Contents>
     </>
   );
 };

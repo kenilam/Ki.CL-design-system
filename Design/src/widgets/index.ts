@@ -1,5 +1,10 @@
 import { Background, type BackgroundProps } from './background';
 import {
+  ContactForm,
+  type ContactFormProps,
+  type ContactFormValues,
+} from './contact-form';
+import {
   GlobalHeader,
   GlobalHeaderProvider,
   useGlobalHeaderContext,
@@ -10,6 +15,9 @@ import { ThemeToggle, type ThemeToggleProps } from './theme-toggle';
 export {
   Background,
   type BackgroundProps,
+  ContactForm,
+  type ContactFormProps,
+  type ContactFormValues,
   GlobalHeader,
   GlobalHeaderProvider,
   SiteLogo,

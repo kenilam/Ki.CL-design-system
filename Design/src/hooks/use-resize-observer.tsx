@@ -1,37 +1,49 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
+const isSameRect = (a: DOMRect | undefined, b: DOMRect) =>
+  Object.entries(b.toJSON()).every(([key, value]) => a?.[key] === value);
 
 function useResizeObserver<Node extends HTMLElement>() {
-  const node = useRef<Node>(null);
+  const [element, setElement] = useState<Node | null>(null);
+  const [rect, setRect] = useState<DOMRect>();
 
-  const [rect, setRect] = useState<DOMRect | undefined>(
-    node.current?.getBoundingClientRect()
-  );
+  /*
+   * A ref whose `current` is kept in state, so the hook hears the element
+   * arrive. A plain ref says nothing when it is filled: called in a provider,
+   * with the element mounted later by something under it, the hook would
+   * never find out there was anything to observe.
+   */
+  const node = useMemo(() => {
+    let current: Node | null = null;
+
+    return {
+      get current() {
+        return current;
+      },
+      set current(value) {
+        current = value;
+        setElement(value);
+      },
+    };
+  }, []);
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const newRect = entry.target.getBoundingClientRect();
+    if (!element) {
+      return;
+    }
 
-        const equal = Object.keys(newRect.toJSON()).every(
-          (key) => newRect[key] === rect?.[key]
-        );
+    const resizeObserver = new ResizeObserver(() => {
+      const next = element.getBoundingClientRect();
 
-        if (equal) {
-          return;
-        }
-
-        setRect(newRect);
-      }
+      setRect((previous) => (isSameRect(previous, next) ? previous : next));
     });
 
-    if (node.current) {
-      resizeObserver.observe(node.current);
-    }
+    resizeObserver.observe(element);
 
     return () => {
       resizeObserver.disconnect();
     };
-  });
+  }, [element]);
 
   return { node, rect };
 }

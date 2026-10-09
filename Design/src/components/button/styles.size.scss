@@ -2,14 +2,10 @@
   --kicl--components--button--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--button--padding-inline: var(--kicl-gutter);
 
-  &:is(:has(> svg), :has(> .kicl--components--spinner)):not(
-    .kicl--components--button--unstyled,
-    :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
-  ) {
-    --kicl--components--button--padding-inline: var(--kicl-gutter-narrow);
-  }
+  // An icon button is as wide as it is tall. See `--icon` in `styles.scss`.
+  --kicl--components--button--padding-inline-icon: var(--kicl-gutter-narrow);
 
-  &:not(&--unstyled, &--look-like-hyperlink) {
+  &:not(&--unstyled) {
     padding-block: var(--kicl--components--button--padding-block);
     padding-inline: var(--kicl--components--button--padding-inline);
 
@@ -17,27 +13,11 @@
       &--large {
         --kicl--components--button--padding-block: var(--kicl-gutter);
         --kicl--components--button--padding-inline: var(--kicl-gutter-wide);
-
-        &:is(:has(> svg), :has(> .kicl--components--spinner)):not(
-          .kicl--components--button--unstyled,
-          :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
-        ) {
-          --kicl--components--button--padding-inline: var(--kicl-gutter);
-        }
+        --kicl--components--button--padding-inline-icon: var(--kicl-gutter);
       }
 
       &--small {
-        --kicl--components--button--padding-block: var(--kicl-gutter-narrow);
-        --kicl--components--button--padding-inline: var(--kicl-gutter);
-
         font-size: 0.7em;
-
-        &:is(:has(> svg), :has(> .kicl--components--spinner)):not(
-          .kicl--components--button--unstyled,
-          :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
-        ) {
-          --kicl--components--button--padding-inline: var(--kicl-gutter-narrow);
-        }
       }
     }
   }

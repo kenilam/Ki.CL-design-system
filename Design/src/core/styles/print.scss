@@ -1,0 +1,56 @@
+/*
+ * Paper.
+ *
+ * Type is set in points, and everything measured in rem follows it: gutters,
+ * headings and letter-spacing scale with the one size. A page that needs
+ * another size sets `--kicl-print-font-size` on `:root`. No default is
+ * declared for it here: this file is in the utilities layer, where a declared
+ * default would beat a view's.
+ */
+@media print {
+  :root {
+    --kicl-font-size: 1rem;
+
+    font-size: var(--kicl-print-font-size, 10pt);
+  }
+
+  // The page's own colour would print as a tint over the whole sheet.
+  body {
+    background-color: transparent;
+  }
+
+  /*
+   * Nothing is about to change on paper. `will-change` on `opacity` or
+   * `filter` also makes a stacking context, which is painted after the text
+   * around it: in a PDF every link's text then comes at the end of its page,
+   * out of reading order for anything that extracts it.
+   */
+  *,
+  ::before,
+  ::after {
+    will-change: auto;
+  }
+
+  // Controls, navigation, anything only a screen can use.
+  .kicl-print-hidden {
+    display: none;
+  }
+
+  // What a screen hides for assistive tech has no reader on paper, and a PDF
+  // would carry it as text: "(opens in a new tab)" after every link.
+  .kicl-hidden,
+  .kicl-hidden-focusable {
+    display: none;
+  }
+}
+
+// What only paper needs, such as an address a screen offers a form for.
+@media not print {
+  .kicl-print-only {
+    display: none;
+  }
+}
+
+@page {
+  margin: 14mm 16mm;
+}

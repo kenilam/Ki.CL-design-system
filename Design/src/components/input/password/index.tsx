@@ -29,7 +29,6 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
             aria-label={shown ? 'Hide password' : 'Show password'}
             aria-pressed={shown}
             onClick={() => setShown((current) => !current)}
-            size='icon-xs'
             type='button'
           >
             <Icon aria-hidden />

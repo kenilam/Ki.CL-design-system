@@ -9,11 +9,90 @@
   --kicl--widgets--global-header--top: 0px;
 }
 
+/*
+ * The page says which way it last scrolled. A scroll-state query styles what
+ * is inside its container and never the container, and the root is the
+ * element that scrolls, so the root is the container and the header reads it.
+ */
+:root:has(.kicl--widgets--global-header) {
+  container: kicl-page / scroll-state;
+}
+
+/*
+ * The header leaves when the page scrolls down and comes back when it
+ * scrolls up: up and out, then down and in. Neither changes layout, so the
+ * page under it does not move.
+ *
+ * A browser without scroll-state queries cannot say which way the page
+ * scrolled, and there the header stays in view.
+ */
 .kicl--widgets--global-header {
-  --kicl--components--animation--property--slide-from-top--distance: 100%;
-  --kicl--components--animation--transition-property: opacity, translate, background-color, padding;
   --kicl--components--hyper-link--text-color: var(--kicl-body-color);
+
+  /*
+   * It is sticky, but it gives its room in the flow back: the pages under it
+   * are built to fill the window, and with the header's height added to
+   * theirs every one of them would scroll by that much. So it sits over the
+   * top of the page, and what must clear it reads `--offset` or `--room`.
+   */
+  margin-block-end: calc(var(--kicl--widgets--global-header--block-size) * -1);
 
   // The Frame's page inset, which no utility reads.
   padding-inline: var(--kicl--widgets--global-header--padding-inline);
+  transition:
+    opacity var(--kicl-transition-duration) var(--kicl-ease-sine-out),
+    translate var(--kicl-transition-duration) var(--kicl-ease-sine-out),
+    visibility var(--kicl-transition-duration);
+
+  // `Layout` sets a display, which would otherwise beat the attribute.
+  &[hidden] {
+    display: none;
+  }
+
+  @container kicl-page scroll-state(scrolled: bottom) {
+    opacity: 0;
+    translate: 0 -100%;
+
+    // Out of the tab order while it is out of view.
+    visibility: hidden;
+  }
+}
+
+/*
+ * Registered as a length so it can be eased. The header slides away over a
+ * moment, and what follows it, such as a `Frame` growing into its room, has
+ * to move with the header's edge and not jump to where it will end up.
+ */
+@property --kicl--widgets--global-header--offset {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0;
+}
+
+/*
+ * How much of the window the header covers now: its height while it shows,
+ * and nothing once it has slid away, or on a page that has no header. It is
+ * set on the body and not the root, because the root is the container the
+ * query reads and a query cannot style its own container. Whatever sizes
+ * itself to the window, such as `Frame`, reads it.
+ */
+body:has(.kicl--widgets--global-header:not([hidden])) {
+  --kicl--widgets--global-header--offset: var(
+    --kicl--widgets--global-header--block-size
+  );
+
+  // At the header's own pace, so the two move as one.
+  @media (prefers-reduced-motion: no-preference) {
+    transition: --kicl--widgets--global-header--offset
+      var(--kicl-transition-duration) var(--kicl-ease-sine-out);
+  }
+
+  // The header's height on a page that has one, whether or not it is in view.
+  --kicl--widgets--global-header--room: var(
+    --kicl--widgets--global-header--block-size
+  );
+
+  @container kicl-page scroll-state(scrolled: bottom) {
+    --kicl--widgets--global-header--offset: 0px;
+  }
 }

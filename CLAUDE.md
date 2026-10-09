@@ -16,4 +16,4 @@ Ki.CL's design system, built as the Module Federation remote `design`. See READM
 - A package that holds React context the host also uses (router, forms) has to be a `shared` singleton here and in the host.
 - Keep `LAYERS` in `Design/scripts/get-style-layer.ts` the same as in Ki.CL's `App/.client/helper/get-style-layer.ts`.
 - Single quotes, named exports only. Files and folders are lowercase with dashes.
-- Git: same strategy as Ki.CL. Squash into `develop`, merge `develop` → `main`.
+- Git: same strategy as Ki.CL. Squash into `develop`. The Release workflow fast-forwards `main` to `develop`.

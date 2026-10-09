@@ -54,7 +54,6 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
             aria-label='Clear'
             className={`${CLASS_NAME}__clear`}
             onClick={clear}
-            size='icon-xs'
             type='button'
           >
             <Ri.RiCloseLine aria-hidden />

@@ -25,30 +25,26 @@
 
   @include transition('kicl--components--hyper-link');
 
-  &--look-like-button {
-    display: inline-grid;
-    line-height: var(--kicl-line-height-narrower);
+  /*
+   * With an icon beside it, the text is in `--line`, and only that is
+   * underlined. The icons flow with the text, so a closing arrow follows the
+   * last word when the text wraps.
+   */
+  > :has(+ #{&}--line),
+  > #{&}--line + :not(.kicl-hidden) {
+    vertical-align: middle;
   }
 
-  // Icons flow with the text, so a closing arrow follows the last word when
-  // the text wraps. Only the text is underlined.
-  &--wrapper {
-    > :not(#{&}--line) {
-      vertical-align: middle;
-    }
-
-    > :first-child:not(#{&}--line) {
-      margin-inline-end: var(--kicl-gutter-narrower);
-    }
-
-    > :last-child:not(#{&}--line) {
-      margin-inline-start: var(--kicl-gutter-narrower);
-    }
+  > :has(+ #{&}--line) {
+    margin-inline-end: var(--kicl-gutter-narrower);
   }
 
-  &:not(#{&}--unstyled):not(#{&}--look-like-button):not(:has(&--wrapper)),
-  &:not(#{&}--unstyled):not(#{&}--look-like-button):has(&--wrapper)
-  &--wrapper--line {
+  > #{&}--line + :not(.kicl-hidden) {
+    margin-inline-start: var(--kicl-gutter-narrower);
+  }
+
+  &:not(&--unstyled, :has(> &--line)),
+  &:not(&--unstyled) > &--line {
     box-decoration-break: clone;
     box-shadow: 0
       calc(var(--kicl--components--hyper-link--box-shadow--block-size) + 1px)
@@ -56,23 +52,15 @@
     font-weight: var(--kicl--components--hyper-link--font-weight);
   }
 
-  &:not(#{&}--unstyled):not(#{&}--look-like-button):not(:has(&--wrapper)):hover,
-  &:not(#{&}--unstyled):not(#{&}--look-like-button):not(
-    :has(&--wrapper)
-  )[aria-current],
-  &:not(#{&}--unstyled):not(#{&}--look-like-button):has(&--wrapper):hover
-  &--wrapper--line,
-  &:not(#{&}--unstyled):not(#{&}--look-like-button):has(
-    &--wrapper
-  )[aria-current]
-  &--wrapper--line {
+  &:not(&--unstyled, :has(> &--line)):is(:hover, [aria-current]),
+  &:not(&--unstyled):is(:hover, [aria-current]) > &--line {
     --kicl--components--hyper-link--box-shadow--block-size: var(
       --kicl--components--hyper-link--box-shadow--block-size-active
     );
+  }
 
-    &[aria-current='page']:not([href*='#']) {
-      pointer-events: none;
-    }
+  &:not(&--unstyled)[aria-current='page']:not([href*='#']) {
+    pointer-events: none;
   }
 }
 
@@ -81,7 +69,7 @@
  * link is being used, so route changes (ScrollRestoration) still jump.
  */
 @media (prefers-reduced-motion: no-preference) {
-  html:has(.kicl--components--hyper-link[href^='#']:is(:hover, :focus)) {
+  html:has(a[href^='#']:is(:hover, :focus)) {
     scroll-behavior: smooth;
   }
 }

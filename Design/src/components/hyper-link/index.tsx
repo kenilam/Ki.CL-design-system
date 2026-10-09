@@ -1,13 +1,11 @@
 import React from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
 // Routes
 import { NavLink } from 'react-router-dom';
 
 // Components
-import { getButtonClassNames, Layout } from '..';
+import { Layout } from '../layout';
+import { LAYOUT, getButtonClassNames, hasText } from '../button/class-names';
 
 // Hooks
 import { useURLStatus } from './hooks';
@@ -57,7 +55,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       size,
       to,
       variant,
-      unstyled = false,
+      unstyled,
       ...rest
     },
     ref
@@ -73,14 +71,18 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       clickHandler?.(event);
     };
 
-    const className = classNames(
-      getHyperLinkClassNames({ className: _className, unstyled }),
-      {
-        [getButtonClassNames({ bold, disabled, level, size, variant })]:
-          lookLikeButton && !unstyled,
-        [`${CLASS_NAME}--look-like-button`]: lookLikeButton && !unstyled,
-      }
-    );
+    // One look at a time: the classes of a button or of a link, never both.
+    const className = lookLikeButton
+      ? getButtonClassNames({
+          bold,
+          className: _className,
+          disabled,
+          icon: !hasText(before, children, after),
+          level,
+          size,
+          variant,
+        })
+      : getHyperLinkClassNames({ className: _className, unstyled });
 
     let target: Spec.Props['target'] = _target;
 
@@ -92,11 +94,18 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
 
     if (after || before) {
       Content = (
-        <span className={`${CLASS_NAME}--wrapper`}>
+        <>
           {before}
-          <span className={`${CLASS_NAME}--wrapper--line`}>{Content}</span>
+          {/* A link underlines its text and not the icons beside it, so the text needs an element. */}
+          {lookLikeButton ? (
+            (children as React.ReactNode)
+          ) : (
+            <span className={`${CLASS_NAME}--line`}>
+              {children as React.ReactNode}
+            </span>
+          )}
           {after}
-        </span>
+        </>
       );
     }
 
@@ -135,7 +144,8 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
 
     if (lookLikeButton) {
       return (
-        <Layout alignItems='center' gap='narrowest'>
+        // Inline, as a link is: it sits in a line of text without breaking it.
+        <Layout {...LAYOUT} display='inline-grid'>
           {Link}
         </Layout>
       );

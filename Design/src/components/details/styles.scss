@@ -102,4 +102,25 @@
     --kicl--components--details--summary--marker--closed--opacity: 0;
     --kicl--components--details--summary--marker--open--opacity: 1;
   }
+
+  /*
+   * Paper cannot be clicked, so every disclosure prints open. The content
+   * slot shows whatever state the element is in, and a closed one keeps the
+   * space under its summary that an open one has. The marker has nothing to
+   * say on paper: it carries `kicl-print-hidden`.
+   */
+  @media print {
+    &::details-content {
+      block-size: auto;
+      content-visibility: visible;
+      opacity: 1;
+      overflow: visible;
+    }
+
+    > #{&}__summary {
+      --kicl--components--details--summary--margin-block-end: var(
+        --kicl-gutter-narrow
+      );
+    }
+  }
 }

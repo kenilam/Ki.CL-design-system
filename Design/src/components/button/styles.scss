@@ -18,14 +18,10 @@
   border-radius: var(--kicl--components--button--border-radius);
   overflow: hidden;
 
-  /*
-   * Doubled on purpose. `HyperLink` with `lookLikeButton` puts this class and
-   * its own on the same anchor, and both wire `transition-*`. They are peers
-   * in the `components` layer, so a layer cannot rank them; specificity does.
-   */
-  &#{&} {
-    @include transition('kicl--components--button');
-  }
+  // For a link that looks like a button, which has none of the link's own styles.
+  text-decoration: none;
+
+  @include transition('kicl--components--button');
 
   @at-root .kicl--theme--dark & {
     --kicl-body-color: var(--kicl-color-grey-darker);
@@ -37,20 +33,25 @@
     --kicl--components--button--background-color: var(--kicl-color-grey-darker);
   }
 
-  &:not(&--unstyled, &--look-like-hyperlink) {
+  &:not(&--unstyled) {
     background-color: var(--kicl--components--button--background-color);
     border: var(--kicl--components--button--border-width) solid
       var(--kicl--components--button--border-color);
     color: var(--kicl-body-color);
   }
 
-  &:is(:has(> svg), :has(> .kicl--components--spinner)):not(
-    .kicl--components--button--unstyled,
+  /*
+   * An icon button: an icon or a spinner and nothing else to see. `--icon`
+   * says it holds no text, which CSS can't see, and `:has()` checks the
+   * elements. A visually hidden label doesn't count.
+   */
+  &#{&}--icon:is(:has(> svg), :has(> .kicl--components--spinner)):not(
     :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
   ) {
     --kicl--components--button--border-radius: 50%;
 
     backdrop-filter: blur(var(--kicl-gutter));
     display: grid;
+    padding-inline: var(--kicl--components--button--padding-inline-icon);
   }
 }

@@ -29,7 +29,7 @@ The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types ar
 | `design/icons` | `Company`, `Logo`, `Menu` and the `IconType` type |
 | `design/router` | The `Router`, `MatchedRoute`, `useMatchPattern`, and the `react-router-dom` APIs the site uses |
 | `design/status` | The HTTP status pages and the route `ErrorElement` |
-| `design/widgets` | `GlobalHeader` and `SiteLogo` |
+| `design/widgets` | `GlobalHeader`, `SiteLogo` and `ContactForm` |
 
 All the CSS goes out as one stylesheet (`bundleAllCSS`). It loads with whichever module the host imports first.
 
@@ -39,6 +39,7 @@ All the CSS goes out as one stylesheet (`bundleAllCSS`). It loads with whichever
 
 - **Icon sets aren't re-exported.** Exposing `Ri` or `Fa` as a namespace ships every icon in the set, which made the components chunk 13.8 MB. Components import the icons they use from `react-icons`, and the host does the same.
 - **Sass stays inside this repo.** The partials in `Design/src/**/_*.scss` are prepended to every stylesheet here, as they were in the host. The host never sees them. Its views use the runtime tokens: `--kicl-color-*`, the `kicl-*` utilities, and the `--kicl-viewport-*` flags for style queries.
+- **Paper is part of the system.** `core/styles/print.scss` sets type in points, so everything in rem follows it, sets the page margin, and hides what only a screen can use: anything with `kicl-print-hidden`, which the global header and the `Details` marker carry. Every `Details` prints open, whatever state it is in. `useResponsive` takes the dark theme off for the print. A view that needs another size on paper sets `--kicl-print-font-size` on `:root`.
 - **Cascade layers match the host.** `Design/scripts/get-style-layer.ts` and Ki.CL's `App/.client/helper/get-style-layer.ts` must list the same layers in the same order. Both stylesheets end up on one page, and the first layer order the browser sees applies to both.
 
 ## Hosting

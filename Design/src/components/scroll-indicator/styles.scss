@@ -1,0 +1,35 @@
+/*
+ * Scaled along the inline axis by the page's scroll, in the site's moving
+ * gradient (`core/styles/gradient-shift.scss`).
+ *
+ * The fill is only known from a scroll timeline. Without one the bar stays
+ * empty, because the fill would otherwise run on time and end up full.
+ */
+.kicl--components--scroll-indicator {
+  animation: kicl-gradient-shift var(--kicl-transition-duration-5m) ease
+    infinite;
+  background: var(--kicl-gradient-shift);
+  background-size: 1200% 1200%;
+  block-size: var(--kicl-size-3px);
+  scale: 0 1;
+  transform-origin: left;
+
+  @supports (animation-timeline: scroll()) {
+    animation-duration: var(--kicl-transition-duration-5m), auto;
+    animation-fill-mode: none, both;
+    animation-iteration-count: infinite, 1;
+    animation-name: kicl-gradient-shift, kicl--components--scroll-indicator;
+    animation-timeline: auto, scroll();
+    animation-timing-function: ease, linear;
+  }
+}
+
+@keyframes kicl--components--scroll-indicator {
+  from {
+    scale: 0 1;
+  }
+
+  to {
+    scale: 1 1;
+  }
+}

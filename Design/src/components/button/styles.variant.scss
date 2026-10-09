@@ -1,5 +1,5 @@
 .kicl--components--button {
-  &:not(&--unstyled, &--look-like-hyperlink) {
+  &:not(&--unstyled) {
     &.kicl--components--button--variant {
       &--primary {
         &.kicl--components--button--level--info {

@@ -38,6 +38,34 @@ const useResponsive = () => {
     document.body.classList.toggle(DARK_THEME_CLASS_NAME, theme === 'dark');
   }, [theme]);
 
+  /*
+   * Paper is light. The dark theme would print as a sheet of ink under pale
+   * type, so its class comes off for the print and goes back after. It is
+   * done on the element, in the event: the browser lays the print out as
+   * soon as the handler returns, and a state update would land too late.
+   */
+  useEffect(() => {
+    if (theme !== 'dark') {
+      return;
+    }
+
+    const light = () => {
+      document.body.classList.remove(DARK_THEME_CLASS_NAME);
+    };
+
+    const dark = () => {
+      document.body.classList.add(DARK_THEME_CLASS_NAME);
+    };
+
+    window.addEventListener('beforeprint', light);
+    window.addEventListener('afterprint', dark);
+
+    return () => {
+      window.removeEventListener('beforeprint', light);
+      window.removeEventListener('afterprint', dark);
+    };
+  }, [theme]);
+
   const isLandscape = useMediaQuery({ query: '(orientation: landscape)' });
   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
 

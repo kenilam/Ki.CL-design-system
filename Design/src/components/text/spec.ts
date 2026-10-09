@@ -35,12 +35,17 @@ export type TextAccent = 'confirm' | 'error' | 'info' | 'warning';
 
 export type TextNode = HTMLElement;
 
-type OwnProps = PropsWithChildren<{
+type LookProps = {
   accent?: TextAccent;
   dense?: boolean;
   lookLike?: LookLike;
-  unstyled?: boolean;
   variant?: Variant;
-}>;
+};
+
+/** `unstyled` drops the component's class, and every look prop with it. */
+type OwnProps = PropsWithChildren<
+  | (LookProps & { unstyled?: false })
+  | ({ [Key in keyof LookProps]?: never } & { unstyled: true })
+>;
 
 export type Props = PolymorphicIsProps<TextIs, OwnProps, 'p'>;

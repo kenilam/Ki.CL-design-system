@@ -7,6 +7,9 @@ import { NavLink } from 'react-router-dom';
 import { Layout } from '../layout';
 import { LAYOUT, getButtonClassNames, hasText } from '../button/class-names';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Hooks
 import { useURLStatus } from './hooks';
 
@@ -18,8 +21,6 @@ import { CLASS_NAME, getHyperLinkClassNames } from './class-names';
 
 // Styles
 import './styles.scss';
-
-const NEW_TAB = '(opens in a new tab)';
 
 /** Drops the router-only props a native anchor would render as attributes. */
 const getAnchorProps = ({
@@ -61,6 +62,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
     ref
   ) => {
     const status = useURLStatus(to);
+    const t = useCopy();
 
     const onClick: Spec.Props['onClick'] = (event) => {
       if (disabled) {
@@ -113,7 +115,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       Content = (
         <>
           {Content}
-          <span className='kicl-hidden'> {NEW_TAB}</span>
+          <span className='kicl-hidden'> {t('new_tab')}</span>
         </>
       );
     }

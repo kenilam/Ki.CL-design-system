@@ -9,6 +9,9 @@ import * as Ri from 'react-icons/ri';
 // Components
 import { Animation, Heading, Layout, Text } from '../../../components';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Partials
 import { GoBack } from '../go-back';
 
@@ -21,6 +24,8 @@ type Props = {
 
 /** For something that was here and is gone for good, like a link that was used or ran out. */
 const Status410: React.FunctionComponent<Props> = ({ message, title }) => {
+  const t = useCopy();
+
   const className = classNames(
     'kicl-text-align-center',
     'kicl--router--http-status',
@@ -48,11 +53,11 @@ const Status410: React.FunctionComponent<Props> = ({ message, title }) => {
                 aria-hidden
                 className='kicl-font-size-extreme'
               />
-              Oops, something not right!
+              {t('something_not_right')}
             </Text>
           </Layout>
           <Heading is='h1' lookLike='h2'>
-            410 - Gone
+            {t('title_410')}
           </Heading>
           {title ? (
             <Heading is='h2' lookLike='h4'>

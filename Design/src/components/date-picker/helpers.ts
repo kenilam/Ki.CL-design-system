@@ -9,7 +9,8 @@ export const defaultFormatDate = (date: Date) =>
 
 export const formatRange = (
   range: DateRange | undefined,
-  formatDate: (date: Date) => string
+  formatDate: (date: Date) => string,
+  join: (from: string, to: string) => string
 ) => {
   if (!range?.from) {
     return null;
@@ -17,5 +18,5 @@ export const formatRange = (
   if (!range.to || range.from.getTime() === range.to.getTime()) {
     return formatDate(range.from);
   }
-  return `${formatDate(range.from)} - ${formatDate(range.to)}`;
+  return join(formatDate(range.from), formatDate(range.to));
 };

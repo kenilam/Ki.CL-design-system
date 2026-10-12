@@ -9,6 +9,9 @@ import * as Ri from 'react-icons/ri';
 // Components
 import { Animation, Heading, Layout, Text } from '../../../components';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Partials
 import { GoBack } from '../go-back';
 
@@ -20,6 +23,8 @@ type Props = {
 };
 
 const Status429: React.FunctionComponent<Props> = ({ message, title }) => {
+  const t = useCopy();
+
   const className = classNames(
     'kicl-text-align-center',
     'kicl--router--http-status',
@@ -43,15 +48,12 @@ const Status429: React.FunctionComponent<Props> = ({ message, title }) => {
             justifyItems='center'
           >
             <Text lookLike='h1'>
-              <Ri.RiTimerLine
-                aria-hidden
-                className='kicl-font-size-extreme'
-              />
-              Oops, something not right!
+              <Ri.RiTimerLine aria-hidden className='kicl-font-size-extreme' />
+              {t('something_not_right')}
             </Text>
           </Layout>
           <Heading is='h1' lookLike='h2'>
-            429 - Too Many Requests
+            {t('title_429')}
           </Heading>
           {title ? (
             <Heading is='h2' lookLike='h4'>

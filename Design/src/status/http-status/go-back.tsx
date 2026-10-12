@@ -6,13 +6,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Components
 import { HyperLink, HyperLinkProps } from '../../components';
 
-const COPY = {
-  back: 'Go Back',
-};
+// Copy
+import { useCopy } from '../../locales/use-copy';
 
 const GoBack: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const t = useCopy();
 
   const url = document.referrer ? new URL(document.referrer) : undefined;
   const isSameOrigin = url?.origin === window.location.origin;
@@ -49,7 +49,7 @@ const GoBack: React.FunctionComponent = () => {
       size='large'
       variant='secondary'
     >
-      {COPY.back}
+      {t('action_go_back')}
     </HyperLink>
   );
 };

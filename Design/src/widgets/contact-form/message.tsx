@@ -14,7 +14,10 @@ import {
 } from '../../components';
 
 // Constants
-import { COPY, MESSAGE_LENGTH } from './constants';
+import { MESSAGE_LENGTH, RETENTION_DAYS } from './constants';
+
+// Copy
+import { useCopy } from '../../locales/use-copy';
 
 // Spec
 import type { Values } from './spec';
@@ -22,6 +25,7 @@ import type { Values } from './spec';
 /** The message, with the privacy line as its description. */
 const Message: React.FunctionComponent = () => {
   const { control } = useFormContext<Values>();
+  const t = useCopy();
 
   return (
     <FormField
@@ -29,18 +33,24 @@ const Message: React.FunctionComponent = () => {
       name='Message'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{COPY.message}</FormLabel>
+          <FormLabel>{t('label_message')}</FormLabel>
           <FormControl>
             <Textarea {...field} rows={6} />
           </FormControl>
-          <FormDescription>{COPY.privacy}</FormDescription>
+          <FormDescription>
+            {t('privacy', { days: RETENTION_DAYS })}
+          </FormDescription>
           <FormMessage />
         </FormItem>
       )}
       rules={{
-        maxLength: { message: COPY.messageLong, value: MESSAGE_LENGTH },
-        required: COPY.messageRequired,
-        validate: (value) => Boolean(value.trim()) || COPY.messageRequired,
+        maxLength: {
+          message: t('error_message_long', { max: MESSAGE_LENGTH }),
+          value: MESSAGE_LENGTH,
+        },
+        required: t('error_message_required'),
+        validate: (value) =>
+          Boolean(value.trim()) || t('error_message_required'),
       }}
     />
   );

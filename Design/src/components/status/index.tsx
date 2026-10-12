@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { Animation, Heading, Layout, Text } from '..';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -13,12 +16,6 @@ import * as Ri from 'react-icons/ri';
 import * as Spec from './spec';
 
 const CLASS_NAME = 'kicl--components--status';
-
-const TITLES: Spec.Titles = {
-  error: 'Oops, Something wrong!',
-  info: 'Did you know?',
-  warning: 'Warning',
-};
 
 const LEVELS: Spec.Icons = {
   error: <Ri.RiErrorWarningLine aria-hidden className='kicl-font-size' />,
@@ -37,6 +34,8 @@ const Status: React.FunctionComponent<Spec.Props> = ({
   title,
   ...rest
 }) => {
+  const t = useCopy();
+
   const className = classNames(
     CLASS_NAME,
     {
@@ -51,26 +50,22 @@ const Status: React.FunctionComponent<Spec.Props> = ({
     Icon = LEVELS[level];
   }
 
-  let heading = title;
-
-  if (!title && level) {
-    heading = TITLES[level];
-  }
-
-  const Title = <Text is='span'>{heading || TITLES.error}</Text>;
+  const Title = (
+    <Text is='span'>{title || t(`title_${level ?? 'error'}`)}</Text>
+  );
 
   const Messages = message ? (
-    <Text className={classNames('kicl-font-size-small', 'kicl-color-grey-dark')} is='p'>
+    <Text
+      className={classNames('kicl-font-size-small', 'kicl-color-grey-dark')}
+      is='p'
+    >
       {message}
     </Text>
   ) : null;
 
   return (
     <Animation {...rest} property={property} in={transitionIn}>
-      <div
-        className={className}
-        role={level === 'error' ? 'alert' : 'status'}
-      >
+      <div className={className} role={level === 'error' ? 'alert' : 'status'}>
         <Layout
           alignContent='center'
           alignItems='center'

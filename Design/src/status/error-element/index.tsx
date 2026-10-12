@@ -6,11 +6,15 @@ import { useRouteError } from 'react-router-dom';
 // Components
 import { Heading, Text } from '../../components';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Spec
 import * as Spec from './spec';
 
 const ErrorElement: React.FunctionComponent = () => {
   const errors = useRouteError() as Spec.RouterError | Error;
+  const t = useCopy();
 
   useEffect(() => {
     if (!errors) {
@@ -26,11 +30,13 @@ const ErrorElement: React.FunctionComponent = () => {
     root.dataset.routes = 'errors';
 
     if (errors instanceof Error) {
-      document.title = `Ki.CL | ${errors?.message.toUpperCase()}`;
+      document.title = t('document_title', {
+        title: errors?.message.toUpperCase(),
+      });
       return;
     }
 
-    document.title = `Ki.CL | ${errors?.status}`;
+    document.title = t('document_title', { title: errors?.status });
   });
 
   if (!errors) {
@@ -50,7 +56,9 @@ const ErrorElement: React.FunctionComponent = () => {
 
   return (
     <main>
-      <Heading is='h1'>{`${errors?.status}: ${errors?.statusText}`}</Heading>
+      <Heading is='h1'>
+        {t('route_error', { status: errors?.status, text: errors?.statusText })}
+      </Heading>
       <Text>{`${errors?.error}`}</Text>
     </main>
   );

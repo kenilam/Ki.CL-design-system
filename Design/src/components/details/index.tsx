@@ -36,7 +36,7 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
       ref={ref}
     >
       <Layout
-        alignItems='baseline'
+        alignItems='start'
         autoFlow='column'
         frames='1fr--max-content'
         gap='narrow'

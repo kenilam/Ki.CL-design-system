@@ -15,7 +15,10 @@ import { Email } from './email';
 import { Message } from './message';
 
 // Constants
-import { CLASS_NAME, COPY } from './constants';
+import { CLASS_NAME } from './constants';
+
+// Copy
+import { useCopy } from '../../locales/use-copy';
 
 // Spec
 import type { Props, Values } from './spec';
@@ -30,6 +33,8 @@ const ContactForm: React.FunctionComponent<Props> = ({
   email = '',
   onSubmit,
 }) => {
+  const t = useCopy();
+
   const form = useForm<Values>({
     defaultValues: { Email: email, Message: '' },
   });
@@ -41,7 +46,8 @@ const ContactForm: React.FunctionComponent<Props> = ({
       await onSubmit(values);
     } catch (error) {
       form.setError('root', {
-        message: (error instanceof Error && error.message) || COPY.failed,
+        message:
+          (error instanceof Error && error.message) || t('error_not_sent'),
       });
     }
   });
@@ -51,8 +57,8 @@ const ContactForm: React.FunctionComponent<Props> = ({
       <Status
         className={className}
         level='info'
-        message={COPY.sentTo(form.getValues('Email'))}
-        title={COPY.sent}
+        message={t('sent_to', { email: form.getValues('Email') })}
+        title={t('message_sent')}
       />
     );
   }
@@ -84,7 +90,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
         size='small'
         type='submit'
       >
-        {COPY.send}
+        {t('action_send')}
       </Button>
     </Form>
   );

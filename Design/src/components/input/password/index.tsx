@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import { InputGroupButton } from '../../input-group';
 import { Input } from '..';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -19,6 +22,7 @@ type Props = Omit<InputProps, 'type'>;
 const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
   ({ autoComplete = 'current-password', before, ...rest }, ref) => {
     const [shown, setShown] = useState(false);
+    const t = useCopy();
     const Icon = shown ? Ri.RiEyeOffLine : Ri.RiEyeLine;
 
     return (
@@ -26,7 +30,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
         {...rest}
         after={
           <InputGroupButton
-            aria-label={shown ? 'Hide password' : 'Show password'}
+            aria-label={t(
+              shown ? 'action_hide_password' : 'action_show_password'
+            )}
             aria-pressed={shown}
             onClick={() => setShown((current) => !current)}
             type='button'

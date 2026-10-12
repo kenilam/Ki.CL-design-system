@@ -360,6 +360,7 @@ __metadata:
     classnames: "npm:2.5.1"
     glob: "npm:11.1.0"
     include-media: "npm:2.0.0"
+    marked: "npm:18.1.0"
     normalize.css: "npm:8.0.1"
     react: "npm:19.2.8"
     react-dom: "npm:19.2.8"
@@ -2567,6 +2568,15 @@ __metadata:
   version: 11.5.3
   resolution: "lru-cache@npm:11.5.3"
   checksum: 10c0/2ad9bce6343a3544a1fd15364d8b35609aa52b2593d21fdc4877cabfe003b0f3deca4f9d6e9d13262f06e9e3d159de45c0a2f3edfc3adb46192333b5f146d8ed
+  languageName: node
+  linkType: hard
+
+"marked@npm:18.1.0":
+  version: 18.1.0
+  resolution: "marked@npm:18.1.0"
+  bin:
+    marked: bin/marked.js
+  checksum: 10c0/6022a30a15d25fe0eb2958f84ebb45518290e512b61afbf9a0b9452297b30cb5f1af8289fc0057a83fa8232e6115d902d85546aba5036063a97f93be88f4df70
   languageName: node
   linkType: hard
 

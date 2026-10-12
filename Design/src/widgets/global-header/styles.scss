@@ -24,8 +24,19 @@
  * page under it does not move.
  *
  * A browser without scroll-state queries cannot say which way the page
- * scrolled, and there the header stays in view.
+ * scrolled. There `useScrolled` writes it on the root, and the same styles
+ * read that.
  */
+@mixin -scrolled-down {
+  @container kicl-page scroll-state(scrolled: bottom) {
+    @content;
+  }
+
+  :root[data-kicl-scrolled='bottom'] & {
+    @content;
+  }
+}
+
 .kicl--widgets--global-header {
   --kicl--components--hyper-link--text-color: var(--kicl-body-color);
 
@@ -49,7 +60,7 @@
     display: none;
   }
 
-  @container kicl-page scroll-state(scrolled: bottom) {
+  @include -scrolled-down {
     opacity: 0;
     translate: 0 -100%;
 
@@ -92,7 +103,7 @@ body:has(.kicl--widgets--global-header:not([hidden])) {
     --kicl--widgets--global-header--block-size
   );
 
-  @container kicl-page scroll-state(scrolled: bottom) {
+  @include -scrolled-down {
     --kicl--widgets--global-header--offset: 0px;
   }
 }

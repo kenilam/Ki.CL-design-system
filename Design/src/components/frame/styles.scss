@@ -160,19 +160,6 @@ body {
     }
   }
 
-  /*
-   * The page comes to rest with a held frame filling the window: its top a
-   * gap from the window's, where it is once the header has slid away. The
-   * root's scroll padding is the header's height, which would stop the frame
-   * that much short, so the margin takes it back off.
-   */
-  &.kicl--components--frame--hold {
-    scroll-margin-block-start: calc(
-      var(#{$frame}--gap) - var(--kicl--widgets--global-header--block-size)
-    );
-    scroll-snap-align: start;
-  }
-
   &.kicl--components--frame--grow {
     block-size: auto;
     margin-block-start: max(
@@ -237,19 +224,6 @@ body {
 
 @page kicl-frame {
   margin: 6mm;
-}
-
-/*
- * A page with a held frame snaps to it. The top of the page is a place to
- * rest too: without it the nearest stop from there would be the frame, the
- * page would move down to it, and the header could never stay in view.
- */
-:root:has(.kicl--components--frame--hold) {
-  scroll-snap-type: block proximity;
-
-  body {
-    scroll-snap-align: start;
-  }
 }
 
 /*

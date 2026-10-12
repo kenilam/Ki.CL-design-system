@@ -16,16 +16,15 @@ import { CLASS_NAME as CALENDAR } from '../constants';
 // Context
 import { useCalendar } from '../context';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Helpers
 import { monthLabel } from '../helpers';
 
-const COPY = {
-  next: 'Next month',
-  previous: 'Previous month',
-};
-
 const Header: React.FunctionComponent = () => {
   const { month, setMonth, titleId } = useCalendar();
+  const t = useCopy();
 
   return (
     <Layout
@@ -45,7 +44,7 @@ const Header: React.FunctionComponent = () => {
             'kicl-padding-block-narrowest',
             'kicl-padding-inline-narrowest'
           )}
-          aria-label={COPY.previous}
+          aria-label={t('action_previous_month')}
           onClick={() =>
             setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))
           }
@@ -74,7 +73,7 @@ const Header: React.FunctionComponent = () => {
             'kicl-padding-block-narrowest',
             'kicl-padding-inline-narrowest'
           )}
-          aria-label={COPY.next}
+          aria-label={t('action_next_month')}
           onClick={() =>
             setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))
           }

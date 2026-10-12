@@ -13,10 +13,6 @@ export type Icons = {
   [level in Level]: ReturnType<IconType>;
 };
 
-export type Titles = {
-  [level in Level]: string;
-};
-
 export type Props = AnimationProps & {
   align?: Align;
   /** Outline level of the title. It keeps the `h4` size whatever the level. */

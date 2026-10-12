@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { Button, Text } from '../../components';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Hooks
 import { useTheme } from '../../hooks';
 
@@ -13,10 +16,6 @@ import { useTheme } from '../../hooks';
 import * as Ri from 'react-icons/ri';
 
 const CLASS_NAME = 'kicl--widgets--theme-toggle';
-
-const COPY = {
-  dark: 'Dark theme',
-};
 
 type Look = Pick<React.ComponentProps<typeof Button>, 'size' | 'variant'>;
 
@@ -34,6 +33,7 @@ const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
   variant,
 }) => {
   const { setTheme, theme } = useTheme();
+  const t = useCopy();
 
   const isDark = theme === 'dark';
 
@@ -48,7 +48,7 @@ const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
     >
       <Icon aria-hidden />
       <Text className='kicl-hidden' is='span'>
-        {COPY.dark}
+        {t('label_dark_theme')}
       </Text>
     </Button>
   );

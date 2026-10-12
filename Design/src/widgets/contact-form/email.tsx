@@ -13,7 +13,10 @@ import {
 } from '../../components';
 
 // Constants
-import { COPY, EMAIL } from './constants';
+import { EMAIL } from './constants';
+
+// Copy
+import { useCopy } from '../../locales/use-copy';
 
 // Spec
 import type { Values } from './spec';
@@ -21,6 +24,7 @@ import type { Values } from './spec';
 /** Where the answer and the confirmation go. */
 const Email: React.FunctionComponent = () => {
   const { control } = useFormContext<Values>();
+  const t = useCopy();
 
   return (
     <FormField
@@ -28,16 +32,16 @@ const Email: React.FunctionComponent = () => {
       name='Email'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{COPY.email}</FormLabel>
+          <FormLabel>{t('label_email')}</FormLabel>
           <FormControl>
-            <EmailInput {...field} placeholder='you@example.com' />
+            <EmailInput {...field} placeholder={t('placeholder_email')} />
           </FormControl>
           <FormMessage />
         </FormItem>
       )}
       rules={{
-        pattern: { message: COPY.emailInvalid, value: EMAIL },
-        required: COPY.emailInvalid,
+        pattern: { message: t('error_email_invalid'), value: EMAIL },
+        required: t('error_email_invalid'),
       }}
     />
   );

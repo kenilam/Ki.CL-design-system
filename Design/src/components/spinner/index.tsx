@@ -7,6 +7,9 @@ import classNames from 'classnames';
 // Components
 import { Animation, AnimationProps, Layout, Text } from '..';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -29,11 +32,13 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
   className: _className,
   backdrop = true,
   in: transitionIn,
-  label = 'Loading',
+  label,
   position = 'overlay',
   size = 'small',
   ...rest
 }) => {
+  const t = useCopy();
+
   const isOverlay = position === 'overlay';
   // Overlay can stagger icon vs backdrop; inline indicators must appear
   // immediately or short fetches never show a spinner.
@@ -78,7 +83,7 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
           role='status'
           unstyled
         >
-          <span className='kicl-hidden'>{label}</span>
+          <span className='kicl-hidden'>{label ?? t('status_loading')}</span>
           <Animation
             {...rest}
             delay={spinnerDelay}

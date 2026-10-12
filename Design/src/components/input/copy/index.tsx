@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { InputGroupButton } from '../../input-group';
 import { Input } from '..';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -25,6 +28,7 @@ const COPIED_MS = 2000;
 const CopyInput = React.forwardRef<HTMLInputElement, Props>(
   ({ value, ...rest }, ref) => {
     const [copied, setCopied] = useState(false);
+    const t = useCopy();
 
     useEffect(() => {
       if (!copied) {
@@ -43,7 +47,7 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
         {...rest}
         after={
           <InputGroupButton
-            aria-label={copied ? 'Copied' : 'Copy'}
+            aria-label={t(copied ? 'status_copied' : 'action_copy')}
             onClick={async () => {
               await navigator.clipboard.writeText(value);
 

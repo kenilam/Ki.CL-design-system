@@ -4,24 +4,18 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Components
-import { Text } from '../../../components';
+import { Markdown, Text } from '../../../components';
 
-const COPY = {
-  before: 'The page ',
-  after:
-    ' you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
-};
+// Copy
+import { useCopy } from '../../../locales/use-copy';
 
 const Message: React.FunctionComponent = () => {
   const { pathname } = useLocation();
+  const t = useCopy();
 
   return (
     <Text>
-      {COPY.before}
-      <Text className='kicl-font-weight-bold' is='code'>
-        {pathname}
-      </Text>
-      {COPY.after}
+      <Markdown>{t('message_404', { pathname })}</Markdown>
     </Text>
   );
 };

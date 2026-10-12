@@ -7,6 +7,9 @@ import classNames from 'classnames';
 import { InputGroupButton } from '../../input-group';
 import { Input } from '..';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -27,7 +30,8 @@ type Props = Omit<InputProps, 'type'>;
  * `onChange` hears it.
  */
 const SearchInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ before, className, placeholder = 'Search', ...rest }, ref) => {
+  ({ before, className, placeholder, ...rest }, ref) => {
+    const t = useCopy();
     const node = useRef<HTMLInputElement | null>(null);
 
     const clear = () => {
@@ -51,7 +55,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
         {...rest}
         after={
           <InputGroupButton
-            aria-label='Clear'
+            aria-label={t('action_clear')}
             className={`${CLASS_NAME}__clear`}
             onClick={clear}
             type='button'
@@ -61,7 +65,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
         }
         before={before ?? <Ri.RiSearchLine aria-hidden />}
         className={classNames(CLASS_NAME, className)}
-        placeholder={placeholder}
+        placeholder={placeholder ?? t('search')}
         ref={(element) => {
           node.current = element;
 

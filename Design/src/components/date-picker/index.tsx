@@ -6,6 +6,9 @@ import { Popover, PopoverContent } from '../popover';
 // Context
 import { DatePickerContext, type DatePickerContextValue } from './context';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Helpers
 import { defaultFormatDate, formatRange } from './helpers';
 
@@ -23,12 +26,16 @@ type RangeProps = Extract<DatePickerProps, { mode: 'range' }>;
  * https://ui.shadcn.com/docs/components/base/date-picker
  */
 const DatePicker: React.FC<DatePickerProps> = (props) => {
+  const t = useCopy();
+
   const {
     className,
     disabled,
     formatDate = defaultFormatDate,
     mode = 'single',
-    placeholder = mode === 'range' ? 'Pick a date range' : 'Pick a date',
+    placeholder = t(
+      mode === 'range' ? 'placeholder_date_range' : 'placeholder_date'
+    ),
     id,
     'aria-describedby': ariaDescribedBy,
     'aria-invalid': ariaInvalid,
@@ -62,7 +69,9 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   const label =
     mode === 'range'
-      ? formatRange(selectedRange, formatDate)
+      ? formatRange(selectedRange, formatDate, (from, to) =>
+          t('date_range', { from, to })
+        )
       : selectedSingle
         ? formatDate(selectedSingle)
         : null;

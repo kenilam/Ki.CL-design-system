@@ -35,7 +35,12 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
       data-slot='details'
       ref={ref}
     >
-      <Layout alignItems='start' display='flex' gap='narrow'>
+      <Layout
+        alignItems='baseline'
+        autoFlow='column'
+        frames='1fr--max-content'
+        gap='narrow'
+      >
         <summary className={`${CLASS_NAME}__summary`} data-slot='summary'>
           {summary}
           {marker ? <Marker /> : null}

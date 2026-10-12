@@ -127,6 +127,7 @@ import {
 import { type ColumnSpan, Layout, LayoutProps } from './layout';
 import { List, ListProps, ListNode } from './list';
 import { ListItem, ListItemProps } from './list-item';
+import { Markdown, type MarkdownProps } from './markdown';
 import { Menu, MenuProps } from './menu';
 import { Navigation, NavigationProps } from './navigation';
 import {
@@ -324,6 +325,8 @@ export {
   type ListNode,
   ListItem,
   type ListItemProps,
+  Markdown,
+  type MarkdownProps,
   Menu,
   type MenuProps,
   Navigation,

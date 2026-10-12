@@ -1,10 +1,8 @@
 .kicl--components--details {
   // Remix Line icons - same stroke language as RiCloseLine / Select.
   &__marker {
-    align-self: center;
     block-size: var(--kicl--components--details--summary--marker--block-size);
     inline-size: var(--kicl--components--details--summary--marker--inline-size);
-    margin-inline-start: auto;
   }
 
   &__marker-icon {

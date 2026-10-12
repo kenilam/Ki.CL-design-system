@@ -9,6 +9,9 @@ import * as Ri from 'react-icons/ri';
 // Components
 import { Animation, Heading, Layout, Text } from '../../../components';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Partials
 import { GoBack } from '../go-back';
 import { Message } from './message';
@@ -16,6 +19,8 @@ import { Message } from './message';
 const CLASS_NAME = 'kicl--router--http-status--404';
 
 const Status404: React.FunctionComponent = () => {
+  const t = useCopy();
+
   const className = classNames(
     'kicl-text-align-center',
     'kicl--router--http-status',
@@ -44,11 +49,11 @@ const Status404: React.FunctionComponent = () => {
                 aria-hidden
                 className='kicl-font-size-extreme'
               />
-              Oops, something not right!
+              {t('something_not_right')}
             </Text>
           </Layout>
           <Heading is='h1' lookLike='h2'>
-            404 - Page Not Found
+            {t('title_404')}
           </Heading>
           <Message />
           <GoBack />

@@ -4,6 +4,9 @@ import React from 'react';
 import classNames from 'classnames';
 import { ReactSVG } from 'react-svg';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Vectors
 import { monochrome, polychrome } from './vectors';
 
@@ -38,11 +41,13 @@ const CompanyVectors = {
   polychrome: polychrome.Vectors,
 };
 
-// `epicGames` → `Epic Games`, for when no `alt` is given.
-const toLabel = (name: string) =>
-  name
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/^./, (letter) => letter.toUpperCase());
+type Snake<Text extends string> = Text extends `${infer Head}${infer Tail}`
+  ? `${Head extends Lowercase<Head> ? Head : `_${Lowercase<Head>}`}${Snake<Tail>}`
+  : Text;
+
+// `epicGames` → `company_epic_games`, the key of its name for when no `alt` is given.
+const toKey = <Source extends NonNullable<Name>>(name: Source) =>
+  `company_${name.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)}` as `company_${Snake<Source>}`;
 
 const Company: React.FunctionComponent<Props> = ({
   alt,
@@ -51,6 +56,8 @@ const Company: React.FunctionComponent<Props> = ({
   size,
   ...props
 }) => {
+  const t = useCopy();
+
   const className = classNames(
     CLASS_NAME,
     'kicl-display-inline-block',
@@ -72,7 +79,7 @@ const Company: React.FunctionComponent<Props> = ({
     return null;
   }
 
-  const label = alt ?? toLabel(_src);
+  const label = alt ?? t(toKey(_src));
 
   if (polychrome) {
     return (

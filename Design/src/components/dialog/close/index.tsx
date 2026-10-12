@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { Button } from '../..';
 
+// Copy
+import { useCopy } from '../../../locales/use-copy';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -20,13 +23,10 @@ import { useDialog } from '../context';
 
 const CLASS_NAME = `${DIALOG}--close`;
 
-const COPY = {
-  label: 'Close this dialog',
-};
-
 /** Sticks to the top of the panel; fixed to the window when full screen. */
 const Close: React.FunctionComponent = () => {
   const { closable, closeIcon: CloseIcon, fullScreen, id } = useDialog();
+  const t = useCopy();
 
   if (closable !== true) {
     return null;
@@ -41,7 +41,7 @@ const Close: React.FunctionComponent = () => {
         'kicl-z-index-floating',
         CLASS_NAME
       )}
-      aria-label={COPY.label}
+      aria-label={t('action_close_dialog')}
       command='request-close'
       commandFor={id}
     >

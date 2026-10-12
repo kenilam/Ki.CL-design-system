@@ -52,6 +52,9 @@ export default defineConfig({
         'react-router-dom': { singleton: true, requiredVersion: '^7.0.0' },
         // Form components read the form context a view creates with useForm.
         'react-hook-form': { singleton: true, requiredVersion: '^7.0.0' },
+        // One instance with the host, so the copy comes from its database.
+        i18next: { singleton: true, requiredVersion: '^26.0.0' },
+        'react-i18next': { singleton: true, requiredVersion: '^17.0.0' },
       },
       dev: {
         /*

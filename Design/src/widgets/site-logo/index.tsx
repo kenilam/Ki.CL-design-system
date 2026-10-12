@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { HyperLink, Layout, Text } from '../../components';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Icons
 import { Logo } from '../../icons';
 
@@ -13,13 +16,12 @@ import { Logo } from '../../icons';
 import * as Spec from './spec';
 
 const CLASS_NAME = 'kicl--widgets--site-logo';
-const COPY = {
-  home: 'Ki.CL home',
-};
 
 const SiteLogo: React.FunctionComponent<Spec.Props> = ({
   className: _className,
 }) => {
+  const t = useCopy();
+
   const className = classNames(CLASS_NAME, _className);
 
   return (
@@ -31,7 +33,7 @@ const SiteLogo: React.FunctionComponent<Spec.Props> = ({
         justifyContent='center'
       >
         <HyperLink
-          aria-label={COPY.home}
+          aria-label={t('label_home')}
           className='kicl-line-height-narrower'
           to='/'
           unstyled

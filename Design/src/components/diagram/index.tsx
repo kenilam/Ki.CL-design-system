@@ -12,6 +12,9 @@ import './styles.scss';
 // Constants
 import { BASE } from './constants';
 
+// Copy
+import { useCopy } from '../../locales/use-copy';
+
 // Spec
 import type { Spec } from './spec';
 
@@ -39,6 +42,8 @@ const Diagram: React.FunctionComponent<Props> = ({
   spec,
   state,
 }) => {
+  const t = useCopy();
+
   const drawing = <Drawing spec={spec} state={state} />;
 
   return (
@@ -49,7 +54,7 @@ const Diagram: React.FunctionComponent<Props> = ({
       {opens ? (
         <Layout alignItems='center' justifyContent='stretch'>
           <Button
-            aria-label={`${spec.title}. Open the full image.`}
+            aria-label={t('action_open_image', { title: spec.title })}
             className={classNames('kicl-inline-size-full', `${BASE}-preview`)}
             command='show-modal'
             commandFor={opens}

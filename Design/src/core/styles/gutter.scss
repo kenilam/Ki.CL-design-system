@@ -89,8 +89,10 @@ $gutter-properties: (
   padding-inline: var(--kicl--components--frame--columns-inset);
 }
 
-// Puts a fixed box at the edge of the 12-column content, where the Frame's
-// text starts, however wide the window is.
+.kicl-padding-inline-start-frame {
+  padding-inline-start: var(--kicl--components--frame--page-inset);
+}
+
 .kicl-inset-inline-end-frame {
   inset-inline-end: var(--kicl--components--frame--page-inset);
 }

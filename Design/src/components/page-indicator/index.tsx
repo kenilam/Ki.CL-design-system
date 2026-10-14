@@ -29,7 +29,7 @@ const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
       className={classNames(
         CLASS_NAME,
         'kicl-inset-block-center',
-        'kicl-inset-inline-end',
+        'kicl-inset-inline-end-frame',
         'kicl-padding-narrow',
         'kicl-pointer-events-none',
         'kicl-position-fixed',

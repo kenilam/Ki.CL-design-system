@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import { CardProps } from '..';
 
 export type Page = {
   /** The page's anchor; its dot links to `#id`. */
@@ -7,6 +7,6 @@ export type Page = {
   label: string;
 };
 
-export type Props = ComponentPropsWithoutRef<'nav'> & {
+export type Props = CardProps & {
   pages: readonly Page[];
 };

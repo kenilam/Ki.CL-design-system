@@ -4,7 +4,16 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { HyperLink, Layout, List, ListItem, Text } from '..';
+import {
+  Card,
+  HyperLink,
+  List,
+  ListItem,
+  Popover,
+  PopoverHint,
+  PopoverTrigger,
+  Text,
+} from '..';
 
 // Spec
 import * as Spec from './spec';
@@ -14,63 +23,70 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--page-indicator';
 
-/**
- * A column of dots on the right edge of the screen, one per full-screen
- * page, each linking to its page. Page `n` counts as current while the
- * document has scrolled about `n` page heights; the dot's state is a
- * scroll-driven animation, see styles.scss.
- */
 const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
   ({ className, pages, style, ...rest }, ref) => (
-    <Layout alignContent='center' justifyItems='center'>
-      <nav
-        {...rest}
-        className={classNames(
-          CLASS_NAME,
-          'kicl-inset-block-0',
-          'kicl-pointer-events-none',
-          'kicl-position-fixed',
-          'kicl-z-index-floating',
-          className
-        )}
-        ref={ref}
-        style={
-          {
-            '--kicl--components--page-indicator--count': pages.length,
-            ...style,
-          } as never
-        }
-      >
-        <List is='ol' gap='none'>
-          {pages.map(({ id, label }, index) => (
-            <ListItem key={id}>
-              <HyperLink
-                className={classNames(
-                  `${CLASS_NAME}__dot`,
-                  'kicl-background-color-white',
-                  'kicl-display-block',
-                  'kicl-padding-block-narrow',
-                  'kicl-padding-inline-narrow',
-                  'kicl-pointer-events-auto'
-                )}
-                style={
-                  {
-                    '--kicl--components--page-indicator--index': index,
-                  } as never
-                }
-                title={label}
-                to={`#${id}`}
-                unstyled
+    <Card
+      className={classNames(
+        CLASS_NAME,
+        'kicl-inset-block-center',
+        'kicl-inset-inline-end',
+        'kicl-padding-narrow',
+        'kicl-pointer-events-none',
+        'kicl-position-fixed',
+        'kicl-z-index-floating',
+        className
+      )}
+      is='nav'
+      ref={ref}
+      size='fit'
+      style={
+        {
+          '--kicl--components--page-indicator--count': pages.length,
+          ...style,
+        } as never
+      }
+      variant='ghost'
+      {...rest}
+    >
+      <List is='ol'>
+        {pages.map(({ id, label }) => (
+          <ListItem key={id}>
+            <Popover>
+              <PopoverTrigger asChild>
+                <HyperLink
+                  /*
+                   * The hint shows the words the link's hidden text already
+                   * names it with, so it is for the eye only and not read twice.
+                   */
+                  aria-describedby={undefined}
+                  /* The link is the dot: its padding is its size. */
+                  className={classNames(
+                    'kicl-padding-narrower',
+                    'kicl-pointer-events-auto'
+                  )}
+                  lookLikeButton
+                  size='small'
+                  to={`#${id}`}
+                  variant='ghost'
+                >
+                  <Text is='span' className='kicl-hidden'>
+                    {label}
+                  </Text>
+                </HyperLink>
+              </PopoverTrigger>
+              <PopoverHint
+                aria-hidden
+                className={classNames('kicl-padding-narrow')}
+                offset='normal'
+                placement='inline-start-center'
               >
-                <Text is='span' className='kicl-hidden'>
-                  {label}
-                </Text>
-              </HyperLink>
-            </ListItem>
-          ))}
-        </List>
-      </nav>
-    </Layout>
+                {label}
+              </PopoverHint>
+            </Popover>
+          </ListItem>
+        ))}
+      </List>
+    </Card>
   )
 );
 

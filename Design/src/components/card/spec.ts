@@ -36,7 +36,7 @@ export type CardLevel = 'confirm' | 'error' | 'info' | 'warning';
 /** Semantic hosts that read as a card / panel surface. */
 /** `dialog` is for a card that opens over the page, as `Sheet` does. */
 export type CardIs =
-  'article' | 'aside' | 'dialog' | 'div' | 'form' | 'li' | 'section';
+  'article' | 'aside' | 'dialog' | 'div' | 'form' | 'li' | 'nav' | 'section';
 
 /** Title hosts - headings or generic text containers. */
 export type CardTitleIs =

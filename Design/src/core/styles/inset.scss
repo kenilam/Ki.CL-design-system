@@ -22,6 +22,32 @@ $inset-sizes: none, narrowest, narrower, narrow, wide, wider, widest, extreme;
   }
 }
 
+// Centres a positioned box on one axis: `kicl-inset-block-center` half way
+// down, `kicl-inset-inline-center` half way across. The box is pinned at both
+// ends of the axis, sized to its content and given auto margins, which is the
+// one way to centre a positioned box without a transform. So on that axis it
+// cannot also be stretched or given a margin. It still needs a
+// `kicl-position-*` class.
+// A size keeps it that far from both ends when its content would reach them:
+// `kicl-inset-block-center-narrow`.
+@mixin inset-center($axis, $size: '0') {
+  #{$axis}-size: fit-content;
+  inset-#{$axis}: var(--kicl-inset-#{$axis}-#{$size});
+  margin-#{$axis}: auto;
+}
+
+@each $axis in block, inline {
+  .kicl-inset-#{$axis}-center {
+    @include inset-center($axis);
+  }
+
+  @each $size in $inset-sizes {
+    .kicl-inset-#{$axis}-center-#{$size} {
+      @include inset-center($axis, $size);
+    }
+  }
+}
+
 @each $property in $inset-properties {
   @include make-variable-class($property);
   @include make-variable-class($property, '0');

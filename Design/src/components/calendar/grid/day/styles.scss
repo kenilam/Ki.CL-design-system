@@ -32,14 +32,9 @@
     --kicl--components--calendar--day--fill: var(--kicl-color-grey-light);
   }
 
+  // Every day of a range is chosen, so it looks like the one day of `single`.
+  &--selected,
   &--range-middle {
-    --kicl--components--calendar--day--fill: var(
-      --kicl--components--calendar--range-middle
-    );
-  }
-
-  // A range's ends are chosen days, so they look like the one day of `single`.
-  &--selected {
     --kicl--components--calendar--day--fill: var(--kicl-color-grey-darker);
   }
 

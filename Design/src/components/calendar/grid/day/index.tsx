@@ -87,7 +87,7 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
             'kicl-color-confirm': isToday,
             'kicl-font-weight-bold': isToday,
             // The chosen day's label on its dark fill.
-            'kicl-color-white-pure': isSelected && !isToday,
+            'kicl-color-white-pure': (isSelected || isRangeMiddle) && !isToday,
           }
         )}
         onClick={() => onDayClick(date)}

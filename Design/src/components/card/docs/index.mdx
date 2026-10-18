@@ -1,0 +1,16 @@
+import { Preset as Default } from './default';
+import { Preset as Action } from './action';
+import { Preset as HeaderOnly } from './header-only';
+import { Preset as Footer } from './footer';
+import { Preset as DenseHeader } from './dense-header';
+import { CONTROLS } from './controls';
+
+A surface for one thing, like a summary, a form or a setting. Header, content and footer are all optional.
+
+<Preview controls={CONTROLS}>
+  {Default}
+  {Action}
+  {HeaderOnly}
+  {Footer}
+  {DenseHeader}
+</Preview>

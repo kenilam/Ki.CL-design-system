@@ -20,9 +20,7 @@
 
   @include transition('kicl--icons--logo');
 
-  &:not(.kicl-layout--inline) {
-    padding: var(--kicl--icons--logo--padding);
-  }
+  padding: var(--kicl--icons--logo--padding);
 
   /*
    * The svg has only a viewBox. WebKit sizes a `fit-content` svg like that to

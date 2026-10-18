@@ -10,6 +10,9 @@
 :root {
   --kicl-backdrop-filter: blur(var(--kicl-gutter-widest));
   --kicl-backdrop-tint: 10%;
+
+  // For a pane over one element, such as a spinner's: dimmed, still readable.
+  --kicl-backdrop-tint-veil: 60%;
 }
 
 .kicl-backdrop {

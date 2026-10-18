@@ -1,0 +1,18 @@
+import { Preset as Paragraph } from './paragraph';
+import { Preset as Paragraphs } from './paragraphs';
+import { Preset as Inline } from './inline';
+import { Preset as CodeWithALook } from './code-with-a-look';
+import { Preset as AnEdit } from './an-edit';
+import { Preset as AQuote } from './a-quote';
+import { CONTROLS } from './controls';
+
+Body copy, and the inline elements inside it. `is` picks the element, so the markup says what the text is.
+
+<Preview controls={CONTROLS}>
+  {Paragraph}
+  {Paragraphs}
+  {Inline}
+  {CodeWithALook}
+  {AnEdit}
+  {AQuote}
+</Preview>

@@ -14,6 +14,17 @@
   --kicl--components--animation--transition-timing-function: var(
     --kicl-ease-expo-out
   );
+
+  /*
+   * How far a slide travels and what a zoom starts from. They are set here
+   * rather than on the animated element so that an ancestor can override them
+   * and every animation inside it inherits the change. A percentage resolves
+   * against the element that slides, so a small element barely moves; a
+   * component that is small sets a length instead.
+   */
+  --kicl--components--animation--slide--distance: min(var(--kicl-size-2x), 10%);
+  --kicl--components--animation--zoom-in--scale: 0.8;
+  --kicl--components--animation--zoom-out--scale: 1.2;
 }
 
 /*

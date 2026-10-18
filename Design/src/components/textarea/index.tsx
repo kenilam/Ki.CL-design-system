@@ -12,11 +12,24 @@ const CLASS_NAME = 'kicl--components--textarea';
  * https://ui.shadcn.com/docs/components/base/textarea
  */
 const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
-  ({ className, ...rest }, ref) => (
+  ({ className, rows, style, ...rest }, ref) => (
     <textarea
       ref={ref}
       data-slot='textarea'
-      className={classNames(CLASS_NAME, 'kicl-font-size-small', className)}
+      className={classNames(
+        CLASS_NAME,
+        'kicl-font-size-small',
+        'kicl-inline-size-full',
+        className
+      )}
+      rows={rows}
+      // `field-sizing: content` ignores `rows`, so the styles turn it into a
+      // minimum height instead.
+      style={
+        rows
+          ? ({ '--kicl--components--textarea--rows': rows, ...style } as never)
+          : style
+      }
       {...rest}
     />
   )

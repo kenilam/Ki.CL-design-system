@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useContext } from 'react';
 
 // Hooks
-import { useResizeObserver } from '../../hooks';
+import { useResizeObserver } from 'design/hooks';
 
 const DEFAULT: ReturnType<typeof useResizeObserver> = {
   node: { current: null },

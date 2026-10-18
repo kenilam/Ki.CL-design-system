@@ -1,0 +1,12 @@
+import { Preset as MessageOnly } from './message-only';
+import { Preset as WithATitle } from './with-a-title';
+import { CONTROLS } from './controls';
+
+A short title and message about how something went: an error, a warning or a note. A message without a title shows the level's icon in front of it. With neither, the level's default title shows, such as "Oops, Something wrong!" for an error.
+
+<Preview controls={CONTROLS} replay>
+  {MessageOnly}
+  {WithATitle}
+</Preview>
+
+`headingLevel` sets where the title sits in the page outline, from `h1` to `h6`. The title keeps the `h4` size at every level, so the toggle changes the code and the markup but not the look.

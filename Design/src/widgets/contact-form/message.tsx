@@ -11,13 +11,13 @@ import {
   FormLabel,
   FormMessage,
   Textarea,
-} from '../../components';
+} from 'design/components';
 
 // Constants
 import { MESSAGE_LENGTH, RETENTION_DAYS } from './constants';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Spec
 import type { Values } from './spec';

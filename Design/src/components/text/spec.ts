@@ -1,6 +1,7 @@
 import type { JSX, PropsWithChildren } from 'react';
 
-import type { PolymorphicIsProps } from '../polymorphic';
+import type { LookProps as ButtonLookProps } from 'design/components/button/spec';
+import type { PolymorphicIsProps } from 'design/components/polymorphic';
 
 /**
  * Semantic hosts for body copy, quotes and inline meaning (code, emphasis,
@@ -22,23 +23,40 @@ export type TextIs = Extract<
   | 'time'
 >;
 
-type LookLike = Extract<
+/**
+ * The look of another element, without its meaning. Headings come from the
+ * shared `kicl-look-like-h*` utility, the rest from Text's own styles. `p`,
+ * `span` and `time` have no look of their own, so they are left out.
+ */
+export type TextLookLike = Extract<
   keyof JSX.IntrinsicElements,
-  'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  | 'blockquote'
+  | 'cite'
+  | 'code'
+  | 'del'
+  | 'em'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'ins'
+  | 'pre'
+  | 'q'
+  | 'strong'
 >;
 
 /** `secondary` dims the text, accent included. Leave it out for full strength. */
 type Variant = 'secondary';
 
 /** Functional colour from the palette. Inline code tints its fill to match. */
-export type TextAccent = 'confirm' | 'error' | 'info' | 'warning';
-
-export type TextNode = HTMLElement;
+export type TextAccent = NonNullable<ButtonLookProps['level']>;
 
 type LookProps = {
   accent?: TextAccent;
   dense?: boolean;
-  lookLike?: LookLike;
+  lookLike?: TextLookLike;
   variant?: Variant;
 };
 

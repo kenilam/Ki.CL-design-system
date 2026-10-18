@@ -1,9 +1,10 @@
-import type { ReactElement } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 
-export type Props = {
+type Styling = Pick<HTMLAttributes<HTMLElement>, 'className' | 'style'>;
+
+export type Props = Pick<Styling, 'className'> & {
   /** The one element to frame. It keeps its own tag and props. */
-  children: ReactElement<{ className?: string; style?: React.CSSProperties }>;
-  className?: string;
+  children: ReactElement<Styling>;
   /** Ease in from full-bleed to the frame. On unless turned off. */
   animate?: boolean;
   /**
@@ -15,9 +16,4 @@ export type Props = {
   delay?: number;
   /** A minimum height instead of a fixed one, for content taller than the window. */
   grow?: boolean;
-  /**
-   * For a frame at the top of the page: it grows by the header's height as
-   * the header hides, so it fills the window once the header has gone.
-   */
-  hold?: boolean;
 };

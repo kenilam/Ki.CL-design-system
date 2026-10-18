@@ -6,11 +6,11 @@ Ki.CL's design system, built as the Module Federation remote `design`. See READM
 
 - `Design/` is the federated package (`@ki-cl/design`). Source lives in `Design/src`, the Vite config in `Design/vite.config.ts`, and the cascade layers in `Design/scripts/get-style-layer.ts`.
 - `Server/` is the Express server that serves `Design/dist` at `/design`. It has no CORS: the service is internal-only and the host proxies it same-origin.
-- Imports inside `Design/src` are relative. The generated types keep import paths as written, and in the host `@/` means `App/`, so an aliased import would resolve to the wrong module or to nothing.
+- Imports inside `Design/src` that leave the folder use the `design/*` alias (`design/components`, `design/locales/use-copy`); same-folder imports stay `./`. The alias is the remote's own name on purpose: the generated types keep import paths as written, and every host already maps `design/*` to `@mf-types/design/*`, with a fallback to `compiled-types/src/*` for paths that are not an exposed module. Any other alias would resolve to nothing in the host.
 
 ## Rules
 
-- The design-system rules in Ki.CL's CLAUDE.md apply here too: semantic markup, CSS over JS, no custom CSS a component or utility already covers, no extra wrappers, tokens over magic numbers, widths from the 12-column scale, and types inferred rather than restated.
+- The design-system rules in Ki.CL's CLAUDE.md apply here too: semantic markup, HTML and CSS before JS with JS as the last resort, no custom CSS a component or utility already covers, no extra wrappers, tokens over magic numbers, widths from the 12-column scale, and types inferred rather than restated.
 - Each exposed module is a public API. If you rename or remove an export, the host has to change in the same release.
 - Don't re-export a third-party namespace (`react-icons/ri` and the like). Everything in it ships to the host.
 - A package that holds React context or an instance the host also uses (router, forms, i18next) has to be a `shared` singleton here and in the host.

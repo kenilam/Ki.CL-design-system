@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout, Spinner } from '..';
+import { Layout, Spinner } from 'design/components';
 
 // Spec
 import * as Spec from './spec';
@@ -14,9 +14,7 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--video';
 
-type VideoElement = HTMLElement;
-
-const Video = React.forwardRef<VideoElement, Spec.Props>(
+const Video = React.forwardRef<HTMLElement, Spec.Props>(
   (
     {
       autoPlay = true,
@@ -27,7 +25,6 @@ const Video = React.forwardRef<VideoElement, Spec.Props>(
       height = 'auto',
       loop = true,
       muted = true,
-      objectFit,
       onLoadedData: loadDataHandler,
       onLoadStart: loadStartHandler,
       playsInline = true,
@@ -54,21 +51,14 @@ const Video = React.forwardRef<VideoElement, Spec.Props>(
 
     const className = classNames(
       CLASS_NAME,
+      'kicl-overflow-hidden',
       'kicl-position-relative',
-      {
-        [`${CLASS_NAME}--object-fit--${objectFit}`]: !!objectFit,
-      },
       _className
     );
 
+    // A video is a replaced element, which only stretches to its cell when told.
     return (
-      <Layout
-        alignContent='stretch'
-        alignItems='stretch'
-        justifyContent='stretch'
-        justifyItems='stretch'
-        ref={ref}
-      >
+      <Layout alignItems='stretch' justifyItems='stretch' ref={ref}>
         <figure className={className}>
           {/* Muted by default; a video with speech passes `captions`. */}
           {/* oxlint-disable-next-line jsx-a11y/media-has-caption */}
@@ -106,4 +96,4 @@ Video.displayName = 'Video';
 
 type VideoProps = Spec.Props;
 
-export { Video, type VideoElement, type VideoProps };
+export { Video, type VideoProps };

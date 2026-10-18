@@ -42,6 +42,9 @@
     block-size: 0;
     opacity: var(--kicl--components--details--content--opacity);
     overflow: clip;
+
+    // A link's underline is a shadow under its line, so the last link needs room past the edge.
+    overflow-clip-margin: var(--kicl-size-3px);
     transition-duration: var(
       --kicl--components--details--content--transition-duration
     );

@@ -6,6 +6,11 @@
   --kicl--components--input--color: var(--kicl-body-color);
   --kicl--components--input--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input--padding-inline: var(--kicl-gutter);
+  --kicl--components--input--read-only-background-color: color-mix(
+    in oklab,
+    var(--kicl-surface-color) 85%,
+    var(--kicl-color-grey)
+  );
 
   background-color: var(--kicl--components--input--background-color);
   border: var(--kicl--components--input--border-width) solid
@@ -20,14 +25,19 @@
   padding-inline: var(--kicl--components--input--padding-inline);
 
   // A long value or placeholder ends in an ellipsis instead of being cut.
-  overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 
   &::placeholder {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  // A muted fill says the value can be read and copied but not changed.
+  &[readonly] {
+    --kicl--components--input--background-color: var(
+      --kicl--components--input--read-only-background-color
+    );
   }
 
   &[aria-invalid='true'],

@@ -4,17 +4,20 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { InputGroupButton } from '../../input-group';
-import { Input } from '..';
+import { InputGroupButton } from 'design/components/input-group';
+import { Input } from 'design/components/input';
+
+// Helpers
+import { mergeRefs } from 'design/helper';
 
 // Copy
-import { useCopy } from '../../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
 import * as Ri from 'react-icons/ri';
 
 // Spec
-import type { InputProps } from '..';
+import type { InputProps } from 'design/components/input';
 
 // Styles
 import './styles.scss';
@@ -66,15 +69,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
         before={before ?? <Ri.RiSearchLine aria-hidden />}
         className={classNames(CLASS_NAME, className)}
         placeholder={placeholder ?? t('search')}
-        ref={(element) => {
-          node.current = element;
-
-          if (typeof ref === 'function') {
-            ref(element);
-          } else if (ref) {
-            ref.current = element;
-          }
-        }}
+        ref={mergeRefs(node, ref)}
         type='search'
       />
     );

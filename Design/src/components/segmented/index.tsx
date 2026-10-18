@@ -7,7 +7,13 @@ import classNames from 'classnames';
 import * as Ri from 'react-icons/ri';
 
 // Components
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+import { Button } from 'design/components/button';
+import { Layout } from 'design/components/layout';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from 'design/components/popover';
 
 // Spec
 import type { SegmentedProps } from './spec';
@@ -23,12 +29,6 @@ import { SegmentedItem } from './item';
 
 const CLASS_NAME = 'kicl--components--segmented';
 
-/**
- * A segmented control: one choice of a few, side by side on one track, as
- * a native `<fieldset>` of radios. The chosen option's highlight slides to
- * it, anchored to that option in CSS. Name it with `aria-label`, or a
- * `<legend>` as the first child.
- */
 /** The label of the option whose value is chosen, read from the children. */
 const labelOf = (children: React.ReactNode, value: string | undefined) =>
   React.Children.toArray(children).find(
@@ -42,13 +42,21 @@ const labelOf = (children: React.ReactNode, value: string | undefined) =>
       (child.props as { value?: string }).value === value
   )?.props.children;
 
+/**
+ * A segmented control: one choice of a few, side by side on one track, as
+ * a native `<fieldset>` of radios. The chosen option's highlight slides to
+ * it, anchored to that option in CSS. Name it with `aria-label`, or a
+ * `<legend>` as the first child.
+ */
 const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
   (
     {
       children,
       className,
       collapse,
+      collapsed,
       defaultValue,
+      disabled,
       name,
       onValueChange,
       placement,
@@ -65,16 +73,40 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
     const current = value ?? chosen;
 
     /*
-     * Whether the last press was a pointer. A click picks and is done, so the
-     * popover closes; an arrow key only moves to the next option, so it stays
-     * open and focus stays on the options.
+     * Whether the last press was a pointer or an arrow key, reported with the
+     * value. The panel stays open either way: a reader may want another look.
      */
     const pointer = useRef(false);
 
+    /*
+     * In a scrolling row, a choice scrolled out of view comes back as soon as
+     * the reader leaves the row, by pointer or by focus, so the row never
+     * stays showing options the reader hasn't picked. `nearest` moves nothing
+     * while the choice is in view.
+     */
+    const back = (event: React.SyntheticEvent<HTMLDivElement>) =>
+      event.currentTarget
+        .querySelector(':checked')
+        ?.closest('label')
+        ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+
+    const onBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        back(event);
+      }
+    };
+
     // A legend has to stay the fieldset's first child to name it.
     const [first, ...others] = React.Children.toArray(children);
-    const hasLegend = React.isValidElement(first) && first.type === 'legend';
-    const legend = hasLegend ? first : null;
+    const legend =
+      React.isValidElement<React.ComponentPropsWithoutRef<'legend'>>(first) &&
+      first.type === 'legend'
+        ? first
+        : null;
+    const hasLegend = legend !== null;
+
+    // As a popover, the caption is outside, so the track stays as it is.
+    const legendAbove = hasLegend && collapse !== 'popover';
     const options = hasLegend ? others : [first, ...others];
 
     const fieldset = (
@@ -91,31 +123,62 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
             pointer.current = false;
             setChosen(next);
 
-            if (details.pointer) {
-              setOpen(false);
-            }
-
+            // The panel stays open on a pick: the reader may want another.
             onValueChange?.(next, details);
           },
           value,
         }}
       >
-        <fieldset
-          className={classNames(
-            CLASS_NAME,
-            collapse && `${CLASS_NAME}--collapse--${collapse}`,
-            'kicl-border-radius-md',
-            'kicl-padding-block-narrowest',
-            'kicl-padding-inline-narrowest',
-            'kicl-position-relative',
-            className
-          )}
-          ref={ref}
-          {...rest}
-        >
-          {legend}
-          <div className={`${CLASS_NAME}__options`}>{options}</div>
-        </fieldset>
+        <Layout gap='none'>
+          <fieldset
+            className={classNames(
+              CLASS_NAME,
+              collapse && `${CLASS_NAME}--collapse--${collapse}`,
+              collapsed && `${CLASS_NAME}--collapsed`,
+              legendAbove && `${CLASS_NAME}--with-legend`,
+              'kicl-border-radius-md',
+              // With a legend above, the options box is the track and takes the padding.
+              !legendAbove && 'kicl-padding-block-narrowest',
+              !legendAbove && 'kicl-padding-inline-narrowest',
+              'kicl-position-relative',
+              // As a popover, the outer box takes the class.
+              collapse !== 'popover' && className
+            )}
+            disabled={disabled}
+            ref={ref}
+            {...rest}
+          >
+            {/* As a popover, the caption labels the trigger instead; the legend still names the radios. */}
+            {legend
+              ? React.cloneElement(legend, {
+                  className: classNames(
+                    legend.props.className,
+                    collapse === 'popover'
+                      ? 'kicl-hidden'
+                      : [
+                          'kicl-font-size-small',
+                          'kicl-inline-size-full',
+                          'kicl-margin-block-end-narrower',
+                        ]
+                  ),
+                })
+              : null}
+            <Layout autoFlow='column' gap='none'>
+              <div
+                className={classNames(
+                  `${CLASS_NAME}__options`,
+                  legendAbove && 'kicl-padding-block-narrowest',
+                  legendAbove && 'kicl-padding-inline-narrowest',
+                  'kicl-position-relative'
+                )}
+                onBlur={collapse === 'scroll' ? onBlur : undefined}
+                onPointerLeave={collapse === 'scroll' ? back : undefined}
+              >
+                {options}
+              </div>
+            </Layout>
+          </fieldset>
+        </Layout>
       </SegmentedContext.Provider>
     );
 
@@ -130,22 +193,41 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
      */
     return (
       <Popover
-        block
-        className={`${CLASS_NAME}__popover`}
+        display='grid'
+        className={classNames(
+          `${CLASS_NAME}__popover`,
+          collapsed && `${CLASS_NAME}__popover--collapsed`,
+          className
+        )}
+        // With a caption, the trigger sits under it, as the track sits under its legend.
+        gap={hasLegend ? 'narrowest' : 'none'}
+        justifyItems={hasLegend ? 'start' : undefined}
         onOpenChange={setOpen}
         open={open}
       >
-        {/* The trigger reads as the choice; the panel takes the control's name. */}
-        <PopoverTrigger
-          className={classNames(
-            `${CLASS_NAME}__trigger`,
-            'kicl-border-radius-md',
-            'kicl-padding-block-narrower',
-            'kicl-padding-inline-narrow'
-          )}
-        >
-          {labelOf(children, current)}
-          <Ri.RiArrowDownSLine aria-hidden />
+        {/* The caption, as a label for the trigger: a button is labelable. */}
+        {legend ? (
+          <label className='kicl-font-size-small' htmlFor={`${id}__trigger`}>
+            {legend.props.children}
+          </label>
+        ) : null}
+        {/* The trigger is a ghost button that reads as the choice; the panel takes the control's name. */}
+        <PopoverTrigger asChild>
+          <Button
+            after={<Ri.RiArrowDownSLine aria-hidden />}
+            // It stands in for a select, so it is as tall as one.
+            className={classNames(
+              `${CLASS_NAME}__trigger`,
+              'kicl-min-block-size-field'
+            )}
+            id={`${id}__trigger`}
+            // A disabled control opens nothing, as its radios take nothing.
+            disabled={disabled}
+            size='small'
+            variant='ghost'
+          >
+            {labelOf(children, current) ?? null}
+          </Button>
         </PopoverTrigger>
         <PopoverContent
           aria-label={rest['aria-label']}

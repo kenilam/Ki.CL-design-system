@@ -1,5 +1,5 @@
 // Spec
-import * as Spec from '../spec';
+import * as Spec from 'design/components/hyper-link/spec';
 
 /**
  * Another site, which opens in a new tab. A `mailto:` or `tel:` link parses as

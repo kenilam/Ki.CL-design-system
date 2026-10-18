@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Calendar as MonthGrid } from '../calendar';
+import { Calendar as MonthGrid } from 'design/components/calendar';
 
 // Context
 import { useDatePicker } from './context';
@@ -11,9 +11,15 @@ const Calendar: React.FunctionComponent = () => {
     useDatePicker();
 
   return mode === 'range' ? (
-    <MonthGrid mode='range' selected={selectedRange} onSelect={onSelectRange} />
+    <MonthGrid
+      className='kicl-inline-size-full'
+      mode='range'
+      selected={selectedRange}
+      onSelect={onSelectRange}
+    />
   ) : (
     <MonthGrid
+      className='kicl-inline-size-full'
       mode='single'
       selected={selectedSingle}
       onSelect={onSelectSingle}

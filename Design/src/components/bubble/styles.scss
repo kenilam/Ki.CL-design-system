@@ -22,15 +22,6 @@
   max-inline-size: var(--kicl--components--bubble--max-inline-size);
   min-inline-size: 0;
 
-  // An auto margin moves it to the end in block and grid parents alike.
-  &--align--end {
-    margin-inline-start: auto;
-
-    > .kicl--components--bubble__content {
-      justify-self: end;
-    }
-  }
-
   &--variant--secondary {
     --kicl--components--bubble--background-color: var(--kicl-surface-color);
     --kicl--components--bubble--border-color: var(--kicl-surface-border-color);
@@ -122,7 +113,6 @@
   inline-size: fit-content;
   max-inline-size: 100%;
   min-inline-size: 0;
-  overflow: hidden;
   overflow-wrap: anywhere;
 
   // A message keeps the line breaks it was written with.
@@ -153,23 +143,15 @@
   min-inline-size: 0;
 }
 
-// Overlaps a corner of the bubble by three quarters of its own height.
+// Overlaps the bubble's bottom corner by three quarters of its own height.
 .kicl--components--bubble__reactions {
   background-color: var(--kicl-surface-color);
   box-shadow: 0 0 0 var(--kicl-size-3px) var(--kicl-body-background-color);
-  inline-size: fit-content;
   padding-block: var(--kicl-gutter-narrowest);
   padding-inline: var(--kicl-gutter-narrower);
+  translate: 0 75%;
 
   &:has(button) {
     padding: 0;
-  }
-
-  &--side--top {
-    translate: 0 -75%;
-  }
-
-  &--side--bottom {
-    translate: 0 75%;
   }
 }

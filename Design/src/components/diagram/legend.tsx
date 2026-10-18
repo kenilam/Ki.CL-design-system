@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Layout, Text } from '..';
+import { Layout, List, ListItem, Text } from 'design/components';
 
 // Spec
 import type { LegendItem } from './spec';
@@ -16,9 +16,9 @@ type Props = {
  * item, the key filled in the item's accent and the meaning beside it.
  */
 const Legend: React.FunctionComponent<Props> = ({ items }) => (
-  <Layout display='flex' gap='narrow' wrap>
-    <Text>
-      {items.map(({ accent, label, value }) => (
+  <List display='flex' gap='narrow' wrap>
+    {items.map(({ accent, label, value }) => (
+      <ListItem key={label}>
         <Layout
           alignContent='center'
           alignItems='center'
@@ -27,7 +27,6 @@ const Legend: React.FunctionComponent<Props> = ({ items }) => (
           gap='narrow'
           justifyContent='center'
           justifyItems='center'
-          key={label}
         >
           <Text
             accent={accent}
@@ -62,9 +61,9 @@ const Legend: React.FunctionComponent<Props> = ({ items }) => (
             </Text>
           </Text>
         </Layout>
-      ))}
-    </Text>
-  </Layout>
+      </ListItem>
+    ))}
+  </List>
 );
 
 export { Legend };

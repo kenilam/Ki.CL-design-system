@@ -12,8 +12,12 @@ const BubbleContent = React.forwardRef<HTMLElement, BubbleContentProps>(
     return (
       <Component
         {...(rest as React.HTMLAttributes<HTMLElement>)}
-        className={classNames(CLASS_NAME, 'kicl-line-height', className)}
-        data-is={is}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-line-height',
+          'kicl-overflow-hidden',
+          className
+        )}
         data-slot='bubble-content'
         ref={ref as never}
       >

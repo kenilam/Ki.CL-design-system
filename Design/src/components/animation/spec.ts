@@ -49,10 +49,6 @@ export type Property =
   | 'zoom-in'
   | 'zoom-out';
 
-export type Properties = {
-  [name in Property]?: Property;
-};
-
 /**
  * There is no lifecycle callback API here on purpose.
  *
@@ -67,15 +63,15 @@ export type Properties = {
  * Which direction is running is not something the events need to carry: it is
  * `in`, which the caller already owns.
  */
-export type Props = PropsWithChildren<
-  {
-    delay?: number;
-    duration?: Duration;
-    easing?: Easing;
-    property?: Property;
-    className?: string;
-    /** Whether the child should be shown. Drives both directions. */
-    in?: boolean;
-    nodeRef?: Ref<HTMLElement | null>;
-  } & Record<string, unknown>
->;
+export type Options = {
+  delay?: number;
+  duration?: Duration;
+  easing?: Easing;
+  property?: Property;
+  className?: string;
+  /** Whether the child should be shown. Drives both directions. */
+  in?: boolean;
+  nodeRef?: Ref<HTMLElement | null>;
+};
+
+export type Props = PropsWithChildren<Options & Record<string, unknown>>;

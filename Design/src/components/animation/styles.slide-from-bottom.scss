@@ -12,17 +12,15 @@
 
   /* Where it starts when entering, and ends when leaving: the variables move, the properties follow. */
   @starting-style {
-    --kicl--components--animation--property--slide-from-bottom--distance: min(
-      var(--kicl-size-2x),
-      10%
+    --kicl--components--animation--property--slide-from-bottom--distance: var(
+      --kicl--components--animation--slide--distance
     );
     --kicl--components--animation--property--slide-from-bottom--opacity: 0;
   }
 
   &:not([data-animation-in]) {
-    --kicl--components--animation--property--slide-from-bottom--distance: min(
-      var(--kicl-size-2x),
-      10%
+    --kicl--components--animation--property--slide-from-bottom--distance: var(
+      --kicl--components--animation--slide--distance
     );
     --kicl--components--animation--property--slide-from-bottom--opacity: 0;
   }

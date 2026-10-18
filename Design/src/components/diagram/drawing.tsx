@@ -60,7 +60,11 @@ const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
   const { description, edges, groups, height, nodes, width } = spec;
 
   return (
-    <svg aria-hidden viewBox={`0 0 ${width} ${height}`}>
+    <svg
+      aria-hidden
+      className={classNames('kicl-display-block', 'kicl-inline-size-full')}
+      viewBox={`0 0 ${width} ${height}`}
+    >
       <title>{description}</title>
       <defs>
         <marker
@@ -104,7 +108,10 @@ const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
             y={group.y}
           />
           <text
-            className={`${BASE}-group-label`}
+            className={classNames(
+              `${BASE}-group-label`,
+              'kicl-text-transform-uppercase'
+            )}
             x={group.x + 14}
             y={group.y + 22}
           >

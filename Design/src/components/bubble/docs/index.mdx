@@ -1,0 +1,14 @@
+import { Preset as AMessage } from './a-message';
+import { Preset as AConversation } from './a-conversation';
+import { Preset as WithReactions } from './with-reactions';
+import { Preset as OneAfterAnother } from './one-after-another';
+import { CONTROLS } from './controls';
+
+One message in a conversation. `kicl-margin-inline-start-auto` puts it on the end side, and a group stacks the messages one person sent in a row.
+
+<Preview controls={CONTROLS}>
+  {AMessage}
+  {AConversation}
+  {WithReactions}
+  {OneAfterAnother}
+</Preview>

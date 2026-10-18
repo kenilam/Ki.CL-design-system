@@ -29,8 +29,9 @@
   }
 
   /* Which dot is current is only known from these, so without them there is no column. */
-  @supports not
-    ((animation-timeline: scroll()) and (width: calc(sibling-index() * 1px))) {
+  @supports not (
+    (animation-timeline: scroll()) and (width: calc(sibling-index() * 1px))
+  ) {
     visibility: hidden;
   }
 }

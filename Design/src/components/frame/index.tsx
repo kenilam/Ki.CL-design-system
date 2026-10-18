@@ -23,7 +23,6 @@ const Frame: React.FunctionComponent<Props> = ({
   clip = true,
   delay = 0,
   grow,
-  hold,
   ...rest
 }) =>
   React.cloneElement(children, {
@@ -33,7 +32,6 @@ const Frame: React.FunctionComponent<Props> = ({
       {
         [`${CLASS_NAME}--grow`]: grow,
         [`${CLASS_NAME}--unclipped`]: !clip,
-        [`${CLASS_NAME}--hold`]: hold,
         [`${CLASS_NAME}--in`]: animate,
       },
       className,

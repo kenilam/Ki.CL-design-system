@@ -4,8 +4,8 @@ import React from 'react';
 import type { Token } from 'marked';
 
 // Components
-import { HyperLink } from '../hyper-link';
-import { Text } from '../text';
+import { HyperLink } from 'design/components/hyper-link';
+import { Text } from 'design/components/text';
 
 // Spec
 import type { Look } from './spec';

@@ -1,6 +1,6 @@
-import type { CanvasHTMLAttributes } from 'react';
+import type React from 'react';
 
-export type Props = CanvasHTMLAttributes<HTMLCanvasElement>;
+export type Props = React.ComponentPropsWithoutRef<'canvas'>;
 
 /**
  * Colours the renderer may put down. Each is a packed `0xRRGGBB` number, not

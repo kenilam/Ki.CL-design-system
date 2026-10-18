@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 // Components
-import { InputGroupButton } from '../../input-group';
-import { Input } from '..';
+import { InputGroupButton } from 'design/components/input-group';
+import { Input } from 'design/components/input';
+
+// Hooks
+import { useClipboard } from 'design/hooks/use-clipboard';
 
 // Copy
-import { useCopy } from '../../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
 import * as Ri from 'react-icons/ri';
 
 // Spec
-import type { InputProps } from '..';
+import type { InputProps } from 'design/components/input';
 
 type Props = Omit<InputProps, 'readOnly' | 'value'> & {
   /** What the field shows and the button copies. */
   value: string;
 };
-
-/** How long the button says it copied. */
-const COPIED_MS = 2000;
 
 /**
  * A read-only field with a button that copies its value, for a token, a link
@@ -27,32 +27,19 @@ const COPIED_MS = 2000;
  */
 const CopyInput = React.forwardRef<HTMLInputElement, Props>(
   ({ value, ...rest }, ref) => {
-    const [copied, setCopied] = useState(false);
+    const { copied, copy } = useClipboard();
     const t = useCopy();
-
-    useEffect(() => {
-      if (!copied) {
-        return;
-      }
-
-      const timer = setTimeout(() => setCopied(false), COPIED_MS);
-
-      return () => clearTimeout(timer);
-    }, [copied]);
 
     const Icon = copied ? Ri.RiCheckLine : Ri.RiFileCopyLine;
 
     return (
       <Input
         {...rest}
+        // The input group's own button, which sits in the field, on the copy hook.
         after={
           <InputGroupButton
             aria-label={t(copied ? 'status_copied' : 'action_copy')}
-            onClick={async () => {
-              await navigator.clipboard.writeText(value);
-
-              setCopied(true);
-            }}
+            onClick={() => void copy(value)}
             type='button'
           >
             <Icon aria-hidden />

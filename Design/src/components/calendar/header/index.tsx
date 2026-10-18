@@ -4,23 +4,21 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '../../layout';
+import { Button } from 'design/components/button';
+import { Layout } from 'design/components/layout';
 import * as Ri from 'react-icons/ri';
 
-// Styles
-import './styles.scss';
-
 // Constants
-import { CLASS_NAME as CALENDAR } from '../constants';
+import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
 
 // Context
-import { useCalendar } from '../context';
+import { useCalendar } from 'design/components/calendar/context';
 
 // Copy
-import { useCopy } from '../../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Helpers
-import { monthLabel } from '../helpers';
+import { monthLabel } from 'design/components/calendar/helpers';
 
 const Header: React.FunctionComponent = () => {
   const { month, setMonth, titleId } = useCalendar();
@@ -33,24 +31,17 @@ const Header: React.FunctionComponent = () => {
       alignItems='center'
       gap='narrower'
     >
-      <div className={`${CALENDAR}__header`}>
-        <button
-          type='button'
-          className={classNames(
-            `${CALENDAR}__nav`,
-            'kicl-border-radius-sm',
-            'kicl-display-inline-flex',
-            'kicl-line-height-narrower',
-            'kicl-padding-block-narrowest',
-            'kicl-padding-inline-narrowest'
-          )}
+      <header className={`${CALENDAR}__header`}>
+        <Button
           aria-label={t('action_previous_month')}
           onClick={() =>
             setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))
           }
+          size='small'
+          variant='ghost'
         >
           <Ri.RiArrowLeftSLine aria-hidden />
-        </button>
+        </Button>
         <div
           id={titleId}
           aria-live='polite'
@@ -63,24 +54,17 @@ const Header: React.FunctionComponent = () => {
         >
           {monthLabel(month)}
         </div>
-        <button
-          type='button'
-          className={classNames(
-            `${CALENDAR}__nav`,
-            'kicl-border-radius-sm',
-            'kicl-display-inline-flex',
-            'kicl-line-height-narrower',
-            'kicl-padding-block-narrowest',
-            'kicl-padding-inline-narrowest'
-          )}
+        <Button
           aria-label={t('action_next_month')}
           onClick={() =>
             setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))
           }
+          size='small'
+          variant='ghost'
         >
           <Ri.RiArrowRightSLine aria-hidden />
-        </button>
-      </div>
+        </Button>
+      </header>
     </Layout>
   );
 };

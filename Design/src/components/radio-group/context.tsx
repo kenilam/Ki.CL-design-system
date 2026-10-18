@@ -15,7 +15,7 @@ const RadioGroupContext = createContext<ContextValue | null>(null);
 const useRadioGroup = () => {
   const ctx = useContext(RadioGroupContext);
   if (!ctx) {
-    throw new Error('RadioGroupItem must be used within RadioGroup');
+    throw new Error('Radio must be used within RadioGroup');
   }
   return ctx;
 };

@@ -14,7 +14,7 @@ export type RadioGroupProps = Omit<
   required?: boolean;
 };
 
-export type RadioGroupItemProps = Omit<
+export type RadioProps = Omit<
   React.ComponentPropsWithoutRef<'input'>,
   'checked' | 'defaultChecked' | 'name' | 'type' | 'value'
 > & {

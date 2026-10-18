@@ -21,7 +21,16 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
   if (rows) {
     return (
       <>
-        <text className={`${BASE}-title`} textAnchor='middle' x={cx} y={y + 20}>
+        <text
+          className={classNames(
+            `${BASE}-title`,
+            'kicl-font-size',
+            'kicl-font-weight-bolder'
+          )}
+          textAnchor='middle'
+          x={cx}
+          y={y + 20}
+        >
           {title}
         </text>
         <line
@@ -54,7 +63,14 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
                   y={baseline - ICON_SIZE + 3}
                 />
               ) : row.type ? (
-                <text className={`${BASE}-type`} x={x + 10} y={baseline}>
+                <text
+                  className={classNames(
+                    `${BASE}-type`,
+                    'kicl-font-family-mono'
+                  )}
+                  x={x + 10}
+                  y={baseline}
+                >
                   {row.type}
                 </text>
               ) : null}
@@ -87,7 +103,16 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
 
   return (
     <>
-      <text className={`${BASE}-title`} textAnchor='middle' x={cx} y={titleY}>
+      <text
+        className={classNames(
+          `${BASE}-title`,
+          'kicl-font-size',
+          'kicl-font-weight-bolder'
+        )}
+        textAnchor='middle'
+        x={cx}
+        y={titleY}
+      >
         {title}
       </text>
       {lines?.map((line, index) => (

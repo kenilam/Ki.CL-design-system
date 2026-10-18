@@ -34,9 +34,7 @@ const Close: React.FunctionComponent = () => {
 
   return (
     <Button
-      unstyled
       className={classNames(
-        'kicl-font-size-medium',
         'kicl-margin-inline-start-auto',
         fullScreen ? 'kicl-position-fixed' : 'kicl-position-sticky',
         'kicl-z-index-floating',
@@ -45,8 +43,10 @@ const Close: React.FunctionComponent = () => {
       aria-label={t('action_close_dialog')}
       command='request-close'
       commandFor={id}
+      size='small'
+      variant='secondary'
     >
-      {CloseIcon ? <CloseIcon /> : <Ri.RiCloseLine />}
+      {CloseIcon ? <CloseIcon aria-hidden /> : <Ri.RiCloseLine aria-hidden />}
     </Button>
   );
 };

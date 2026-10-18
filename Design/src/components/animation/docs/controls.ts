@@ -3,16 +3,19 @@ import type { ControlsSpec } from 'design/docs/mdx/preview';
 
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
-  property: [
-    'blur',
-    'fade',
-    'slide-from-bottom',
-    'slide-from-left',
-    'slide-from-right',
-    'slide-from-top',
-    'zoom-in',
-    'zoom-out',
-  ],
+  property: {
+    options: [
+      'blur',
+      'fade',
+      'slide-from-bottom',
+      'slide-from-left',
+      'slide-from-right',
+      'slide-from-top',
+      'zoom-in',
+      'zoom-out',
+    ],
+    default: 'fade',
+  },
   duration: {
     options: [
       'instant',

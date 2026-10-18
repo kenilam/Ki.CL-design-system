@@ -8,7 +8,6 @@ import { Highlight, themes } from 'prism-react-renderer';
 import {
   Card,
   CardContent,
-  CardHeader,
   CardTitle,
   CopyButton,
   Text,
@@ -28,10 +27,11 @@ const Code: React.FunctionComponent<Props> = ({ children }) => {
   const { theme } = useTheme();
 
   return (
-    <Card gap='narrow' size='default'>
-      <CardHeader>
-        <CardTitle is='h3'>{t('docs_code')}</CardTitle>
-      </CardHeader>
+    <Card
+      gap='narrow'
+      header={<CardTitle is='h3'>{t('docs_code')}</CardTitle>}
+      size='default'
+    >
       <CardContent
         className={classNames(
           'kicl-min-block-size-columns-2',

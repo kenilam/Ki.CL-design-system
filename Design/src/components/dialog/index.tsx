@@ -4,7 +4,7 @@ import React, { useEffect, useId, useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Heading, Layout } from 'design/components';
+import { Layout } from 'design/components';
 
 // Helpers
 import { mergeRefs } from 'design/helper';
@@ -49,15 +49,15 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       dense = false,
       footer,
       fullScreen = false,
+      header,
       open = false,
-      title,
       ...rest
     },
     ref
   ) => {
     const generated = useId();
     const id = rest.id ?? generated;
-    const titleId = `${id}--title`;
+    const headerId = `${id}--header`;
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
 
     const node = useRef<HTMLDialogElement>(null);
@@ -78,12 +78,34 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       }
     }, [open]);
 
+    /*
+     * The element fills the window, so a click beside the panel lands on it
+     * rather than outside it, where `closedby` would see it.
+     */
+    useEffect(() => {
+      const dialog = node.current;
+
+      if (!dialog || closable !== true) {
+        return;
+      }
+
+      const click = (event: MouseEvent) => {
+        if (event.target === dialog) {
+          dialog.requestClose();
+        }
+      };
+
+      dialog.addEventListener('click', click);
+
+      return () => dialog.removeEventListener('click', click);
+    }, [closable]);
+
     return (
       <DialogContext.Provider
         value={{ closable, closeIcon: CloseIcon, fullScreen, id }}
       >
         <dialog
-          aria-labelledby={title && !isLabelled ? titleId : undefined}
+          aria-labelledby={header && !isLabelled ? headerId : undefined}
           {...rest}
           id={id}
           ref={mergeRefs(node, ref)}
@@ -99,7 +121,11 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
             className
           )}
           closedby={
-            closable === true || closable === 'keyboard' ? 'any' : 'none'
+            closable === true
+              ? 'any'
+              : closable === 'keyboard'
+                ? 'closerequest'
+                : 'none'
           }
         >
           <Layout alignContent='start'>
@@ -110,16 +136,15 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
                 'kicl-z-index-raised'
               )}
             >
-              <Layout autoFlow='column' alignItems='baseline'>
-                <header>
-                  {title ? (
-                    <Heading id={titleId} is='h2' lookLike='h4' dense>
-                      {title}
-                    </Heading>
-                  ) : null}
-                  <Close />
-                </header>
-              </Layout>
+              {(header || closable === true) && (
+                <Layout autoFlow='column' alignItems='baseline'>
+                  <header>
+                    {/* Apart from the close button, so its label doesn't name the dialog. */}
+                    {header && <div id={headerId}>{header}</div>}
+                    <Close />
+                  </header>
+                </Layout>
+              )}
 
               {children}
 

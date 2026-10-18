@@ -4,7 +4,6 @@ import React from 'react';
 import {
   Card,
   CardContent,
-  CardHeader,
   CardTitle,
   HyperLink,
   List,
@@ -39,10 +38,12 @@ const Explore: React.FunctionComponent = () => {
 
         return (
           <ListItem key={category} span={6}>
-            <Card is='section'>
-              <CardHeader>
+            <Card
+              header={
                 <CardTitle is='h2'>{t(`category_${category}`)}</CardTitle>
-              </CardHeader>
+              }
+              is='section'
+            >
               <CardContent>
                 <List fill={1} gap='narrow' justifyItems='start'>
                   {pages.map(({ context, slug }) => (

@@ -3,26 +3,13 @@
   &__marker {
     block-size: var(--kicl--components--details--summary--marker--block-size);
     inline-size: var(--kicl--components--details--summary--marker--inline-size);
-  }
-
-  &__marker-icon {
-    grid-area: 1 / 1;
+    rotate: var(--kicl--components--details--summary--marker--rotate);
     transition-duration: var(
       --kicl--components--details--summary--marker--transition-duration
     );
-    transition-property: opacity;
+    transition-property: rotate;
     transition-timing-function: var(
       --kicl--components--details--summary--marker--transition-timing-function
     );
-
-    &--closed {
-      opacity: var(
-        --kicl--components--details--summary--marker--closed--opacity
-      );
-    }
-
-    &--open {
-      opacity: var(--kicl--components--details--summary--marker--open--opacity);
-    }
   }
 }

@@ -3,6 +3,9 @@ import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 
+import { CardFooter } from './card-footer';
+import { CardHeader } from './card-header';
+
 import type { CardIs, CardProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--card';
@@ -16,7 +19,9 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
     {
       children,
       className,
+      footer,
       gap,
+      header,
       is = 'div',
       size = 'default',
       level,
@@ -51,7 +56,9 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
           )}
           data-slot='card'
         >
+          {header && <CardHeader>{header}</CardHeader>}
           {children}
+          {footer && <CardFooter>{footer}</CardFooter>}
         </Component>
       </Layout>
     );

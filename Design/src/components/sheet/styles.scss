@@ -1,9 +1,24 @@
 /*
  * The browser centres a popover at its content's height; a sheet undoes that
- * and stands at the end of the page, within the insets its ancestors set, or
- * fills the screen on small ones. It slides in from the end and fades.
+ * and stands at one side of the page, within the insets its ancestors set, or
+ * fills the screen on small ones. It slides in from that side and fades.
  */
 .kicl--components--sheet {
+  // The side it stands at, as -1, 0 or 1 on each axis: the end of the line by default.
+  --kicl--components--sheet--side-inline: 1;
+  --kicl--components--sheet--side-block: 0;
+
+  // The inline axis turns around in right-to-left text; `translate` and `box-shadow` don't.
+  --kicl--components--sheet--direction: 1;
+  --kicl--components--sheet--x: calc(
+    var(--kicl--components--sheet--side-inline) *
+    var(--kicl--components--sheet--direction)
+  );
+  --kicl--components--sheet--y: var(--kicl--components--sheet--side-block);
+  --kicl--components--sheet--from:
+    calc(var(--kicl--components--sheet--x) * var(--kicl-gutter-wide))
+    calc(var(--kicl--components--sheet--y) * var(--kicl-gutter-wide));
+
   block-size: auto;
   opacity: 1;
   transition:
@@ -13,27 +28,103 @@
     translate var(--kicl-transition-duration-fast);
   translate: 0 0;
 
+  &:dir(rtl) {
+    --kicl--components--sheet--direction: -1;
+  }
+
+  &--inline-start {
+    --kicl--components--sheet--side-inline: -1;
+  }
+
+  &--block-start {
+    --kicl--components--sheet--side-inline: 0;
+    --kicl--components--sheet--side-block: -1;
+  }
+
+  &--block-end {
+    --kicl--components--sheet--side-inline: 0;
+    --kicl--components--sheet--side-block: 1;
+  }
+
   // Card's own `display` would otherwise keep it on screen while closed. Open
   // modal on small screens, it's a dialog with `[open]` instead of a popover.
   &:not(:popover-open, [open]) {
     display: none;
     opacity: 0;
-    translate: var(--kicl-gutter-wide) 0;
+    translate: var(--kicl--components--sheet--from);
   }
 
   @starting-style {
     opacity: 0;
-    translate: var(--kicl-gutter-wide) 0;
+    translate: var(--kicl--components--sheet--from);
+  }
+
+  // Clear while it's a popover, so the page stays sharp and takes clicks.
+  &::backdrop {
+    backdrop-filter: blur(0);
+    pointer-events: none;
+    transition:
+      backdrop-filter var(--kicl-transition-duration-fast),
+      display var(--kicl-transition-duration-fast) allow-discrete,
+      overlay var(--kicl-transition-duration-fast) allow-discrete;
+  }
+
+  // Open modal (`[open]`), it blurs the page, which is inert behind it.
+  &[open]::backdrop {
+    pointer-events: auto;
+    backdrop-filter: blur(var(--kicl-size-half));
+
+    @starting-style {
+      backdrop-filter: blur(0);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
+
+    &::backdrop {
+      transition: none;
+    }
   }
 
   @include query('>tablet') {
-    inline-size: var(--kicl--components--sheet--inline-size);
-    inset-block: var(--kicl-inset-block-start) var(--kicl-inset-block-end);
-    inset-inline: auto var(--kicl-inset-inline-end);
+    // Cast onto the page it slides over, lighter than the shared shadow.
+    $x: calc(var(--kicl--components--sheet--x) * #{$shadow-distant-negative});
+    $y: calc(var(--kicl--components--sheet--y) * #{$shadow-distant-negative});
+
+    @include box-shadow($x $y ($shadow-distant * 2) rgba($shadow-color, 0.08));
+
+    &--inline-start,
+    &--inline-end {
+      inline-size: var(--kicl--components--sheet--inline-size);
+      inset-block: var(--kicl-inset-block-start) var(--kicl-inset-block-end);
+    }
+
+    &--inline-start {
+      inset-inline: var(--kicl-inset-inline-start) auto;
+    }
+
+    &--inline-end {
+      inset-inline: auto var(--kicl-inset-inline-end);
+    }
+
+    // As tall as its content, up to the space between the insets.
+    &--block-start,
+    &--block-end {
+      inline-size: auto;
+      inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
+      max-block-size: calc(
+        100dvb - var(--kicl-inset-block-start) - var(--kicl-inset-block-end)
+      );
+    }
+
+    &--block-start {
+      inset-block: var(--kicl-inset-block-start) auto;
+    }
+
+    &--block-end {
+      inset-block: auto var(--kicl-inset-block-end);
+    }
   }
 
   @include query('≤tablet') {
@@ -87,7 +178,7 @@
   }
 }
 
-// A modal sheet covers the page, so the page behind it doesn't scroll either.
+// The page behind a modal sheet is inert, and doesn't scroll either.
 :root:has(.kicl--components--sheet:modal) {
   overflow: hidden;
 }

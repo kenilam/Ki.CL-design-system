@@ -1,13 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 
 // Libraries
 import classNames from 'classnames';
 
 // Components
-import { Card } from 'design/components/card';
+import { Button } from 'design/components/button';
+import { Card, CardAction, CardContent } from 'design/components/card';
+
+// Copy
+import { useCopy } from 'design/locales/use-copy';
 
 // Helpers
 import { mergeRefs } from 'design/helper';
+
+// Icons
+import * as Ri from 'react-icons/ri';
+
+// Partials
+import { SheetFooter } from './footer';
+import { SheetHeader } from './header';
 
 // Spec
 import type { SheetProps } from './spec';
@@ -32,11 +43,12 @@ const fillsScreen = () => {
 /**
  * A panel at the side of the page, over what's behind it but not in its way:
  * the page stays usable while it's open, and a click on the page leaves it
- * open. It slides in from the end, and on small screens it fills the screen.
+ * open. It slides in from its `side`, and on small screens it fills the screen.
  *
- * It's a dialog: assistive tech announces it as one, and Escape closes it. On
- * small screens, where it covers the page anyway, it opens modal, so focus
- * stays inside it and the page behind is inert and doesn't scroll. Its buttons still work there:
+ * It's a dialog: assistive tech announces it as one, and Escape closes it
+ * while `closable`. When `modal`, and always on small screens where it covers
+ * the page anyway, it opens modal: focus stays inside it, and the page behind
+ * is blurred, inert and doesn't scroll. Its buttons still work there:
  * a show becomes `showModal()` and a hide closes it. Code that closes it
  * itself should call `close()` when `open` is set, `hidePopover()`
  * otherwise.
@@ -45,28 +57,42 @@ const fillsScreen = () => {
  * point at it with `popovertarget` open and close it. It scrolls as a whole;
  * a `SheetHeader` or `SheetFooter` inside it stays stuck to its top or
  * bottom, with a line of the moving gradient while content runs under it.
+ * `header` and `footer` are what goes in them. While `closable`, the header
+ * is there even without `header`, and ends with a button that closes it.
  */
 const Sheet = React.forwardRef<HTMLElement, SheetProps>(
   (
     {
       children,
       className,
+      closable = true,
       defaultOpen = false,
+      footer,
+      header,
+      modal = false,
       onOpenChange,
+      side = 'inline-end',
       size = 4,
       style,
       ...rest
     },
     ref
   ) => {
+    const generated = useId();
+    const id = rest.id ?? generated;
     const node = useRef<HTMLElement | null>(null);
+    const t = useCopy();
     // Only the open state it mounts with counts; after that its buttons lead.
     const opening = useRef(defaultOpen);
     const report = useRef(onOpenChange);
+    const modally = useRef(modal);
+    const dismissable = useRef(closable);
 
     useEffect(() => {
       report.current = onOpenChange;
-    }, [onOpenChange]);
+      modally.current = modal;
+      dismissable.current = closable;
+    }, [closable, modal, onOpenChange]);
 
     useEffect(() => {
       const element = node.current as HTMLDialogElement | null;
@@ -81,7 +107,12 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       const beforeToggle = (event: Event) => {
         const { newState } = event as ToggleEvent;
 
-        if (modaling || newState !== 'open' || element.open || !fillsScreen()) {
+        if (
+          modaling ||
+          newState !== 'open' ||
+          element.open ||
+          !(modally.current || fillsScreen())
+        ) {
           return;
         }
 
@@ -113,7 +144,11 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
 
       // A manual popover ignores Escape; a modal dialog handles it itself.
       const keydown = (event: KeyboardEvent) => {
-        if (event.key === 'Escape' && element.matches(':popover-open')) {
+        if (
+          event.key === 'Escape' &&
+          dismissable.current &&
+          element.matches(':popover-open')
+        ) {
           element.hidePopover();
         }
       };
@@ -135,17 +170,40 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       };
     }, []);
 
+    // Open when `modal` changes, it reopens in the other mode at once.
+    useEffect(() => {
+      const element = node.current as HTMLDialogElement | null;
+
+      if (!element) {
+        return;
+      }
+
+      if (modal && element.matches(':popover-open')) {
+        element.hidePopover();
+        element.showPopover();
+      }
+
+      if (!modal && element.open && !fillsScreen()) {
+        element.close();
+        element.showPopover();
+      }
+    }, [modal]);
+
     return (
       <Card
         {...rest}
         // Fixed chrome, so a frame on the page moves its insets inside the frame's edge.
         className={classNames(
           CLASS_NAME,
+          `${CLASS_NAME}--${side}`,
           'kicl-overflow-y-auto',
-          'kicl-padding-block-none',
+          'kicl-padding-none',
           'kicl-position-fixed',
           className
         )}
+        // As on `Dialog`: a click on the backdrop or Escape closes it while `closable`.
+        closedby={closable ? 'any' : 'none'}
+        id={id}
         is='dialog'
         popover='manual'
         ref={mergeRefs(node, ref)}
@@ -156,7 +214,33 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
           } as React.CSSProperties
         }
       >
-        {children}
+        {(header || closable) && (
+          <SheetHeader>
+            {header}
+            {closable && (
+              <CardAction>
+                <Button
+                  aria-label={t('action_close_sheet')}
+                  popoverTarget={id}
+                  popoverTargetAction='hide'
+                  size='small'
+                  variant='secondary'
+                >
+                  <Ri.RiCloseLine aria-hidden />
+                </Button>
+              </CardAction>
+            )}
+          </SheetHeader>
+        )}
+        <CardContent
+          className={classNames(
+            'kicl-padding-block-end-narrow',
+            'kicl-padding-inline'
+          )}
+        >
+          {children}
+        </CardContent>
+        {footer && <SheetFooter justifyContent='end'>{footer}</SheetFooter>}
       </Card>
     );
   }

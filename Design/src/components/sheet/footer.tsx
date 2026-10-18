@@ -13,7 +13,7 @@ const SheetFooter = React.forwardRef<HTMLElement, CardFooterProps>(
   ({ className, ...rest }, ref) => (
     <CardFooter
       {...rest}
-      className={classNames(CLASS_NAME, 'kicl-stuck-line-start', className)}
+      className={classNames(CLASS_NAME, 'kicl-stuck-line-start', 'kicl-padding', className)}
       ref={ref}
     />
   )

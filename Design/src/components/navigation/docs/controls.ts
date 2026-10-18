@@ -4,7 +4,7 @@ import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   is: { options: ['ul', 'ol'], default: 'ul' },
-  autoFlow: ['row', 'column'],
+  autoFlow: { options: ['row', 'column'], default: 'row' },
   gap: {
     options: [
       'none',

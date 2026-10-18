@@ -7,7 +7,7 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const name = 'Close button';
+const name = 'Not closable';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (

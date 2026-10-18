@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Dialog, Text } from 'design/components';
+import { Button, Dialog, Heading, Text } from 'design/components';
 
 import type { Props } from 'design/components/dialog/docs/controls';
 
@@ -11,8 +11,12 @@ const Preview: React.FC<Props> = (props) => (
     </Button>
     <Dialog
       className='kicl-min-block-size-columns-3'
+      header={
+        <Heading dense is='h2' lookLike='h4'>
+          Daylight
+        </Heading>
+      }
       id='dialog-default'
-      title='Daylight'
       {...props}
     >
       <Text>The Earth lit by where the sun is now.</Text>

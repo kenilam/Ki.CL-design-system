@@ -16,7 +16,7 @@ const SheetHeader = React.forwardRef<HTMLElement, CardHeaderProps>(
       className={classNames(
         CLASS_NAME,
         'kicl-inset-block-start-0',
-        'kicl-padding-block-start',
+        'kicl-padding',
         'kicl-position-sticky',
         'kicl-stuck-line-end',
         'kicl-z-index-raised',

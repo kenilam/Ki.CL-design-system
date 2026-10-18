@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Dialog, Text } from 'design/components';
+import { Button, Dialog, Heading, Text } from 'design/components';
 
 import type { Props } from 'design/components/dialog/docs/controls';
 
@@ -16,8 +16,12 @@ const Preview: React.FC<Props> = (props) => (
           Delete
         </Button>
       }
+      header={
+        <Heading dense is='h2' lookLike='h4'>
+          Delete this draft?
+        </Heading>
+      }
       id='dialog-footer'
-      title='Delete this draft?'
       {...props}
     >
       <Text>It can't be brought back.</Text>

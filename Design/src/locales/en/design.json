@@ -1,6 +1,7 @@
 {
   "action_clear": "Clear",
   "action_close_dialog": "Close this dialog",
+  "action_close_sheet": "Close this sheet",
   "action_copy": "Copy",
   "action_go_back": "Go Back",
   "action_hide_password": "Hide password",

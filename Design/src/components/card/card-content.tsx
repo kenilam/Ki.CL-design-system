@@ -13,7 +13,6 @@ const CardContent = React.forwardRef<HTMLElement, CardContentProps>(
       <Component
         {...(rest as React.HTMLAttributes<HTMLElement>)}
         className={classNames(CLASS_NAME, className)}
-        data-is={is}
         data-slot='card-content'
         ref={ref as never}
       >

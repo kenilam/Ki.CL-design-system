@@ -1,7 +1,4 @@
 .kicl--components--combobox {
-  // The field fills its row, so the wrapper does too.
-  display: block;
-
   /*
    * The list is anchored to the field. The anchor name comes from the popover
    * wrapper, so two comboboxes on one page each anchor to their own field.
@@ -12,14 +9,13 @@
     }
   }
 
-  // As wide as the field, edges lined up with it, a gap below it.
+  /*
+   * As wide as the field. Its side, alignment and gap stay the popover's, so
+   * `placement` and `offset` work here as they do on any panel.
+   */
   &__content {
     @supports (position-area: block-end) {
-      --kicl--components--popover--position-area: block-end span-inline-end;
-
       inline-size: anchor-size(inline);
-      margin-block: var(--kicl-gutter);
-      margin-inline: 0;
     }
   }
 }

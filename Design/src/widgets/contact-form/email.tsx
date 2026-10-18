@@ -10,13 +10,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../../components';
+} from 'design/components';
 
 // Constants
 import { EMAIL } from './constants';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Spec
 import type { Values } from './spec';

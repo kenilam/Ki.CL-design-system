@@ -13,7 +13,7 @@ export type SelectTriggerProps = React.ComponentPropsWithoutRef<'button'>;
 
 export type SelectValueProps = React.HTMLAttributes<HTMLElement>;
 
-export type SelectContentProps = { children?: React.ReactNode };
+export type SelectContentProps = React.PropsWithChildren;
 
 export type SelectItemProps = Omit<
   React.ComponentPropsWithoutRef<'option'>,
@@ -24,6 +24,10 @@ export type SelectItemProps = Omit<
 
 export type SelectGroupProps = React.ComponentPropsWithoutRef<'optgroup'>;
 
-export type SelectLabelProps = { children: string };
+/** Text only: the group also reads it into the native `label` attribute. */
+export type SelectLabelProps = Omit<
+  React.ComponentPropsWithoutRef<'legend'>,
+  'children'
+> & { children: string };
 
 export type SelectSeparatorProps = React.ComponentPropsWithoutRef<'hr'>;

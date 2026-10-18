@@ -1,56 +1,68 @@
+// Every fill is the `::before`, set in from the day's edges, so the day keeps
+// its corners for the focus ring. In a range the inset is dropped on the sides
+// that meet a neighbour, so the bar runs unbroken.
 .kicl--components--calendar__day {
-  align-items: center;
+  --kicl--components--calendar--day--inset: var(--kicl-gutter-narrower);
+  --kicl--components--calendar--day--fill: transparent;
+
   block-size: var(--kicl--components--calendar--cell-size);
-  border-radius: var(--kicl-size-half);
-  color: inherit;
   inline-size: var(--kicl--components--calendar--cell-size);
-  justify-content: center;
+  isolation: isolate;
 
-  &:hover:not(:disabled),
-  &:focus-visible {
-    background: var(--kicl-color-grey-light);
+  // The ring sits inside the cell: the days touch, so outside it would cross a neighbour.
+  outline-offset: calc(var(--kicl-size-2px) * -1);
+
+  &::before {
+    background: var(--kicl--components--calendar--day--fill);
+    border-radius: var(--kicl-size-half);
+    content: '';
+    inset: var(--kicl--components--calendar--day--inset);
+    position: absolute;
+    z-index: -1;
   }
 
-  &--outside {
-    opacity: 0.35;
+  // A day that is chosen, or in a range, keeps its own fill under the pointer.
+  // The wash follows the body colour, so the label stays readable in both themes.
+  &:hover:not(
+    :disabled,
+    #{&}--selected,
+    #{&}--range-start,
+    #{&}--range-middle,
+    #{&}--range-end
+  ) {
+    --kicl--components--calendar--day--fill: color-mix(
+      in oklab,
+      var(--kicl-body-color) var(--kicl-color-strength-wash),
+      transparent
+    );
   }
 
-  &--range-middle {
-    background: var(--kicl--components--calendar--range-middle);
-    border-radius: 0;
-  }
-
+  // Every day of a range is chosen, so it looks like the one day of `single`.
   &--selected,
-  &--range-start,
-  &--range-end {
-    background: var(--kicl-color-grey-darker);
-    color: var(--kicl-color-white-pure);
+  &--range-middle {
+    --kicl--components--calendar--day--fill: var(--kicl-color-grey-darker);
   }
 
-  &--range-start {
+  &--range-middle::before {
+    border-radius: 0;
+    inset-inline: 0;
+  }
+
+  &--range-start::before {
     border-end-end-radius: 0;
     border-start-end-radius: 0;
+    inset-inline-end: 0;
   }
 
-  &--range-end {
+  &--range-end::before {
     border-end-start-radius: 0;
     border-start-start-radius: 0;
+    inset-inline-start: 0;
   }
 
-  &--range-start#{&}--range-end {
+  // One day as a range: a box again, with every corner.
+  &--range-start#{&}--range-end::before {
     border-radius: var(--kicl-size-half);
-  }
-
-  &[aria-current='date']:not(
-    &--selected,
-    &--range-middle,
-    &--range-start,
-    &--range-end
-  ) {
-    box-shadow: inset 0 0 0 var(--kicl-size-1px) var(--kicl-color-grey-dark);
-  }
-
-  &:disabled {
-    opacity: 0.35;
+    inset: var(--kicl--components--calendar--day--inset);
   }
 }

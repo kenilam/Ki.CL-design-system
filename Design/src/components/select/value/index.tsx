@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as SELECT } from '../constants';
+import { CLASS_NAME as SELECT } from 'design/components/select/constants';
 
-import type { SelectValueProps } from '../spec';
+import type { SelectValueProps } from 'design/components/select/spec';
 
 const CLASS_NAME = `${SELECT}__value`;
 
@@ -23,7 +23,12 @@ const SelectValue: React.FunctionComponent<SelectValueProps> = ({
 }) =>
   React.createElement('selectedcontent', {
     'data-slot': 'select-value',
-    className: classNames(CLASS_NAME, 'kicl-text-nowrap', className),
+    className: classNames(
+      CLASS_NAME,
+      'kicl-overflow-hidden',
+      'kicl-text-nowrap',
+      className
+    ),
     ...rest,
   });
 

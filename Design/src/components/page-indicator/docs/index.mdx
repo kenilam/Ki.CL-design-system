@@ -1,0 +1,14 @@
+A column of dots at the edge of the window, one for each full-screen page. The current dot grows as its page scrolls by. It's fixed to the window, so there's no preview here.
+
+```
+import { PageIndicator } from 'design/components';
+
+<PageIndicator
+  aria-label='Pages'
+  pages={[
+    { id: 'intro', label: 'Introduction' },
+    { id: 'work', label: 'Work' },
+    { id: 'contact', label: 'Contact' },
+  ]}
+/>
+```

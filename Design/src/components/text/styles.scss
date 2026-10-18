@@ -36,18 +36,22 @@
 
   // Passed down so inline code can draw its secondary outline in the colour
   // of the copy around it.
-  &:not([data-is='code']) {
+  &:not([data-is='code'], .kicl-look-like-code) {
     --kicl--components--text--context-color: var(--kicl--components--text--ink);
   }
 
-  & + &:not(
+  &
+  + &:not(
     &--is-dense,
     span:not(&),
     [data-is='code'],
     [data-is='del'],
-    [data-is='ins']
+    [data-is='ins'],
+    .kicl-look-like-code,
+    .kicl-look-like-del,
+    .kicl-look-like-ins
   ) {
-    --kicl--components--text--padding-block-start: var(--kicl-gutter);
+    --kicl--components--text--padding-block-start: var(--kicl-gutter-narrower);
   }
 
   // Blockquotes draw a start-edge rule - keep separation in margin so the
@@ -59,7 +63,7 @@
     margin-block-start: var(--kicl-gutter);
   }
 
-  &:has(+ a):not(&--is-dense, [data-is='code']) {
+  &:has(+ a):not(&--is-dense, [data-is='code'], .kicl-look-like-code) {
     --kicl--components--text--padding-block-end: var(--kicl-gutter);
   }
 
@@ -83,20 +87,39 @@
     )
       solid var(--kicl--components--text--border-inline-start-color);
     display: block;
-    margin-block: 0;
-    margin-inline: 0;
     padding-inline-start: var(--kicl--components--text--padding-inline-start);
   }
 
   // Inline quote - UA quotation marks; keep phrasing-level display
-  &[data-is='q'] {
+  &[data-is='q'],
+  &.kicl-look-like-q {
     --kicl--components--text--font-style: italic;
 
     font-style: var(--kicl--components--text--font-style);
   }
 
+  // A lookalike gets the marks a real `q` takes from the browser.
+  &.kicl-look-like-q:not([data-is='q']) {
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+
+  // What the browser gives a real `em` and `strong`.
+  &.kicl-look-like-em {
+    font-style: italic;
+  }
+
+  &.kicl-look-like-strong {
+    font-weight: bolder;
+  }
+
   &--variant--secondary {
-    --kicl--components--text--strength: 80%;
+    --kicl--components--text--strength: var(--kicl-color-strength-secondary);
   }
 
   @each $accent in (confirm, error, info, warning) {
@@ -108,13 +131,21 @@
   // A `pre` wraps its long lines, breaking anywhere. Kept on one line, the
   // longest is the narrowest the page can be, and on a phone the page runs
   // off the screen.
-  &[data-is='pre'] {
+  &[data-is='pre'],
+  &.kicl-look-like-pre {
     white-space: pre-wrap;
     word-break: break-all;
   }
 
+  // What the browser gives a real `pre`.
+  &.kicl-look-like-pre:not([data-is='pre']) {
+    display: block;
+    font-family: var(--kicl-font-family-mono);
+  }
+
   // A code block: code inside `pre` is one box, not a fill around each line.
-  &[data-is='pre'] > &[data-is='code'] {
+  &:is([data-is='pre'], .kicl-look-like-pre)
+  > &:is([data-is='code'], .kicl-look-like-code) {
     display: block;
     font-weight: var(--kicl-font-weight);
     padding: var(--kicl-gutter-narrow) var(--kicl-gutter);
@@ -125,7 +156,8 @@
   // text colour so it follows the theme and any link it sits in. Block padding
   // on an inline box doesn't move the lines. Inline padding does take space,
   // but it has to, or the fill runs into a comma or full stop right after it.
-  &[data-is='code'] {
+  &[data-is='code'],
+  &.kicl-look-like-code {
     --kicl--components--text--background-color: color-mix(
       in oklab,
       currentcolor 10%,
@@ -164,7 +196,9 @@
   // readable. Removed text keeps its strike, so the meaning doesn't rest on
   // colour alone, and added text drops the underline that reads as a link.
   &[data-is='del'],
-  &[data-is='ins'] {
+  &[data-is='ins'],
+  &.kicl-look-like-del,
+  &.kicl-look-like-ins {
     --kicl--components--text--background-color: color-mix(
       in oklab,
       var(--kicl--components--text--edit-color) 18%,
@@ -177,21 +211,24 @@
     box-decoration-break: clone;
   }
 
-  &[data-is='del'] {
+  &[data-is='del'],
+  &.kicl-look-like-del {
     --kicl--components--text--edit-color: var(--kicl-color-error);
 
     text-decoration-color: var(--kicl--components--text--edit-color);
     text-decoration-line: line-through;
   }
 
-  &[data-is='ins'] {
+  &[data-is='ins'],
+  &.kicl-look-like-ins {
     --kicl--components--text--edit-color: var(--kicl-color-confirm);
 
     text-decoration-line: none;
   }
 
   // Citation / source title
-  &[data-is='cite'] {
+  &[data-is='cite'],
+  &.kicl-look-like-cite {
     --kicl--components--text--font-style: italic;
 
     font-style: var(--kicl--components--text--font-style);

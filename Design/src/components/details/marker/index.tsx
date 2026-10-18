@@ -10,7 +10,7 @@ import * as Ri from 'react-icons/ri';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as DETAILS } from '../constants';
+import { CLASS_NAME as DETAILS } from 'design/components/details/constants';
 
 const CLASS_NAME = `${DETAILS}__marker`;
 

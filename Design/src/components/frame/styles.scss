@@ -45,16 +45,12 @@
     max(
       0px,
       (
-        100% - var(#{$frame}--gap) * 2 - var(#{$frame}--inset) * 2 -
-        var(--kicl-columns-12)
+        100% - var(#{$frame}--gap) * 2 - var(#{$frame}--inset) *
+        2 - var(--kicl-columns-12)
       ) /
       2
     )
   );
-
-  // A held frame moved as the header hid. The frame no longer follows the
-  // header, so there is nothing to hold and `hold` does nothing.
-  --kicl--components--frame--hold-distance: 0px;
 
   // On paper the gap round a frame is the page's margin, and the inset is a
   // fixed step: there is no window for it to scale with.
@@ -123,40 +119,17 @@ body {
     overflow: visible;
   }
 
-  /*
-   * Two animations, each switched on by its modifier naming it:
-   * - in: eases from full-bleed into the frame, after `--delay`.
-   * - hold: the frame grows by the header's height when the header hides on
-   *   the first scroll down. For that much scroll it moves down exactly as
-   *   fast as the page moves up, so it finishes growing in place, then
-   *   scrolls. They animate different properties, so both can run.
-   */
+  // Eases from full-bleed into the frame, after `--delay`. The `in` modifier
+  // names the animation, and a growing frame swaps in its own.
   @media (prefers-reduced-motion: no-preference) {
-    animation-delay: var(#{$frame}--delay), 0s;
-    animation-duration: var(--kicl-transition-duration-slow), auto;
-    animation-fill-mode: backwards, both;
-    animation-name: var(#{$frame}--in, none), var(#{$frame}--hold, none);
-    animation-timing-function: var(--kicl-ease-sine-out), linear;
+    animation-delay: var(#{$frame}--delay);
+    animation-duration: var(--kicl-transition-duration-slow);
+    animation-fill-mode: backwards;
+    animation-name: var(#{$frame}--in, none);
+    animation-timing-function: var(--kicl-ease-sine-out);
 
     &.kicl--components--frame--in {
       #{$frame}--in: kicl--components--frame--in;
-    }
-
-    // Without scroll timelines the hold would run on time instead, so it's off.
-    @supports (animation-timeline: scroll()) {
-      animation-range:
-        normal,
-        0 var(#{$frame}--hold-distance);
-      animation-timeline: auto, scroll(root);
-
-      // It moves down by up to the header's height, so that much stays free
-      // below it and whatever follows never slides under it.
-      &.kicl--components--frame--hold {
-        #{$frame}--hold: kicl--components--frame--hold;
-        margin-block-end: calc(
-          var(#{$frame}--gap) + var(#{$frame}--hold-distance)
-        );
-      }
     }
   }
 
@@ -237,12 +210,6 @@ body {
   --kicl-inset-block-end: calc(var(#{$frame}--gap) + var(--kicl-gutter));
   --kicl-inset-inline-start: calc(var(#{$frame}--gap) + var(--kicl-gutter));
   --kicl-inset-inline-end: calc(var(#{$frame}--gap) + var(--kicl-gutter));
-}
-
-@keyframes kicl--components--frame--hold {
-  to {
-    translate: 0 var(--kicl--components--frame--hold-distance);
-  }
 }
 
 // Full-bleed, as if there were no frame.

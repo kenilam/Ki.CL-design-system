@@ -1,10 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
+import {
+  CHOICE_LABEL_CLASS_NAME,
+  CHOICE_LABEL_LAYOUT,
+} from 'design/components/choice-label';
 
 import type { Props } from './spec';
-import { SwitchLabel } from './switch-label';
 
 import './styles.scss';
 
@@ -23,62 +26,45 @@ const SWITCH_ATTRIBUTE = {
  * Toggle switch on a native checkbox - API aligned with
  * https://ui.shadcn.com/docs/components/base/switch
  *
- * Pair with {@link SwitchLabel} as a child, or pass `label`. Either way the
+ * Its children are its visible name, as text or a {@link SwitchLabel}. The
  * `<label>` wraps the control, so the text is its accessible name.
  */
 const Switch = React.forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      children,
-      className,
-      label,
-      onChange,
-      onCheckedChange,
-      size = 'default',
-      ...rest
-    },
-    ref
-  ) => {
-    const labelNode =
-      label != null && label !== false ? (
-        <SwitchLabel>{label}</SwitchLabel>
-      ) : null;
-
+  ({ children, className, onChange, onCheckedChange, size, ...rest }, ref) => {
     const control = (
-      <input
-        ref={ref}
-        type='checkbox'
-        // Native `checked` supplies the state; ARIA in HTML forbids aria-checked here.
-        // oxlint-disable-next-line jsx-a11y/role-has-required-aria-props
-        role='switch'
-        {...SWITCH_ATTRIBUTE}
-        className={classNames(
-          CLASS_NAME,
-          `${CLASS_NAME}--size--${size}`,
-          className
-        )}
-        onChange={(event) => {
-          onChange?.(event);
-          onCheckedChange?.(event.currentTarget.checked);
-        }}
-        {...rest}
-      />
+      // The thumb is its `::before`, centred on the track's block axis.
+      <Layout alignItems='center' display='inline-grid' gap='none'>
+        <input
+          ref={ref}
+          type='checkbox'
+          // Native `checked` supplies the state; ARIA in HTML forbids aria-checked here.
+          // oxlint-disable-next-line jsx-a11y/role-has-required-aria-props
+          role='switch'
+          {...SWITCH_ATTRIBUTE}
+          className={classNames(
+            CLASS_NAME,
+            { [`${CLASS_NAME}--size--${size}`]: size },
+            className
+          )}
+          onChange={(event) => {
+            onChange?.(event);
+            onCheckedChange?.(event.currentTarget.checked);
+          }}
+          {...rest}
+        />
+      </Layout>
     );
 
-    if (!labelNode && !children) {
+    if (!children) {
       return control;
     }
 
     return (
-      <Layout
-        display='inline-grid'
-        autoFlow='column'
-        alignItems='center'
-        gap='narrow'
-      >
-        <label className={FIELD_CLASS_NAME}>
+      <Layout {...CHOICE_LABEL_LAYOUT}>
+        <label
+          className={classNames(FIELD_CLASS_NAME, CHOICE_LABEL_CLASS_NAME)}
+        >
           {control}
-          {labelNode}
           {children}
         </label>
       </Layout>

@@ -55,11 +55,6 @@
     translate var(--kicl-transition-duration) var(--kicl-ease-sine-out),
     visibility var(--kicl-transition-duration);
 
-  // `Layout` sets a display, which would otherwise beat the attribute.
-  &[hidden] {
-    display: none;
-  }
-
   @include -scrolled-down {
     opacity: 0;
     translate: 0 -100%;

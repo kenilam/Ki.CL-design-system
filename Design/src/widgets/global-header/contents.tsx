@@ -4,13 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Widgets
-import { SiteLogo, ThemeToggle } from '..';
+import { SiteLogo, ThemeToggle } from 'design/widgets';
 
 // Components
-import { Layout } from '../../components';
+import { Layout } from 'design/components';
 
 // Hooks
-import { useResponsive } from '../../hooks';
+import { useResponsive } from 'design/hooks';
 
 // Context
 import { useGlobalHeaderContext } from './context';

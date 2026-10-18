@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 import type { BubbleGroupIs, BubbleGroupProps } from './spec';
 
@@ -16,7 +16,6 @@ const BubbleGroup = React.forwardRef<HTMLElement, BubbleGroupProps>(
         <Component
           {...(rest as React.HTMLAttributes<HTMLElement>)}
           className={classNames(CLASS_NAME, className)}
-          data-is={is}
           data-slot='bubble-group'
         >
           {children}

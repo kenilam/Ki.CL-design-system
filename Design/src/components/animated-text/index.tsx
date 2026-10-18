@@ -1,13 +1,12 @@
 import React from 'react';
 
 // Components
-import { Animation, Text } from '..';
-import type { TextNode } from '../text/spec';
+import { Animation, Text } from 'design/components';
 
 // Spec
 import * as Spec from './spec';
 
-const AnimatedText = React.forwardRef<TextNode, Spec.Props>(
+const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
   (
     {
       delay = 0,
@@ -57,9 +56,7 @@ const AnimatedText = React.forwardRef<TextNode, Spec.Props>(
               property={property}
               key={key}
             >
-              <Text aria-hidden is='span' unstyled>
-                {piece}
-              </Text>
+              <span aria-hidden>{piece}</span>
             </Animation>
           );
         })}

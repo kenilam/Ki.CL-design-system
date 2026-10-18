@@ -1,0 +1,14 @@
+import { Preset as Options } from './options';
+import { Preset as WithAPlaceholder } from './with-a-placeholder';
+import { Preset as Groups } from './groups';
+import { Preset as OneOptionDisabled } from './one-option-disabled';
+import { CONTROLS } from './controls';
+
+Pick one option from a list that's too long to show at once. It's a native `select`, styled where the browser supports `appearance: base-select`.
+
+<Preview controls={CONTROLS}>
+  {Options}
+  {WithAPlaceholder}
+  {Groups}
+  {OneOptionDisabled}
+</Preview>

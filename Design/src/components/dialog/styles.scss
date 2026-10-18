@@ -49,11 +49,9 @@
     --kicl--components--dialog--section-offset: 0px;
   }
 
-  min-block-size: 100dvb;
   inline-size: 100dvi;
   margin: auto;
   max-inline-size: 100dvi;
-  overscroll-behavior: contain;
   transition:
     display var(--kicl-transition-duration-fast) allow-discrete,
     overlay var(--kicl-transition-duration-fast) allow-discrete;

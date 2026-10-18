@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 // Spec
 import type { InputGroupProps } from './spec';
@@ -31,7 +31,7 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
     <Layout alignItems='center' gap='narrow' ref={ref}>
       <div
         data-slot='input-group'
-        className={classNames(CLASS_NAME, className)}
+        className={classNames(CLASS_NAME, 'kicl-inline-size-full', className)}
         {...rest}
       >
         {children}
@@ -44,7 +44,6 @@ InputGroup.displayName = 'InputGroup';
 
 export type {
   InputGroupAddonProps,
-  InputGroupAlign,
   InputGroupButtonProps,
   InputGroupInputProps,
   InputGroupProps,

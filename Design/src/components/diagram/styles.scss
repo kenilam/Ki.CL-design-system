@@ -1,20 +1,13 @@
 .kicl--components--diagram {
-  inline-size: 100%;
   margin: 0;
 
   & + & {
     margin-block-start: var(--kicl-gutter-wide);
   }
 
-  &-preview {
-    cursor: zoom-in;
-  }
-
   // Row icons are nested SVGs sized in the drawing's own units.
   svg:not(.kicl--components--diagram-icon) {
     block-size: auto;
-    display: block;
-    inline-size: 100%;
   }
 
   text {
@@ -65,19 +58,11 @@
   }
 
   &-group-label {
-    font-size: var(--kicl-font-size-small);
     letter-spacing: 0.1em;
     opacity: 0.6;
-    text-transform: uppercase;
-  }
-
-  &-title {
-    font-size: var(--kicl-font-size);
-    font-weight: var(--kicl-font-weight-bolder);
   }
 
   &-line {
-    font-size: var(--kicl-font-size-small);
     opacity: 0.65;
   }
 
@@ -87,18 +72,11 @@
   }
 
   &-type {
-    font-family: var(--kicl-font-family-mono);
-    font-size: var(--kicl-font-size-small);
     letter-spacing: normal;
     opacity: 0.6;
   }
 
-  &-name {
-    font-size: var(--kicl-font-size-small);
-  }
-
   &-key {
-    font-size: var(--kicl-font-size-small);
     opacity: 0.75;
   }
 
@@ -147,7 +125,6 @@
   }
 
   &-edge-label {
-    font-size: var(--kicl-font-size-small);
     paint-order: stroke;
     stroke: var(--kicl-body-background-color);
     stroke-linejoin: round;

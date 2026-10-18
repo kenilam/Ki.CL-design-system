@@ -22,17 +22,17 @@
           background-color: #{rgba($black, 0.1)};
         }
 
+        // With a level, the fill is a tint of its colour over the page, and
+        // the label keeps that colour, as it does with no level.
+        &[class~='kicl--components--button--level--confirm'],
         &[class~='kicl--components--button--level--error'],
+        &[class~='kicl--components--button--level--info'],
         &[class~='kicl--components--button--level--warning'] {
-          background-color: #{rgba($black, 0.8)};
-
-          @at-root .kicl--theme--dark & {
-            background-color: #{rgba($white, 0.02)};
-          }
-
-          @at-root .kicl--theme--light & {
-            background-color: #{rgba($black, 0.8)};
-          }
+          background-color: color-mix(
+            in oklab,
+            var(--kicl--components--button--background-color) 15%,
+            var(--kicl-body-background-color)
+          );
         }
       }
 

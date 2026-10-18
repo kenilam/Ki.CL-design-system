@@ -1,0 +1,12 @@
+import { Preset as Inline } from './inline';
+import { Preset as OverItsParent } from './over-its-parent';
+import { CONTROLS } from './controls';
+
+Shows that something is loading. Screen readers hear "Loading" unless you pass a `label`.
+
+<Preview controls={CONTROLS} replay>
+  {Inline}
+  {OverItsParent}
+</Preview>
+
+`in` says whether the spinner shows, and defaults to on. When the load finishes, turn it off instead of unmounting the spinner, so it can animate out. Over its parent, the veil comes in before the icon and leaves after it. Pick _Over its parent_ and toggle `in` to see both.

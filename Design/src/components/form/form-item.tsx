@@ -1,7 +1,7 @@
 import React, { useId } from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 import { FormItemContext } from './context';
 import type { FormItemProps } from './spec';

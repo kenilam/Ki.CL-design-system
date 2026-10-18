@@ -1,32 +1,20 @@
 import React from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
 // Icons
 import * as Ri from 'react-icons/ri';
 
 // Components
-import { Animation, Heading, Layout, Text } from '../../../components';
+import { Animation, Heading, Layout, Text } from 'design/components';
 
 // Copy
-import { useCopy } from '../../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Partials
-import { GoBack } from '../go-back';
+import { GoBack } from 'design/status/http-status/go-back';
 import { Message } from './message';
-
-const CLASS_NAME = 'kicl--router--http-status--404';
 
 const Status404: React.FunctionComponent = () => {
   const t = useCopy();
-
-  const className = classNames(
-    'kicl-text-align-center',
-    'kicl--router--http-status',
-    'kicl-max-inline-size-columns-12',
-    CLASS_NAME
-  );
 
   return (
     <Animation>
@@ -37,7 +25,7 @@ const Status404: React.FunctionComponent = () => {
         justifyItems='center'
         fullScreen
       >
-        <section className={className}>
+        <section className='kicl-max-inline-size-columns-12 kicl-text-align-center'>
           <Layout
             alignContent='center'
             alignItems='center'

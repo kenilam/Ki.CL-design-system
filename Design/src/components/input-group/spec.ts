@@ -1,33 +1,20 @@
-import type {
-  ButtonHTMLAttributes,
-  HTMLAttributes,
-  InputHTMLAttributes,
-  ReactNode,
-  TextareaHTMLAttributes,
-} from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-import type { ButtonProps } from '../button';
+import type { ButtonProps } from 'design/components/button';
 
-export type InputGroupAlign =
-  'inline-start' | 'inline-end' | 'block-start' | 'block-end';
+export type InputGroupProps = ComponentPropsWithoutRef<'div'>;
 
-export type InputGroupProps = HTMLAttributes<HTMLDivElement> & {
-  children?: ReactNode;
-};
-
-export type InputGroupAddonProps = HTMLAttributes<HTMLDivElement> & {
-  align?: InputGroupAlign;
-};
+/** An addon before the control sits at its start, one after it at its end. */
+export type InputGroupAddonProps = ComponentPropsWithoutRef<'div'>;
 
 export type InputGroupButtonProps = Pick<ButtonProps, 'children'> &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
+  ComponentPropsWithoutRef<'button'> & {
     /** `ghost` is a bare control inside the field. `default` is a small button. */
     variant?: 'default' | 'ghost';
   };
 
-export type InputGroupInputProps = InputHTMLAttributes<HTMLInputElement>;
+export type InputGroupInputProps = ComponentPropsWithoutRef<'input'>;
 
-export type InputGroupTextareaProps =
-  TextareaHTMLAttributes<HTMLTextAreaElement>;
+export type InputGroupTextareaProps = ComponentPropsWithoutRef<'textarea'>;
 
-export type InputGroupTextProps = HTMLAttributes<HTMLSpanElement>;
+export type InputGroupTextProps = ComponentPropsWithoutRef<'span'>;

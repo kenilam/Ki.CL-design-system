@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
 // Components
-import { InputGroupButton } from '../../input-group';
-import { Input } from '..';
+import { InputGroupButton } from 'design/components/input-group';
+import { Input } from 'design/components/input';
 
 // Copy
-import { useCopy } from '../../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
 import * as Ri from 'react-icons/ri';
 
 // Spec
-import type { InputProps } from '..';
+import type { InputProps } from 'design/components/input';
 
 type Props = Omit<InputProps, 'type'>;
 

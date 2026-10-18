@@ -45,19 +45,28 @@
 /*
  * The scale, by level.
  *
- * Only the top two carry a size of their own. There is no token between the
- * body size and `medium`, and inventing one as a multiple of the body size is
- * the kind of made-up scale the design system rules out - so `h3` down to `h6`
- * stay at body size and are told apart by weight, as they already were.
+ * Each level steps down a size, since the brand face shows no difference
+ * between its heavier weights. `h4` is the body size, `h5` and `h6` the small
+ * one, and `h6` is also upper case and dimmed, as a label rather than a title.
  */
 @mixin heading-size($level) {
   @if $level == 1 {
     --kicl-heading-font-size: var(--kicl-font-size-large);
   } @else if $level == 2 {
     --kicl-heading-font-size: var(--kicl-font-size-medium);
+  } @else if $level == 3 {
+    --kicl-heading-font-size: var(--kicl-font-size-moderate);
+  } @else if $level == 5 or $level == 6 {
+    --kicl-heading-font-size: var(--kicl-font-size-small);
   }
 
-  @if $level == 5 {
-    --kicl-heading-font-weight: var(--kicl-font-weight-bold);
+  @if $level == 6 {
+    --kicl-heading-font-color: color-mix(
+      in srgb,
+      var(--kicl-body-color) var(--kicl-color-strength-secondary),
+      transparent
+    );
+
+    text-transform: uppercase;
   }
 }

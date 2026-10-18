@@ -25,6 +25,15 @@
   --kicl-size-19x: calc(var(--kicl-size) * 19);
   --kicl-size-20x: calc(var(--kicl-size) * 20);
   --kicl-size-full: 100%;
+
+  // An input's height: its line of small text, its padding and its border.
+  --kicl-field-line: calc(
+    var(--kicl-font-size-small) * var(--kicl-line-height)
+  );
+  --kicl-field-edge: calc(var(--kicl-gutter-narrow) + var(--kicl-size-1px));
+  --kicl-field-block-size: calc(
+    var(--kicl-field-line) + 2 * var(--kicl-field-edge)
+  );
 }
 
 @include make-size-variable-class('border-radius', 'none', '0px');
@@ -69,4 +78,10 @@
 
 .kicl-max-block-size-screen-third {
   max-block-size: calc(100dvb / 3);
+}
+
+// As tall as an input. A collapsed segmented control's trigger takes it to line
+// up with one.
+.kicl-min-block-size-field {
+  min-block-size: var(--kicl-field-block-size);
 }

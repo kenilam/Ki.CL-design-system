@@ -1,19 +1,16 @@
 import type React from 'react';
 
-export const SWITCH_SIZES = ['default', 'sm'] as const;
+import type { Props as ButtonProps } from 'design/components/button/spec';
 
-export type SwitchSize = (typeof SWITCH_SIZES)[number];
-
+/** `size` changes only its font size, which the switch is drawn from, as on `Button`. */
 export type Props = Omit<
   React.ComponentPropsWithoutRef<'input'>,
   'checked' | 'defaultChecked' | 'role' | 'size' | 'type'
-> & {
-  checked?: boolean;
-  defaultChecked?: boolean;
-  /** Visible label - same as nesting {@link SwitchLabel}. */
-  label?: React.ReactNode;
-  onCheckedChange?: (checked: boolean) => void;
-  size?: SwitchSize;
-};
+> &
+  Pick<ButtonProps, 'size'> & {
+    checked?: boolean;
+    defaultChecked?: boolean;
+    onCheckedChange?: (checked: boolean) => void;
+  };
 
 export type SwitchLabelProps = React.ComponentPropsWithoutRef<'span'>;

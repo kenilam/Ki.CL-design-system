@@ -4,7 +4,10 @@ import React, { useEffect, useId, useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Heading, Layout } from '..';
+import { Heading, Layout } from 'design/components';
+
+// Helpers
+import { mergeRefs } from 'design/helper';
 
 // Spec
 import * as Spec from './spec';
@@ -75,20 +78,6 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       }
     }, [open]);
 
-    const setRef = (dialog: HTMLDialogElement | null) => {
-      node.current = dialog;
-
-      if (typeof ref === 'function') {
-        ref(dialog);
-        return;
-      }
-
-      if (ref) {
-        (ref as React.MutableRefObject<HTMLDialogElement | null>).current =
-          dialog;
-      }
-    };
-
     return (
       <DialogContext.Provider
         value={{ closable, closeIcon: CloseIcon, fullScreen, id }}
@@ -97,7 +86,7 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
           aria-labelledby={title && !isLabelled ? titleId : undefined}
           {...rest}
           id={id}
-          ref={setRef}
+          ref={mergeRefs(node, ref)}
           className={classNames(
             CLASS_NAME,
             {
@@ -105,6 +94,8 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
               [`${CLASS_NAME}--is-dense`]: dense,
               [`${CLASS_NAME}--is-full-screen`]: fullScreen,
             },
+            'kicl-min-block-size-screen',
+            'kicl-overscroll-behavior-contain',
             className
           )}
           closedby={

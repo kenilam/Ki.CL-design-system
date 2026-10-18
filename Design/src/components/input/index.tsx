@@ -2,10 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { InputGroup, InputGroupAddon } from '../input-group';
+import { InputGroup, InputGroupAddon } from 'design/components/input-group';
 
 // Constants
-import { CLASS_NAME as INPUT_GROUP } from '../input-group/constants';
+import { CLASS_NAME as INPUT_GROUP } from 'design/components/input-group/constants';
 
 import type { Props } from './spec';
 
@@ -35,6 +35,8 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
         className={classNames(
           CLASS_NAME,
           'kicl-font-size-small',
+          'kicl-overflow-hidden',
+          'kicl-text-nowrap',
           grouped ? `${INPUT_GROUP}__control` : className
         )}
         {...rest}
@@ -47,13 +49,9 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <InputGroup className={className}>
-        {before ? (
-          <InputGroupAddon align='inline-start'>{before}</InputGroupAddon>
-        ) : null}
+        {before ? <InputGroupAddon>{before}</InputGroupAddon> : null}
         {control}
-        {after ? (
-          <InputGroupAddon align='inline-end'>{after}</InputGroupAddon>
-        ) : null}
+        {after ? <InputGroupAddon>{after}</InputGroupAddon> : null}
       </InputGroup>
     );
   }

@@ -124,6 +124,11 @@
   max-inline-size: var(--kicl-layout--full-screen--max-inline-size);
   min-block-size: var(--kicl-layout--full-screen--min-block-size);
 
+  // The `display` above would otherwise beat the `hidden` attribute.
+  &[hidden] {
+    display: none;
+  }
+
   &.kicl-layout--display {
     &--inline-grid {
       --kicl-layout--display: inline-grid;
@@ -458,5 +463,25 @@
     @include query('≤mobile') {
       grid-column: 1 / -1;
     }
+  }
+}
+
+.kicl-layout.kicl-layout--span--full {
+  grid-column: 1 / -1;
+}
+
+// As many tracks as fit, each at least so many columns and sharing what is
+// left: a row of things of unknown width, wrapping. `1fr` rather than
+// `max-content`, which an auto-fill track may not have as its maximum.
+// Three classes, to outrank the row flow's own `grid-template-columns: unset`.
+@for $span from 1 through 12 {
+  .kicl-layout.kicl-layout--display--grid.kicl-layout--fill--#{$span} {
+    --kicl-layout--auto-flow: row;
+
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--kicl-columns-#{$span}), 1fr)
+    );
+    grid-template-rows: unset;
   }
 }

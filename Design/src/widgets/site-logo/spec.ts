@@ -1,3 +1,3 @@
 import type React from 'react';
 
-export type Props = Pick<React.ComponentProps<'p'>, 'className'>;
+export type Props = Pick<React.ComponentProps<'a'>, 'className'>;

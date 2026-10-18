@@ -1,10 +1,4 @@
-import type { LayoutProps } from '..';
-import type { PolymorphicIsProps } from '../polymorphic';
+import type { LayoutProps } from 'design/components';
+import type { PolymorphicIsProps } from 'design/components/polymorphic';
 
-export type ListIs = 'ol' | 'ul';
-
-export type Switch = PolymorphicIsProps<ListIs, object, 'ul'>;
-
-export type Node = Switch;
-
-export type Props = LayoutProps & Switch;
+export type Props = LayoutProps & PolymorphicIsProps<'ol' | 'ul', object, 'ul'>;

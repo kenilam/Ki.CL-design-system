@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as SELECT } from '../constants';
+import { CLASS_NAME as SELECT } from 'design/components/select/constants';
 
-import type { SelectSeparatorProps } from '../spec';
+import type { SelectSeparatorProps } from 'design/components/select/spec';
 
 const CLASS_NAME = `${SELECT}__separator`;
 
@@ -21,7 +21,7 @@ const SelectSeparator = React.forwardRef<HTMLHRElement, SelectSeparatorProps>(
       data-slot='select-separator'
       className={classNames(
         CLASS_NAME,
-        'kicl-margin-block-narrowest',
+        'kicl-margin-block-narrower',
         className
       )}
       {...rest}

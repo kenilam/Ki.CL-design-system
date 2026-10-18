@@ -1,7 +1,6 @@
 .kicl--components--select__value {
   flex: 1 1 0;
   min-inline-size: 0;
-  overflow: hidden;
   text-overflow: ellipsis;
 
   .kicl--components--select:has(option[value='']:checked) & {

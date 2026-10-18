@@ -5,24 +5,19 @@
   --kicl--components--image--border-radius: var(--kicl-size-half);
   --kicl--components--image--inline-size: 100%;
   --kicl--components--image--object-fit: cover;
-  --kicl--components--image--is-fullscreen--inset-block-start: 50%;
-  --kicl--components--image--is-fullscreen--inset-inline-start: 50%;
-  --kicl--components--image--is-fullscreen--transform--translate-x: -50%;
-  --kicl--components--image--is-fullscreen--transform--translate-y: -50%;
-  --kicl--components--image--error--position: absolute;
 }
 
 .kicl--components--image {
   aspect-ratio: var(--kicl--components--image--aspect-ratio);
   background-color: var(--kicl--components--image--background-color);
   block-size: var(--kicl--components--image--block-size);
-  inline-size: var(--kicl--components--image--inline-size);
-  overflow: hidden;
-  position: relative;
 
-  .kicl--components--spinner {
-    border-radius: var(--kicl--components--image--border-radius);
-  }
+  // A default, so a `kicl-border-radius-*` class on the image beats it.
+  border-radius: var(--kicl--components--image--border-radius);
+  inline-size: var(--kicl--components--image--inline-size);
+
+  // Here rather than a utility, so a caller's `kicl-position-*` class wins.
+  position: relative;
 
   img {
     object-fit: var(--kicl--components--image--object-fit);
@@ -33,28 +28,5 @@
       var(--kicl--components--image--block-size),
       var(--kicl--components--image--inline-size)
     );
-  }
-
-  &--error {
-    block-size: fit-content;
-    inline-size: fit-content;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-    position: var(--kicl--components--image--error--position);
-    translate: -50% -50%;
-  }
-
-  &--is-fullscreen {
-    inset-block-start: var(
-      --kicl--components--image--is-fullscreen--inset-block-start
-    );
-    inset-inline-start: var(
-      --kicl--components--image--is-fullscreen--inset-inline-start
-    );
-    position: absolute;
-    translate: var(
-      --kicl--components--image--is-fullscreen--transform--translate-x
-    )
-      var(--kicl--components--image--is-fullscreen--transform--translate-y);
   }
 }

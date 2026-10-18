@@ -31,7 +31,6 @@ const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
       <Component
         {...(rest as React.HTMLAttributes<HTMLHeadingElement>)}
         className={className}
-        data-is={is}
         ref={ref}
       >
         {children}

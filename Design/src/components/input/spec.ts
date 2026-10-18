@@ -1,8 +1,7 @@
-import type { InputHTMLAttributes, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type Props = InputHTMLAttributes<HTMLInputElement> & {
-  /** Inside the field, before the text: an icon, a prefix, a CTA. */
-  before?: ReactNode;
-  /** Inside the field, after the text: an icon, a suffix, a CTA. */
-  after?: ReactNode;
-};
+import type { ContentProps } from 'design/components/button/spec';
+
+/** `before` and `after` sit inside the field, either side of the text: an icon, a prefix, a CTA. */
+export type Props = ComponentPropsWithoutRef<'input'> &
+  Pick<ContentProps, 'after' | 'before'>;

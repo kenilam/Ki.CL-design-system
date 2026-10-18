@@ -1,7 +1,9 @@
-import type { ReactNode } from 'react';
-
-import type { ColumnSpan, Gap, JustifyContent } from '../layout/spec';
-import type { PolymorphicIsProps } from '../polymorphic';
+import type { LookProps } from 'design/components/button/spec';
+import type {
+  ColumnSpan,
+  Props as LayoutProps,
+} from 'design/components/layout/spec';
+import type { PolymorphicIsProps } from 'design/components/polymorphic';
 
 /**
  * `default` = full width; `fit` = as wide as the content; named sizes map to
@@ -23,18 +25,19 @@ export const CARD_SIZES = [
 export type CardSize = (typeof CARD_SIZES)[number] | ColumnSpan;
 
 /**
- * `default` paints the surface; `ghost` lets what is behind it through.
- *
- * Named to match `Badge` and `Button`, which already use `ghost` for the
- * translucent, blurred treatment - one word for one idea across the library.
+ * Named as on `Button`: `primary` paints the surface with an edge, `secondary`
+ * is a soft fill that lets what is behind it through, and `tertiary` is the
+ * surface with no edge. There is no `ghost`: a card has an edge by default, which
+ * is what `ghost` adds on `Button`.
  */
-export type CardVariant = 'default' | 'ghost';
+export type CardVariant = Exclude<LookProps['variant'], 'ghost' | undefined>;
 
-/** What the card means, as on `Button` and `Badge`: its edge takes the colour. A card that's chosen, or needs attention. */
-export type CardLevel = 'confirm' | 'error' | 'info' | 'warning';
+export type CardLevel = NonNullable<LookProps['level']>;
 
-/** Semantic hosts that read as a card / panel surface. */
-/** `dialog` is for a card that opens over the page, as `Sheet` does. */
+/**
+ * Semantic hosts that read as a card / panel surface. `dialog` is for a card
+ * that opens over the page, as `Sheet` does.
+ */
 export type CardIs =
   'article' | 'aside' | 'dialog' | 'div' | 'form' | 'li' | 'nav' | 'section';
 
@@ -46,6 +49,10 @@ export type CardDescriptionIs = 'div' | 'p' | 'span';
 
 export type CardSectionIs = 'div' | 'footer' | 'header' | 'section';
 
+/**
+ * `level` is what the card means, as on `Button` and `Badge`: its edge takes
+ * the colour, for a card that's chosen or needs attention.
+ */
 type CardOwnProps = {
   /**
    * Width scale - `default` fills the parent; `fit` shrinks to the content;
@@ -54,55 +61,29 @@ type CardOwnProps = {
    */
   size?: CardSize;
   variant?: CardVariant;
-  level?: CardLevel;
-  /** Between its parts. `narrow` for `xs` and `sm`, `normal` otherwise. */
-  gap?: Gap;
-  children?: ReactNode;
-};
-
-type SectionOwnProps = {
-  children?: ReactNode;
-};
+} & Pick<LookProps, 'level'> &
+  Pick<
+    LayoutProps,
+    /** Between its parts. `narrow` for `xs` and `sm`, `normal` otherwise. */
+    'gap'
+  >;
 
 export type CardProps = PolymorphicIsProps<CardIs, CardOwnProps, 'div'>;
 
-export type CardHeaderProps = PolymorphicIsProps<
-  CardSectionIs,
-  SectionOwnProps,
-  'div'
-> & {
-  dense?: boolean;
-};
+export type CardHeaderProps = PolymorphicIsProps<CardSectionIs, object, 'div'>;
 
-export type CardTitleProps = PolymorphicIsProps<
-  CardTitleIs,
-  SectionOwnProps,
-  'div'
->;
+export type CardTitleProps = PolymorphicIsProps<CardTitleIs, object, 'div'>;
 
 export type CardDescriptionProps = PolymorphicIsProps<
   CardDescriptionIs,
-  SectionOwnProps,
+  object,
   'p'
 >;
 
-export type CardActionProps = PolymorphicIsProps<
-  CardSectionIs,
-  SectionOwnProps,
-  'div'
->;
+export type CardActionProps = PolymorphicIsProps<CardSectionIs, object, 'div'>;
 
-export type CardContentProps = PolymorphicIsProps<
-  CardSectionIs,
-  SectionOwnProps,
-  'div'
->;
+export type CardContentProps = PolymorphicIsProps<CardSectionIs, object, 'div'>;
 
-export type CardFooterProps = PolymorphicIsProps<
-  CardSectionIs,
-  SectionOwnProps,
-  'div'
-> & {
+export type CardFooterProps = PolymorphicIsProps<CardSectionIs, object, 'div'> &
   /** Where the actions sit along the footer. They fill it unless told otherwise. */
-  justifyContent?: JustifyContent;
-};
+  Pick<LayoutProps, 'justifyContent'>;

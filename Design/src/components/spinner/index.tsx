@@ -5,10 +5,10 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 // Components
-import { Animation, AnimationProps, Layout, Text } from '..';
+import { Animation, AnimationProps, Layout, Text } from 'design/components';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -21,8 +21,12 @@ import * as Spec from './spec';
 
 const CLASS_NAME = 'kicl--components--spinner';
 
-const DELAY: AnimationProps['delay'] = 200;
-const DURATION: AnimationProps['duration'] = 'fast';
+/** How long the overlay's veil takes to fade. */
+const BACKDROP_DURATION: AnimationProps['duration'] = 'fast';
+
+/** `ms`, then as long as a duration token: the tokens are CSS, so the sum is too. */
+const delayAfter = (ms: number, duration: AnimationProps['duration']) =>
+  `calc(${ms}ms + var(--kicl-transition-duration-${duration}))`;
 
 const Spinner: React.FunctionComponent<Spec.Props> = ({
   delay = 0,
@@ -34,41 +38,44 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
   in: transitionIn,
   label,
   position = 'overlay',
-  size = 'small',
+  size,
   ...rest
 }) => {
   const t = useCopy();
 
   const isOverlay = position === 'overlay';
-  // Overlay can stagger icon vs backdrop; inline indicators must appear
-  // immediately or short fetches never show a spinner.
-  const stagger = isOverlay ? DELAY : 0;
+  const entering = transitionIn ?? true;
+
+  /*
+   * An overlay shows its veil first and the icon once the veil is in, and
+   * leaves the other way round: the icon goes, then the veil. Inline there is
+   * no veil, and the icon shows at once or short fetches never show it.
+   */
+  const backdropDelay =
+    isOverlay && !entering ? delayAfter(delay, duration) : delay;
+  const iconDelay =
+    isOverlay && entering ? delayAfter(delay, BACKDROP_DURATION) : delay;
 
   const className = classNames(
     CLASS_NAME,
     {
-      'kicl-font-size-large': isOverlay,
+      'kicl-inset-0': isOverlay,
+      'kicl-position-absolute': isOverlay,
       'kicl-z-index-overlay': isOverlay,
-      'kicl-backdrop': backdrop,
-      [`${CLASS_NAME}--position--${position}`]: position,
+      // Only an overlay has anything behind it to veil.
+      'kicl-backdrop': isOverlay && backdrop,
+      [`${CLASS_NAME}--overlay`]: isOverlay,
       [`${CLASS_NAME}--size--${size}`]: size,
     },
     _className
   );
 
-  const entering = Boolean(transitionIn);
-  const spinnerAnimationDelay = entering ? DURATION : duration;
-  const spinnerDelay = entering ? delay + stagger : delay;
-
-  const wrapperAnimationDelay = entering ? duration : DURATION;
-  const wrapperDelay = entering ? delay : delay + stagger;
-
   const Contents = (
     <Animation
       {...rest}
-      delay={wrapperDelay}
-      duration={wrapperAnimationDelay}
-      in={transitionIn}
+      delay={backdropDelay}
+      duration={BACKDROP_DURATION}
+      in={entering}
     >
       <Layout
         display={isOverlay ? 'grid' : 'inline-grid'}
@@ -84,27 +91,15 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
           unstyled
         >
           <span className='kicl-hidden'>{label ?? t('status_loading')}</span>
+          {/* The entrance moves `scale` or `translate`, the spin `transform`, so both run on the icon. */}
           <Animation
             {...rest}
-            delay={spinnerDelay}
-            duration={spinnerAnimationDelay}
+            delay={iconDelay}
+            duration={duration}
             property={property}
-            in={transitionIn}
+            in={entering}
           >
-            <Layout
-              alignContent='center'
-              alignItems='center'
-              display={isOverlay ? 'grid' : 'inline-grid'}
-              justifyContent='center'
-              justifyItems='center'
-            >
-              <Text is='span' className='kicl-line-height-dense' unstyled>
-                <Ri.RiLoader4Line
-                  aria-hidden
-                  className={`${CLASS_NAME}--icon is-revolving`}
-                />
-              </Text>
-            </Layout>
+            <Ri.RiLoader4Line aria-hidden className='is-revolving' />
           </Animation>
         </Text>
       </Layout>

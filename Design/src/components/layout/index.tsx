@@ -3,6 +3,9 @@ import React, { PropsWithChildren } from 'react';
 // Libraries
 import classNames from 'classnames';
 
+// Helpers
+import { mergeRefs } from 'design/helper';
+
 // Spec
 import * as Spec from './spec';
 
@@ -20,6 +23,7 @@ const Layout = React.forwardRef<HTMLElement, Props>(
       autoFlow = 'row',
       columns,
       display = 'grid',
+      fill,
       frames,
       fullScreen,
       gap = 'normal',
@@ -40,6 +44,7 @@ const Layout = React.forwardRef<HTMLElement, Props>(
         [`${CLASS_NAME}--${autoFlow}`]: autoFlow,
         [`${CLASS_NAME}--columns`]: columns,
         [`${CLASS_NAME}--display--${display}`]: display,
+        [`${CLASS_NAME}--fill--${fill}`]: fill,
         [`${CLASS_NAME}--full-screen`]: fullScreen,
         [`${CLASS_NAME}--gap--${gap}`]: gap,
         [`${CLASS_NAME}--justify-content--${justifyContent}`]: justifyContent,
@@ -64,19 +69,6 @@ const Layout = React.forwardRef<HTMLElement, Props>(
     const props: Props = Element.props || {};
     const childRef = (props as { ref?: React.Ref<HTMLElement | null> }).ref;
 
-    const mergedRef = (node: HTMLElement | null) => {
-      if (typeof ref === 'function') {
-        ref(node);
-      } else if (ref) {
-        (ref as React.MutableRefObject<HTMLElement | null>).current = node;
-      }
-      if (typeof childRef === 'function') {
-        childRef(node);
-      } else if (childRef) {
-        (childRef as React.MutableRefObject<HTMLElement | null>).current = node;
-      }
-    };
-
     return React.cloneElement(
       Element as React.ReactElement<
         Props & { ref?: React.Ref<HTMLElement | null> }
@@ -85,7 +77,7 @@ const Layout = React.forwardRef<HTMLElement, Props>(
         ...rest,
         ...props,
         className: classNames(className, props.className),
-        ref: mergedRef,
+        ref: mergeRefs(ref, childRef),
       }
     );
   }

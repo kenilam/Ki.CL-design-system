@@ -4,7 +4,8 @@ import React, { useId, useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
+import { Separator } from 'design/components/separator';
 
 // Styles
 import './styles.scss';
@@ -84,15 +85,15 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     return (
       <CalendarContext.Provider value={context}>
-        <Layout gap='narrower'>
+        <Layout gap='narrow'>
           <div
             ref={ref}
             data-slot='calendar'
-            data-mode={mode}
             className={classNames(CLASS_NAME, className)}
             {...rest}
           >
             <Header />
+            <Separator decorative />
             <table className={`${CLASS_NAME}__table`} aria-labelledby={titleId}>
               <Weekdays />
               <Grid />

@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '..';
+import { Layout } from 'design/components';
 
 // Spec
 import type { Props } from './spec';
@@ -53,5 +53,5 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
 
 Details.displayName = 'Details';
 
-export type { Props as DetailsProps, SummaryProps } from './spec';
+export type { Props as DetailsProps } from './spec';
 export { Details, Marker as DetailsMarker };

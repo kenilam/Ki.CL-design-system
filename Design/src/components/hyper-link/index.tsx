@@ -4,11 +4,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Components
-import { Layout } from '../layout';
-import { LAYOUT, getButtonClassNames, hasText } from '../button/class-names';
+import { Layout } from 'design/components/layout';
+import {
+  LAYOUT,
+  getButtonClassNames,
+  hasText,
+} from 'design/components/button/class-names';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Hooks
 import { useURLStatus } from './hooks';
@@ -44,7 +48,6 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
     {
       after,
       before,
-      bold,
       children,
       className: _className = '',
       disabled,
@@ -76,7 +79,6 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
     // One look at a time: the classes of a button or of a link, never both.
     const className = lookLikeButton
       ? getButtonClassNames({
-          bold,
           className: _className,
           disabled,
           icon: !hasText(before, children, after),

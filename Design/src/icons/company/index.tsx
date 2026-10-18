@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { ReactSVG } from 'react-svg';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Vectors
 import { monochrome, polychrome } from './vectors';
@@ -13,21 +13,18 @@ import { monochrome, polychrome } from './vectors';
 // Styles
 import './styles.scss';
 
-type Size = 'large' | 'larger' | 'largest' | 'medium' | 'small';
-
 type Name =
   | (typeof monochrome.Names)[keyof typeof monochrome.Names]
   | (typeof polychrome.Names)[keyof typeof polychrome.Names];
 
-// Only what both an `img` and the injected SVG's wrapper take.
+/** Only what both an `img` and the injected SVG's wrapper take. It is `1em`, so a `kicl-font-size-*` class sizes it. */
 type Props = Pick<
   React.HTMLAttributes<HTMLElement>,
   'className' | 'id' | 'title'
-> & {
-  alt?: string;
-  src?: Name;
-  size?: Size;
-};
+> &
+  Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'alt'> & {
+    src?: Name;
+  };
 
 const CLASS_NAME = 'kicl--icons--company';
 
@@ -53,7 +50,6 @@ const Company: React.FunctionComponent<Props> = ({
   alt,
   className: _className,
   src: _src,
-  size,
   ...props
 }) => {
   const t = useCopy();
@@ -62,9 +58,6 @@ const Company: React.FunctionComponent<Props> = ({
     CLASS_NAME,
     'kicl-display-inline-block',
     'kicl-line-height-narrower',
-    {
-      [`${CLASS_NAME}--font-size--${size}`]: size,
-    },
     _className
   );
 

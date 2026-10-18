@@ -1,0 +1,12 @@
+import { Preset as Search } from './search';
+import { Preset as Above } from './above';
+import { Preset as Form } from './form';
+import { CONTROLS } from './controls';
+
+A text field with suggestions under it. It opens as the field is focused or typed in and closes on Escape or when focus leaves. Pass `open` to decide yourself when it shows. In a form it is the field's control, and a pick sets the field's value.
+
+<Preview controls={CONTROLS}>
+  {Search}
+  {Above}
+  {Form}
+</Preview>

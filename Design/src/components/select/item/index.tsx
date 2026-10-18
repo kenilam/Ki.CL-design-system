@@ -7,9 +7,9 @@ import classNames from 'classnames';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as SELECT } from '../constants';
+import { CLASS_NAME as SELECT } from 'design/components/select/constants';
 
-import type { SelectItemProps } from '../spec';
+import type { SelectItemProps } from 'design/components/select/spec';
 
 const CLASS_NAME = `${SELECT}__item`;
 
@@ -21,8 +21,8 @@ const SelectItem = React.forwardRef<HTMLOptionElement, SelectItemProps>(
       className={classNames(
         CLASS_NAME,
         'kicl-border-radius-sm',
-        'kicl-padding-block-narrowest',
-        'kicl-padding-inline-narrow',
+        'kicl-padding-block-narrow',
+        'kicl-padding-inline',
         className
       )}
       {...rest}

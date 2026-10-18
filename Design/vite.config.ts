@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { glob } from 'glob';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import mdx from '@mdx-js/rollup';
 import { federation } from '@module-federation/vite';
 import { compression } from 'vite-plugin-compression2';
 
@@ -29,7 +30,9 @@ export default defineConfig({
   plugins: [
     // A .gz and a .br beside each built file, which the server sends as they are.
     compression({ algorithms: ['gzip', 'brotliCompress'] }),
-    react(),
+    // The docs pages. Before React, which then compiles the JSX MDX gives it.
+    { enforce: 'pre', ...mdx() },
+    react({ include: /\.(mdx|tsx?)$/ }),
     federation({
       name: 'design',
       filename: 'remoteEntry.js',
@@ -37,6 +40,7 @@ export default defineConfig({
         './components': './src/components/index.ts',
         './core': './src/core/index.ts',
         './core/constants': './src/core/constants.ts',
+        './docs': './src/docs/index.tsx',
         './hooks': './src/hooks/index.ts',
         './icons': './src/icons/index.ts',
         './router': './src/router/index.tsx',
@@ -72,6 +76,10 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    // The same alias as `paths` in tsconfig.json.
+    alias: { design: src },
+  },
   css: {
     preprocessorOptions: {
       scss: {

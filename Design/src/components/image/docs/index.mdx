@@ -1,0 +1,16 @@
+import { Preset as Banner } from './banner';
+import { Preset as Square } from './square';
+import { Preset as Round } from './round';
+import { Preset as FailsToLoad } from './fails-to-load';
+import { Preset as OwnPlaceholder } from './own-placeholder';
+import { CONTROLS } from './controls';
+
+An image with a spinner while it loads and a placeholder if it fails. It fills whatever box it's given.
+
+<Preview controls={CONTROLS}>
+  {Banner}
+  {Square}
+  {Round}
+  {FailsToLoad}
+  {OwnPlaceholder}
+</Preview>

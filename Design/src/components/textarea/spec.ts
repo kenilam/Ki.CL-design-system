@@ -1,3 +1,3 @@
-import type { TextareaHTMLAttributes } from 'react';
+import type React from 'react';
 
-export type Props = TextareaHTMLAttributes<HTMLTextAreaElement>;
+export type Props = React.ComponentPropsWithoutRef<'textarea'>;

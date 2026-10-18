@@ -27,6 +27,10 @@
   --kicl-color-red: #{$red};
   --kicl-color-yellow: #{$yellow};
 
+  // How much of the body colour a wash (a hover, a highlight) and secondary text keep.
+  --kicl-color-strength-wash: 14%;
+  --kicl-color-strength-secondary: 65%;
+
   // functional
   --kicl-color-warning: var(--kicl-color-yellow);
   --kicl-color-info: var(--kicl-color-blue);
@@ -48,6 +52,10 @@
 
 .kicl-color-gradient-rotate-270deg {
   --kicl-color-gradient-rotate: 270deg;
+}
+
+.kicl-background-color-body {
+  background-color: var(--kicl-body-background-color);
 }
 
 .kicl-background-color-body-color {

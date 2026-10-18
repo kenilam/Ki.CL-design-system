@@ -1,12 +1,11 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-import type { Gap } from '../layout/spec';
+import type { Gap, Props as LayoutProps } from 'design/components/layout/spec';
 
 export type PopoverProps = ComponentPropsWithoutRef<'div'> & {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  children?: ReactNode;
 } & (
     | {
         /**
@@ -16,13 +15,13 @@ export type PopoverProps = ComponentPropsWithoutRef<'div'> & {
          * where a block is valid markup.
          */
         inline: true;
-        block?: never;
+        display?: never;
+        gap?: never;
+        justifyItems?: never;
       }
-    | {
+    | ({
         inline?: false;
-        /** Takes its whole row, like a field, instead of sitting inline. */
-        block?: boolean;
-      }
+      } & Pick<LayoutProps, 'display' | 'gap' | 'justifyItems'>)
   );
 
 export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> & {

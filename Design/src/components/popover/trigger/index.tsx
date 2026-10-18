@@ -4,16 +4,16 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Spec
-import type { PopoverTriggerProps } from '../spec';
+import type { PopoverTriggerProps } from 'design/components/popover/spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as POPOVER } from '../constants';
+import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
 
 // Context
-import { usePopover } from '../context';
+import { usePopover } from 'design/components/popover/context';
 
 const CLASS_NAME = `${POPOVER}__trigger`;
 

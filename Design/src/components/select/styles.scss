@@ -1,19 +1,20 @@
 .kicl--components--select {
   --kicl--components--select--background-color: var(--kicl-surface-color);
   --kicl--components--select--border-color: var(--kicl-color-grey-darker);
-  --kicl--components--select--border-radius: var(--kicl-size-half);
+
+  // The same box as `Input`: a field, whichever way it is filled in.
+  --kicl--components--select--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--select--border-width: var(--kicl-size-1px);
   --kicl--components--select--color: var(--kicl-body-color);
   --kicl--components--select--content-max-block-size: 16rem;
-  --kicl--components--select--padding-block: var(--kicl-gutter-narrowest);
-  --kicl--components--select--padding-inline: var(--kicl-gutter-narrow);
+  --kicl--components--select--padding-block: var(--kicl-gutter-narrow);
+  --kicl--components--select--padding-inline: var(--kicl-gutter);
 
   background-color: var(--kicl--components--select--background-color);
   border: var(--kicl--components--select--border-width) solid
     var(--kicl--components--select--border-color);
   border-radius: var(--kicl--components--select--border-radius);
   color: var(--kicl--components--select--color);
-  inline-size: 100%;
   max-inline-size: 100%;
   min-inline-size: 0;
   padding-block: var(--kicl--components--select--padding-block);
@@ -29,6 +30,11 @@
     // The styleable select is a flex row; its picker icon is taller than a
     // line of text, which otherwise sits at the top.
     align-items: center;
+
+    // The trigger draws the system's arrow; the browser's own stays away.
+    &::picker-icon {
+      display: none;
+    }
   }
 
   &[aria-invalid='true'],

@@ -4,7 +4,7 @@ import React, { useId, useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 // Spec
 import type { PopoverProps } from './spec';
@@ -26,9 +26,8 @@ import { PopoverTrigger } from './trigger';
  * The panel carries `popover` and the trigger points at it with
  * `popovertarget`, so opening, closing, dismissing on an outside click and
  * dismissing on Escape are all the platform's work. What is left here is the
- * controlled-open contract, which the platform has no opinion about: a caller
- * that wants the panel shut when something inside it is chosen - `DatePicker`
- * picking a date - still has to say so.
+ * controlled-open contract, which the platform has no opinion about, so a
+ * caller can open and close the panel itself.
  *
  * The gain is not only less code. A popover lives in the top layer, so no
  * ancestor's `overflow` or stacking context can clip it, and the panel stays
@@ -37,9 +36,11 @@ import { PopoverTrigger } from './trigger';
 const Popover: React.FC<PopoverProps> = ({
   children,
   className,
-  block = false,
   defaultOpen = false,
+  display = 'inline-grid',
+  gap = 'none',
   inline = false,
+  justifyItems,
   onOpenChange,
   open,
   ...rest
@@ -97,7 +98,7 @@ const Popover: React.FC<PopoverProps> = ({
          */
         <span
           data-slot='popover'
-          className={classNames(CLASS_NAME, `${CLASS_NAME}--inline`, className)}
+          className={classNames(CLASS_NAME, 'kicl-display-contents', className)}
           data-state={state}
           style={style}
           {...(rest as React.HTMLAttributes<HTMLSpanElement>)}
@@ -105,7 +106,7 @@ const Popover: React.FC<PopoverProps> = ({
           {children}
         </span>
       ) : (
-        <Layout display={block ? 'grid' : 'inline-grid'} gap='none'>
+        <Layout display={display} gap={gap} justifyItems={justifyItems}>
           <div
             data-slot='popover'
             className={classNames(CLASS_NAME, className)}

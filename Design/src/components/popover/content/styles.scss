@@ -26,6 +26,11 @@ $gaps: (
  * them. Cap the panel itself instead. `:where()` keeps this a default that
  * any component's own width - the combobox's, say - wins over.
  */
+:root {
+  --kicl--components--popover--border-radius: var(--kicl-size-half);
+  --kicl--components--popover--padding: var(--kicl-gutter-narrow);
+}
+
 :where(.kicl--components--popover__content) {
   inline-size: fit-content;
 }
@@ -34,8 +39,6 @@ $gaps: (
   &__content {
     --kicl--components--popover--background-color: var(--kicl-surface-color);
     --kicl--components--popover--border-color: var(--kicl-surface-border-color);
-    --kicl--components--popover--border-radius: var(--kicl-size-half);
-    --kicl--components--popover--padding: var(--kicl-gutter-narrow);
 
     /* Which side of the trigger the panel prefers. Modifiers move this. */
     --kicl--components--popover--position-area: block-end span-inline-end;

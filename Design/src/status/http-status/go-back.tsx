@@ -4,10 +4,10 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // Components
-import { HyperLink, HyperLinkProps } from '../../components';
+import { HyperLink, HyperLinkProps } from 'design/components';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 const GoBack: React.FunctionComponent = () => {
   const navigate = useNavigate();

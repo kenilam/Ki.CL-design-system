@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 //Components
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 import type { BadgeIs, Props } from './spec';
 import { BadgeLabel } from './badge-label';
@@ -22,7 +22,6 @@ const Badge = React.forwardRef<HTMLElement, Props>(
       className,
       is = 'span',
       level,
-      rounded,
       size,
       variant = 'default',
       ...rest
@@ -50,20 +49,12 @@ const Badge = React.forwardRef<HTMLElement, Props>(
             `${CLASS_NAME}--variant--${variant}`,
             {
               [`${CLASS_NAME}--level--${level}`]: level,
-              // Secondary's faint fill.
-              'kicl-backdrop': variant === 'secondary',
               [`${CLASS_NAME}--size--${size}`]: size,
-              [`kicl-border-radius-sm`]: !rounded,
-              [`kicl-border-radius-${size === 'small' ? 'lg' : 'xl'}`]: rounded,
-              'kicl-font-size-small': size !== 'large' && size !== 'small',
-              'kicl-font-size-smaller': size === 'small',
-              'kicl-font-size': size === 'large',
             },
             'kicl-font-weight',
             'kicl-line-height-narrow',
             className
           )}
-          data-is={is}
           ref={ref as never}
         >
           {children}
@@ -78,9 +69,8 @@ Badge.displayName = 'Badge';
 export type {
   Props as BadgeProps,
   BadgeIs,
-  BadgeSize,
   BadgeLabelProps,
   BadgeVariant,
 } from './spec';
-export { BADGE_VARIANTS, BADGE_SIZES } from './spec';
+export { BADGE_VARIANTS } from './spec';
 export { BadgeLabel, Badge };

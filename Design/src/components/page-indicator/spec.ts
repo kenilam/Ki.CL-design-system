@@ -1,4 +1,4 @@
-import { CardProps } from '..';
+import { CardProps } from 'design/components';
 
 export type Page = {
   /** The page's anchor; its dot links to `#id`. */

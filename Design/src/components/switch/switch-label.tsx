@@ -6,7 +6,7 @@ import type { SwitchLabelProps } from './spec';
 const CLASS_NAME = 'kicl--components--switch__label';
 
 /**
- * Visible name for {@link Switch} - nest inside Switch or use the `label` prop.
+ * Visible name for {@link Switch}, nested inside it.
  */
 const SwitchLabel: React.FunctionComponent<SwitchLabelProps> = ({
   children,
@@ -14,12 +14,8 @@ const SwitchLabel: React.FunctionComponent<SwitchLabelProps> = ({
   ...rest
 }) => (
   <span
-    className={classNames(
-      CLASS_NAME,
-      'kicl-font-size-small',
-      'kicl-color-grey-darker',
-      className
-    )}
+    // The field around it sets its look, as for a checkbox or a radio.
+    className={classNames(CLASS_NAME, className)}
     {...rest}
   >
     {children}

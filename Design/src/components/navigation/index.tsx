@@ -4,7 +4,12 @@ import React, { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Animation, type AnimationProps, List, ListItem } from '..';
+import {
+  Animation,
+  type AnimationProps,
+  List,
+  ListItem,
+} from 'design/components';
 
 // Styles
 import './styles.scss';
@@ -21,7 +26,7 @@ const Navigation = React.forwardRef<
   (
     {
       children,
-      className: _className = '',
+      className,
 
       alignContent,
       alignItems,
@@ -38,15 +43,13 @@ const Navigation = React.forwardRef<
     },
     ref
   ) => {
-    const className = classNames(CLASS_NAME, _className);
-
     const animation: AnimationProps = {
       duration: 'faster',
       property: 'slide-from-top',
     };
 
     return (
-      <nav {...rest} className={className} ref={ref}>
+      <nav {...rest} className={classNames(CLASS_NAME, className)} ref={ref}>
         <List
           alignContent={alignContent}
           alignItems={alignItems}
@@ -68,7 +71,7 @@ const Navigation = React.forwardRef<
 
             return (
               <Animation {...animation} key={key}>
-                <ListItem className={`${CLASS_NAME}--list-item`} key={key}>
+                <ListItem className={`${CLASS_NAME}--list-item`}>
                   {child}
                 </ListItem>
               </Animation>

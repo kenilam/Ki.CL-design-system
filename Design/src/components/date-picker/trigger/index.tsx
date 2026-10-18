@@ -4,43 +4,52 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { PopoverTrigger } from '../../popover';
+import { Layout } from 'design/components/layout';
+import { PopoverTrigger } from 'design/components/popover';
 import * as Ri from 'react-icons/ri';
 
 // Spec
-import type { DatePickerTriggerProps } from '../spec';
+import type { DatePickerTriggerProps } from 'design/components/date-picker/spec';
 
 // Styles
-import '../../input/styles.scss';
+import 'design/components/input/styles.scss';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as DATE_PICKER } from '../constants';
+import { CLASS_NAME as DATE_PICKER } from 'design/components/date-picker/constants';
 
 // Context
-import { useDatePicker } from '../context';
+import { useDatePicker } from 'design/components/date-picker/context';
 
 const Trigger: React.FunctionComponent<DatePickerTriggerProps> = (props) => {
   const { disabled, label, placeholder } = useDatePicker();
 
   return (
-    <PopoverTrigger
-      {...props}
-      disabled={disabled}
-      className={classNames(
-        'kicl--components--input',
-        `${DATE_PICKER}__trigger`,
-        'kicl-display-inline-flex',
-        'kicl-font-size-small',
-        'kicl-inline-size-full',
-        'kicl-text-align-start'
-      )}
+    <Layout
+      alignItems='center'
+      display='flex'
+      gap='narrower'
+      justifyContent='start'
     >
-      <Ri.RiCalendarLine className={`${DATE_PICKER}__icon`} aria-hidden />
-      <span className={label ? undefined : 'kicl-color-grey'}>
-        {label ?? placeholder}
-      </span>
-    </PopoverTrigger>
+      <PopoverTrigger
+        {...props}
+        disabled={disabled}
+        // An input's box and type, since it shows a value the way an input does.
+        className={classNames(
+          'kicl--components--input',
+          `${DATE_PICKER}__trigger`,
+          'kicl-font-size-small',
+          'kicl-inline-size-full',
+          'kicl-line-height',
+          'kicl-text-align-start'
+        )}
+      >
+        <Ri.RiCalendarLine className={`${DATE_PICKER}__icon`} aria-hidden />
+        <span className={label ? undefined : 'kicl-color-grey'}>
+          {label ?? placeholder}
+        </span>
+      </PopoverTrigger>
+    </Layout>
   );
 };
 

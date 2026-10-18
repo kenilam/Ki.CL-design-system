@@ -5,6 +5,9 @@
   --kicl--components--button--border-color: transparent;
   --kicl--components--button--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--button--border-width: var(--kicl-size-hair);
+  --kicl--components--button--fill: var(
+    --kicl--components--button--background-color
+  );
   --kicl--components--button--transition-duration: var(
     --kicl-transition-duration-fast
   );
@@ -16,7 +19,6 @@
   );
 
   border-radius: var(--kicl--components--button--border-radius);
-  overflow: hidden;
 
   // For a link that looks like a button, which has none of the link's own styles.
   text-decoration: none;
@@ -52,6 +54,14 @@
 
     backdrop-filter: blur(var(--kicl-gutter));
     display: grid;
-    padding-inline: var(--kicl--components--button--padding-inline-icon);
+
+    // The icon takes three fifths of the square and the padding the rest, so
+    // it reads at every size without filling the circle.
+    padding: calc(var(--kicl--components--button--block-size) * 0.2);
+
+    > svg,
+    > .kicl--components--spinner {
+      font-size: calc(var(--kicl--components--button--block-size) * 0.6);
+    }
   }
 }

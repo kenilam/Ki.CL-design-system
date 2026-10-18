@@ -1,6 +1,4 @@
-import type { ReactNode } from 'react';
-
-import type { PolymorphicIsProps } from '../polymorphic';
+import type { PolymorphicIsProps } from 'design/components/polymorphic';
 
 export const BUBBLE_VARIANTS = [
   'default',
@@ -14,11 +12,6 @@ export const BUBBLE_VARIANTS = [
 
 export type BubbleVariant = (typeof BUBBLE_VARIANTS)[number];
 
-/** Which end of the line the bubble sits at. */
-export type BubbleAlign = 'start' | 'end';
-
-export type BubbleReactionsSide = 'top' | 'bottom';
-
 /** Semantic hosts for one message. */
 export type BubbleIs = 'article' | 'div' | 'li' | 'section';
 
@@ -31,37 +24,25 @@ export type BubbleGroupIs = 'div' | 'li' | 'ol' | 'section' | 'ul';
 
 export type BubbleReactionsIs = 'div' | 'ul';
 
-type Children = {
-  children?: ReactNode;
-};
-
 export type BubbleProps = PolymorphicIsProps<
   BubbleIs,
-  Children & {
+  {
     /** Visual style - mirrors [shadcn Bubble](https://ui.shadcn.com/docs/components/base/bubble). */
     variant?: BubbleVariant;
-    align?: BubbleAlign;
   },
   'div'
 >;
 
 export type BubbleContentProps = PolymorphicIsProps<
   BubbleContentIs,
-  Children,
+  object,
   'div'
 >;
 
-export type BubbleGroupProps = PolymorphicIsProps<
-  BubbleGroupIs,
-  Children,
-  'div'
->;
+export type BubbleGroupProps = PolymorphicIsProps<BubbleGroupIs, object, 'div'>;
 
 export type BubbleReactionsProps = PolymorphicIsProps<
   BubbleReactionsIs,
-  Children & {
-    align?: BubbleAlign;
-    side?: BubbleReactionsSide;
-  },
+  object,
   'div'
 >;

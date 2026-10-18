@@ -7,6 +7,11 @@
   --kicl--components--textarea--min-block-size: var(--kicl-size-8x);
   --kicl--components--textarea--padding-block: var(--kicl-gutter-narrower);
   --kicl--components--textarea--padding-inline: var(--kicl-gutter-narrow);
+  --kicl--components--textarea--read-only-background-color: color-mix(
+    in oklab,
+    var(--kicl-surface-color) 85%,
+    var(--kicl-color-grey)
+  );
 
   background-color: var(--kicl--components--textarea--background-color);
   border: var(--kicl--components--textarea--border-width) solid
@@ -15,14 +20,12 @@
   color: var(--kicl--components--textarea--color);
   field-sizing: content;
   font: inherit;
-  inline-size: 100%;
   max-inline-size: 100%;
   min-block-size: var(--kicl--components--textarea--min-block-size);
   min-inline-size: 0;
   padding-block: var(--kicl--components--textarea--padding-block);
   padding-inline: var(--kicl--components--textarea--padding-inline);
   resize: vertical;
-  white-space: pre-wrap;
 
   // `field-sizing: content` would widen the field to the one-line
   // placeholder; this keeps it at its own width so the placeholder truncates.
@@ -30,8 +33,27 @@
     contain: inline-size;
   }
 
+  // `rows` sets the lines the field shows before it grows with its content.
+  &[rows] {
+    $lines: calc(var(--kicl--components--textarea--rows) * 1lh);
+    $padding: var(--kicl--components--textarea--padding-block);
+    $border: var(--kicl--components--textarea--border-width);
+
+    min-block-size: max(
+      var(--kicl--components--textarea--min-block-size),
+      calc($lines + 2 * ($padding + $border))
+    );
+  }
+
   &:disabled {
     resize: none;
+  }
+
+  // A muted fill says the value can be read and copied but not changed.
+  &[readonly] {
+    --kicl--components--textarea--background-color: var(
+      --kicl--components--textarea--read-only-background-color
+    );
   }
 
   &[aria-invalid='true'],

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import * as Ri from 'react-icons/ri';
 
 // Components
-import { Animation, Layout, Spinner } from '..';
+import { Animation, Layout, Spinner } from 'design/components';
 
 // Styles
 import './styles.scss';
@@ -21,10 +21,8 @@ type Result = { src: string; failed: boolean };
 
 const Image: React.FunctionComponent<Spec.Props> = ({
   alt,
-  borderRadius = 'sm',
   className: _className,
   data,
-  isFullscreen = false,
   loading = 'lazy',
   placeholder = (
     <Ri.RiFileUnknowLine
@@ -44,8 +42,8 @@ const Image: React.FunctionComponent<Spec.Props> = ({
 
   const className = classNames(
     CLASS_NAME,
+    'kicl-overflow-hidden',
     {
-      [`${CLASS_NAME}--is-fullscreen`]: isFullscreen,
       [`${CLASS_NAME}--is-loading`]: isLoading,
       [`${CLASS_NAME}--has-error`]: hasError,
     },
@@ -77,10 +75,7 @@ const Image: React.FunctionComponent<Spec.Props> = ({
           className={classNames(
             'kicl-block-size-full',
             'kicl-display-block',
-            'kicl-inline-size-full',
-            {
-              [`kicl-border-radius-${borderRadius}`]: borderRadius,
-            }
+            'kicl-inline-size-full'
           )}
           src={data}
           alt={alt}
@@ -92,12 +87,25 @@ const Image: React.FunctionComponent<Spec.Props> = ({
       {hasError && alt && <span className='kicl-hidden'>{alt}</span>}
       <Animation in={hasError} duration='faster' property='blur'>
         <Layout>
-          <span aria-hidden className={`${CLASS_NAME}--error`} data-src={data}>
+          <span
+            aria-hidden
+            className={classNames(
+              `${CLASS_NAME}--error`,
+              'kicl-inset-block-center',
+              'kicl-inset-inline-center',
+              'kicl-position-absolute'
+            )}
+            data-src={data}
+          >
             {placeholder}
           </span>
         </Layout>
       </Animation>
-      <Spinner in={isLoading} duration='faster' size='inherit' />
+      <Spinner
+        className='kicl-font-size-large'
+        in={isLoading}
+        duration='faster'
+      />
     </span>
   );
 };

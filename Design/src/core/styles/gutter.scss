@@ -66,6 +66,11 @@ $gutter-properties: (
   margin-inline-end: auto;
 }
 
+// Pushes the element itself to the end of a row.
+.kicl-margin-inline-start-auto {
+  margin-inline-start: auto;
+}
+
 // Content inset inside a Frame (`components/frame`).
 .kicl-padding-inline-frame {
   padding-inline: var(--kicl--components--frame--inset);
@@ -87,10 +92,6 @@ $gutter-properties: (
 // The same, and no wider than 12 columns, on an element as wide as the Frame.
 .kicl-padding-inline-frame-columns-12 {
   padding-inline: var(--kicl--components--frame--columns-inset);
-}
-
-.kicl-inset-inline-start-frame {
-  padding-inline-start: var(--kicl--components--frame--page-inset);
 }
 
 .kicl-inset-inline-end-frame {

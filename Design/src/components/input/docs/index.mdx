@@ -1,0 +1,26 @@
+import { Preset as Empty } from './empty';
+import { Preset as Filled } from './filled';
+import { Preset as WithAnIcon } from './with-an-icon';
+import { Preset as WithAPrefix } from './with-a-prefix';
+import { Preset as WithASuffix } from './with-a-suffix';
+import { Preset as WithAButton } from './with-a-button';
+import { Preset as Email } from './email';
+import { Preset as Password } from './password';
+import { Preset as Search } from './search';
+import { Preset as Copy } from './copy';
+import { CONTROLS } from './controls';
+
+A single-line text field. `before` and `after` put an icon, a prefix or a button inside the border. The email, password, search and copy inputs are ready-made versions for those jobs.
+
+<Preview controls={CONTROLS}>
+  {Empty}
+  {Filled}
+  {WithAnIcon}
+  {WithAPrefix}
+  {WithASuffix}
+  {WithAButton}
+  {Email}
+  {Password}
+  {Search}
+  {Copy}
+</Preview>

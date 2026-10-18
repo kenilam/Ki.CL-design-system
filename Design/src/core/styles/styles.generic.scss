@@ -22,6 +22,9 @@
   --kicl-outline-color: var(--kicl-color-grey-darker);
   --kicl-outline-style: none;
   --kicl-outline-width: var(--kicl-size-2px);
+
+  // How far a disabled control fades.
+  --kicl-disabled-opacity: 0.4;
 }
 
 .kicl--theme--dark {
@@ -50,18 +53,33 @@ input[type='checkbox'],
 input[type='radio'],
 label,
 select {
-  cursor: pointer;
+  // Only while enabled: disabled is `not-allowed` below, and a type selector
+  // would outrank it.
+  &:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
-*:disabled,
+// A disabled fieldset is left out: its controls are disabled with it and fade
+// on their own, so its legend and labels stay readable.
+*:disabled:not(fieldset),
 *[aria-disabled='true'] {
-  opacity: 0.4;
+  opacity: var(--kicl-disabled-opacity);
   cursor: not-allowed;
 
   *:disabled,
   *[aria-disabled='true'] {
     opacity: 1;
   }
+}
+
+// A disabled control's label, and everything in a disabled fieldset, is as
+// disabled as the control.
+label:has(:disabled),
+label:has([aria-disabled='true']),
+:disabled label,
+fieldset:disabled {
+  cursor: not-allowed;
 }
 
 a,

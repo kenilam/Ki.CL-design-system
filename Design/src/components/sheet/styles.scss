@@ -5,10 +5,7 @@
  */
 .kicl--components--sheet {
   block-size: auto;
-  margin: 0;
   opacity: 1;
-  overflow-y: auto;
-  padding-block: 0;
   transition:
     display var(--kicl-transition-duration-fast) allow-discrete,
     opacity var(--kicl-transition-duration-fast),

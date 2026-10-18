@@ -4,7 +4,7 @@ import type {
   ReactNode,
 } from 'react';
 
-import { LayoutProps } from '..';
+import { LayoutProps } from 'design/components';
 
 type Size = 'large' | 'small';
 type Level = 'confirm' | 'error' | 'info' | 'warning';
@@ -18,7 +18,6 @@ export type ContentProps = PropsWithChildren<{
 
 /** What only the button look takes. */
 export type LookProps = {
-  bold?: boolean;
   level?: Level;
   size?: Size;
   variant?: Variant;
@@ -42,7 +41,8 @@ export type Props = Required<PropsWithChildren> &
   (
     | (LookProps & { lookLikeHyperLink?: false; unstyled?: false })
     | (NoLookProps & { lookLikeHyperLink?: false; unstyled: true })
-    | (NoLookProps & { lookLikeHyperLink: true; unstyled?: never })
+    // With the link's look, `unstyled` drops the link's class, as on a link.
+    | (NoLookProps & { lookLikeHyperLink: true; unstyled?: boolean })
   );
 
 export type GetButtonClassNamesProps = LookProps &
@@ -50,4 +50,18 @@ export type GetButtonClassNamesProps = LookProps &
     /** It holds no text of its own, so it may be an icon button. See `hasText`. */
     icon?: boolean;
     unstyled?: boolean;
+  };
+
+export type CopyButtonProps = LookProps &
+  Pick<ComponentPropsWithoutRef<'button'>, 'className' | 'disabled'> & {
+    /** What it copies, or a function that returns it at the moment of the click. */
+    value: string | (() => string);
+    /** What it says before a copy. "Copy" when left out. */
+    label?: string;
+    /** What it says after one, for a moment. "Copied" when left out. */
+    copiedLabel?: string;
+    /** Shows the label beside the icon. Without it the button is the icon alone, named by the label. */
+    showLabel?: boolean;
+    /** The icon before a copy. A check replaces it after one. */
+    icon?: ReactNode;
   };

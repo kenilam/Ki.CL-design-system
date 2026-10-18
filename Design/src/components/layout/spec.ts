@@ -225,13 +225,18 @@ export type Props = Pick<React.HTMLAttributes<HTMLElement>, 'className'> & {
   autoFlow?: AutoFlow;
   /** A 12-column grid, the same columns as the `--kicl-columns-*` widths. */
   columns?: boolean;
+  /**
+   * A grid of as many tracks as fit, each at least this many columns wide and
+   * sharing what is left, so a row of things of unknown width wraps.
+   */
+  fill?: ColumnSpan;
   display?: Display;
   frames?: Frames;
   fullScreen?: boolean;
   gap?: Gap;
   justifyContent?: JustifyContent;
   justifyItems?: JustifyItems;
-  /** How many columns of a parent `columns` grid this takes. Full width on phones. */
-  span?: ColumnSpan;
+  /** How many columns of a parent `columns` grid this takes, or the whole row. Full width on phones. */
+  span?: ColumnSpan | 'full';
   wrap?: boolean;
 };

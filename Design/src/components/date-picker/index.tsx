@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 // Components
-import { Popover, PopoverContent } from '../popover';
+import { Popover, PopoverContent } from 'design/components/popover';
 
 // Context
 import { DatePickerContext, type DatePickerContextValue } from './context';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Helpers
 import { defaultFormatDate, formatRange } from './helpers';
@@ -15,6 +15,12 @@ import { defaultFormatDate, formatRange } from './helpers';
 // Partials
 import { Calendar } from './calendar';
 import { Trigger } from './trigger';
+
+// Styles
+import './styles.scss';
+
+// Constants
+import { CLASS_NAME } from './constants';
 
 import type { DatePickerProps } from './spec';
 
@@ -85,16 +91,12 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
         setUncontrolledRange(range);
       }
       (props as RangeProps).onValueChange?.(range);
-      if (range?.from && range.to) {
-        setOpen(false);
-      }
     },
     onSelectSingle: (date) => {
       if (!isControlled) {
         setUncontrolledSingle(date);
       }
       (props as SingleProps).onValueChange?.(date);
-      setOpen(false);
     },
     placeholder,
     selectedRange,
@@ -103,7 +105,13 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   return (
     <DatePickerContext.Provider value={context}>
-      <Popover open={open} onOpenChange={setOpen} className={className}>
+      {/* Block, as a field is: it fills its line, and the trigger fills it. */}
+      <Popover
+        className={className}
+        display='grid'
+        onOpenChange={setOpen}
+        open={open}
+      >
         <Trigger
           id={id}
           aria-describedby={ariaDescribedBy}
@@ -112,7 +120,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
           aria-labelledby={ariaLabelledBy}
         />
         {/* A forwarded id replaces the trigger's default one, so name the panel from it. */}
-        <PopoverContent aria-labelledby={id}>
+        <PopoverContent aria-labelledby={id} className={`${CLASS_NAME}__panel`}>
           <Calendar />
         </PopoverContent>
       </Popover>
@@ -128,5 +136,5 @@ export type {
   DatePickerRangeProps,
   DatePickerSingleProps,
 } from './spec';
-export type { DateRange } from '../calendar';
+export type { DateRange } from 'design/components/calendar';
 export { DatePicker };

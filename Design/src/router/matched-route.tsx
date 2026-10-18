@@ -7,10 +7,10 @@ import {
 } from './use-match-pattern';
 
 // HttpStatus
-import { Status404 } from '../status';
+import { Status404 } from 'design/status';
 
 // Components
-import { Spinner } from '../components';
+import { Spinner } from 'design/components';
 
 // Spec
 type Props = MatchPatternProps & {

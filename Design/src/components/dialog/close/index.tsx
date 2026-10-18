@@ -4,10 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button } from '../..';
+import { Button } from 'design/components';
 
 // Copy
-import { useCopy } from '../../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -16,10 +16,10 @@ import * as Ri from 'react-icons/ri';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as DIALOG } from '../constants';
+import { CLASS_NAME as DIALOG } from 'design/components/dialog/constants';
 
 // Context
-import { useDialog } from '../context';
+import { useDialog } from 'design/components/dialog/context';
 
 const CLASS_NAME = `${DIALOG}--close`;
 
@@ -37,6 +37,7 @@ const Close: React.FunctionComponent = () => {
       unstyled
       className={classNames(
         'kicl-font-size-medium',
+        'kicl-margin-inline-start-auto',
         fullScreen ? 'kicl-position-fixed' : 'kicl-position-sticky',
         'kicl-z-index-floating',
         CLASS_NAME

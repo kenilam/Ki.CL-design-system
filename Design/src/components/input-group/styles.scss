@@ -11,38 +11,53 @@
     transparent
   );
   --kicl--components--input-group--padding-block: var(--kicl-gutter-narrow);
-  --kicl--components--input-group--padding-inline: var(--kicl-gutter);
+  --kicl--components--input-group--padding-inline-end: var(--kicl-gutter);
+  --kicl--components--input-group--padding-inline-start: var(--kicl-gutter);
+  --kicl--components--input-group--read-only-background-color: color-mix(
+    in oklab,
+    var(--kicl-surface-color) 85%,
+    var(--kicl-color-grey)
+  );
 
   background-color: var(--kicl--components--input-group--background-color);
   border: var(--kicl--components--input-group--border-width) solid
     var(--kicl--components--input-group--border-color);
   border-radius: var(--kicl--components--input-group--border-radius);
-  grid-template-columns: 1fr;
-  inline-size: 100%;
+
+  // The control's column takes the width the addons beside it leave. An empty
+  // side has no track, so it adds no gap.
+  grid-template-columns:
+    var(--kicl--components--input-group--start-track,)
+    1fr
+    var(--kicl--components--input-group--end-track,);
   padding-block: var(--kicl--components--input-group--padding-block);
-  padding-inline: var(--kicl--components--input-group--padding-inline);
+  padding-inline: var(--kicl--components--input-group--padding-inline-start)
+    var(--kicl--components--input-group--padding-inline-end);
 
   .kicl--components--input {
     --kicl--components--input--border-radius: 0;
   }
 
-  // The control's column takes the width the addons beside it leave; a column exists only for a side that has one, so an empty side adds no gap.
-  &:has(> &__addon--inline-start):not(:has(> &__addon--inline-end)) {
-    --kicl--components--input-group--padding-inline: var(--kicl-gutter-narrow) var(--kicl-gutter);
-
-    grid-template-columns: max-content 1fr;
+  // An addon before the control sits at the start, one after it at the end.
+  &:has(> &__addon + &__control) {
+    --kicl--components--input-group--padding-inline-start: var(
+      --kicl-gutter-narrow
+    );
+    --kicl--components--input-group--start-track: max-content;
   }
 
-  &:not(:has(> &__addon--inline-start)):has(> &__addon--inline-end) {
-    --kicl--components--input-group--padding-inline: var(--kicl-gutter) var(--kicl-gutter-narrow);
-
-    grid-template-columns: 1fr max-content;
+  &:has(> &__control + &__addon) {
+    --kicl--components--input-group--padding-inline-end: var(
+      --kicl-gutter-narrow
+    );
+    --kicl--components--input-group--end-track: max-content;
   }
 
-  &:has(> &__addon--inline-start):has(> &__addon--inline-end) {
-    --kicl--components--input-group--padding-inline: var(--kicl-gutter-narrow);
-
-    grid-template-columns: max-content 1fr max-content;
+  // The group takes the read-only fill, since its control is transparent.
+  &:has(&__control[readonly]) {
+    --kicl--components--input-group--background-color: var(
+      --kicl--components--input-group--read-only-background-color
+    );
   }
 
   // The ring moves from the borderless control to the group.
@@ -82,9 +97,7 @@
     --kicl--components--textarea--padding-inline: 0;
 
     background: transparent;
-    border: 0;
     min-inline-size: 0;
-    padding: 0;
 
     &:focus-visible {
       --kicl-outline-style: none;

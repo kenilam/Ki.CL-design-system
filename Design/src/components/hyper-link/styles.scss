@@ -1,7 +1,10 @@
 :root {
   --kicl--components--hyper-link--box-shadow--block-size: var(--kicl-size-1px);
+
+  // Thicker under the pointer and under the current page, so the page the
+  // reader is on stands out from the links around it.
   --kicl--components--hyper-link--box-shadow--block-size-active: var(
-    --kicl-size-1px
+    --kicl-size-2px
   );
   --kicl--components--hyper-link--box-shadow--color: currentcolor;
   --kicl--components--hyper-link--font-weight: var(--kicl-font-weight);
@@ -47,8 +50,12 @@
   &:not(&--unstyled) > &--line {
     box-decoration-break: clone;
     box-shadow: 0
-      calc(var(--kicl--components--hyper-link--box-shadow--block-size) + 1px)
-      0 -1px var(--kicl--components--hyper-link--box-shadow--color);
+      calc(
+        var(--kicl--components--hyper-link--box-shadow--block-size) +
+        var(--kicl-size-1px)
+      )
+      0 calc(var(--kicl-size-1px) * -1)
+      var(--kicl--components--hyper-link--box-shadow--color);
     font-weight: var(--kicl--components--hyper-link--font-weight);
   }
 

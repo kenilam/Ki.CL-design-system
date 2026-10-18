@@ -21,19 +21,17 @@ const Separator = React.forwardRef<HTMLElement, Props>(
   ) => {
     const props = {
       'data-slot': 'separator',
-      'data-orientation': orientation,
       className: classNames(
         CLASS_NAME,
         `${CLASS_NAME}--${orientation}`,
+        orientation === 'horizontal' && 'kicl-inline-size-full',
         className
       ),
       ...rest,
     };
 
     if (decorative) {
-      return (
-        <div ref={ref as React.Ref<HTMLDivElement>} role='none' {...props} />
-      );
+      return <span ref={ref} role='none' {...props} />;
     }
 
     return (
@@ -49,6 +47,4 @@ const Separator = React.forwardRef<HTMLElement, Props>(
 Separator.displayName = 'Separator';
 
 export type { Props as SeparatorProps } from './spec';
-export { SEPARATOR_ORIENTATIONS } from './spec';
-export type { SeparatorOrientation } from './spec';
 export { Separator };

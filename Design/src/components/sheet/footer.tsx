@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { CardFooter, type CardFooterProps } from '../card';
+import { CardFooter, type CardFooterProps } from 'design/components/card';
 
 const CLASS_NAME = 'kicl--components--sheet__footer';
 
@@ -12,14 +12,8 @@ const CLASS_NAME = 'kicl--components--sheet__footer';
 const SheetFooter = React.forwardRef<HTMLElement, CardFooterProps>(
   ({ className, ...rest }, ref) => (
     <CardFooter
-      {...(rest as CardFooterProps)}
-      className={classNames(
-        CLASS_NAME,
-        'kicl-position-sticky',
-        'kicl-inset-block-end-0',
-        'kicl-stuck-line-start',
-        className
-      )}
+      {...rest}
+      className={classNames(CLASS_NAME, 'kicl-stuck-line-start', className)}
       ref={ref}
     />
   )

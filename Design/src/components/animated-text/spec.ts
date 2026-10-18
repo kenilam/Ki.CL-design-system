@@ -1,7 +1,4 @@
-import type { AnimationProps, TextProps } from '..';
-
-type Children =
-  Extract<TextProps['children'], string | number | null | undefined> | false;
+import type { AnimationProps, TextProps } from 'design/components';
 
 export type Props = Omit<TextProps, 'children'> &
   Pick<AnimationProps, 'delay' | 'duration' | 'easing' | 'property'> & {
@@ -18,5 +15,7 @@ export type Props = Omit<TextProps, 'children'> &
      * Only strings and numbers are split into characters.
      * Falsy values and `true` render nothing.
      */
-    children?: Children;
+    children?:
+      | Extract<TextProps['children'], string | number | null | undefined>
+      | false;
   };

@@ -1,0 +1,18 @@
+import { Preset as AWord } from './a-word';
+import { Preset as ASentence } from './a-sentence';
+import { Preset as ALongSentence } from './a-long-sentence';
+import { Preset as Slowly } from './slowly';
+import { Preset as AfterAWait } from './after-a-wait';
+import { Preset as AHeading } from './a-heading';
+import { CONTROLS } from './controls';
+
+Text that comes in one letter or one word at a time. Screen readers get the whole line.
+
+<Preview controls={CONTROLS}>
+  {AWord}
+  {ASentence}
+  {ALongSentence}
+  {Slowly}
+  {AfterAWait}
+  {AHeading}
+</Preview>

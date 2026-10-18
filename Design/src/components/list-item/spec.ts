@@ -1,5 +1,5 @@
-import React from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-import { LayoutProps } from '..';
+import type { LayoutProps } from 'design/components';
 
-export type Props = React.LiHTMLAttributes<HTMLLIElement> & LayoutProps;
+export type Props = ComponentPropsWithoutRef<'li'> & LayoutProps;

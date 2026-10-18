@@ -1,79 +1,57 @@
-.kicl--components--switch-field {
-  &:has(:disabled) {
-    cursor: not-allowed;
-  }
-}
-
-.kicl--components--switch__label {
-  user-select: none;
-}
-
 .kicl--components--switch {
   --kicl--components--switch--track: var(--kicl-color-grey-light);
-  --kicl--components--switch--thumb: var(--kicl-color-white);
   --kicl--components--switch--checked: var(--kicl-color-confirm);
-  --kicl--components--switch--block-size: calc(
-    var(--kicl-size) + var(--kicl-size-half)
-  );
-  --kicl--components--switch--inline-size: var(--kicl-size-3x);
-  --kicl--components--switch--padding: var(--kicl-size-1px);
+  --kicl--components--switch--thumb: var(--kicl-color-white-pure);
 
-  align-items: center;
+  // Drawn as the native switch is: a filled track, 26 by 16 on a 24-unit
+  // square, and a white thumb two units in from its edge. The square is 2.5em,
+  // 32px at the small type a label uses.
+  --kicl--components--switch--unit: calc(2.5em / 24);
+
   appearance: none;
-  background: var(--kicl--components--switch--track);
-  block-size: var(--kicl--components--switch--block-size);
+  background-color: var(--kicl--components--switch--track);
+  block-size: calc(var(--kicl--components--switch--unit) * 16);
   border-radius: 999px;
-  display: inline-flex;
-  flex-shrink: 0;
-  inline-size: var(--kicl--components--switch--inline-size);
-  padding: var(--kicl--components--switch--padding);
-  transition:
-    background-color var(--kicl-transition-duration-fast)
-    var(--kicl-ease-quint-in-out),
-    box-shadow var(--kicl-transition-duration-fast)
+  font-size: var(--kicl-font-size-small);
+  inline-size: calc(var(--kicl--components--switch--unit) * 26);
+  transition: background-color var(--kicl-transition-duration-fast)
     var(--kicl-ease-quint-in-out);
+
+  // `size` changes only the font size the switch is drawn from, as on `Button`.
+  &--size--large {
+    font-size: var(--kicl-font-size);
+  }
+
+  &--size--small {
+    font-size: var(--kicl-font-size-smaller);
+  }
 
   // The thumb.
   &::before {
-    background: var(--kicl--components--switch--thumb);
-    block-size: calc(
-      var(--kicl--components--switch--block-size) -
-      (var(--kicl--components--switch--padding) * 2)
-    );
+    background-color: var(--kicl--components--switch--thumb);
+    block-size: calc(var(--kicl--components--switch--unit) * 12);
     border-radius: 50%;
-    box-shadow: 0 var(--kicl-size-1px) var(--kicl-size-2px) rgb(0 0 0 / 18%);
+    box-shadow: 0 var(--kicl-size-1px) var(--kicl-size-2px) #{$shadow-rgba};
     content: '';
-    display: block;
-    flex-shrink: 0;
-    inline-size: calc(
-      var(--kicl--components--switch--block-size) -
-      (var(--kicl--components--switch--padding) * 2)
-    );
+    inline-size: calc(var(--kicl--components--switch--unit) * 12);
+    margin-inline-start: calc(var(--kicl--components--switch--unit) * 2);
     transition: translate var(--kicl-transition-duration-fast)
       var(--kicl-ease-quint-in-out);
-    translate: 0;
   }
 
   &:checked {
-    background: var(--kicl--components--switch--checked);
+    background-color: var(--kicl--components--switch--checked);
 
     &::before {
-      // Uniform padding → travel = track width − track height.
-      translate: calc(
-        var(--kicl--components--switch--inline-size) - var(
-          --kicl--components--switch--block-size
-        )
-      );
+      translate: calc(var(--kicl--components--switch--unit) * 10);
     }
-  }
-
-  &--size--sm {
-    --kicl--components--switch--block-size: var(--kicl-size);
-    --kicl--components--switch--inline-size: var(--kicl-size-2x);
-    --kicl--components--switch--padding: var(--kicl-size-hair);
   }
 
   @at-root .kicl--theme--dark & {
     --kicl--components--switch--track: var(--kicl-color-grey-dark);
+  }
+
+  @at-root .kicl--theme--light & {
+    --kicl--components--switch--track: var(--kicl-color-grey-light);
   }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { CardHeader, type CardHeaderProps } from '../card';
+import { CardHeader, type CardHeaderProps } from 'design/components/card';
 
 const CLASS_NAME = 'kicl--components--sheet__header';
 
@@ -15,8 +15,9 @@ const SheetHeader = React.forwardRef<HTMLElement, CardHeaderProps>(
       {...(rest as CardHeaderProps)}
       className={classNames(
         CLASS_NAME,
-        'kicl-position-sticky',
         'kicl-inset-block-start-0',
+        'kicl-padding-block-start',
+        'kicl-position-sticky',
         'kicl-stuck-line-end',
         'kicl-z-index-raised',
         className

@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { useFormContext } from 'react-hook-form';
 
-import { Layout } from '../layout';
-import { Text } from '../text';
+import { Layout } from 'design/components/layout';
+import { Text } from 'design/components/text';
 
 import { useFormFieldContext } from './context';
 import type { FormMessageProps } from './spec';

@@ -22,6 +22,7 @@
   }
 
   // A day that is chosen, or in a range, keeps its own fill under the pointer.
+  // The wash follows the body colour, so the label stays readable in both themes.
   &:hover:not(
     :disabled,
     #{&}--selected,
@@ -29,7 +30,11 @@
     #{&}--range-middle,
     #{&}--range-end
   ) {
-    --kicl--components--calendar--day--fill: var(--kicl-color-grey-light);
+    --kicl--components--calendar--day--fill: color-mix(
+      in oklab,
+      var(--kicl-body-color) var(--kicl-color-strength-wash),
+      transparent
+    );
   }
 
   // Every day of a range is chosen, so it looks like the one day of `single`.

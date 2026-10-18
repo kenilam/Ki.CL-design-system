@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { LookProps } from 'design/components/button/spec';
 import type {
   ColumnSpan,
@@ -54,6 +56,10 @@ export type CardSectionIs = 'div' | 'footer' | 'header' | 'section';
  * the colour, for a card that's chosen or needs attention.
  */
 type CardOwnProps = {
+  /** What goes in its `CardFooter`, after its other parts. */
+  footer?: ReactNode;
+  /** What goes in its `CardHeader`, before its other parts. */
+  header?: ReactNode;
   /**
    * Width scale - `default` fills the parent; `fit` shrinks to the content;
    * `xs`…`max` apply `kicl-inline-size-*`, and `1`…`12` a column width.

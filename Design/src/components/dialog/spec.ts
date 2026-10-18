@@ -4,12 +4,13 @@ import React from 'react';
 import { IconType } from 'design/icons';
 
 /**
- * Name the dialog with `title` (a visible heading it is labelled by), or with
- * `aria-label` / `aria-labelledby` when there is no visible title.
+ * `header` and `footer` are what goes in its header and footer. The dialog is
+ * named by its `header` (put a heading in it), or by `aria-label` /
+ * `aria-labelledby` when there is no header.
  */
-export type Props = Omit<React.ComponentPropsWithoutRef<'dialog'>, 'title'> & {
+export type Props = React.ComponentPropsWithoutRef<'dialog'> & {
   footer?: React.ReactNode;
-  title?: React.ReactNode;
+  header?: React.ReactNode;
 } & (
     | {
         dense?: boolean;

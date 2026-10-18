@@ -3,14 +3,11 @@ import React from 'react';
 // Libraries
 import classNames from 'classnames';
 
-// Styles
-import './styles.scss';
-
 // Constants
-import { CLASS_NAME as CALENDAR } from '../constants';
+import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
 
 // Helpers
-import { weekdays } from '../helpers';
+import { weekdays } from 'design/components/calendar/helpers';
 
 /** Column headers; `abbr` gives each column its full day name. */
 const Weekdays: React.FunctionComponent = () => (
@@ -23,7 +20,9 @@ const Weekdays: React.FunctionComponent = () => (
           abbr={long}
           className={classNames(
             `${CALENDAR}__weekday`,
+            'kicl-color-grey',
             'kicl-font-size-small',
+            'kicl-font-weight',
             'kicl-text-align-center'
           )}
         >

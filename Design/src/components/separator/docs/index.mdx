@@ -1,0 +1,12 @@
+import { Preset as BetweenLines } from './between-lines';
+import { Preset as BetweenWords } from './between-words';
+import { Preset as AChangeOfTopic } from './a-change-of-topic';
+import { CONTROLS } from './controls';
+
+A line between two things. It's decorative by default; turn `decorative` off and it becomes an `<hr>` that screen readers announce as a break.
+
+<Preview controls={CONTROLS}>
+  {BetweenLines}
+  {BetweenWords}
+  {AChangeOfTopic}
+</Preview>

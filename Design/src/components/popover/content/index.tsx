@@ -1,20 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
+// Helpers
+import { mergeRefs } from 'design/helper';
+
 // Spec
-import type { PopoverContentProps } from '../spec';
+import type { PopoverContentProps } from 'design/components/popover/spec';
 
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as POPOVER } from '../constants';
+import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
 
 // Class names
 import { getContentClassNames } from './class-names';
 
 // Context
-import { usePopover } from '../context';
+import { usePopover } from 'design/components/popover/context';
 
 const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
   (
@@ -88,15 +91,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
 
     const panel = (
       <div
-        ref={(node) => {
-          nodeRef.current = node;
-
-          if (typeof ref === 'function') {
-            ref(node);
-          } else if (ref) {
-            ref.current = node;
-          }
-        }}
+        ref={mergeRefs(nodeRef, ref)}
         id={popover.id}
         popover='auto'
         role='dialog'

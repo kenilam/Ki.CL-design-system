@@ -1,13 +1,13 @@
 import React from 'react';
 
 // Components
-import { Input } from '..';
+import { Input } from 'design/components/input';
 
 // Icons
 import * as Ri from 'react-icons/ri';
 
 // Spec
-import type { InputProps } from '..';
+import type { InputProps } from 'design/components/input';
 
 type Props = Omit<InputProps, 'type'>;
 

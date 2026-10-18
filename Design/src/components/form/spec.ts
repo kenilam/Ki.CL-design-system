@@ -40,13 +40,8 @@ export type FormLabelProps = React.ComponentPropsWithoutRef<'label'> & {
   required?: boolean;
 };
 
-export type FormControlProps = React.PropsWithChildren<{
-  className?: string;
-}>;
+export type FormControlProps = React.PropsWithChildren;
 
-export type FormDescriptionProps = Omit<
-  React.ComponentPropsWithoutRef<'p'>,
-  'is'
->;
+export type FormDescriptionProps = React.ComponentPropsWithoutRef<'p'>;
 
-export type FormMessageProps = Omit<React.ComponentPropsWithoutRef<'p'>, 'is'>;
+export type FormMessageProps = React.ComponentPropsWithoutRef<'p'>;

@@ -4,10 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Animation, Heading, Layout, Text } from '..';
+import { Animation, Heading, Layout, Text } from 'design/components';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -18,17 +18,32 @@ import * as Spec from './spec';
 const CLASS_NAME = 'kicl--components--status';
 
 const LEVELS: Spec.Icons = {
-  error: <Ri.RiErrorWarningLine aria-hidden className='kicl-font-size' />,
-  info: <Ri.RiInformationLine aria-hidden className='kicl-font-size' />,
-  warning: <Ri.RiAlarmWarningLine aria-hidden className='kicl-font-size' />,
+  error: (
+    <Ri.RiErrorWarningLine
+      aria-hidden
+      className='kicl-font-size kicl-color-error'
+    />
+  ),
+  info: (
+    <Ri.RiInformationLine
+      aria-hidden
+      className='kicl-font-size kicl-color-info'
+    />
+  ),
+  warning: (
+    <Ri.RiAlarmWarningLine
+      aria-hidden
+      className='kicl-font-size kicl-color-warning'
+    />
+  ),
 };
 
 const Status: React.FunctionComponent<Spec.Props> = ({
-  align = 'start',
   property = 'slide-from-bottom',
   className: _className,
   headingLevel = 'h4',
   in: transitionIn,
+  justifyContent = 'start',
   level,
   message,
   title,
@@ -39,51 +54,54 @@ const Status: React.FunctionComponent<Spec.Props> = ({
   const className = classNames(
     CLASS_NAME,
     {
-      [`kicl-text-align-${align}`]: align,
+      [`kicl-color-${level}`]: level,
+      [`kicl-text-align-${justifyContent}`]: justifyContent,
     },
     _className
   );
 
-  let Icon: React.ReactNode = <></>;
+  const Icon = level ? LEVELS[level] : null;
 
-  if (level) {
-    Icon = LEVELS[level];
-  }
+  // A message alone carries the icon itself. The level's default title only
+  // shows when there is nothing else to read.
+  const hasTitle = Boolean(title) || !message;
 
-  const Title = (
-    <Text is='span'>{title || t(`title_${level ?? 'error'}`)}</Text>
-  );
+  const Title = hasTitle ? (
+    <Layout
+      alignContent='center'
+      alignItems='center'
+      autoFlow='column'
+      gap='narrow'
+      justifyContent={justifyContent}
+    >
+      <Heading dense is={headingLevel} lookLike='h4'>
+        {Icon}
+        {title || t(`title_${level ?? 'error'}`)}
+      </Heading>
+    </Layout>
+  ) : null;
 
   const Messages = message ? (
-    <Text
-      className={classNames('kicl-font-size-small', 'kicl-color-grey-dark')}
-      is='p'
+    <Layout
+      alignItems='center'
+      autoFlow='column'
+      gap='narrow'
+      justifyContent={justifyContent}
     >
-      {message}
-    </Text>
+      <Text
+        className={classNames('kicl-font-size-small', 'kicl-color-grey-dark')}
+        is='p'
+      >
+        {hasTitle ? null : Icon}
+        {message}
+      </Text>
+    </Layout>
   ) : null;
 
   return (
     <Animation {...rest} property={property} in={transitionIn}>
       <div className={className} role={level === 'error' ? 'alert' : 'status'}>
-        <Layout
-          alignContent='center'
-          alignItems='center'
-          autoFlow='column'
-          gap='narrow'
-          justifyContent={align}
-          justifyItems={align}
-        >
-          <Heading
-            className={level ? `kicl-color-${level}` : undefined}
-            dense
-            is={headingLevel}
-            lookLike='h4'
-          >
-            {Icon}
-            {Title}
-          </Heading>
-        </Layout>
+        {Title}
         {Messages}
       </div>
     </Animation>

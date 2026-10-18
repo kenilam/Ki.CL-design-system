@@ -1,0 +1,20 @@
+import { Preset as Label } from './label';
+import { Preset as IconBefore } from './icon-before';
+import { Preset as IconAfter } from './icon-after';
+import { Preset as IconsBothSides } from './icons-both-sides';
+import { Preset as OpensAMenu } from './opens-a-menu';
+import { Preset as IconOnly } from './icon-only';
+import { Preset as CopiesAValue } from './copies-a-value';
+import { CONTROLS } from './controls';
+
+Use a button when clicking it does something, like sending a form or opening a dialog. If it takes the user to another page, use a [HyperLink](../hyper-link) instead.
+
+<Preview controls={CONTROLS}>
+  {Label}
+  {IconBefore}
+  {IconAfter}
+  {IconsBothSides}
+  {OpensAMenu}
+  {IconOnly}
+  {CopiesAValue}
+</Preview>

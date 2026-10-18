@@ -12,8 +12,7 @@ import {
   Popover,
   PopoverHint,
   PopoverTrigger,
-  Text,
-} from '..';
+} from 'design/components';
 
 // Spec
 import * as Spec from './spec';
@@ -45,7 +44,7 @@ const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
           ...style,
         } as never
       }
-      variant='ghost'
+      variant='secondary'
       {...rest}
     >
       <List is='ol'>
@@ -69,14 +68,12 @@ const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
                   to={`#${id}`}
                   variant='ghost'
                 >
-                  <Text is='span' className='kicl-hidden'>
-                    {label}
-                  </Text>
+                  <span className='kicl-hidden'>{label}</span>
                 </HyperLink>
               </PopoverTrigger>
               <PopoverHint
                 aria-hidden
-                className={classNames('kicl-padding-narrow')}
+                className='kicl-padding-narrow'
                 offset='normal'
                 placement='inline-start-center'
               >

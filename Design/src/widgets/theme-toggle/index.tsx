@@ -4,13 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button, Text } from '../../components';
+import { Button } from 'design/components';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Hooks
-import { useTheme } from '../../hooks';
+import { useTheme } from 'design/hooks';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -47,9 +47,7 @@ const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
       {...(variant ? { size, variant } : ({ unstyled: true } as const))}
     >
       <Icon aria-hidden />
-      <Text className='kicl-hidden' is='span'>
-        {t('label_dark_theme')}
-      </Text>
+      <span className='kicl-hidden'>{t('label_dark_theme')}</span>
     </Button>
   );
 };

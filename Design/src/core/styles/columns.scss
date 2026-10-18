@@ -35,4 +35,13 @@
   .kicl-max-inline-size-columns-#{$span} {
     max-inline-size: min(100%, var(--kicl-columns-#{$span}));
   }
+
+  // The same scale as a height: a box at least so tall, or at most, so it scrolls.
+  .kicl-min-block-size-columns-#{$span} {
+    min-block-size: var(--kicl-columns-#{$span});
+  }
+
+  .kicl-max-block-size-columns-#{$span} {
+    max-block-size: var(--kicl-columns-#{$span});
+  }
 }

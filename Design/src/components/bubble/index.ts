@@ -6,7 +6,6 @@ export { BubbleGroup } from './bubble-group';
 export { BubbleReactions } from './bubble-reactions';
 export { BUBBLE_VARIANTS } from './spec';
 export type {
-  BubbleAlign,
   BubbleContentIs,
   BubbleContentProps,
   BubbleGroupIs,
@@ -15,6 +14,5 @@ export type {
   BubbleProps,
   BubbleReactionsIs,
   BubbleReactionsProps,
-  BubbleReactionsSide,
   BubbleVariant,
 } from './spec';

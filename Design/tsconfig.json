@@ -12,11 +12,14 @@
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "paths": {
+      "design/*": ["./src/*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["node", "vite/client"]
+    "types": ["mdx", "node", "vite/client"]
   },
   "include": ["src/**/*", "scripts/**/*", "vite.config.ts"],
   "exclude": ["dist/**/*", "node_modules/**/*"]

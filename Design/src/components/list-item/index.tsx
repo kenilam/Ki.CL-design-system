@@ -1,63 +1,22 @@
 import React, { PropsWithChildren } from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
 // Components
-import { Layout } from '..';
+import { Layout } from 'design/components';
 
 // Spec
 import * as Spec from './spec';
-
-// Styles
-import './styles.scss';
 
 type ListItemProps = Required<PropsWithChildren> & Spec.Props;
 
 const CLASS_NAME = 'kicl--components--list-item';
 
 const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
-  (
-    {
-      children,
-
-      alignContent,
-      alignItems,
-      autoFlow,
-      display,
-      frames,
-      fullScreen,
-      gap,
-      justifyContent,
-      justifyItems,
-      wrap,
-
-      ...rest
-    },
-    ref
-  ) => {
-    const className = classNames(CLASS_NAME, rest.className);
-
-    return (
-      <Layout
-        alignContent={alignContent}
-        alignItems={alignItems}
-        autoFlow={autoFlow}
-        display={display}
-        frames={frames}
-        fullScreen={fullScreen}
-        gap={gap}
-        justifyContent={justifyContent}
-        justifyItems={justifyItems}
-        wrap={wrap}
-        ref={ref}
-      >
-        <li {...rest} className={className}>
-          {children}
-        </li>
-      </Layout>
-    );
-  }
+  ({ children, ...rest }, ref) => (
+    // Layout takes its own props and passes the rest on to the item.
+    <Layout {...rest} ref={ref}>
+      <li className={CLASS_NAME}>{children}</li>
+    </Layout>
+  )
 );
 
 ListItem.displayName = 'ListItem';

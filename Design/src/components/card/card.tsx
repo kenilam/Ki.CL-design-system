@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 import type { CardIs, CardProps } from './spec';
 
@@ -20,7 +20,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
       is = 'div',
       size = 'default',
       level,
-      variant = 'default',
+      variant = 'primary',
       ...rest
     },
     ref
@@ -46,12 +46,9 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
               : size !== 'default' &&
                   size !== 'fit' &&
                   `kicl-inline-size-${size}`,
+            'kicl-overflow-hidden',
             className
           )}
-          data-is={is}
-          data-size={size}
-          data-level={level}
-          data-variant={variant}
           data-slot='card'
         >
           {children}

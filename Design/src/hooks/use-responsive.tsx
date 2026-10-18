@@ -3,12 +3,15 @@ import { useEffect } from 'react';
 // Libraries
 import { useMediaQuery } from 'react-responsive';
 
-import { CSSUnit } from '../helper';
+import { CSSUnit } from 'design/helper';
 
 // Hooks
 import { useTheme } from './use-theme';
 
 const DARK_THEME_CLASS_NAME = 'kicl--theme--dark';
+
+/** The class of a light island inside the dark theme. */
+const LIGHT_THEME_CLASS_NAME = 'kicl--theme--light';
 
 type Breakpoint = 'desktop' | 'mobile' | 'tablet' | 'wide';
 
@@ -98,4 +101,9 @@ const useResponsive = () => {
   };
 };
 
-export { DARK_THEME_CLASS_NAME, breakpoints, useResponsive };
+export {
+  DARK_THEME_CLASS_NAME,
+  LIGHT_THEME_CLASS_NAME,
+  breakpoints,
+  useResponsive,
+};

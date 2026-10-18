@@ -1,67 +1,80 @@
 .kicl--components--checkbox {
-  --kicl--components--checkbox--border-color: var(--kicl-color-grey-darker);
-  --kicl--components--checkbox--border-radius: var(--kicl-size-half);
-  --kicl--components--checkbox--border-width: var(--kicl-size-1px);
-  --kicl--components--checkbox--checked-background: var(
-    --kicl-color-grey-darker
+  --kicl--components--checkbox--color: var(--kicl-color-grey-darker);
+  --kicl--components--checkbox--checked-color: var(--kicl-color-grey-darker);
+  --kicl--components--checkbox--size: calc(
+    var(--kicl-size) + var(--kicl-size-2px)
   );
-  --kicl--components--checkbox--checked-color: var(--kicl-color-white-pure);
-  --kicl--components--checkbox--size: var(--kicl-size-2x);
 
-  align-items: center;
+  // The box is the input's own border, so its corners can round and the focus
+  // outline rounds with them, as an input's or a button's does. The same share
+  // of its size as an input's radius is of an input's height.
+  --kicl--components--checkbox--border-width: calc(
+    var(--kicl--components--checkbox--size) / 9
+  );
+  --kicl--components--checkbox--border-radius: calc(
+    var(--kicl--components--checkbox--size) / 4.5
+  );
+
+  // Remix's check and subtract icons, as masks filled with the colour.
+  --kicl--components--checkbox--mark: none;
+
   appearance: none;
   block-size: var(--kicl--components--checkbox--size);
   border: var(--kicl--components--checkbox--border-width) solid
-    var(--kicl--components--checkbox--border-color);
+    var(--kicl--components--checkbox--color);
   border-radius: var(--kicl--components--checkbox--border-radius);
-  display: inline-grid;
   inline-size: var(--kicl--components--checkbox--size);
-  justify-items: center;
 
-  // The mark is a mask filled with the checked colour.
+  // In a line of text, the box sits on the text's middle, not on its baseline.
+  vertical-align: middle;
+
+  // The mark, drawn on a pseudo-element: a mask on the input itself would cut
+  // away its focus outline.
   &::before {
-    background-color: var(--kicl--components--checkbox--checked-color);
-    block-size: 0.85em;
     content: '';
-    inline-size: 0.85em;
-    mask: var(--kicl--components--checkbox--mark) center / contain no-repeat;
-    visibility: hidden;
+    mask: var(--kicl--components--checkbox--mark) center / 100% no-repeat;
   }
 
+  // Only a checked or partly checked box paints a mark. Unchecked, the mask is
+  // `none`, which would paint the whole box.
   &:checked,
   &:indeterminate {
-    background-color: var(--kicl--components--checkbox--checked-background);
-    border-color: var(--kicl--components--checkbox--checked-background);
+    border-color: var(--kicl--components--checkbox--checked-color);
 
     &::before {
-      visibility: visible;
+      background-color: var(--kicl--components--checkbox--checked-color);
     }
   }
 
   &:checked {
-    --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 15.17l9.19-9.19 1.42 1.41L10 18 3.64 11.64l1.41-1.41L10 15.17z'/%3E%3C/svg%3E");
+    --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 15.1716L19.1924 5.97919L20.6066 7.3934L10 18L3.63604 11.636L5.05025 10.2218L10 15.1716Z'/%3E%3C/svg%3E");
   }
 
   &:indeterminate {
-    --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 11h14v2H5z'/%3E%3C/svg%3E");
+    --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 11V13H19V11H5Z'/%3E%3C/svg%3E");
   }
 
   &[aria-invalid='true'],
   &:user-invalid {
-    border-color: var(--kicl-color-error);
+    --kicl--components--checkbox--color: var(--kicl-color-error);
   }
 
   @at-root .kicl--theme--dark & {
-    --kicl--components--checkbox--border-color: var(--kicl-color-grey);
-    --kicl--components--checkbox--checked-background: var(--kicl-color-white);
-    --kicl--components--checkbox--checked-color: var(--kicl-color-grey-darker);
+    --kicl--components--checkbox--color: var(--kicl-color-grey);
+    --kicl--components--checkbox--checked-color: var(--kicl-color-white);
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--checkbox--border-color: var(--kicl-color-grey-darker);
-    --kicl--components--checkbox--checked-background: var(
-      --kicl-color-grey-darker
-    );
-    --kicl--components--checkbox--checked-color: var(--kicl-color-white-pure);
+    --kicl--components--checkbox--color: var(--kicl-color-grey-darker);
+    --kicl--components--checkbox--checked-color: var(--kicl-color-grey-darker);
   }
+}
+
+// Under "select all", the boxes it stands for step in, so the group reads as
+// one parent and its items.
+.kicl--components--choice-label:has(
+  > .kicl--components--checkbox-group__select-all
+)
+~ .kicl--components--choice-label {
+  padding-inline-start: var(--kicl-gutter);
 }

@@ -4,10 +4,10 @@ import React, { useEffect } from 'react';
 import { useRouteError } from 'react-router-dom';
 
 // Components
-import { Heading, Text } from '../../components';
+import { Heading, Text } from 'design/components';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Spec
 import * as Spec from './spec';

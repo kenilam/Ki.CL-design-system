@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Spec
-import type { PopoverHintProps } from '../spec';
+import type { PopoverHintProps } from 'design/components/popover/spec';
 
 // Class names
-import { getContentClassNames } from '../content/class-names';
+import { getContentClassNames } from 'design/components/popover/content/class-names';
 
 // Constants
-import { CLASS_NAME as POPOVER } from '../constants';
+import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
 
 // Context
-import { usePopover } from '../context';
+import { usePopover } from 'design/components/popover/context';
 
 /**
  * A short note that shows while the trigger is hovered or focused, such as

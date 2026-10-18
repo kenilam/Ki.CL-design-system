@@ -1,0 +1,10 @@
+// On its own, as tall as an input, to line up with one beside it.
+.kicl--components--choice-label {
+  min-block-size: var(--kicl-field-block-size);
+}
+
+// One of a stack, in a list or a group: the stack's gap spaces them, and an
+// input's height on each would add to it.
+:is(li, fieldset) > .kicl--components--choice-label {
+  min-block-size: auto;
+}

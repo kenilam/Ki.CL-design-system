@@ -4,10 +4,10 @@ import { useFormContext } from 'react-hook-form';
 import { useFormFieldContext } from './context';
 import type { FormControlProps } from './spec';
 
-type ControlProps = {
-  'aria-describedby'?: string;
-  required?: boolean;
-};
+type ControlProps = Pick<
+  React.ComponentPropsWithoutRef<'input'>,
+  'aria-describedby' | 'required'
+>;
 
 /**
  * Gives its one child the item's id, `required`, `aria-invalid` and the

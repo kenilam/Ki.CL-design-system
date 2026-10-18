@@ -4,12 +4,12 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Constants
-import { CLASS_NAME as SELECT } from '../constants';
+import { CLASS_NAME as SELECT } from 'design/components/select/constants';
 
 // Partials
-import { SelectLabel } from '../label';
+import { SelectLabel } from 'design/components/select/label';
 
-import type { SelectGroupProps } from '../spec';
+import type { SelectGroupProps } from 'design/components/select/spec';
 
 const CLASS_NAME = `${SELECT}__group`;
 
@@ -19,8 +19,9 @@ const isLabel = (
   React.isValidElement(child) && child.type === SelectLabel;
 
 /**
- * A native `<optgroup>`. A SelectLabel child becomes its `label`, which every
- * browser shows, with or without base-select.
+ * A native `<optgroup>`. A SelectLabel child is its `<legend>`, which a
+ * base-select shows styled, and its text is the `label` too, which a browser
+ * drawing its own select shows instead.
  */
 const SelectGroup = React.forwardRef<HTMLOptGroupElement, SelectGroupProps>(
   ({ children, className, label, ...rest }, ref) => {
@@ -31,11 +32,16 @@ const SelectGroup = React.forwardRef<HTMLOptGroupElement, SelectGroupProps>(
       <optgroup
         ref={ref}
         data-slot='select-group'
-        className={classNames(CLASS_NAME, className)}
+        // Flush with the options outside the group: the legend already sets it apart.
+        className={classNames(
+          CLASS_NAME,
+          'kicl-padding-inline-start-none',
+          className
+        )}
         label={label ?? labelChild?.props.children}
         {...rest}
       >
-        {items.filter((child) => !isLabel(child))}
+        {items}
       </optgroup>
     );
   }

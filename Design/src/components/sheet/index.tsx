@@ -4,7 +4,10 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Card } from '../card';
+import { Card } from 'design/components/card';
+
+// Helpers
+import { mergeRefs } from 'design/helper';
 
 // Spec
 import type { SheetProps } from './spec';
@@ -136,18 +139,16 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       <Card
         {...rest}
         // Fixed chrome, so a frame on the page moves its insets inside the frame's edge.
-        className={classNames(CLASS_NAME, 'kicl-position-fixed', className)}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-overflow-y-auto',
+          'kicl-padding-block-none',
+          'kicl-position-fixed',
+          className
+        )}
         is='dialog'
         popover='manual'
-        ref={(element) => {
-          node.current = element;
-
-          if (typeof ref === 'function') {
-            ref(element);
-          } else if (ref) {
-            ref.current = element;
-          }
-        }}
+        ref={mergeRefs(node, ref)}
         style={
           {
             [`--${CLASS_NAME}--inline-size`]: `var(--kicl-columns-${size})`,

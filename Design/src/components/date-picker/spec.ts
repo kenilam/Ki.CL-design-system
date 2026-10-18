@@ -1,8 +1,8 @@
 import type React from 'react';
 
-import type { DateRange } from '../calendar';
+import type { CalendarMode, DateRange } from 'design/components/calendar';
 
-export type DatePickerMode = 'single' | 'range';
+export type DatePickerMode = CalendarMode;
 
 /** Forwarded to the trigger button, so FormControl and FormLabel can name it. */
 export type DatePickerTriggerProps = Pick<
@@ -10,14 +10,12 @@ export type DatePickerTriggerProps = Pick<
   'aria-describedby' | 'aria-invalid' | 'aria-label' | 'aria-labelledby' | 'id'
 >;
 
-type DatePickerBaseProps = DatePickerTriggerProps & {
-  placeholder?: string;
-  disabled?: boolean;
-  className?: string;
-  /** Optional format override - default uses locale date string. */
-  formatDate?: (date: Date) => string;
-  children?: React.ReactNode;
-};
+type DatePickerBaseProps = DatePickerTriggerProps &
+  Pick<React.ComponentPropsWithoutRef<'button'>, 'className' | 'disabled'> &
+  Pick<React.ComponentPropsWithoutRef<'input'>, 'placeholder'> & {
+    /** Optional format override - default uses locale date string. */
+    formatDate?: (date: Date) => string;
+  };
 
 export type DatePickerSingleProps = DatePickerBaseProps & {
   mode?: 'single';

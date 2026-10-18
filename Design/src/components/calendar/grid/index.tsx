@@ -1,13 +1,49 @@
 import React, { useMemo } from 'react';
 
 // Context
-import { useCalendar } from '../context';
+import { useCalendar } from 'design/components/calendar/context';
 
 // Helpers
-import { startOfDay } from '../helpers';
+import { startOfDay } from 'design/components/calendar/helpers';
 
 // Partials
 import { Day } from './day';
+
+/** How far an arrow key moves through the days: one along a row, a week down a column. */
+const STEPS: Record<string, number> = {
+  ArrowDown: 7,
+  ArrowLeft: -1,
+  ArrowRight: 1,
+  ArrowUp: -7,
+};
+
+/**
+ * The arrow keys move focus between the days, as a grid expects; Tab still
+ * moves through them one by one. The handler sits on the body, since the
+ * keys belong to the grid rather than to any day.
+ */
+const onKeyDown = (event: React.KeyboardEvent<HTMLTableSectionElement>) => {
+  const step = STEPS[event.key];
+  const body = event.currentTarget;
+
+  if (!step || event.defaultPrevented) {
+    return;
+  }
+
+  if (!(event.target instanceof HTMLButtonElement)) {
+    return;
+  }
+
+  const days = [...body.querySelectorAll('button')];
+  const next = days[days.indexOf(event.target) + step];
+
+  if (!next) {
+    return;
+  }
+
+  event.preventDefault();
+  next.focus();
+};
 
 /** Six weeks of seven days, starting on the Sunday before the 1st. */
 const Grid: React.FunctionComponent = () => {
@@ -28,7 +64,9 @@ const Grid: React.FunctionComponent = () => {
   }, [month]);
 
   return (
-    <tbody>
+    // The grid pattern: the keys belong to the group, and move focus between its buttons.
+    // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <tbody onKeyDown={onKeyDown}>
       {weeks.map((days) => (
         <tr key={days[0].toISOString()}>
           {days.map((date) => (

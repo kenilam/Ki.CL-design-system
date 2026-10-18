@@ -22,11 +22,17 @@
       }
     }
 
+    // A muted fill says disabled; the label still reads against it, so it is
+    // not dimmed as other disabled elements are.
     &.kicl--components--button--disabled,
     &:disabled,
     &[aria-disabled='true'] {
       --kicl--components--button--background-color: var(--kicl-color-grey-dark);
-      --kicl-body-color: var(--kicl-color-grey-darker);
+      --kicl-body-color: contrast-color(
+        var(--kicl--components--button--background-color)
+      );
+
+      opacity: 1;
     }
   }
 }

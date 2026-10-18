@@ -4,13 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { HyperLink, Layout, Text } from '../../components';
+import { HyperLink, Layout } from 'design/components';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import { Logo } from '../../icons';
+import { Logo } from 'design/icons';
 
 // Spec
 import * as Spec from './spec';
@@ -22,26 +22,25 @@ const SiteLogo: React.FunctionComponent<Spec.Props> = ({
 }) => {
   const t = useCopy();
 
-  const className = classNames(CLASS_NAME, _className);
+  // The size of an `h2`, without being one.
+  const className = classNames(
+    CLASS_NAME,
+    'kicl-look-like-h2',
+    'kicl-line-height-narrower',
+    _className
+  );
 
   return (
-    <Text className={className} dense lookLike='h2'>
-      <Layout
-        autoFlow='column'
-        gap='narrower'
-        alignItems='center'
-        justifyContent='center'
+    <Layout alignItems='center' justifyContent='center'>
+      <HyperLink
+        aria-label={t('label_home')}
+        className={className}
+        to='/'
+        unstyled
       >
-        <HyperLink
-          aria-label={t('label_home')}
-          className='kicl-line-height-narrower'
-          to='/'
-          unstyled
-        >
-          <Logo />
-        </HyperLink>
-      </Layout>
-    </Text>
+        <Logo />
+      </HyperLink>
+    </Layout>
   );
 };
 

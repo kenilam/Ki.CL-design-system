@@ -3,17 +3,24 @@ import React from 'react';
 // Libraries
 import classNames from 'classnames';
 
+// Components
+import { Layout } from 'design/components/layout';
+
 // Styles
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME as CALENDAR } from '../../constants';
+import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
 
 // Context
-import { useCalendar } from '../../context';
+import { useCalendar } from 'design/components/calendar/context';
 
 // Helpers
-import { dayLabel, isInRange, sameDay } from '../../helpers';
+import {
+  dayLabel,
+  isInRange,
+  sameDay,
+} from 'design/components/calendar/helpers';
 
 const CLASS_NAME = `${CALENDAR}__day`;
 
@@ -39,7 +46,8 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
   const isDisabled = disabled?.(date) ?? false;
 
   const isRangeStart = sameDay(date, selectedRange?.from);
-  const isRangeEnd = sameDay(date, selectedRange?.to);
+  // A range with no end yet is one day, which rounds at both ends.
+  const isRangeEnd = sameDay(date, selectedRange?.to ?? selectedRange?.from);
   const isRangeMiddle = isInRange(date, selectedRange);
   const isSelected =
     mode === 'single'
@@ -47,29 +55,47 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
       : isRangeStart || isRangeEnd;
 
   return (
-    <button
-      type='button'
-      aria-label={dayLabel(date)}
-      aria-current={isToday ? 'date' : undefined}
-      aria-pressed={isSelected || isRangeMiddle}
-      disabled={isDisabled}
-      className={classNames(
-        CLASS_NAME,
-        'kicl-display-inline-flex',
-        'kicl-font-size-small',
-        'kicl-line-height-narrower',
-        {
-          [`${CLASS_NAME}--outside`]: outside,
-          [`${CLASS_NAME}--selected`]: isSelected,
-          [`${CLASS_NAME}--range-start`]: isRangeStart,
-          [`${CLASS_NAME}--range-end`]: isRangeEnd,
-          [`${CLASS_NAME}--range-middle`]: isRangeMiddle,
-        }
-      )}
-      onClick={() => onDayClick(date)}
-    >
-      {date.getDate()}
-    </button>
+    <Layout alignItems='center' display='inline-grid' justifyItems='center'>
+      <button
+        type='button'
+        aria-label={dayLabel(date)}
+        aria-current={isToday ? 'date' : undefined}
+        aria-pressed={isSelected || isRangeMiddle}
+        disabled={isDisabled}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-border-radius-sm',
+          'kicl-font-size-small',
+          'kicl-line-height-narrower',
+          // The fill is positioned against the day.
+          'kicl-position-relative',
+          {
+            [`${CLASS_NAME}--selected`]: isSelected,
+            [`${CLASS_NAME}--range-start`]: isRangeStart,
+            [`${CLASS_NAME}--range-end`]: isRangeEnd,
+            [`${CLASS_NAME}--range-middle`]: isRangeMiddle,
+            // A day of another month is quieter until it is picked; the fill
+            // behind it is never dimmed.
+            'kicl-color-grey':
+              outside &&
+              !isToday &&
+              !isSelected &&
+              !isRangeStart &&
+              !isRangeEnd &&
+              !isRangeMiddle,
+            // Today reads in bold and in the confirm green, chosen or not.
+            'kicl-color-confirm': isToday,
+            'kicl-font-weight-bold': isToday,
+            // The chosen day's label on its dark fill.
+            'kicl-color-white-pure':
+              isSelected && !isToday && !isRangeStart && !isRangeEnd,
+          }
+        )}
+        onClick={() => onDayClick(date)}
+      >
+        {date.getDate()}
+      </button>
+    </Layout>
   );
 };
 

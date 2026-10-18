@@ -1,10 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
 
 // Components
-import { Popover } from '../popover';
+import { Popover } from 'design/components/popover';
 
 // Spec
 import type { ComboboxProps } from './spec';
@@ -35,7 +35,10 @@ import { ComboboxContent } from './content';
 const Combobox: React.FC<ComboboxProps> = ({
   children,
   className,
+  defaultOpen = false,
   onBlur,
+  onFocus,
+  onInput,
   onOpenChange,
   open,
   ...rest
@@ -43,12 +46,34 @@ const Combobox: React.FC<ComboboxProps> = ({
   const anchor = useRef<HTMLDivElement | null>(null);
   const content = useRef<HTMLDivElement | null>(null);
 
-  const close = useCallback(() => onOpenChange(false), [onOpenChange]);
+  /*
+   * Its own open state unless given one. A text field can't be an invoker,
+   * so no `popovertarget` or `commandfor` opens the panel as the reader
+   * types; the field's focus and input do, here.
+   */
+  const [own, setOwn] = useState(defaultOpen);
+  const isOpen = open ?? own;
+
+  const setOpen = useCallback(
+    (next: boolean) => {
+      setOwn(next);
+      onOpenChange?.(next);
+    },
+    [onOpenChange]
+  );
+  const close = useCallback(() => setOpen(false), [setOpen]);
+
+  /** Whether the event came from the field the panel belongs to. */
+  const fromField = (event: React.SyntheticEvent) =>
+    event.target instanceof Node &&
+    Boolean(anchor.current?.contains(event.target));
 
   return (
     <ComboboxContext.Provider value={{ anchor, content, close }}>
       <Popover
         {...rest}
+        /* A field takes its row, so the panel can be as wide as the field. */
+        display='grid'
         className={classNames(CLASS_NAME, className)}
         data-slot='combobox'
         onBlur={(event) => {
@@ -58,8 +83,22 @@ const Combobox: React.FC<ComboboxProps> = ({
             close();
           }
         }}
-        onOpenChange={onOpenChange}
-        open={open}
+        onFocus={(event) => {
+          onFocus?.(event);
+
+          if (fromField(event)) {
+            setOpen(true);
+          }
+        }}
+        onInput={(event) => {
+          onInput?.(event);
+
+          if (fromField(event)) {
+            setOpen(true);
+          }
+        }}
+        onOpenChange={setOpen}
+        open={isOpen}
       >
         {children}
       </Popover>

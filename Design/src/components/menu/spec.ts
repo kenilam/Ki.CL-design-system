@@ -1,5 +1,18 @@
 import React from 'react';
 
-import { LayoutProps } from '..';
+import { LayoutProps } from 'design/components';
 
-export type Props = React.MenuHTMLAttributes<HTMLMenuElement> & LayoutProps;
+/** Only the layout props the `menu` is laid out with; the rest go on the element. */
+export type Props = React.ComponentPropsWithoutRef<'menu'> &
+  Pick<
+    LayoutProps,
+    | 'alignContent'
+    | 'alignItems'
+    | 'autoFlow'
+    | 'frames'
+    | 'fullScreen'
+    | 'gap'
+    | 'justifyContent'
+    | 'justifyItems'
+    | 'wrap'
+  >;

@@ -18,6 +18,7 @@
   --kicl-font-size-smallest: 0.4rem;
   --kicl-font-size-smaller: 0.6rem;
   --kicl-font-size-small: 0.8rem;
+  --kicl-font-size-moderate: 1.25rem;
   --kicl-font-size-medium: 1.5rem;
   --kicl-font-size-large: 2rem;
   --kicl-font-size-larger: 3rem;
@@ -128,6 +129,7 @@
 
 @include make-variable-class('font-size');
 @include make-variable-class('font-size', 'medium');
+@include make-variable-class('font-size', 'moderate');
 @include make-variable-class('font-size', 'small');
 @include make-variable-class('font-size', 'smaller');
 @include make-variable-class('font-size', 'smallest');

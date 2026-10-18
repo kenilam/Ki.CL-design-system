@@ -1,17 +1,21 @@
-import { PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
 // Routes
 import { NavLinkProps } from 'react-router-dom';
 
 // Components
-import type { ContentProps, LookProps, NoLookProps } from '../button/spec';
+import type {
+  ContentProps,
+  LookProps,
+  NoLookProps,
+} from 'design/components/button/spec';
 
 export type Props = Required<PropsWithChildren> &
   Pick<ContentProps, 'after' | 'before'> &
-  Omit<NavLinkProps, 'className'> & {
-    className?: string;
-    disabled?: boolean;
-  } & (
+  Omit<NavLinkProps, 'className'> &
+  Pick<ComponentPropsWithoutRef<'a'>, 'className'> &
+  Pick<ComponentPropsWithoutRef<'button'>, 'disabled'> &
+  (
     | (LookProps & { lookLikeButton: true; unstyled?: never })
     | (NoLookProps & { lookLikeButton?: false; unstyled?: boolean })
   );

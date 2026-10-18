@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 
 // Components
-import { Button, Form, Status, Text } from '../../components';
+import { Button, Form, Status, Text } from 'design/components';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -18,7 +18,7 @@ import { Message } from './message';
 import { CLASS_NAME } from './constants';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Spec
 import type { Props, Values } from './spec';

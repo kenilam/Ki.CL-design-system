@@ -1,22 +1,27 @@
 .kicl--components--calendar {
-  --kicl--components--calendar--cell-size: var(--kicl-size-4x);
+  --kicl--components--calendar--cell-size: var(--kicl-size-3x);
   --kicl--components--calendar--range-middle: var(--kicl-color-grey-light);
 
-  /*
-   * Seven cells across is what sets this component's width, so the cell is the
-   * only thing worth making responsive. At the full size the grid comes to
-   * roughly 480px, which is wider than the phone it has to open on.
-   *
-   * The smaller step is still larger than the minimum a thumb can find, so the
-   * narrower screen loses width without losing the target.
-   */
-  @include query('≤mobile') {
-    --kicl--components--calendar--cell-size: var(--kicl-size-3x);
-  }
+  // The month's own width. `kicl-inline-size-full` makes it fill its box, and
+  // the table and its columns follow.
+  inline-size: fit-content;
 
+  // Auto-laid, not fixed: fixed, a percentage width inflates the table to its
+  // first row inside a shrink-to-fit box.
   &__table {
     border-collapse: separate;
-    border-spacing: var(--kicl-gutter-narrowest);
+
+    // No spacing: a range reads as one bar from its first day to its last.
+    border-spacing: 0;
+    inline-size: 100%;
+
+    :is(th, td) {
+      inline-size: calc(100% / 7);
+    }
+  }
+
+  &__day {
+    min-inline-size: 100%;
   }
 
   @at-root .kicl--theme--dark & {

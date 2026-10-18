@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Button, Layout, Text } from '..';
+import { Button, Text } from 'design/components';
 
 // Styles
 import './styles.scss';
@@ -13,7 +13,7 @@ import './styles.scss';
 import { BASE } from './constants';
 
 // Copy
-import { useCopy } from '../../locales/use-copy';
+import { useCopy } from 'design/locales/use-copy';
 
 // Spec
 import type { Spec } from './spec';
@@ -22,10 +22,9 @@ import type { Spec } from './spec';
 import { Drawing, type DiagramState } from './drawing';
 import { Legend } from './legend';
 
-type Props = Pick<React.ComponentProps<'figure'>, 'className'> & {
+type Props = Pick<React.ComponentProps<'figure'>, 'className' | 'ref'> & {
   /** Id of the dialog that shows this diagram full size. */
   opens?: string;
-  ref?: React.Ref<HTMLElement>;
   spec: Spec;
   state?: DiagramState;
 };
@@ -48,21 +47,30 @@ const Diagram: React.FunctionComponent<Props> = ({
 
   return (
     <figure
-      className={classNames(BASE, 'kicl-position-relative', className)}
+      className={classNames(
+        BASE,
+        'kicl-inline-size-full',
+        'kicl-position-relative',
+        className
+      )}
       ref={ref}
     >
       {opens ? (
-        <Layout alignItems='center' justifyContent='stretch'>
-          <Button
-            aria-label={t('action_open_image', { title: spec.title })}
-            className={classNames('kicl-inline-size-full', `${BASE}-preview`)}
-            command='show-modal'
-            commandFor={opens}
-            unstyled
-          >
-            {drawing}
-          </Button>
-        </Layout>
+        <Button
+          alignItems='center'
+          aria-label={t('action_open_image', { title: spec.title })}
+          className={classNames(
+            'kicl-cursor-zoom-in',
+            'kicl-inline-size-full',
+            `${BASE}-preview`
+          )}
+          command='show-modal'
+          commandFor={opens}
+          justifyContent='stretch'
+          unstyled
+        >
+          {drawing}
+        </Button>
       ) : (
         drawing
       )}

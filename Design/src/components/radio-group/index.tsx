@@ -4,7 +4,7 @@ import React, { useId } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 // Spec
 import type { RadioGroupProps } from './spec';
@@ -19,7 +19,7 @@ import { CLASS_NAME } from './constants';
 import { RadioGroupContext } from './context';
 
 // Partials
-import { RadioGroupItem } from './item';
+import { Radio } from './radio';
 
 /**
  * Mutually exclusive options as a native `<fieldset>` of radios - API aligned
@@ -62,12 +62,7 @@ const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
             {...rest}
           >
             {legend ? (
-              <legend
-                className={classNames(
-                  `${CLASS_NAME}__legend`,
-                  'kicl-margin-block-end-narrower'
-                )}
-              >
+              <legend className='kicl-margin-block-end-narrower'>
                 {legend}
               </legend>
             ) : null}
@@ -81,5 +76,5 @@ const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
 
 RadioGroup.displayName = 'RadioGroup';
 
-export type { RadioGroupProps, RadioGroupItemProps } from './spec';
-export { RadioGroupItem, RadioGroup };
+export type { RadioGroupProps, RadioProps } from './spec';
+export { Radio, RadioGroup };

@@ -1,4 +1,4 @@
-import type { TextAccent } from '../text';
+import type { TextAccent } from 'design/components/text';
 
 export type Props = {
   /**

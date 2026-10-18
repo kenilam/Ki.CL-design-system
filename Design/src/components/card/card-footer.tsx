@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Layout } from '../layout';
+import { Layout } from 'design/components/layout';
 
 import type { CardFooterProps, CardSectionIs } from './spec';
 
@@ -31,7 +31,6 @@ const CardFooter = React.forwardRef<HTMLElement, CardFooterProps>(
             CLASS_NAME,
             className
           )}
-          data-is={is}
           data-slot='card-footer'
         >
           {children}

@@ -4,6 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
+import { Badge } from 'design/components/badge';
 import { Layout } from 'design/components/layout';
 
 // Styles
@@ -78,21 +79,21 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
             // behind it is never dimmed.
             'kicl-color-grey':
               outside &&
-              !isToday &&
               !isSelected &&
               !isRangeStart &&
               !isRangeEnd &&
               !isRangeMiddle,
-            // Today reads in bold and in the confirm green, chosen or not.
-            'kicl-color-confirm': isToday,
-            'kicl-font-weight-bold': isToday,
             // The chosen day's label on its dark fill.
-            'kicl-color-white-pure': (isSelected || isRangeMiddle) && !isToday,
+            'kicl-color-white-pure': isSelected || isRangeMiddle,
           }
         )}
         onClick={() => onDayClick(date)}
       >
-        {date.getDate()}
+        {isToday ? (
+          <Badge variant='secondary'>{date.getDate()}</Badge>
+        ) : (
+          date.getDate()
+        )}
       </button>
     </Layout>
   );

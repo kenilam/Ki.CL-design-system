@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { List, ListItem } from 'design/components';
+import { Badge, List, ListItem } from 'design/components';
 
 import type { Props } from 'design/components/list/docs/controls';
 
@@ -12,39 +12,105 @@ const Preview: React.FC<Props> = (props) => (
     wrap
     {...props}
   >
-    <ListItem>Animation</ListItem>
-    <ListItem>Badge</ListItem>
-    <ListItem>Bubble</ListItem>
-    <ListItem>Button</ListItem>
-    <ListItem>Calendar</ListItem>
-    <ListItem>Card</ListItem>
-    <ListItem>Checkbox</ListItem>
-    <ListItem>Combobox</ListItem>
-    <ListItem>Date picker</ListItem>
-    <ListItem>Details</ListItem>
-    <ListItem>Diagram</ListItem>
-    <ListItem>Dialog</ListItem>
-    <ListItem>Form</ListItem>
-    <ListItem>Heading</ListItem>
-    <ListItem>Image</ListItem>
-    <ListItem>Input</ListItem>
-    <ListItem>Layout</ListItem>
-    <ListItem>List</ListItem>
-    <ListItem>Markdown</ListItem>
-    <ListItem>Menu</ListItem>
-    <ListItem>Navigation</ListItem>
-    <ListItem>Popover</ListItem>
-    <ListItem>Radio group</ListItem>
-    <ListItem>Segmented</ListItem>
-    <ListItem>Select</ListItem>
-    <ListItem>Separator</ListItem>
-    <ListItem>Sheet</ListItem>
-    <ListItem>Skeleton</ListItem>
-    <ListItem>Spinner</ListItem>
-    <ListItem>Status</ListItem>
-    <ListItem>Switch</ListItem>
-    <ListItem>Text</ListItem>
-    <ListItem>Textarea</ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Animation</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Badge</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Bubble</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Button</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Calendar</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Card</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Checkbox</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Combobox</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Date picker</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Details</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Diagram</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Dialog</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Form</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Heading</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Image</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Input</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Layout</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>List</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Markdown</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Menu</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Navigation</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Popover</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Radio group</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Segmented</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Select</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Separator</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Sheet</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Skeleton</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Spinner</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Status</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Switch</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Text</Badge>
+    </ListItem>
+    <ListItem>
+      <Badge variant='secondary'>Textarea</Badge>
+    </ListItem>
   </List>
 );
 

@@ -20,7 +20,8 @@ const SelectLabel: React.FunctionComponent<SelectLabelProps> = ({
     className={classNames(
       'kicl-color-grey',
       'kicl-font-size-small',
-      'kicl-padding-block-narrowest',
+      'kicl-padding-block-start-narrow',
+      'kicl-padding-block-end-narrowest',
       'kicl-padding-inline',
       className
     )}

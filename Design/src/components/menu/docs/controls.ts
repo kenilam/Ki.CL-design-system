@@ -14,9 +14,9 @@ export const CONTROLS = {
     options: GAPS,
     default: 'normal',
   },
-  alignItems: ALIGN_ITEMS,
-  justifyContent: ALIGN_CONTENTS,
-  justifyItems: ALIGN_ITEMS,
+  alignItems: { options: ALIGN_ITEMS, default: 'stretch' },
+  justifyContent: { options: ALIGN_CONTENTS, default: 'stretch' },
+  justifyItems: { options: ALIGN_ITEMS, default: 'stretch' },
   wrap: 'boolean',
 } satisfies ControlsSpec;
 

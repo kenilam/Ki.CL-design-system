@@ -11,7 +11,7 @@ export const CONTROLS = {
   property: { options: PROPERTIES, default: 'slide-from-top' },
   duration: { options: DURATIONS, default: 'fastest' },
   lookLike: TEXT_LOOK_LIKES,
-  variant: TEXT_VARIANTS,
+  variant: { options: TEXT_VARIANTS, default: 'primary' },
   level: LEVELS,
   dense: 'boolean',
 } satisfies ControlsSpec;

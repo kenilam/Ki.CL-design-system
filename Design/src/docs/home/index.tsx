@@ -7,7 +7,7 @@ import { Heading, Layout } from 'design/components';
 import { useCopy } from 'design/locales/use-copy';
 
 // Partials
-import { COMPONENTS } from 'design/docs/mdx';
+import { COMPONENTS, Pre } from 'design/docs/mdx';
 import { Explore } from './explore';
 import Welcome from './welcome.mdx';
 
@@ -19,7 +19,7 @@ const Home: React.FunctionComponent = () => {
     <Layout alignContent='start' gap='wide' span={9}>
       <article>
         <Heading>{t('docs_title')}</Heading>
-        <Welcome components={{ ...COMPONENTS, Explore }} />
+        <Welcome components={{ ...COMPONENTS, Explore, pre: Pre }} />
       </article>
     </Layout>
   );

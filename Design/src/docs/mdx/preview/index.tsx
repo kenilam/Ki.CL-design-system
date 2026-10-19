@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 // Libraries
 import classNames from 'classnames';
 
+import { useParams } from 'react-router-dom';
+
 // Components
 import {
   Card,
@@ -30,7 +32,14 @@ import {
   controlOf,
   isAllowed,
 } from './controls';
-import { type Tag, readTag, readTags, valuesOf, withValues } from './source';
+import {
+  type Tag,
+  readTag,
+  readTags,
+  snippetOf,
+  valuesOf,
+  withValues,
+} from './source';
 import { StageContext } from './stage';
 
 /** The light theme's class, for a stage that is light on a dark site. */
@@ -93,24 +102,18 @@ const identifierOf = (name: string) =>
     )
     .replace(/[^A-Za-z0-9]/g, '');
 
-/**
- * The example's code as the reader should see it: the chosen values on each
- * tag that spreads `props`, its `Props` kept, and the component named after
- * the preset. Tags are rewritten from the last, so the earlier ones keep their
- * offsets.
- */
 const codeOf = (
   { code, name }: PresetProps,
   literals: Set<string>,
-  values: Values
+  values: Values,
+  slug: string
 ) =>
-  readTags(code)
-    .reduceRight(
+  snippetOf(
+    readTags(code).reduceRight(
       (source, tag) => withValues(source, tag, literals, values),
       code
     )
-    .trim()
-    .replace(/\bPreview\b/g, identifierOf(name));
+  ).replace(/\bPreview\b/g, `${identifierOf(slug)}${identifierOf(name)}`);
 
 /** What a component reports: the value itself, or the element's own state from an event. */
 const reported = (name: string, report: unknown) =>
@@ -204,6 +207,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   replay,
 }) => {
   const t = useCopy();
+  const { slug = '' } = useParams();
 
   const presets = React.Children.toArray(children).filter(
     (child): child is React.ReactElement<PresetProps> =>
@@ -333,7 +337,9 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
             </CardContent>
           </Layout>
         ) : null}
-        <Code>{codeOf(preset.props, literals, applied)}</Code>
+        <Code className='kicl-min-block-size-columns-2'>
+          {codeOf(preset.props, literals, applied, slug)}
+        </Code>
       </Card>
     </StageContext.Provider>
   );

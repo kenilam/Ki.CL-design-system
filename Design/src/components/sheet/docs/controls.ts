@@ -1,15 +1,17 @@
 import type { Sheet } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import { CARD_VARIANTS } from 'design/components/card/spec';
+import { SIDES } from 'design/components/spec';
 
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   modal: 'boolean',
   side: {
-    options: ['inline-start', 'inline-end', 'block-start', 'block-end'],
+    options: SIDES,
     default: 'inline-end',
   },
   variant: {
-    options: ['primary', 'secondary', 'tertiary'],
+    options: CARD_VARIANTS,
     default: 'primary',
   },
 } satisfies ControlsSpec;

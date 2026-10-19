@@ -16,6 +16,8 @@
     opacity var(--kicl-transition-duration-fast),
     display var(--kicl-transition-duration-fast) allow-discrete,
     overlay var(--kicl-transition-duration-fast) allow-discrete;
+
+  @include box-shadow-overlay;
 }
 
 // `@starting-style` gives the open state somewhere to transition from.

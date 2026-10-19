@@ -15,13 +15,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
   ({ className, rows, style, ...rest }, ref) => (
     <textarea
       ref={ref}
-      data-slot='textarea'
-      className={classNames(
-        CLASS_NAME,
-        'kicl-font-size-small',
-        'kicl-inline-size-full',
-        className
-      )}
+      className={classNames(CLASS_NAME, 'kicl-font-size-small', className)}
       rows={rows}
       // `field-sizing: content` ignores `rows`, so the styles turn it into a
       // minimum height instead.

@@ -1,16 +1,12 @@
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
+import { VARIANTS } from 'design/components/spec';
+import type { Level, Variant } from 'design/components/spec';
 
-export const BUBBLE_VARIANTS = [
-  'default',
-  'secondary',
-  'muted',
-  'tinted',
-  'outline',
-  'ghost',
-  'destructive',
-] as const;
+export const BUBBLE_VARIANTS = VARIANTS;
 
-export type BubbleVariant = (typeof BUBBLE_VARIANTS)[number];
+export type BubbleVariant = Variant;
+
+export type { Level as BubbleLevel } from 'design/components/spec';
 
 /** Semantic hosts for one message. */
 export type BubbleIs = 'article' | 'div' | 'li' | 'section';
@@ -27,7 +23,7 @@ export type BubbleReactionsIs = 'div' | 'ul';
 export type BubbleProps = PolymorphicIsProps<
   BubbleIs,
   {
-    /** Visual style - mirrors [shadcn Bubble](https://ui.shadcn.com/docs/components/base/bubble). */
+    level?: Level;
     variant?: BubbleVariant;
   },
   'div'

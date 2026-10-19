@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 // Spec
@@ -35,6 +35,7 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
 }) => {
   const popover = usePopover();
   const { setHint } = popover;
+  const nodeRef = useRef<HTMLDivElement | null>(null);
 
   // Lets the trigger know there is a hint to point at.
   useEffect(() => {
@@ -43,12 +44,30 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
     return () => setHint(false);
   }, [setHint]);
 
+  useEffect(() => {
+    const node = nodeRef.current;
+
+    if (!node || popover.content) {
+      return;
+    }
+
+    const shown = node.matches(':popover-open');
+
+    if (popover.open && !shown) {
+      node.showPopover();
+    }
+
+    if (!popover.open && shown) {
+      node.hidePopover();
+    }
+  }, [popover.content, popover.open]);
+
   const hint = (
     <div
+      ref={nodeRef}
       id={`${popover.id}__hint`}
       popover='hint'
       role='tooltip'
-      data-slot='popover-hint'
       className={getContentClassNames({
         className,
         offset,

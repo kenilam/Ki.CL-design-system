@@ -1,27 +1,12 @@
-import type { TextAccent } from 'design/components/text/spec';
+import { LEVELS } from 'design/components/spec';
+import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from 'design/components/text/spec';
+import type { TextLevel, TextLookLike } from 'design/components/text/spec';
 import type { ControlsSpec } from 'design/docs/mdx/preview';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
-  variant: ['secondary'],
-  accent: ['confirm', 'error', 'info', 'warning'],
-  lookLike: [
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'blockquote',
-    'cite',
-    'code',
-    'del',
-    'em',
-    'ins',
-    'pre',
-    'q',
-    'strong',
-  ],
+  variant: TEXT_VARIANTS,
+  level: LEVELS,
+  lookLike: TEXT_LOOK_LIKES,
   dense: 'boolean',
 } as const satisfies ControlsSpec;
 
@@ -31,9 +16,9 @@ export const CONTROLS = {
  * control, since a preset's element is part of what it shows.
  */
 export type Props = {
-  accent?: TextAccent;
   className?: string;
   dense?: boolean;
-  lookLike?: (typeof CONTROLS.lookLike)[number];
-  variant?: (typeof CONTROLS.variant)[number];
+  level?: TextLevel;
+  lookLike?: TextLookLike;
+  variant?: (typeof TEXT_VARIANTS)[number];
 };

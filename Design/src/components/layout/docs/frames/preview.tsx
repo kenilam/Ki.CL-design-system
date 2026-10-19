@@ -1,16 +1,24 @@
 import React from 'react';
 
-import { Badge, Layout } from 'design/components';
+import {
+  Button,
+  Card,
+  CardContent,
+  Layout,
+  SearchInput,
+} from 'design/components';
 
-import type { Props } from 'design/components/layout/docs/controls';
+import type { FramesProps } from 'design/components/layout/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Layout autoFlow='column' frames='1fr--max-content' gap='normal' {...props}>
-    <div className='kicl-inline-size-full'>
-      <Badge>Takes the rest</Badge>
-      <Badge>As wide as its content</Badge>
-    </div>
-  </Layout>
+const Preview: React.FC<FramesProps> = (props) => (
+  <Card is='form' role='search'>
+    <Layout autoFlow='column' frames='1fr--max-content' gap='narrow' {...props}>
+      <CardContent>
+        <SearchInput aria-label='Search' />
+        <Button type='submit'>Search</Button>
+      </CardContent>
+    </Layout>
+  </Card>
 );
 
 export { Preview };

@@ -46,7 +46,6 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
         'aria-expanded': popover.open,
         'aria-haspopup': 'dialog' as const,
       }),
-      'data-slot': 'popover-trigger',
       id: `${popover.id}__trigger`,
       /*
        * Hover and focus open the hint by themselves. React passes the

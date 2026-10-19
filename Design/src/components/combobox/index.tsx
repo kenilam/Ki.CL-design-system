@@ -75,7 +75,6 @@ const Combobox: React.FC<ComboboxProps> = ({
         /* A field takes its row, so the panel can be as wide as the field. */
         display='grid'
         className={classNames(CLASS_NAME, className)}
-        data-slot='combobox'
         onBlur={(event) => {
           onBlur?.(event);
           // Focus moved somewhere other than the field or the list.

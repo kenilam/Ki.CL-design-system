@@ -92,7 +92,6 @@ const CheckboxGroup = React.forwardRef<HTMLFieldSetElement, CheckboxGroupProps>(
         <Layout gap='narrower' justifyItems='start'>
           <fieldset
             ref={ref}
-            data-slot='checkbox-group'
             className={classNames(CLASS_NAME, className)}
             {...rest}
           >

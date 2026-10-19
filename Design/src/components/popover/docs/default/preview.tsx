@@ -9,10 +9,10 @@ import {
 
 import type { Props } from 'design/components/popover/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
+const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => (
   <Popover {...props}>
     <PopoverTrigger>Details</PopoverTrigger>
-    <PopoverContent>
+    <PopoverContent offset={offset} placement={placement} variant={variant}>
       <Text>Last saved two minutes ago.</Text>
     </PopoverContent>
   </Popover>

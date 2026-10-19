@@ -32,7 +32,6 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
         { [`${CLASS_NAME}--gap--${gap}`]: gap },
         className
       )}
-      data-slot='details'
       ref={ref}
     >
       <Layout
@@ -41,7 +40,7 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
         frames='1fr--max-content'
         gap='narrow'
       >
-        <summary className={`${CLASS_NAME}__summary`} data-slot='summary'>
+        <summary className={`${CLASS_NAME}__summary`}>
           {summary}
           {marker ? <Marker /> : null}
         </summary>

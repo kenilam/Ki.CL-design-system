@@ -68,7 +68,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, Props>(
       <input
         ref={setRef}
         type='checkbox'
-        data-slot='checkbox'
         className={classNames(
           CLASS_NAME,
           'kicl-display-inline-grid',

@@ -13,7 +13,7 @@ const CLASS_NAME = 'kicl--components--text';
 
 const Text = React.forwardRef<HTMLElement, Spec.Props>(
   (
-    { accent, children, dense, is = 'p', lookLike, unstyled, variant, ...rest },
+    { children, dense, is = 'p', level, lookLike, unstyled, variant, ...rest },
     ref
   ) => {
     // A heading look has its own quieter variant; the rest take Text's.
@@ -25,7 +25,7 @@ const Text = React.forwardRef<HTMLElement, Spec.Props>(
         [`kicl-look-like-${lookLike}`]: !unstyled && lookLike,
         [`${CLASS_NAME}--variant--${variant}`]:
           !unstyled && !looksLikeHeading && variant,
-        [`${CLASS_NAME}--accent--${accent}`]: !unstyled && accent,
+        [`${CLASS_NAME}--level--${level}`]: !unstyled && level,
         [`kicl-look-like-${lookLike}--variant--${variant}`]:
           !unstyled && looksLikeHeading && variant,
         [`${CLASS_NAME}--is-dense`]: !unstyled && dense,
@@ -52,8 +52,8 @@ Text.displayName = 'Text';
 
 export type {
   Props as TextProps,
-  TextAccent,
   TextIs,
+  TextLevel,
   TextLookLike,
 } from './spec';
 export { Text };

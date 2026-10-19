@@ -31,7 +31,6 @@ const SelectGroup = React.forwardRef<HTMLOptGroupElement, SelectGroupProps>(
     return (
       <optgroup
         ref={ref}
-        data-slot='select-group'
         // Flush with the options outside the group: the legend already sets it apart.
         className={classNames(
           CLASS_NAME,

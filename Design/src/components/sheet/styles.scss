@@ -92,7 +92,7 @@
     $x: calc(var(--kicl--components--sheet--x) * #{$shadow-distant-negative});
     $y: calc(var(--kicl--components--sheet--y) * #{$shadow-distant-negative});
 
-    @include box-shadow($x $y ($shadow-distant * 2) rgba($shadow-color, 0.08));
+    @include box-shadow($x $y ($shadow-distant * 2) rgba($shadow-color, $shadow-alpha-overlay));
 
     &--inline-start,
     &--inline-end {
@@ -142,13 +142,13 @@
   // Notices shown between the header and the content (a `Status` that is in) take rows of their own.
   --kicl--components--sheet--notices: ;
 
-  &:has(> [data-animation-in]:not([data-slot])) {
+  &:has(> .kicl--components--status[data-animation-in]) {
     --kicl--components--sheet--notices: max-content;
   }
 
   &:has(
-    > [data-animation-in]:not([data-slot])
-    ~ [data-animation-in]:not([data-slot])
+    > .kicl--components--status[data-animation-in]
+    ~ .kicl--components--status[data-animation-in]
   ) {
     --kicl--components--sheet--notices: max-content max-content;
   }
@@ -156,17 +156,19 @@
   // The content takes the height left over, so a footer sits at the bottom.
   --kicl-layout--grid-frames: var(--kicl--components--sheet--notices) 1fr;
 
-  &:has(> [data-slot='card-header']) {
+  &:has(> .kicl--components--card__header) {
     --kicl-layout--grid-frames: max-content
       var(--kicl--components--sheet--notices) 1fr;
   }
 
-  &:has(> [data-slot='card-footer']) {
+  &:has(> .kicl--components--card__footer) {
     --kicl-layout--grid-frames: var(--kicl--components--sheet--notices) 1fr
       max-content;
   }
 
-  &:has(> [data-slot='card-header']):has(> [data-slot='card-footer']) {
+  &:has(> .kicl--components--card__header):has(
+    > .kicl--components--card__footer
+  ) {
     --kicl-layout--grid-frames: max-content
       var(--kicl--components--sheet--notices) 1fr max-content;
   }

@@ -61,6 +61,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
       onValueChange,
       placement,
       value,
+      variant,
       ...rest
     },
     ref
@@ -233,6 +234,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
           aria-label={rest['aria-label']}
           className={`${CLASS_NAME}__panel`}
           placement={placement}
+          variant={variant}
         >
           {fieldset}
         </PopoverContent>

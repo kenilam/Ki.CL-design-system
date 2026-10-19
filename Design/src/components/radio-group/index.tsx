@@ -57,7 +57,6 @@ const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
         <Layout gap='narrower' justifyItems='start'>
           <fieldset
             ref={ref}
-            data-slot='radio-group'
             className={classNames(CLASS_NAME, className)}
             {...rest}
           >

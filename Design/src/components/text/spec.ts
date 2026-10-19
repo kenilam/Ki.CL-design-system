@@ -1,7 +1,8 @@
 import type { JSX, PropsWithChildren } from 'react';
 
-import type { LookProps as ButtonLookProps } from 'design/components/button/spec';
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
+import { VARIANTS } from 'design/components/spec';
+import type { Level, Variant } from 'design/components/spec';
 
 /**
  * Semantic hosts for body copy, quotes and inline meaning (code, emphasis,
@@ -28,36 +29,40 @@ export type TextIs = Extract<
  * shared `kicl-look-like-h*` utility, the rest from Text's own styles. `p`,
  * `span` and `time` have no look of their own, so they are left out.
  */
-export type TextLookLike = Extract<
-  keyof JSX.IntrinsicElements,
-  | 'blockquote'
-  | 'cite'
-  | 'code'
-  | 'del'
-  | 'em'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'ins'
-  | 'pre'
-  | 'q'
-  | 'strong'
->;
+export const TEXT_LOOK_LIKES = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'blockquote',
+  'cite',
+  'code',
+  'del',
+  'em',
+  'ins',
+  'pre',
+  'q',
+  'strong',
+] as const satisfies readonly (keyof JSX.IntrinsicElements)[];
 
-/** `secondary` dims the text, accent included. Leave it out for full strength. */
-type Variant = 'secondary';
+export type TextLookLike = (typeof TEXT_LOOK_LIKES)[number];
 
-/** Functional colour from the palette. Inline code tints its fill to match. */
-export type TextAccent = NonNullable<ButtonLookProps['level']>;
+export type TextVariant = Extract<Variant, 'primary' | 'secondary'>;
+
+export const TEXT_VARIANTS = VARIANTS.filter(
+  (variant): variant is TextVariant =>
+    variant === 'primary' || variant === 'secondary'
+);
+
+export type { Level as TextLevel } from 'design/components/spec';
 
 type LookProps = {
-  accent?: TextAccent;
   dense?: boolean;
+  level?: Level;
   lookLike?: TextLookLike;
-  variant?: Variant;
+  variant?: TextVariant;
 };
 
 /** `unstyled` drops the component's class, and every look prop with it. */

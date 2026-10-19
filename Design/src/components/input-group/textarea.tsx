@@ -18,7 +18,6 @@ const InputGroupTextarea = React.forwardRef<
 >(({ className, ...rest }, ref) => (
   <Textarea
     ref={ref}
-    data-slot='input-group-control'
     className={classNames(`${CLASS_NAME}__control`, className)}
     {...rest}
   />

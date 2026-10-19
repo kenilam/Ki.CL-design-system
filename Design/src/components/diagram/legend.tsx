@@ -13,11 +13,11 @@ type Props = {
 
 /**
  * What the colours and line styles in a diagram mean: one outlined chip per
- * item, the key filled in the item's accent and the meaning beside it.
+ * item, the key filled in the item's level and the meaning beside it.
  */
 const Legend: React.FunctionComponent<Props> = ({ items }) => (
   <List display='flex' gap='narrow' wrap>
-    {items.map(({ accent, label, value }) => (
+    {items.map(({ label, level, value }) => (
       <ListItem key={label}>
         <Layout
           alignContent='center'
@@ -29,7 +29,7 @@ const Legend: React.FunctionComponent<Props> = ({ items }) => (
           justifyItems='center'
         >
           <Text
-            accent={accent}
+            level={level}
             className={classNames(
               'kicl-border-radius-sm',
               'kicl-padding-inline-end-narrow'
@@ -38,7 +38,7 @@ const Legend: React.FunctionComponent<Props> = ({ items }) => (
             variant='secondary'
           >
             <Text
-              accent={accent}
+              level={level}
               className={classNames(
                 'kicl-line-height-narrower',
                 'kicl-padding-inline-narrower'

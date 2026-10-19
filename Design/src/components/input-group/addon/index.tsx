@@ -18,7 +18,6 @@ const InputGroupAddon = React.forwardRef<HTMLDivElement, InputGroupAddonProps>(
   ({ className, ...rest }, ref) => (
     <Layout alignItems='center' autoFlow='column' gap='narrowest' ref={ref}>
       <div
-        data-slot='input-group-addon'
         className={classNames(CLASS_NAME, 'kicl-color-body-color', className)}
         {...rest}
       />

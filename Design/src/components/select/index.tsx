@@ -47,7 +47,6 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <select
         ref={ref}
-        data-slot='select'
         // The same type as `Input`.
         className={classNames(
           CLASS_NAME,

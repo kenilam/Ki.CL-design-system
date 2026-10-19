@@ -131,6 +131,7 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
           <Layout alignContent='start'>
             <div
               className={classNames(
+                'kicl-box-shadow-overlay',
                 'kicl-margin-inline-auto',
                 'kicl-position-relative',
                 'kicl-z-index-raised'

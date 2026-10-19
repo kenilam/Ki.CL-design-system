@@ -9,9 +9,7 @@
 
       &--secondary {
         --kicl-body-color: var(--kicl--components--button--background-color);
-        --kicl--components--button--backdrop-filter: blur(var(--kicl-size-2x));
 
-        backdrop-filter: var(--kicl--components--button--backdrop-filter);
         background-color: #{rgba($black, 0.1)};
 
         @at-root .kicl--theme--dark & {

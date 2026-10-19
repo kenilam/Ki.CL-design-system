@@ -1,17 +1,26 @@
 import React from 'react';
 
 // Partials
+import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
+const description = (
+  <>
+    A few boxes joined by arrows, like a request going from the browser to the
+    database. You place each box yourself with <Text is='code'>x</Text> and{' '}
+    <Text is='code'>y</Text>.
+  </>
+);
+
 const name = 'Boxes';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
-  <Origin code={source} name={name}>
+  <Origin code={source} description={description} name={name}>
     <Preview />
   </Origin>
 );

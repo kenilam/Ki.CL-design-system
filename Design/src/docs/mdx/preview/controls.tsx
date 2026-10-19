@@ -6,7 +6,7 @@ import { Segmented, SegmentedItem, Switch } from 'design/components';
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
-export type Value = string | boolean | undefined;
+export type Value = string | number | boolean | undefined;
 
 /** What each control is set to. `undefined` is the component's own default: no prop. */
 export type Values = Record<string, Value>;
@@ -17,12 +17,12 @@ export type Values = Record<string, Value>;
  * component's default is one of its values.
  */
 export type Control = {
-  options: readonly string[] | 'boolean';
+  options: readonly (string | number)[] | 'boolean';
   /**
    * The value the component takes when the prop is left out, when it is in
    * the list. It stands for no prop, so the list needs no "Default".
    */
-  default?: string;
+  default?: string | number;
   /**
    * Other props this one needs, such as `{ lookLikeButton: true }` for the
    * look of a link. While they don't hold, the control is hidden and the
@@ -98,24 +98,29 @@ const Controls: React.FunctionComponent<Props> = ({
           );
         }
 
-        const fallback = control.default ?? UNSET;
+        const { options } = control;
+        const fallback =
+          control.default ?? (options.includes('default') ? 'default' : UNSET);
 
         return (
           <Segmented
             key={name}
             collapse='popover'
             collapsed
-            onValueChange={(value) =>
-              onChange(name, value === fallback ? undefined : value)
-            }
-            value={values[name] === undefined ? fallback : String(values[name])}
+            onValueChange={(value) => {
+              const option =
+                options.find((option) => String(option) === value) ?? value;
+
+              onChange(name, option === fallback ? undefined : option);
+            }}
+            value={String(values[name] ?? fallback)}
           >
             <legend>{name}</legend>
-            {control.default ? null : (
+            {fallback === UNSET && (
               <SegmentedItem value={UNSET}>{t('docs_default')}</SegmentedItem>
             )}
-            {control.options.map((option) => (
-              <SegmentedItem key={option} value={option}>
+            {options.map((option) => (
+              <SegmentedItem key={option} value={String(option)}>
                 {option}
               </SegmentedItem>
             ))}

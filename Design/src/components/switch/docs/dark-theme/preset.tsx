@@ -1,10 +1,18 @@
 import React from 'react';
 
 // Partials
+import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
+
+const description = (
+  <>
+    Turns this preview dark. The code shows the same switch wired to{' '}
+    <Text is='code'>useTheme</Text> for the whole site.
+  </>
+);
 
 const name = 'Dark theme';
 
@@ -24,7 +32,7 @@ const { setTheme, theme } = useTheme();
 `;
 
 const Preset = (
-  <Origin code={code} name={name}>
+  <Origin code={code} description={description} name={name}>
     <Preview />
   </Origin>
 );

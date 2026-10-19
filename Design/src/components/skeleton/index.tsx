@@ -17,7 +17,6 @@ const Skeleton = React.forwardRef<HTMLDivElement, Props>(
     <div
       aria-hidden
       ref={ref}
-      data-slot='skeleton'
       className={classNames(CLASS_NAME, className)}
       {...rest}
     />

@@ -7,10 +7,10 @@ import type { Props } from 'design/components/text/docs/controls';
 const Preview: React.FC<Props> = (props) => (
   <Text {...props}>
     Status:{' '}
-    <Text accent='confirm' is='code'>
+    <Text level='confirm' is='code'>
       READY
     </Text>{' '}
-    <Text accent='error' is='code'>
+    <Text level='error' is='code'>
       FAILED
     </Text>{' '}
     <Text is='code' variant='secondary'>

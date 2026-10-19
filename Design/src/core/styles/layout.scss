@@ -470,18 +470,22 @@
   grid-column: 1 / -1;
 }
 
-// As many tracks as fit, each at least so many columns and sharing what is
-// left: a row of things of unknown width, wrapping. `1fr` rather than
-// `max-content`, which an auto-fill track may not have as its maximum.
+// As many tracks of so many of the grid's own 12 columns as fit in a row,
+// sharing what is left. Phones get one per row, as with `span`.
 // Three classes, to outrank the row flow's own `grid-template-columns: unset`.
 @for $span from 1 through 12 {
-  .kicl-layout.kicl-layout--display--grid.kicl-layout--fill--#{$span} {
+  .kicl-layout.kicl-layout--display--grid.kicl-layout--fill--#{$span},
+  .kicl-layout.kicl-layout--display--inline-grid.kicl-layout--fill--#{$span} {
     --kicl-layout--auto-flow: row;
 
     grid-template-columns: repeat(
-      auto-fill,
-      minmax(var(--kicl-columns-#{$span}), 1fr)
+      #{math.floor(math.div(12, $span))},
+      minmax(0, 1fr)
     );
     grid-template-rows: unset;
+
+    @include query('≤mobile') {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 }

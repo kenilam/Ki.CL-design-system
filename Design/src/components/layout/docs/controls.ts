@@ -1,36 +1,61 @@
 import type { Layout } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import {
+  ALIGN_CONTENTS,
+  ALIGN_ITEMS,
+  AUTO_FLOWS,
+  FRAMES,
+} from 'design/components/layout/spec';
+import { COLUMN_SPANS, GAPS } from 'design/components/spec';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
-export const CONTROLS = {
-  display: { options: ['grid', 'inline-grid', 'flex'], default: 'grid' },
-  autoFlow: { options: ['row', 'column'], default: 'row' },
-  gap: {
-    options: [
-      'none',
-      'narrowest',
-      'narrower',
-      'narrow',
-      'normal',
-      'wide',
-      'wider',
-      'widest',
-      'extreme',
-    ],
-    default: 'normal',
-  },
-  alignItems: ['baseline', 'center', 'end', 'start', 'stretch'],
-  justifyContent: [
-    'center',
-    'end',
-    'start',
-    'stretch',
-    'space-around',
-    'space-between',
-    'space-evenly',
-  ],
-  justifyItems: ['center', 'end', 'start', 'stretch'],
-  wrap: 'boolean',
+const GAP = { options: GAPS, default: 'normal' } satisfies ControlsSpec[string];
+
+export const STACK_CONTROLS = {
+  gap: GAP,
+  justifyItems: ALIGN_ITEMS,
 } satisfies ControlsSpec;
 
-export type Props = Controlled<typeof Layout, keyof typeof CONTROLS>;
+export const ROW_CONTROLS = {
+  autoFlow: { options: AUTO_FLOWS, default: 'row' },
+  gap: GAP,
+  justifyContent: ALIGN_CONTENTS,
+} satisfies ControlsSpec;
+
+export const FRAMES_CONTROLS = {
+  frames: FRAMES,
+  gap: GAP,
+  alignItems: ALIGN_ITEMS,
+} satisfies ControlsSpec;
+
+export const COLUMNS_CONTROLS = {
+  span: [...COLUMN_SPANS, 'full'],
+} satisfies ControlsSpec;
+
+export const FILL_CONTROLS = {
+  fill: COLUMN_SPANS,
+  gap: GAP,
+} satisfies ControlsSpec;
+
+export const WRAP_CONTROLS = {
+  wrap: 'boolean',
+  gap: GAP,
+  justifyContent: ALIGN_CONTENTS,
+} satisfies ControlsSpec;
+
+export type StackProps = Controlled<typeof Layout, keyof typeof STACK_CONTROLS>;
+
+export type RowProps = Controlled<typeof Layout, keyof typeof ROW_CONTROLS>;
+
+export type FramesProps = Controlled<
+  typeof Layout,
+  keyof typeof FRAMES_CONTROLS
+>;
+
+export type ColumnsProps = Controlled<
+  typeof Layout,
+  keyof typeof COLUMNS_CONTROLS
+>;
+
+export type FillProps = Controlled<typeof Layout, keyof typeof FILL_CONTROLS>;
+
+export type WrapProps = Controlled<typeof Layout, keyof typeof WRAP_CONTROLS>;

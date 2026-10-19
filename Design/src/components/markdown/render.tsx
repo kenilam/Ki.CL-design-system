@@ -38,7 +38,7 @@ const render = (tokens: Token[]): React.ReactNode[] =>
             {token.text}
           </Text>
         ) : (
-          <Text accent={look} is='code' key={key}>
+          <Text level={look} is='code' key={key}>
             {token.text}
           </Text>
         );

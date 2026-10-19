@@ -9,7 +9,7 @@ const spec: DiagramSpec = {
   caption: 'Every request reads the database once.',
   legend: [
     { label: 'solid', value: 'a request' },
-    { accent: 'confirm', label: 'green', value: 'a write' },
+    { label: 'green', level: 'confirm', value: 'a write' },
   ],
 };
 

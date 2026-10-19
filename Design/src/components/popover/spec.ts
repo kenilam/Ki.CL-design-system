@@ -1,6 +1,8 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
-import type { Gap, Props as LayoutProps } from 'design/components/layout/spec';
+import type { Props as LayoutProps } from 'design/components/layout/spec';
+import { ALIGNS, SIDES, VARIANTS } from 'design/components/spec';
+import type { Align, Gap, Side, Variant } from 'design/components/spec';
 
 export type PopoverProps = ComponentPropsWithoutRef<'div'> & {
   open?: boolean;
@@ -40,20 +42,26 @@ export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> & {
  * panel flips to the opposite one when there is no room, so a picker near the
  * foot of the window opens upward instead of off the screen.
  */
-export type PopoverSide =
-  'block-end' | 'block-start' | 'inline-start' | 'inline-end';
+export type { Side as PopoverSide } from 'design/components/spec';
 
 /**
  * Where the panel lines up along that side: its start edge with the trigger's
  * start, centred on the trigger, or its end edge with the trigger's end.
  */
-export type PopoverAlign = 'start' | 'center' | 'end';
+export type { Align as PopoverAlign } from 'design/components/spec';
 
 /** A side alone aligns to `start`, which is how every placement used to work. */
-export type PopoverPlacement = PopoverSide | `${PopoverSide}-${PopoverAlign}`;
+export type PopoverPlacement = Side | `${Side}-${Align}`;
 
-/** Matches `Card` and `Badge`: `ghost` is the translucent, blurred pane. */
-export type PopoverVariant = 'default' | 'ghost';
+export const POPOVER_PLACEMENTS = SIDES.flatMap((side) =>
+  ALIGNS.map((align) => `${side}-${align}` as const)
+);
+
+export type PopoverVariant = Exclude<Variant, 'ghost'>;
+
+export const POPOVER_VARIANTS = VARIANTS.filter(
+  (variant): variant is PopoverVariant => variant !== 'ghost'
+);
 
 /** Named by the trigger's text by default; pass `aria-label` or `aria-labelledby` to override. */
 export type PopoverContentProps = ComponentPropsWithoutRef<'div'> & {

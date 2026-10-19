@@ -46,6 +46,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
             `${CLASS_NAME}--size--${size}`,
             `${CLASS_NAME}--variant--${variant}`,
             level && `${CLASS_NAME}--level--${level}`,
+            variant === 'secondary' && 'kicl-backdrop-blur',
             typeof size === 'number'
               ? `kicl-inline-size-columns-${size}`
               : size !== 'default' &&
@@ -54,7 +55,6 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
             'kicl-overflow-hidden',
             className
           )}
-          data-slot='card'
         >
           {header && <CardHeader>{header}</CardHeader>}
           {children}

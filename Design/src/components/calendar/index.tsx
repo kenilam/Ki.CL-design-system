@@ -88,13 +88,18 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         <Layout gap='narrow'>
           <div
             ref={ref}
-            data-slot='calendar'
             className={classNames(CLASS_NAME, className)}
             {...rest}
           >
             <Header />
-            <Separator decorative />
-            <table className={`${CLASS_NAME}__table`} aria-labelledby={titleId}>
+            <Separator />
+            <table
+              className={classNames(
+                `${CLASS_NAME}__table`,
+                'kicl-inline-size-full'
+              )}
+              aria-labelledby={titleId}
+            >
               <Weekdays />
               <Grid />
             </table>

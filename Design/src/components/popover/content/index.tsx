@@ -27,7 +27,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       offset = 'narrow',
       placement = 'block-end',
       style,
-      variant = 'default',
+      variant = 'primary',
       ...rest
     },
     ref
@@ -89,6 +89,42 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       }
     }, [popover.open]);
 
+    useEffect(() => {
+      const node = nodeRef.current;
+
+      if (!node || !popover.open) {
+        return undefined;
+      }
+
+      const onScroll = (event: Event) => {
+        if (event.target instanceof Node && node.contains(event.target)) {
+          return;
+        }
+
+        const focused = node.contains(document.activeElement);
+
+        if (!focused && document.activeElement?.matches('input, textarea')) {
+          return;
+        }
+
+        node.hidePopover();
+
+        if (focused) {
+          document
+            .getElementById(`${popover.id}__trigger`)
+            ?.focus({ preventScroll: true });
+        }
+      };
+
+      document.addEventListener('scroll', onScroll, {
+        capture: true,
+        passive: true,
+      });
+
+      return () =>
+        document.removeEventListener('scroll', onScroll, { capture: true });
+    }, [popover.id, popover.open]);
+
     const panel = (
       <div
         ref={mergeRefs(nodeRef, ref)}
@@ -97,7 +133,6 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         role='dialog'
         /* Named by its trigger unless the caller gives it a name. */
         aria-labelledby={isLabelled ? undefined : `${popover.id}__trigger`}
-        data-slot='popover-content'
         className={getContentClassNames({
           className,
           offset,

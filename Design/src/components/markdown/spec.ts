@@ -1,4 +1,4 @@
-import type { TextAccent } from 'design/components/text';
+import type { Level } from 'design/components/spec';
 
 export type Props = {
   /**
@@ -9,4 +9,4 @@ export type Props = {
 };
 
 /** The looks inline code has: dimmed, or one of the functional colours. */
-export type Look = TextAccent | 'secondary';
+export type Look = Level | 'secondary';

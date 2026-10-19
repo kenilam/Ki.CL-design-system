@@ -19,7 +19,7 @@ const getContentClassNames = ({
   className,
   offset = 'narrow',
   placement = 'block-end',
-  variant = 'default',
+  variant = 'primary',
 }: Props) => {
   // `block-end` reads as `block-end-start`: the side, then the alignment.
   const [axis, edge, align = 'start'] = placement.split('-');
@@ -30,6 +30,8 @@ const getContentClassNames = ({
     `${CLASS_NAME}--${axis}-${edge}--${align}`,
     `${CLASS_NAME}--offset--${offset}`,
     `${CLASS_NAME}--variant--${variant}`,
+    'kicl-box-shadow-overlay',
+    variant === 'secondary' && 'kicl-backdrop-blur',
     className
   );
 };

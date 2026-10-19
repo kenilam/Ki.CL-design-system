@@ -30,6 +30,7 @@ const getButtonClassNames = ({
       [`${CLASS_NAME}--level--${level}`]: !unstyled && level,
       [`${CLASS_NAME}--variant--${variant}`]: !unstyled && variant,
       [`${CLASS_NAME}--unstyled`]: unstyled,
+      'kicl-backdrop-blur': !unstyled && variant === 'secondary',
       'kicl-line-height-narrower': !unstyled,
       'kicl-text-transform-uppercase': !unstyled,
     },

@@ -49,20 +49,16 @@ $gaps: (
       --kicl--components--popover--offset
     );
     --kicl--components--popover--margin-inline: 0;
-
-    /* Where it slides in from: half the gap, back towards the trigger. */
-    --kicl--components--popover--back: calc(
-      var(--kicl--components--popover--offset) * -0.5
-    );
-    --kicl--components--popover--ahead: calc(
-      var(--kicl--components--popover--offset) * 0.5
-    );
+    --kicl--components--popover--back: calc(var(--kicl-gutter-narrower) * -1);
+    --kicl--components--popover--ahead: var(--kicl-gutter-narrower);
     --kicl--components--popover--enter: 0 var(--kicl--components--popover--back);
 
     background-color: var(--kicl--components--popover--background-color);
     border: var(--kicl-size-1px) solid
       var(--kicl--components--popover--border-color);
     border-radius: var(--kicl--components--popover--border-radius);
+    max-block-size: calc(100% - 2 * var(--kicl--components--popover--offset));
+    overflow-y: auto;
     padding: var(--kicl--components--popover--padding);
 
     /*
@@ -188,10 +184,7 @@ $gaps: (
     &--inline-start--start,
     &--inline-start--center,
     &--inline-start--end {
-      --kicl--components--popover--enter: var(
-        --kicl--components--popover--ahead
-      )
-        0;
+      --kicl--components--popover--enter: var(--kicl-gutter-narrower) 0;
     }
 
     &--inline-end--start,
@@ -213,19 +206,16 @@ $gaps: (
       }
     }
 
-    /*
-     * A pane you can see through - the same treatment `Card` and `Badge` carry
-     * under this name. The blur is what keeps the contents legible over
-     * whatever the panel happens to open on top of.
-     */
-    &--variant--ghost {
+    &--variant--secondary {
       --kicl--components--popover--background-color: color-mix(
         in oklab,
-        var(--kicl-surface-color) 65%,
-        transparent
+        var(--kicl-body-color) 10%,
+        color-mix(in oklab, var(--kicl-surface-color) 65%, transparent)
       );
+    }
 
-      backdrop-filter: blur(var(--kicl-size-2x));
+    &--variant--tertiary {
+      --kicl--components--popover--border-color: transparent;
     }
   }
 }

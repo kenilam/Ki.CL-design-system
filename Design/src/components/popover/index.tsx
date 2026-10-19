@@ -97,7 +97,6 @@ const Popover: React.FC<PopoverProps> = ({
          * inheritance follows the elements, not the boxes.
          */
         <span
-          data-slot='popover'
           className={classNames(CLASS_NAME, 'kicl-display-contents', className)}
           data-state={state}
           style={style}
@@ -108,7 +107,6 @@ const Popover: React.FC<PopoverProps> = ({
       ) : (
         <Layout display={display} gap={gap} justifyItems={justifyItems}>
           <div
-            data-slot='popover'
             className={classNames(CLASS_NAME, className)}
             data-state={state}
             style={style}

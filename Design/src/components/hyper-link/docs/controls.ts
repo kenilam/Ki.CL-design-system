@@ -1,5 +1,7 @@
 import type { Button, HyperLinkProps } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import { BUTTON_SIZES } from 'design/components/button/spec';
+import { LEVELS, VARIANTS } from 'design/components/spec';
 
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
@@ -7,14 +9,14 @@ export const CONTROLS = {
   // The button look only applies with `lookLikeButton`.
   variant: {
     default: 'primary',
-    options: ['primary', 'secondary', 'tertiary', 'ghost'],
+    options: VARIANTS,
     when: { lookLikeButton: true },
   },
   level: {
-    options: ['confirm', 'error', 'info', 'warning'],
+    options: LEVELS,
     when: { lookLikeButton: true },
   },
-  size: { options: ['small', 'large'], when: { lookLikeButton: true } },
+  size: { options: BUTTON_SIZES, when: { lookLikeButton: true } },
   // Without the button look, a link can drop its own look.
   unstyled: { options: 'boolean', when: { lookLikeButton: false } },
   disabled: 'boolean',

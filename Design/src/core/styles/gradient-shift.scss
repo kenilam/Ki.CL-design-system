@@ -7,11 +7,11 @@
 :root {
   --kicl-gradient-shift: linear-gradient(
     232deg,
-    #{color.adjust($orange, $lightness: 30%)},
-    #{color.adjust($green, $lightness: 30%)},
-    #{color.adjust($red, $lightness: 30%)},
-    #{color.adjust($blue, $lightness: 30%)},
-    #{color.adjust($yellow, $lightness: 30%)}
+    #{shade($orange, 10%)},
+    #{shade($green, 10%)},
+    #{shade($red, 10%)},
+    #{shade($blue, 10%)},
+    #{shade($yellow, 10%)}
   );
 
   @at-root .kicl--theme--dark {

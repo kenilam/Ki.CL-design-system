@@ -7,7 +7,14 @@ import classNames from 'classnames';
 import { useParams } from 'react-router-dom';
 
 // Components
-import { Details, HyperLink, List, ListItem } from 'design/components';
+import {
+  Details,
+  HyperLink,
+  List,
+  ListItem,
+  Navigation,
+  NavigationProps,
+} from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -21,31 +28,32 @@ import { PAGES, pagesIn } from 'design/docs/pages';
 // Constants
 import { CATEGORIES, type Category } from 'design/docs/constants';
 
-/**
- * Every page, grouped as on the home page. Only the open page's group starts
- * open, so on a phone the list above the page stays short.
- */
-const Sidebar: React.FunctionComponent<React.ComponentProps<'nav'>> = ({
-  className,
-  ...rest
-}) => {
+/** Every page, grouped as on the home page. Only the open page's group starts open. */
+const Sidebar: React.FunctionComponent<NavigationProps> = (
+  {
+    className,
+    ...props
+  }
+) => {
   const t = useCopy();
   const path = useDocsPath();
-  const { slug: open } = useParams();
+  const { page: open } = useParams();
 
   const current = PAGES.find(({ slug }) => slug === open);
 
   return (
-    <nav
-      {...rest}
+    <Navigation
+      {...props}
       aria-label={t('docs_components')}
-      className={classNames(
-        'kicl-position-sticky',
-        'kicl-inset-block-start-header',
-        className
-      )}
+      className={
+        classNames(
+          'kicl-min-block-size-screen',
+          'kicl-padding',
+          className,
+        )
+      }
     >
-      <List gap='narrow'>
+      <List>
         <ListItem>
           <HyperLink to={path()}>{t('docs_overview')}</HyperLink>
         </ListItem>
@@ -64,7 +72,7 @@ const Sidebar: React.FunctionComponent<React.ComponentProps<'nav'>> = ({
               >
                 <List
                   className='kicl-padding-inline-start-narrow'
-                  gap='narrower'
+                  gap='narrow'
                 >
                   {pages.map(({ context, slug }) => (
                     <ListItem key={slug}>
@@ -79,7 +87,7 @@ const Sidebar: React.FunctionComponent<React.ComponentProps<'nav'>> = ({
           );
         })}
       </List>
-    </nav>
+    </Navigation>
   );
 };
 

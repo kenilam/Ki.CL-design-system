@@ -31,7 +31,6 @@ const CardFooter = React.forwardRef<HTMLElement, CardFooterProps>(
             CLASS_NAME,
             className
           )}
-          data-slot='card-footer'
         >
           {children}
         </Component>

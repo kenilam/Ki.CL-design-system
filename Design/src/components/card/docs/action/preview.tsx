@@ -18,7 +18,7 @@ const Preview: React.FC<Props> = (props) => (
         <CardTitle is='h3'>Notifications</CardTitle>
         <CardDescription>Three unread</CardDescription>
         <CardAction>
-          <Button aria-label='More' variant='ghost'>
+          <Button aria-label='More' variant='ghost' size='small'>
             <Ri.RiMoreLine aria-hidden />
           </Button>
         </CardAction>

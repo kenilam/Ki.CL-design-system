@@ -1,35 +1,24 @@
 import type { Navigation } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import {
+  ALIGN_CONTENTS,
+  ALIGN_ITEMS,
+  AUTO_FLOWS,
+} from 'design/components/layout/spec';
+import { LIST_IS } from 'design/components/list/spec';
+import { GAPS } from 'design/components/spec';
 
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
-  is: { options: ['ul', 'ol'], default: 'ul' },
-  autoFlow: { options: ['row', 'column'], default: 'row' },
+  is: { options: LIST_IS, default: 'ul' },
+  autoFlow: { options: AUTO_FLOWS, default: 'row' },
   gap: {
-    options: [
-      'none',
-      'narrowest',
-      'narrower',
-      'narrow',
-      'normal',
-      'wide',
-      'wider',
-      'widest',
-      'extreme',
-    ],
+    options: GAPS,
     default: 'normal',
   },
-  alignItems: ['baseline', 'center', 'end', 'start', 'stretch'],
-  justifyContent: [
-    'center',
-    'end',
-    'start',
-    'stretch',
-    'space-around',
-    'space-between',
-    'space-evenly',
-  ],
-  justifyItems: ['center', 'end', 'start', 'stretch'],
+  alignItems: ALIGN_ITEMS,
+  justifyContent: ALIGN_CONTENTS,
+  justifyItems: ALIGN_ITEMS,
   wrap: 'boolean',
 } satisfies ControlsSpec;
 

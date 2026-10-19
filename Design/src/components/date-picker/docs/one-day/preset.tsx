@@ -7,11 +7,18 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
+const description = (
+  <>
+    For a single date, like a start date. The button shows a prompt until a day
+    is picked.
+  </>
+);
+
 const name = 'One day';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
-  <Origin code={source} name={name}>
+  <Origin code={source} description={description} name={name}>
     <Preview />
   </Origin>
 );

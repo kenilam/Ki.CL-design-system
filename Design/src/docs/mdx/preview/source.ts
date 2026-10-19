@@ -187,6 +187,10 @@ const valueOf = ({ raw }: Attribute): Value => {
     return value === '{true}';
   }
 
+  if (/^\{\d+\}$/.test(value)) {
+    return Number(value.slice(1, -1));
+  }
+
   return /^(['"]).*\1$/s.test(value) ? value.slice(1, -1) : undefined;
 };
 
@@ -214,6 +218,10 @@ export const valuesOf = (tag: Tag | null, names: string[]) => {
 const attributeOf = (name: string, value: Value) => {
   if (value === true) {
     return name;
+  }
+
+  if (typeof value === 'number') {
+    return `${name}={${value}}`;
   }
 
   if (typeof value !== 'string') {

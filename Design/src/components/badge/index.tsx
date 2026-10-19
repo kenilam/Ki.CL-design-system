@@ -23,7 +23,7 @@ const Badge = React.forwardRef<HTMLElement, Props>(
       is = 'span',
       level,
       size,
-      variant = 'default',
+      variant = 'primary',
       ...rest
     },
     ref
@@ -50,6 +50,8 @@ const Badge = React.forwardRef<HTMLElement, Props>(
             {
               [`${CLASS_NAME}--level--${level}`]: level,
               [`${CLASS_NAME}--size--${size}`]: size,
+              'kicl-backdrop-blur':
+                variant === 'secondary' || variant === 'ghost',
             },
             'kicl-font-weight',
             'kicl-line-height-narrow',

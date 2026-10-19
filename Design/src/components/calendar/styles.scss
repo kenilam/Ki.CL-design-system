@@ -12,7 +12,6 @@
 
     // No spacing: a range reads as one bar from its first day to its last.
     border-spacing: 0;
-    inline-size: 100%;
 
     :is(th, td) {
       inline-size: calc(100% / 7);

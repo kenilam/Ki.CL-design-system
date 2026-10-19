@@ -141,16 +141,18 @@
 // `collapse='scroll'`: below tablet the row keeps its options whole and
 // scrolls sideways instead, settling on one option at a time. `collapsed`
 // does the same at any width.
-.kicl--components--segmented--collapse--scroll
-.kicl--components--segmented__options {
-  @include query('≤tablet') {
-    @include segmented-scroll;
+.kicl--components--segmented--collapse--scroll {
+  .kicl--components--segmented__options {
+    @include query('≤tablet') {
+      @include segmented-scroll;
+    }
   }
-}
 
-.kicl--components--segmented--collapse--scroll.kicl--components--segmented--collapsed
-.kicl--components--segmented__options {
-  @include segmented-scroll;
+  &.kicl--components--segmented--collapsed {
+    .kicl--components--segmented__options {
+      @include segmented-scroll;
+    }
+  }
 }
 
 /*
@@ -165,6 +167,18 @@
 }
 
 .kicl--components--segmented__panel {
+  $line: calc(var(--kicl-font-size-small) * var(--kicl-line-height));
+  $item: calc(#{$line} + var(--kicl-gutter-narrower) * 2);
+  $edge: calc(var(--kicl--components--popover--padding) + var(--kicl-size-1px));
+
+  position-try-order: most-block-size;
+  scroll-padding-block: var(--kicl--components--popover--padding);
+  scroll-snap-type: block mandatory;
+
+  &:has(.kicl--components--segmented__item:nth-child(6)) {
+    min-block-size: calc(#{$item} * 6 + #{$edge} * 2);
+  }
+
   // The panel is the surface now, so the options sit on it without a track.
   .kicl--components--segmented {
     background-color: transparent;
@@ -178,6 +192,7 @@
   // The options line up the way the panel does, from the popover's placement.
   .kicl--components--segmented__item {
     justify-items: var(--kicl--components--popover--align, start);
+    scroll-snap-align: start;
   }
 }
 
@@ -197,6 +212,8 @@
       inline-size: auto;
       inset: auto;
       margin: 0;
+      max-block-size: none;
+      min-block-size: auto;
       opacity: 1;
       overflow: visible;
       padding: 0;

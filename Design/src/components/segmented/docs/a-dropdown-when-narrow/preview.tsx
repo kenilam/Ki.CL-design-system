@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Segmented, SegmentedItem } from 'design/components';
 
-import type { Props } from 'design/components/segmented/docs/controls';
+import type { PopoverProps } from 'design/components/segmented/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
+const Preview: React.FC<PopoverProps> = (props) => (
   <Segmented
     aria-label='Range'
     collapse='popover'

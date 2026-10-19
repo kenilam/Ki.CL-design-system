@@ -1,11 +1,10 @@
 import type { ReactNode } from 'react';
 
 import type { LookProps } from 'design/components/button/spec';
-import type {
-  ColumnSpan,
-  Props as LayoutProps,
-} from 'design/components/layout/spec';
+import type { Props as LayoutProps } from 'design/components/layout/spec';
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
+import { VARIANTS } from 'design/components/spec';
+import type { ColumnSpan, Variant } from 'design/components/spec';
 
 /**
  * `default` = full width; `fit` = as wide as the content; named sizes map to
@@ -26,15 +25,13 @@ export const CARD_SIZES = [
 
 export type CardSize = (typeof CARD_SIZES)[number] | ColumnSpan;
 
-/**
- * Named as on `Button`: `primary` paints the surface with an edge, `secondary`
- * is a soft fill that lets what is behind it through, and `tertiary` is the
- * surface with no edge. There is no `ghost`: a card has an edge by default, which
- * is what `ghost` adds on `Button`.
- */
-export type CardVariant = Exclude<LookProps['variant'], 'ghost' | undefined>;
+export type CardVariant = Exclude<Variant, 'ghost'>;
 
-export type CardLevel = NonNullable<LookProps['level']>;
+export const CARD_VARIANTS = VARIANTS.filter(
+  (variant): variant is CardVariant => variant !== 'ghost'
+);
+
+export type { Level as CardLevel } from 'design/components/spec';
 
 /**
  * Semantic hosts that read as a card / panel surface. `dialog` is for a card

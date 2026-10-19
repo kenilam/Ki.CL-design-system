@@ -16,6 +16,7 @@ import {
   BubbleReactions,
   type BubbleContentProps,
   type BubbleGroupProps,
+  type BubbleLevel,
   type BubbleProps,
   type BubbleReactionsProps,
   type BubbleVariant,
@@ -135,7 +136,7 @@ import {
   type InputGroupTextareaProps,
   type InputGroupTextProps,
 } from './input-group';
-import { type ColumnSpan, Layout, LayoutProps } from './layout';
+import { Layout, LayoutProps } from './layout';
 import { List, ListProps } from './list';
 import { ListItem, ListItemProps } from './list-item';
 import { Markdown, type MarkdownProps } from './markdown';
@@ -188,7 +189,7 @@ import {
   type SelectTriggerProps,
   type SelectValueProps,
 } from './select';
-import { Separator, type SeparatorProps } from './separator';
+import { Separator, type SeparatorIs, type SeparatorProps } from './separator';
 import { Skeleton, type SkeletonProps } from './skeleton';
 import { Status, StatusProps } from './status';
 import { Spinner, SpinnerProps } from './spinner';
@@ -201,13 +202,14 @@ import {
 import { AnimatedText, AnimatedTextProps } from './animated-text';
 import {
   Text,
-  type TextAccent,
   type TextIs,
+  type TextLevel,
   type TextLookLike,
   type TextProps,
 } from './text';
 import { Textarea, type TextareaProps } from './textarea';
 import { Video, VideoProps } from './video';
+import type { Align, ColumnSpan, Gap, Level, Side, Variant } from './spec';
 
 export {
   Animation,
@@ -227,6 +229,7 @@ export {
   type BubbleContentProps,
   BubbleGroup,
   type BubbleGroupProps,
+  type BubbleLevel,
   type BubbleProps,
   BubbleReactions,
   type BubbleReactionsProps,
@@ -388,6 +391,7 @@ export {
   SelectValue,
   type SelectValueProps,
   Separator,
+  type SeparatorIs,
   type SeparatorProps,
   Skeleton,
   type SkeletonProps,
@@ -400,12 +404,17 @@ export {
   type SwitchLabelProps,
   type SwitchProps,
   Text,
-  type TextAccent,
   type TextIs,
+  type TextLevel,
   type TextLookLike,
   type TextProps,
   Textarea,
   type TextareaProps,
   Video,
   type VideoProps,
+  type Align,
+  type Gap,
+  type Level,
+  type Side,
+  type Variant,
 };

@@ -67,7 +67,6 @@ const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({
     <div
       {...rest}
       className={classNames(CLASS_NAME, className)}
-      data-slot='combobox-anchor'
       ref={combobox.anchor}
     >
       {children}

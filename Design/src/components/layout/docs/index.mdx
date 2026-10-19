@@ -1,16 +1,17 @@
-import { Preset as ThreeThings } from './three-things';
+import { Preset as Stack } from './stack';
+import { Preset as Row } from './row';
 import { Preset as Frames } from './frames';
-import { Preset as Thirds } from './thirds';
 import { Preset as Columns } from './columns';
+import { Preset as Fill } from './fill';
 import { Preset as Wrap } from './wrap';
-import { CONTROLS } from './controls';
 
 Puts its child on a grid and sets the direction, gap, alignment and tracks. It only adds classes to the child; there's no wrapper element.
 
-<Preview controls={CONTROLS}>
-  {ThreeThings}
+<Preview>
+  {Stack}
+  {Row}
   {Frames}
-  {Thirds}
   {Columns}
+  {Fill}
   {Wrap}
 </Preview>

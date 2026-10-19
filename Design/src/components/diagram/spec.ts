@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 import type { IconType } from 'design/icons';
-import type { TextAccent } from 'design/components/text/spec';
+import type { Level } from 'design/components/spec';
 
 export type Accent = 'blue' | 'green' | 'orange' | 'red' | 'yellow';
 
 /** One legend chip: `label` is the colour or line style, `value` what it means. */
 export type LegendItem = {
-  accent?: TextAccent;
   label: string;
+  level?: Level;
   value: string;
 };
 

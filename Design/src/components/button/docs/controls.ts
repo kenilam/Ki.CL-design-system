@@ -1,5 +1,7 @@
 import type { ButtonProps } from 'design/components';
 import type { ControlsSpec } from 'design/docs/mdx/preview';
+import { BUTTON_SIZES } from 'design/components/button/spec';
+import { LEVELS, VARIANTS } from 'design/components/spec';
 
 /** The look props only apply without `lookLikeHyperLink`. */
 const LOOK = { lookLikeHyperLink: false };
@@ -8,12 +10,12 @@ const LOOK = { lookLikeHyperLink: false };
 export const CONTROLS = {
   lookLikeHyperLink: 'boolean',
   variant: {
-    options: ['primary', 'secondary', 'tertiary', 'ghost'],
+    options: VARIANTS,
     default: 'primary',
     when: LOOK,
   },
-  level: { options: ['confirm', 'error', 'info', 'warning'], when: LOOK },
-  size: { options: ['small', 'large'], when: LOOK },
+  level: { options: LEVELS, when: LOOK },
+  size: { options: BUTTON_SIZES, when: LOOK },
   // With the link's look, it can drop that look too, as a link can.
   unstyled: { options: 'boolean', when: { lookLikeHyperLink: true } },
   disabled: 'boolean',

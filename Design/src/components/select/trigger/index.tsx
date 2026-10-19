@@ -31,7 +31,6 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
     >
       <button
         ref={ref}
-        data-slot='select-trigger'
         className={classNames(
           CLASS_NAME,
           'kicl-inline-size-full',

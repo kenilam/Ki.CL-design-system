@@ -1,0 +1,27 @@
+.kicl-box-shadow-center {
+  @include box-shadow-center;
+}
+
+.kicl-box-shadow-left {
+  @include box-shadow-left;
+}
+
+.kicl-box-shadow-right {
+  @include box-shadow-right;
+}
+
+.kicl-box-shadow-top {
+  @include box-shadow-top;
+}
+
+.kicl-box-shadow-bottom {
+  @include box-shadow-bottom;
+}
+
+.kicl-box-shadow-overlay {
+  @include box-shadow-overlay;
+}
+
+.kicl-box-shadow-none {
+  @include box-shadow-none;
+}

@@ -1,8 +1,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import type { CardProps } from 'design/components/card/spec';
-import type { ColumnSpan } from 'design/components/layout/spec';
-import type { PopoverSide } from 'design/components/popover/spec';
+import type { ColumnSpan, Side } from 'design/components/spec';
 
 /**
  * Starts open when `defaultOpen`; after that its own buttons open and close
@@ -22,6 +21,6 @@ export type SheetProps = Omit<ComponentPropsWithoutRef<'dialog'>, 'popover'> &
     header?: ReactNode;
     modal?: boolean;
     onOpenChange?: (open: boolean) => void;
-    side?: PopoverSide;
+    side?: Side;
     size?: ColumnSpan;
   };

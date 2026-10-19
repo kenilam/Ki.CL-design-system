@@ -24,7 +24,6 @@ const SelectLabel: React.FunctionComponent<SelectLabelProps> = ({
       'kicl-padding-inline',
       className
     )}
-    data-slot='select-label'
   >
     {children}
   </legend>

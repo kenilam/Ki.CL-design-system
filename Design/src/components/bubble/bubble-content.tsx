@@ -18,7 +18,6 @@ const BubbleContent = React.forwardRef<HTMLElement, BubbleContentProps>(
           'kicl-overflow-hidden',
           className
         )}
-        data-slot='bubble-content'
         ref={ref as never}
       >
         {children}

@@ -27,10 +27,6 @@ import type { DatePickerProps } from './spec';
 type SingleProps = Extract<DatePickerProps, { mode?: 'single' }>;
 type RangeProps = Extract<DatePickerProps, { mode: 'range' }>;
 
-/**
- * Date picker composed from Popover + Calendar - aligned with
- * https://ui.shadcn.com/docs/components/base/date-picker
- */
 const DatePicker: React.FC<DatePickerProps> = (props) => {
   const t = useCopy();
 
@@ -47,6 +43,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
     'aria-invalid': ariaInvalid,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
+    variant,
   } = props;
 
   const isControlled = props.value !== undefined;
@@ -120,7 +117,11 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
           aria-labelledby={ariaLabelledBy}
         />
         {/* A forwarded id replaces the trigger's default one, so name the panel from it. */}
-        <PopoverContent aria-labelledby={id} className={`${CLASS_NAME}__panel`}>
+        <PopoverContent
+          aria-labelledby={id}
+          className={`${CLASS_NAME}__panel`}
+          variant={variant}
+        >
           <Calendar />
         </PopoverContent>
       </Popover>

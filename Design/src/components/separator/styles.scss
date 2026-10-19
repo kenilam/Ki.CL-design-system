@@ -13,7 +13,8 @@
     align-self: stretch;
     block-size: auto;
     inline-size: var(--kicl--components--separator--size);
-    min-block-size: 100%;
+    min-block-size: 1lh;
+    vertical-align: middle;
   }
 
   @at-root .kicl--theme--dark & {

@@ -10,6 +10,7 @@ import {
   Layout,
   Segmented,
   SegmentedItem,
+  Text,
 } from 'design/components';
 
 // Hooks
@@ -66,6 +67,7 @@ type PresetProps = React.PropsWithChildren<{
   code: string;
   /** Toggles only this preset has, on top of the page's. */
   controls?: ControlsSpec;
+  description?: React.ReactNode;
 }>;
 
 type PreviewProps = React.PropsWithChildren<{
@@ -268,7 +270,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
 
   return (
     <StageContext.Provider value={{ dark, setDark }}>
-      <Card gap='wide' key={preset.props.name}>
+      <Card gap='wide' key={preset.props.name} variant='tertiary'>
         {presets.length > 1 ? (
           // A row that wraps, so each field keeps its own width.
           <Layout alignItems='end' display='flex' gap='wide' wrap>
@@ -289,11 +291,15 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
             </CardContent>
           </Layout>
         ) : null}
+        {preset.props.description ? (
+          <CardContent>
+            <Text variant='secondary'>{preset.props.description}</Text>
+          </CardContent>
+        ) : null}
         <Layout
           alignContent='center'
           alignItems='center'
           display='grid'
-          justifyContent='center'
           justifyItems='center'
         >
           {/* A theme of its own once a preset sets one, with the theme's colours. */}

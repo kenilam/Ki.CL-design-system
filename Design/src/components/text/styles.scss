@@ -19,8 +19,6 @@
   --kicl--components--text--padding-block-end: 0;
   --kicl--components--text--padding-block-start: 0;
   --kicl--components--text--strength: 100%;
-
-  // Strength is separate from the colour so `secondary` dims an accent too.
   --kicl--components--text--ink: color-mix(
     in srgb,
     var(--kicl--components--text--color) var(--kicl--components--text--strength),
@@ -122,9 +120,9 @@
     --kicl--components--text--strength: var(--kicl-color-strength-secondary);
   }
 
-  @each $accent in (confirm, error, info, warning) {
-    &--accent--#{$accent} {
-      --kicl--components--text--color: var(--kicl-color-#{$accent});
+  @each $level in (confirm, error, info, warning) {
+    &--level--#{$level} {
+      --kicl--components--text--color: var(--kicl-color-#{$level});
     }
   }
 

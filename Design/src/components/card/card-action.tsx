@@ -13,7 +13,6 @@ const CardAction = React.forwardRef<HTMLElement, CardActionProps>(
       <Component
         {...(rest as React.HTMLAttributes<HTMLElement>)}
         className={classNames(CLASS_NAME, className)}
-        data-slot='card-action'
         ref={ref as never}
       >
         {children}

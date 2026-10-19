@@ -22,7 +22,6 @@ const SelectValue: React.FunctionComponent<SelectValueProps> = ({
   ...rest
 }) =>
   React.createElement('selectedcontent', {
-    'data-slot': 'select-value',
     className: classNames(
       CLASS_NAME,
       'kicl-overflow-hidden',

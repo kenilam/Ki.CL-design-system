@@ -1,6 +1,9 @@
 import type React from 'react';
 
-import type { PopoverPlacement } from 'design/components/popover/spec';
+import type {
+  PopoverPlacement,
+  PopoverVariant,
+} from 'design/components/popover/spec';
 
 export type SegmentedProps = Omit<
   React.ComponentPropsWithoutRef<'fieldset'>,
@@ -26,6 +29,7 @@ export type SegmentedProps = Omit<
         collapsed?: boolean;
         /** Where the panel opens. Its options align to match. */
         placement?: PopoverPlacement;
+        variant?: PopoverVariant;
       }
     | {
         /**
@@ -35,12 +39,14 @@ export type SegmentedProps = Omit<
         collapse: 'scroll';
         collapsed?: boolean;
         placement?: never;
+        variant?: never;
       }
     | {
         /** Without a mode, the options share the width at any size. */
         collapse?: never;
         collapsed?: never;
         placement?: never;
+        variant?: never;
       }
   );
 

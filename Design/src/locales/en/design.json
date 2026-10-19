@@ -105,7 +105,7 @@
   "component_summary_input": "A single-line text field.",
   "component_summary_layout": "Puts its child on a grid, with no wrapper element.",
   "component_summary_list": "A ul or ol laid out as a grid.",
-  "component_summary_markdown": "One line of inline Markdown.",
+  "component_summary_markdown": "A line or a whole document of Markdown, as components.",
   "component_summary_menu": "A row of commands.",
   "component_summary_navigation": "A list of links to other pages.",
   "component_summary_page_indicator": "A dot for each full-screen page.",

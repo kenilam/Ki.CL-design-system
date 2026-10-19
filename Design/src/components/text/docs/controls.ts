@@ -4,7 +4,7 @@ import type { TextLevel, TextLookLike } from 'design/components/text/spec';
 import type { ControlsSpec } from 'design/docs/mdx/preview';
 
 export const CONTROLS = {
-  variant: TEXT_VARIANTS,
+  variant: { options: TEXT_VARIANTS, default: 'primary' },
   level: LEVELS,
   lookLike: TEXT_LOOK_LIKES,
   dense: 'boolean',

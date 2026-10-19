@@ -1,4 +1,4 @@
-import { Preset as Commands } from './commands';
+import { Preset as Basic } from './basic';
 import { Preset as AToolbar } from './a-toolbar';
 import { Preset as Stacked } from './stacked';
 import { Preset as SaveOrCancel } from './save-or-cancel';
@@ -7,7 +7,7 @@ import { CONTROLS } from './controls';
 A row of commands in a native `menu` element. Each child becomes an item.
 
 <Preview controls={CONTROLS}>
-  {Commands}
+  {Basic}
   {AToolbar}
   {Stacked}
   {SaveOrCancel}

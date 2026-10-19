@@ -1,4 +1,4 @@
-import { Preset as AWord } from './a-word';
+import { Preset as Basic } from './basic';
 import { Preset as ASentence } from './a-sentence';
 import { Preset as ALongSentence } from './a-long-sentence';
 import { Preset as Slowly } from './slowly';
@@ -8,8 +8,8 @@ import { CONTROLS } from './controls';
 
 Text that comes in one letter or one word at a time. Screen readers get the whole line.
 
-<Preview controls={CONTROLS}>
-  {AWord}
+<Preview controls={CONTROLS} replay>
+  {Basic}
   {ASentence}
   {ALongSentence}
   {Slowly}

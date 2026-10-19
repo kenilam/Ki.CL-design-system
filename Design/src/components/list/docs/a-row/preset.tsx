@@ -11,7 +11,8 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     For a few short items in a line, like the tools a project uses.{' '}
-    <Text is='code'>autoFlow='column'</Text> puts them side by side.
+    <Text is='code'>autoFlow='column'</Text> puts them side by side, each in a
+    badge so the gap between them shows.
   </>
 );
 

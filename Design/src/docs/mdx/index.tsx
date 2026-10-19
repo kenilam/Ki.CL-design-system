@@ -33,6 +33,17 @@ const Link: React.FunctionComponent<
   );
 };
 
+const Pre: React.FunctionComponent<
+  Pick<React.ComponentProps<typeof Code>, 'className'> &
+    Pick<React.ComponentProps<'pre'>, 'children'>
+> = ({ children, className }) => (
+  <Code className={className}>
+    {React.isValidElement<{ children?: string }>(children)
+      ? String(children.props.children ?? '')
+      : String(children ?? '')}
+  </Code>
+);
+
 /**
  * What the Markdown in a page renders as: the design system's own
  * components, and the parts a page writes as JSX without importing them.
@@ -58,13 +69,8 @@ const COMPONENTS: MDXComponents = {
     </List>
   ),
   p: ({ children }) => <Text>{children}</Text>,
-  // A fenced block, highlighted like a preset's code. Its child is the `code` element.
   pre: ({ children }) => (
-    <Code>
-      {React.isValidElement<{ children?: string }>(children)
-        ? String(children.props.children ?? '')
-        : String(children ?? '')}
-    </Code>
+    <Pre className='kicl-min-block-size-columns-2'>{children}</Pre>
   ),
   strong: ({ children }) => <Text is='strong'>{children}</Text>,
   ul: ({ children }) => <List gap='narrow'>{children}</List>,
@@ -72,4 +78,4 @@ const COMPONENTS: MDXComponents = {
   Preview,
 };
 
-export { COMPONENTS };
+export { COMPONENTS, Pre };

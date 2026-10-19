@@ -11,7 +11,7 @@ export const CONTROLS = {
   },
   level: LEVELS,
   // Unset keeps the example's own column width.
-  size: CARD_SIZES,
+  size: { options: CARD_SIZES, default: 'default' },
   gap: GAPS,
 } satisfies ControlsSpec;
 

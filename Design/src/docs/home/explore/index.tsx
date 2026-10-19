@@ -3,11 +3,12 @@ import React from 'react';
 // Components
 import {
   Card,
-  CardContent,
+  CardDescription,
   CardTitle,
+  Heading,
   HyperLink,
+  Layout,
   List,
-  ListItem,
 } from 'design/components';
 
 // Copy
@@ -22,50 +23,45 @@ import { pagesIn } from 'design/docs/pages';
 // Constants
 import { CATEGORIES, type Category } from 'design/docs/constants';
 
-/** A card for each group with a button for each of its components, two to a row. */
 const Explore: React.FunctionComponent = () => {
   const t = useCopy();
   const path = useDocsPath();
 
-  return (
-    <List columns>
-      {(Object.keys(CATEGORIES) as Category[]).map((category) => {
-        const pages = pagesIn(category);
+  return (Object.keys(CATEGORIES) as Category[]).map((category) => {
+    const pages = pagesIn(category);
 
-        if (!pages.length) {
-          return null;
-        }
+    if (!pages.length) {
+      return null;
+    }
 
-        return (
-          <ListItem key={category} span={6}>
-            <Card
-              header={
-                <CardTitle is='h2'>{t(`category_${category}`)}</CardTitle>
-              }
-              is='section'
-            >
-              <CardContent>
-                <List fill={1} gap='narrow' justifyItems='start'>
-                  {pages.map(({ context, slug }) => (
-                    <ListItem key={slug}>
-                      <HyperLink
-                        lookLikeButton
-                        size='small'
-                        to={path(slug)}
-                        variant='secondary'
-                      >
+    return (
+      <Layout gap='normal' key={category}>
+        <section>
+          <Heading is='h3'>{t(`category_${category}`)}</Heading>
+          <List fill={4} gap='normal'>
+            {pages.map(({ context, slug }) => (
+              <Card
+                header={
+                  <>
+                    <CardTitle is='h4'>
+                      <HyperLink to={path(slug)}>
                         {t('component', { context })}
                       </HyperLink>
-                    </ListItem>
-                  ))}
-                </List>
-              </CardContent>
-            </Card>
-          </ListItem>
-        );
-      })}
-    </List>
-  );
+                    </CardTitle>
+                    <CardDescription>
+                      {t('component_summary', { context })}
+                    </CardDescription>
+                  </>
+                }
+                is='li'
+                key={slug}
+              />
+            ))}
+          </List>
+        </section>
+      </Layout>
+    );
+  });
 };
 
 export { Explore };

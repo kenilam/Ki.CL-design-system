@@ -1,10 +1,18 @@
 import React from 'react';
 
+// Libraries
+import classNames from 'classnames';
+
 // Components
 import { Animation, Text } from 'design/components';
 
 // Spec
 import * as Spec from './spec';
+
+// Styles
+import './styles.scss';
+
+const CLASS_NAME = 'kicl--components--animated-text';
 
 const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
   (
@@ -16,6 +24,7 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
       children,
       split = 'letter',
       stagger = 10,
+      className,
       ...props
     },
     ref
@@ -38,13 +47,17 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
        * matching branch of the polymorphic props through a spread. The
        * value is correct by construction; only the narrowing is lost.
        */
-      <Text {...(props as React.ComponentProps<typeof Text>)} ref={ref}>
+      <Text
+        {...(props as React.ComponentProps<typeof Text>)}
+        className={classNames(CLASS_NAME, className)}
+        ref={ref}
+      >
         {/* Read once as a word; the letters below are only for the eye. */}
         <span className='kicl-hidden'>{text}</span>
         {pieces.map((piece, index) => {
           const key = `${index}`;
 
-          if (split === 'word' && /^\s*$/.test(piece)) {
+          if (/^\s*$/.test(piece)) {
             return piece;
           }
 
@@ -56,7 +69,9 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
               property={property}
               key={key}
             >
-              <span aria-hidden>{piece}</span>
+              <span aria-hidden className='kicl-display-inline-block'>
+                {piece}
+              </span>
             </Animation>
           );
         })}

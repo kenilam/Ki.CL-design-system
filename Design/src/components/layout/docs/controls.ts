@@ -12,19 +12,19 @@ const GAP = { options: GAPS, default: 'normal' } satisfies ControlsSpec[string];
 
 export const STACK_CONTROLS = {
   gap: GAP,
-  justifyItems: ALIGN_ITEMS,
+  justifyItems: { options: ALIGN_ITEMS, default: 'stretch' },
 } satisfies ControlsSpec;
 
 export const ROW_CONTROLS = {
   autoFlow: { options: AUTO_FLOWS, default: 'row' },
   gap: GAP,
-  justifyContent: ALIGN_CONTENTS,
+  justifyContent: { options: ALIGN_CONTENTS, default: 'stretch' },
 } satisfies ControlsSpec;
 
 export const FRAMES_CONTROLS = {
   frames: FRAMES,
   gap: GAP,
-  alignItems: ALIGN_ITEMS,
+  alignItems: { options: ALIGN_ITEMS, default: 'stretch' },
 } satisfies ControlsSpec;
 
 export const COLUMNS_CONTROLS = {
@@ -39,7 +39,7 @@ export const FILL_CONTROLS = {
 export const WRAP_CONTROLS = {
   wrap: 'boolean',
   gap: GAP,
-  justifyContent: ALIGN_CONTENTS,
+  justifyContent: { options: ALIGN_CONTENTS, default: 'start' },
 } satisfies ControlsSpec;
 
 export type StackProps = Controlled<typeof Layout, keyof typeof STACK_CONTROLS>;

@@ -19,10 +19,13 @@ import { useTheme } from 'design/hooks';
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
-type Props = { children: string };
+type Props = { children: string } & Pick<
+  React.ComponentProps<typeof CardContent>,
+  'className'
+>;
 
 /** A block of JSX, highlighted, in a card whose header holds the button that copies it. */
-const Code: React.FunctionComponent<Props> = ({ children }) => {
+const Code: React.FunctionComponent<Props> = ({ children, className }) => {
   const t = useCopy();
   const { theme } = useTheme();
 
@@ -32,12 +35,7 @@ const Code: React.FunctionComponent<Props> = ({ children }) => {
       header={<CardTitle is='h3'>{t('docs_code')}</CardTitle>}
       size='default'
     >
-      <CardContent
-        className={classNames(
-          'kicl-min-block-size-columns-2',
-          'kicl-position-relative'
-        )}
-      >
+      <CardContent className={classNames('kicl-position-relative', className)}>
         <Highlight
           code={children}
           language='tsx'

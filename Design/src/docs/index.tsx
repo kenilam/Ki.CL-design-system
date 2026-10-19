@@ -31,7 +31,7 @@ const Docs: React.FunctionComponent = () => {
       <Routes>
         <Route element={<Shell />}>
           <Route index element={<Home />} />
-          <Route path=':slug' element={<Page />} />
+          <Route path=':page' element={<Page />} />
           <Route path='*' element={<Status404 />} />
         </Route>
       </Routes>

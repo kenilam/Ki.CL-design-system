@@ -10,12 +10,22 @@ import { render } from './render';
 import * as Spec from './spec';
 
 /**
- * Inline Markdown as the design system's own components, with no element of
- * its own: it goes inside the `Text`, `Heading` or `ListItem` that holds the
- * line. Blocks (headings, lists, paragraphs) are not parsed.
+ * Markdown as the design system's own components, with no element of its own.
+ * One paragraph renders inline, to go inside the `Text`, `Heading` or
+ * `ListItem` that holds the line. Anything more renders as blocks: headings,
+ * paragraphs, lists, quotes, code blocks and rules.
  */
 const Markdown: React.FunctionComponent<Spec.Props> = ({ children }) =>
-  useMemo(() => render(Lexer.lexInline(children)), [children]);
+  useMemo(() => {
+    const tokens = Lexer.lex(children).filter(({ type }) => type !== 'space');
+    const [first] = tokens;
+
+    return render(
+      tokens.length === 1 && first.type === 'paragraph' && first.tokens
+        ? first.tokens
+        : tokens
+    );
+  }, [children]);
 
 export type { Props as MarkdownProps } from './spec';
 export { Markdown };

@@ -10,7 +10,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a line between things side by side, like links in a row.{' '}
+    For a line between things side by side, like details in a row.{' '}
     <Text is='code'>{"orientation='vertical'"}</Text> makes it stand upright.
   </>
 );

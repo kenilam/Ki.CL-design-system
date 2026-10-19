@@ -14,7 +14,7 @@ import {
 } from 'design/components';
 
 // Hooks
-import { useTheme } from 'design/hooks';
+import { useResponsive } from 'design/hooks';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -27,7 +27,7 @@ type Props = { children: string } & Pick<
 /** A block of JSX, highlighted, in a card whose header holds the button that copies it. */
 const Code: React.FunctionComponent<Props> = ({ children, className }) => {
   const t = useCopy();
-  const { theme } = useTheme();
+  const { theme } = useResponsive();
 
   return (
     <Card

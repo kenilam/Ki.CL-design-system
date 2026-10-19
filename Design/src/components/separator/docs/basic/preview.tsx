@@ -1,20 +1,14 @@
 import React from 'react';
 
-import { Card, Layout, Separator, Text } from 'design/components';
+import { Card, CardTitle, Separator, Text } from 'design/components';
 
-import type { Props } from 'design/components/separator/docs/controls';
-
-const Preview: React.FC<Props> = (props) => (
-  <Layout
-    autoFlow={props.orientation === 'vertical' ? 'column' : 'row'}
-    justifyContent='center'
-  >
-    <Card>
-      <Text>Above</Text>
-      <Separator {...props} />
-      <Text>Below</Text>
-    </Card>
-  </Layout>
+const Preview: React.FC = () => (
+  <Card>
+    <CardTitle>Release 4.2</CardTitle>
+    <Text>Search across every component, and a menu that stays open.</Text>
+    <Separator />
+    <Text>Shipped 19 October 2026</Text>
+  </Card>
 );
 
 export { Preview };

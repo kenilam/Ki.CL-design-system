@@ -185,6 +185,10 @@
 
       grid-template-columns: repeat(var(--kicl-columns-count), minmax(0, 1fr));
       grid-template-rows: unset;
+
+      @include query('≤mobile') {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     &.kicl-layout--dense {

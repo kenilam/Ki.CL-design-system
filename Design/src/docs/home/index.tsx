@@ -16,7 +16,7 @@ const Home: React.FunctionComponent = () => {
   const t = useCopy();
 
   return (
-    <Layout alignContent='start' gap='wide' span={9}>
+    <Layout alignContent='start' gap='wide'>
       <article>
         <Heading>{t('docs_title')}</Heading>
         <Welcome components={{ ...COMPONENTS, Explore, pre: Pre }} />

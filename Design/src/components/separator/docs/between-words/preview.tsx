@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Card, Layout, Separator, Text } from 'design/components';
 
-import type { Props } from 'design/components/separator/docs/controls';
-
-const Preview: React.FC<Props> = (props) => (
-  <Layout autoFlow={props.orientation === 'vertical' ? 'column' : 'row'}>
+const Preview: React.FC = () => (
+  <Layout autoFlow='column' justifyContent='start'>
     <Card>
-      <Text>Left</Text>
-      <Separator orientation='vertical' {...props} />
-      <Text>Right</Text>
+      <Text>19 October 2026</Text>
+      <Separator orientation='vertical' />
+      <Text>5 min read</Text>
+      <Separator orientation='vertical' />
+      <Text>Design system</Text>
     </Card>
   </Layout>
 );

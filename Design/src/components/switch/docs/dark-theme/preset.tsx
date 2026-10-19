@@ -10,7 +10,7 @@ import { Preview } from './preview';
 const description = (
   <>
     Turns this preview dark. The code shows the same switch wired to{' '}
-    <Text is='code'>useTheme</Text> for the whole site.
+    <Text is='code'>useResponsive</Text> for the whole site.
   </>
 );
 
@@ -18,10 +18,10 @@ const name = 'Dark theme';
 
 /*
  * Written out, not read from the file: the example switches the docs' stage
- * through a hook of its own, and the reader's code uses `useTheme`.
+ * through a hook of its own, and the reader's code uses `useResponsive`.
  */
 const code = `
-const { setTheme, theme } = useTheme();
+const { setTheme, theme } = useResponsive();
 
 <Switch
   checked={theme === 'dark'}

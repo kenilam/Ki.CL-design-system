@@ -96,6 +96,18 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         return undefined;
       }
 
+      const close = () => {
+        const focused = node.contains(document.activeElement);
+
+        node.hidePopover();
+
+        if (focused) {
+          document
+            .getElementById(`${popover.id}__trigger`)
+            ?.focus({ preventScroll: true });
+        }
+      };
+
       const onScroll = (event: Event) => {
         if (event.target instanceof Node && node.contains(event.target)) {
           return;
@@ -107,22 +119,27 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
           return;
         }
 
-        node.hidePopover();
+        close();
+      };
 
-        if (focused) {
-          document
-            .getElementById(`${popover.id}__trigger`)
-            ?.focus({ preventScroll: true });
+      const onResize = () => {
+        if (document.activeElement?.matches('input, textarea')) {
+          return;
         }
+
+        close();
       };
 
       document.addEventListener('scroll', onScroll, {
         capture: true,
         passive: true,
       });
+      window.addEventListener('resize', onResize);
 
-      return () =>
+      return () => {
         document.removeEventListener('scroll', onScroll, { capture: true });
+        window.removeEventListener('resize', onResize);
+      };
     }, [popover.id, popover.open]);
 
     const panel = (

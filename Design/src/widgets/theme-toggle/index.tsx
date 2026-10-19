@@ -10,7 +10,7 @@ import { Button } from 'design/components';
 import { useCopy } from 'design/locales/use-copy';
 
 // Hooks
-import { useTheme } from 'design/hooks';
+import { useResponsive } from 'design/hooks';
 
 // Icons
 import * as Ri from 'react-icons/ri';
@@ -32,7 +32,7 @@ const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
   size,
   variant,
 }) => {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme } = useResponsive();
   const t = useCopy();
 
   const isDark = theme === 'dark';

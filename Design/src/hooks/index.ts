@@ -3,10 +3,10 @@ import { useResizeObserver } from './use-resize-observer';
 import {
   DARK_THEME_CLASS_NAME,
   LIGHT_THEME_CLASS_NAME,
+  type Theme,
   breakpoints,
   useResponsive,
 } from './use-responsive';
-import { type Theme, useTheme } from './use-theme';
 
 export {
   DARK_THEME_CLASS_NAME,
@@ -16,5 +16,4 @@ export {
   useClipboard,
   useResizeObserver,
   useResponsive,
-  useTheme,
 };

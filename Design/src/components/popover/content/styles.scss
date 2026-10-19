@@ -93,10 +93,12 @@ $gaps: (
        * inline side, then both - so a picker near the foot of the window
        * opens upward instead of off the edge.
        */
-      position-try-fallbacks:
+      position-try-fallbacks: var(
+        --kicl--components--popover--fallbacks,
         flip-block,
         flip-inline,
-        flip-block flip-inline;
+        flip-block flip-inline
+      );
     }
 
     /*
@@ -216,6 +218,31 @@ $gaps: (
 
     &--variant--tertiary {
       --kicl--components--popover--border-color: transparent;
+    }
+  }
+}
+
+@each $side, $axis in $sides {
+  $across: block;
+
+  @if $axis == block {
+    $across: inline;
+  }
+
+  $spans: (
+    start: span-#{$across}-end,
+    center: span-all,
+    end: span-#{$across}-start,
+  );
+
+  @each $align, $span in $spans {
+    @position-try --kicl--components--popover--#{$side}--#{$align} {
+      margin-#{$across}: 0;
+      margin-#{$axis}: var(
+        --kicl--components--popover--fallback-offset,
+        var(--kicl--components--popover--offset)
+      );
+      position-area: #{$side} #{$span};
     }
   }
 }

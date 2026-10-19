@@ -1,30 +1,27 @@
 import React from 'react';
 
-import { ScrollIndicator, Text } from 'design/components';
+import { Heading, Layout, ScrollIndicator, Text } from 'design/components';
 
 const Preview: React.FC = () => (
-  <article className='kicl-border-radius-md kicl-contain-paint kicl-inline-size-columns-8 kicl-max-block-size-columns-2 kicl-overflow-y-auto kicl-padding-inline kicl-position-relative'>
+  <article className='kicl-background-color-body kicl-contain-paint kicl-max-block-size-columns-6 kicl-overflow-y-auto kicl-position-relative'>
     <ScrollIndicator className='kicl-position-sticky' />
-    <Text>
-      Daylight shows the Earth lit by where the sun is now. Drag the globe to
-      turn it, or pick a place to jump there.
-    </Text>
-    <Text>
-      The music visualiser draws a track as it plays. Any track can be saved as
-      a ten-second clip.
-    </Text>
-    <Text>
-      Tree of life walks through the versions of one drawing, from the first
-      sketch to the current one.
-    </Text>
-    <Text>
-      The robotic arm runs a simulation of a factory floor, with the robots and
-      their brains in their own module.
-    </Text>
-    <Text>
-      Each experiment is on its own page, built from the components documented
-      here.
-    </Text>
+    <Layout>
+      <section className='kicl-padding-block kicl-padding-block-end-wide kicl-padding-inline'>
+        <Heading is='h3'>Winnie The Pooh</Heading>
+        <Text>
+          {'If you happen to have read another book about Christopher Robin, you may remember that he once had a swan (or the swan had Christopher Robin, I don\'t know which) and that he used to call this swan Pooh. That was a long time ago, and when we said good-bye, we took the name with us, as we didn\'t think the swan would want it any more. Well, when Edward Bear said that he would like an exciting name all to himself, Christopher Robin said at once, without stopping to think, that he was Winnie-the-Pooh. And he was. So, as I have explained the Pooh part, I will now explain the rest of it.'}
+        </Text>
+        <Text>
+          {'You can\'t be in London for long without going to the Zoo. There are some people who begin the Zoo at the beginning, called WAYIN, and walk as quickly as they can past every cage until they get to the one called WAYOUT, but the nicest people go straight to the animal they love the most, and stay there. So when Christopher Robin goes to the Zoo, he goes to where the Polar Bears are, and he whispers something to the third keeper from the left, and doors are unlocked, and we wander through dark passages and up steep stairs, until at last we come to the special cage, and the cage is opened, and out trots something brown and furry, and with a happy cry of "Oh, Bear!" Christopher Robin rushes into its arms. Now this bear\'s name is Winnie, which shows what a good name for bears it is, but the funny thing is that we can\'t remember whether Winnie is called after Pooh, or Pooh after Winnie. We did know once, but we have forgotten....'}
+        </Text>
+        <Text>
+          {'I had written as far as this when Piglet looked up and said in his squeaky voice, "What about Me?" "My dear Piglet," I said, "the whole book is about you." "So it is about Pooh," he squeaked. You see what it is. He is jealous because he thinks Pooh is having a Grand Introduction all to himself. Pooh is the favourite, of course, there\'s no denying it, but Piglet comes in for a good many things which Pooh misses; because you can\'t take Pooh to school without everybody knowing it, but Piglet is so small that he slips into a pocket, where it is very comforting to feel him when you are not quite sure whether twice seven is twelve or twenty-two. Sometimes he slips out and has a good look in the ink-pot, and in this way he has got more education than Pooh, but Pooh doesn\'t mind. Some have brains, and some haven\'t, he says, and there it is.'}
+        </Text>
+        <Text>
+          {'And now all the others are saying, "What about Us?" So perhaps the best thing to do is to stop writing Introductions and get on with the book.'}
+        </Text>
+      </section>
+    </Layout>
   </article>
 );
 

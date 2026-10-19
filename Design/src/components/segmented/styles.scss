@@ -171,7 +171,7 @@
   $item: calc(#{$line} + var(--kicl-gutter-narrower) * 2);
   $edge: calc(var(--kicl--components--popover--padding) + var(--kicl-size-1px));
 
-  position-try-order: most-block-size;
+  min-block-size: min-content;
   scroll-padding-block: var(--kicl--components--popover--padding);
   scroll-snap-type: block mandatory;
 

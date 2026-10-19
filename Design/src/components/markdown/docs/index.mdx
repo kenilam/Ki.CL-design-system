@@ -4,8 +4,9 @@ import { Preset as CodeWithALook } from './code-with-a-look';
 import { Preset as Warnings } from './warnings';
 import { Preset as ALink } from './a-link';
 import { Preset as Strikethrough } from './strikethrough';
+import { Preset as ADocument } from './a-document';
 
-Renders one line of inline Markdown with the design system's own components. Put it inside the `Text`, `Heading` or `ListItem` that holds the line.
+Renders Markdown with the design system's own components. One line renders inline, so put it inside the `Text`, `Heading` or `ListItem` that holds it. A whole document renders as headings, paragraphs and lists.
 
 <Preview>
   {Basic}
@@ -14,4 +15,5 @@ Renders one line of inline Markdown with the design system's own components. Put
   {Warnings}
   {ALink}
   {Strikethrough}
+  {ADocument}
 </Preview>

@@ -1,14 +1,14 @@
-/*
- * The variant class goes on the bubble and styles its content, like shadcn, so
- * one `variant` prop works whatever element `BubbleContent` renders as. Colours
- * come from the body tokens, which already switch with the theme.
- */
 .kicl--components--bubble {
-  --kicl--components--bubble--background-color: var(--kicl-body-color);
+  --kicl--components--bubble--tint: var(--kicl-body-color);
+  --kicl--components--bubble--background-color: var(
+    --kicl--components--bubble--tint
+  );
   --kicl--components--bubble--border-color: transparent;
   --kicl--components--bubble--border-radius: var(--kicl-size-2x);
   --kicl--components--bubble--border-width: var(--kicl-size-1px);
-  --kicl--components--bubble--color: var(--kicl-body-background-color);
+  --kicl--components--bubble--color: contrast-color(
+    var(--kicl--components--bubble--tint)
+  );
   --kicl--components--bubble--hover-background-color: color-mix(
     in oklab,
     var(--kicl--components--bubble--background-color) 80%,
@@ -22,66 +22,33 @@
   max-inline-size: var(--kicl--components--bubble--max-inline-size);
   min-inline-size: 0;
 
+  @each $level in confirm, error, info, warning {
+    &--level--#{$level} {
+      --kicl--components--bubble--tint: var(--kicl-color-#{$level});
+    }
+  }
+
   &--variant--secondary {
-    --kicl--components--bubble--background-color: var(--kicl-surface-color);
-    --kicl--components--bubble--border-color: var(--kicl-surface-border-color);
-    --kicl--components--bubble--color: var(--kicl-body-color);
-    --kicl--components--bubble--hover-background-color: color-mix(
-      in oklab,
-      var(--kicl-surface-color),
-      var(--kicl-body-color) 5%
-    );
-  }
-
-  &--variant--muted {
     --kicl--components--bubble--background-color: color-mix(
       in oklab,
-      var(--kicl-body-color) 8%,
+      var(--kicl--components--bubble--tint) 12%,
       transparent
     );
-    --kicl--components--bubble--color: var(--kicl-body-color);
+    --kicl--components--bubble--color: var(--kicl--components--bubble--tint);
     --kicl--components--bubble--hover-background-color: color-mix(
       in oklab,
-      var(--kicl-body-color) 13%,
+      var(--kicl--components--bubble--tint) 20%,
       transparent
     );
   }
 
-  &--variant--tinted {
-    --kicl--components--bubble--background-color: color-mix(
-      in oklab,
-      var(--kicl-color-info) 18%,
-      var(--kicl-body-background-color)
-    );
-    --kicl--components--bubble--color: var(--kicl-body-color);
-    --kicl--components--bubble--hover-background-color: color-mix(
-      in oklab,
-      var(--kicl-color-info) 26%,
-      var(--kicl-body-background-color)
-    );
-  }
-
-  &--variant--outline {
-    --kicl--components--bubble--background-color: var(
-      --kicl-body-background-color
-    );
-    --kicl--components--bubble--border-color: var(--kicl-surface-border-color);
-    --kicl--components--bubble--color: var(--kicl-body-color);
-    --kicl--components--bubble--hover-background-color: color-mix(
-      in oklab,
-      var(--kicl-body-color) 8%,
-      var(--kicl-body-background-color)
-    );
-  }
-
-  // No background: the text sits on the page and can use the full width.
-  &--variant--ghost {
+  &--variant--tertiary {
     --kicl--components--bubble--background-color: transparent;
     --kicl--components--bubble--border-radius: 0;
-    --kicl--components--bubble--color: var(--kicl-body-color);
+    --kicl--components--bubble--color: var(--kicl--components--bubble--tint);
     --kicl--components--bubble--hover-background-color: color-mix(
       in oklab,
-      var(--kicl-body-color) 8%,
+      var(--kicl--components--bubble--tint) 8%,
       transparent
     );
     --kicl--components--bubble--max-inline-size: 100%;
@@ -89,18 +56,23 @@
     --kicl--components--bubble--padding-inline: 0;
   }
 
-  &--variant--destructive {
-    --kicl--components--bubble--background-color: color-mix(
-      in oklab,
-      var(--kicl-color-error) 12%,
-      transparent
+  &--variant--ghost {
+    --kicl--components--bubble--background-color: var(
+      --kicl-body-background-color
     );
-    --kicl--components--bubble--color: var(--kicl-color-error);
+    --kicl--components--bubble--border-color: var(--kicl-surface-border-color);
+    --kicl--components--bubble--color: var(--kicl-body-color);
     --kicl--components--bubble--hover-background-color: color-mix(
       in oklab,
-      var(--kicl-color-error) 20%,
-      transparent
+      var(--kicl--components--bubble--tint) 8%,
+      var(--kicl-body-background-color)
     );
+
+    &[class*='kicl--components--bubble--level--'] {
+      --kicl--components--bubble--border-color: var(
+        --kicl--components--bubble--tint
+      );
+    }
   }
 }
 

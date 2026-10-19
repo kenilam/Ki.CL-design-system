@@ -31,7 +31,6 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
       <input
         ref={ref}
         type={type}
-        data-slot={grouped ? 'input-group-control' : 'input'}
         className={classNames(
           CLASS_NAME,
           'kicl-font-size-small',

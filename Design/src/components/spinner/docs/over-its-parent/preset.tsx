@@ -10,11 +10,20 @@ import { OVERLAY_CONTROLS } from 'design/components/spinner/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
+const description = (
+  <>Covers a card with a veil and a spinner while its content loads.</>
+);
+
 const name = 'Over its parent';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
-  <Origin code={source} controls={OVERLAY_CONTROLS} name={name}>
+  <Origin
+    code={source}
+    controls={OVERLAY_CONTROLS}
+    description={description}
+    name={name}
+  >
     <Preview />
   </Origin>
 );

@@ -42,7 +42,6 @@ const ComboboxContent: React.FC<ComboboxContentProps> = ({
     <PopoverContent
       {...rest}
       className={classNames(CLASS_NAME, className)}
-      data-slot='combobox-content'
       onKeyDown={(event) => {
         onKeyDown?.(event);
         if (event.defaultPrevented) {

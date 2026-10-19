@@ -16,7 +16,6 @@ const BubbleGroup = React.forwardRef<HTMLElement, BubbleGroupProps>(
         <Component
           {...(rest as React.HTMLAttributes<HTMLElement>)}
           className={classNames(CLASS_NAME, className)}
-          data-slot='bubble-group'
         >
           {children}
         </Component>

@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
 import type { ButtonProps } from 'design/components/button';
+import type { Variant } from 'design/components/spec';
 
 export type InputGroupProps = ComponentPropsWithoutRef<'div'>;
 
@@ -9,8 +10,7 @@ export type InputGroupAddonProps = ComponentPropsWithoutRef<'div'>;
 
 export type InputGroupButtonProps = Pick<ButtonProps, 'children'> &
   ComponentPropsWithoutRef<'button'> & {
-    /** `ghost` is a bare control inside the field. `default` is a small button. */
-    variant?: 'default' | 'ghost';
+    variant?: Extract<Variant, 'primary' | 'ghost'>;
   };
 
 export type InputGroupInputProps = ComponentPropsWithoutRef<'input'>;

@@ -12,7 +12,10 @@ const CLASS_NAME = 'kicl--components--bubble';
  * https://ui.shadcn.com/docs/components/base/bubble
  */
 const Bubble = React.forwardRef<HTMLElement, BubbleProps>(
-  ({ children, className, is = 'div', variant = 'default', ...rest }, ref) => {
+  (
+    { children, className, is = 'div', level, variant = 'primary', ...rest },
+    ref
+  ) => {
     const Component = is as BubbleIs;
 
     return (
@@ -22,10 +25,10 @@ const Bubble = React.forwardRef<HTMLElement, BubbleProps>(
           className={classNames(
             CLASS_NAME,
             `${CLASS_NAME}--variant--${variant}`,
+            level && `${CLASS_NAME}--level--${level}`,
             'kicl-position-relative',
             className
           )}
-          data-slot='bubble'
         >
           {children}
         </Component>

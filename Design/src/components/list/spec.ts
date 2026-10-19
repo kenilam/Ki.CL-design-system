@@ -1,4 +1,7 @@
 import type { LayoutProps } from 'design/components';
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
 
-export type Props = LayoutProps & PolymorphicIsProps<'ol' | 'ul', object, 'ul'>;
+export const LIST_IS = ['ul', 'ol'] as const;
+
+export type Props = LayoutProps &
+  PolymorphicIsProps<(typeof LIST_IS)[number], object, 'ul'>;

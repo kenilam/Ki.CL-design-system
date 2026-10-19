@@ -30,6 +30,7 @@ import './motion.scss';
 import './overflow.scss';
 import './scrim.scss';
 import './scroll-reveal.scss';
+import './shadow.scss';
 import './pointer-events.scss';
 import './position.scss';
 import './print.scss';

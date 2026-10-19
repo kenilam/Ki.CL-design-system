@@ -38,7 +38,7 @@ const Header: React.FunctionComponent = () => {
             setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))
           }
           size='small'
-          variant='ghost'
+          variant='secondary'
         >
           <Ri.RiArrowLeftSLine aria-hidden />
         </Button>
@@ -60,7 +60,7 @@ const Header: React.FunctionComponent = () => {
             setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))
           }
           size='small'
-          variant='ghost'
+          variant='secondary'
         >
           <Ri.RiArrowRightSLine aria-hidden />
         </Button>

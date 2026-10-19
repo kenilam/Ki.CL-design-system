@@ -1,25 +1,36 @@
 import React from 'react';
 
-import { Badge, Layout } from 'design/components';
+import { Badge, Card, CardContent, Layout } from 'design/components';
 
-import type { Props } from 'design/components/layout/docs/controls';
+import type { WrapProps } from 'design/components/layout/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Layout display='flex' gap='narrow' wrap {...props}>
-    <div>
-      <Badge>Wraps</Badge>
-      <Badge>onto</Badge>
-      <Badge>the</Badge>
-      <Badge>next</Badge>
-      <Badge>line</Badge>
-      <Badge>when</Badge>
-      <Badge>it</Badge>
-      <Badge>runs</Badge>
-      <Badge>out</Badge>
-      <Badge>of</Badge>
-      <Badge>room</Badge>
-    </div>
-  </Layout>
+const TAGS = [
+  'React',
+  'TypeScript',
+  'Module Federation',
+  'GraphQL',
+  'Apollo',
+  'SCSS',
+  'Node',
+  'Express',
+  'Rust',
+  'Protobuf',
+  'WebSocket',
+  'Three.js',
+  'Vite',
+  'Docker',
+];
+
+const Preview: React.FC<WrapProps> = (props) => (
+  <Card>
+    <Layout display='flex' gap='narrow' wrap {...props}>
+      <CardContent>
+        {TAGS.map((tag) => (
+          <Badge key={tag}>{tag}</Badge>
+        ))}
+      </CardContent>
+    </Layout>
+  </Card>
 );
 
 export { Preview };

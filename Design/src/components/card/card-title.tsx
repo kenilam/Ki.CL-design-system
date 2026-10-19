@@ -18,7 +18,6 @@ const CardTitle = React.forwardRef<HTMLElement, CardTitleProps>(
           'kicl-line-height-narrow',
           className
         )}
-        data-slot='card-title'
         ref={ref as never}
       >
         {children}

@@ -55,7 +55,6 @@
    * through the colour variable, so neither needs a rule here.
    */
   &--variant--secondary {
-    backdrop-filter: blur(var(--kicl-size-2x));
     background-color: color-mix(
       in oklab,
       var(--kicl--components--badge--background-color) 15%,
@@ -65,12 +64,10 @@
   }
 
   // No fill to read a text colour from, so the text takes the page's.
-  &--variant--outline {
-    --kicl--components--badge--backdrop-filter: blur(var(--kicl-size-2x));
+  &--variant--ghost {
     --kicl--components--badge--background-color: transparent;
     --kicl--components--badge--border-color: var(--kicl-color-grey-dark);
 
-    backdrop-filter: var(--kicl--components--badge--backdrop-filter);
     color: var(--kicl-body-color);
   }
 
@@ -80,11 +77,11 @@
 
     // The base above paints dark-theme chips white, and an outline is defined
     // by *not* being painted - so it has to hand the background back.
-    // Nesting puts it at `.kicl--theme--dark .…--variant--outline`, which
+    // Nesting puts it at `.kicl--theme--dark .…--variant--ghost`, which
     // outranks the unthemed variant rule that made it transparent in the first
     // place; without this an outline badge is an opaque white block, and its
     // `--kicl-body-color` text is white on white.
-    &--variant--outline {
+    &--variant--ghost {
       --kicl--components--badge--background-color: transparent;
       --kicl--components--badge--border-color: var(--kicl-color-grey);
     }
@@ -96,7 +93,7 @@
     --kicl--components--badge--background-color: var(--kicl-color-grey-darker);
     --kicl--components--badge--border-color: transparent;
 
-    &--variant--outline {
+    &--variant--ghost {
       --kicl--components--badge--background-color: transparent;
       --kicl--components--badge--border-color: var(--kicl-color-grey-dark);
     }
@@ -114,7 +111,7 @@
     --kicl--components--badge--background-color: var(--kicl-color-#{$level});
   }
 
-  .kicl--components--badge--variant--outline.kicl--components--badge--level--#{$level} {
+  .kicl--components--badge--variant--ghost.kicl--components--badge--level--#{$level} {
     --kicl--components--badge--background-color: transparent;
     --kicl--components--badge--border-color: var(--kicl-color-#{$level});
   }

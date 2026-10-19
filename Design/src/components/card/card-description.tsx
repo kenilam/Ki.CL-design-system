@@ -18,7 +18,6 @@ const CardDescription = React.forwardRef<HTMLElement, CardDescriptionProps>(
           'kicl-color-grey-dark',
           className
         )}
-        data-slot='card-description'
         ref={ref as never}
       >
         {children}

@@ -2,7 +2,9 @@ import type { PropsWithChildren } from 'react';
 
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
 
-export type HeadingIs = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+
+export type HeadingIs = (typeof HEADING_LEVELS)[number];
 
 type OwnProps = PropsWithChildren<{
   dense?: boolean;

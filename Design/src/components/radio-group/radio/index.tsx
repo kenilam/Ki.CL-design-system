@@ -41,7 +41,6 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           <input
             ref={ref}
             type='radio'
-            data-slot='radio-group-item'
             className={classNames(
               `${CLASS_NAME}__control`,
               'kicl-border-radius-full'

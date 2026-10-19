@@ -18,7 +18,6 @@ const InputGroupText = React.forwardRef<HTMLSpanElement, InputGroupTextProps>(
   ({ className, ...rest }, ref) => (
     <span
       ref={ref}
-      data-slot='input-group-text'
       className={classNames(
         CLASS_NAME,
         'kicl-font-size-small',

@@ -11,6 +11,7 @@ export type {
   BubbleGroupIs,
   BubbleGroupProps,
   BubbleIs,
+  BubbleLevel,
   BubbleProps,
   BubbleReactionsIs,
   BubbleReactionsProps,

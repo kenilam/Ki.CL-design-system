@@ -64,13 +64,6 @@
       var(--kicl--components--card--tint) 10%,
       color-mix(in oklab, var(--kicl-surface-color) 65%, transparent)
     );
-
-    backdrop-filter: blur(var(--kicl-size-2x));
-
-    // A blur can't be printed.
-    @media print {
-      backdrop-filter: none;
-    }
   }
 
   /*
@@ -97,17 +90,19 @@
   grid-auto-rows: min-content;
   padding-block-end: var(--kicl-gutter-narrow);
 
-  &:has([data-slot='card-action']) {
+  &:has(.kicl--components--card__action) {
     align-items: start;
     grid-template-columns: 1fr auto;
   }
 
   // With a title and nothing under it, the action centres on the title's line.
-  &:has([data-slot='card-action']):not(:has([data-slot='card-description'])) {
+  &:has(.kicl--components--card__action):not(
+    :has(.kicl--components--card__description)
+  ) {
     align-items: center;
   }
 
-  &:has([data-slot='card-description']) {
+  &:has(.kicl--components--card__description) {
     grid-template-rows: auto auto;
   }
 }

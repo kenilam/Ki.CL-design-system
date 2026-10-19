@@ -16,17 +16,14 @@ const Preview: React.FC<Props> = (props) => {
         <Textarea
           aria-describedby={countId}
           aria-label='Bio'
+          className='kicl-inline-size-columns-4'
           maxLength={LIMIT}
           onChange={(event) => setBio(event.target.value)}
           placeholder={`Up to ${LIMIT} characters`}
           value={bio}
           {...props}
         />
-        <Text
-          className='kicl-font-size-small'
-          id={countId}
-          variant='secondary'
-        >
+        <Text className='kicl-font-size-small' id={countId} variant='secondary'>
           {bio.length} / {LIMIT}
         </Text>
       </div>

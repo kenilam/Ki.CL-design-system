@@ -16,7 +16,6 @@ const CardHeader = React.forwardRef<HTMLElement, CardHeaderProps>(
         <Component
           {...(rest as React.HTMLAttributes<HTMLElement>)}
           className={classNames(CLASS_NAME, className)}
-          data-slot='card-header'
           ref={ref as never}
         >
           {children}

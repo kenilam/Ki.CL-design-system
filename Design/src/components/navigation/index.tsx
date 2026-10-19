@@ -48,36 +48,41 @@ const Navigation = React.forwardRef<
       property: 'slide-from-top',
     };
 
+    const layout = {
+      alignContent,
+      alignItems,
+      autoFlow,
+      frames,
+      fullScreen,
+      gap,
+      justifyContent,
+      justifyItems,
+      wrap,
+    };
+
+    const items = React.Children.toArray(children).map((child) => {
+      let key = String(child);
+
+      if (React.isValidElement(child)) {
+        key = String(child.key);
+      }
+
+      return (
+        <Animation {...animation} key={key}>
+          <ListItem className={`${CLASS_NAME}--list-item`}>{child}</ListItem>
+        </Animation>
+      );
+    });
+
     return (
       <nav {...rest} className={classNames(CLASS_NAME, className)} ref={ref}>
-        <List
-          alignContent={alignContent}
-          alignItems={alignItems}
-          autoFlow={autoFlow}
-          frames={frames}
-          fullScreen={fullScreen}
-          gap={gap}
-          is={is}
-          justifyContent={justifyContent}
-          justifyItems={justifyItems}
-          wrap={wrap}
-        >
-          {React.Children.toArray(children).map((child) => {
-            let key = String(child);
-
-            if (React.isValidElement(child)) {
-              key = String(child.key);
-            }
-
-            return (
-              <Animation {...animation} key={key}>
-                <ListItem className={`${CLASS_NAME}--list-item`}>
-                  {child}
-                </ListItem>
-              </Animation>
-            );
-          })}
-        </List>
+        {is === 'ol' ? (
+          <List {...layout} is='ol'>
+            {items}
+          </List>
+        ) : (
+          <List {...layout}>{items}</List>
+        )}
       </nav>
     );
   }

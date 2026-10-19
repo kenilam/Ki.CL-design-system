@@ -26,7 +26,6 @@ const BubbleReactions = React.forwardRef<HTMLElement, BubbleReactionsProps>(
             'kicl-z-index-raised',
             className
           )}
-          data-slot='bubble-reactions'
         >
           {children}
         </Component>

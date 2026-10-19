@@ -1,17 +1,26 @@
 import React from 'react';
 
 // Partials
+import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
+const description = (
+  <>
+    For picking a start and an end date, like a trip. With{' '}
+    <Text is='code'>{"mode='range'"}</Text> the first click picks the start and
+    the second the end.
+  </>
+);
+
 const name = 'A range';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
-  <Origin code={source} name={name}>
+  <Origin code={source} description={description} name={name}>
     <Preview />
   </Origin>
 );

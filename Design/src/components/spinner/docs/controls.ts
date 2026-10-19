@@ -1,34 +1,18 @@
 import type { Duration, Property } from 'design/components/animation/spec';
 import type { SpinnerProps } from 'design/components';
 import type { ControlsSpec } from 'design/docs/mdx/preview';
+import { DURATIONS, PROPERTIES } from 'design/components/animation/spec';
+import { BUTTON_SIZES } from 'design/components/button/spec';
 
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
-  size: ['small', 'large'],
+  size: BUTTON_SIZES,
   property: {
-    options: [
-      'blur',
-      'fade',
-      'slide-from-bottom',
-      'slide-from-left',
-      'slide-from-right',
-      'slide-from-top',
-      'zoom-in',
-      'zoom-out',
-    ],
+    options: PROPERTIES,
     default: 'zoom-out',
   },
   duration: {
-    options: [
-      'instant',
-      'fastest',
-      'faster',
-      'fast',
-      'slow',
-      'slower',
-      'slowest',
-      'extreme',
-    ],
+    options: DURATIONS,
     default: 'fast',
   },
 } as const satisfies ControlsSpec;

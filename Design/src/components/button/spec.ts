@@ -5,10 +5,11 @@ import type {
 } from 'react';
 
 import { LayoutProps } from 'design/components';
+import type { Level, Variant } from 'design/components/spec';
 
-type Size = 'large' | 'small';
-type Level = 'confirm' | 'error' | 'info' | 'warning';
-type Variant = 'primary' | 'secondary' | 'tertiary' | 'ghost';
+export const BUTTON_SIZES = ['small', 'large'] as const;
+
+type Size = (typeof BUTTON_SIZES)[number];
 
 /** An icon, a spinner or the like on either side of the label. */
 export type ContentProps = PropsWithChildren<{

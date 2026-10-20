@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Routes
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'design/router';
 
 // Components
 import { Layout } from 'design/components/layout';

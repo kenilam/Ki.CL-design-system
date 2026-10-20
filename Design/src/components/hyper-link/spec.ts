@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
 // Routes
-import { NavLinkProps } from 'react-router-dom';
+import { NavLinkProps } from 'design/router';
 
 // Components
 import type {

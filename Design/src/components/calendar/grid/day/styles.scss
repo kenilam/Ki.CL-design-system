@@ -10,7 +10,7 @@
   isolation: isolate;
 
   // The ring sits inside the cell: the days touch, so outside it would cross a neighbour.
-  outline-offset: calc(var(--kicl-size-2px) * -1);
+  outline-offset: calc(var(--kicl-size-1px) * -1);
 
   &::before {
     background: var(--kicl--components--calendar--day--fill);

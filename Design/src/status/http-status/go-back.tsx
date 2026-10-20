@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Router
-import { useLocation, useNavigate } from 'react-router-dom';
+// Routes
+import { useLocation, useNavigate } from 'design/router';
 
 // Components
 import { HyperLink, HyperLinkProps } from 'design/components';
@@ -17,10 +17,8 @@ const GoBack: React.FunctionComponent = () => {
   const url = document.referrer ? new URL(document.referrer) : undefined;
   const isSameOrigin = url?.origin === window.location.origin;
 
-  // After a reload the referrer is this page, and linking to it goes nowhere.
   const referrer = isSameOrigin && url?.pathname === pathname ? undefined : url;
 
-  // A router link cannot reach another origin, so step back in history instead.
   const onClick: HyperLinkProps['onClick'] = (event) => {
     if (!referrer || isSameOrigin) {
       return;

@@ -1,0 +1,56 @@
+import { Variables } from 'design/docs/tokens/variables';
+
+Each breakpoint is the top of its range: `narrow` is up to 352px, `mobile` up to 480px, and so on. `useResponsive` reads them in script.
+
+## Variables
+
+### breakpoint
+
+MDN: [`@media`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media).
+
+<Variables
+  names={[
+    'breakpoint-narrow',
+    'breakpoint-mobile',
+    'breakpoint-tablet',
+    'breakpoint-desktop',
+    'breakpoint-wide',
+    'breakpoint-wider',
+  ]}
+/>
+
+### viewport
+
+MDN: [`@container`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container).
+
+Which range the window is in, as `true` flags a style query can read. `--kicl-viewport-{name}` is set inside that range, and `--kicl-viewport-up-to-{name}` at that width and narrower.
+
+<Variables
+  names={[
+    'viewport-narrow',
+    'viewport-mobile',
+    'viewport-tablet',
+    'viewport-desktop',
+    'viewport-wide',
+    'viewport-wider',
+    'viewport-up-to-narrow',
+    'viewport-up-to-mobile',
+    'viewport-up-to-tablet',
+    'viewport-up-to-desktop',
+    'viewport-up-to-wide',
+    'viewport-up-to-wider',
+  ]}
+/>
+
+A media query can't read a custom property, so a stylesheet writes `@container style(--kicl-viewport-up-to-desktop: true)` instead.
+
+## Classes
+
+The pattern is `kicl-hidden-up-to-{name}`.
+
+```tsx
+// A label that phones don't show, still read by screen readers
+<span className='kicl-hidden-up-to-mobile'>Settings</span>
+```
+
+`kicl-hidden-up-to-{name}` visually hides an element at that width and narrower, and leaves it for screen readers. `{name}` is `narrow`, `mobile`, `tablet`, `desktop`, `wide` or `wider`.

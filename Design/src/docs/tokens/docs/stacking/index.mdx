@@ -1,0 +1,39 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Stack } from 'design/docs/tokens/previews';
+
+`--kicl-z-index-{role}` picks a layer by what it's for, not by a number higher than the last one.
+
+## Variables
+
+### z-index
+
+MDN: [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/z-index).
+
+<Variables
+  names={[
+    'z-index-behind',
+    'z-index-base',
+    'z-index-raised',
+    'z-index-floating',
+    'z-index-popover',
+    'z-index-overlay',
+    'z-index-header',
+    'z-index-top',
+  ]}
+  property='z-index'
+  preview={Stack}
+/>
+
+## Classes
+
+The pattern is `kicl-z-index-{role}`.
+
+```tsx
+// Above the content around it, as a sticky toolbar
+<header className='kicl-position-sticky kicl-z-index-floating' />
+
+// Behind its siblings, as a decorative layer
+<div className='kicl-position-absolute kicl-z-index-behind' />
+```
+
+`{role}` is `behind`, `base`, `raised`, `floating`, `popover`, `overlay`, `header` or `top`, lowest first.

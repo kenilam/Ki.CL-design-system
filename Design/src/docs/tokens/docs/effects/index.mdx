@@ -1,0 +1,61 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Backdrop, Filter } from 'design/docs/tokens/previews';
+
+Shadows, frosted panes and scrims for things that sit over the page.
+
+## Variables
+
+### backdrop-filter
+
+MDN: [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter).
+
+The frosted pane behind the global header and anything else over a scrolling page.
+
+<Variables
+  names={['backdrop-blur', 'backdrop-filter']}
+  property='backdrop-filter'
+  preview={Backdrop}
+/>
+
+### backdrop
+
+MDN: [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter).
+
+<Variables names={['backdrop-tint', 'backdrop-tint-veil']} />
+
+### scrim
+
+The scrim over a picture, so text on it stays readable.
+
+<Variables
+  names={['scrim-background-color', 'scrim-opacity', 'scrim-top', 'scrim-foot']}
+/>
+
+### filter
+
+MDN: [`filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter).
+
+How a disabled link or button dims.
+
+<Variables names={['button-filter']} property='filter' preview={Filter} />
+
+## Classes
+
+The pattern is `kicl-box-shadow-{side}`.
+
+```tsx
+// The soft shadow under popovers and menus
+<div className='kicl-box-shadow-overlay' />
+
+// A frosted pane over a scrolling page
+<header className='kicl-backdrop' />
+
+// Darkens a picture so text on it reads
+<figure className='kicl-position-relative kicl-scrim' />
+```
+
+`{side}` is `center`, `top`, `bottom`, `left`, `right`, `overlay` or `none`. `overlay` is the soft shadow under popovers and menus.
+
+- `kicl-backdrop` is the frosted pane: what's behind is blurred and tinted 10% with the page colour, so text on it stays readable. A pane over one element, like a spinner's, sets `--kicl-backdrop-tint` to `--kicl-backdrop-tint-veil` to dim it more.
+- `kicl-backdrop-blur` blurs what's behind, less and without the tint.
+- `kicl-scrim` darkens a picture from `--kicl-scrim-top` at the top to `--kicl-scrim-foot` at the foot. Put it on a positioned element.

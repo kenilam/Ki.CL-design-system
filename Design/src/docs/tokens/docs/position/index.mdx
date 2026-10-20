@@ -1,0 +1,42 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Position } from 'design/docs/tokens/previews';
+
+`position` takes the CSS keyword. Place the element with the inset classes, see Sides.
+
+## Variables
+
+### position
+
+MDN: [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position).
+
+<Variables
+  names={[
+    'position-absolute',
+    'position-fixed',
+    'position-relative',
+    'position-static',
+    'position-sticky',
+    'position-inherit',
+    'position-initial',
+    'position-revert',
+    'position-revert-layer',
+    'position-unset',
+  ]}
+  property='position'
+  preview={Position}
+/>
+
+## Classes
+
+The pattern is `kicl-position-{keyword}`, where `{keyword}` is any value above.
+
+```tsx
+// The box its absolute children are placed in
+<figure className='kicl-position-relative' />
+
+// Pinned to the top-right corner of that box on a left-to-right page
+<span className='kicl-position-absolute kicl-inset-block-start-0 kicl-inset-inline-end-0' />
+
+// Sticks under the global header as the page scrolls
+<nav className='kicl-position-sticky kicl-inset-block-start-header' />
+```

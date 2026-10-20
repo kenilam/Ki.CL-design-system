@@ -1,0 +1,55 @@
+import { Specimen } from 'design/docs/tokens/previews';
+import { Variables } from 'design/docs/tokens/variables';
+
+Text stays readable at every size and in every state.
+
+## Secondary text
+
+Secondary text, like `Text variant='secondary'`, a faded heading or a hint, keeps 80% of the body colour. That gives about 4.7:1 on the light page and more on the dark one, above the 4.5:1 WCAG AA asks of small text. A wash, like a hover, keeps 14%, since it sits behind text rather than being read.
+
+### color-strength
+
+MDN: [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix).
+
+<Variables names={['color-strength-secondary', 'color-strength-wash']} />
+
+## Text size
+
+Body text is 16px, and nothing goes below 12px: `smallest` is 12px, `smaller` 13px and `small` 14px. Body line height is 1.5. On iOS, fields never drop below 16px, since Safari zooms the page into any smaller field when it takes focus.
+
+### font-size
+
+MDN: [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-size).
+
+<Variables
+  names={['font-size-smallest', 'font-size']}
+  preview={Specimen}
+  property='font-size'
+/>
+
+### line-height
+
+MDN: [`line-height`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-height).
+
+<Variables names={['line-height']} preview={Specimen} property='line-height' />
+
+## Disabled
+
+A disabled control fades to 40% and shows a `not-allowed` cursor, and its label gets the same cursor. WCAG doesn't ask disabled controls to meet contrast, but the button's label still reads against its muted fill, so it isn't faded as well. A disabled fieldset doesn't fade itself, only its controls, so its legend stays readable.
+
+### opacity
+
+MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/opacity).
+
+<Variables names={['disabled-opacity']} property='opacity' />
+
+## Highlights and placeholders
+
+`mark` is filled with the warning colour, and its text picks the colour that contrasts with it (`contrast-color()`). A placeholder is the body colour at 50%, which is lighter than 4.5:1 on purpose: it's a hint, so every field still needs a visible label.
+
+## References
+
+- [WCAG 2.2, 1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+- [WCAG 2.2, 1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
+- [WCAG 2.2, 1.4.4 Resize Text](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html)
+- [MDN, `contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color)

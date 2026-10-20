@@ -6,12 +6,12 @@ import { Route, Routes } from 'design/router';
 // Status
 import { Status404 } from 'design/status';
 
-// View
-import { Category } from './category';
+// Views
+import { Components } from './components';
+import { Home } from './home';
 
 // Partials
 import { Provider } from './context';
-import { Home } from './home';
 import { Shell } from './shell';
 
 const Docs: React.FunctionComponent = () => {
@@ -20,7 +20,7 @@ const Docs: React.FunctionComponent = () => {
       <Routes>
         <Route element={<Shell />}>
           <Route index element={<Home />} />
-          {Category}
+          {Components}
         </Route>
         <Route path='*' element={<Status404 />} />
       </Routes>

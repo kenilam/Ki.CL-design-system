@@ -24,7 +24,8 @@ import { useCopy } from 'design/locales/use-copy';
 
 import { useDocsContext } from 'design/docs/context';
 
-import { Sidebar } from 'design/docs/sidebar';
+import { Sidebar } from 'design/docs/components/sidebar';
+import { PATH } from 'design/docs/components/constants';
 
 import { useComponentContext } from './use-component-context';
 
@@ -46,7 +47,7 @@ const Header: React.FunctionComponent = () => {
     >
       <Ri.RiMenuLine aria-hidden />
     </Button>
-  )
+  );
 
   return (
     <Layout alignItems='center' autoFlow='column' justifyContent='start'>
@@ -72,9 +73,7 @@ const Header: React.FunctionComponent = () => {
           </>
         ) : (
           <Popover>
-            <PopoverTrigger asChild>
-              {Trigger}
-            </PopoverTrigger>
+            <PopoverTrigger asChild>{Trigger}</PopoverTrigger>
             <PopoverContent
               offset='wide'
               placement='inline-start-start'
@@ -100,7 +99,7 @@ const Header: React.FunctionComponent = () => {
             justifyContent='start'
           >
             <ListItem>
-              <HyperLink to={parsePath()}>{t('docs_overview')}</HyperLink>
+              <HyperLink to={parsePath(PATH)}>{t('docs_overview')}</HyperLink>
             </ListItem>
             <ListItem alignItems='center' autoFlow='column' gap='narrower'>
               <Ri.RiArrowRightSLine aria-hidden />

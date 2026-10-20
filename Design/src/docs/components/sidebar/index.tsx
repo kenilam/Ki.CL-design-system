@@ -23,7 +23,10 @@ import { useCopy } from 'design/locales/use-copy';
 import { useDocsContext } from 'design/docs/context';
 
 // Pages
-import { PAGES, type Category } from 'design/docs/pages';
+import { PAGES, type Category } from 'design/docs/components/pages';
+
+// Constants
+import { PATH } from 'design/docs/components/constants';
 
 /** Every page, grouped as on the home page. Only the open page's group starts open. */
 const Sidebar: React.FunctionComponent<NavigationProps> = ({
@@ -46,9 +49,7 @@ const Sidebar: React.FunctionComponent<NavigationProps> = ({
     >
       <List>
         <ListItem>
-          <HyperLink
-            to={parsePath()}
-          >{t('docs_overview')}</HyperLink>
+          <HyperLink to={parsePath(PATH)}>{t('docs_overview')}</HyperLink>
         </ListItem>
         {(Object.keys(PAGES) as Category[]).map((category) => {
           const group = PAGES[category];
@@ -60,16 +61,14 @@ const Sidebar: React.FunctionComponent<NavigationProps> = ({
 
           return (
             <ListItem key={category} gap='narrower'>
-              <Heading is='h5'>
-                {t(`category_${category}`)}
-              </Heading>
+              <Heading is='h5'>{t(`category_${category}`)}</Heading>
               <List gap='narrower'>
                 {pages.map(([component, { context }]) => (
                   <ListItem key={component}>
                     <HyperLink
                       className='kicl-inline-size-full'
                       lookLikeButton
-                      to={parsePath(`${category}/${component}`)}
+                      to={parsePath(`${PATH}/${category}/${component}`)}
                       variant={
                         category === params.category &&
                         component === params.component

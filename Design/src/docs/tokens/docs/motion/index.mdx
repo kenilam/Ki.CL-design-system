@@ -1,0 +1,137 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Duration, Easing, Instant } from 'design/docs/tokens/previews';
+
+`--kicl-transition-duration` is 600ms, and the named steps are multiples of it. Easing curves are named by family and direction.
+
+## Variables
+
+### transition-duration
+
+MDN: [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-duration).
+
+<Variables
+  fill={12}
+  names={[
+    'transition-duration-5m',
+    'transition-duration-1m',
+    'transition-duration-30s',
+    'transition-duration-15s',
+    'transition-duration-6s',
+    'transition-duration-extreme',
+    'transition-duration-slowest',
+    'transition-duration-slower',
+    'transition-duration-slow',
+    'transition-duration',
+    'transition-duration-fast',
+    'transition-duration-faster',
+    'transition-duration-fastest',
+  ]}
+  property='transition-duration'
+  preview={Duration}
+/>
+
+<Variables
+  fill={12}
+  names={['transition-duration-instant']}
+  preview={Instant}
+  property='transition-duration'
+/>
+
+### transition-timing-function
+
+MDN: [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-timing-function).
+
+<Variables
+  fill={12}
+  names={[
+    'ease-in',
+    'ease-out',
+    'ease-sharp-in-out',
+    'ease-back-in',
+    'ease-back-out',
+    'ease-back-in-out',
+    'ease-circ-in',
+    'ease-circ-out',
+    'ease-circ-in-out',
+    'ease-cubic-in',
+    'ease-cubic-out',
+    'ease-cubic-in-out',
+    'ease-expo-in',
+    'ease-expo-out',
+    'ease-expo-in-out',
+    'ease-quad-in',
+    'ease-quad-out',
+    'ease-quad-in-out',
+    'ease-quart-in',
+    'ease-quart-out',
+    'ease-quart-in-out',
+    'ease-quint-in',
+    'ease-quint-out',
+    'ease-quint-in-out',
+    'ease-sine-in',
+    'ease-sine-out',
+    'ease-sine-in-out',
+  ]}
+  property='transition-timing-function'
+  preview={Easing}
+/>
+
+### body transition
+
+MDN: [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-duration), [`transition-property`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-property) and [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-timing-function).
+
+The body's own transition, when the theme changes.
+
+<Variables
+  fill={12}
+  names={['body-transition-duration']}
+  property='transition-duration'
+  preview={Duration}
+/>
+
+<Variables
+  fill={12}
+  names={['body-transition-property']}
+  property='transition-property'
+/>
+
+<Variables
+  fill={12}
+  names={['body-transition-timing-function']}
+  property='transition-timing-function'
+  preview={Easing}
+/>
+
+### scroll-reveal
+
+MDN: [`animation-timeline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline).
+
+The scroll reveal and the site's moving gradient.
+
+<Variables
+  fill={12}
+  names={['scroll-reveal-distance', 'scroll-reveal-from', 'gradient-shift']}
+/>
+
+## Classes
+
+The pattern is `kicl-transition-duration-{step}`.
+
+```tsx
+// Transitions over 480ms
+<div className='kicl-transition-duration-fast' />
+
+// Fades in as it scrolls into view, from below
+<li className='kicl-scroll-reveal' />
+
+// A spinning icon that stops for anyone who asks for less motion
+<svg className='kicl-animation-none-reduced-motion' />
+```
+
+`{step}` is `fastest`, `faster`, `fast`, `slow`, `slower`, `slowest` or `extreme`. Leave it out for the default. The longer durations, `6s` to `5m`, are variables only.
+
+Easing has no classes. Read it in CSS, as in `transition-timing-function: var(--kicl-ease-quad-out)`.
+
+- `kicl-scroll-reveal` fades and slides an element in from below as it scrolls into view. `kicl-scroll-reveal-start` and `kicl-scroll-reveal-end` bring it in from the inline start or end.
+- `kicl-animation-none-reduced-motion` stops an element's animation when the person asks for less motion.
+- `kicl-visibility-hidden-reduced-motion` hides something that only makes sense with motion.

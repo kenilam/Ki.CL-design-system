@@ -1,0 +1,36 @@
+import { Variables } from 'design/docs/tokens/variables';
+
+Everything you can reach with the keyboard shows where focus is, and nothing it lands on is hidden under the header.
+
+## Focus ring
+
+Links, buttons, fields, `summary` and `video` draw an outline from three variables. The style is `none` until the element takes keyboard focus, when `:focus-visible` switches it to `dashed`. A mouse click doesn't show a ring, and Tab always does. The colour follows the theme, so the ring keeps its contrast on both.
+
+An element that only script focuses, with `tabindex='-1'`, has no ring. That's how `#main` takes focus after a route change, so a screen reader starts at the new page without a stray outline.
+
+### outline
+
+MDN: [`outline-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-color), [`outline-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-style) and [`outline-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-width).
+
+<Variables names={['outline-color']} />
+
+<Variables names={['outline-style']} property='outline-style' />
+
+<Variables names={['outline-width']} property='outline-width' />
+
+## Out from under the header
+
+The global header is fixed, so the page keeps focus and anchors clear of it:
+
+- `html` sets `scroll-padding-block-start` to the header's height, so a focused field or a jumped-to heading stops below the header, not behind it.
+- `:target` adds `scroll-margin-block` of `--kicl-gutter-wide`, so a jump to an anchor never lands flush against that edge.
+
+Neither needs a class. Same-page links scroll smoothly, unless the person asks for less motion.
+
+## References
+
+- [WCAG 2.2, 2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html)
+- [WCAG 2.2, 2.4.11 Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)
+- [MDN, `:focus-visible`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible)
+- [MDN, `scroll-padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-padding)
+- [MDN, `scroll-margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-margin)

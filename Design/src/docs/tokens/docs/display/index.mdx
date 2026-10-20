@@ -1,0 +1,67 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Display } from 'design/docs/tokens/previews';
+
+`display` takes the CSS keyword. Most layout should come from the Layout component and its props. These are for an element Layout doesn't wrap.
+
+## Variables
+
+### display
+
+MDN: [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display).
+
+<Variables
+  names={[
+    'display-block',
+    'display-contents',
+    'display-flex',
+    'display-flow-root',
+    'display-grid',
+    'display-inline',
+    'display-inline-block',
+    'display-inline-flex',
+    'display-inline-grid',
+    'display-inline-table',
+    'display-list-item',
+    'display-none',
+    'display-ruby',
+    'display-ruby-base',
+    'display-ruby-base-container',
+    'display-ruby-text',
+    'display-ruby-text-container',
+    'display-table',
+    'display-table-caption',
+    'display-table-cell',
+    'display-table-column',
+    'display-table-column-group',
+    'display-table-footer-group',
+    'display-table-header-group',
+    'display-table-row',
+    'display-table-row-group',
+    'display-inherit',
+    'display-initial',
+    'display-revert',
+    'display-revert-layer',
+    'display-unset',
+  ]}
+  property='display'
+  preview={Display}
+/>
+
+## Classes
+
+The pattern is `kicl-display-{keyword}`, where `{keyword}` is any value above.
+
+```tsx
+// Takes up no space and isn't read out
+<div className='kicl-display-none' />
+
+// Inline, but takes a width and height
+<span className='kicl-display-inline-block' />
+
+// Its children act as if they were its parent's
+<div className='kicl-display-contents' />
+```
+
+Single keywords only: the two-value syntax, like `block flow`, has no class.
+
+`kicl-layout` is the class the Layout component puts on its child. Use the component.

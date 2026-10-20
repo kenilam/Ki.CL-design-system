@@ -9,6 +9,7 @@ import { Status404 } from 'design/status';
 // Views
 import { Components } from './components';
 import { Home } from './home';
+import { Tokens } from './tokens';
 
 // Partials
 import { Provider } from './context';
@@ -21,6 +22,7 @@ const Docs: React.FunctionComponent = () => {
         <Route element={<Shell />}>
           <Route index element={<Home />} />
           {Components}
+          {Tokens}
         </Route>
         <Route path='*' element={<Status404 />} />
       </Routes>

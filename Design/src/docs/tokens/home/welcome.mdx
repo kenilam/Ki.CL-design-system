@@ -1,0 +1,36 @@
+Tokens are the values every component is built from: colour, spacing, size, type, motion and stacking. They come in two tiers. Primitives are raw values, like `--kicl-color-blue` or `--kicl-gutter`. Roles say what a value is for, like `--kicl-body-color` or `--kicl-surface-color`, and point at a primitive. Components read roles, so a theme changes every component by changing a handful of roles.
+
+The props that set how a component looks share one set of names, defined once in `design/components/spec`. Every component that takes one of these props takes the same values. If a component can't support a value, its type leaves it out, so TypeScript rejects it instead of the component ignoring it.
+
+## Naming
+
+Every variable and utility class is the CSS property it sets, then the variation: `--kicl-{property}-{variation}` for the value and `kicl-{property}-{variation}` for the class that applies it.
+
+```tsx
+// font-size: var(--kicl-font-size-large), which is 2rem
+<p className='kicl-font-size-large' />
+
+// font-size: var(--kicl-font-size), the default 16px
+<p className='kicl-font-size' />
+```
+
+`--kicl-font-size-large` is the value, and `kicl-font-size-large` sets `font-size` to it. With no variation, the class sets the default: `kicl-font-size` is `--kicl-font-size`, and `kicl-padding` is `--kicl-gutter`.
+
+The property is the full CSS name, logical where CSS has a logical form: `inline-size` rather than width, `padding-block-start` rather than padding-top. So a side always reads in the same order, `kicl-{property}-{axis}-{edge}-{step}`:
+
+```tsx
+// padding-inline-start: var(--kicl-gutter-wide), 2rem before the content
+<div className='kicl-padding-inline-start-wide' />
+```
+
+`{axis}` is `block` or `inline`, `{edge}` is `start` or `end`, and either can be left out to cover both. Sides has the full list.
+
+Spacing values come from the gutter scale, so the same step names show up everywhere a distance does: `none`, `narrowest`, `narrower`, `narrow`, the default, `wide`, `wider`, `widest` and `extreme`. Sizes use `xs` to `max`, widths use columns `1` to `12`, and keyword properties like `display` or `overflow` use the CSS keyword itself, as in `kicl-display-flex`.
+
+Names with a double dash belong to a component, like the class `kicl--components--button--variant--primary` or the variable `--kicl-layout--gap`. Set them through its props, not by hand.
+
+Utilities sit in the last cascade layer, so a class always wins over a component's own styles without `!important`.
+
+## Tokens
+
+<Explore />

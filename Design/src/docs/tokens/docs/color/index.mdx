@@ -1,0 +1,147 @@
+import { Palette } from './palette';
+import { Themes } from './themes';
+import { Variables } from 'design/docs/tokens/variables';
+import { Opacity } from 'design/docs/tokens/previews';
+
+## Neutrals
+
+Black, grey and white, each with tints and shades. Body text and backgrounds come from these.
+
+<Palette
+  names={[
+    'black-pure',
+    'black',
+    'black-light',
+    'grey-darkest',
+    'grey-darker',
+    'grey-dark',
+    'grey',
+    'grey-light',
+    'grey-lighter',
+    'white-darker',
+    'white-dark',
+    'white',
+    'white-light',
+    'white-lighter',
+    'white-pure',
+  ]}
+/>
+
+## Hues
+
+<Palette names={['blue', 'green', 'orange', 'red', 'yellow']} />
+
+## Levels
+
+The colours behind `level`, see Level.
+
+<Palette names={['confirm', 'error', 'info', 'warning']} />
+
+## Body and surface
+
+Four roles cover most of the page. `--kicl-body-color` is text and `--kicl-body-background-color` is the page behind it. `--kicl-surface-color` is anything raised off the page, like a card, a popover or a field, and `--kicl-surface-border-color` is its edge. A surface is a short step away from the background, lighter on both themes, so it always reads as raised.
+
+`kicl--theme--light` and `kicl--theme--dark` set these roles. Components don't know which theme they're in. They read the roles, so the same card below takes both themes without a prop.
+
+<Themes />
+
+## Variables
+
+### color
+
+MDN: [`<color>`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value).
+
+<Variables
+  names={[
+    'color-black-pure',
+    'color-black',
+    'color-black-light',
+    'color-grey-darkest',
+    'color-grey-darker',
+    'color-grey-dark',
+    'color-grey',
+    'color-grey-light',
+    'color-grey-lighter',
+    'color-white-darker',
+    'color-white-dark',
+    'color-white',
+    'color-white-light',
+    'color-white-lighter',
+    'color-white-pure',
+    'color-blue',
+    'color-green',
+    'color-orange',
+    'color-red',
+    'color-yellow',
+    'color-confirm',
+    'color-error',
+    'color-info',
+    'color-warning',
+  ]}
+/>
+
+### body and surface
+
+MDN: [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color), [`background-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-color) and [`border-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-color).
+
+The roles, which the theme classes change.
+
+<Variables
+  names={[
+    'body-color',
+    'body-background-color',
+    'surface-color',
+    'surface-border-color',
+  ]}
+/>
+
+### outline
+
+MDN: [`outline-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-color), [`outline-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-style) and [`outline-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-width).
+
+<Variables names={['outline-color']} />
+
+<Variables names={['outline-style']} property='outline-style' />
+
+<Variables names={['outline-width']} property='outline-width' />
+
+### opacity
+
+MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/opacity).
+
+<Variables names={['disabled-opacity']} property='opacity' preview={Opacity} />
+
+### color-strength
+
+MDN: [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix).
+
+How much of the body colour a wash, like a hover, and secondary text keep.
+
+<Variables names={['color-strength-wash', 'color-strength-secondary']} />
+
+## Classes
+
+The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-fill-{name}`, where `{name}` is any colour above.
+
+```tsx
+// Text in blue, and anything inside that reads the body colour
+<p className='kicl-color-blue' />
+
+// A light grey fill behind a block
+<div className='kicl-background-color-grey-light' />
+
+// An SVG icon in the error colour
+<svg className='kicl-fill-error' />
+
+// The page's own background, on a panel that must cover what's behind it
+<aside className='kicl-background-color-body' />
+```
+
+`kicl-color-{name}` sets `--kicl-body-color` as well as `color`, so an icon or a border inside picks up the colour too. `kicl-fill-{name}` is for SVG.
+
+The body colours have their own:
+
+- `kicl-color-body-color` and `kicl-fill-body-color` use the text colour.
+- `kicl-background-color-body` uses the page colour, and `kicl-background-color-body-color` fills with the text colour.
+
+`kicl-color-gradient-rotate-0deg`, `90deg`, `180deg` and `270deg` set `--kicl-color-gradient-rotate`, the angle of the site's gradient.

@@ -1,0 +1,199 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Placement } from 'design/docs/tokens/previews';
+
+Everything is written with logical properties, block and inline, start and end, never top or left. On a left-to-right page, `block-start` is the top, `block-end` the bottom, `inline-start` the left and `inline-end` the right. A right-to-left page flips without any change.
+
+Popover placements and Sheet sides take the same four names, `block-start`, `block-end`, `inline-start` and `inline-end`.
+
+## Classes
+
+A class that sets one side names the axis, then the edge, then the step: `kicl-{property}-{axis}-{edge}-{step}`.
+
+- `{axis}` is `block` or `inline`. Leave it out for both axes.
+- `{edge}` is `start` or `end`. Leave it out for both edges of the axis.
+- `{step}` is a gutter step, see Spacing. Leave it out for the default.
+
+So `kicl-padding` is all four sides, `kicl-padding-block` is top and bottom, and `kicl-padding-block-start` is the top alone. Padding, margin and inset all follow this order.
+
+```tsx
+// All four sides, 1rem
+<div className='kicl-padding' />
+
+// Top and bottom, 1rem
+<div className='kicl-padding-block' />
+
+// Top only, 0.5rem
+<div className='kicl-padding-block-start-narrow' />
+
+// Left and right on a left-to-right page, 2rem
+<div className='kicl-margin-inline-wide' />
+
+// Right only on a left-to-right page, left on a right-to-left one
+<div className='kicl-margin-inline-end-narrower' />
+```
+
+## Inset
+
+Inset places a positioned element, and needs a `kicl-position-*` class to do anything. It takes the gutter steps and also `0` and `auto`, as `kicl-inset-{axis}-{edge}-{step}`.
+
+```tsx
+// Pinned to the top-right corner on a left-to-right page
+<div className='kicl-position-absolute kicl-inset-block-start-0 kicl-inset-inline-end-0' />
+
+// 0.5rem in from every edge of its positioned parent
+<div className='kicl-position-absolute kicl-inset-narrow' />
+
+// Centred top to bottom, without a transform
+<div className='kicl-position-absolute kicl-inset-block-center' />
+```
+
+Some insets are named for what they line up with:
+
+- `kicl-inset-block-start-header` sits under the global header while it shows, and at the top while it hides.
+- `kicl-inset-inline-end-frame` lines up with the page's frame.
+- `kicl-inset-inline-screen` stretches a positioned element to the full screen width from inside a narrower parent.
+- `kicl-inset-block-center` and `kicl-inset-inline-center` centre a positioned box on one axis without a transform. Add a step, as in `kicl-inset-block-center-wide`, to keep it that far from both ends.
+
+## Variables
+
+### inset
+
+MDN: [`inset`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset).
+
+<Variables
+  names={[
+    'inset',
+    'inset-0',
+    'inset-auto',
+    'inset-none',
+    'inset-narrowest',
+    'inset-narrower',
+    'inset-narrow',
+    'inset-wide',
+    'inset-wider',
+    'inset-widest',
+    'inset-extreme',
+  ]}
+  property='inset'
+  preview={Placement}
+/>
+
+### inset-block
+
+MDN: [`inset-block`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block), [`inset-block-start`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block-start) and [`inset-block-end`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block-end).
+
+<Variables
+  names={[
+    'inset-block',
+    'inset-block-0',
+    'inset-block-auto',
+    'inset-block-none',
+    'inset-block-narrowest',
+    'inset-block-narrower',
+    'inset-block-narrow',
+    'inset-block-wide',
+    'inset-block-wider',
+    'inset-block-widest',
+    'inset-block-extreme',
+  ]}
+  property='inset-block'
+  preview={Placement}
+/>
+
+<Variables
+  names={[
+    'inset-block-start',
+    'inset-block-start-0',
+    'inset-block-start-auto',
+    'inset-block-start-none',
+    'inset-block-start-narrowest',
+    'inset-block-start-narrower',
+    'inset-block-start-narrow',
+    'inset-block-start-wide',
+    'inset-block-start-wider',
+    'inset-block-start-widest',
+    'inset-block-start-extreme',
+  ]}
+  property='inset-block-start'
+  preview={Placement}
+/>
+
+<Variables
+  names={[
+    'inset-block-end',
+    'inset-block-end-0',
+    'inset-block-end-auto',
+    'inset-block-end-none',
+    'inset-block-end-narrowest',
+    'inset-block-end-narrower',
+    'inset-block-end-narrow',
+    'inset-block-end-wide',
+    'inset-block-end-wider',
+    'inset-block-end-widest',
+    'inset-block-end-extreme',
+  ]}
+  property='inset-block-end'
+  preview={Placement}
+/>
+
+### inset-inline
+
+MDN: [`inset-inline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline), [`inset-inline-start`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-start) and [`inset-inline-end`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-end).
+
+<Variables
+  names={[
+    'inset-inline',
+    'inset-inline-0',
+    'inset-inline-auto',
+    'inset-inline-none',
+    'inset-inline-narrowest',
+    'inset-inline-narrower',
+    'inset-inline-narrow',
+    'inset-inline-wide',
+    'inset-inline-wider',
+    'inset-inline-widest',
+    'inset-inline-extreme',
+  ]}
+  property='inset-inline'
+  preview={Placement}
+/>
+
+<Variables
+  names={[
+    'inset-inline-start',
+    'inset-inline-start-0',
+    'inset-inline-start-auto',
+    'inset-inline-start-none',
+    'inset-inline-start-narrowest',
+    'inset-inline-start-narrower',
+    'inset-inline-start-narrow',
+    'inset-inline-start-wide',
+    'inset-inline-start-wider',
+    'inset-inline-start-widest',
+    'inset-inline-start-extreme',
+  ]}
+  property='inset-inline-start'
+  preview={Placement}
+/>
+
+<Variables
+  names={[
+    'inset-inline-end',
+    'inset-inline-end-0',
+    'inset-inline-end-auto',
+    'inset-inline-end-none',
+    'inset-inline-end-narrowest',
+    'inset-inline-end-narrower',
+    'inset-inline-end-narrow',
+    'inset-inline-end-wide',
+    'inset-inline-end-wider',
+    'inset-inline-end-widest',
+    'inset-inline-end-extreme',
+  ]}
+  property='inset-inline-end'
+  preview={Placement}
+/>
+
+## References
+
+- [MDN, Logical properties and values](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values)

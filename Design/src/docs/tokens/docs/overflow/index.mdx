@@ -1,0 +1,108 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Overflow } from 'design/docs/tokens/previews';
+
+How an element treats content that runs past its box, how scrolling carries on past it, and how much of it the browser can skip laying out.
+
+## Variables
+
+### overflow
+
+MDN: [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow), [`overflow-x`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-x) and [`overflow-y`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-y).
+
+<Variables
+  names={[
+    'overflow-auto',
+    'overflow-clip',
+    'overflow-hidden',
+    'overflow-scroll',
+    'overflow-visible',
+  ]}
+  property='overflow'
+  preview={Overflow}
+/>
+
+<Variables
+  names={[
+    'overflow-x-auto',
+    'overflow-x-clip',
+    'overflow-x-hidden',
+    'overflow-x-scroll',
+    'overflow-x-visible',
+  ]}
+  property='overflow-x'
+  preview={Overflow}
+/>
+
+<Variables
+  names={[
+    'overflow-y-auto',
+    'overflow-y-clip',
+    'overflow-y-hidden',
+    'overflow-y-scroll',
+    'overflow-y-visible',
+  ]}
+  property='overflow-y'
+  preview={Overflow}
+/>
+
+### overscroll-behavior
+
+MDN: [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior).
+
+<Variables
+  names={[
+    'overscroll-behavior-auto',
+    'overscroll-behavior-contain',
+    'overscroll-behavior-none',
+  ]}
+  property='overscroll-behavior'
+/>
+
+### contain
+
+MDN: [`contain`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain).
+
+<Variables
+  names={[
+    'contain-none',
+    'contain-content',
+    'contain-inline-size',
+    'contain-layout',
+    'contain-paint',
+    'contain-size',
+    'contain-strict',
+  ]}
+  property='contain'
+/>
+
+### scroll-fade
+
+MDN: [`mask-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image).
+
+<Variables
+  names={['scroll-fade-distance', 'scroll-fade-start', 'scroll-fade-end']}
+/>
+
+## Classes
+
+The patterns are `kicl-overflow-{keyword}`, `kicl-overflow-{x|y}-{keyword}`, `kicl-overscroll-behavior-{keyword}` and `kicl-contain-{keyword}`.
+
+```tsx
+// Scrolls top to bottom when its content is taller than it
+<div className='kicl-overflow-y-auto' />
+
+// Scrolling inside it stops at its end instead of moving the page
+<div className='kicl-overflow-y-auto kicl-overscroll-behavior-contain' />
+
+// Scrolls sideways with no scrollbar, and fades at the edges
+<ul className='kicl-overflow-x-auto kicl-scrollbar-none kicl-scroll-fade' />
+
+// Fills the rest of a fit-content parent instead of setting its width
+<div className='kicl-contain-inline-size' />
+```
+
+`{keyword}` for overflow is `auto`, `clip`, `hidden`, `scroll` or `visible`. For contain it's `none`, `content`, `inline-size`, `layout`, `paint`, `size` or `strict`. `kicl-contain-inline-size` keeps an element out of its parent's width, so a fit-content parent sizes to its other children and this one fills the rest.
+
+- `kicl-scrollbar-none` hides the scrollbar and keeps the scrolling.
+- `kicl-scroll-fade` fades the content out at the edges it can scroll toward.
+- `kicl-stuck-line-start` and `kicl-stuck-line-end` draw the site's gradient along a sticky element's edge while it's stuck: `start` for a footer stuck to the bottom, `end` for a header stuck to the top.

@@ -1,0 +1,15 @@
+@mixin scroll-fade() {
+  mask-image: linear-gradient(
+    180deg,
+    transparent,
+    var(--kicl-color-black-pure) var(--kicl-scroll-fade-start),
+    var(--kicl-color-black-pure) calc(100% - var(--kicl-scroll-fade-end)),
+    transparent
+  );
+  scrollbar-width: none;
+
+  @supports (animation-timeline: scroll()) {
+    animation: kicl-scroll-fade linear both;
+    animation-timeline: scroll(self);
+  }
+}

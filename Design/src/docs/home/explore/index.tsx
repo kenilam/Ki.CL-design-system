@@ -15,20 +15,18 @@ import {
 import { useCopy } from 'design/locales/use-copy';
 
 // Paths
-import { useDocsPath } from 'design/docs/base';
+import { useDocsContext } from 'design/docs/context';
 
 // Pages
-import { pagesIn } from 'design/docs/pages';
-
-// Constants
-import { CATEGORIES, type Category } from 'design/docs/constants';
+import { PAGES, type Category } from 'design/docs/pages';
 
 const Explore: React.FunctionComponent = () => {
   const t = useCopy();
-  const path = useDocsPath();
+  const { parsePath } = useDocsContext();
 
-  return (Object.keys(CATEGORIES) as Category[]).map((category) => {
-    const pages = pagesIn(category);
+  return (Object.keys(PAGES) as Category[]).map((category) => {
+    const group = PAGES[category];
+    const pages = Object.entries(group);
 
     if (!pages.length) {
       return null;
@@ -39,12 +37,12 @@ const Explore: React.FunctionComponent = () => {
         <section>
           <Heading is='h3'>{t(`category_${category}`)}</Heading>
           <List fill={4} gap='normal'>
-            {pages.map(({ context, slug }) => (
+            {pages.map(([component, { context }]) => (
               <Card
                 header={
                   <>
                     <CardTitle is='h4'>
-                      <HyperLink to={path(slug)}>
+                      <HyperLink to={parsePath(`${category}/${component}`)}>
                         {t('component', { context })}
                       </HyperLink>
                     </CardTitle>
@@ -54,7 +52,7 @@ const Explore: React.FunctionComponent = () => {
                   </>
                 }
                 is='li'
-                key={slug}
+                key={component}
               />
             ))}
           </List>

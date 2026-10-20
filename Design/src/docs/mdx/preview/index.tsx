@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // Libraries
 import classNames from 'classnames';
 
-import { useParams } from 'react-router-dom';
+import { useParams } from 'design/router';
 
 // Components
 import {
@@ -252,7 +252,19 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   };
 
   const set = (name: string, value: Value) =>
-    setValues((current) => ({ ...current, [name]: value }));
+    setValues((current) => ({
+      ...current,
+      [name]: value,
+      ...Object.fromEntries(
+        Object.entries(controls)
+          .filter(
+            ([other, control]) =>
+              control.except === name &&
+              current[other] === (value ?? controls[name]?.default)
+          )
+          .map(([other]) => [other, undefined])
+      ),
+    }));
 
   const hasControls = names.length > 0 && tag !== null;
   const extras = hasControls ? extrasOf(controls, values, tag) : {};

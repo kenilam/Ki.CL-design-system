@@ -8,21 +8,22 @@ import type { Level, Variant } from 'design/components/spec';
  * Semantic hosts for body copy, quotes and inline meaning (code, emphasis,
  * dates, and text removed or added by an edit).
  */
-export type TextIs = Extract<
-  keyof JSX.IntrinsicElements,
-  | 'blockquote'
-  | 'cite'
-  | 'code'
-  | 'del'
-  | 'em'
-  | 'ins'
-  | 'p'
-  | 'pre'
-  | 'q'
-  | 'span'
-  | 'strong'
-  | 'time'
->;
+export const TEXT_IS = [
+  'p',
+  'span',
+  'blockquote',
+  'cite',
+  'code',
+  'del',
+  'em',
+  'ins',
+  'pre',
+  'q',
+  'strong',
+  'time',
+] as const satisfies readonly (keyof JSX.IntrinsicElements)[];
+
+export type TextIs = (typeof TEXT_IS)[number];
 
 /**
  * The look of another element, without its meaning. Headings come from the
@@ -58,17 +59,22 @@ export const TEXT_VARIANTS = VARIANTS.filter(
 
 export type { Level as TextLevel } from 'design/components/spec';
 
-type LookProps = {
+type LookProps<Is extends TextIs> = {
   dense?: boolean;
   level?: Level;
-  lookLike?: TextLookLike;
+  lookLike?: Exclude<TextLookLike, Is>;
   variant?: TextVariant;
 };
 
 /** `unstyled` drops the component's class, and every look prop with it. */
-type OwnProps = PropsWithChildren<
-  | (LookProps & { unstyled?: false })
-  | ({ [Key in keyof LookProps]?: never } & { unstyled: true })
+type OwnProps<Is extends TextIs> = PropsWithChildren<
+  | (LookProps<Is> & { unstyled?: false })
+  | ({ [Key in keyof LookProps<Is>]?: never } & { unstyled: true })
 >;
 
-export type Props = PolymorphicIsProps<TextIs, OwnProps, 'p'>;
+export type Props = {
+  [Is in TextIs]: Extract<
+    PolymorphicIsProps<TextIs, OwnProps<Is>, 'p'>,
+    { is?: Is }
+  >;
+}[TextIs];

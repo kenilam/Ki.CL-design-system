@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { Animation, Heading, Layout, Text } from 'design/components';
+import type { HeadingProps } from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -74,7 +75,10 @@ const Status: React.FunctionComponent<Spec.Props> = ({
       gap='narrow'
       justifyContent={justifyContent}
     >
-      <Heading dense is={headingLevel} lookLike='h4'>
+      <Heading
+        dense
+        {...({ is: headingLevel, lookLike: 'h4' } as HeadingProps)}
+      >
         {Icon}
         {title || t(`title_${level ?? 'error'}`)}
       </Heading>

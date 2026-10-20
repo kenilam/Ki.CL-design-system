@@ -39,7 +39,7 @@
   // meant. An outline, so nothing moves and the level's edge still shows.
   &:target {
     outline: var(--kicl-outline-width) dashed var(--kicl-color-info);
-    outline-offset: var(--kicl-size-2px);
+    outline-offset: var(--kicl-size-1px);
   }
 
   &--size--xs,

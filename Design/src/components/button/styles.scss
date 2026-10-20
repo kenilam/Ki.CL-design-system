@@ -40,6 +40,15 @@
     border: var(--kicl--components--button--border-width) solid
       var(--kicl--components--button--border-color);
     color: var(--kicl-body-color);
+
+    &:is(:hover, :focus-visible):not(
+      .kicl--components--button--disabled,
+      :disabled,
+      [aria-disabled='true']
+    ) {
+      box-shadow: inset 0 0 0 100vmax
+        color-mix(in oklab, var(--kicl-body-color) 10%, transparent);
+    }
   }
 
   /*

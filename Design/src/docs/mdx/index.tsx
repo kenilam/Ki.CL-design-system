@@ -14,7 +14,7 @@ import {
 } from 'design/components';
 
 // Paths
-import { useDocsPath } from 'design/docs/base';
+import { useDocsContext } from 'design/docs/context';
 
 // Partials
 import { Code } from './preview/code';
@@ -24,10 +24,10 @@ import { Preview } from './preview';
 const Link: React.FunctionComponent<
   Pick<HyperLinkProps, 'children'> & Pick<React.ComponentProps<'a'>, 'href'>
 > = ({ children, href = '' }) => {
-  const path = useDocsPath();
+  const { parsePath } = useDocsContext();
 
   return (
-    <HyperLink to={href.startsWith('../') ? path(href.slice(3)) : href}>
+    <HyperLink to={href.startsWith('../') ? parsePath(href.slice(3)) : href}>
       {children}
     </HyperLink>
   );

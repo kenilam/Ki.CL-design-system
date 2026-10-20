@@ -28,13 +28,13 @@ The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types ar
 | `design/docs` | `Docs`: a home page and a page for each component, each with a live preview, presets and their code. A host mounts it under any route that ends in a splat, such as `<Route path='design-system/*' element={<Docs />} />` |
 | `design/hooks` | `useResponsive`, `useResizeObserver`, `useClipboard` |
 | `design/icons` | `Company`, `Logo`, `Menu` and the `IconType` type |
-| `design/router` | The `Router`, `MatchedRoute`, `useMatchPattern`, and the `react-router-dom` APIs the site uses |
+| `design/router` | The `Router` and the `react-router-dom` APIs the site uses |
 | `design/status` | The HTTP status pages and the route `ErrorElement` |
 | `design/widgets` | `GlobalHeader`, `SiteLogo` and `ContactForm` |
 
 All the CSS goes out as one stylesheet (`bundleAllCSS`). It loads with whichever module the host imports first.
 
-`react`, `react-dom`, `react-router-dom`, `react-hook-form`, `i18next` and `react-i18next` are shared singletons. Views import routing from `design/router`, never from `react-router-dom` directly. Inside this repo, `HyperLink` and the status pages import `react-router-dom` directly, because importing `router` from inside `components` would create an import cycle through `MatchedRoute`. The host has to share the same six. `HyperLink` and the status pages use the host's router context, the form components use the form context a view creates with `useForm`, and the copy comes from the host's i18next.
+`react`, `react-dom`, `react-router-dom`, `react-hook-form`, `i18next` and `react-i18next` are shared singletons. Views import routing from `design/router`, never from `react-router-dom` directly. The host has to share the same six. `HyperLink` and the status pages use the host's router context, the form components use the form context a view creates with `useForm`, and the copy comes from the host's i18next.
 
 ## Decisions
 

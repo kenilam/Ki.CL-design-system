@@ -29,6 +29,8 @@ export type Control = {
    * prop is left out.
    */
   when?: Values;
+  /** Another prop whose value this list leaves out, such as `is` for `lookLike`. */
+  except?: string;
   /**
    * The prop the component reports a change through, so using the component
    * moves the control. `checked`, `open` and `value` have theirs already.
@@ -98,7 +100,10 @@ const Controls: React.FunctionComponent<Props> = ({
           );
         }
 
-        const { options } = control;
+        const excluded = control.except
+          ? (values[control.except] ?? controls[control.except]?.default)
+          : undefined;
+        const options = control.options.filter((option) => option !== excluded);
         const fallback =
           control.default ?? (options.includes('default') ? 'default' : UNSET);
 

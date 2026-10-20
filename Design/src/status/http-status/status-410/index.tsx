@@ -15,7 +15,6 @@ import type { Props } from 'design/status/http-status/spec';
 // Partials
 import { GoBack } from 'design/status/http-status/go-back';
 
-/** For something that was here and is gone for good, like a link that was used or ran out. */
 const Status410: React.FunctionComponent<Props> = ({ message, title }) => {
   const t = useCopy();
 
@@ -25,9 +24,8 @@ const Status410: React.FunctionComponent<Props> = ({ message, title }) => {
         alignContent='center'
         autoFlow='row'
         justifyItems='center'
-        fullScreen
       >
-        <section className='kicl-max-inline-size-columns-12 kicl-text-align-center'>
+        <section className='kicl-text-align-center'>
           <Layout
             alignContent='center'
             alignItems='center'

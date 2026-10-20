@@ -1,0 +1,41 @@
+@property --kicl-scroll-fade-start {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --kicl-scroll-fade-end {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0;
+}
+
+:root {
+  --kicl-scroll-fade-distance: var(--kicl-gutter-wider);
+}
+
+@keyframes kicl-scroll-fade {
+  0% {
+    --kicl-scroll-fade-start: 0;
+    --kicl-scroll-fade-end: var(--kicl-scroll-fade-distance);
+  }
+
+  10%,
+  90% {
+    --kicl-scroll-fade-start: var(--kicl-scroll-fade-distance);
+    --kicl-scroll-fade-end: var(--kicl-scroll-fade-distance);
+  }
+
+  100% {
+    --kicl-scroll-fade-start: var(--kicl-scroll-fade-distance);
+    --kicl-scroll-fade-end: 0;
+  }
+}
+
+.kicl-scrollbar-none {
+  scrollbar-width: none;
+}
+
+.kicl-scroll-fade {
+  @include scroll-fade;
+}

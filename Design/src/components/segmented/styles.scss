@@ -105,7 +105,7 @@
   // The radio is unseen, so its label draws the ring every other control does.
   &:has(:focus-visible) {
     outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
-    outline-offset: var(--kicl-size-2px);
+    outline-offset: var(--kicl-size-1px);
   }
 }
 
@@ -219,6 +219,13 @@
       padding: 0;
       position: static;
       translate: none;
+
+      .kicl--components--popover__viewport {
+        animation: none;
+        mask-image: none;
+        overflow: visible;
+        padding: 0;
+      }
 
       .kicl--components--segmented {
         background-color: var(--kicl--components--segmented--track);

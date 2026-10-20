@@ -4,11 +4,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Routes
-import { useParams } from 'react-router-dom';
+import { useParams } from 'design/router';
 
 // Components
 import {
-  Details,
+  Heading,
   HyperLink,
   List,
   ListItem,
@@ -20,69 +20,68 @@ import {
 import { useCopy } from 'design/locales/use-copy';
 
 // Paths
-import { useDocsPath } from 'design/docs/base';
+import { useDocsContext } from 'design/docs/context';
 
 // Pages
-import { PAGES, pagesIn } from 'design/docs/pages';
-
-// Constants
-import { CATEGORIES, type Category } from 'design/docs/constants';
+import { PAGES, type Category } from 'design/docs/pages';
 
 /** Every page, grouped as on the home page. Only the open page's group starts open. */
-const Sidebar: React.FunctionComponent<NavigationProps> = (
-  {
-    className,
-    ...props
-  }
-) => {
+const Sidebar: React.FunctionComponent<NavigationProps> = ({
+  className,
+  ...props
+}) => {
   const t = useCopy();
-  const path = useDocsPath();
-  const { page: open } = useParams();
-
-  const current = PAGES.find(({ slug }) => slug === open);
+  const { parsePath } = useDocsContext();
+  const params = useParams();
 
   return (
     <Navigation
       {...props}
       aria-label={t('docs_components')}
-      className={
-        classNames(
-          'kicl-min-block-size-screen',
-          'kicl-padding',
-          className,
-        )
-      }
+      className={classNames(
+        'kicl-min-block-size-screen',
+        'kicl-padding',
+        className
+      )}
     >
       <List>
         <ListItem>
-          <HyperLink to={path()}>{t('docs_overview')}</HyperLink>
+          <HyperLink
+            to={parsePath()}
+          >{t('docs_overview')}</HyperLink>
         </ListItem>
-        {(Object.keys(CATEGORIES) as Category[]).map((category) => {
-          const pages = pagesIn(category);
+        {(Object.keys(PAGES) as Category[]).map((category) => {
+          const group = PAGES[category];
+          const pages = Object.entries(group);
 
           if (!pages.length) {
             return null;
           }
 
           return (
-            <ListItem key={category}>
-              <Details
-                open={current?.category === category}
-                summary={t(`category_${category}`)}
-              >
-                <List
-                  className='kicl-padding-inline-start-narrow'
-                  gap='narrow'
-                >
-                  {pages.map(({ context, slug }) => (
-                    <ListItem key={slug}>
-                      <HyperLink to={path(slug)}>
-                        {t('component', { context })}
-                      </HyperLink>
-                    </ListItem>
-                  ))}
-                </List>
-              </Details>
+            <ListItem key={category} gap='narrower'>
+              <Heading is='h5'>
+                {t(`category_${category}`)}
+              </Heading>
+              <List gap='narrower'>
+                {pages.map(([component, { context }]) => (
+                  <ListItem key={component}>
+                    <HyperLink
+                      className='kicl-inline-size-full'
+                      lookLikeButton
+                      to={parsePath(`${category}/${component}`)}
+                      variant={
+                        category === params.category &&
+                        component === params.component
+                          ? 'secondary'
+                          : 'tertiary'
+                      }
+                    >
+                      {t('component', { context })}
+                    </HyperLink>
+                  </ListItem>
+                ))}
+              </List>
             </ListItem>
           );
         })}

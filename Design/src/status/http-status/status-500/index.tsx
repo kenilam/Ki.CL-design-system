@@ -24,9 +24,8 @@ const Status500: React.FunctionComponent<Props> = ({ message, title }) => {
         alignContent='center'
         autoFlow='row'
         justifyItems='center'
-        fullScreen
       >
-        <section className='kicl-max-inline-size-columns-12 kicl-text-align-center'>
+        <section className='kicl-text-align-center'>
           <Layout
             alignContent='center'
             alignItems='center'

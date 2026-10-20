@@ -1,4 +1,4 @@
-import { PAGES, type Token } from 'design/docs/tokens/pages';
+import { PAGES, type Category, type Token } from 'design/docs/tokens/pages';
 import { useCopy } from 'design/locales/use-copy';
 import { useParams } from 'design/router';
 
@@ -11,5 +11,11 @@ export const useTokenContext = () => {
 
   const { context = '', Content } = pages[category]?.[token] ?? {};
 
-  return { Content, name: t('token', { context }) };
+  return {
+    category: (Object.keys(PAGES) as Category[]).find(
+      (key) => key === category
+    ),
+    Content,
+    name: t('token', { context }),
+  };
 };

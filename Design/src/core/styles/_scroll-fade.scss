@@ -1,6 +1,13 @@
-@mixin scroll-fade() {
+// `inline` fades the start and end of a row that scrolls sideways.
+@mixin scroll-fade($axis: block) {
+  $angle: 180deg;
+
+  @if $axis == inline {
+    $angle: 90deg;
+  }
+
   mask-image: linear-gradient(
-    180deg,
+    $angle,
     transparent,
     var(--kicl-color-black-pure) var(--kicl-scroll-fade-start),
     var(--kicl-color-black-pure) calc(100% - var(--kicl-scroll-fade-end)),
@@ -10,6 +17,6 @@
 
   @supports (animation-timeline: scroll()) {
     animation: kicl-scroll-fade linear both;
-    animation-timeline: scroll(self);
+    animation-timeline: scroll(self $axis);
   }
 }

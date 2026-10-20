@@ -113,7 +113,7 @@
   }
 
   &.kicl-look-like-strong {
-    font-weight: bolder;
+    font-weight: var(--kicl-font-weight-bold);
   }
 
   &--variant--secondary {

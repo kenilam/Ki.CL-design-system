@@ -2,11 +2,14 @@ import React from 'react';
 
 import { Checkbox, CheckboxGroup } from 'design/components';
 
-const Preview: React.FC = () => (
+import type { GroupProps } from 'design/components/checkbox/docs/controls';
+
+const Preview: React.FC<GroupProps> = (props) => (
   <CheckboxGroup
     defaultValue={['email']}
     legend='Send updates by'
     name='updates'
+    {...props}
   >
     <Checkbox value='email'>Email</Checkbox>
     <Checkbox value='text'>Text message</Checkbox>

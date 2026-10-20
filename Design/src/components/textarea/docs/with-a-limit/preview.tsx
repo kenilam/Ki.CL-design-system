@@ -11,12 +11,11 @@ const Preview: React.FC<Props> = (props) => {
   const [bio, setBio] = useState('');
 
   return (
-    <Layout display='inline-grid' gap='narrowest' justifyItems='end'>
+    <Layout gap='narrowest' justifyItems='end'>
       <div>
         <Textarea
           aria-describedby={countId}
           aria-label='Bio'
-          className='kicl-inline-size-columns-4'
           maxLength={LIMIT}
           onChange={(event) => setBio(event.target.value)}
           placeholder={`Up to ${LIMIT} characters`}

@@ -15,9 +15,9 @@
   --kicl-font-size: #{$base-font-size};
 
   // font-size
-  --kicl-font-size-smallest: 0.4rem;
-  --kicl-font-size-smaller: 0.6rem;
-  --kicl-font-size-small: 0.8rem;
+  --kicl-font-size-smallest: 0.75rem;
+  --kicl-font-size-smaller: 0.8125rem;
+  --kicl-font-size-small: 0.875rem;
   --kicl-font-size-moderate: 1.25rem;
   --kicl-font-size-medium: 1.5rem;
   --kicl-font-size-large: 2rem;
@@ -100,7 +100,11 @@
 }
 
 @include make-variable-class('font-family');
-@include make-variable-class('font-family', 'bold');
+
+@include make-variable-class('font-family', 'bold') {
+  font-weight: var(--kicl-font-weight-bold);
+}
+
 @include make-variable-class('font-family', 'special');
 
 @include make-variable-class('font-family', 'mono') {
@@ -108,15 +112,15 @@
 }
 
 @include make-variable-class('font-size', 'extreme') {
-  line-height: var(--kicl-line-height-narrow);
+  line-height: var(--kicl-line-height-narrower);
 }
 
 @include make-variable-class('font-size', 'huge') {
-  line-height: var(--kicl-line-height-narrow);
+  line-height: var(--kicl-line-height-narrower);
 }
 
 @include make-variable-class('font-size', 'largest') {
-  line-height: var(--kicl-line-height-narrow);
+  line-height: var(--kicl-line-height-narrower);
 }
 
 @include make-variable-class('font-size', 'larger') {

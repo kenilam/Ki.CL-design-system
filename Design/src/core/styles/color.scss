@@ -29,7 +29,7 @@
 
   // How much of the body colour a wash (a hover, a highlight) and secondary text keep.
   --kicl-color-strength-wash: 14%;
-  --kicl-color-strength-secondary: 65%;
+  --kicl-color-strength-secondary: 80%;
 
   // functional
   --kicl-color-warning: #{color.mix($yellow, $orange, 50%)};

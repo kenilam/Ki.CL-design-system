@@ -96,6 +96,8 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         return undefined;
       }
 
+      const trigger = document.getElementById(`${popover.id}__trigger`);
+
       const close = () => {
         const focused = node.contains(document.activeElement);
 
@@ -110,6 +112,16 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
 
       const onScroll = (event: Event) => {
         if (event.target instanceof Node && node.contains(event.target)) {
+          return;
+        }
+
+        const anchor = trigger?.getBoundingClientRect();
+        const panel = node.getBoundingClientRect();
+
+        if (
+          anchor &&
+          (panel.right <= anchor.left || panel.left >= anchor.right)
+        ) {
           return;
         }
 

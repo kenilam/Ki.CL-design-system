@@ -32,7 +32,7 @@
   --kicl-color-strength-secondary: 65%;
 
   // functional
-  --kicl-color-warning: var(--kicl-color-yellow);
+  --kicl-color-warning: #{color.mix($yellow, $orange, 50%)};
   --kicl-color-info: var(--kicl-color-blue);
   --kicl-color-error: var(--kicl-color-red);
   --kicl-color-confirm: var(--kicl-color-green);

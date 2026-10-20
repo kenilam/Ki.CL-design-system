@@ -219,6 +219,23 @@ $gaps: (
     &--variant--tertiary {
       --kicl--components--popover--border-color: transparent;
     }
+
+    &:has(> .kicl--components--popover__viewport) {
+      overflow: hidden;
+      padding: 0;
+
+      &:popover-open {
+        display: grid;
+        grid-template-rows: minmax(0, 1fr);
+      }
+    }
+  }
+
+  &__viewport {
+    @include scroll-fade;
+
+    overflow-y: auto;
+    padding: var(--kicl--components--popover--padding);
   }
 }
 

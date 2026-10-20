@@ -4,20 +4,18 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Routes
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'design/router';
 
 // Components
 import { Layout } from 'design/components';
 
-// Constants
-import { CLASS_NAME } from 'design/docs/constants';
-
 /** The page that is open, on the 12-column width. */
 const Shell: React.FunctionComponent = () => (
-  <Layout>
-    <div
+  <Layout alignContent='start'>
+    <article
       className={classNames(
-        CLASS_NAME,
+        'kicl-background-color-body',
+        'kicl-min-block-size-screen',
         'kicl-inline-size-full',
         'kicl-max-inline-size-columns-12',
         'kicl-padding-block-frame',
@@ -26,7 +24,7 @@ const Shell: React.FunctionComponent = () => (
       )}
     >
       <Outlet />
-    </div>
+    </article>
   </Layout>
 );
 

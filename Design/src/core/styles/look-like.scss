@@ -30,7 +30,7 @@
      */
     --kicl-heading-font-color: color-mix(
       in srgb,
-      var(--kicl-body-color) 80%,
+      var(--kicl-heading-status-color, var(--kicl-body-color)) 80%,
       transparent
     );
     --kicl-heading-font-size-scale: 0.8;

@@ -168,7 +168,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         }
         {...rest}
       >
-        {children}
+        <div className={`${POPOVER}__viewport`}>{children}</div>
       </div>
     );
 

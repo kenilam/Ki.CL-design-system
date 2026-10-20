@@ -29,6 +29,7 @@ import './look-like.scss';
 import './motion.scss';
 import './overflow.scss';
 import './scrim.scss';
+import './scroll-fade.scss';
 import './scroll-reveal.scss';
 import './shadow.scss';
 import './pointer-events.scss';

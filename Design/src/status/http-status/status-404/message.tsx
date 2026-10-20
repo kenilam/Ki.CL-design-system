@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Router
-import { useLocation } from 'react-router-dom';
+// Routes
+import { useLocation } from 'design/router';
 
 // Components
 import { Markdown, Text } from 'design/components';

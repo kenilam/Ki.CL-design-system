@@ -19,9 +19,9 @@
 }
 
 :root {
-  --kicl-outline-color: var(--kicl-color-grey-darker);
+  --kicl-outline-color: var(--kicl-color-grey-dark);
   --kicl-outline-style: none;
-  --kicl-outline-width: var(--kicl-size-2px);
+  --kicl-outline-width: var(--kicl-size-1px);
 
   // How far a disabled control fades.
   --kicl-disabled-opacity: 0.4;
@@ -92,7 +92,7 @@ summary,
 video {
   outline-color: var(--kicl-outline-color);
   outline-style: var(--kicl-outline-style);
-  outline-offset: var(--kicl-size-2px);
+  outline-offset: var(--kicl-size-1px);
   outline-width: var(--kicl-outline-width);
 
   &:focus-visible {

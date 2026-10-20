@@ -23,9 +23,8 @@ const Status404: React.FunctionComponent = () => {
         alignItems='center'
         justifyContent='center'
         justifyItems='center'
-        fullScreen
       >
-        <section className='kicl-max-inline-size-columns-12 kicl-text-align-center'>
+        <section className='kicl-text-align-center'>
           <Layout
             alignContent='center'
             alignItems='center'

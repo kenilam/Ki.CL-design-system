@@ -13,4 +13,10 @@
       --kicl-gutter-narrowest
     );
   }
+
+  @each $level in (confirm, error, info, warning) {
+    &--level--#{$level} {
+      --kicl-heading-status-color: var(--kicl-color-#{$level});
+    }
+  }
 }

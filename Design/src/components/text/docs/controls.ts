@@ -1,24 +1,25 @@
 import { LEVELS } from 'design/components/spec';
-import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from 'design/components/text/spec';
-import type { TextLevel, TextLookLike } from 'design/components/text/spec';
+import {
+  TEXT_IS,
+  TEXT_LOOK_LIKES,
+  TEXT_VARIANTS,
+} from 'design/components/text/spec';
+import type { TextLevel } from 'design/components/text/spec';
 import type { ControlsSpec } from 'design/docs/mdx/preview';
 
 export const CONTROLS = {
+  is: { options: TEXT_IS, default: 'p' },
   variant: { options: TEXT_VARIANTS, default: 'primary' },
   level: LEVELS,
-  lookLike: TEXT_LOOK_LIKES,
+  lookLike: { options: TEXT_LOOK_LIKES, except: 'is' },
   dense: 'boolean',
 } as const satisfies ControlsSpec;
 
-/*
- * Written out, not `Controlled`: the props are a union on `is` and on
- * `unstyled`, so a `Pick` of them fits none of its branches. `is` has no
- * control, since a preset's element is part of what it shows.
- */
 export type Props = {
   className?: string;
   dense?: boolean;
+  is?: never;
   level?: TextLevel;
-  lookLike?: TextLookLike;
+  lookLike?: never;
   variant?: (typeof TEXT_VARIANTS)[number];
 };

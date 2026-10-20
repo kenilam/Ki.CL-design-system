@@ -20,6 +20,8 @@ import {
 
 import { useResponsive } from 'design/hooks';
 
+import { useLocation } from 'design/router';
+
 import { useCopy } from 'design/locales/use-copy';
 
 import { useDocsContext } from 'design/docs/context';
@@ -34,6 +36,7 @@ const MENU_ID = 'kicl-docs-menu';
 const Header: React.FunctionComponent = () => {
   const { parsePath } = useDocsContext();
   const { isMobile } = useResponsive();
+  const { pathname } = useLocation();
   const t = useCopy();
   const { name } = useComponentContext();
 
@@ -53,17 +56,27 @@ const Header: React.FunctionComponent = () => {
     <Layout alignItems='center' autoFlow='column' justifyContent='start'>
       <header
         className={classNames(
-          'kicl-backdrop-blur',
           'kicl-inset-block-start-header',
           'kicl-padding-block-narrow',
           'kicl-position-sticky',
           'kicl-z-index-floating'
         )}
       >
+        <span
+          aria-hidden
+          className={classNames(
+            'kicl-backdrop-blur',
+            'kicl-inset-block-0',
+            'kicl-inset-inline-screen',
+            'kicl-position-absolute',
+            'kicl-z-index-behind'
+          )}
+        />
         {isMobile ? (
           <>
             {Trigger}
             <Sheet
+              key={pathname}
               header={<CardTitle is='h2'>{t('docs_components')}</CardTitle>}
               id={MENU_ID}
               side='inline-start'
@@ -75,6 +88,7 @@ const Header: React.FunctionComponent = () => {
           <Popover>
             <PopoverTrigger asChild>{Trigger}</PopoverTrigger>
             <PopoverContent
+              className='kicl-inline-size-xxl'
               offset='wide'
               placement='inline-start-start'
               style={

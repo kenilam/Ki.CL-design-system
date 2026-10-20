@@ -1,0 +1,97 @@
+import { Variables } from 'design/docs/tokens/variables';
+import { Specimen } from 'design/docs/tokens/previews';
+
+How an element answers the pointer and touch: its cursor, which gestures the page keeps, whether its text selects, and whether it takes clicks at all.
+
+## Variables
+
+### pointer-events
+
+MDN: [`pointer-events`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/pointer-events).
+
+<Variables
+  names={[
+    'pointer-events-all',
+    'pointer-events-auto',
+    'pointer-events-fill',
+    'pointer-events-none',
+    'pointer-events-painted',
+    'pointer-events-stroke',
+    'pointer-events-visible',
+    'pointer-events-visible-fill',
+    'pointer-events-visible-painted',
+    'pointer-events-visible-stroke',
+    'pointer-events-inherit',
+    'pointer-events-initial',
+    'pointer-events-revert',
+    'pointer-events-revert-layer',
+    'pointer-events-unset',
+  ]}
+  property='pointer-events'
+/>
+
+### cursor
+
+MDN: [`cursor`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/cursor).
+
+<Variables
+  names={[
+    'cursor-auto',
+    'cursor-default',
+    'cursor-pointer',
+    'cursor-grab',
+    'cursor-grabbing',
+    'cursor-not-allowed',
+    'cursor-zoom-in',
+  ]}
+  property='cursor'
+  preview={Specimen}
+/>
+
+### touch-action
+
+MDN: [`touch-action`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action).
+
+<Variables
+  names={[
+    'touch-action-auto',
+    'touch-action-manipulation',
+    'touch-action-none',
+    'touch-action-pan-x',
+    'touch-action-pan-y',
+  ]}
+  property='touch-action'
+/>
+
+### user-select
+
+MDN: [`user-select`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/user-select).
+
+<Variables
+  names={[
+    'user-select-all',
+    'user-select-auto',
+    'user-select-none',
+    'user-select-text',
+  ]}
+  property='user-select'
+  preview={Specimen}
+/>
+
+## Classes
+
+The patterns are `kicl-pointer-events-{keyword}`, `kicl-cursor-{keyword}`, `kicl-touch-action-{keyword}` and `kicl-user-select-{keyword}`, where `{keyword}` is the CSS value listed above.
+
+```tsx
+// Clicks go through it to whatever is underneath
+<div className='kicl-pointer-events-none' />
+
+// Shows it can be dragged
+<div className='kicl-cursor-grab' />
+
+// Scrolls the page up and down, and leaves sideways swipes to the element
+<div className='kicl-touch-action-pan-y' />
+
+// Its text can't be selected, as on a control
+<span className='kicl-user-select-none' />
+```

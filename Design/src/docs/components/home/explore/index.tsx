@@ -11,6 +11,9 @@ import {
   List,
 } from 'design/components';
 
+// Hooks
+import { useResponsive } from 'design/hooks';
+
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
@@ -26,6 +29,7 @@ import { PATH } from 'design/docs/components/constants';
 const Explore: React.FunctionComponent = () => {
   const t = useCopy();
   const { parsePath } = useDocsContext();
+  const { isMobile, isTablet } = useResponsive();
 
   return (Object.keys(PAGES) as Category[]).map((category) => {
     const group = PAGES[category];
@@ -39,7 +43,7 @@ const Explore: React.FunctionComponent = () => {
       <Layout gap='normal' key={category}>
         <section>
           <Heading is='h3'>{t(`category_${category}`)}</Heading>
-          <List fill={4} gap='normal'>
+          <List fill={isMobile ? 12 : isTablet ? 6 : 4} gap='normal'>
             {pages.map(([component, { context }]) => (
               <Card
                 header={

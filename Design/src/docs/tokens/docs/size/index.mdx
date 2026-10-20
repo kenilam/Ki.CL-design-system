@@ -1,0 +1,169 @@
+import { Columns } from './columns';
+import { Radii } from './radii';
+import { Variables } from 'design/docs/tokens/variables';
+import { Length, Shape } from 'design/docs/tokens/previews';
+
+`--kicl-size` is 16px, and the scale is multiples of it. Radius and the named widths pick points on it, and Card `size` takes the same names.
+
+## Radius
+
+<Radii />
+
+## Columns
+
+Widths come from a 12-column scale. Twelve columns are the page, at most 80rem, and a span of `n` is `n` columns plus the gaps between them, so a width lines up with a real 12-column grid. The utilities never go wider than their parent, so a span can't cause horizontal scroll. Card and Sheet `size`, and Layout `span`, take the same numbers.
+
+<Columns />
+
+## Variables
+
+### size
+
+MDN: [`inline-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inline-size) and [`border-radius`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius).
+
+<Variables
+  names={[
+    'size',
+    'size-hair',
+    'size-1px',
+    'size-2px',
+    'size-3px',
+    'size-half',
+    'size-2x',
+    'size-3x',
+    'size-4x',
+    'size-5x',
+    'size-6x',
+    'size-7x',
+    'size-8x',
+    'size-9x',
+    'size-10x',
+    'size-11x',
+    'size-12x',
+    'size-13x',
+    'size-14x',
+    'size-15x',
+    'size-16x',
+    'size-17x',
+    'size-18x',
+    'size-19x',
+    'size-20x',
+    'size-full',
+  ]}
+  preview={Length}
+/>
+
+### columns
+
+MDN: [`inline-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inline-size) and [`max-inline-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/max-inline-size).
+
+<Variables names={['columns-count', 'columns-gap']} preview={Length} />
+
+<Variables
+  names={['columns-inline-size']}
+  property='inline-size'
+  preview={Length}
+/>
+
+<Variables names={['columns-gaps', 'columns-without-gaps']} preview={Length} />
+
+<Variables
+  names={[
+    'columns-1',
+    'columns-2',
+    'columns-3',
+    'columns-4',
+    'columns-5',
+    'columns-6',
+    'columns-7',
+    'columns-8',
+    'columns-9',
+    'columns-10',
+    'columns-11',
+    'columns-12',
+  ]}
+  property='inline-size'
+  preview={Length}
+/>
+
+### field
+
+MDN: [`block-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/block-size).
+
+An input's height, from its line of small text, its padding and its border.
+
+<Variables names={['field-line', 'field-edge']} preview={Length} />
+
+### block-size
+
+MDN: [`block-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/block-size).
+
+<Variables
+  names={['field-block-size']}
+  property='block-size'
+  preview={Length}
+/>
+
+### aspect-ratio
+
+MDN: [`aspect-ratio`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/aspect-ratio).
+
+<Variables
+  names={['aspect-ratio-auto', 'aspect-ratio-square', 'aspect-ratio-video']}
+  property='aspect-ratio'
+  preview={Shape}
+/>
+
+## Classes
+
+Radius picks a size by name, as `kicl-border-radius-{name}`:
+
+```tsx
+// Corners rounded by 1rem
+<div className='kicl-border-radius-md' />
+
+// A circle, on a square box
+<img className='kicl-border-radius-full kicl-aspect-ratio-square' />
+```
+
+`none` 0, `xs` 2px, `sm` half, `md` 1x, `lg` 2x, `xl` 3x, `xxl` 4x, `max` 6x and `full` 100%.
+
+Width picks a size by name, as `kicl-inline-size-{name}`, or a column span, as `kicl-inline-size-columns-{1…12}` and `kicl-max-inline-size-columns-{1…12}`:
+
+```tsx
+// 160px wide
+<div className='kicl-inline-size-md' />
+
+// Six columns wide, or the parent's width if that's narrower
+<div className='kicl-inline-size-columns-6' />
+
+// Fills the parent, up to eight columns
+<article className='kicl-max-inline-size-columns-8' />
+```
+
+`xs` 4x, `sm` 6x, `md` 10x, `lg` 14x, `xl` 16x, `xxl` 18x, `max` 20x, `full` 100% and `screen` the viewport width. There's no `kicl-min-inline-size-columns-*`.
+
+Height takes a column span, as `kicl-min-block-size-columns-{1…12}` and `kicl-max-block-size-columns-{1…12}`, or the screen:
+
+```tsx
+// At least as tall as the screen
+<main className='kicl-min-block-size-screen' />
+
+// No taller than half the screen, and scrolls inside
+<div className='kicl-max-block-size-screen-half kicl-overflow-y-auto' />
+
+// As tall as an input, to line up with one
+<div className='kicl-min-block-size-field' />
+
+// At least two columns tall
+<pre className='kicl-min-block-size-columns-2' />
+```
+
+`screen` follows the visible viewport as mobile browser bars come and go. `kicl-min-block-size-field` is as tall as an input.
+
+Aspect ratio is `kicl-aspect-ratio-{auto|square|video}`:
+
+```tsx
+// 16:9, for a video or its placeholder
+<div className='kicl-aspect-ratio-video' />
+```

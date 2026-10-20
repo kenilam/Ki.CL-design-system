@@ -120,8 +120,13 @@
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
-  scrollbar-width: none;
   scroll-behavior: smooth;
+
+  // The faded edge shows there are more options to scroll to. An option
+  // settles clear of it.
+  @include scroll-fade(inline);
+
+  scroll-padding-inline: var(--kicl-scroll-fade-distance);
 
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;

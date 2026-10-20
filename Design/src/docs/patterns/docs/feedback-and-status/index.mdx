@@ -1,0 +1,32 @@
+import { Preset as SavingASetting } from './saving-a-setting';
+import { Preset as SendingAMessage } from './sending-a-message';
+
+Feedback tells people what the system is doing: that it's working, that something finished, or that something went wrong and how to fix it.
+
+<Preview>
+  {SavingASetting}
+  {SendingAMessage}
+</Preview>
+
+## Match the urgency
+
+Make the feedback as loud as the moment. A saved setting needs a quiet line of text next to it. A failed payment needs an error the person can't miss. Something that can't be undone needs a dialog that asks first. If everything interrupts, people learn to dismiss it without reading.
+
+## More than one channel
+
+Never let colour carry the message alone. Pair it with words, and an icon where it helps, so it still works for someone who can't tell red from green, has the screen dimmed, or is listening with a screen reader. `Status` gives each level an icon and a title as well as a colour.
+
+## Announce without moving focus
+
+Text that appears on its own has to be announced, or a screen reader user never knows. Put it in a live region that's on the page before the message arrives: `role='status'` waits for a pause, and `role='alert'` speaks straight away. Keep `alert` for errors, since it interrupts whatever is being read.
+
+## Show progress where it started
+
+Put a loading state on the control that started the action, and change its label to say what's happening. A spinner in a corner of the page is easy to miss and says nothing to a screen reader.
+
+## References
+
+- [WCAG 2.2, 4.1.3 Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
+- [WCAG 2.2, 1.4.1 Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
+- [WCAG 2.2, 3.3.1 Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)
+- [MDN, ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions)

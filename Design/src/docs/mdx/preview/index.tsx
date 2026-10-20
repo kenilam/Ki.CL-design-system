@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
@@ -14,6 +14,7 @@ import {
   SegmentedItem,
   Text,
 } from 'design/components';
+import type { ColumnSpan } from 'design/components/spec';
 
 // Hooks
 import { DARK_THEME_CLASS_NAME } from 'design/hooks';
@@ -34,12 +35,15 @@ import {
 } from './controls';
 import {
   type Tag,
+  forwardedOf,
   readTag,
   readTags,
   snippetOf,
   valuesOf,
+  withForwarded,
   withValues,
 } from './source';
+import { outputOf } from './output';
 import { StageContext } from './stage';
 
 /** The light theme's class, for a stage that is light on a dark site. */
@@ -74,8 +78,11 @@ type PresetProps = React.PropsWithChildren<{
    * component is `Preview`, and is shown under the preset's name.
    */
   code: string;
-  /** Toggles only this preset has, on top of the page's. */
-  controls?: ControlsSpec;
+  /**
+   * Toggles only this preset has, on top of the page's. `null` takes off a
+   * page toggle that means nothing for this example.
+   */
+  controls?: Record<string, ControlsSpec[string] | null>;
   description?: React.ReactNode;
 }>;
 
@@ -87,6 +94,11 @@ type PreviewProps = React.PropsWithChildren<{
    * only animates as it first renders.
    */
   replay?: boolean;
+  /**
+   * The columns the stage is at most, for a component that fills its
+   * parent, like a field. Without it the stage is as wide as the page.
+   */
+  span?: ColumnSpan;
 }>;
 
 /** One way to set a component up. `Preview` reads it; it renders nothing itself. */
@@ -106,14 +118,26 @@ const codeOf = (
   { code, name }: PresetProps,
   literals: Set<string>,
   values: Values,
-  slug: string
-) =>
-  snippetOf(
-    readTags(code).reduceRight(
-      (source, tag) => withValues(source, tag, literals, values),
-      code
+  slug: string,
+  names: string[]
+) => {
+  // A control the example passes on by name is written there, not on the spread.
+  const forwarded = forwardedOf(code, names);
+  const spread = Object.fromEntries(
+    Object.entries(values).filter(([prop]) => !forwarded.has(prop))
+  );
+
+  return snippetOf(
+    withForwarded(
+      readTags(code).reduceRight(
+        (source, tag) => withValues(source, tag, literals, spread),
+        code
+      ),
+      forwarded,
+      values
     )
   ).replace(/\bPreview\b/g, `${identifierOf(slug)}${identifierOf(name)}`);
+};
 
 /** What a component reports: the value itself, or the element's own state from an event. */
 const reported = (name: string, report: unknown) =>
@@ -205,6 +229,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   children,
   controls: spec = {},
   replay,
+  span,
 }) => {
   const t = useCopy();
   const { slug = '' } = useParams();
@@ -221,8 +246,8 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   // The page's toggles, and the preset's own after them.
   const controlsOf = (shown?: React.ReactElement<PresetProps>) =>
     Object.fromEntries(
-      Object.entries({ ...spec, ...shown?.props.controls }).map(
-        ([name, control]) => [name, controlOf(control)]
+      Object.entries({ ...spec, ...shown?.props.controls }).flatMap(
+        ([name, control]) => (control ? [[name, controlOf(control)]] : [])
       )
     );
   const controls = controlsOf(preset);
@@ -234,6 +259,27 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
 
   const [values, setValues] = useState<Values>(written);
   const [dark, setDark] = useState<boolean>();
+  const [stage, setStage] = useState<HTMLDivElement | null>(null);
+  const [output, setOutput] = useState('');
+
+  useEffect(() => {
+    if (!stage) {
+      return undefined;
+    }
+
+    const read = () => setOutput(outputOf(stage));
+    const observer = new MutationObserver(read);
+
+    read();
+    observer.observe(stage, {
+      attributes: true,
+      characterData: true,
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, [stage]);
 
   if (!preset) {
     return null;
@@ -312,16 +358,22 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
             <Text variant='secondary'>{preset.props.description}</Text>
           </CardContent>
         ) : null}
+        {/* A spanned stage stretches the example, so a field fills it as it would a form. */}
         <Layout
           alignContent='center'
           alignItems='center'
           display='grid'
-          justifyItems='center'
+          justifyItems={span ? undefined : 'center'}
         >
           {/* A theme of its own once a preset sets one, with the theme's colours. */}
           <div
             className={classNames(
               'kicl-min-block-size-columns-2',
+              span && [
+                'kicl-inline-size-full',
+                'kicl-margin-inline-auto',
+                `kicl-max-inline-size-columns-${span}`,
+              ],
               dark !== undefined && [
                 dark ? DARK_THEME_CLASS_NAME : LIGHT_THEME_CLASS_NAME,
                 'kicl-background-color-body',
@@ -338,6 +390,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
                   )
                 : undefined
             }
+            ref={setStage}
           >
             {dressed(preset.props.children, props)}
           </div>
@@ -350,7 +403,10 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
           </Layout>
         ) : null}
         <Code className='kicl-min-block-size-columns-2'>
-          {codeOf(preset.props, literals, applied, slug)}
+          {codeOf(preset.props, literals, applied, slug, names)}
+        </Code>
+        <Code language='markup' title={t('docs_output')}>
+          {output}
         </Code>
       </Card>
     </StageContext.Provider>

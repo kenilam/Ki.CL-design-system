@@ -18,6 +18,12 @@
   padding: 0;
 }
 
+// The reset above takes away the bold the browser gives these.
+b,
+strong {
+  font-weight: var(--kicl-font-weight-bold);
+}
+
 :root {
   --kicl-outline-color: var(--kicl-color-grey-dark);
   --kicl-outline-style: none;

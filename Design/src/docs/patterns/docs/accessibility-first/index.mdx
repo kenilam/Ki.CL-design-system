@@ -1,0 +1,55 @@
+Accessibility is cheapest when it's part of every step, and expensive when it's a fix after launch. This page follows a feature from research to code and lists what to check at each step.
+
+## Start from the system
+
+Components here are built on native elements, so they already handle the keyboard, focus, names and states. Using them everywhere also makes pages behave the same way across the site, and predictability is itself an accessibility requirement (WCAG 3.2).
+
+When something you need doesn't exist, look for the native element first. `dialog`, `details`, `popover`, `input type='date'` and form validation all come with behaviour you'd otherwise rebuild.
+
+## Research
+
+Include disabled people in research from the start. Ask the questions you'd ask anyone, then add a few about how they get around: which assistive technology they use, what slows them down, and what workarounds they rely on. Recruiting can take longer, so plan for it.
+
+## Content
+
+The words and their order are most of the interface.
+
+- **Title every page and every dialog or sheet.** Someone who can't see a transition needs the title to know where they are. `CardTitle` in a `Sheet` header and the `header` of a `Dialog` do this.
+- **Use headings for structure.** Screen reader users jump between headings to skim a page. Pick the heading level for the outline and use `lookLike` if it should look bigger or smaller.
+- **Write plainly.** Short sentences, everyday words, acronyms spelled out the first time.
+- **Keep reading order and visual order the same.** If a total updates when an option changes, put the total after the options, where focus will reach it next.
+- **Give everything that isn't text a text alternative.** Images get `alt`, and an icon-only button gets an `aria-label`.
+
+## Visual design
+
+- **Text size.** Body text is 16px, secondary text 14px, and nothing goes below 12px. See Contrast and size.
+- **Zoom and reflow.** Use rem and the column scale, never fixed pixel widths, so the page reflows at 200% zoom and 320px wide without sideways scrolling.
+- **Don't rely on colour alone.** An error needs words as well as red: `FormMessage` and `Status` both say what went wrong.
+- **Contrast.** 4.5:1 for small text, 3:1 for large text and for the edges of controls and focus rings.
+- **Dark mode.** It helps people with light sensitivity and anyone reading at night, and it comes free when you use the colour roles instead of fixed colours.
+
+## Interaction and motion
+
+- **Targets.** Make controls at least 24px, and bigger where you can, especially on touch screens. Prefer a button or a link styled as one over a short text link.
+- **Time.** Avoid time limits. Where one can't be avoided, let people extend it.
+- **Pause, stop, hide.** Anything that moves on its own for more than five seconds needs a way to stop it, and motion should stop when the person asks for less of it.
+
+## Build
+
+- Test with the keyboard alone: everything reachable, in order, with a visible focus ring.
+- Test with a screen reader: VoiceOver on macOS and iOS, NVDA on Windows, TalkBack on Android.
+- Zoom to 200% and check nothing is cut off or overlapping.
+- Run an automated check as a floor, not a finish line. It can't tell whether a name makes sense or an order is logical.
+
+## References
+
+- [WCAG 2.2, 3.2 Predictable](https://www.w3.org/WAI/WCAG22/Understanding/predictable)
+- [WCAG 2.2, 2.4.2 Page Titled](https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html)
+- [WCAG 2.2, 1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html)
+- [WCAG 2.2, 1.3.2 Meaningful Sequence](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html)
+- [WCAG 2.2, 1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html)
+- [WCAG 2.2, 1.4.1 Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
+- [WCAG 2.2, 1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
+- [WCAG 2.2, 2.5.8 Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+- [WCAG 2.2, 2.2.1 Timing Adjustable](https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html)
+- [WCAG 2.2, 2.2.2 Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)

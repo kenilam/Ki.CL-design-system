@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import * as Ri from 'react-icons/ri';
 
 import {
+  HomeLink,
   Button,
   CardTitle,
   HyperLink,
@@ -15,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Sheet,
+  SheetFooter,
   Text,
 } from 'design/components';
 
@@ -38,7 +40,7 @@ const Header: React.FunctionComponent = () => {
   const { isMobile } = useResponsive();
   const { pathname } = useLocation();
   const t = useCopy();
-  const { name } = useTokenContext();
+  const { category, name } = useTokenContext();
 
   const Trigger = (
     <Button
@@ -82,6 +84,9 @@ const Header: React.FunctionComponent = () => {
               side='inline-start'
             >
               <Sidebar />
+              <SheetFooter justifyContent='start'>
+                <HomeLink showLabel to={parsePath()} />
+              </SheetFooter>
             </Sheet>
           </>
         ) : (
@@ -107,14 +112,48 @@ const Header: React.FunctionComponent = () => {
         <nav aria-label={t('docs_breadcrumb')}>
           <List
             alignItems='center'
-            autoFlow='column'
+            autoFlow='row'
+            display='flex'
             gap='narrower'
             is='ol'
-            justifyContent='start'
+            wrap
           >
             <ListItem>
-              <HyperLink to={parsePath(PATH)}>{t('docs_overview')}</HyperLink>
+              <HyperLink to={parsePath()}>{t('docs_design_system')}</HyperLink>
             </ListItem>
+            <ListItem alignItems='center' autoFlow='column' gap='narrower'>
+              <Ri.RiArrowRightSLine aria-hidden />
+              {isMobile ? (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      aria-label={t('docs_breadcrumb_more')}
+                      size='small'
+                      variant='tertiary'
+                    >
+                      …
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent placement='block-end-start'>
+                    <HyperLink
+                      lookLikeButton
+                      to={parsePath(PATH)}
+                      variant='tertiary'
+                    >
+                      {t('docs_tokens')}
+                    </HyperLink>
+                  </PopoverContent>
+                </Popover>
+              ) : (
+                <HyperLink to={parsePath(PATH)}>{t('docs_tokens')}</HyperLink>
+              )}
+            </ListItem>
+            {!isMobile && category && (
+              <ListItem alignItems='center' autoFlow='column' gap='narrower'>
+                <Ri.RiArrowRightSLine aria-hidden />
+                <Text is='span'>{t(`category_${category}`)}</Text>
+              </ListItem>
+            )}
             <ListItem alignItems='center' autoFlow='column' gap='narrower'>
               <Ri.RiArrowRightSLine aria-hidden />
               <Text

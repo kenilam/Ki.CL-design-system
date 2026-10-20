@@ -1,0 +1,38 @@
+import { Preset as OnOrOff } from './on-or-off';
+import { Preset as OneOfAFew } from './one-of-a-few';
+import { Preset as OneOfMany } from './one-of-many';
+import { Preset as Several } from './several';
+import { Preset as SwitchAView } from './switch-a-view';
+
+Selection lets people make a choice and see what's chosen. The right control depends on how many options there are and whether the choice takes effect straight away.
+
+<Preview>
+  {OneOfAFew}
+  {OneOfMany}
+  {Several}
+  {SwitchAView}
+  {OnOrOff}
+</Preview>
+
+## Picking the control
+
+- **One of a few:** `RadioGroup`. All the options stay visible, so people can compare them.
+- **One of many:** `Select`, or `Combobox` when typing to filter is faster than scrolling.
+- **Any number:** `CheckboxGroup`.
+- **A view of the same content:** `Segmented`. It changes the view straight away.
+- **A setting that applies at once:** `Switch`. If it waits for a form to be sent, use a `Checkbox`.
+
+## Showing what's selected
+
+The selected option has to stand out without colour alone. Each control here pairs colour with something else: a filled dot, a check, a moved thumb, a raised segment. Those marks need at least 3:1 contrast against what's next to them.
+
+## Keyboard
+
+The native controls bring the keyboard with them. Arrow keys move between radios and segments, Space toggles a checkbox or switch, and typing a letter jumps through a select. A custom control has to rebuild all of that, which is the main reason to start from the real element.
+
+## References
+
+- [WCAG 2.2, 1.4.1 Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
+- [WCAG 2.2, 1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
+- [W3C WAI, Radio group pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
+- [W3C WAI, Switch pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/)

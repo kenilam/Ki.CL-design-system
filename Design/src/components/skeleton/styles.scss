@@ -38,6 +38,10 @@
   border-radius: var(--kicl--components--skeleton--border-radius);
   inline-size: var(--kicl--components--skeleton--inline-size);
 
+  &:empty {
+    min-block-size: 1lh;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     animation-name: none;
   }

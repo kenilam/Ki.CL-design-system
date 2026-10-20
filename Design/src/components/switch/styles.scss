@@ -55,3 +55,14 @@
     --kicl--components--switch--track: var(--kicl-color-grey-light);
   }
 }
+
+// The name beside the switch takes its size too, as a button's label does.
+.kicl--components--switch-field {
+  &:has(.kicl--components--switch--size--large) {
+    font-size: var(--kicl-font-size);
+  }
+
+  &:has(.kicl--components--switch--size--small) {
+    font-size: var(--kicl-font-size-smaller);
+  }
+}

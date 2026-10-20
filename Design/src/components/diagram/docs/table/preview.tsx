@@ -5,7 +5,7 @@ import { Diagram, type DiagramSpec } from 'design/components';
 const spec: DiagramSpec = {
   title: 'User',
   description: 'The user table: an id, an email and when it was made.',
-  width: 300,
+  width: 560,
   height: 150,
   nodes: [
     {
@@ -15,7 +15,7 @@ const spec: DiagramSpec = {
         { name: 'email', type: 'text', note: 'unique' },
         { name: 'created', type: 'date' },
       ],
-      x: 10,
+      x: 140,
       y: 10,
       w: 280,
       h: 130,

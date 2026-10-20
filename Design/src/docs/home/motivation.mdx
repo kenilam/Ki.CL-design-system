@@ -1,0 +1,17 @@
+## Why I built it
+
+Over ten-plus years I've built design systems at several companies, and used a long list of open-source ones along the way: Remix, shadcn/ui, Tailwind and many others. This one is my answer to a frustration none of them resolved. Every library I've used fails in one of two ways.
+
+**Over-engineering.** A button becomes a React component wrapping a headless primitive wrapping a context provider, with props that re-implement what HTML gives you for free. Semantics get promised and then quietly lost: the link is a `div` with a click handler, the dialog is a portal with hand-rolled focus trapping, and the result is less accessible and less predictable than the native element it replaced. JavaScript does work the platform already does.
+
+**The wrong relationship with CSS.** One camp gives you no utilities at all: every style is bespoke, every spacing value is reinvented, and nothing composes. The other uses so many that CSS disappears behind a class vocabulary you have to memorise like a dictionary, and the markup stops describing the content. Both make you fight the language instead of using it.
+
+Underneath both is the same problem: the library keeps you from the platform. You configure it instead of understanding it, and when something misbehaves you're debugging an abstraction rather than HTML or CSS. The complexity never ends, and the output is never quite what a well-written native page would have been.
+
+## What it is instead
+
+- **Platform-first.** HTML and CSS are the primitives. Components compose native elements; they don't replace them. If the browser already does it (focus, validation, dialogs, popovers, anchoring, scrolling), the system uses that, and JavaScript is the exception that has to justify itself.
+- **Semantic by default.** The right element, always. Styling never changes what something is, and accessibility comes from correct markup, not an ARIA layer bolted on afterwards.
+- **CSS that reads as CSS.** Tokens, custom properties, logical properties, container queries, cascade layers and nesting, used directly. A small, deliberate set of utilities where composing helps, and no class-name dictionary standing in for stylesheets.
+- **Configuration you can understand.** Anyone who knows HTML and CSS, and nothing else, can read it. No build-time magic to work out what something will look like, and overrides work the way the cascade works.
+- **Predictable.** Things behave the way the platform says they do. If a component surprises you, that's a bug in the system, not a quirk to document.

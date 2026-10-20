@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { HyperLink } from 'design/components';
+import { HyperLink, Text } from 'design/components';
 
 import type { Props } from 'design/components/hyper-link/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
-  <HyperLink to='#' {...props}>
-    A link
-  </HyperLink>
+  <Text>
+    Read the{' '}
+    <HyperLink to='#' {...props}>
+      release notes
+    </HyperLink>{' '}
+    before you update.
+  </Text>
 );
 
 export { Preview };

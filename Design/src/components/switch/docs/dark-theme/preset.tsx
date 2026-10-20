@@ -19,6 +19,7 @@ const name = 'Dark theme';
 /*
  * Written out, not read from the file: the example switches the docs' stage
  * through a hook of its own, and the reader's code uses `useResponsive`.
+ * `{...props}` takes the page's toggles, as in an example's file.
  */
 const code = `
 const { setTheme, theme } = useResponsive();
@@ -26,6 +27,7 @@ const { setTheme, theme } = useResponsive();
 <Switch
   checked={theme === 'dark'}
   onCheckedChange={(dark) => setTheme(dark ? 'dark' : 'light')}
+  {...props}
 >
   Dark theme
 </Switch>

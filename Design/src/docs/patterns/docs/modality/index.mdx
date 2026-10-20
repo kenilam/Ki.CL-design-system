@@ -1,0 +1,42 @@
+import { Preset as AShortNote } from './a-short-note';
+import { Preset as ConfirmADelete } from './confirm-a-delete';
+import { Preset as Filters } from './filters';
+import { Preset as InPlace } from './in-place';
+
+A modal layer pauses what someone is doing until they finish a short task or answer a question, then puts them back where they were. The page behind it can't be used until it closes.
+
+<Preview>
+  {ConfirmADelete}
+  {Filters}
+  {AShortNote}
+  {InPlace}
+</Preview>
+
+## When to use one
+
+Use a layer for a task with a clear start and end that doesn't need the page behind it: confirming a delete, editing a few settings, picking filters. If the person is moving on and won't come back, take them to a new page instead. If they need to look at the page while they work, don't cover it.
+
+## Which layer
+
+- **`Dialog`** for a decision that has to be made now. It's modal: the rest of the page is inert until it closes.
+- **`Sheet`** for a longer task, like filters or a form, sliding in from a side.
+- **`Popover`** for a short note or a few options next to what opened it. It isn't modal, and clicking outside closes it.
+- **`Details`** when the content can just open in the page. It doesn't need a layer at all.
+
+## What the platform does
+
+All four are native: `dialog`, the `popover` attribute and `details`. That gives you, without any script:
+
+- Focus moves into a dialog when it opens and goes back to the button that opened it when it closes.
+- Escape closes it.
+- The rest of the page can't be reached with Tab while a modal dialog is open.
+- The layer sits in the top layer, above everything, without a `z-index`.
+
+Every layer needs a title, so someone who can't see it appear knows what it's about.
+
+## References
+
+- [MDN, dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog)
+- [MDN, Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)
+- [W3C WAI, Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+- [Nielsen Norman Group, Modal and nonmodal dialogs](https://www.nngroup.com/articles/modal-nonmodal-dialog/)

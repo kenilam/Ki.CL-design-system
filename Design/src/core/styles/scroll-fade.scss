@@ -39,3 +39,7 @@
 .kicl-scroll-fade {
   @include scroll-fade;
 }
+
+.kicl-scroll-fade-inline {
+  @include scroll-fade(inline);
+}

@@ -23,5 +23,13 @@ export const CONTROLS = {
   },
 } satisfies ControlsSpec;
 
+/** A hint opens above its trigger unless told otherwise. */
+export const HINT_CONTROLS = {
+  placement: {
+    options: POPOVER_PLACEMENTS,
+    default: 'block-start-start',
+  },
+} satisfies ControlsSpec;
+
 export type Props = Controlled<typeof Popover, 'open'> &
   Controlled<typeof PopoverContent, 'offset' | 'placement' | 'variant'>;

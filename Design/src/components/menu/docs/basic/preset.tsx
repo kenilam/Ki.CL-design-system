@@ -10,7 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     The actions for one thing, like the buttons under a photo. Each button keeps
-    its own size and colour.
+    its own look, like the red Delete.
   </>
 );
 

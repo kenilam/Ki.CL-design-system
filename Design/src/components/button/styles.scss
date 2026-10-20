@@ -25,6 +25,10 @@
 
   @include transition('kicl--components--button');
 
+  > .kicl--components--badge {
+    margin-block: calc(-1 * var(--kicl--components--badge--padding-block));
+  }
+
   @at-root .kicl--theme--dark & {
     --kicl-body-color: var(--kicl-color-grey-darker);
     --kicl--components--button--background-color: var(--kicl-color-white);

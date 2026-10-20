@@ -115,6 +115,8 @@ import {
   GetHyperLinkClassNamesProps,
   HyperLinkProps,
 } from './hyper-link';
+import { HomeLink } from './hyper-link/home-link';
+import type { HomeLinkProps } from './hyper-link/spec';
 import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
 import { Input, type InputProps } from './input';
@@ -314,6 +316,8 @@ export {
   type FormProps,
   Heading,
   type HeadingProps,
+  HomeLink,
+  type HomeLinkProps,
   HyperLink,
   type HyperLinkProps,
   getHyperLinkClassNames,

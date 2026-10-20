@@ -19,26 +19,32 @@ import { useResponsive } from 'design/hooks';
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
-type Props = { children: string } & Pick<
-  React.ComponentProps<typeof CardContent>,
-  'className'
->;
+type Props = {
+  children: string;
+  language?: 'markup' | 'tsx';
+  title?: string;
+} & Pick<React.ComponentProps<typeof CardContent>, 'className'>;
 
-/** A block of JSX, highlighted, in a card whose header holds the button that copies it. */
-const Code: React.FunctionComponent<Props> = ({ children, className }) => {
+/** A block of JSX or HTML, highlighted, in a card whose header holds the button that copies it. */
+const Code: React.FunctionComponent<Props> = ({
+  children,
+  className,
+  language = 'tsx',
+  title,
+}) => {
   const t = useCopy();
   const { theme } = useResponsive();
 
   return (
     <Card
       gap='narrow'
-      header={<CardTitle is='h3'>{t('docs_code')}</CardTitle>}
+      header={<CardTitle is='h3'>{title ?? t('docs_code')}</CardTitle>}
       size='default'
     >
       <CardContent className={classNames('kicl-position-relative', className)}>
         <Highlight
           code={children}
-          language='tsx'
+          language={language}
           theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
         >
           {({ getLineProps, getTokenProps, tokens }) => (

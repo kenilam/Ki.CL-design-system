@@ -6,7 +6,7 @@ import type { Props } from 'design/components/switch/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
   <Switch {...props}>
-    <SwitchLabel>Notifications</SwitchLabel>
+    <SwitchLabel className='kicl-font-weight-bold'>Notifications</SwitchLabel>
   </Switch>
 );
 

@@ -1,9 +1,16 @@
 import React from 'react';
 
-import { Badge } from 'design/components';
+import { Badge, Layout, Text } from 'design/components';
 
 import type { Props } from 'design/components/badge/docs/controls';
 
-const Preview: React.FC<Props> = (props) => <Badge {...props}>New</Badge>;
+const Preview: React.FC<Props> = (props) => (
+  <Layout alignItems='center' autoFlow='column' gap='narrow'>
+    <Text>
+      Dark theme
+      <Badge {...props}>New</Badge>
+    </Text>
+  </Layout>
+);
 
 export { Preview };

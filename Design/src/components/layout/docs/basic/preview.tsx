@@ -13,7 +13,7 @@ import {
 import type { StackProps } from 'design/components/layout/docs/controls';
 
 const Preview: React.FC<StackProps> = (props) => (
-  <Card header={<CardTitle is='h3'>Sign in</CardTitle>} is='form'>
+  <Card header={<CardTitle is='h3'>Sign in</CardTitle>} is='form' size={4}>
     <Layout gap='normal' {...props}>
       <CardContent>
         <EmailInput aria-label='Email' placeholder='you@example.com' />

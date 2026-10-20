@@ -3,6 +3,7 @@ import React from 'react';
 // Partials
 import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
+import { GROUP_CONTROLS } from 'design/components/checkbox/docs/controls';
 
 // Preview
 import { Preview } from './preview';
@@ -20,7 +21,12 @@ const name = 'Select all';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    controls={GROUP_CONTROLS}
+    description={description}
+    name={name}
+  >
     <Preview />
   </Origin>
 );

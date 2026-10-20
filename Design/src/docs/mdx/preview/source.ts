@@ -280,6 +280,62 @@ export const withValues = (
   return `${source.slice(0, tag.start)}${text}${source.slice(tag.end)}`;
 };
 
+/** A prop the example passes on by name, as `offset={offset}`, rather than through the spread. */
+const forwardOf = (name: string) =>
+  new RegExp(`(\\s+)${name}=\\{${name}\\}`, 'g');
+
+/** The controls the example passes on by name to a component other than the one that spreads `props`. */
+export const forwardedOf = (source: string, names: string[]) =>
+  new Set(names.filter((name) => forwardOf(name).test(source)));
+
+/**
+ * The example's source with the chosen value written wherever it passes a
+ * control on by name, and that name taken out of its parameters once nothing
+ * else reads it.
+ */
+export const withForwarded = (
+  source: string,
+  forwarded: Set<string>,
+  values: Values
+) => {
+  let written = source;
+
+  for (const name of forwarded) {
+    written = written.replace(forwardOf(name), (_, space: string) => {
+      const attribute = attributeOf(name, values[name]);
+
+      return attribute ? `${space}${attribute}` : '';
+    });
+  }
+
+  return written.replace(
+    /^(const Preview(?::[^=]+)? = \()\{([^}]*)\}\)/m,
+    (head: string, start: string, list: string) => {
+      const body = written.slice(written.indexOf(head) + head.length);
+      const kept = list
+        .split(',')
+        .map((parameter) => parameter.trim())
+        .filter(
+          (parameter) =>
+            parameter &&
+            !(
+              forwarded.has(parameter) &&
+              // Read as a value, not written as an attribute's name.
+              !new RegExp(`\\b${parameter}\\b(?!=)`).test(body)
+            )
+        );
+
+      if (!kept.length) {
+        return `${start})`;
+      }
+
+      return kept.length === 1 && kept[0] === '...props'
+        ? `${start}props)`
+        : `${start}{ ${kept.join(', ')} })`;
+    }
+  );
+};
+
 const indent = (body: string, by: string) => body.replace(/^(?=.)/gm, by);
 
 export const snippetOf = (source: string) =>

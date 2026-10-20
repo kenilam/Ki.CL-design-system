@@ -95,7 +95,7 @@ The patterns are `kicl-overflow-{keyword}`, `kicl-overflow-{x|y}-{keyword}`, `ki
 <div className='kicl-overflow-y-auto kicl-overscroll-behavior-contain' />
 
 // Scrolls sideways with no scrollbar, and fades at the edges
-<ul className='kicl-overflow-x-auto kicl-scrollbar-none kicl-scroll-fade' />
+<ul className='kicl-overflow-x-auto kicl-scroll-fade-inline' />
 
 // Fills the rest of a fit-content parent instead of setting its width
 <div className='kicl-contain-inline-size' />
@@ -104,5 +104,5 @@ The patterns are `kicl-overflow-{keyword}`, `kicl-overflow-{x|y}-{keyword}`, `ki
 `{keyword}` for overflow is `auto`, `clip`, `hidden`, `scroll` or `visible`. For contain it's `none`, `content`, `inline-size`, `layout`, `paint`, `size` or `strict`. `kicl-contain-inline-size` keeps an element out of its parent's width, so a fit-content parent sizes to its other children and this one fills the rest.
 
 - `kicl-scrollbar-none` hides the scrollbar and keeps the scrolling.
-- `kicl-scroll-fade` fades the content out at the edges it can scroll toward.
+- `kicl-scroll-fade` fades the content out at the top and bottom edges it can scroll toward, and hides the scrollbar. `kicl-scroll-fade-inline` does the same at the start and end, for a row that scrolls sideways.
 - `kicl-stuck-line-start` and `kicl-stuck-line-end` draw the site's gradient along a sticky element's edge while it's stuck: `start` for a footer stuck to the bottom, `end` for a header stuck to the top.

@@ -10,12 +10,12 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Puts the question above the options, so they don't need a separate label.{' '}
-    <Text is='code'>legend</Text> sets it.
+    Pick any toppings, or none. A <Text is='code'>CheckboxGroup</Text> allows
+    any number, and the summary keeps count.
   </>
 );
 
-const name = 'With a legend';
+const name = 'Several';
 
 /** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (

@@ -10,7 +10,12 @@ const Preview: React.FC<Props> = (props) => (
     alt='A picture that is missing'
     className='kicl-aspect-ratio-video kicl-inline-size-columns-3'
     data='/assets/static/missing.webp'
-    placeholder={<Ri.RiImageLine aria-hidden />}
+    placeholder={
+      <Ri.RiImageLine
+        aria-hidden
+        className='kicl-color-grey kicl-font-size-large'
+      />
+    }
     {...props}
   />
 );

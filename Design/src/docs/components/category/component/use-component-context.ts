@@ -1,4 +1,4 @@
-import { PAGES, type Component } from 'design/docs/pages';
+import { PAGES, type Component } from 'design/docs/components/pages';
 import { useCopy } from 'design/locales/use-copy';
 import { useParams } from 'design/router';
 

@@ -136,6 +136,7 @@
   "docs_overview": "Overview",
   "docs_preset": "Preset",
   "docs_title": "Ki.CL design system",
+  "docs_title_components": "Ki.CL design system | Components",
   "document_title": "Ki.CL | {{title}}",
   "error_email_invalid": "Enter an email address",
   "error_message_long": "Keep it under {{max}} characters",

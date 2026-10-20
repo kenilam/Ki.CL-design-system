@@ -18,7 +18,10 @@ import { useCopy } from 'design/locales/use-copy';
 import { useDocsContext } from 'design/docs/context';
 
 // Pages
-import { PAGES, type Category } from 'design/docs/pages';
+import { PAGES, type Category } from 'design/docs/components/pages';
+
+// Constants
+import { PATH } from 'design/docs/components/constants';
 
 const Explore: React.FunctionComponent = () => {
   const t = useCopy();
@@ -42,7 +45,9 @@ const Explore: React.FunctionComponent = () => {
                 header={
                   <>
                     <CardTitle is='h4'>
-                      <HyperLink to={parsePath(`${category}/${component}`)}>
+                      <HyperLink
+                        to={parsePath(`${PATH}/${category}/${component}`)}
+                      >
                         {t('component', { context })}
                       </HyperLink>
                     </CardTitle>

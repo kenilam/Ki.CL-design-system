@@ -1,6 +1,6 @@
 .kicl--components--select {
   --kicl--components--select--background-color: var(--kicl-surface-color);
-  --kicl--components--select--border-color: var(--kicl-color-grey-darker);
+  --kicl--components--select--border-color: var(--kicl-color-grey-900);
 
   // The same box as `Input`: a field, whichever way it is filled in.
   --kicl--components--select--border-radius: var(--kicl-gutter-narrow);
@@ -47,6 +47,6 @@
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--select--border-color: var(--kicl-color-grey-darker);
+    --kicl--components--select--border-color: var(--kicl-color-grey-900);
   }
 }

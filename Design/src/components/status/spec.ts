@@ -8,10 +8,10 @@ import type { Level } from 'design/components/spec';
 // Icons
 import { IconType } from 'design/icons';
 
-type StatusLevel = Exclude<Level, 'confirm'>;
+type StatusLevel = Exclude<Level, 'confirm' | 'neutral'>;
 
 export const STATUS_LEVELS = LEVELS.filter(
-  (level): level is StatusLevel => level !== 'confirm'
+  (level): level is StatusLevel => level !== 'confirm' && level !== 'neutral'
 );
 
 export type Icons = {

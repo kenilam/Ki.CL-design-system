@@ -14,7 +14,7 @@ export const CONTROLS = {
     default: 'primary',
     when: LOOK,
   },
-  level: { options: LEVELS, when: LOOK },
+  level: { options: LEVELS, default: 'neutral', when: LOOK },
   size: { options: BUTTON_SIZES, when: LOOK },
   // With the link's look, it can drop that look too, as a link can.
   unstyled: { options: 'boolean', when: { lookLikeHyperLink: true } },

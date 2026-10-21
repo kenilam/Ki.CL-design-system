@@ -1,5 +1,5 @@
 .kicl--components--switch {
-  --kicl--components--switch--track: var(--kicl-color-grey-light);
+  --kicl--components--switch--track: var(--kicl-color-grey-300);
   --kicl--components--switch--checked: var(--kicl-color-confirm);
   --kicl--components--switch--thumb: var(--kicl-color-white-pure);
 
@@ -48,11 +48,11 @@
   }
 
   @at-root .kicl--theme--dark & {
-    --kicl--components--switch--track: var(--kicl-color-grey-dark);
+    --kicl--components--switch--track: var(--kicl-color-grey-700);
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--switch--track: var(--kicl-color-grey-light);
+    --kicl--components--switch--track: var(--kicl-color-grey-300);
   }
 }
 

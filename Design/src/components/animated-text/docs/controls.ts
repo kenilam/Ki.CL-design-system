@@ -12,7 +12,7 @@ export const CONTROLS = {
   duration: { options: DURATIONS, default: 'fastest' },
   lookLike: TEXT_LOOK_LIKES,
   variant: { options: TEXT_VARIANTS, default: 'primary' },
-  level: LEVELS,
+  level: { options: LEVELS, default: 'neutral' },
   dense: 'boolean',
 } satisfies ControlsSpec;
 

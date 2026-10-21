@@ -93,7 +93,7 @@ const Status: React.FunctionComponent<Spec.Props> = ({
       justifyContent={justifyContent}
     >
       <Text
-        className={classNames('kicl-font-size-small', 'kicl-color-grey-dark')}
+        className={classNames('kicl-font-size-small', 'kicl-color-grey-700')}
         is='p'
       >
         {hasTitle ? null : Icon}

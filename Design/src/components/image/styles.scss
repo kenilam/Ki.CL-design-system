@@ -3,21 +3,8 @@
   --kicl--components--image--background-color: transparent;
   --kicl--components--image--block-size: auto;
   --kicl--components--image--border-radius: var(--kicl-size-half);
-  --kicl--components--image--empty-background-color: var(
-    --kicl-color-grey-lighter
-  );
   --kicl--components--image--inline-size: 100%;
   --kicl--components--image--object-fit: cover;
-}
-
-.kicl--theme--dark {
-  --kicl--components--image--empty-background-color: var(--kicl-color-grey-dark);
-}
-
-.kicl--theme--light {
-  --kicl--components--image--empty-background-color: var(
-    --kicl-color-grey-lighter
-  );
 }
 
 .kicl--components--image {
@@ -37,7 +24,8 @@
   &--is-loading,
   &--has-error {
     --kicl--components--image--background-color: var(
-      --kicl--components--image--empty-background-color
+      --kicl--components--image--empty-background-color,
+      var(--kicl-color-neutral-a12)
     );
   }
 

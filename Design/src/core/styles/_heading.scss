@@ -64,10 +64,9 @@
   }
 
   @if $level == 6 {
-    --kicl-heading-font-color: color-mix(
-      in srgb,
-      var(--kicl-heading-status-color, var(--kicl-body-color)) var(--kicl-color-strength-secondary),
-      transparent
+    --kicl-heading-font-color: var(
+      --kicl-heading-status-color-secondary,
+      var(--kicl-color-neutral-a64)
     );
 
     text-transform: uppercase;

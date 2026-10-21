@@ -17,7 +17,7 @@ type Props = {
 };
 
 const FRAME = classNames(
-  'kicl-background-color-grey-dark',
+  'kicl-background-color-grey-700',
   'kicl-border-radius-xs',
   'kicl-contain-paint',
   'kicl-position-relative'
@@ -84,7 +84,7 @@ const Stack: React.FunctionComponent<Props> = ({ name }) => (
   >
     <span
       className={classNames(
-        'kicl-background-color-grey-lighter',
+        'kicl-background-color-grey-200',
         'kicl-border-radius-xs',
         'kicl-inset-block-start-narrow',
         'kicl-inset-inline-start-narrow',
@@ -126,7 +126,7 @@ const Overflow: React.FunctionComponent<Props> = ({ name }) => (
   <div
     aria-hidden
     className={classNames(
-      'kicl-background-color-grey-dark',
+      'kicl-background-color-grey-700',
       'kicl-border-radius-xs',
       'kicl-inline-size-sm',
       'kicl-max-block-size-columns-1',
@@ -195,7 +195,7 @@ const Motion: React.FunctionComponent<{ style: React.CSSProperties }> = ({
     aria-hidden
     className={classNames(
       'kicl--docs--motion',
-      'kicl-background-color-grey-lighter',
+      'kicl-background-color-grey-200',
       'kicl-border-radius-xs',
       'kicl-display-flex',
       'kicl-inline-size-columns-6',

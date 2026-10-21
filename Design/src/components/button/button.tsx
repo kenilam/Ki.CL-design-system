@@ -12,9 +12,9 @@ import { LAYOUT, getButtonClassNames, hasText } from './class-names';
 
 // Styles
 import './styles.scss';
-import './styles.level.scss';
 import './styles.size.scss';
 import './styles.variant.scss';
+import './styles.disabled.scss';
 
 const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
   (

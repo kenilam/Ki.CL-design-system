@@ -1,23 +1,23 @@
 import { Variants } from './variants';
 
-`variant` says how much a component stands out. `primary` is filled, `secondary` is a tint, `tertiary` is text only and `ghost` is an outline. Button, Badge, Card, Bubble, Text, Popover and InputGroup take it. Badge has no `tertiary` and Card has no `ghost`.
+`variant` says how much a component stands out. `primary` fills with the level's colour, and `secondary`, `tertiary` and `ghost` fill with the level's look of the same name, each lighter than the last. `ghost` adds an edge in the level's colour. The label takes whichever of black or white reads against the fill. Button, Badge, Card, Bubble, Text, Popover and InputGroup take it. Badge has no `tertiary` and Card has no `ghost`.
 
 <Variants />
 
 ## Classes
 
-Variant is a prop, not a utility, so it has no variables or `kicl-*` classes of its own. Each component turns it into its own modifier class, `kicl--components--{component}--variant--{variant}`. Don't write those by hand. Set the prop, and the component picks the colours from its `level`, or the body colour without one.
+Variant is a prop, not a utility, so it has no variables or `kicl-*` classes of its own. Each component turns it into its own modifier class, `kicl--components--{component}--variant--{variant}`. Don't write those by hand. Set the prop, and the component picks the colours from its `level`, or `neutral` without one.
 
 ```tsx
 // Filled, for the one action that matters most on the page
 <Button variant='primary'>Save</Button>
 
-// A tint, for an action beside the main one
+// A lighter fill, for an action beside the main one
 <Button variant='secondary'>Preview</Button>
 
-// Text only, for a quiet action
+// A faint fill, for a quiet action
 <Button variant='tertiary'>Cancel</Button>
 
-// An outline, with an error colour for a destructive action
+// The faintest fill with an edge, in the error colour for a destructive action
 <Button level='error' variant='ghost'>Delete</Button>
 ```

@@ -1,23 +1,17 @@
 .kicl--components--input-group {
   --kicl--components--input-group--background-color: var(--kicl-surface-color);
-  --kicl--components--input-group--border-color: var(--kicl-color-grey-darker);
+  --kicl--components--input-group--border-color: var(--kicl-color-grey-900);
   --kicl--components--input-group--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input-group--border-width: var(--kicl-size-1px);
 
   // Softer than the error colour itself, which the focus outline uses.
-  --kicl--components--input-group--invalid-border-color: color-mix(
-    in oklab,
-    var(--kicl-color-error) 50%,
-    transparent
+  --kicl--components--input-group--invalid-border-color: var(
+    --kicl-color-error-secondary
   );
   --kicl--components--input-group--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input-group--padding-inline-end: var(--kicl-gutter);
   --kicl--components--input-group--padding-inline-start: var(--kicl-gutter);
-  --kicl--components--input-group--read-only-background-color: color-mix(
-    in oklab,
-    var(--kicl-surface-color) 85%,
-    var(--kicl-color-grey)
-  );
+  --kicl--components--input-group--read-only-background-color: var(--kicl-body-background-color);
 
   background-color: var(--kicl--components--input-group--background-color);
   border: var(--kicl--components--input-group--border-width) solid
@@ -110,7 +104,7 @@
 
   @at-root .kicl--theme--light & {
     --kicl--components--input-group--border-color: var(
-      --kicl-color-grey-darker
+      --kicl-color-grey-900
     );
   }
 }

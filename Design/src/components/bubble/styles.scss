@@ -1,19 +1,19 @@
 .kicl--components--bubble {
-  --kicl--components--bubble--tint: var(--kicl-body-color);
+  @include level-tones('kicl--components--bubble');
+
   --kicl--components--bubble--background-color: var(
-    --kicl--components--bubble--tint
+    --kicl--components--bubble--tone
   );
   --kicl--components--bubble--border-color: transparent;
   --kicl--components--bubble--border-radius: var(--kicl-size-2x);
   --kicl--components--bubble--border-width: var(--kicl-size-1px);
   --kicl--components--bubble--color: contrast-color(
-    var(--kicl--components--bubble--tint)
+    var(--kicl--components--bubble--background-color)
   );
-  --kicl--components--bubble--hover-background-color: color-mix(
-    in oklab,
-    var(--kicl--components--bubble--background-color) 80%,
-    transparent
-  );
+
+  // A wash over the fill on hover: the page colour over a full one, the ink
+  // over the lighter looks.
+  --kicl--components--bubble--hover: var(--kicl-color-page-a16);
   --kicl--components--bubble--max-inline-size: 80%;
   --kicl--components--bubble--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--bubble--padding-inline: var(--kicl-gutter);
@@ -22,57 +22,43 @@
   max-inline-size: var(--kicl--components--bubble--max-inline-size);
   min-inline-size: 0;
 
-  @each $level in confirm, error, info, warning {
-    &--level--#{$level} {
-      --kicl--components--bubble--tint: var(--kicl-color-#{$level});
-    }
-  }
-
+  // As on `Button`: secondary and tertiary are a look over a faint fill, and
+  // ghost has no fill, with an edge and label in its own look.
   &--variant--secondary {
+    --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
     --kicl--components--bubble--background-color: color-mix(
-      in oklab,
-      var(--kicl--components--bubble--tint) 12%,
+      in srgb,
+      var(--kicl--components--bubble--tone-secondary) 10%,
       transparent
     );
-    --kicl--components--bubble--color: var(--kicl--components--bubble--tint);
-    --kicl--components--bubble--hover-background-color: color-mix(
-      in oklab,
-      var(--kicl--components--bubble--tint) 20%,
-      transparent
+    --kicl--components--bubble--color: var(
+      --kicl--components--bubble--tone-secondary
     );
   }
 
+  // Takes the whole row.
   &--variant--tertiary {
-    --kicl--components--bubble--background-color: transparent;
-    --kicl--components--bubble--border-radius: 0;
-    --kicl--components--bubble--color: var(--kicl--components--bubble--tint);
-    --kicl--components--bubble--hover-background-color: color-mix(
-      in oklab,
-      var(--kicl--components--bubble--tint) 8%,
+    --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
+    --kicl--components--bubble--background-color: color-mix(
+      in srgb,
+      var(--kicl--components--bubble--tone-tertiary) 2%,
       transparent
+    );
+    --kicl--components--bubble--color: var(
+      --kicl--components--bubble--tone
     );
     --kicl--components--bubble--max-inline-size: 100%;
-    --kicl--components--bubble--padding-block: 0;
-    --kicl--components--bubble--padding-inline: 0;
   }
 
   &--variant--ghost {
-    --kicl--components--bubble--background-color: var(
-      --kicl-body-background-color
+    --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
+    --kicl--components--bubble--background-color: transparent;
+    --kicl--components--bubble--border-color: var(
+      --kicl--components--bubble--tone-ghost
     );
-    --kicl--components--bubble--border-color: var(--kicl-surface-border-color);
-    --kicl--components--bubble--color: var(--kicl-body-color);
-    --kicl--components--bubble--hover-background-color: color-mix(
-      in oklab,
-      var(--kicl--components--bubble--tint) 8%,
-      var(--kicl-body-background-color)
+    --kicl--components--bubble--color: var(
+      --kicl--components--bubble--tone-ghost
     );
-
-    &[class*='kicl--components--bubble--level--'] {
-      --kicl--components--bubble--border-color: var(
-        --kicl--components--bubble--tint
-      );
-    }
   }
 }
 
@@ -103,10 +89,10 @@
     font: inherit;
     text-align: start;
     text-decoration: none;
-    transition: background-color 0.15s ease;
+    transition: box-shadow 0.15s ease;
 
     &:hover {
-      background-color: var(--kicl--components--bubble--hover-background-color);
+      box-shadow: inset 0 0 0 100vmax var(--kicl--components--bubble--hover);
     }
   }
 }

@@ -66,17 +66,18 @@ const breakpoints: Breakpoints = {
 };
 
 /**
- * The window's breakpoints and the theme. The theme follows the system until
- * the person picks one, then keeps their pick, and its class goes on the body.
+ * The window's breakpoints and the theme. The theme is the person's pick from
+ * the cookie, then the system's light preference, and dark otherwise. Its
+ * class goes on the body.
  */
 const useResponsive = () => {
-  const isDarkColorSchemePrefers = useMediaQuery({
-    query: '(prefers-color-scheme: dark)',
+  const isLightColorSchemePrefers = useMediaQuery({
+    query: '(prefers-color-scheme: light)',
   });
 
   const chosen = useSyncExternalStore(subscribe, readCookie);
 
-  const theme: Theme = chosen ?? (isDarkColorSchemePrefers ? 'dark' : 'light');
+  const theme: Theme = chosen ?? (isLightColorSchemePrefers ? 'light' : 'dark');
 
   useEffect(() => {
     document.body.classList.toggle(DARK_THEME_CLASS_NAME, theme === 'dark');
@@ -131,7 +132,7 @@ const useResponsive = () => {
 
   return {
     breakpoints,
-    isDarkColorSchemePrefers,
+    isLightColorSchemePrefers,
     isDesktop: isDesktop || isWidescreen || !isTablet || !isMobile,
     isLandscape,
     isMobile: isMobile || isNarrow,

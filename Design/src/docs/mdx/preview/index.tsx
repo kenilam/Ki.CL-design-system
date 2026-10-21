@@ -332,7 +332,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
 
   return (
     <StageContext.Provider value={{ dark, setDark }}>
-      <Card gap='wide' key={preset.props.name} variant='tertiary'>
+      <Card gap='normal' key={preset.props.name} variant='tertiary'>
         {presets.length > 1 ? (
           // A row that wraps, so each field keeps its own width.
           <Layout alignItems='end' display='flex' gap='wide' wrap>
@@ -368,7 +368,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
           {/* A theme of its own once a preset sets one, with the theme's colours. */}
           <div
             className={classNames(
-              'kicl-min-block-size-columns-2',
+              'kicl-min-block-size-columns-1',
               span && [
                 'kicl-inline-size-full',
                 'kicl-margin-inline-auto',
@@ -396,7 +396,8 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
           </div>
         </Layout>
         {hasControls ? (
-          <Layout alignItems='end' display='flex' gap='wide' wrap>
+          // Each field keeps its width, and has a row of its own on phones.
+          <Layout alignItems='end' display='flex' gap='normal' wrap='stack'>
             <CardContent>
               <Controls controls={controls} onChange={set} values={values} />
             </CardContent>

@@ -65,3 +65,21 @@ The pattern is `kicl-display-{keyword}`, where `{keyword}` is any value above.
 Single keywords only: the two-value syntax, like `block flow`, has no class.
 
 `kicl-layout` is the class the Layout component puts on its child. Use the component.
+
+## Subgrid
+
+`kicl-grid-template-rows-subgrid` makes a grid item a grid on its parent's rows, and `kicl-grid-row-span-{1…6}` says how many rows it takes. Cards in a grid line up their parts this way: each card takes as many rows as it has parts, and the tallest picture, title or description in a row sets that row for every card.
+
+An item stretches to its row unless told otherwise: `kicl-align-self-{start|center|end|stretch}` sets where it sits.
+
+```tsx
+<List fill={6}>
+  <Card
+    is='li'
+    className='kicl-grid-row-span-2 kicl-grid-template-rows-subgrid'
+  >
+    <Image />
+    <CardHeader />
+  </Card>
+</List>
+```

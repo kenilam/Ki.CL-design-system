@@ -3,6 +3,7 @@ import React from 'react';
 // Components
 import { getHyperLinkClassNames } from 'design/components/hyper-link/class-names';
 import { Layout } from 'design/components/layout';
+import { truncateText } from 'design/helper';
 
 // Spec
 import * as Spec from './spec';
@@ -75,9 +76,9 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
           ref={ref}
           type={type}
         >
-          {before}
-          {children}
-          {after}
+          {truncateText(before)}
+          {truncateText(children)}
+          {truncateText(after)}
         </button>
       </Layout>
     );

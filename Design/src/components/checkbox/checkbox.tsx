@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
+import { truncateText } from 'design/helper';
 import {
   CHOICE_LABEL_CLASS_NAME,
   CHOICE_LABEL_LAYOUT,
@@ -97,7 +98,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, Props>(
       <Layout {...CHOICE_LABEL_LAYOUT}>
         <label className={CHOICE_LABEL_CLASS_NAME}>
           {control}
-          {children}
+          {truncateText(children)}
         </label>
       </Layout>
     );

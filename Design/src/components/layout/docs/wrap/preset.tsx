@@ -12,7 +12,8 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     For tags and other things of different widths. They sit in a line and move
-    to the next one when they run out of room.
+    to the next one when they run out of room. With `wrap='stack'`, each one
+    takes its own line on phones.
   </>
 );
 

@@ -222,7 +222,8 @@ type Shared = Pick<React.HTMLAttributes<HTMLElement>, 'className'> & {
   justifyItems?: JustifyItems;
   /** How many columns of a parent `columns` grid this takes, or the whole row. Full width on phones. */
   span?: ColumnSpan | 'full';
-  wrap?: boolean;
+  /** Moves children to the next line when they run out of room. `stack` also gives each its own line on phones. */
+  wrap?: boolean | 'stack';
 };
 
 type Tracks =

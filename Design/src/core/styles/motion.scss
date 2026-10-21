@@ -13,6 +13,12 @@
   }
 }
 
+// Stops an element's own animation, such as a skeleton standing in for
+// something that isn't loading.
+.kicl-animation-none {
+  animation: none;
+}
+
 // Stops an element's own animation when the person asks for less motion.
 .kicl-animation-none-reduced-motion {
   @media (prefers-reduced-motion: reduce) {

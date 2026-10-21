@@ -11,11 +11,15 @@ Ways to hide something without removing it. None of these have variables.
 
 // On screen only, left off paper
 <nav className='kicl-print-hidden' />
+
+// Out of sight, keeping its space, so what's beside it doesn't move
+<svg className='kicl-visibility-hidden' />
 ```
 
 - `kicl-hidden` hides an element visually and leaves it for screen readers.
 - `kicl-hidden-focusable` does the same until it takes keyboard focus, for skip links.
 - `kicl-hidden-up-to-{name}` hides it visually at that breakpoint and narrower, see Breakpoints.
+- `kicl-visibility-{visible|hidden|collapse}` sets `visibility`. A hidden element keeps its space and isn't read out, so items in a list stay lined up with or without it.
 - `kicl-visibility-hidden-reduced-motion` hides it when the person asks for less motion.
 - `kicl-print-hidden` leaves it off paper, and `kicl-print-only` shows it only on paper.
 

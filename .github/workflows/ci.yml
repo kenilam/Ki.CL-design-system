@@ -35,3 +35,6 @@ jobs:
 
       # The federated package the Ki.CL host loads at runtime.
       - run: yarn build
+
+      # Every class and variable in the build has a page the docs search opens.
+      - run: yarn check:search

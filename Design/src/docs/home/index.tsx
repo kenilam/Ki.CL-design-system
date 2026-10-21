@@ -67,15 +67,19 @@ const Home: React.FunctionComponent = () => {
         <Layout gap='normal'>
           <header>
             <Heading>{t('docs_title')}</Heading>
+            <Text>
+              <HyperLink
+                before={<Ri.RiGithubLine aria-hidden />}
+                lookLikeButton
+                to={t('url_github')}
+              >
+                {t('github')}
+              </HyperLink>
+            </Text>
             <Text className='kicl-max-inline-size-columns-8'>
               {t('docs_home_intro')}
             </Text>
           </header>
-        </Layout>
-        <Layout gap='normal'>
-          <section>
-            <Motivation components={{ ...COMPONENTS, pre: Pre }} />
-          </section>
         </Layout>
         <Layout gap='normal'>
           <section>
@@ -106,6 +110,11 @@ const Home: React.FunctionComponent = () => {
                 </Card>
               ))}
             </List>
+          </section>
+        </Layout>
+        <Layout gap='normal'>
+          <section>
+            <Motivation components={{ ...COMPONENTS, pre: Pre }} />
           </section>
         </Layout>
       </article>

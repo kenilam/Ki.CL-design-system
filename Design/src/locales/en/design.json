@@ -164,6 +164,7 @@
   "error_message_long": "Keep it under {{max}} characters",
   "error_message_required": "Write a message",
   "error_not_sent": "The message was not sent. Try again.",
+  "github": "GitHub",
   "label_dark_theme": "Dark theme",
   "label_email": "Your email",
   "label_home": "Ki.CL home",
@@ -249,5 +250,6 @@
   "token_summary_visibility": "Hiding something visually, on paper or under reduced motion.",
   "token_typography": "Typography",
   "token_variant": "Variant",
-  "token_visibility": "Visibility"
+  "token_visibility": "Visibility",
+  "url_github": "https://github.com/kenilam/Ki.CL-design-system"
 }

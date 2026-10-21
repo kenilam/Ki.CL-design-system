@@ -143,9 +143,12 @@ Width picks a size by name, as `kicl-inline-size-{name}`, or a column span, as `
 
 `xs` 4x, `sm` 6x, `md` 10x, `lg` 14x, `xl` 16x, `xxl` 18x, `max` 20x, `full` 100% and `screen` the viewport width. There's no `kicl-min-inline-size-columns-*`.
 
-Height takes a column span, as `kicl-min-block-size-columns-{1…12}` and `kicl-max-block-size-columns-{1…12}`, or the screen:
+Height takes a column span, as `kicl-min-block-size-columns-{1…12}` and `kicl-max-block-size-columns-{1…12}`, the parent, as `kicl-block-size-full`, or the screen:
 
 ```tsx
+// As tall as the parent
+<div className='kicl-block-size-full' />
+
 // At least as tall as the screen
 <main className='kicl-min-block-size-screen' />
 

@@ -95,6 +95,16 @@
   text-align: justify;
 }
 
+// One line, ending in an ellipsis when there isn't room. It can shrink below
+// its text, and no wider than its grid cell even when not stretched to it.
+.kicl-text-truncate {
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .kicl-text-nowrap {
   white-space: nowrap;
 }

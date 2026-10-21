@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { Layout } from 'design/components/layout';
+import { truncateText } from 'design/helper';
 import {
   CHOICE_LABEL_CLASS_NAME,
   CHOICE_LABEL_LAYOUT,
@@ -58,7 +59,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             }}
             {...rest}
           />
-          {children}
+          {truncateText(children)}
         </label>
       </Layout>
     );

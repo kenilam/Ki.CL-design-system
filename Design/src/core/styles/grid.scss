@@ -1,0 +1,20 @@
+// A grid item that takes rows of its parent's grid and lines its own children
+// up on them, so cards in a row share the heights of their parts.
+.kicl-grid-template-rows-subgrid {
+  grid-template-rows: subgrid;
+}
+
+// How many rows of its parent's grid an item takes.
+@for $span from 1 through 6 {
+  .kicl-grid-row-span-#{$span} {
+    grid-row: span #{$span};
+  }
+}
+
+// Where one item sits in its row, such as a one-line skeleton in a row a
+// taller card sets.
+@each $value in start, center, end, stretch {
+  .kicl-align-self-#{$value} {
+    align-self: #{$value};
+  }
+}

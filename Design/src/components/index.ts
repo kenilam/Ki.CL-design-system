@@ -8,6 +8,7 @@ import {
   type BadgeProps,
   type BadgeVariant,
 } from './badge';
+import { Breadcrumb, type BreadcrumbProps, type Crumb } from './breadcrumb';
 import {
   Bubble,
   BUBBLE_VARIANTS,
@@ -225,6 +226,9 @@ export {
   type BadgeLabelProps,
   type BadgeProps,
   type BadgeVariant,
+  Breadcrumb,
+  type BreadcrumbProps,
+  type Crumb,
   Bubble,
   BUBBLE_VARIANTS,
   BubbleContent,

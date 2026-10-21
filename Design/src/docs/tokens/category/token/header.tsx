@@ -5,19 +5,16 @@ import classNames from 'classnames';
 import * as Ri from 'react-icons/ri';
 
 import {
+  Breadcrumb,
   HomeLink,
   Button,
   CardTitle,
-  HyperLink,
   Layout,
-  List,
-  ListItem,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Sheet,
   SheetFooter,
-  Text,
 } from 'design/components';
 
 import { useResponsive } from 'design/hooks';
@@ -28,6 +25,7 @@ import { useCopy } from 'design/locales/use-copy';
 
 import { useDocsContext } from 'design/docs/context';
 
+import { useDocsCrumbs } from 'design/docs/sections';
 import { Sidebar } from 'design/docs/tokens/sidebar';
 import { PATH } from 'design/docs/tokens/constants';
 
@@ -55,7 +53,12 @@ const Header: React.FunctionComponent = () => {
   );
 
   return (
-    <Layout alignItems='center' autoFlow='column' justifyContent='start'>
+    <Layout
+      alignItems='center'
+      autoFlow='column'
+      frames='max-content--1fr'
+      justifyContent='start'
+    >
       <header
         className={classNames(
           'kicl-inset-block-start-header',
@@ -109,63 +112,10 @@ const Header: React.FunctionComponent = () => {
             </PopoverContent>
           </Popover>
         )}
-        <nav aria-label={t('docs_breadcrumb')}>
-          <List
-            alignItems='center'
-            autoFlow='row'
-            display='flex'
-            gap='narrower'
-            is='ol'
-            wrap
-          >
-            <ListItem>
-              <HyperLink to={parsePath()}>{t('docs_design_system')}</HyperLink>
-            </ListItem>
-            <ListItem alignItems='center' autoFlow='column' gap='narrower'>
-              <Ri.RiArrowRightSLine aria-hidden />
-              {isMobile ? (
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      aria-label={t('docs_breadcrumb_more')}
-                      size='small'
-                      variant='tertiary'
-                    >
-                      …
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent placement='block-end-start'>
-                    <HyperLink
-                      lookLikeButton
-                      to={parsePath(PATH)}
-                      variant='tertiary'
-                    >
-                      {t('docs_tokens')}
-                    </HyperLink>
-                  </PopoverContent>
-                </Popover>
-              ) : (
-                <HyperLink to={parsePath(PATH)}>{t('docs_tokens')}</HyperLink>
-              )}
-            </ListItem>
-            {!isMobile && category && (
-              <ListItem alignItems='center' autoFlow='column' gap='narrower'>
-                <Ri.RiArrowRightSLine aria-hidden />
-                <Text is='span'>{t(`category_${category}`)}</Text>
-              </ListItem>
-            )}
-            <ListItem alignItems='center' autoFlow='column' gap='narrower'>
-              <Ri.RiArrowRightSLine aria-hidden />
-              <Text
-                aria-current='page'
-                className='kicl-font-weight-bold'
-                is='span'
-              >
-                {name}
-              </Text>
-            </ListItem>
-          </List>
-        </nav>
+        <Breadcrumb
+          crumbs={useDocsCrumbs(PATH, category && t(`category_${category}`))}
+          current={name}
+        />
       </header>
     </Layout>
   );

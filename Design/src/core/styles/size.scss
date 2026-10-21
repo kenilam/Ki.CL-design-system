@@ -86,6 +86,12 @@
   min-block-size: var(--kicl-field-block-size);
 }
 
+// Lets a grid or flex child shrink below its content, so text in it can
+// truncate instead of pushing the row wider.
+.kicl-min-inline-size-0 {
+  min-inline-size: 0;
+}
+
 .kicl-inline-size-screen {
   inline-size: 100dvi;
 }

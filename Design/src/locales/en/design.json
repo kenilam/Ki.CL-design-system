@@ -58,6 +58,7 @@
   "component_animated_text": "Animated text",
   "component_animation": "Animation",
   "component_badge": "Badge",
+  "component_breadcrumb": "Breadcrumb",
   "component_bubble": "Bubble",
   "component_button": "Button",
   "component_calendar": "Calendar",
@@ -94,6 +95,7 @@
   "component_summary_animated_text": "Text that comes in a letter or a word at a time.",
   "component_summary_animation": "Fades, slides or zooms its child in and out, in CSS only.",
   "component_summary_badge": "A small label for a status, a count or a tag.",
+  "component_summary_breadcrumb": "Where a page sits, on one line, folding into a menu when it runs out of room.",
   "component_summary_bubble": "One message in a conversation.",
   "component_summary_button": "Does something when clicked, like sending a form.",
   "component_summary_calendar": "A month grid for picking a day or a range.",
@@ -135,8 +137,6 @@
   "component_textarea": "Textarea",
   "component_video": "Video",
   "date_range": "{{from}} - {{to}}",
-  "docs_breadcrumb": "Breadcrumb",
-  "docs_breadcrumb_more": "Show the steps in between",
   "docs_code": "Code",
   "docs_components": "Components",
   "docs_components_open": "Show all components",
@@ -164,6 +164,9 @@
   "error_message_long": "Keep it under {{max}} characters",
   "error_message_required": "Write a message",
   "error_not_sent": "The message was not sent. Try again.",
+  "github": "GitHub",
+  "label_breadcrumb": "Breadcrumb",
+  "label_breadcrumb_more": "Show the steps in between",
   "label_dark_theme": "Dark theme",
   "label_email": "Your email",
   "label_home": "Ki.CL home",
@@ -249,5 +252,6 @@
   "token_summary_visibility": "Hiding something visually, on paper or under reduced motion.",
   "token_typography": "Typography",
   "token_variant": "Variant",
-  "token_visibility": "Visibility"
+  "token_visibility": "Visibility",
+  "url_github": "https://github.com/kenilam/Ki.CL-design-system"
 }

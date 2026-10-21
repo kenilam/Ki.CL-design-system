@@ -1,0 +1,11 @@
+.kicl--components--button {
+  &:not(&--unstyled) {
+    // Disabled keeps its colours, a little less saturated, so the label still
+    // reads; it is not dimmed as other disabled elements are.
+    &.kicl--components--button--disabled,
+    &:disabled,
+    &[aria-disabled='true'] {
+      filter: saturate(0.8);
+    }
+  }
+}

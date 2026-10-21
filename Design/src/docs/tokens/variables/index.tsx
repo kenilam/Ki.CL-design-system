@@ -6,6 +6,9 @@ import { Layout, List, ListItem, Text } from 'design/components';
 // Hooks
 import { useResponsive } from 'design/hooks';
 
+// Helpers
+import { toHex } from './to-hex';
+
 // Spec
 import type { ColumnSpan } from 'design/components/spec';
 import type { HeadingIs } from 'design/components/heading/spec';
@@ -35,27 +38,17 @@ const Variables: React.FunctionComponent<Props> = ({
     }
 
     const measured = getComputedStyle(probe.current);
-    const canvas = document.createElement('canvas').getContext('2d', {
-      willReadFrequently: true,
-    });
 
     setValues(
       Object.fromEntries(
         names.map((name) => {
           const value = measured.getPropertyValue(`--kicl-${name}`).trim();
 
-          if (canvas && /^(#|rgb|hsl|oklab|oklch|lab|lch|color)/.test(value)) {
-            probe.current?.style.setProperty('color', `var(--kicl-${name})`);
-            canvas.clearRect(0, 0, 1, 1);
-            canvas.fillStyle = measured.color;
-            canvas.fillRect(0, 0, 1, 1);
-
-            return [
-              name,
-              `#${Array.from(canvas.getImageData(0, 0, 1, 1).data.slice(0, 3))
-                .map((channel) => channel.toString(16).padStart(2, '0'))
-                .join('')}`,
-            ];
+          if (
+            probe.current &&
+            /^(#|rgb|hsl|oklab|oklch|lab|lch|color)/.test(value)
+          ) {
+            return [name, toHex(probe.current, name)];
           }
 
           if (!/^(calc|clamp|min|max)\(|^[\d.]+rem$/.test(value)) {

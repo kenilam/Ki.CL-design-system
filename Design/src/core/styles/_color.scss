@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:map';
 
 @function tint($color, $percentage) {
   @return color.mix(#ffffff, $color, $percentage + 0%);
@@ -18,3 +19,103 @@ $green: #0dae6b;
 $orange: #d97904;
 $red: #f27777;
 $yellow: #e8cf54;
+$warning: color.mix($yellow, $orange, 50%);
+
+// The colours that get the 50 to 900 scale.
+$neutrals: (
+  'black': $black,
+  'grey': $grey,
+  'white': $white,
+);
+$hues: (
+  'blue': $blue,
+  'green': $green,
+  'orange': $orange,
+  'red': $red,
+  'yellow': $yellow,
+);
+
+// How much white goes into each step above 500, and black into each below.
+$tints: (
+  50: 90,
+  100: 75,
+  200: 50,
+  300: 25,
+  400: 10,
+);
+$shades: (
+  600: 15,
+  700: 30,
+  800: 45,
+  900: 60,
+);
+$steps: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900);
+
+@function step($color, $step) {
+  @if map.has-key($tints, $step) {
+    @return tint($color, map.get($tints, $step));
+  }
+
+  @if map.has-key($shades, $step) {
+    @return shade($color, map.get($shades, $step));
+  }
+
+  @return $color;
+}
+
+// Each level's hue, and the step of it each look takes on the light theme and
+// on the dark one.
+$levels: (
+  'neutral': 'black',
+  'confirm': 'green',
+  'error': 'red',
+  'info': 'blue',
+  'warning': null,
+);
+
+// `ink` is for words on a tinted fill: dark on light, light on dark.
+$level-steps: (
+  'secondary': 600,
+  'tertiary': 700,
+  'ghost': 500,
+  'ink': 800,
+);
+
+// How see-through each `-a{n}` colour is: `black-a8` is black at 8%.
+$alphas: (4, 8, 12, 16, 24, 32, 48, 64, 80);
+$level-steps-dark: (
+  'secondary': 600,
+  'tertiary': 700,
+  'ghost': 500,
+  'ink': 200,
+);
+
+/*
+ * The looks of every level. A theme can give a level another hue: the dark one
+ * takes white for neutral and yellow for warning. Warning has no hue of its
+ * own otherwise, so its looks are worked out from its colour.
+ */
+@mixin level-looks($level-steps, $theme-hues: ()) {
+  @each $look, $step in $level-steps {
+    @each $level, $hue in map.merge($levels, $theme-hues) {
+      @if $hue {
+        --kicl-color-#{$level}-#{$look}: var(--kicl-color-#{$hue}-#{$step});
+      } @else {
+        --kicl-color-#{$level}-#{$look}: #{step($warning, $step)};
+      }
+    }
+  }
+}
+
+/*
+ * The see-through colours that follow the theme. `neutral-a{n}` is the ink,
+ * black on a light page and white on a dark one, for washes, hovers and dimmed
+ * text. `page-a{n}` is the page's own colour, for panes, scrims and fades that
+ * settle into the page.
+ */
+@mixin theme-alphas($ink, $page) {
+  @each $alpha in $alphas {
+    --kicl-color-neutral-a#{$alpha}: var(--kicl-color-#{$ink}-a#{$alpha});
+    --kicl-color-page-a#{$alpha}: var(--kicl-color-#{$page}-a#{$alpha});
+  }
+}

@@ -10,7 +10,7 @@ import type { ControlsSpec } from 'design/docs/mdx/preview';
 export const CONTROLS = {
   is: { options: TEXT_IS, default: 'p' },
   variant: { options: TEXT_VARIANTS, default: 'primary' },
-  level: LEVELS,
+  level: { options: LEVELS, default: 'neutral' },
   lookLike: { options: TEXT_LOOK_LIKES, except: 'is' },
   dense: 'boolean',
 } as const satisfies ControlsSpec;

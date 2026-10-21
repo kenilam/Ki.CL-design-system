@@ -1,16 +1,12 @@
 .kicl--components--input {
   --kicl--components--input--background-color: var(--kicl-surface-color);
-  --kicl--components--input--border-color: var(--kicl-color-grey-darker);
+  --kicl--components--input--border-color: var(--kicl-color-grey-900);
   --kicl--components--input--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input--border-width: var(--kicl-size-1px);
   --kicl--components--input--color: var(--kicl-body-color);
   --kicl--components--input--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input--padding-inline: var(--kicl-gutter);
-  --kicl--components--input--read-only-background-color: color-mix(
-    in oklab,
-    var(--kicl-surface-color) 85%,
-    var(--kicl-color-grey)
-  );
+  --kicl--components--input--read-only-background-color: var(--kicl-body-background-color);
 
   background-color: var(--kicl--components--input--background-color);
   border: var(--kicl--components--input--border-width) solid
@@ -55,7 +51,7 @@
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--input--border-color: var(--kicl-color-grey-darker);
-    --kicl--components--input--color: var(--kicl-color-grey-darker);
+    --kicl--components--input--border-color: var(--kicl-color-grey-900);
+    --kicl--components--input--color: var(--kicl-color-grey-900);
   }
 }

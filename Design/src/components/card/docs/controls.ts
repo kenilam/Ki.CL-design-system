@@ -9,7 +9,7 @@ export const CONTROLS = {
     options: CARD_VARIANTS,
     default: 'primary',
   },
-  level: LEVELS,
+  level: { options: LEVELS, default: 'neutral' },
   // Unset keeps the example's own column width.
   size: { options: [...CARD_SIZES, ...COLUMN_SPANS], default: 'default' },
   gap: { options: GAPS, default: 'normal' },

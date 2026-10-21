@@ -13,6 +13,7 @@ export const CONTROLS = {
     when: { lookLikeButton: true },
   },
   level: {
+    default: 'neutral',
     options: LEVELS,
     when: { lookLikeButton: true },
   },

@@ -1,4 +1,10 @@
-export const LEVELS = ['confirm', 'error', 'info', 'warning'] as const;
+export const LEVELS = [
+  'neutral',
+  'confirm',
+  'error',
+  'info',
+  'warning',
+] as const;
 
 export type Level = (typeof LEVELS)[number];
 

@@ -23,7 +23,7 @@ const FormDescription = React.forwardRef<
       className={classNames(
         CLASS_NAME,
         'kicl-font-size-smaller',
-        'kicl-color-grey-dark',
+        'kicl-color-grey-700',
         className
       )}
     />

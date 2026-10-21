@@ -6,7 +6,7 @@ import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 
 export const CONTROLS = {
   variant: { options: BADGE_VARIANTS, default: 'primary' },
-  level: LEVELS,
+  level: { options: LEVELS, default: 'neutral' },
   size: BUTTON_SIZES,
 } satisfies ControlsSpec;
 

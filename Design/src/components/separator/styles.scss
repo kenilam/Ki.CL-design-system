@@ -1,5 +1,5 @@
 .kicl--components--separator {
-  --kicl--components--separator--color: var(--kicl-color-grey-light);
+  --kicl--components--separator--color: var(--kicl-color-grey-300);
   --kicl--components--separator--size: var(--kicl-size-1px);
 
   background-color: var(--kicl--components--separator--color);
@@ -18,10 +18,10 @@
   }
 
   @at-root .kicl--theme--dark & {
-    --kicl--components--separator--color: var(--kicl-color-grey-dark);
+    --kicl--components--separator--color: var(--kicl-color-grey-700);
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--separator--color: var(--kicl-color-grey-light);
+    --kicl--components--separator--color: var(--kicl-color-grey-300);
   }
 }

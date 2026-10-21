@@ -30,17 +30,13 @@
     #{&}--range-middle,
     #{&}--range-end
   ) {
-    --kicl--components--calendar--day--fill: color-mix(
-      in oklab,
-      var(--kicl-body-color) var(--kicl-color-strength-wash),
-      transparent
-    );
+    --kicl--components--calendar--day--fill: var(--kicl-color-neutral-a16);
   }
 
   // Every day of a range is chosen, so it looks like the one day of `single`.
   &--selected,
   &--range-middle {
-    --kicl--components--calendar--day--fill: var(--kicl-color-grey-darker);
+    --kicl--components--calendar--day--fill: var(--kicl-color-grey-900);
   }
 
   &--range-middle::before {

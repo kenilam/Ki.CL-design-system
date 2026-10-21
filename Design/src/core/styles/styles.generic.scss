@@ -25,7 +25,7 @@ strong {
 }
 
 :root {
-  --kicl-outline-color: var(--kicl-color-grey-dark);
+  --kicl-outline-color: var(--kicl-color-grey-700);
   --kicl-outline-style: none;
   --kicl-outline-width: var(--kicl-size-1px);
 
@@ -34,11 +34,11 @@ strong {
 }
 
 .kicl--theme--dark {
-  --kicl-outline-color: var(--kicl-color-white-dark);
+  --kicl-outline-color: var(--kicl-color-white-700);
 }
 
 .kicl--theme--light {
-  --kicl-outline-color: var(--kicl-color-grey-darker);
+  --kicl-outline-color: var(--kicl-color-grey-900);
 }
 
 // Only script focuses these (`#main` after a route change), so they don't need

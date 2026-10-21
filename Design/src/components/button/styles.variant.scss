@@ -1,53 +1,33 @@
+// Each variant reads the looks of its level, or of neutral. Secondary and
+// tertiary show theirs through a faint see-through fill; ghost has no fill and
+// an edge and label in its own look.
 .kicl--components--button {
   &:not(&--unstyled) {
     &.kicl--components--button--variant {
-      &--primary {
-        &.kicl--components--button--level--info {
-          --kicl-body-color: var(--kicl-color-white);
-        }
-      }
-
       &--secondary {
-        --kicl-body-color: var(--kicl--components--button--background-color);
-
-        background-color: #{rgba($black, 0.1)};
-
-        @at-root .kicl--theme--dark & {
-          background-color: #{rgba($white, 0.02)};
-        }
-
-        @at-root .kicl--theme--light & {
-          background-color: #{rgba($black, 0.1)};
-        }
-
-        // With a level, the fill is a tint of its colour over the page, and
-        // the label keeps that colour, as it does with no level.
-        &[class~='kicl--components--button--level--confirm'],
-        &[class~='kicl--components--button--level--error'],
-        &[class~='kicl--components--button--level--info'],
-        &[class~='kicl--components--button--level--warning'] {
-          background-color: color-mix(
-            in oklab,
-            var(--kicl--components--button--background-color) 15%,
-            var(--kicl-body-background-color)
-          );
-        }
+        --kicl-body-color: var(--kicl--components--button--tone-secondary);
+        --kicl--components--button--background-color: color-mix(
+          in srgb,
+          var(--kicl--components--button--tone-secondary) 10%,
+          transparent
+        );
       }
 
       &--tertiary {
-        --kicl-body-color: var(--kicl--components--button--background-color);
-        --kicl--components--button--border-color: transparent;
-
-        background-color: transparent;
+        --kicl-body-color: var(--kicl--components--button--tone);
+        --kicl--components--button--background-color: color-mix(
+          in srgb,
+          var(--kicl--components--button--tone-tertiary) 2%,
+          transparent
+        );
       }
 
       &--ghost {
-        --kicl-body-color: var(--kicl--components--button--background-color);
+        --kicl-body-color: var(--kicl--components--button--tone-ghost);
+        --kicl--components--button--background-color: transparent;
         --kicl--components--button--border-color: var(
-          --kicl--components--button--background-color
+          --kicl--components--button--tone-ghost
         );
-
-        background-color: transparent;
       }
     }
   }

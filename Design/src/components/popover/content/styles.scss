@@ -209,11 +209,7 @@ $gaps: (
     }
 
     &--variant--secondary {
-      --kicl--components--popover--background-color: color-mix(
-        in oklab,
-        var(--kicl-body-color) 10%,
-        color-mix(in oklab, var(--kicl-surface-color) 65%, transparent)
-      );
+      --kicl--components--popover--background-color: var(--kicl-surface-glass-color);
     }
 
     &--variant--tertiary {

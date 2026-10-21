@@ -9,16 +9,8 @@
  * insets transition. `anchor-scope` keeps each control's anchor its own.
  */
 .kicl--components--segmented {
-  --kicl--components--segmented--track: color-mix(
-    in oklab,
-    var(--kicl-body-color) 6%,
-    transparent
-  );
-  --kicl--components--segmented--thumb: color-mix(
-    in oklab,
-    var(--kicl-body-color) var(--kicl-color-strength-wash),
-    transparent
-  );
+  --kicl--components--segmented--track: var(--kicl-color-neutral-a8);
+  --kicl--components--segmented--thumb: var(--kicl-color-neutral-a16);
 
   background-color: var(--kicl--components--segmented--track);
   min-inline-size: 0;
@@ -82,11 +74,7 @@
   border-radius: inherit;
 
   // Unchosen options keep some of the body colour, so they read on either theme.
-  color: color-mix(
-    in oklab,
-    var(--kicl-body-color) var(--kicl-color-strength-secondary),
-    transparent
-  );
+  color: var(--kicl-color-neutral-a64);
   transition: color var(--kicl-transition-duration-fast);
 
   &:hover {

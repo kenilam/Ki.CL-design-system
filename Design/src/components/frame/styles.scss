@@ -88,8 +88,8 @@ body {
 
   // Shows the frame's shape before whatever fills it has loaded. The light
   // theme needs the border too, or the grey fades into the white page.
-  --kicl--components--frame--background-color: var(--kicl-color-grey-lighter);
-  --kicl--components--frame--border-color: var(--kicl-color-grey-light);
+  --kicl--components--frame--background-color: var(--kicl-color-grey-200);
+  --kicl--components--frame--border-color: var(--kicl-color-grey-300);
 
   background-color: var(#{$frame}--background-color);
   block-size: var(#{$frame}--block-size);
@@ -107,11 +107,7 @@ body {
 
   // `useResponsive` puts the dark theme's class on the body.
   @at-root .kicl--theme--dark & {
-    --kicl--components--frame--background-color: color-mix(
-      in oklab,
-      var(--kicl-body-color) 6%,
-      var(--kicl-body-background-color)
-    );
+    --kicl--components--frame--background-color: var(--kicl-color-neutral-a8);
     --kicl--components--frame--border-color: transparent;
   }
 

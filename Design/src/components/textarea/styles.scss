@@ -1,17 +1,13 @@
 .kicl--components--textarea {
   --kicl--components--textarea--background-color: var(--kicl-surface-color);
-  --kicl--components--textarea--border-color: var(--kicl-color-grey-darker);
+  --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
   --kicl--components--textarea--border-radius: var(--kicl-gutter-narrower);
   --kicl--components--textarea--border-width: var(--kicl-size-1px);
   --kicl--components--textarea--color: var(--kicl-body-color);
   --kicl--components--textarea--min-block-size: var(--kicl-size-8x);
   --kicl--components--textarea--padding-block: var(--kicl-gutter-narrower);
   --kicl--components--textarea--padding-inline: var(--kicl-gutter-narrow);
-  --kicl--components--textarea--read-only-background-color: color-mix(
-    in oklab,
-    var(--kicl-surface-color) 85%,
-    var(--kicl-color-grey)
-  );
+  --kicl--components--textarea--read-only-background-color: var(--kicl-body-background-color);
 
   background-color: var(--kicl--components--textarea--background-color);
   border: var(--kicl--components--textarea--border-width) solid
@@ -67,6 +63,6 @@
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--textarea--border-color: var(--kicl-color-grey-darker);
+    --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
   }
 }

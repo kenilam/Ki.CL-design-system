@@ -14,9 +14,15 @@
     );
   }
 
-  @each $level in (confirm, error, info, warning) {
+  // Neutral is the body colour, as with no level, so it needs no rule.
+  @each $level in map.keys(map.remove($levels, 'neutral')) {
     &--level--#{$level} {
       --kicl-heading-status-color: var(--kicl-color-#{$level});
+      --kicl-heading-status-color-secondary: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 80%,
+        transparent
+      );
     }
   }
 }

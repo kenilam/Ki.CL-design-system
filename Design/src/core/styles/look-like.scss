@@ -23,15 +23,9 @@
    * descendant.
    */
   .kicl-look-like-h#{$level}--variant--secondary {
-    /*
-     * `color-mix`, not `rgb(var(--kicl-body-color), 0.8)`. That took a hex
-     * where `rgb()` wants channels, so it was invalid and dropped - the
-     * secondary variant has never actually been dimmer.
-     */
-    --kicl-heading-font-color: color-mix(
-      in srgb,
-      var(--kicl-heading-status-color, var(--kicl-body-color)) 80%,
-      transparent
+    --kicl-heading-font-color: var(
+      --kicl-heading-status-color-secondary,
+      var(--kicl-color-neutral-a64)
     );
     --kicl-heading-font-size-scale: 0.8;
   }

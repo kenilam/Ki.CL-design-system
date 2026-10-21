@@ -1,13 +1,12 @@
 .kicl--components--card {
+  @include level-tones('kicl--components--card');
+
   --kicl--components--card--background-color: var(--kicl-surface-color);
   --kicl--components--card--border-color: var(--kicl-surface-border-color);
   --kicl--components--card--border-radius: var(--kicl-size);
   --kicl--components--card--border-width: var(--kicl-size-1px);
   --kicl--components--card--color: var(--kicl-body-color);
   --kicl--components--card--spacing: var(--kicl-gutter);
-
-  // The colour a secondary card tints its fill with: the text's, or the level's.
-  --kicl--components--card--tint: var(--kicl-body-color);
 
   background-color: var(--kicl--components--card--background-color);
   border: var(--kicl--components--card--border-width) solid
@@ -28,11 +27,10 @@
   }
 
   // The edge takes the level's colour: a card that's chosen, or needs attention.
-  @each $level in confirm, error, info, warning {
-    &--level--#{$level} {
-      --kicl--components--card--border-color: var(--kicl-color-#{$level});
-      --kicl--components--card--tint: var(--kicl-color-#{$level});
-    }
+  &[class*='kicl--components--card--level--']:not(&--level--neutral) {
+    --kicl--components--card--border-color: var(
+      --kicl--components--card--tone
+    );
   }
 
   // The card an in-page link jumped to, so it's clear which one of a list was
@@ -50,7 +48,8 @@
   /*
    * As `Button`'s secondary: a soft fill you can see through.
    *
-   * The fill is the surface, thinned and tinted with the card's colour; the
+   * The fill is the surface, thinned and tinted with the secondary look of
+   * the card's level, or of neutral; the
    * blur is what keeps text legible over whatever is behind it, which a plain
    * transparency cannot do. Both are needed - thinning alone gives a smeared,
    * unreadable panel over anything busy, and blurring alone leaves it opaque.
@@ -59,11 +58,7 @@
    * solid one does: without it there is nothing to say where the surface ends.
    */
   &--variant--secondary {
-    --kicl--components--card--background-color: color-mix(
-      in oklab,
-      var(--kicl--components--card--tint) 10%,
-      color-mix(in oklab, var(--kicl-surface-color) 65%, transparent)
-    );
+    --kicl--components--card--background-color: var(--kicl-surface-glass-color);
   }
 
   /*
@@ -73,14 +68,14 @@
   &--variant--tertiary {
     --kicl--components--card--border-color: transparent;
 
-    @each $level in confirm, error, info, warning {
-      &.kicl--components--card--level--#{$level} {
-        --kicl--components--card--background-color: color-mix(
-          in oklab,
-          var(--kicl-color-#{$level}) 8%,
-          var(--kicl-surface-color)
-        );
-      }
+    &[class*='kicl--components--card--level--']:not(
+      .kicl--components--card--level--neutral
+    ) {
+      --kicl--components--card--background-color: color-mix(
+        in srgb,
+        var(--kicl--components--card--tone) 12%,
+        var(--kicl-surface-color)
+      );
     }
   }
 }

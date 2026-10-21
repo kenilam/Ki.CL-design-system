@@ -5,7 +5,7 @@ import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 
 export const CONTROLS = {
   variant: { options: BUBBLE_VARIANTS, default: 'primary' },
-  level: LEVELS,
+  level: { options: LEVELS, default: 'neutral' },
 } satisfies ControlsSpec;
 
 export type Props = Controlled<typeof Bubble, keyof typeof CONTROLS>;

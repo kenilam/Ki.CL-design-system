@@ -1,8 +1,5 @@
 :root {
   --kicl--components--skeleton--aspect-ratio: auto;
-  --kicl--components--skeleton--background-color: var(
-    --kicl-color-grey-lighter
-  );
   --kicl--components--skeleton--block-size: auto;
   --kicl--components--skeleton--border-radius: var(--kicl-size-half);
   --kicl--components--skeleton--inline-size: 100%;
@@ -15,16 +12,6 @@
   );
 }
 
-.kicl--theme--dark {
-  --kicl--components--skeleton--background-color: var(--kicl-color-grey-dark);
-}
-
-.kicl--theme--light {
-  --kicl--components--skeleton--background-color: var(
-    --kicl-color-grey-lighter
-  );
-}
-
 .kicl--components--skeleton {
   animation-duration: var(--kicl--components--skeleton--animation-duration);
   animation-iteration-count: infinite;
@@ -33,7 +20,12 @@
     --kicl--components--skeleton--animation-timing-function
   );
   aspect-ratio: var(--kicl--components--skeleton--aspect-ratio);
-  background-color: var(--kicl--components--skeleton--background-color);
+
+  // Read here, not on :root, so the wash follows the theme it sits in.
+  background-color: var(
+    --kicl--components--skeleton--background-color,
+    var(--kicl-color-neutral-a12)
+  );
   block-size: var(--kicl--components--skeleton--block-size);
   border-radius: var(--kicl--components--skeleton--border-radius);
   inline-size: var(--kicl--components--skeleton--inline-size);

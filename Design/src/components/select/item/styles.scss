@@ -2,11 +2,7 @@
   // The wash marks focus as well, so the item draws no ring over it.
   &:hover,
   &:focus-visible {
-    background: color-mix(
-      in oklab,
-      var(--kicl-body-color) var(--kicl-color-strength-wash),
-      transparent
-    );
+    background: var(--kicl-color-neutral-a16);
     outline: none;
   }
 

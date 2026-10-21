@@ -2,40 +2,29 @@ import { Palette } from './palette';
 import { Themes } from './themes';
 import { Variables } from 'design/docs/tokens/variables';
 import { Opacity } from 'design/docs/tokens/previews';
+import { ALL, HUES, LEVEL_SWATCHES, NEUTRALS, PURE } from './constants';
 
 ## Neutrals
 
-Black, grey and white, each with tints and shades. Body text and backgrounds come from these.
+Black, grey and white, each in ten steps from `50`, the lightest, to `900`, the darkest. `500` is the colour itself, and `--kicl-color-grey` is the same as `--kicl-color-grey-500`. Body text and backgrounds come from these.
 
-<Palette
-  names={[
-    'black-pure',
-    'black',
-    'black-light',
-    'grey-darkest',
-    'grey-darker',
-    'grey-dark',
-    'grey',
-    'grey-light',
-    'grey-lighter',
-    'white-darker',
-    'white-dark',
-    'white',
-    'white-light',
-    'white-lighter',
-    'white-pure',
-  ]}
-/>
+<Palette swatches={NEUTRALS} />
+
+`black-pure` and `white-pure` are `#000` and `#fff`, outside the scale.
+
+<Palette swatches={PURE} />
 
 ## Hues
 
-<Palette names={['blue', 'green', 'orange', 'red', 'yellow']} />
+The same ten steps for each hue.
+
+<Palette swatches={HUES} />
 
 ## Levels
 
-The colours behind `level`, see Level.
+The colours behind `level`, see Level. Each has four looks taken from its hue: `secondary` is step `600`, `tertiary` `700` and `ghost` `500`, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one. Warning has no hue of its own, so its looks are worked out from its colour, and on the dark theme they follow yellow as warning does.
 
-<Palette names={['confirm', 'error', 'info', 'warning']} />
+<Palette swatches={LEVEL_SWATCHES} />
 
 ## Body and surface
 
@@ -51,34 +40,7 @@ Four roles cover most of the page. `--kicl-body-color` is text and `--kicl-body-
 
 MDN: [`<color>`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value).
 
-<Variables
-  names={[
-    'color-black-pure',
-    'color-black',
-    'color-black-light',
-    'color-grey-darkest',
-    'color-grey-darker',
-    'color-grey-dark',
-    'color-grey',
-    'color-grey-light',
-    'color-grey-lighter',
-    'color-white-darker',
-    'color-white-dark',
-    'color-white',
-    'color-white-light',
-    'color-white-lighter',
-    'color-white-pure',
-    'color-blue',
-    'color-green',
-    'color-orange',
-    'color-red',
-    'color-yellow',
-    'color-confirm',
-    'color-error',
-    'color-info',
-    'color-warning',
-  ]}
-/>
+<Variables names={ALL.map((name) => `color-${name}`)} />
 
 ### body and surface
 
@@ -111,13 +73,20 @@ MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
 
 <Variables names={['disabled-opacity']} property='opacity' preview={Opacity} />
 
-### color-strength
+### see-through
 
-MDN: [`color-mix()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix).
+`black-a{n}` and `white-a{n}` are black and white at `{n}`%, from 4 to 80. `neutral-a{n}` is the ink, black on a light page and white on a dark one, for washes, hovers and quieter text. `page-a{n}` is the page's own colour, for panes, scrims and fades that settle into the page. `--kicl-surface-glass-color` is a surface you can see through, for a pane with a blur behind it.
 
-How much of the body colour a wash, like a hover, and secondary text keep.
-
-<Variables names={['color-strength-wash', 'color-strength-secondary']} />
+<Variables
+  names={[
+    ...['neutral', 'page', 'black', 'white'].flatMap((name) =>
+      [4, 8, 12, 16, 24, 32, 48, 64, 80].map(
+        (alpha) => `color-${name}-a${alpha}`
+      )
+    ),
+    'surface-glass-color',
+  ]}
+/>
 
 ## Classes
 
@@ -128,7 +97,10 @@ The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-f
 <p className='kicl-color-blue' />
 
 // A light grey fill behind a block
-<div className='kicl-background-color-grey-light' />
+<div className='kicl-background-color-grey-300' />
+
+// The faint error fill, for a block that needs attention
+<div className='kicl-background-color-error-ghost' />
 
 // An SVG icon in the error colour
 <svg className='kicl-fill-error' />

@@ -12,13 +12,13 @@
     --kicl-size-half
   );
   --kicl--components--dialog--backdrop--background-color: var(
-    --kicl-color-white-dark
+    --kicl-color-white-700
   );
   --kicl--components--dialog--backdrop--opacity: 0.2;
 }
 
 .kicl--theme--dark {
-  --kicl--components--dialog--background-color: var(--kicl-color-grey-darkest);
+  --kicl--components--dialog--background-color: var(--kicl-color-black);
 }
 
 .kicl--theme--light {
@@ -134,17 +134,15 @@
 
   &::backdrop {
     @at-root .kicl--theme--dark & {
-      --kicl--components--dialog--backdrop--background-color: #{rgba(
-        $black-pure,
-        0.5
-      )};
+      --kicl--components--dialog--backdrop--background-color: var(
+        --kicl-color-black-pure
+      );
     }
 
     @at-root .kicl--theme--light & {
-      --kicl--components--dialog--backdrop--background-color: #{rgba(
-        $white-pure,
-        0.7
-      )};
+      --kicl--components--dialog--backdrop--background-color: var(
+        --kicl-color-white-pure
+      );
     }
 
     backdrop-filter: brightness(

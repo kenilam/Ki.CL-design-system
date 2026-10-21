@@ -1,9 +1,9 @@
 .kicl--components--radio-group {
   &__item__control {
     --kicl--components--radio-group--item--border-color: var(
-      --kicl-color-grey-darker
+      --kicl-color-grey-900
     );
-    --kicl--components--radio-group--item--dot: var(--kicl-color-grey-darker);
+    --kicl--components--radio-group--item--dot: var(--kicl-color-grey-900);
     --kicl--components--radio-group--item--size: var(--kicl-size);
 
     appearance: none;
@@ -33,8 +33,8 @@
 
   @at-root .kicl--theme--light &__item__control {
     --kicl--components--radio-group--item--border-color: var(
-      --kicl-color-grey-darker
+      --kicl-color-grey-900
     );
-    --kicl--components--radio-group--item--dot: var(--kicl-color-grey-darker);
+    --kicl--components--radio-group--item--dot: var(--kicl-color-grey-900);
   }
 }

@@ -1,7 +1,14 @@
 .kicl--components--button {
-  --kicl-body-color: var(--kicl-color-white);
+  @include level-tones('kicl--components--button');
+
+  // The label reads against whatever fill the variant and level give it.
+  --kicl-body-color: contrast-color(
+    var(--kicl--components--button--background-color)
+  );
   --kicl-layout--inline-size: fit-content;
-  --kicl--components--button--background-color: var(--kicl-color-grey-darker);
+  --kicl--components--button--background-color: var(
+    --kicl--components--button--tone
+  );
   --kicl--components--button--border-color: transparent;
   --kicl--components--button--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--button--border-width: var(--kicl-size-hair);
@@ -29,16 +36,6 @@
     margin-block: calc(-1 * var(--kicl--components--badge--padding-block));
   }
 
-  @at-root .kicl--theme--dark & {
-    --kicl-body-color: var(--kicl-color-grey-darker);
-    --kicl--components--button--background-color: var(--kicl-color-white);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl-body-color: var(--kicl-color-white);
-    --kicl--components--button--background-color: var(--kicl-color-grey-darker);
-  }
-
   &:not(&--unstyled) {
     background-color: var(--kicl--components--button--background-color);
     border: var(--kicl--components--button--border-width) solid
@@ -51,7 +48,7 @@
       [aria-disabled='true']
     ) {
       box-shadow: inset 0 0 0 100vmax
-        color-mix(in oklab, var(--kicl-body-color) 10%, transparent);
+        color-mix(in oklab, var(--kicl-body-color) 4%, transparent);
     }
   }
 

@@ -51,7 +51,7 @@
   }
 
   &-group {
-    fill: color-mix(in oklab, var(--kicl-surface-color) 45%, transparent);
+    fill: var(--kicl-surface-glass-color);
     stroke: var(--kicl-surface-border-color);
   }
 

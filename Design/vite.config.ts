@@ -21,7 +21,7 @@ const partials = glob
   .map((file) => `@use '${path.join(src, file)}' as *;`)
   .join('');
 
-const prelude = `@use 'sass:color';@use 'sass:list';@use 'sass:math';${partials}`;
+const prelude = `@use 'sass:color';@use 'sass:list';@use 'sass:map';@use 'sass:math';${partials}`;
 
 // Served at /design/* - base must match so chunk URLs resolve.
 export default defineConfig({

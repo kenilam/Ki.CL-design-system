@@ -6,7 +6,7 @@ import { LEVELS } from 'design/components/spec';
 /** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   is: { options: HEADING_LEVELS, default: 'h1' },
-  level: LEVELS,
+  level: { options: LEVELS, default: 'neutral' },
   lookLike: { options: HEADING_LEVELS, except: 'is' },
   dense: 'boolean',
 } satisfies ControlsSpec;

@@ -18,12 +18,9 @@
   // nested inside, like the chips in a legend that follows a paragraph.
   --kicl--components--text--padding-block-end: 0;
   --kicl--components--text--padding-block-start: 0;
-  --kicl--components--text--strength: 100%;
-  --kicl--components--text--ink: color-mix(
-    in srgb,
-    var(--kicl--components--text--color) var(--kicl--components--text--strength),
-    transparent
-  );
+  --kicl--components--text--color-secondary: var(--kicl-color-neutral-a64);
+  --kicl--components--text--fill: var(--kicl-color-neutral-a12);
+  --kicl--components--text--ink: var(--kicl--components--text--color);
 
   color: var(--kicl--components--text--ink);
   font-size: var(--kicl--components--text--font-size);
@@ -31,12 +28,6 @@
   padding-block-start: var(--kicl--components--text--padding-block-start);
 
   @include transition('kicl--components--text');
-
-  // Passed down so inline code can draw its secondary outline in the colour
-  // of the copy around it.
-  &:not([data-is='code'], .kicl-look-like-code) {
-    --kicl--components--text--context-color: var(--kicl--components--text--ink);
-  }
 
   &
   + &:not(
@@ -75,7 +66,7 @@
   &[data-is='blockquote'],
   &.kicl-look-like-blockquote {
     --kicl--components--text--border-inline-start-color: var(
-      --kicl-color-grey-light
+      --kicl-color-grey-300
     );
     --kicl--components--text--border-inline-start-width: var(--kicl-size-1px);
     --kicl--components--text--padding-inline-start: var(--kicl-gutter);
@@ -117,13 +108,30 @@
   }
 
   &--variant--secondary {
-    --kicl--components--text--strength: var(--kicl-color-strength-secondary);
+    --kicl--components--text--ink: var(--kicl--components--text--color-secondary);
   }
 
-  @each $level in (confirm, error, info, warning) {
+  // A level colours the words, the quieter variant and the fill behind code.
+  // Neutral is the body colour, as with no level, so it needs no rule.
+  @each $level in map.keys(map.remove($levels, 'neutral')) {
     &--level--#{$level} {
       --kicl--components--text--color: var(--kicl-color-#{$level});
+      --kicl--components--text--color-secondary: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 80%,
+        transparent
+      );
+      --kicl--components--text--fill: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 20%,
+        transparent
+      );
       --kicl-heading-status-color: var(--kicl-color-#{$level});
+      --kicl-heading-status-color-secondary: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 80%,
+        transparent
+      );
     }
   }
 
@@ -151,16 +159,14 @@
     white-space: pre-wrap;
   }
 
-  // Inline code, after shadcn's typography example. The fill mixes from the
-  // text colour so it follows the theme and any link it sits in. Block padding
+  // Inline code, after shadcn's typography example. The fill is a faint wash
+  // of the ink, or of the code's level. Block padding
   // on an inline box doesn't move the lines. Inline padding does take space,
   // but it has to, or the fill runs into a comma or full stop right after it.
   &[data-is='code'],
   &.kicl-look-like-code {
-    --kicl--components--text--background-color: color-mix(
-      in oklab,
-      currentcolor 10%,
-      transparent
+    --kicl--components--text--background-color: var(
+      --kicl--components--text--fill
     );
     --kicl--components--text--border-color: transparent;
     --kicl--components--text--border-radius: var(--kicl-size-3px);
@@ -179,18 +185,14 @@
     font-weight: var(--kicl-font-weight-bold);
     padding: var(--kicl--components--text--offset);
 
-    // The outline takes the surrounding copy's colour; the text keeps its own.
+    // An outline in place of the fill; the text keeps its colour.
     &.kicl--components--text--variant--secondary {
       --kicl--components--text--background-color: transparent;
-      --kicl--components--text--border-color: color-mix(
-        in oklab,
-        var(--kicl--components--text--context-color, var(--kicl-body-color)) 40%,
-        transparent
-      );
+      --kicl--components--text--border-color: var(--kicl-color-neutral-a32);
     }
   }
 
-  // Text an edit removes or adds, as in a diff. The tint mixes from the
+  // Text an edit removes or adds, as in a diff. The fill is a wash of the
   // error or confirm colour; the words keep the body colour so they stay
   // readable. Removed text keeps its strike, so the meaning doesn't rest on
   // colour alone, and added text drops the underline that reads as a link.
@@ -198,10 +200,8 @@
   &[data-is='ins'],
   &.kicl-look-like-del,
   &.kicl-look-like-ins {
-    --kicl--components--text--background-color: color-mix(
-      in oklab,
-      var(--kicl--components--text--edit-color) 18%,
-      transparent
+    --kicl--components--text--background-color: var(
+      --kicl--components--text--edit-fill
     );
     --kicl--components--text--border-radius: var(--kicl-size-3px);
 
@@ -213,6 +213,11 @@
   &[data-is='del'],
   &.kicl-look-like-del {
     --kicl--components--text--edit-color: var(--kicl-color-error);
+    --kicl--components--text--edit-fill: color-mix(
+      in srgb,
+      var(--kicl-color-error) 20%,
+      transparent
+    );
 
     text-decoration-color: var(--kicl--components--text--edit-color);
     text-decoration-line: line-through;
@@ -221,6 +226,11 @@
   &[data-is='ins'],
   &.kicl-look-like-ins {
     --kicl--components--text--edit-color: var(--kicl-color-confirm);
+    --kicl--components--text--edit-fill: color-mix(
+      in srgb,
+      var(--kicl-color-confirm) 20%,
+      transparent
+    );
 
     text-decoration-line: none;
   }

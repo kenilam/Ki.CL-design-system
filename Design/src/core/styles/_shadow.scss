@@ -1,9 +1,10 @@
 @use 'sass:math';
+@use './_color.scss' as *;
 
 $shadow-alpha: 0.2;
 $shadow-alpha-overlay: 0.08;
 $shadow-distant-overlay: 0.25rem;
-$shadow-color: #000;
+$shadow-color: $black-pure;
 $shadow-distant: 0.7rem;
 $shadow-distant-negative: calc(-1 * $shadow-distant / 2);
 $shadow-rgba: #{rgba($shadow-color, $shadow-alpha)};

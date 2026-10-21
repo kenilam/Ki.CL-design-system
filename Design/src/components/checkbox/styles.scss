@@ -1,6 +1,6 @@
 .kicl--components--checkbox {
-  --kicl--components--checkbox--color: var(--kicl-color-grey-darker);
-  --kicl--components--checkbox--checked-color: var(--kicl-color-grey-darker);
+  --kicl--components--checkbox--color: var(--kicl-color-grey-900);
+  --kicl--components--checkbox--checked-color: var(--kicl-color-grey-900);
   --kicl--components--checkbox--size: calc(
     var(--kicl-size) + var(--kicl-size-2px)
   );
@@ -65,8 +65,8 @@
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--checkbox--color: var(--kicl-color-grey-darker);
-    --kicl--components--checkbox--checked-color: var(--kicl-color-grey-darker);
+    --kicl--components--checkbox--color: var(--kicl-color-grey-900);
+    --kicl--components--checkbox--checked-color: var(--kicl-color-grey-900);
   }
 }
 

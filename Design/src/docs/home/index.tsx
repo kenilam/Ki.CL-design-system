@@ -70,6 +70,7 @@ const Home: React.FunctionComponent = () => {
             <Text>
               <HyperLink
                 before={<Ri.RiGithubLine aria-hidden />}
+                lookLikeButton
                 to={t('url_github')}
               >
                 {t('github')}

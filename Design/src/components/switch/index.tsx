@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
+import { truncateText } from 'design/helper';
 import {
   CHOICE_LABEL_CLASS_NAME,
   CHOICE_LABEL_LAYOUT,
@@ -65,7 +66,7 @@ const Switch = React.forwardRef<HTMLInputElement, Props>(
           className={classNames(FIELD_CLASS_NAME, CHOICE_LABEL_CLASS_NAME)}
         >
           {control}
-          {children}
+          {truncateText(children)}
         </label>
       </Layout>
     );

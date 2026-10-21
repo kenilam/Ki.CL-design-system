@@ -51,6 +51,7 @@ const Layout = React.forwardRef<HTMLElement, Props>(
         [`${CLASS_NAME}--justify-items--${justifyItems}`]: justifyItems,
         [`${CLASS_NAME}--span--${span}`]: span,
         [`${CLASS_NAME}--wrap`]: wrap,
+        [`${CLASS_NAME}--wrap--stack`]: wrap === 'stack',
         [`${CLASS_NAME}--${frames}`]: frames,
       },
       rest.className

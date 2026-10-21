@@ -1,0 +1,6 @@
+// A crumb keeps its width. A line that doesn't fit then overflows, which is
+// what folds one more crumb, instead of squeezing the menu's button under the
+// arrow after it.
+.kicl--components--breadcrumb__crumb {
+  flex-shrink: 0;
+}

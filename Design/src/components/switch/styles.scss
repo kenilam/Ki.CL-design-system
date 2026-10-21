@@ -34,6 +34,10 @@
     box-shadow: 0 var(--kicl-size-1px) var(--kicl-size-2px) #{$shadow-rgba};
     content: '';
     inline-size: calc(var(--kicl--components--switch--unit) * 12);
+
+    // Its margins fill the track's height, so it is centred even where the
+    // grid doesn't centre it: on iOS Safari it sat at the top.
+    margin-block: calc(var(--kicl--components--switch--unit) * 2);
     margin-inline-start: calc(var(--kicl--components--switch--unit) * 2);
     transition: translate var(--kicl-transition-duration-fast)
       var(--kicl-ease-quint-in-out);

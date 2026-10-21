@@ -31,30 +31,7 @@ import Motivation from './motivation.mdx';
 import { useDocsContext } from 'design/docs/context';
 
 // Constants
-import { PATH as COMPONENTS_PATH } from 'design/docs/components/constants';
-import { PATH as PATTERNS_PATH } from 'design/docs/patterns/constants';
-import { PATH as TOKENS_PATH } from 'design/docs/tokens/constants';
-
-const SECTIONS = [
-  {
-    Icon: Ri.RiShapesLine,
-    path: COMPONENTS_PATH,
-    summary: 'docs_components_summary',
-    title: 'docs_components',
-  },
-  {
-    Icon: Ri.RiPaletteLine,
-    path: TOKENS_PATH,
-    summary: 'docs_tokens_summary',
-    title: 'docs_tokens',
-  },
-  {
-    Icon: Ri.RiPuzzle2Line,
-    path: PATTERNS_PATH,
-    summary: 'docs_patterns_summary',
-    title: 'docs_patterns',
-  },
-] as const;
+import { SECTIONS } from 'design/docs/sections';
 
 const Home: React.FunctionComponent = () => {
   const t = useCopy();
@@ -67,15 +44,20 @@ const Home: React.FunctionComponent = () => {
         <Layout gap='normal'>
           <header>
             <Heading>{t('docs_title')}</Heading>
+            <Text>
+              <HyperLink
+                before={<Ri.RiGithubLine aria-hidden />}
+                lookLikeButton
+                to={t('url_github')}
+                variant='secondary'
+              >
+                {t('github')}
+              </HyperLink>
+            </Text>
             <Text className='kicl-max-inline-size-columns-8'>
               {t('docs_home_intro')}
             </Text>
           </header>
-        </Layout>
-        <Layout gap='normal'>
-          <section>
-            <Motivation components={{ ...COMPONENTS, pre: Pre }} />
-          </section>
         </Layout>
         <Layout gap='normal'>
           <section>
@@ -106,6 +88,11 @@ const Home: React.FunctionComponent = () => {
                 </Card>
               ))}
             </List>
+          </section>
+        </Layout>
+        <Layout gap='normal'>
+          <section>
+            <Motivation components={{ ...COMPONENTS, pre: Pre }} />
           </section>
         </Layout>
       </article>

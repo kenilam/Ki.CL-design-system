@@ -1,0 +1,7 @@
+// Hides an element and keeps its space, or shows it again. A hidden element
+// isn't read out either: use `kicl-hidden` for one a screen reader keeps.
+@each $value in visible, hidden, collapse {
+  .kicl-visibility-#{$value} {
+    visibility: #{$value};
+  }
+}

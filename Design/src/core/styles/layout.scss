@@ -149,6 +149,13 @@
       &.kicl-layout--wrap {
         flex-wrap: wrap;
       }
+
+      // One a row on phones, as with `fill` and `span`.
+      &.kicl-layout--wrap--stack > * {
+        @include query('≤mobile') {
+          flex-basis: 100%;
+        }
+      }
     }
   }
 

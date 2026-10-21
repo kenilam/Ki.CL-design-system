@@ -158,6 +158,12 @@ export const PAGES = {
     },
   },
   navigation: {
+    breadcrumb: {
+      context: 'breadcrumb',
+      Content: lazy(
+        () => import('design/components/breadcrumb/docs/index.mdx')
+      ),
+    },
     navigation: {
       context: 'navigation',
       Content: lazy(

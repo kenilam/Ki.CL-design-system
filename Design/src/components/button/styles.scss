@@ -27,6 +27,9 @@
 
   border-radius: var(--kicl--components--button--border-radius);
 
+  // One line. Its label truncates when there isn't room (see `truncateText`).
+  white-space: nowrap;
+
   // For a link that looks like a button, which has none of the link's own styles.
   text-decoration: none;
 

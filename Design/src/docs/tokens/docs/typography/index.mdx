@@ -178,7 +178,7 @@ Each variable has a class with the same name, `kicl-font-size-{name}`, `kicl-fon
 
 Leave the variation out for the default, as in `kicl-font-size` or `kicl-line-height`. Type is set once on `body` and inherited, so a class on a parent reaches the text inside it.
 
-Keyword classes set the CSS value directly: `kicl-font-style-{normal|italic|oblique}`, `kicl-text-align-{start|center|end|justify}`, `kicl-text-transform-{none|capitalize|lowercase|uppercase}` and `kicl-text-nowrap`.
+Keyword classes set the CSS value directly: `kicl-font-style-{normal|italic|oblique}`, `kicl-text-align-{start|center|end|justify}`, `kicl-text-transform-{none|capitalize|lowercase|uppercase}` and `kicl-text-nowrap`. `kicl-text-truncate` keeps text on one line and ends it in an ellipsis when there isn't room. Buttons, and the labels of checkboxes, radios and switches, put their text in it already.
 
 ```tsx
 // Centred text
@@ -189,6 +189,9 @@ Keyword classes set the CSS value directly: `kicl-font-style-{normal|italic|obli
 
 // Kept on one line
 <Text className='kicl-text-nowrap' />
+
+// One line, with an ellipsis where it runs out of room
+<Text className='kicl-text-truncate' />
 ```
 
 `kicl-look-like-{element}` gives something the look of another element without changing what it is, so a heading's level in the outline and its size on the page can differ. `{element}` is `h1` to `h6`, `blockquote`, `cite`, `code`, `del`, `em`, `ins`, `pre`, `q` or `strong`. The headings also take `--variant--secondary`, as in `kicl-look-like-h2--variant--secondary`. On `Text` and `Heading`, use the `lookLike` prop.

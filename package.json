@@ -4,7 +4,7 @@
   "description": "Ki.CL design system - components, styles and icons as a Module Federation remote",
   "type": "module",
   "private": true,
-  "packageManager": "yarn@4.17.1",
+  "packageManager": "yarn@4.18.1",
   "engines": {
     "node": ">=24"
   },

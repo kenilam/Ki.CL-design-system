@@ -35,11 +35,21 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
 
     const text = String(children);
 
-    /*
-     * Whitespace between words stays plain text, so the sentence wraps as it
-     * would without the animation.
-     */
-    const pieces = split === 'word' ? text.split(/(\s+)/) : text.split('');
+    const words = text.split(/(\s+)/);
+
+    const renderPiece = (piece: string, order: number) => (
+      <Animation
+        delay={delay + stagger * order}
+        duration={duration}
+        easing={easing}
+        property={property}
+        key={order}
+      >
+        <span aria-hidden className='kicl-display-inline-block'>
+          {piece}
+        </span>
+      </Animation>
+    );
 
     return (
       /*
@@ -54,25 +64,23 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
       >
         {/* Read once as a word; the letters below are only for the eye. */}
         <span className='kicl-hidden'>{text}</span>
-        {pieces.map((piece, index) => {
-          const key = `${index}`;
-
-          if (/^\s*$/.test(piece)) {
-            return piece;
+        {words.map((word, index) => {
+          if (/^\s*$/.test(word)) {
+            return word;
           }
 
+          if (split === 'word') {
+            return renderPiece(word, index / 2);
+          }
+
+          const start = words.slice(0, index).join('').length;
+
           return (
-            <Animation
-              delay={delay + stagger * (split === 'word' ? index / 2 : index)}
-              duration={duration}
-              easing={easing}
-              property={property}
-              key={key}
-            >
-              <span aria-hidden className='kicl-display-inline-block'>
-                {piece}
-              </span>
-            </Animation>
+            <span className='kicl-text-nowrap' key={index}>
+              {word
+                .split('')
+                .map((letter, offset) => renderPiece(letter, start + offset))}
+            </span>
           );
         })}
       </Text>

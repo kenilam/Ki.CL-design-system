@@ -11,8 +11,7 @@
    * currently looks like a measurement. A fixed advance width also stops a
    * column of figures from shifting as the digits change.
    */
-  --kicl-font-family-mono:
-    'roboto-mono', ui-monospace, 'SF Mono', 'Menlo', monospace;
+  --kicl-font-family-mono: 'roboto-mono', ui-monospace, 'Menlo', monospace;
   --kicl-font-size: #{$base-font-size};
 
   // font-size

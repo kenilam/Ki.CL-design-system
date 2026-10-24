@@ -1,8 +1,8 @@
 :root {
   // font-family
-  --kicl-font-family: 'mic-32-new-web', #{$base-font};
-  --kicl-font-family-bold: 'mic-32-new-web', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-rounded-web', #{$base-font};
+  --kicl-font-family: 'roboto', #{$base-font};
+  --kicl-font-family-bold: 'roboto', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', #{$base-font};
 
   /*
    * The voice for data: version numbers, scores, identifiers, counts.
@@ -11,7 +11,8 @@
    * currently looks like a measurement. A fixed advance width also stops a
    * column of figures from shifting as the digits change.
    */
-  --kicl-font-family-mono: ui-monospace, 'SF Mono', 'Menlo', monospace;
+  --kicl-font-family-mono:
+    'roboto-mono', ui-monospace, 'SF Mono', 'Menlo', monospace;
   --kicl-font-size: #{$base-font-size};
 
   // font-size

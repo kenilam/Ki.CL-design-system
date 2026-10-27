@@ -9,6 +9,9 @@ import { Layout } from 'design/components';
 // Helpers
 import { mergeRefs } from 'design/helper';
 
+// Hooks
+import { useOverlayContents } from 'design/hooks';
+
 // Spec
 import * as Spec from './spec';
 
@@ -61,6 +64,9 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
 
     const node = useRef<HTMLDialogElement>(null);
+
+    // Closed, it is only the `<dialog>`, which a command can still open.
+    const shown = useOverlayContents(node, open);
 
     useEffect(() => {
       const dialog = node.current;
@@ -128,32 +134,33 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
                 : 'none'
           }
         >
-          <Layout alignContent='start'>
-            <div
-              className={classNames(
-                'kicl-box-shadow-overlay',
-                'kicl-margin-inline-auto',
-                'kicl-position-relative',
-                'kicl-z-index-raised'
-              )}
-            >
-              {(header || closable === true) && (
-                <Layout autoFlow='column' alignItems='baseline'>
-                  <header>
-                    {/* Apart from the close button, so its label doesn't name the dialog. */}
-                    {header && <div id={headerId}>{header}</div>}
-                    <Close />
-                  </header>
-                </Layout>
-              )}
+          {shown ? (
+            <Layout alignContent='start'>
+              <div
+                className={classNames(
+                  'kicl-box-shadow-overlay',
+                  'kicl-margin-inline-auto',
+                  'kicl-position-relative',
+                  'kicl-z-index-raised'
+                )}
+              >
+                {header ? <header id={headerId}>{header}</header> : null}
 
-              {children}
+                {/*
+                Beside the header rather than in it, sharing its place in the
+                panel's grid, so it stays at the top while the header scrolls
+                away. It also keeps its label out of the dialog's name.
+              */}
+                <Close />
 
-              {footer ? (
-                <footer className={`${CLASS_NAME}--footer`}>{footer}</footer>
-              ) : null}
-            </div>
-          </Layout>
+                {children}
+
+                {footer ? (
+                  <footer className={`${CLASS_NAME}--footer`}>{footer}</footer>
+                ) : null}
+              </div>
+            </Layout>
+          ) : null}
         </dialog>
       </DialogContext.Provider>
     );

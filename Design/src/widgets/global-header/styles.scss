@@ -81,7 +81,7 @@
  * query reads and a query cannot style its own container. Whatever sizes
  * itself to the window, such as `Frame`, reads it.
  */
-body:has(.kicl--widgets--global-header:not([hidden])) {
+body:has(.kicl--widgets--global-header) {
   --kicl--widgets--global-header--offset: var(
     --kicl--widgets--global-header--block-size
   );

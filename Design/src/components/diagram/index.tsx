@@ -87,11 +87,13 @@ const Diagram: React.FunctionComponent<Props> = ({
               {spec.caption}
             </Text>
           ) : null}
-          <span className='kicl-hidden'> {spec.description}</span>
+          {spec.description ? (
+            <span className='kicl-hidden'> {spec.description}</span>
+          ) : null}
         </figcaption>
-      ) : (
+      ) : spec.description ? (
         <figcaption className='kicl-hidden'>{spec.description}</figcaption>
-      )}
+      ) : null}
     </figure>
   );
 };

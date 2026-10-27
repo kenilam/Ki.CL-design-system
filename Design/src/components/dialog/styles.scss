@@ -5,8 +5,8 @@
   --kicl--components--dialog--inline-size: auto;
   --kicl--components--dialog--offset: var(--kicl-gutter-extreme);
   --kicl--components--dialog--section-offset: var(--kicl-gutter-wide);
-  --kicl--components--dialog--padding-block: var(--kicl-gutter);
-  --kicl--components--dialog--padding-inline: var(--kicl-gutter);
+  --kicl--components--dialog--padding-block: var(--kicl-gutter-wide);
+  --kicl--components--dialog--padding-inline: var(--kicl-gutter-wide);
   --kicl--components--dialog--backdrop--backdrop-filter--brightness: 45%;
   --kicl--components--dialog--backdrop--backdrop-filter--blur: var(
     --kicl-size-half
@@ -78,6 +78,7 @@
       var(--kicl--components--dialog--offset)
     );
     max-inline-size: var(--kicl--components--dialog--max-inline-size);
+    min-block-size: var(--kicl--components--dialog--min-block-size, auto);
     padding-block: var(--kicl--components--dialog--padding-block);
     padding-inline: var(--kicl--components--dialog--padding-inline);
     opacity: 0;
@@ -88,8 +89,13 @@
     translate: 0 0;
   }
 
+  /*
+   * A sheet from below on a small screen: it reaches the foot of the window
+   * and grows past it with its content, and the dialog scrolls with the page
+   * rather than the sheet scrolling inside itself.
+   */
   @include query('≤tablet') {
-    --kicl--components--dialog--block-size: calc(
+    --kicl--components--dialog--min-block-size: calc(
       100svb - var(--kicl--components--dialog--offset)
     );
     --kicl--components--dialog--margin-block-end: 0;
@@ -97,9 +103,22 @@
     --kicl--components--dialog--border-end-start-radius: 0;
   }
 
+  /*
+   * The header shares the first place in the panel's grid with the close
+   * button, and keeps clear of it at its end so a long title doesn't run
+   * under it.
+   */
+  &--is-closable > div > header {
+    grid-area: 1 / 1;
+    padding-inline-end: calc(
+      var(--kicl--components--dialog--padding-inline) / 2
+    );
+  }
+
   &[open] > div {
     opacity: 1;
     translate: 0 0;
+    view-transition-name: kicl--components--dialog;
 
     @starting-style {
       block-size: var(
@@ -154,5 +173,26 @@
       var(--kicl--components--dialog--backdrop--opacity)
     );
     pointer-events: none;
+  }
+}
+
+/*
+ * A dialog a route change adds or removes does it in a view transition: the
+ * router takes it out of the page at once, and the browser animates its
+ * picture instead. Leaving, the picture falls away as the dialog does when it
+ * closes in place. Arriving needs nothing here: the new picture is live, so the
+ * dialog's own opening transition plays in it.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(kicl--components--dialog) {
+    animation: kicl--components--dialog--leave
+      var(--kicl-transition-duration-fast) both;
+  }
+}
+
+@keyframes kicl--components--dialog--leave {
+  to {
+    opacity: 0;
+    translate: 0 var(--kicl--components--dialog--section-offset);
   }
 }

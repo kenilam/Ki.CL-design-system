@@ -20,11 +20,7 @@ const Status429: React.FunctionComponent<Props> = ({ message, title }) => {
 
   return (
     <Animation>
-      <Layout
-        alignContent='center'
-        autoFlow='row'
-        justifyItems='center'
-      >
+      <Layout alignContent='center' autoFlow='row' justifyItems='center'>
         <section className='kicl-text-align-center'>
           <Layout
             alignContent='center'
@@ -45,7 +41,7 @@ const Status429: React.FunctionComponent<Props> = ({ message, title }) => {
               {title}
             </Heading>
           ) : null}
-          <Text>{message}</Text>
+          {message ? <Text>{message}</Text> : null}
           <GoBack />
         </section>
       </Layout>

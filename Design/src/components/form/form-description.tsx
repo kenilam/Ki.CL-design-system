@@ -14,6 +14,11 @@ const FormDescription = React.forwardRef<
 >(({ className, ...rest }, ref) => {
   const { formDescriptionId } = useFormFieldContext();
 
+  // No paragraph with nothing in it.
+  if (!rest.children) {
+    return null;
+  }
+
   return (
     <Text
       {...rest}

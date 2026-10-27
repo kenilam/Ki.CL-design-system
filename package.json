@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "build": "yarn workspace @ki-cl/design run build",
+    "check:search": "tsx --tsconfig Design/tsconfig.json Design/scripts/check-search.ts",
     "development": "yarn workspace @ki-cl/design run dev",
     "production": "yarn build && NODE_ENV=production tsx Server/index.ts",
     "start": "yarn run development",

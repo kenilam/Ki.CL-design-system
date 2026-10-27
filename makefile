@@ -3,6 +3,11 @@ build:
 	yarn run build
 	@echo done
 
+check.search:
+	@echo ⌛ checking every class has a docs page...
+	yarn run check:search
+	@echo done
+
 install:
 	@echo ⌛ installing...
 	yarn

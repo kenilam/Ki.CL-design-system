@@ -9,7 +9,10 @@ import { Outlet } from 'design/router';
 // Components
 import { Layout } from 'design/components';
 
-/** The page that is open, on the 12-column width. */
+// Partials
+import { Search } from 'design/docs/search';
+
+/** The docs search, then the page that is open, on the 12-column width. */
 const Shell: React.FunctionComponent = () => (
   <Layout alignContent='start'>
     <article
@@ -23,6 +26,7 @@ const Shell: React.FunctionComponent = () => (
         'kicl-padding-inline-frame'
       )}
     >
+      <Search className='kicl-margin-block-end-wide kicl-max-inline-size-columns-4' />
       <Outlet />
     </article>
   </Layout>

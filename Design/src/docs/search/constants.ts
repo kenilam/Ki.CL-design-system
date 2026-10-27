@@ -11,6 +11,7 @@ type TokenPath = {
  * name in the built CSS matches nothing here.
  */
 const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
+  'align-self': 'utilities/display',
   'animation-none': 'foundations/motion',
   'aspect-ratio': 'foundations/size',
   backdrop: 'utilities/effects',
@@ -32,6 +33,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   fill: 'foundations/color',
   font: 'foundations/typography',
   gradient: 'foundations/motion',
+  grid: 'utilities/display',
   gutter: 'semantics/spacing',
   heading: 'foundations/typography',
   hidden: 'accessibility/visibility',
@@ -66,7 +68,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   transition: 'foundations/motion',
   'user-select': 'utilities/interaction',
   viewport: 'foundations/breakpoints',
-  'visibility-hidden': 'accessibility/visibility',
+  visibility: 'accessibility/visibility',
   'z-index': 'foundations/stacking',
 };
 

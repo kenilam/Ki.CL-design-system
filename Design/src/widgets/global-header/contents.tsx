@@ -26,7 +26,6 @@ import * as Spec from './spec';
 
 const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
   children,
-  hidden,
 }) => {
   const { node } = useGlobalHeaderContext();
   const { isMobile } = useResponsive();
@@ -56,7 +55,7 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
       gap='normal'
       ref={node}
     >
-      <header className={className} hidden={hidden}>
+      <header className={className}>
         <SiteLogo />
         {/* On mobile the menu button ends the row. */}
         {isMobile ? null : children}

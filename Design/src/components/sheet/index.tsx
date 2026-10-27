@@ -13,6 +13,9 @@ import { useCopy } from 'design/locales/use-copy';
 // Helpers
 import { mergeRefs } from 'design/helper';
 
+// Hooks
+import { useOverlayContents } from 'design/hooks';
+
 // Icons
 import * as Ri from 'react-icons/ri';
 
@@ -82,6 +85,8 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
     const id = rest.id ?? generated;
     const node = useRef<HTMLElement | null>(null);
     const t = useCopy();
+    // Closed, it is only its own element, which its buttons can still open.
+    const shown = useOverlayContents(node, defaultOpen);
     // Only the open state it mounts with counts; after that its buttons lead.
     const opening = useRef(defaultOpen);
     const report = useRef(onOpenChange);
@@ -214,7 +219,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
           } as React.CSSProperties
         }
       >
-        {(header || closable) && (
+        {shown && (header || closable) && (
           <SheetHeader>
             {header}
             {closable && (
@@ -232,15 +237,19 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
             )}
           </SheetHeader>
         )}
-        <CardContent
-          className={classNames(
-            'kicl-padding-block-end-narrow',
-            'kicl-padding-inline'
-          )}
-        >
-          {children}
-        </CardContent>
-        {footer && <SheetFooter justifyContent='end'>{footer}</SheetFooter>}
+        {shown ? (
+          <CardContent
+            className={classNames(
+              'kicl-padding-block-end-narrow',
+              'kicl-padding-inline'
+            )}
+          >
+            {children}
+          </CardContent>
+        ) : null}
+        {shown && footer && (
+          <SheetFooter justifyContent='end'>{footer}</SheetFooter>
+        )}
       </Card>
     );
   }

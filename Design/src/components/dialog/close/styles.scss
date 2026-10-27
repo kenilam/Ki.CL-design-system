@@ -6,7 +6,20 @@
     margin-block-end: calc(-1 * var(--kicl--components--dialog--padding-block));
   }
 
+  /*
+   * In the header's place in the panel's grid, at its end. A grid item that
+   * doesn't stretch stays stuck for the panel's whole height, not just its
+   * own row, so it holds a gutter from the top while the content scrolls.
+   */
   &--close {
-    inset-block-start: var(--kicl--components--dialog--padding-block);
+    align-self: start;
+    grid-area: 1 / 1;
+    inset-block-start: var(--kicl-gutter);
+    margin-block-start: calc(
+      -1 * var(--kicl--components--dialog--padding-inline) / 2
+    );
+    margin-inline-end: calc(
+      -1 * var(--kicl--components--dialog--padding-inline) / 2
+    );
   }
 }

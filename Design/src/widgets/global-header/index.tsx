@@ -19,8 +19,9 @@ const GlobalHeader: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
 }) => {
   return (
     <>
+      {/* Kept when the header isn't, so the next page has its height at once. */}
       <CssVariables />
-      <Contents hidden={hidden}>{children}</Contents>
+      {hidden ? null : <Contents>{children}</Contents>}
     </>
   );
 };

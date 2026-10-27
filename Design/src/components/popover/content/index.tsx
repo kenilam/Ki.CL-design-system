@@ -4,6 +4,9 @@ import { createPortal } from 'react-dom';
 // Helpers
 import { mergeRefs } from 'design/helper';
 
+// Hooks
+import { useOverlayContents } from 'design/hooks';
+
 // Spec
 import type { PopoverContentProps } from 'design/components/popover/spec';
 
@@ -37,6 +40,8 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
     const nodeRef = useRef<HTMLDivElement | null>(null);
     const { setContent } = popover;
+    // Closed, it is only the panel, which its trigger can still open.
+    const shown = useOverlayContents(nodeRef, popover.open);
 
     // Lets the trigger know there is a panel to open.
     useEffect(() => {
@@ -180,7 +185,9 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         }
         {...rest}
       >
-        <div className={`${POPOVER}__viewport`}>{children}</div>
+        {shown ? (
+          <div className={`${POPOVER}__viewport`}>{children}</div>
+        ) : null}
       </div>
     );
 

@@ -9,7 +9,11 @@ const Preview: React.FC<Props> = (props) => (
     <Button popoverTarget='sheet-not-closable'>Open</Button>
     <Sheet
       closable={false}
-      footer={<Text>a foot note</Text>}
+      footer={
+        <Button popoverTarget='sheet-not-closable' popoverTargetAction='hide'>
+          Done
+        </Button>
+      }
       header={<CardTitle is='h2'>Filters</CardTitle>}
       id='sheet-not-closable'
       {...props}

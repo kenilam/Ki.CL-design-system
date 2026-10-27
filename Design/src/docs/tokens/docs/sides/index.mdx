@@ -1,7 +1,7 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Placement } from 'design/docs/tokens/previews';
 
-Everything is written with logical properties, block and inline, start and end, never top or left. On a left-to-right page, `block-start` is the top, `block-end` the bottom, `inline-start` the left and `inline-end` the right. A right-to-left page flips without any change.
+Spacing and position are written with logical properties, block and inline, start and end, rather than top or left. On a left-to-right page, `block-start` is the top, `block-end` the bottom, `inline-start` the left and `inline-end` the right. A right-to-left page flips without any change.
 
 Popover placements and Sheet sides take the same four names, `block-start`, `block-end`, `inline-start` and `inline-end`.
 
@@ -11,7 +11,7 @@ A class that sets one side names the axis, then the edge, then the step: `kicl-{
 
 - `{axis}` is `block` or `inline`. Leave it out for both axes.
 - `{edge}` is `start` or `end`. Leave it out for both edges of the axis.
-- `{step}` is a gutter step, see Spacing. Leave it out for the default.
+- `{step}` is a gutter step, listed on [Spacing](../tokens/semantics/spacing). Leave it out for the default.
 
 So `kicl-padding` is all four sides, `kicl-padding-block` is top and bottom, and `kicl-padding-block-start` is the top alone. Padding, margin and inset all follow this order.
 
@@ -34,7 +34,7 @@ So `kicl-padding` is all four sides, `kicl-padding-block` is top and bottom, and
 
 ## Inset
 
-Inset places a positioned element, and needs a `kicl-position-*` class to do anything. It takes the gutter steps and also `0` and `auto`, as `kicl-inset-{axis}-{edge}-{step}`.
+Inset places a positioned element, so it only has an effect on an element with a `kicl-position-*` class or another position. It takes the gutter steps and also `0` and `auto`, as `kicl-inset-{axis}-{edge}-{step}`.
 
 ```tsx
 // Pinned to the top-right corner on a left-to-right page

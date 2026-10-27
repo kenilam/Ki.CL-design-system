@@ -1,17 +1,19 @@
 import { Specimen } from 'design/docs/tokens/previews';
 import { Variables } from 'design/docs/tokens/variables';
 
-Text stays readable at every size and in every state.
+These rules keep text readable at every size. Two things go below them on purpose, disabled controls and placeholders, and both are explained below.
 
 ## Secondary text
 
-Secondary text, like `Text variant='secondary'`, a faded heading or a hint, is `--kicl-color-neutral-a64`, or the secondary look of its level. On the page that gives about 5.8:1 on light and 7:1 on dark, above the 4.5:1 WCAG AA asks of small text. A wash, like a hover, is `--kicl-color-neutral-a16`, since it sits behind text rather than being read.
+Secondary text, like `Text variant='secondary'`, a faded heading or a hint, is `--kicl-color-neutral-a64`, or the secondary look of its level. On the page that gives about 5.3:1 on light and 7.4:1 on dark, above the 4.5:1 WCAG AA asks of small text. A wash, like a hover, is `--kicl-color-neutral-a16`, since it sits behind text rather than being read.
 
 <Variables names={['color-neutral-a64', 'color-neutral-a16']} />
 
 ## Text size
 
-Body text is 16px, and nothing goes below 12px: `smallest` is 12px, `smaller` 13px and `small` 14px. Body line height is 1.5. On iOS, fields never drop below 16px, since Safari zooms the page into any smaller field when it takes focus.
+Body text is 16px, and the smallest size, `smallest`, is 12px. `smaller` is 13px and `small` 14px. Sizes are in rem, so these are at the browser's default 16px and grow with the reader's settings. Body line height is 1.5.
+
+On iOS, fields never drop below 16px, since Safari zooms the page into any smaller field when it takes focus.
 
 ### font-size
 
@@ -31,7 +33,9 @@ MDN: [`line-height`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/
 
 ## Disabled
 
-A disabled control fades to 40% and shows a `not-allowed` cursor, and its label gets the same cursor. WCAG doesn't ask disabled controls to meet contrast, but the button's label still reads against its muted fill, so it isn't faded as well. A disabled fieldset doesn't fade itself, only its controls, so its legend stays readable.
+A disabled control fades to 40% and shows a `not-allowed` cursor, and its label gets the same cursor. A disabled button also loses a little saturation. WCAG doesn't ask disabled controls to meet contrast.
+
+A disabled fieldset doesn't fade itself, only its controls, so its legend stays readable.
 
 ### opacity
 

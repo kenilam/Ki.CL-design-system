@@ -12,7 +12,7 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => (
       </Badge>
     </PopoverTrigger>
     <PopoverHint offset={offset} placement={placement} variant={variant}>
-      Copied to the clipboard.
+      Shown while this is hovered or focused.
     </PopoverHint>
   </Popover>
 );

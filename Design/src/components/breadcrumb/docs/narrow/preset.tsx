@@ -8,7 +8,10 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>Too narrow for the trail, so the links fold into the menu.</>
+  <>
+    In a narrow box, the first crumbs fold into a menu one at a time until the
+    trail fits. A crumb with no link is left out of the menu.
+  </>
 );
 
 const name = 'In a narrow space';

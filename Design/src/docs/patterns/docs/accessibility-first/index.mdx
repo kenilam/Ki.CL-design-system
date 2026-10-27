@@ -26,38 +26,58 @@ From there, accessibility becomes part of every step of development.
 
 ## Research
 
-Include disabled people in research from the start. Ask the questions you'd ask anyone, then add a few about how they get around: which assistive technology they use, what slows them down, and what workarounds they rely on. Recruiting can take longer, so plan for it.
+Accessibility starts with who you learn from.
+
+Include disabled people in research from the start. Ask the questions you'd ask anyone, then add a few about how they get around: which assistive technology they use, what slows them down, and what workarounds they rely on.
+
+Recruiting can take longer, so plan for it.
 
 ## Content
 
-The words and their order are most of the interface.
+The words on a page, and the order they come in, decide whether people can follow it.
 
-- **Title every page and every dialog or sheet.** Someone who can't see a transition needs the title to know where they are. `CardTitle` in a `Sheet` header and the `header` of a `Dialog` do this.
-- **Use headings for structure.** Screen reader users jump between headings to skim a page. Pick the heading level for the outline and use `lookLike` if it should look bigger or smaller.
-- **Write plainly.** Short sentences, everyday words, acronyms spelled out the first time.
-- **Keep reading order and visual order the same.** If a total updates when an option changes, put the total after the options, where focus will reach it next.
-- **Give everything that isn't text a text alternative.** Images get `alt`, and an icon-only button gets an `aria-label`.
+Give every page a title, and every dialog too. Someone who can't see a transition relies on the title to know where they've landed. A `Dialog` takes its name from its `header`.
+
+Use headings to give the page a structure. Screen reader users move between headings to skim, so pick each heading's level for its place in the outline, and use `lookLike` if it should look bigger or smaller.
+
+Write plainly: short sentences, everyday words, and acronyms spelled out the first time.
+
+Keep the reading order the same as the visual order. If a total updates when an option changes, put the total after the options, where focus will reach it next.
+
+Give everything that isn't text a text alternative. An image needs `alt` text, and a button with only an icon needs an `aria-label`.
 
 ## Visual design
 
-- **Text size.** Body text is 16px, secondary text 14px, and nothing goes below 12px. See Contrast and size.
-- **Zoom and reflow.** Use rem and the column scale, never fixed pixel widths, so the page reflows at 200% zoom and 320px wide without sideways scrolling.
-- **Don't rely on colour alone.** An error needs words as well as red: `FormMessage` and `Status` both say what went wrong.
-- **Contrast.** 4.5:1 for small text, 3:1 for large text and for the edges of controls and focus rings.
-- **Dark mode.** It helps people with light sensitivity and anyone reading at night, and it comes free when you use the colour roles instead of fixed colours.
+Visual design decides whether people can read the page at their own size and in their own conditions.
+
+Body text is 16px and secondary text 14px, and the smallest size is 12px. [Contrast and size](../tokens/accessibility/contrast) has the details.
+
+Size things with rem and the column scale rather than fixed pixel widths. Then the page reflows to a 320px-wide window without scrolling sideways, and text can be zoomed to 200% without anything being cut off.
+
+Don't rely on colour alone. An error needs words as well as red, and `FormMessage` and `Status` both say what went wrong.
+
+Small text needs a contrast of at least 4.5:1 against its background, and large text 3:1. The edges of controls and focus rings need 3:1 as well.
+
+Dark mode helps people with light sensitivity and anyone reading at night. You get it by using the colour roles instead of fixed colours.
 
 ## Interaction and motion
 
-- **Targets.** Make controls at least 24px, and bigger where you can, especially on touch screens. Prefer a button or a link styled as one over a short text link.
-- **Time.** Avoid time limits. Where one can't be avoided, let people extend it.
-- **Pause, stop, hide.** Anything that moves on its own for more than five seconds needs a way to stop it, and motion should stop when the person asks for less of it.
+Not everyone uses a mouse, has a steady hand or reads at the same pace.
+
+Make controls at least 24px, and bigger where you can, especially on touch screens. A button, or a link styled as one, is easier to hit than a short text link.
+
+Avoid time limits. Where one can't be avoided, let people extend it.
+
+Anything that moves on its own for more than five seconds needs a way to pause or stop it. Motion should also stop when someone turns on reduced motion in their system settings. [Reduced motion](../tokens/accessibility/reduced-motion) lists what the components already do.
 
 ## Build
 
-- Test with the keyboard alone: everything reachable, in order, with a visible focus ring.
+Then check the result the way people will use it.
+
+- Test with the keyboard alone. Everything should be reachable, in a sensible order, with a visible focus ring.
 - Test with a screen reader: VoiceOver on macOS and iOS, NVDA on Windows, TalkBack on Android.
-- Zoom to 200% and check nothing is cut off or overlapping.
-- Run an automated check as a floor, not a finish line. It can't tell whether a name makes sense or an order is logical.
+- Zoom to 200% and check that nothing is cut off or overlapping.
+- Run an automated check too, but don't stop there. It can't tell whether a name makes sense or an order is logical.
 
 ## References
 
@@ -68,6 +88,7 @@ The words and their order are most of the interface.
 - [WCAG 2.2, 1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html)
 - [WCAG 2.2, 1.4.1 Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
 - [WCAG 2.2, 1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
+- [WCAG 2.2, 1.4.4 Resize Text](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html)
 - [WCAG 2.2, 2.5.8 Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
 - [WCAG 2.2, 2.2.1 Timing Adjustable](https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html)
 - [WCAG 2.2, 2.2.2 Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)

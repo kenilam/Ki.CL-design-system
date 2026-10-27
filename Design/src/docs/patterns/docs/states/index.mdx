@@ -20,14 +20,14 @@ A state tells people what a component is doing or what they can do with it. Each
 ## Availability
 
 - **Read-only** for a value people should see and copy but not change.
-- **Disabled** for a control that doesn't apply right now. It can't be focused, so a screen reader user may never find it. Say why, or leave the control out.
+- **Disabled** for a control that doesn't apply right now. Tab skips it, so a keyboard user may never reach it or learn why it's off. Say why, or leave the control out.
 - Inside a form, keep the submit button enabled and explain what's missing instead.
 
 ## Content states
 
 - **Loading:** placeholders the shape of the content, so the layout doesn't jump. Mark the area `aria-busy` while it fills.
 - **Empty:** say why it's empty and what to do next.
-- **Error:** say what went wrong and how to recover. See Feedback and status.
+- **Error:** say what went wrong and how to recover. See [Feedback and status](../patterns/interaction/feedback-and-status).
 
 ## References
 

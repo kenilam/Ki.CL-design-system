@@ -1,6 +1,10 @@
 import { Variants } from './variants';
 
-`variant` says how much a component stands out. `primary` fills with the level's colour, and `secondary`, `tertiary` and `ghost` fill with the level's look of the same name, each lighter than the last. `ghost` adds an edge in the level's colour. The label takes whichever of black or white reads against the fill. Button, Badge, Card, Bubble, Text, Popover and InputGroup take it. Badge has no `tertiary` and Card has no `ghost`.
+`variant` says how much a component stands out, from a filled `primary` down to an outlined `ghost`.
+
+`primary` fills with the level's colour, and its label is black or white, whichever reads against that fill. `secondary` and `tertiary` put a faint, see-through wash of the level's colour behind a label in that colour, with `tertiary` the fainter of the two. `ghost` has no fill, only an edge and a label in the level's colour.
+
+Button, Badge, Card, Bubble, Text, Popover and InputGroup take it. Badge has no `tertiary` and Card has no `ghost`. Card tints its own surface instead of a wash: see-through for `secondary`, solid for `tertiary`.
 
 <Variants />
 
@@ -12,12 +16,12 @@ Variant is a prop, not a utility, so it has no variables or `kicl-*` classes of 
 // Filled, for the one action that matters most on the page
 <Button variant='primary'>Save</Button>
 
-// A lighter fill, for an action beside the main one
+// A see-through wash, for an action beside the main one
 <Button variant='secondary'>Preview</Button>
 
-// A faint fill, for a quiet action
+// A fainter wash, for a quiet action
 <Button variant='tertiary'>Cancel</Button>
 
-// The faintest fill with an edge, in the error colour for a destructive action
+// No fill, only an edge, in the error colour for a destructive action
 <Button level='error' variant='ghost'>Delete</Button>
 ```

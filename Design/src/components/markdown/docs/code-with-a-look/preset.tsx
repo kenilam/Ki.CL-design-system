@@ -10,8 +10,9 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Colours code by what it means, like the state of a job. Put the look in
-    braces straight after it, as in <Text is='code'>{'`DONE`{confirm}'}</Text>.
+    Colours code by what it means, like the state of a job. Put confirm, error,
+    info, warning or secondary in braces straight after it, as in{' '}
+    <Text is='code'>{'`DONE`{confirm}'}</Text>.
   </>
 );
 

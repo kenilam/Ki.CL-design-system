@@ -8,10 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    For a few short items in a line, like the tools a project uses. Each is in a
-    badge so the gap between them shows.
-  </>
+  <>For a few short items in a line, like the tools a project uses.</>
 );
 
 const name = 'A row';

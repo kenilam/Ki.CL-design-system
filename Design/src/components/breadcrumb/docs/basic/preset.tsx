@@ -9,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Every crumb fits, so all of them show. The last before the page has no link,
-    so it is plain text.
+    Every crumb fits, so all of them show. A crumb with no page of its own, like
+    Knives, shows as plain text.
   </>
 );
 

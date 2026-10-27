@@ -23,7 +23,7 @@ MDN: [`@media`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-ru
 
 MDN: [`@container`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container).
 
-Which range the window is in, as `true` flags a style query can read. `--kicl-viewport-{name}` is set inside that range, and `--kicl-viewport-up-to-{name}` at that width and narrower.
+A media query can't read a custom property, so these flags say which range the window is in for a style query to read. `--kicl-viewport-{name}` is `true` inside that range, and `--kicl-viewport-up-to-{name}` at that width and narrower.
 
 <Variables
   names={[
@@ -42,7 +42,7 @@ Which range the window is in, as `true` flags a style query can read. `--kicl-vi
   ]}
 />
 
-A media query can't read a custom property, so a stylesheet writes `@container style(--kicl-viewport-up-to-desktop: true)` instead.
+A stylesheet reads them with `@container style(--kicl-viewport-up-to-desktop: true)`.
 
 ## Classes
 

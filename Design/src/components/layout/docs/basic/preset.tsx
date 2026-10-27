@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { STACK_CONTROLS } from 'design/components/layout/docs/controls';
@@ -11,10 +10,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    Puts things one under another, like the fields of a form.{' '}
-    <Text is='code'>gap</Text> sets the space between them.
-  </>
+  <>Puts things one under another, like the fields of a form.</>
 );
 
 const name = 'Basic';

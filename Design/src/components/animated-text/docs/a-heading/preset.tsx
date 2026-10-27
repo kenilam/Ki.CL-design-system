@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a page title. <Text is='code'>lookLike='h2'</Text> makes it as big as a
-    heading.
-  </>
-);
+const description = <>For a page title.</>;
 
 const name = 'A heading';
 

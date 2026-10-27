@@ -54,6 +54,9 @@ const Home: React.FunctionComponent = () => {
                 {t('github')}
               </HyperLink>
             </Text>
+            <Text className='kicl-max-inline-size-columns-8' lookLike='h3'>
+              {t('docs_home_tagline')}
+            </Text>
             <Text className='kicl-max-inline-size-columns-8'>
               {t('docs_home_intro')}
             </Text>
@@ -91,7 +94,7 @@ const Home: React.FunctionComponent = () => {
           </section>
         </Layout>
         <Layout gap='normal'>
-          <section>
+          <section className='kicl-max-inline-size-columns-8'>
             <Motivation components={{ ...COMPONENTS, pre: Pre }} />
           </section>
         </Layout>

@@ -1,10 +1,28 @@
-Accessibility is cheapest when it's part of every step, and expensive when it's a fix after launch. This page follows a feature from research to code and lists what to check at each step.
+Accessibility determines who can use your product, how independently they can use it, and how much effort it takes.
 
-## Start from the system
+A button that only works with a mouse excludes someone navigating by keyboard. An unlabeled control leaves a screen reader user guessing. An error communicated only through colour can leave someone unaware that anything went wrong.
 
-Components here are built on native elements, so they already handle the keyboard, focus, names and states. Using them everywhere also makes pages behave the same way across the site, and predictability is itself an accessibility requirement (WCAG 3.2).
+These aren't unusual edge cases. They're ordinary interface decisions that work for some people and create barriers for others.
 
-When something you need doesn't exist, look for the native element first. `dialog`, `details`, `popover`, `input type='date'` and form validation all come with behaviour you'd otherwise rebuild.
+Accessibility is about removing those barriers. It's about letting people understand information, navigate an interface and complete tasks without unnecessary obstacles.
+
+It's also an engineering concern. When accessibility is considered from the start, it shapes research, content, design, component APIs and testing. When it's postponed until after launch, the same problems can be spread across components, pages and user journeys, making them harder and more expensive to fix.
+
+The goal isn't to add accessibility to a finished product. It's to build a product that works for more people from the beginning.
+
+## Start with the system
+
+The best place to start is often the browser itself.
+
+Native HTML elements already provide much of the behaviour accessible interfaces need: keyboard interaction, focus handling, accessible names, states and form validation.
+
+Using those elements consistently also makes behaviour more predictable across the product.
+
+When a requirement isn't met by your existing components, look for a native element before building a custom one. A `<dialog>`, `<details>`, `<input type="date">` or native form validation may already solve much of the problem.
+
+Native elements aren't automatically accessible in every context, but they're a stronger starting point than rebuilding browser behaviour without a good reason.
+
+From there, accessibility becomes part of every step of development.
 
 ## Research
 

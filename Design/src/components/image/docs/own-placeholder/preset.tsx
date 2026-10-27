@@ -1,20 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Swaps the warning icon for one of your own.{' '}
-    <Text is='code'>placeholder</Text> takes any element, here a plain picture
-    icon.
-  </>
-);
+const description = <>Swaps the warning icon for one of your own.</>;
 
 const name = 'Own placeholder';
 

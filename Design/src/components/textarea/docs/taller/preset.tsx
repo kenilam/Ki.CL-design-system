@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For notes or longer answers. <Text is='code'>{'rows={10}'}</Text> makes it
-    start ten lines tall, and it still grows past that.
+    For notes or longer answers. It starts ten lines tall and still grows past
+    that.
   </>
 );
 

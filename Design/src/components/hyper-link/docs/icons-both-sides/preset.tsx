@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Uses <Text is='code'>before</Text> and <Text is='code'>after</Text>{' '}
-    together. The logo says where it goes and the arrow says it opens another
-    site.
+    The logo says where the link goes and the arrow says it opens another site.
   </>
 );
 

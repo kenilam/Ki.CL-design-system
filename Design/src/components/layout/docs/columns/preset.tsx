@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { COLUMNS_CONTROLS } from 'design/components/layout/docs/controls';
@@ -11,11 +10,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    Lays things out on 12 columns. <Text is='code'>span</Text> says how many
-    columns an item covers, so 8 and 4 fill a row. On phones every item is full
-    width.
-  </>
+  <>Lays things out on 12 columns. On phones every item is full width.</>
 );
 
 const name = 'Columns';

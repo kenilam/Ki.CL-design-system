@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,8 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Starts with an option already picked, for when there's a sensible default.{' '}
-    <Text is='code'>defaultValue</Text> sets it.
+    Starts with an option already picked, for when there's a sensible default.
   </>
 );
 

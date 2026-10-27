@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,7 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     Draws a labelled frame around boxes that belong together, like the servers
-    in one region. <Text is='code'>groups</Text> sets each frame.
+    in one region.
   </>
 );
 

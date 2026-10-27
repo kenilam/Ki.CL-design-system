@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a sentence. <Text is='code'>split='word'</Text> brings it in a word at a
-    time.
-  </>
-);
+const description = <>For a sentence that comes in a word at a time.</>;
 
 const name = 'A sentence';
 

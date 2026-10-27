@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,8 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Besides the plain box there's a cylinder for a store and a queue for jobs.{' '}
-    <Text is='code'>shape</Text> picks one.
+    Besides the plain box there's a cylinder for a store and a queue for jobs.
   </>
 );
 

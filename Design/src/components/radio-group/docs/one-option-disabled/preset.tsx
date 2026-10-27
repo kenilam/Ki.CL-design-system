@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     For an option people should see but can't pick right now, like express
-    delivery when it isn't offered. Put <Text is='code'>disabled</Text> on that{' '}
-    <Text is='code'>Radio</Text>.
+    delivery when it isn't offered.
   </>
 );
 

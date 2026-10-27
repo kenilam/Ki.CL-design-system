@@ -1,20 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a date next to a post or a change. <Text is='code'>is='time'</Text> with{' '}
-    <Text is='code'>dateTime</Text> makes it a proper{' '}
-    <Text is='code'>time</Text> element.
-  </>
-);
+const description = <>For a date next to a post or a change.</>;
 
 const name = 'A date';
 

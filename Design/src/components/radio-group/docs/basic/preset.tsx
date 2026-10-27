@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     For a choice people have to make themselves. No option is picked until they
-    click one, and <Text is='code'>legend</Text> asks the question above the
-    options.
+    click one.
   </>
 );
 

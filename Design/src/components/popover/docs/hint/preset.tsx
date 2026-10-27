@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 import { HINT_CONTROLS } from 'design/components/popover/docs/controls';
 
@@ -12,8 +11,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     A short note that shows while the trigger is hovered or focused, like a
-    tooltip. Use <Text is='code'>PopoverHint</Text> in place of{' '}
-    <Text is='code'>PopoverContent</Text>.
+    tooltip.
   </>
 );
 

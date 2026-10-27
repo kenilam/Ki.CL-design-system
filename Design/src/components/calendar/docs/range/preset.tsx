@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For picking a start and an end date, like a trip. With{' '}
-    <Text is='code'>{"mode='range'"}</Text> the first click picks the start and
-    the second the end.
+    For picking a start and an end date, like a trip. The first click picks the
+    start and the second the end.
   </>
 );
 

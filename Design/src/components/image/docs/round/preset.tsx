@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For an avatar. <Text is='code'>kicl-border-radius-max</Text> turns the box
-    into a circle and the picture is clipped to it.
-  </>
-);
+const description = <>For an avatar.</>;
 
 const name = 'Round';
 

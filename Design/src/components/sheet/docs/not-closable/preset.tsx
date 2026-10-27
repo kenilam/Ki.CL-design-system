@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    With <Text is='code'>{'closable={false}'}</Text> there's no close button and
-    Escape does nothing, so your own code decides when it closes.
+    There's no close button and Escape does nothing, so your own code decides
+    when it closes.
   </>
 );
 

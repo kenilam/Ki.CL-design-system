@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a long list like the months of the year.{' '}
-    <Text is='code'>collapse='scroll'</Text> keeps them on one row that scrolls
-    sideways.
+    For a long list like the months of the year. They stay on one row that
+    scrolls sideways.
   </>
 );
 

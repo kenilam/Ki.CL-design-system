@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,8 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a message the user has to acknowledge. With{' '}
-    <Text is='code'>{'closable={false}'}</Text> neither Escape nor a click
+    For a message the user has to acknowledge. Neither Escape nor a click
     outside closes it, only the button in the footer.
   </>
 );

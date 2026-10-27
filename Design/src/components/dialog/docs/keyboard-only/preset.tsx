@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    With <Text is='code'>closable='keyboard'</Text> only Escape closes it, so
-    there's no close button and a click outside does nothing. Use it when a
-    footer button is already the way out.
+    Only Escape closes it, so there's no close button and a click outside does
+    nothing. Use it when a footer button is already the way out.
   </>
 );
 

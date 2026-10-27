@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Before anyone has typed. <Text is='code'>placeholder</Text> shows a hint
-    until they do.
-  </>
-);
+const description = <>Before anyone has typed, the placeholder shows a hint.</>;
 
 const name = 'Basic';
 

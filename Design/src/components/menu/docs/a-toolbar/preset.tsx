@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,7 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     Icon buttons packed close together, like the formatting bar of a text
-    editor. <Text is='code'>gap</Text> sets how tight they sit.
+    editor.
   </>
 );
 

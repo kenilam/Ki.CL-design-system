@@ -7,12 +7,7 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a short summary with nothing under it. The card is just the title and
-    its description.
-  </>
-);
+const description = <>For a short summary with nothing under it.</>;
 
 const name = 'Header only';
 

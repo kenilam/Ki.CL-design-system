@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -9,10 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    Shows the unit next to a number, so the user knows what they're entering.{' '}
-    <Text is='code'>after</Text> takes the text.
-  </>
+  <>Shows the unit next to a number, so the user knows what they're entering.</>
 );
 
 const name = 'With a suffix';

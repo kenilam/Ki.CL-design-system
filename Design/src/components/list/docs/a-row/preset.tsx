@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,8 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a few short items in a line, like the tools a project uses.{' '}
-    <Text is='code'>autoFlow='column'</Text> puts them side by side, each in a
+    For a few short items in a line, like the tools a project uses. Each is in a
     badge so the gap between them shows.
   </>
 );

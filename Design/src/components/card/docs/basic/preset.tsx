@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     The usual card, with a title and description on top and a button at the
-    bottom. Pass those to <Text is='code'>header</Text> and{' '}
-    <Text is='code'>footer</Text>.
+    bottom.
   </>
 );
 

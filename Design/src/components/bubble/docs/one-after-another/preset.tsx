@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Messages one person sent in a row. <Text is='code'>BubbleGroup</Text> stacks
-    them with a small gap.
-  </>
-);
+const description = <>Messages one person sent in a row.</>;
 
 const name = 'One after another';
 

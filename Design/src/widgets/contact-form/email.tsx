@@ -41,7 +41,7 @@ const Email: React.FunctionComponent = () => {
       )}
       rules={{
         pattern: { message: t('error_email_invalid'), value: EMAIL },
-        required: t('error_email_invalid'),
+        required: t('error_email_required'),
       }}
     />
   );

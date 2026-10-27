@@ -33,7 +33,7 @@ const Status204: React.FunctionComponent<Props> = ({ message, title }) => {
                 aria-hidden
                 className='kicl-font-size-extreme'
               />
-              {t('something_not_right')}
+              {t('nothing_here')}
             </Text>
           </Layout>
           <Heading is='h1' lookLike='h2'>

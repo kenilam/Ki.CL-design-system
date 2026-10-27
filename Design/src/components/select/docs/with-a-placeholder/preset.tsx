@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     Shows a prompt until something is picked, so the field doesn't start on a
-    real answer. <Text is='code'>placeholder</Text> sets the text, and it isn't
-    in the list.
+    real answer. The prompt isn't one of the options.
   </>
 );
 

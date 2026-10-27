@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 import { HINT_CONTROLS } from 'design/components/popover/docs/controls';
 
@@ -11,9 +10,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a note on a word or phrase in a sentence. With{' '}
-    <Text is='code'>inline</Text> the trigger sits in the line and wraps with
-    the words around it.
+    For a note on a word or phrase in a sentence. The trigger sits in the line
+    and wraps with the words around it.
   </>
 );
 

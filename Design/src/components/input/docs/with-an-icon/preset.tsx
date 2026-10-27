@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -9,10 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    An icon at the start shows what the field is for at a glance.{' '}
-    <Text is='code'>before</Text> takes the icon.
-  </>
+  <>An icon at the start shows what the field is for at a glance.</>
 );
 
 const name = 'With an icon';

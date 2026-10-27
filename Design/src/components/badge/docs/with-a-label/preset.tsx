@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a name and a value together, like a version number.{' '}
-    <Text is='code'>BadgeLabel</Text> holds the name and the colon after it is
-    added for you.
+    For a name and a value together, like a version number. The colon after the
+    name is added for you.
   </>
 );
 

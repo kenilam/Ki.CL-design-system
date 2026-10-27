@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a field near the bottom of the screen.{' '}
-    <Text is='code'>{"placement='block-start'"}</Text> opens the list above it,
-    and it starts open here so you can see it.
+    For a field near the bottom of the screen. The list opens above it, and
+    starts open here so you can see it.
   </>
 );
 

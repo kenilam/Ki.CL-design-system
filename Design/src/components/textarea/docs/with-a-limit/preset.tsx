@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a bio or anything else with a length cap.{' '}
-    <Text is='code'>maxLength</Text> stops typing at 160 and the count under the
-    field keeps track.
+    For a bio or anything else with a length cap. Typing stops at 160 characters
+    and the count under the field keeps track.
   </>
 );
 

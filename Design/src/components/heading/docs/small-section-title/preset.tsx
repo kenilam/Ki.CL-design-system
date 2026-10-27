@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,6 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     For a section title that should look quieter than its place in the outline.
-    It's an <Text is='code'>h2</Text> that <Text is='code'>lookLike</Text> sets
-    to the size of an <Text is='code'>h5</Text>.
   </>
 );
 

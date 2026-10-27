@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Swaps the X on the close button for another icon with{' '}
-    <Text is='code'>closeIcon</Text>.
-  </>
-);
+const description = <>Swaps the X on the close button for another icon.</>;
 
 const name = 'Custom close icon';
 

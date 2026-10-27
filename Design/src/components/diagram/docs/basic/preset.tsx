@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     A few boxes joined by arrows, like a request going from the browser to the
-    database. You place each box yourself with <Text is='code'>x</Text> and{' '}
-    <Text is='code'>y</Text>.
+    database. You place each box yourself.
   </>
 );
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,8 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     Highlights in green the part that's working right now, for a diagram that
-    follows something as it runs. List its <Text is='code'>id</Text> under{' '}
-    <Text is='code'>active</Text> in <Text is='code'>state</Text>.
+    follows something as it runs.
   </>
 );
 

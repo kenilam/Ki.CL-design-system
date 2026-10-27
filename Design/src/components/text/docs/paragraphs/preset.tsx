@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -9,10 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    Paragraphs that follow each other get a little space between them.{' '}
-    <Text is='code'>dense</Text> takes it away.
-  </>
+  <>Paragraphs that follow each other get a little space between them.</>
 );
 
 const name = 'Paragraphs';

@@ -1,19 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    A single message. The text goes in <Text is='code'>BubbleContent</Text>,
-    which draws the bubble.
-  </>
-);
+const description = <>A single message.</>;
 
 const name = 'Basic';
 

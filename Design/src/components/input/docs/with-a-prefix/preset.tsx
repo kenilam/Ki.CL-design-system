@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -11,7 +10,7 @@ import source from './preview.tsx?raw';
 const description = (
   <>
     For the part of a value the user doesn't need to type, like the https:// of
-    an address. <Text is='code'>before</Text> takes the text.
+    an address.
   </>
 );
 

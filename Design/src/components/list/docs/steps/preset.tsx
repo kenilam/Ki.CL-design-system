@@ -10,10 +10,9 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For steps that have to happen in order. <Text is='code'>is='ol'</Text> makes
-    it an ordered list, and <Text is='code'>listStyleType</Text> shows its
-    numbers. With a <Text is='code'>listStyleType</Text>, each item is a list
-    item rather than a grid, so it can carry its marker.
+    For steps that have to happen in order. With a{' '}
+    <Text is='code'>listStyleType</Text>, each item is a list item rather than a
+    grid, so it can carry its marker.
   </>
 );
 

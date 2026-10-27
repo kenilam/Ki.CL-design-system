@@ -1,17 +1,11 @@
 import React from 'react';
 
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    One item under another. <Text is='code'>gap</Text> sets the space between
-    them.
-  </>
-);
+const description = <>One item under another.</>;
 
 const name = 'Basic';
 

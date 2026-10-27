@@ -1,20 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For links that go in order, like the steps of a guide. Setting{' '}
-    <Text is='code'>is</Text> to <Text is='code'>ol</Text> makes it an ordered
-    list.
-  </>
-);
+const description = <>For links that go in order, like the steps of a guide.</>;
 
 const name = 'Steps';
 

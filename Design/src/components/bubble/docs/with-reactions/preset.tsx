@@ -1,20 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For showing how people reacted to a message.{' '}
-    <Text is='code'>BubbleReactions</Text> is a small chip over the bubble's
-    bottom corner.
-  </>
-);
+const description = <>For showing how people reacted to a message.</>;
 
 const name = 'With reactions';
 

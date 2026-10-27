@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -9,11 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    For editing details someone already saved.{' '}
-    <Text is='code'>defaultValues</Text> fills in the name and handle, and
-    nothing is required.
-  </>
+  <>For editing details someone already saved, where nothing is required.</>
 );
 
 const name = 'Profile';

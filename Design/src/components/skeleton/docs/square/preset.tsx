@@ -1,20 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Stands in for a thumbnail or icon.{' '}
-    <Text is='code'>kicl-aspect-ratio-square</Text> keeps it as tall as it is
-    wide.
-  </>
-);
+const description = <>Stands in for a thumbnail or icon.</>;
 
 const name = 'Square';
 

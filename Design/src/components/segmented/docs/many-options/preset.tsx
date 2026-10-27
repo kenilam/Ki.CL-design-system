@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,9 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Six months fit in a row on a wide screen. At tablet width and below,{' '}
-    <Text is='code'>collapse='scroll'</Text> lets the row scroll sideways
-    instead.
+    Six months fit in a row on a wide screen. At tablet width and below, the row
+    scrolls sideways instead.
   </>
 );
 

@@ -1,17 +1,111 @@
 ## Why I built it
 
-Over ten-plus years I've built design systems at several companies, and used a long list of open-source ones along the way: Remix, shadcn/ui, Tailwind and many others. This one is my answer to a frustration none of them resolved. Every library I've used fails in one of two ways.
+Over more than ten years, I've built design systems at several companies and used a long list of open-source tools along the way, including Remix, shadcn/ui and Tailwind.
 
-**Over-engineering.** A button becomes a React component wrapping a headless primitive wrapping a context provider, with props that re-implement what HTML gives you for free. Semantics get promised and then quietly lost: the link is a `div` with a click handler, the dialog is a portal with hand-rolled focus trapping, and the result is less accessible and less predictable than the native element it replaced. JavaScript does work the platform already does.
+Different tools make different trade-offs. But I've repeatedly run into two problems.
 
-**The wrong relationship with CSS.** One camp gives you no utilities at all: every style is bespoke, every spacing value is reinvented, and nothing composes. The other uses so many that CSS disappears behind a class vocabulary you have to memorise like a dictionary, and the markup stops describing the content. Both make you fight the language instead of using it.
+### Over-engineering
 
-Underneath both is the same problem: the library keeps you from the platform. You configure it instead of understanding it, and when something misbehaves you're debugging an abstraction rather than HTML or CSS. The complexity never ends, and the output is never quite what a well-written native page would have been.
+A button becomes a React component wrapping a headless primitive wrapping a context provider, with props that reimplement what HTML already provides.
+
+Sometimes semantics are lost along the way. A link becomes a clickable `div`. A dialog requires manually rebuilding behaviour the browser already provides. Focus handling, validation and interaction states become responsibilities of the component library rather than capabilities we can rely on from the platform.
+
+Not every abstraction is bad, and complex interactions sometimes need custom behaviour. The problem is abstraction without enough benefit to justify its cost.
+
+JavaScript ends up doing work the platform already does.
+
+### The wrong relationship with CSS
+
+One approach gives you no useful shared conventions. Every style is bespoke, spacing values are reinvented, and nothing composes consistently.
+
+The other pushes so much styling into utility classes that CSS itself becomes difficult to see. You have to memorise a vocabulary of class names to understand what a component looks like, and the markup stops communicating the structure and intent of the page.
+
+Both approaches can work. Neither is the balance I want.
+
+I want shared conventions without losing the ability to read the stylesheet, understand the cascade and reason about the browser's behaviour.
+
+### The underlying problem
+
+Both frustrations come from the same place: too much distance between the developer and the platform.
+
+You configure the abstraction instead of understanding the underlying behaviour. When something goes wrong, you debug layers of indirection rather than HTML or CSS.
+
+The abstraction becomes another system to learn, maintain and work around.
+
+I wanted a system where the abstractions earn their place.
 
 ## What it is instead
 
-- **Platform-first.** HTML and CSS are the primitives. Components compose native elements; they don't replace them. If the browser already does it (focus, validation, dialogs, popovers, anchoring, scrolling), the system uses that, and JavaScript is the exception that has to justify itself.
-- **Semantic by default.** The right element, always. Styling never changes what something is, and accessibility comes from correct markup, not an ARIA layer bolted on afterwards.
-- **CSS that reads as CSS.** Tokens, custom properties, logical properties, container queries, cascade layers and nesting, used directly. A small, deliberate set of utilities where composing helps, and no class-name dictionary standing in for stylesheets.
-- **Configuration you can understand.** Anyone who knows HTML and CSS, and nothing else, can read it. No build-time magic to work out what something will look like, and overrides work the way the cascade works.
-- **Predictable.** Things behave the way the platform says they do. If a component surprises you, that's a bug in the system, not a quirk to document.
+### Platform-first
+
+HTML and CSS are the primitives. Components compose native elements; they don't replace them without a reason.
+
+If the browser already provides the behaviour we need, start there: focus, form validation, dialogs, popovers, scrolling and other built-in capabilities.
+
+JavaScript is the exception that has to justify itself, not the default starting point.
+
+### Semantic by default
+
+The right element for the job.
+
+Links are links. Buttons are buttons. Forms use form controls. Structure and behaviour should be expressed through HTML rather than reconstructed through generic elements and event handlers.
+
+Accessibility starts with correct semantics and native behaviour, then carries through content, visual design and interaction. ARIA supplements native semantics when necessary; it isn't a substitute for choosing the right element.
+
+### CSS that reads as CSS
+
+Use the language directly.
+
+Design tokens, custom properties, logical properties, container queries, cascade layers and nesting should make the system easier to understand and maintain.
+
+A small, deliberate set of utilities is useful when it improves composition. A large vocabulary of opaque class names isn't a substitute for understanding stylesheets.
+
+You should be able to inspect a component's CSS and understand why it looks and behaves the way it does.
+
+### Configuration you can understand
+
+The system should be approachable to anyone who knows HTML and CSS, even if they haven't memorised a framework-specific API.
+
+The relationship between markup, styles, props and rendered output should be easy to follow.
+
+Avoid unnecessary build-time magic and hidden behaviour. Overrides should work with the normal CSS cascade, and component APIs should expose meaningful choices rather than recreate the entire browser through props.
+
+### Predictable
+
+Components should behave the way their underlying platform primitives and documented APIs lead you to expect.
+
+Keyboard interaction, focus, validation and browser behaviour should not come as surprises.
+
+Consistency matters, but consistency alone isn't enough: a consistently broken component is still broken. When a component behaves unexpectedly, treat that as a problem to investigate and fix, not a quirk users must learn.
+
+## See the implementation
+
+The workshop is part of the design system, not a separate gallery. Every example renders the real component.
+
+On a component page, pick a preset and change its props. The example updates, and under it you can read the code that produces it and the HTML it renders. Because the examples are live, you can also use them with a keyboard or a screen reader. The token pages list the CSS variables and utility classes the components are styled with.
+
+The goal is to make the relationship between the API, HTML, CSS and behaviour visible.
+
+## Accessibility is part of the system
+
+Accessibility isn't a layer added after the components are finished.
+
+The system should start with native semantics, preserve keyboard behaviour, expose meaningful names and states, and support predictable focus and interaction.
+
+But native HTML is a starting point, not a guarantee. Content, visual contrast, responsive layouts, dynamic updates and custom interactions still need to be designed and tested.
+
+Accessibility should be considered throughout research, design, implementation and testing. Automated checks are useful, but they cannot determine whether every interaction makes sense to a person using assistive technology.
+
+[Accessibility first](../patterns/inclusion/accessibility-first) goes through what to check at each step, from research to code.
+
+## The principle
+
+The browser already provides a remarkably capable platform.
+
+A design system should help us use it well: establish consistent decisions, make common patterns easier to reuse and keep the implementation understandable.
+
+It should reduce complexity rather than move it somewhere harder to see.
+
+Native elements first. CSS that reads as CSS. JavaScript only where the browser can't do the job.
+
+That's the system I'm building.

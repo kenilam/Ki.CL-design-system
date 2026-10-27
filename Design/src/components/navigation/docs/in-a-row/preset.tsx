@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -9,10 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    Puts the links side by side, like the links in a site header. Set{' '}
-    <Text is='code'>autoFlow</Text> to <Text is='code'>column</Text>.
-  </>
+  <>Puts the links side by side, like the links in a site header.</>
 );
 
 const name = 'In a row';

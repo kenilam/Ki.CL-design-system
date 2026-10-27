@@ -1,20 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a summary with its own look, like a badge.{' '}
-    <Text is='code'>{'marker={false}'}</Text> hides the usual chevron and{' '}
-    <Text is='code'>DetailsMarker</Text> puts it where you want.
-  </>
-);
+const description = <>For a summary with its own look, like a badge.</>;
 
 const name = 'Own marker';
 

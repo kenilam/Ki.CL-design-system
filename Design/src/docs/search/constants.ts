@@ -21,7 +21,6 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'border-radius': 'foundations/size',
   'box-shadow': 'utilities/effects',
   breakpoint: 'foundations/breakpoints',
-  button: 'utilities/effects',
   color: 'foundations/color',
   columns: 'foundations/size',
   contain: 'utilities/overflow',

@@ -69,7 +69,8 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           <Text
             className={classNames(
               'kicl-font-size-small',
-              'kicl-font-weight-bold'
+              'kicl-font-weight-bold',
+              'kicl-padding-inline-start'
             )}
             is='span'
           >

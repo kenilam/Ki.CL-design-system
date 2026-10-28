@@ -5,10 +5,8 @@ import {
   Button,
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   Input,
   Textarea,
 } from 'design/components';
@@ -27,9 +25,8 @@ const Preview: React.FC = () => {
         name='name'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Display name</FormLabel>
             <FormControl>
-              <Input {...field} />
+              <Input {...field} label='Display name' />
             </FormControl>
           </FormItem>
         )}
@@ -39,11 +36,13 @@ const Preview: React.FC = () => {
         name='handle'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Handle</FormLabel>
             <FormControl>
-              <Input {...field} />
+              <Input
+                {...field}
+                description='Letters and numbers, no spaces.'
+                label='Handle'
+              />
             </FormControl>
-            <FormDescription>Letters and numbers, no spaces.</FormDescription>
           </FormItem>
         )}
       />
@@ -52,13 +51,13 @@ const Preview: React.FC = () => {
         name='bio'
         render={({ field }) => (
           <FormItem>
-            <FormLabel>About you</FormLabel>
             <FormControl>
-              <Textarea {...field} />
+              <Textarea
+                {...field}
+                description='A line or two. Leave it empty to show nothing.'
+                label='About you'
+              />
             </FormControl>
-            <FormDescription>
-              A line or two. Leave it empty to show nothing.
-            </FormDescription>
           </FormItem>
         )}
       />

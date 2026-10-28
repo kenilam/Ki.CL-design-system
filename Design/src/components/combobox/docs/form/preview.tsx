@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   Input,
   List,
@@ -40,11 +39,10 @@ const Preview: React.FC<Props> = (props) => {
         }}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>City</FormLabel>
             <Combobox {...props}>
               <ComboboxAnchor>
                 <FormControl>
-                  <Input {...field} placeholder='Search a city' />
+                  <Input {...field} label='City' placeholder='Search a city' />
                 </FormControl>
               </ComboboxAnchor>
               <ComboboxContent aria-label='Cities'>

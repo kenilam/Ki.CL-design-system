@@ -8,7 +8,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from 'design/components';
 
@@ -32,9 +31,12 @@ const Email: React.FunctionComponent = () => {
       name='Email'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t('label_email')}</FormLabel>
           <FormControl>
-            <EmailInput {...field} placeholder={t('placeholder_email')} />
+            <EmailInput
+              {...field}
+              label={t('label_email')}
+              placeholder={t('placeholder_email')}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>

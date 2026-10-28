@@ -6,10 +6,8 @@ import {
   EmailInput,
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   Input,
 } from 'design/components';
@@ -27,11 +25,13 @@ const Preview: React.FC = () => {
         rules={{ required: 'Enter your name' }}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Name</FormLabel>
             <FormControl>
-              <Input {...field} />
+              <Input
+                {...field}
+                description='Shown next to your comments.'
+                label='Name'
+              />
             </FormControl>
-            <FormDescription>Shown next to your comments.</FormDescription>
             <FormMessage />
           </FormItem>
         )}
@@ -42,11 +42,14 @@ const Preview: React.FC = () => {
         rules={{ required: 'Enter an email address' }}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Email</FormLabel>
             <FormControl>
-              <EmailInput {...field} placeholder='you@example.com' />
+              <EmailInput
+                {...field}
+                description='For the confirmation only.'
+                label='Email'
+                placeholder='you@example.com'
+              />
             </FormControl>
-            <FormDescription>For the confirmation only.</FormDescription>
             <FormMessage />
           </FormItem>
         )}

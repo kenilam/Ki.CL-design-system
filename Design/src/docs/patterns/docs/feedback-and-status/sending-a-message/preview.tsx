@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   Spinner,
   Status,
@@ -64,9 +63,8 @@ const Preview: React.FC = () => {
             rules={{ required: 'Write a message' }}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea {...field} />
+                  <Textarea {...field} label='Message' />
                 </FormControl>
                 <FormMessage />
               </FormItem>

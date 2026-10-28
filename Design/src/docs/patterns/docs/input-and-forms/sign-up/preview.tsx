@@ -8,10 +8,8 @@ import {
   EmailInput,
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   PasswordInput,
   Text,
@@ -71,9 +69,8 @@ const Preview: React.FC = () => {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
               <FormControl>
-                <EmailInput {...field} autoComplete='email' />
+                <EmailInput {...field} label='Email' autoComplete='email' />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -88,11 +85,14 @@ const Preview: React.FC = () => {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
               <FormControl>
-                <PasswordInput {...field} autoComplete='new-password' />
+                <PasswordInput
+                  {...field}
+                  description='At least 8 characters.'
+                  label='Password'
+                  autoComplete='new-password'
+                />
               </FormControl>
-              <FormDescription>At least 8 characters.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

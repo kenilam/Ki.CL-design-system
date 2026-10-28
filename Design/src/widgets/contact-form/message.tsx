@@ -5,10 +5,8 @@ import { useFormContext } from 'react-hook-form';
 // Components
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   Textarea,
 } from 'design/components';
@@ -33,13 +31,14 @@ const Message: React.FunctionComponent = () => {
       name='Message'
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t('label_message')}</FormLabel>
           <FormControl>
-            <Textarea {...field} rows={6} />
+            <Textarea
+              {...field}
+              description={t('privacy', { days: RETENTION_DAYS })}
+              label={t('label_message')}
+              rows={6}
+            />
           </FormControl>
-          <FormDescription>
-            {t('privacy', { days: RETENTION_DAYS })}
-          </FormDescription>
           <FormMessage />
         </FormItem>
       )}

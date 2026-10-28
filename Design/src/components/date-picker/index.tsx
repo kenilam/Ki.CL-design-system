@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 // Components
+import { FormItem } from 'design/components/form';
+import { useFormItemControl } from 'design/components/form/context';
 import { Popover, PopoverContent } from 'design/components/popover';
 
 // Context
@@ -27,7 +29,12 @@ import type { DatePickerProps } from './spec';
 type SingleProps = Extract<DatePickerProps, { mode?: 'single' }>;
 type RangeProps = Extract<DatePickerProps, { mode: 'range' }>;
 
-const DatePicker: React.FC<DatePickerProps> = (props) => {
+const DatePicker: React.FC<DatePickerProps> = ({
+  description,
+  label,
+  layout,
+  ...props
+}) => {
   const t = useCopy();
 
   const {
@@ -46,6 +53,11 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
     variant,
   } = props;
 
+  const control = useFormItemControl({
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
+    id,
+  });
   const isControlled = props.value !== undefined;
   const [open, setOpen] = useState(false);
 
@@ -55,6 +67,14 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   const [uncontrolledRange, setUncontrolledRange] = useState(
     mode === 'range' ? (props as RangeProps).defaultValue : undefined
   );
+
+  if (label || description) {
+    return (
+      <FormItem {...layout} description={description} label={label}>
+        <DatePicker {...props} />
+      </FormItem>
+    );
+  }
 
   const selectedSingle =
     mode === 'single'
@@ -70,7 +90,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
         : uncontrolledRange
       : undefined;
 
-  const label =
+  const shown =
     mode === 'range'
       ? formatRange(selectedRange, formatDate, (from, to) =>
           t('date_range', { from, to })
@@ -81,7 +101,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   const context: DatePickerContextValue = {
     disabled,
-    label,
+    label: shown,
     mode,
     onSelectRange: (range) => {
       if (!isControlled) {
@@ -105,15 +125,15 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
       <Popover onOpenChange={setOpen} open={open}>
         <Trigger
           className={className}
-          id={id}
-          aria-describedby={ariaDescribedBy}
-          aria-invalid={ariaInvalid}
+          id={control.id}
+          aria-describedby={control['aria-describedby']}
+          aria-invalid={control['aria-invalid']}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
         />
         {/* A forwarded id replaces the trigger's default one, so name the panel from it. */}
         <PopoverContent
-          aria-labelledby={id}
+          aria-labelledby={control.id}
           className={`${CLASS_NAME}__panel`}
           variant={variant}
         >

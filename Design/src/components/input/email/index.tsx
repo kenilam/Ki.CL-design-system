@@ -7,9 +7,11 @@ import { Input } from 'design/components/input';
 import * as Ri from 'react-icons/ri';
 
 // Spec
+import type { FormItemFieldProps } from 'design/components/form';
 import type { InputProps } from 'design/components/input';
 
-type Props = Omit<InputProps, 'type'>;
+type Props = Omit<InputProps, 'type' | keyof FormItemFieldProps> &
+  FormItemFieldProps;
 
 /** An email field: the mail icon, the email keyboard and autofill. */
 const EmailInput = React.forwardRef<HTMLInputElement, Props>(

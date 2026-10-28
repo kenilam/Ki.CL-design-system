@@ -6,11 +6,7 @@ import {
   Card,
   CardTitle,
   Form,
-  FormControl,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
   Spinner,
   Status,
   Text,
@@ -62,15 +58,7 @@ const Preview: React.FC = () => {
             control={form.control}
             name='message'
             rules={{ required: 'Write a message' }}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <Textarea {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            render={({ field }) => <Textarea {...field} label='Message' />}
           />
           <Button
             aria-disabled={phase === 'sending'}

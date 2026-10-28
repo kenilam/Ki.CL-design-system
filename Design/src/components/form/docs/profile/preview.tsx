@@ -1,17 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import {
-  Button,
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  Input,
-  Textarea,
-} from 'design/components';
+import { Button, Form, FormField, Input, Textarea } from 'design/components';
 
 type Values = { bio: string; handle: string; name: string };
 
@@ -25,41 +15,28 @@ const Preview: React.FC = () => {
       <FormField
         control={form.control}
         name='name'
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Display name</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-          </FormItem>
-        )}
+        render={({ field }) => <Input {...field} label='Display name' />}
       />
       <FormField
         control={form.control}
         name='handle'
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Handle</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-            <FormDescription>Letters and numbers, no spaces.</FormDescription>
-          </FormItem>
+          <Input
+            {...field}
+            description='Letters and numbers, no spaces.'
+            label='Handle'
+          />
         )}
       />
       <FormField
         control={form.control}
         name='bio'
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>About you</FormLabel>
-            <FormControl>
-              <Textarea {...field} />
-            </FormControl>
-            <FormDescription>
-              A line or two. Leave it empty to show nothing.
-            </FormDescription>
-          </FormItem>
+          <Textarea
+            {...field}
+            description='A line or two. Leave it empty to show nothing.'
+            label='About you'
+          />
         )}
       />
       <Button type='submit'>Save</Button>

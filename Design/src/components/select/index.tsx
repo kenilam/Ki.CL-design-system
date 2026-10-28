@@ -3,6 +3,10 @@ import React from 'react';
 // Libraries
 import classNames from 'classnames';
 
+// Components
+import { FormItem } from 'design/components/form';
+import { useFormItemControl } from 'design/components/form/context';
+
 // Styles
 import './styles.scss';
 
@@ -27,8 +31,23 @@ import type { SelectProps } from './spec';
  * on the `<select>`.
  */
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  (
-    {
+  ({ description, label, layout, ...props }, ref): React.ReactElement => {
+    const control = useFormItemControl(props);
+
+    if (label || description) {
+      return (
+        <FormItem
+          {...layout}
+          description={description}
+          label={label}
+          required={props.required}
+        >
+          <Select {...props} ref={ref} />
+        </FormItem>
+      );
+    }
+
+    const {
       children,
       className,
       defaultValue,
@@ -37,9 +56,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       placeholder,
       value,
       ...rest
-    },
-    ref
-  ) => {
+    } = props;
     const hasTrigger = React.Children.toArray(children).some(
       (child) => React.isValidElement(child) && child.type === SelectTrigger
     );
@@ -65,6 +82,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           onValueChange?.(event.currentTarget.value);
         }}
         {...rest}
+        {...control}
       >
         {hasTrigger ? null : (
           <SelectTrigger>

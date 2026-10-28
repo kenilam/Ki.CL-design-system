@@ -6,6 +6,8 @@ import type {
 } from 'react-hook-form';
 import type React from 'react';
 
+import type { LayoutProps } from 'design/components/layout';
+
 /** The native `<form>` attributes Form passes through. */
 type FormElementProps = Pick<
   React.ComponentPropsWithoutRef<'form'>,
@@ -30,10 +32,28 @@ export type FormFieldProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = ControllerProps<TFieldValues, TName>;
 
-export type FormItemProps = React.ComponentPropsWithoutRef<'div'> & {
-  /** Marks the control and label as required. */
-  required?: boolean;
-};
+type FormItemLayout = LayoutProps extends infer Props
+  ? Props extends unknown
+    ? Omit<Props, 'autoFlow' | 'className' | 'display'>
+    : never
+  : never;
+
+export type FormItemProps = React.ComponentPropsWithoutRef<'div'> &
+  FormItemLayout & {
+    description?: FormDescriptionProps['children'];
+    label?: FormLabelProps['children'];
+    /** Marks the control and label as required. */
+    required?: boolean;
+  };
+
+export type FormItemFieldProps =
+  | { description?: undefined; label?: undefined; layout?: never }
+  | ({ layout?: FormItemLayout } & (
+      | (Pick<FormItemProps, 'description'> &
+          Required<Pick<FormItemProps, 'label'>>)
+      | (Pick<FormItemProps, 'label'> &
+          Required<Pick<FormItemProps, 'description'>>)
+    ));
 
 export type FormLabelProps = React.ComponentPropsWithoutRef<'label'> & {
   /** Defaults to the item's or field's `required`. */

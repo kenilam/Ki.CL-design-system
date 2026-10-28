@@ -20,12 +20,7 @@ Every control needs a name a person could say out loud, which also helps voice c
 </Button>
 
 // Read as "Your email, edit text": the label names the field
-<FormItem>
-  <FormLabel>Your email</FormLabel>
-  <FormControl>
-    <EmailInput />
-  </FormControl>
-</FormItem>
+<EmailInput label='Your email' />
 ```
 
 Icons beside text are decorative, so they get `aria-hidden` and aren't read twice.

@@ -9,6 +9,7 @@ export { FormMessage } from './form-message';
 export type {
   FormProps,
   FormFieldProps,
+  FormItemFieldProps,
   FormItemProps,
   FormLabelProps,
   FormControlProps,

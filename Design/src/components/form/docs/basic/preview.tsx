@@ -1,18 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import {
-  Button,
-  EmailInput,
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-} from 'design/components';
+import { Button, EmailInput, Form, FormField, Input } from 'design/components';
 
 type Values = { email: string; name: string };
 
@@ -26,14 +15,11 @@ const Preview: React.FC = () => {
         name='name'
         rules={{ required: 'Enter your name' }}
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Name</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-            <FormDescription>Shown next to your comments.</FormDescription>
-            <FormMessage />
-          </FormItem>
+          <Input
+            {...field}
+            description='Shown next to your comments.'
+            label='Name'
+          />
         )}
       />
       <FormField
@@ -41,14 +27,12 @@ const Preview: React.FC = () => {
         name='email'
         rules={{ required: 'Enter an email address' }}
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Email</FormLabel>
-            <FormControl>
-              <EmailInput {...field} placeholder='you@example.com' />
-            </FormControl>
-            <FormDescription>For the confirmation only.</FormDescription>
-            <FormMessage />
-          </FormItem>
+          <EmailInput
+            {...field}
+            description='For the confirmation only.'
+            label='Email'
+            placeholder='you@example.com'
+          />
         )}
       />
       <Button type='submit'>Create account</Button>

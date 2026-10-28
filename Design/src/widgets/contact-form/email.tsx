@@ -3,14 +3,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 // Components
-import {
-  EmailInput,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from 'design/components';
+import { EmailInput, FormField } from 'design/components';
 
 // Constants
 import { EMAIL } from './constants';
@@ -31,13 +24,11 @@ const Email: React.FunctionComponent = () => {
       control={control}
       name='Email'
       render={({ field }) => (
-        <FormItem>
-          <FormLabel>{t('label_email')}</FormLabel>
-          <FormControl>
-            <EmailInput {...field} placeholder={t('placeholder_email')} />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
+        <EmailInput
+          {...field}
+          label={t('label_email')}
+          placeholder={t('placeholder_email')}
+        />
       )}
       rules={{
         pattern: { message: t('error_email_invalid'), value: EMAIL },

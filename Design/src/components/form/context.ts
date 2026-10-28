@@ -1,4 +1,6 @@
 import { createContext, useContext } from 'react';
+import type React from 'react';
+import { useFormContext } from 'react-hook-form';
 import type { FieldPath, FieldValues } from 'react-hook-form';
 
 export type FormFieldContextValue<
@@ -15,30 +17,55 @@ export const FormFieldContext = createContext<FormFieldContextValue | null>(
 );
 
 export type FormItemContextValue = {
+  descriptionId?: string;
   id: string;
+  messageId: string;
   required?: boolean;
 };
 
 export const FormItemContext = createContext<FormItemContextValue | null>(null);
 
-export function useFormFieldContext() {
+export function useFieldError() {
   const field = useContext(FormFieldContext);
-  const item = useContext(FormItemContext);
+  const form = useFormContext();
 
-  if (!field) {
-    throw new Error('Form field primitives must be used within <FormField>');
-  }
+  return field && form
+    ? form.getFieldState(field.name, form.formState).error
+    : undefined;
+}
+
+export function useFormItemControl({
+  'aria-describedby': describedBy,
+  'aria-invalid': invalid,
+  id,
+  required,
+}: Pick<
+  React.ComponentPropsWithoutRef<'input'>,
+  'aria-describedby' | 'aria-invalid' | 'id' | 'required'
+>) {
+  const item = useContext(FormItemContext);
+  const field = useContext(FormFieldContext);
+  const error = useFieldError();
 
   if (!item) {
-    throw new Error('Form field primitives must be used within <FormItem>');
+    return {
+      'aria-describedby': describedBy,
+      'aria-invalid': invalid,
+      id,
+      required,
+    };
   }
 
+  const ids = new Set([
+    ...(describedBy?.split(' ') ?? []),
+    item.descriptionId,
+    error ? item.messageId : undefined,
+  ]);
+
   return {
-    name: field.name,
+    'aria-describedby': [...ids].filter(Boolean).join(' ') || undefined,
+    'aria-invalid': error ? true : invalid,
     id: item.id,
-    required: item.required ?? field.required,
-    formItemId: item.id,
-    formDescriptionId: `${item.id}-description`,
-    formMessageId: `${item.id}-message`,
+    required: required ?? ((item.required ?? field?.required) || undefined),
   };
 }

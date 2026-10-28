@@ -1,3 +1,6 @@
 import type React from 'react';
 
-export type Props = React.ComponentPropsWithoutRef<'textarea'>;
+import type { FormItemFieldProps } from 'design/components/form';
+
+export type Props = React.ComponentPropsWithoutRef<'textarea'> &
+  FormItemFieldProps;

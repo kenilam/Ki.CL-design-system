@@ -13,7 +13,9 @@ const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
     const id = useId();
 
     return (
-      <FormItemContext.Provider value={{ id, required }}>
+      <FormItemContext.Provider
+        value={{ descriptionId: `${id}-description`, id, required }}
+      >
         <Layout gap='narrowest'>
           <div
             ref={ref}

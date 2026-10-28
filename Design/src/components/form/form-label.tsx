@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 import { useFormContext } from 'react-hook-form';
 
-import { useFormFieldContext } from './context';
+import { FormFieldContext, FormItemContext } from './context';
 import type { FormLabelProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--form__label';
 
 const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
   ({ className, required, children, ...rest }, ref) => {
-    const { formItemId, name, required: fieldRequired } = useFormFieldContext();
-    const { getFieldState, formState } = useFormContext();
-    const { error } = getFieldState(name, formState);
+    const field = useContext(FormFieldContext);
+    const item = useContext(FormItemContext);
+    const form = useFormContext();
+    const error =
+      field && form
+        ? form.getFieldState(field.name, form.formState).error
+        : undefined;
+
+    if (!children) {
+      return null;
+    }
 
     return (
       <label
@@ -23,11 +31,11 @@ const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
           { 'kicl-color-error': error },
           className
         )}
-        htmlFor={formItemId}
+        htmlFor={item?.id}
         {...rest}
       >
         {children}
-        {(required ?? fieldRequired) ? (
+        {(required ?? item?.required ?? field?.required) ? (
           <span
             className={classNames(
               `${CLASS_NAME}__required`,

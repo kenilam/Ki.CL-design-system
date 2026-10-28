@@ -1,5 +1,8 @@
 import { createContext, useContext } from 'react';
+import type React from 'react';
 import type { FieldPath, FieldValues } from 'react-hook-form';
+
+import type { FormDescriptionProps } from './spec';
 
 export type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -15,6 +18,7 @@ export const FormFieldContext = createContext<FormFieldContextValue | null>(
 );
 
 export type FormItemContextValue = {
+  descriptionId: string;
   id: string;
   required?: boolean;
 };
@@ -38,7 +42,23 @@ export function useFormFieldContext() {
     id: item.id,
     required: item.required ?? field.required,
     formItemId: item.id,
-    formDescriptionId: `${item.id}-description`,
+    formDescriptionId: item.descriptionId,
     formMessageId: `${item.id}-message`,
+  };
+}
+
+export function useFormItemControl({
+  description,
+  id,
+  'aria-describedby': describedBy,
+}: Pick<React.ComponentPropsWithoutRef<'input'>, 'aria-describedby' | 'id'> & {
+  description?: FormDescriptionProps['children'];
+}) {
+  const item = useContext(FormItemContext);
+
+  return {
+    id: id ?? item?.id,
+    'aria-describedby':
+      describedBy ?? (item && description ? item.descriptionId : undefined),
   };
 }

@@ -21,7 +21,10 @@ import { CLASS_NAME as DATE_PICKER } from 'design/components/date-picker/constan
 // Context
 import { useDatePicker } from 'design/components/date-picker/context';
 
-const Trigger: React.FunctionComponent<DatePickerTriggerProps> = (props) => {
+const Trigger: React.FunctionComponent<DatePickerTriggerProps> = ({
+  className,
+  ...props
+}) => {
   const { disabled, label, placeholder } = useDatePicker();
 
   return (
@@ -41,7 +44,8 @@ const Trigger: React.FunctionComponent<DatePickerTriggerProps> = (props) => {
           'kicl-font-size-small',
           'kicl-inline-size-full',
           'kicl-line-height',
-          'kicl-text-align-start'
+          'kicl-text-align-start',
+          className
         )}
       >
         <Ri.RiCalendarLine className={`${DATE_PICKER}__icon`} aria-hidden />

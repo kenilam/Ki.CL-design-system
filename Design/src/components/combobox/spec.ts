@@ -1,8 +1,9 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import type { CSSProperties, ReactElement, ReactNode, Ref } from 'react';
 
 import type { PopoverContentProps } from 'design/components/popover/spec';
 
-export type ComboboxProps = ComponentPropsWithoutRef<'div'> & {
+export type ComboboxProps = {
+  children?: ReactNode;
   /**
    * The panel shows while this is true. Left out, the combobox opens itself
    * when the field is focused or typed in, and closes on Escape or when focus
@@ -16,7 +17,13 @@ export type ComboboxProps = ComponentPropsWithoutRef<'div'> & {
   onOpenChange?: (open: boolean) => void;
 };
 
-export type ComboboxAnchorProps = ComponentPropsWithoutRef<'div'>;
+export type ComboboxAnchorProps = {
+  children: ReactElement<{
+    className?: string;
+    ref?: Ref<HTMLElement>;
+    style?: CSSProperties;
+  }>;
+};
 
 /** Needs a name: pass `aria-label` or `aria-labelledby`. */
 export type ComboboxContentProps = Omit<

@@ -216,22 +216,20 @@ $gaps: (
       --kicl--components--popover--border-color: transparent;
     }
 
-    &:has(> .kicl--components--popover__viewport) {
+    &:popover-open:has(> :only-child) {
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       padding: 0;
 
-      &:popover-open {
-        display: grid;
-        grid-template-rows: minmax(0, 1fr);
+      > * {
+        @include scroll-fade;
+
+        min-block-size: 0;
+        overflow-y: auto;
+        padding: var(--kicl--components--popover--padding);
       }
     }
-  }
-
-  &__viewport {
-    @include scroll-fade;
-
-    overflow-y: auto;
-    padding: var(--kicl--components--popover--padding);
   }
 }
 

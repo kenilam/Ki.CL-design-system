@@ -24,7 +24,7 @@
       float: inline-start;
     }
 
-    > .kicl--components--segmented__options {
+    .kicl--components--segmented__options {
       background-color: var(--kicl--components--segmented--track);
     }
   }
@@ -32,7 +32,7 @@
 
 // Its options are labels over hidden radios, so a disabled fieldset fades them
 // here. The legend stays as it is.
-.kicl--components--segmented:disabled > .kicl--components--segmented__options {
+.kicl--components--segmented:disabled .kicl--components--segmented__options {
   opacity: var(--kicl-disabled-opacity);
 }
 
@@ -149,11 +149,15 @@
 }
 
 /*
- * `collapse='popover'`: one set of radios, in a popover panel. Above tablet
- * the panel is laid out in place as the usual row, so it overrides what the
- * popover would do, and the trigger isn't needed. Below it the trigger shows
- * the choice and the panel opens as a list.
+ * `collapse='popover'`: one set of radios, in a popover panel inside the
+ * fieldset. Above tablet the panel is laid out in place as the usual row, so
+ * it overrides what the popover would do, and the trigger isn't needed. Below
+ * it the trigger shows the choice and the panel opens as a list.
  */
+.kicl--components--segmented__popover {
+  background-color: transparent;
+}
+
 .kicl--components--segmented__trigger {
   // As wide as the choice, the arrow right after it.
   justify-self: start;
@@ -173,11 +177,8 @@
   }
 
   // The panel is the surface now, so the options sit on it without a track.
-  .kicl--components--segmented {
-    background-color: transparent;
-  }
-
   .kicl--components--segmented__options {
+    background-color: transparent;
     grid-auto-columns: auto;
     grid-auto-flow: row;
   }
@@ -194,6 +195,11 @@
   .kicl--components--segmented__popover:not(
     .kicl--components--segmented__popover--collapsed
   ) {
+    &:not(.kicl--components--segmented--with-legend) {
+      background-color: var(--kicl--components--segmented--track);
+      padding: var(--kicl-gutter-narrowest);
+    }
+
     .kicl--components--segmented__trigger {
       display: none;
     }
@@ -213,25 +219,26 @@
       position: static;
       translate: none;
 
-      .kicl--components--popover__viewport {
+      .kicl--components--segmented__options {
         animation: none;
+        background-color: transparent;
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
         mask-image: none;
         overflow: visible;
         padding: 0;
       }
 
-      .kicl--components--segmented {
-        background-color: var(--kicl--components--segmented--track);
-      }
-
-      .kicl--components--segmented__options {
-        grid-auto-columns: minmax(0, 1fr);
-        grid-auto-flow: column;
-      }
-
       .kicl--components--segmented__item {
         justify-items: center;
       }
+    }
+
+    &.kicl--components--segmented--with-legend
+      .kicl--components--segmented__panel
+      .kicl--components--segmented__options {
+      background-color: var(--kicl--components--segmented--track);
+      padding: var(--kicl-gutter-narrowest);
     }
   }
 }

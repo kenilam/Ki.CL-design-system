@@ -8,7 +8,12 @@ export type DatePickerMode = CalendarMode;
 /** Forwarded to the trigger button, so FormControl and FormLabel can name it. */
 export type DatePickerTriggerProps = Pick<
   React.ComponentPropsWithoutRef<'button'>,
-  'aria-describedby' | 'aria-invalid' | 'aria-label' | 'aria-labelledby' | 'id'
+  | 'aria-describedby'
+  | 'aria-invalid'
+  | 'aria-label'
+  | 'aria-labelledby'
+  | 'className'
+  | 'id'
 >;
 
 type DatePickerBaseProps = DatePickerTriggerProps &

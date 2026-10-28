@@ -5,7 +5,8 @@ import classNames from 'classnames';
 
 // Components
 import { Button } from 'design/components/button';
-import { Card, CardAction } from 'design/components/card';
+import { Card } from 'design/components/card';
+import { Layout } from 'design/components/layout';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -222,37 +223,36 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
           } as React.CSSProperties
         }
       >
-        {shown && (header || closable) && (
-          <SheetHeader>
-            {header ? (
-              <div className='kicl-display-contents' id={headerId}>
-                {header}
-              </div>
-            ) : null}
-            {closable && (
-              <CardAction>
-                <Button
-                  aria-label={t('action_close_sheet')}
-                  popoverTarget={id}
-                  popoverTargetAction='hide'
-                  size='small'
-                  variant='secondary'
-                >
-                  <Ri.RiCloseLine aria-hidden />
-                </Button>
-              </CardAction>
-            )}
-          </SheetHeader>
-        )}
-        {shown ? (
-          <section
+        {shown && header ? (
+          <SheetHeader id={headerId}>{header}</SheetHeader>
+        ) : null}
+        {shown && closable ? (
+          <Button
+            aria-label={t('action_close_sheet')}
             className={classNames(
-              'kicl-padding-block-end-narrow',
-              'kicl-padding-inline'
+              `${CLASS_NAME}__close`,
+              'kicl-position-sticky',
+              'kicl-z-index-floating'
             )}
+            popoverTarget={id}
+            popoverTargetAction='hide'
+            size='small'
+            variant='secondary'
           >
-            {children}
-          </section>
+            <Ri.RiCloseLine aria-hidden />
+          </Button>
+        ) : null}
+        {shown ? (
+          <Layout alignContent='start' gap='normal'>
+            <section
+              className={classNames(
+                'kicl-padding-block-end-narrow',
+                'kicl-padding-inline'
+              )}
+            >
+              {children}
+            </section>
+          </Layout>
         ) : null}
         {shown && footer && (
           <SheetFooter justifyContent='end'>{footer}</SheetFooter>

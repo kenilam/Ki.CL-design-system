@@ -8,7 +8,7 @@ export type DateRange = {
 };
 
 type CalendarBaseProps = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
+  React.ComponentPropsWithoutRef<'table'>,
   'onSelect' | 'defaultValue'
 > & {
   defaultMonth?: Date;

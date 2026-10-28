@@ -2,19 +2,31 @@
   --kicl--components--calendar--cell-size: var(--kicl-size-3x);
 
   // The month's own width. `kicl-inline-size-full` makes it fill its box, and
-  // the table and its columns follow.
+  // its columns follow. Auto-laid, not fixed: fixed, a percentage width
+  // inflates the table to its first row inside a shrink-to-fit box.
+  border-collapse: separate;
+
+  // No spacing: a range reads as one bar from its first day to its last.
+  border-spacing: 0;
   inline-size: fit-content;
 
-  // Auto-laid, not fixed: fixed, a percentage width inflates the table to its
-  // first row inside a shrink-to-fit box.
-  &__table {
-    border-collapse: separate;
+  :is(th, td) {
+    inline-size: calc(100% / 7);
+  }
 
-    // No spacing: a range reads as one bar from its first day to its last.
-    border-spacing: 0;
+  &__header {
+    border-block-end: var(--kicl-size-1px) solid var(--kicl-surface-border-color);
+    line-height: var(--kicl-field-block-size);
+    margin-block-end: var(--kicl-gutter-narrow);
+    padding-block-end: var(--kicl-gutter-narrow);
+    text-align: center;
 
-    :is(th, td) {
-      inline-size: calc(100% / 7);
+    > :first-child {
+      float: inline-start;
+    }
+
+    > :last-child {
+      float: inline-end;
     }
   }
 

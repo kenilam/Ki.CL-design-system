@@ -11,7 +11,6 @@ const Preview: React.FC<Props> = (props) => (
     </Button>
     <Dialog
       aria-label='Picture'
-      className='kicl-min-block-size-columns-3'
       id='dialog-no-title'
       {...props}
     >

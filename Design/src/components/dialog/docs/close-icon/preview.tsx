@@ -11,7 +11,6 @@ const Preview: React.FC<Props> = (props) => (
       Open
     </Button>
     <Dialog
-      className='kicl-min-block-size-columns-3'
       closeIcon={Ri.RiChatSmile3Line}
       header={
         <Heading dense is='h2' lookLike='h4'>

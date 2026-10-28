@@ -10,7 +10,6 @@ const Preview: React.FC<Props> = (props) => (
       Delete
     </Button>
     <Dialog
-      className='kicl-min-block-size-columns-3'
       footer={
         <Button command='close' commandFor='dialog-footer' level='error'>
           Delete

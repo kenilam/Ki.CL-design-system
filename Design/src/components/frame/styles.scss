@@ -115,8 +115,8 @@ body {
     overflow: visible;
   }
 
-  // Eases from full-bleed into the frame, after `--delay`. The `in` modifier
-  // names the animation, and a growing frame swaps in its own.
+  // Eases from the window's full height into the frame, after `--delay`. The
+  // `in` modifier names the animation, and a growing frame swaps in its own.
   @media (prefers-reduced-motion: no-preference) {
     animation-delay: var(#{$frame}--delay);
     animation-duration: var(--kicl-transition-duration-slow);
@@ -208,21 +208,19 @@ body {
   --kicl-inset-inline-end: calc(var(#{$frame}--gap) + var(--kicl-gutter));
 }
 
-// Full-bleed, as if there were no frame.
+// The window's full height. The sides keep their gap throughout.
 @keyframes kicl--components--frame--in {
   from {
     block-size: 100dvb;
     border-radius: 0;
-    inline-size: 100%;
-    margin: 0;
+    margin-block: 0;
   }
 }
 
 @keyframes kicl--components--frame--grow-in {
   from {
     border-radius: 0;
-    inline-size: 100%;
-    margin: 0;
+    margin-block: 0;
     min-block-size: 100dvb;
   }
 }

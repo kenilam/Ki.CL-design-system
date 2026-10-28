@@ -5,7 +5,7 @@ type Styling = Pick<HTMLAttributes<HTMLElement>, 'className' | 'style'>;
 export type Props = Pick<Styling, 'className'> & {
   /** The one element to frame. It keeps its own tag and props. */
   children: ReactElement<Styling>;
-  /** Ease in from full-bleed to the frame. On unless turned off. */
+  /** Ease in from the window's full height to the frame. On unless turned off. */
   animate?: boolean;
   /**
    * Clip what bleeds past the frame. Turn it off when the children crop

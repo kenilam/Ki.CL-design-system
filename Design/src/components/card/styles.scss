@@ -71,8 +71,8 @@
     --kicl--components--card--border-color: transparent;
 
     &[class*='kicl--components--card--level--']:not(
-        .kicl--components--card--level--neutral
-      ) {
+      .kicl--components--card--level--neutral
+    ) {
       --kicl--components--card--background-color: color-mix(
         in srgb,
         var(--kicl--components--card--tone) 12%,
@@ -94,8 +94,8 @@
 
   // With a title and nothing under it, the action centres on the title's line.
   &:has(.kicl--components--card__action):not(
-      :has(.kicl--components--card__description)
-    ) {
+    :has(.kicl--components--card__description)
+  ) {
     align-items: center;
   }
 

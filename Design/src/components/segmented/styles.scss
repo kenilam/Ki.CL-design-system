@@ -235,8 +235,8 @@
     }
 
     &.kicl--components--segmented--with-legend
-      .kicl--components--segmented__panel
-      .kicl--components--segmented__options {
+    .kicl--components--segmented__panel
+    .kicl--components--segmented__options {
       background-color: var(--kicl--components--segmented--track);
       padding: var(--kicl-gutter-narrowest);
     }

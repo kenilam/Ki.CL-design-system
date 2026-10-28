@@ -12,12 +12,12 @@
   --kicl--components--sheet--direction: 1;
   --kicl--components--sheet--x: calc(
     var(--kicl--components--sheet--side-inline) *
-      var(--kicl--components--sheet--direction)
+    var(--kicl--components--sheet--direction)
   );
   --kicl--components--sheet--y: var(--kicl--components--sheet--side-block);
   --kicl--components--sheet--from: calc(
-      var(--kicl--components--sheet--x) * var(--kicl-gutter-wide)
-    )
+    var(--kicl--components--sheet--x) * var(--kicl-gutter-wide)
+  )
     calc(var(--kicl--components--sheet--y) * var(--kicl-gutter-wide));
 
   block-size: auto;

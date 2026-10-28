@@ -50,7 +50,17 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
     );
 
     const field = grouped ? (
-      <InputGroup {...outer} is={label ? 'span' : 'label'}>
+      <InputGroup
+        {...outer}
+        className={classNames(
+          {
+            'kicl-padding-inline-end-narrow': after,
+            'kicl-padding-inline-start-narrow': before,
+          },
+          outer.className
+        )}
+        is={label ? 'span' : 'label'}
+      >
         {before}
         {control}
         {after}

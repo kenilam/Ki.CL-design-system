@@ -15,8 +15,9 @@
     var(--kicl--components--sheet--direction)
   );
   --kicl--components--sheet--y: var(--kicl--components--sheet--side-block);
-  --kicl--components--sheet--from:
-    calc(var(--kicl--components--sheet--x) * var(--kicl-gutter-wide))
+  --kicl--components--sheet--from: calc(
+    var(--kicl--components--sheet--x) * var(--kicl-gutter-wide)
+  )
     calc(var(--kicl--components--sheet--y) * var(--kicl-gutter-wide));
 
   block-size: auto;
@@ -92,7 +93,9 @@
     $x: calc(var(--kicl--components--sheet--x) * #{$shadow-distant-negative});
     $y: calc(var(--kicl--components--sheet--y) * #{$shadow-distant-negative});
 
-    @include box-shadow($x $y ($shadow-distant * 2) rgba($shadow-color, $shadow-alpha-overlay));
+    @include box-shadow(
+      $x $y ($shadow-distant * 2) rgba($shadow-color, $shadow-alpha-overlay)
+    );
 
     &--inline-start,
     &--inline-end {
@@ -139,38 +142,44 @@
     overscroll-behavior: contain;
   }
 
-  // Notices shown between the header and the content (a `Status` that is in) take rows of their own.
-  --kicl--components--sheet--notices: ;
-
-  &:has(> .kicl--components--status[data-animation-in]) {
-    --kicl--components--sheet--notices: max-content;
-  }
-
-  &:has(
-    > .kicl--components--status[data-animation-in]
-    ~ .kicl--components--status[data-animation-in]
-  ) {
-    --kicl--components--sheet--notices: max-content max-content;
-  }
-
   // The content takes the height left over, so a footer sits at the bottom.
-  --kicl-layout--grid-frames: var(--kicl--components--sheet--notices) 1fr;
+  --kicl--components--sheet--head: ;
+  --kicl--components--sheet--foot: ;
+  --kicl-layout--grid-frames: var(--kicl--components--sheet--head) 1fr
+    var(--kicl--components--sheet--foot);
 
-  &:has(> .kicl--components--card__header) {
-    --kicl-layout--grid-frames: max-content
-      var(--kicl--components--sheet--notices) 1fr;
+  &:has(> .kicl--components--card__header, > &__close) {
+    --kicl--components--sheet--head: max-content;
   }
 
   &:has(> .kicl--components--card__footer) {
-    --kicl-layout--grid-frames: var(--kicl--components--sheet--notices) 1fr
-      max-content;
+    --kicl--components--sheet--foot: max-content;
   }
 
-  &:has(> .kicl--components--card__header):has(
-    > .kicl--components--card__footer
-  ) {
-    --kicl-layout--grid-frames: max-content
-      var(--kicl--components--sheet--notices) 1fr max-content;
+  &:has(> &__close) {
+    column-gap: var(--kicl-gutter-narrow);
+    grid-template-columns: 1fr auto;
+
+    > * {
+      grid-column: 1 / -1;
+    }
+
+    > .kicl--components--card__header {
+      grid-row: 1;
+      grid-template-columns: subgrid;
+
+      > * {
+        grid-column: 1;
+      }
+    }
+
+    > .kicl--components--sheet__close {
+      align-self: start;
+      grid-area: 1 / 2;
+      inset-block-start: var(--kicl-gutter);
+      margin: var(--kicl-gutter);
+      margin-inline-start: 0;
+    }
   }
 
   // Over the sheet's fill, so what scrolls under them is hidden.

@@ -4,8 +4,8 @@ import {
   Badge,
   Button,
   Card,
+  CardAction,
   CardTitle,
-  Layout,
   List,
   ListItem,
   Sheet,
@@ -35,14 +35,11 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       header={
-        <Layout
-          alignItems='center'
-          autoFlow='column'
-          frames='auto--max-content'
-        >
-          <div>
-            <CardTitle is='h3'>Living room</CardTitle>
+        <>
+          <CardTitle is='h3'>Living room</CardTitle>
+          <CardAction>
             <Button
               after={active ? <Badge>{active}</Badge> : undefined}
               onClick={() => setDraft(applied)}
@@ -52,8 +49,8 @@ const Preview: React.FC = () => {
             >
               Filters
             </Button>
-          </div>
-        </Layout>
+          </CardAction>
+        </>
       }
       size={5}
     >
@@ -77,22 +74,18 @@ const Preview: React.FC = () => {
         header={<CardTitle is='h2'>Filters</CardTitle>}
         id='pattern-filters'
       >
-        <Layout gap='normal'>
-          <div>
-            <Switch
-              checked={draft.stock}
-              onCheckedChange={(stock) => setDraft({ ...draft, stock })}
-            >
-              In stock only
-            </Switch>
-            <Switch
-              checked={draft.delivery}
-              onCheckedChange={(delivery) => setDraft({ ...draft, delivery })}
-            >
-              Free delivery
-            </Switch>
-          </div>
-        </Layout>
+        <Switch
+          checked={draft.stock}
+          onCheckedChange={(stock) => setDraft({ ...draft, stock })}
+        >
+          In stock only
+        </Switch>
+        <Switch
+          checked={draft.delivery}
+          onCheckedChange={(delivery) => setDraft({ ...draft, delivery })}
+        >
+          Free delivery
+        </Switch>
       </Sheet>
     </Card>
   );

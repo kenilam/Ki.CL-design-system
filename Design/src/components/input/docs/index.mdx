@@ -1,5 +1,6 @@
 import { Preset as Basic } from './basic';
 import { Preset as Filled } from './filled';
+import { Preset as WithALabel } from './with-a-label';
 import { Preset as WithAnIcon } from './with-an-icon';
 import { Preset as WithAPrefix } from './with-a-prefix';
 import { Preset as WithASuffix } from './with-a-suffix';
@@ -10,11 +11,12 @@ import { Preset as Search } from './search';
 import { Preset as Copy } from './copy';
 import { CONTROLS } from './controls';
 
-A single-line text field. `before` and `after` put an icon, a prefix or a button inside the border. The email, password, search and copy inputs are ready-made versions for those jobs.
+A single-line text field, with its name above it when it has a `label`. `before` and `after` put an icon or a short text, like a prefix or a unit, inside its border. A field with a button is an `InputGroup`. The email, password, search and copy inputs are ready-made versions of both.
 
 <Preview controls={CONTROLS} span={4}>
   {Basic}
   {Filled}
+  {WithALabel}
   {WithAnIcon}
   {WithAPrefix}
   {WithASuffix}

@@ -5,7 +5,7 @@ import { Card, Details, HyperLink, Navigation } from 'design/components';
 import type { Props } from 'design/components/navigation/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
-  <Card size='fit'>
+  <Card is='aside' size='fit'>
     <Navigation aria-label='Components' {...props}>
       <HyperLink to='#'>Button</HyperLink>
       <Details summary='Navigation'>

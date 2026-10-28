@@ -52,14 +52,10 @@ const Status: React.FunctionComponent<Spec.Props> = ({
 }) => {
   const t = useCopy();
 
-  const className = classNames(
-    CLASS_NAME,
-    {
-      [`kicl-color-${level}`]: level,
-      [`kicl-text-align-${justifyContent}`]: justifyContent,
-    },
-    _className
-  );
+  const className = classNames({
+    [`kicl-color-${level}`]: level,
+    [`kicl-text-align-${justifyContent}`]: justifyContent,
+  });
 
   const Icon = level ? LEVELS[level] : null;
 
@@ -104,14 +100,14 @@ const Status: React.FunctionComponent<Spec.Props> = ({
 
   return (
     <div
-      className='kicl-display-contents'
+      className={classNames(CLASS_NAME, _className)}
       role={level === 'error' ? 'alert' : 'status'}
     >
       <Animation {...rest} property={property} in={transitionIn}>
-        <div className={className}>
+        <section className={className}>
           {Title}
           {Messages}
-        </div>
+        </section>
       </Animation>
     </div>
   );

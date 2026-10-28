@@ -8,7 +8,11 @@ const Preview: React.FC = () => {
   const [size, setSize] = useState<keyof typeof SIZES>('medium');
 
   return (
-    <Card header={<CardTitle is='h3'>Flat white</CardTitle>} size={4}>
+    <Card
+      is='section'
+      header={<CardTitle is='h3'>Flat white</CardTitle>}
+      size={4}
+    >
       <RadioGroup
         legend='Size'
         name='size'

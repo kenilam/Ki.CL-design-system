@@ -5,7 +5,7 @@ import { Preset as Footer } from './footer';
 import { Preset as DenseHeader } from './dense-header';
 import { CONTROLS } from './controls';
 
-A surface for one thing, like a summary, a form or a setting. Header, content and footer are all optional.
+A surface for one thing, like a summary, a form or a setting. It has no element of its own, so `is` says which one it is: an `article`, a `section` or a list's `li`. Header, content and footer are all optional.
 
 <Preview controls={CONTROLS}>
   {Basic}

@@ -18,6 +18,7 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       footer={
         <Menu aria-label='Orders' justifyContent='end'>
           {orders.length > 0 && (

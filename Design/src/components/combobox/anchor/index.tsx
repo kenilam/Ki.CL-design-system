@@ -12,6 +12,12 @@ import {
   FOCUSABLE,
 } from 'design/components/combobox/constants';
 
+// Helpers
+import { mergeRefs } from 'design/helper';
+
+// Constants
+import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
+
 // Context
 import { focusables, useCombobox } from 'design/components/combobox/context';
 import { usePopover } from 'design/components/popover/context';
@@ -19,23 +25,15 @@ import { usePopover } from 'design/components/popover/context';
 const CLASS_NAME = `${COMBOBOX}__anchor`;
 
 /**
- * Wraps the field the list belongs to. ArrowDown moves into the list while it
- * is showing; Escape closes it.
+ * Marks the field the list belongs to: it becomes the anchor the list is
+ * placed against. ArrowDown moves into the list while it is showing; Escape
+ * closes it.
  */
-const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({
-  children,
-  className,
-  ...rest
-}) => {
+const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({ children }) => {
   const combobox = useCombobox();
   const popover = usePopover();
   const { open } = popover;
 
-  /*
-   * A native listener, because the wrapper is a plain box around the field and
-   * the keys belong to the field. Adding a role just to attach a handler would
-   * give the wrapper a meaning it doesn't have.
-   */
   useEffect(() => {
     const node = combobox.anchor.current;
     if (!node || !open) {
@@ -63,15 +61,16 @@ const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({
     return () => node.removeEventListener('keydown', onKeyDown);
   }, [combobox, open]);
 
-  return (
-    <div
-      {...rest}
-      className={classNames(CLASS_NAME, className)}
-      ref={combobox.anchor}
-    >
-      {children}
-    </div>
-  );
+  const child = React.Children.only(children);
+
+  return React.cloneElement(child, {
+    className: classNames(CLASS_NAME, child.props.className),
+    ref: mergeRefs(combobox.anchor, child.props.ref),
+    style: {
+      [`--${POPOVER}--anchor`]: popover.anchor,
+      ...child.props.style,
+    } as React.CSSProperties,
+  });
 };
 
 ComboboxAnchor.displayName = 'ComboboxAnchor';

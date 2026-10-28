@@ -22,7 +22,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
       footer,
       gap,
       header,
-      is = 'div',
+      is,
       size = 'default',
       level,
       variant = 'primary',

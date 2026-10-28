@@ -1,8 +1,8 @@
 import { createContext, useContext, type RefObject } from 'react';
 
 type ContextValue = {
-  anchor: RefObject<HTMLDivElement | null>;
-  content: RefObject<HTMLDivElement | null>;
+  anchor: RefObject<HTMLElement | null>;
+  content: RefObject<HTMLElement | null>;
   close: () => void;
 };
 

@@ -13,7 +13,11 @@ const Preview: React.FC = () => {
   const [country, setCountry] = useState('gb');
 
   return (
-    <Card header={<CardTitle is='h3'>Delivery</CardTitle>} size={4}>
+    <Card
+      is='section'
+      header={<CardTitle is='h3'>Delivery</CardTitle>}
+      size={4}
+    >
       <Select aria-label='Country' onValueChange={setCountry} value={country}>
         <SelectItem value='ca'>Canada</SelectItem>
         <SelectItem value='gb'>United Kingdom</SelectItem>

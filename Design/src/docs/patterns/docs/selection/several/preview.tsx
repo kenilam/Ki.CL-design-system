@@ -12,7 +12,11 @@ const Preview: React.FC = () => {
   const [toppings, setToppings] = useState<string[]>(['basil']);
 
   return (
-    <Card header={<CardTitle is='h3'>Margherita</CardTitle>} size={4}>
+    <Card
+      is='section'
+      header={<CardTitle is='h3'>Margherita</CardTitle>}
+      size={4}
+    >
       <CheckboxGroup
         legend='Add toppings, $1.20 each'
         name='toppings'

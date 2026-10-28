@@ -134,11 +134,12 @@ const Overflow: React.FunctionComponent<Props> = ({ name }) => (
       `kicl-${name}`
     )}
   >
-    <div
+    <span
       className={classNames(
         'kicl-aspect-ratio-square',
         'kicl-background-color-blue',
         'kicl-border-radius-xs',
+        'kicl-display-block',
         'kicl-inline-size-sm'
       )}
     />

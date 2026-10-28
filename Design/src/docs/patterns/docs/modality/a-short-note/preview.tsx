@@ -13,12 +13,12 @@ import {
 } from 'design/components';
 
 const Preview: React.FC = () => (
-  <Card header={<CardTitle is='h3'>Summary</CardTitle>} size={5}>
+  <Card is='section' header={<CardTitle is='h3'>Summary</CardTitle>} size={5}>
     <Layout alignItems='center' autoFlow='column' frames='auto--max-content'>
-      <div>
-        <Text is='span'>Total</Text>
+      <dl>
+        <dt>Total</dt>
         <Layout alignItems='center' autoFlow='column' gap='narrow'>
-          <div>
+          <dd>
             <Text className='kicl-font-weight-bold' is='span'>
               $26.00
             </Text>
@@ -36,9 +36,9 @@ const Preview: React.FC = () => (
                 <Text>Includes $6 express delivery and sales tax.</Text>
               </PopoverContent>
             </Popover>
-          </div>
+          </dd>
         </Layout>
-      </div>
+      </dl>
     </Layout>
   </Card>
 );

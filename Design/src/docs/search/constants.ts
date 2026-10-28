@@ -39,6 +39,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'hidden-up-to': 'foundations/breakpoints',
   'inline-size': 'foundations/size',
   inset: 'utilities/position',
+  'justify-self': 'utilities/display',
   layout: null,
   'letter-spacing': 'foundations/typography',
   'line-height': 'foundations/typography',

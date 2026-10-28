@@ -9,16 +9,15 @@ export type BubbleVariant = Variant;
 export type { Level as BubbleLevel } from 'design/components/spec';
 
 /** Semantic hosts for one message. */
-export type BubbleIs = 'article' | 'div' | 'li' | 'section';
+export type BubbleIs = 'article' | 'li' | 'section';
 
 /** The text surface; `a` and `button` make the whole bubble a control. */
-export type BubbleContentIs =
-  'a' | 'blockquote' | 'button' | 'div' | 'p' | 'span';
+export type BubbleContentIs = 'a' | 'blockquote' | 'button' | 'p' | 'span';
 
 /** Consecutive messages from one sender. */
-export type BubbleGroupIs = 'div' | 'li' | 'ol' | 'section' | 'ul';
+export type BubbleGroupIs = 'li' | 'ol' | 'section' | 'ul';
 
-export type BubbleReactionsIs = 'div' | 'ul';
+export type BubbleReactionsIs = 'ul';
 
 export type BubbleProps = PolymorphicIsProps<
   BubbleIs,
@@ -26,19 +25,19 @@ export type BubbleProps = PolymorphicIsProps<
     level?: Level;
     variant?: BubbleVariant;
   },
-  'div'
+  'article'
 >;
 
 export type BubbleContentProps = PolymorphicIsProps<
   BubbleContentIs,
   object,
-  'div'
+  'p'
 >;
 
-export type BubbleGroupProps = PolymorphicIsProps<BubbleGroupIs, object, 'div'>;
+export type BubbleGroupProps = PolymorphicIsProps<BubbleGroupIs, object, 'ol'>;
 
 export type BubbleReactionsProps = PolymorphicIsProps<
   BubbleReactionsIs,
   object,
-  'div'
+  'ul'
 >;

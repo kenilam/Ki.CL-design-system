@@ -22,11 +22,12 @@ import { getContentClassNames } from './class-names';
 // Context
 import { usePopover } from 'design/components/popover/context';
 
-const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
+const PopoverContent = React.forwardRef<HTMLElement, PopoverContentProps>(
   (
     {
       children,
       className,
+      forceMount,
       offset = 'narrow',
       placement = 'block-end',
       style,
@@ -38,7 +39,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
     const popover = usePopover();
 
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
-    const nodeRef = useRef<HTMLDivElement | null>(null);
+    const nodeRef = useRef<HTMLElement | null>(null);
     const { setContent } = popover;
     // Closed, it is only the panel, which its trigger can still open.
     const shown = useOverlayContents(nodeRef, popover.open);
@@ -160,7 +161,7 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
     }, [popover.id, popover.open]);
 
     const panel = (
-      <div
+      <section
         ref={mergeRefs(nodeRef, ref)}
         id={popover.id}
         popover='auto'
@@ -173,10 +174,6 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
           placement,
           variant,
         })}
-        /*
-         * Its own copy of the anchor name: an inline popover's panel is
-         * rendered outside the wrapper, so it can't inherit it.
-         */
         style={
           {
             [`--${POPOVER}--anchor`]: popover.anchor,
@@ -185,10 +182,8 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
         }
         {...rest}
       >
-        {shown ? (
-          <div className={`${POPOVER}__viewport`}>{children}</div>
-        ) : null}
-      </div>
+        {shown || forceMount ? children : null}
+      </section>
     );
 
     /*

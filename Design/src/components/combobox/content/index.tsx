@@ -20,9 +20,6 @@ import { focusables, useCombobox } from 'design/components/combobox/context';
 
 const CLASS_NAME = `${COMBOBOX}__content`;
 
-/** The field the anchor wraps, for handing focus back to. */
-const FIELD = 'input, textarea, [contenteditable="true"]';
-
 /**
  * The list under the field. The arrow keys move between its links and
  * buttons; up from the first, or Escape, goes back to the field.
@@ -35,8 +32,7 @@ const ComboboxContent: React.FC<ComboboxContentProps> = ({
 }) => {
   const combobox = useCombobox();
 
-  const toField = () =>
-    combobox.anchor.current?.querySelector<HTMLElement>(FIELD)?.focus();
+  const toField = () => combobox.anchor.current?.focus();
 
   return (
     <PopoverContent

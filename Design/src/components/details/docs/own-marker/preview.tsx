@@ -5,7 +5,7 @@ import { Card, Badge, Details, DetailsMarker, Text } from 'design/components';
 import type { Props } from 'design/components/details/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
-  <Card size='max'>
+  <Card is='section' size='max'>
     <Details
       marker={false}
       summary={

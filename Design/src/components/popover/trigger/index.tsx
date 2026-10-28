@@ -37,8 +37,9 @@ const toggle = (panel: HTMLElement, source: HTMLElement) => {
 };
 
 const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
-  ({ asChild, children, className, onClick, ...rest }, ref) => {
+  ({ asChild, children, className, onClick, style, ...rest }, ref) => {
     const popover = usePopover();
+    const anchor = { [`--${POPOVER}--anchor`]: popover.anchor };
 
     const shared = {
       // Only a trigger with a panel opens anything.
@@ -73,6 +74,7 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
         ...(rest as React.HTMLAttributes<HTMLElement>),
         ...child.props,
         className: classNames(CLASS_NAME, className, child.props.className),
+        style: { ...anchor, ...style, ...child.props.style },
         onClick: (event: React.MouseEvent<HTMLElement>) => {
           child.props.onClick?.(event);
           onClick?.(event as React.MouseEvent<HTMLButtonElement>);
@@ -111,6 +113,7 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
          */
         popoverTarget={popover.id}
         onClick={onClick}
+        style={{ ...anchor, ...style }}
         {...rest}
       >
         {children}

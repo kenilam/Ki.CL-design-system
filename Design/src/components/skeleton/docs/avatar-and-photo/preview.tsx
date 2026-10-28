@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { Layout, Skeleton } from 'design/components';
+import { List, ListItem, Skeleton } from 'design/components';
 
 const Preview: React.FC = () => (
-  <Layout alignItems='center' autoFlow='column'>
-    <div>
+  <List alignItems='center' autoFlow='column'>
+    <ListItem>
       <Skeleton className='kicl-aspect-ratio-square kicl-border-radius-full kicl-inline-size-xs' />
+    </ListItem>
+    <ListItem>
       <Skeleton className='kicl-aspect-ratio-video kicl-inline-size-md' />
-    </div>
-  </Layout>
+    </ListItem>
+  </List>
 );
 
 export { Preview };

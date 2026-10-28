@@ -10,7 +10,6 @@ const Preview: React.FC<Props> = (props) => (
       Open
     </Button>
     <Dialog
-      className='kicl-min-block-size-columns-3'
       closable={false}
       footer={
         <Button command='close' commandFor='dialog-not-closable'>

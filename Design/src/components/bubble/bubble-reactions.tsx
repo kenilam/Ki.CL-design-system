@@ -9,7 +9,7 @@ const CLASS_NAME = 'kicl--components--bubble__reactions';
 
 /** Small chip that overlaps a corner of the bubble. */
 const BubbleReactions = React.forwardRef<HTMLElement, BubbleReactionsProps>(
-  ({ children, className, is = 'div', ...rest }, ref) => {
+  ({ children, className, is = 'ul', ...rest }, ref) => {
     const Component = is as BubbleReactionsIs;
 
     return (

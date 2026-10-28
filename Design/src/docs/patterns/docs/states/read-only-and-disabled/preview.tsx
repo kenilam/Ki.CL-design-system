@@ -25,7 +25,7 @@ const Preview: React.FC = () => {
   const pro = useWatch({ control: form.control, name: 'pro' });
 
   return (
-    <Card header={<CardTitle is='h3'>Account</CardTitle>} size={5}>
+    <Card is='section' header={<CardTitle is='h3'>Account</CardTitle>} size={5}>
       <Form {...form} onSubmit={form.handleSubmit(() => {})}>
         <FormField
           control={form.control}
@@ -39,7 +39,7 @@ const Preview: React.FC = () => {
                 frames='auto--max-content'
                 gap='narrow'
               >
-                <div>
+                <p>
                   <FormControl>
                     <Input {...field} readOnly />
                   </FormControl>
@@ -49,7 +49,7 @@ const Preview: React.FC = () => {
                     value={field.value}
                     variant='secondary'
                   />
-                </div>
+                </p>
               </Layout>
               <FormDescription>Quote it when you contact us.</FormDescription>
             </FormItem>

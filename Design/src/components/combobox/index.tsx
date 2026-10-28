@@ -1,7 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
-
-// Libraries
-import classNames from 'classnames';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 // Components
 import { Popover } from 'design/components/popover';
@@ -13,7 +10,6 @@ import type { ComboboxProps } from './spec';
 import './styles.scss';
 
 // Constants
-import { CLASS_NAME } from './constants';
 
 // Context
 import { ComboboxContext } from './context';
@@ -34,17 +30,12 @@ import { ComboboxContent } from './content';
  */
 const Combobox: React.FC<ComboboxProps> = ({
   children,
-  className,
   defaultOpen = false,
-  onBlur,
-  onFocus,
-  onInput,
   onOpenChange,
   open,
-  ...rest
 }) => {
-  const anchor = useRef<HTMLDivElement | null>(null);
-  const content = useRef<HTMLDivElement | null>(null);
+  const anchor = useRef<HTMLElement | null>(null);
+  const content = useRef<HTMLElement | null>(null);
 
   /*
    * Its own open state unless given one. A text field can't be an invoker,
@@ -63,42 +54,40 @@ const Combobox: React.FC<ComboboxProps> = ({
   );
   const close = useCallback(() => setOpen(false), [setOpen]);
 
-  /** Whether the event came from the field the panel belongs to. */
-  const fromField = (event: React.SyntheticEvent) =>
-    event.target instanceof Node &&
-    Boolean(anchor.current?.contains(event.target));
+  useEffect(() => {
+    const field = anchor.current;
+    const list = content.current;
+
+    if (!field) {
+      return undefined;
+    }
+
+    const inside = (node: EventTarget | null) =>
+      node instanceof Node &&
+      (field.contains(node) || Boolean(list?.contains(node)));
+    const show = () => setOpen(true);
+    const leave = (event: FocusEvent) => {
+      if (!inside(event.relatedTarget)) {
+        close();
+      }
+    };
+
+    field.addEventListener('focusin', show);
+    field.addEventListener('input', show);
+    field.addEventListener('focusout', leave);
+    list?.addEventListener('focusout', leave);
+
+    return () => {
+      field.removeEventListener('focusin', show);
+      field.removeEventListener('input', show);
+      field.removeEventListener('focusout', leave);
+      list?.removeEventListener('focusout', leave);
+    };
+  }, [close, isOpen, setOpen]);
 
   return (
     <ComboboxContext.Provider value={{ anchor, content, close }}>
-      <Popover
-        {...rest}
-        /* A field takes its row, so the panel can be as wide as the field. */
-        display='grid'
-        className={classNames(CLASS_NAME, className)}
-        onBlur={(event) => {
-          onBlur?.(event);
-          // Focus moved somewhere other than the field or the list.
-          if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-            close();
-          }
-        }}
-        onFocus={(event) => {
-          onFocus?.(event);
-
-          if (fromField(event)) {
-            setOpen(true);
-          }
-        }}
-        onInput={(event) => {
-          onInput?.(event);
-
-          if (fromField(event)) {
-            setOpen(true);
-          }
-        }}
-        onOpenChange={setOpen}
-        open={isOpen}
-      >
+      <Popover onOpenChange={setOpen} open={isOpen}>
         {children}
       </Popover>
     </ComboboxContext.Provider>

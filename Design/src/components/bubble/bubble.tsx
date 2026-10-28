@@ -13,7 +13,7 @@ const CLASS_NAME = 'kicl--components--bubble';
  */
 const Bubble = React.forwardRef<HTMLElement, BubbleProps>(
   (
-    { children, className, is = 'div', level, variant = 'primary', ...rest },
+    { children, className, is = 'article', level, variant = 'primary', ...rest },
     ref
   ) => {
     const Component = is as BubbleIs;

@@ -106,10 +106,32 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
         : null;
     const hasLegend = legend !== null;
 
-    // As a popover, the caption is outside, so the track stays as it is.
-    const legendAbove = hasLegend && collapse !== 'popover';
     const options = hasLegend ? others : [first, ...others];
+    const isPopover = collapse === 'popover';
+    const legendId = `${id}__legend`;
 
+    const optionsBox = (
+      <Layout autoFlow='column' gap='none'>
+        <div
+          className={classNames(
+            `${CLASS_NAME}__options`,
+            hasLegend && !isPopover && 'kicl-padding-block-narrowest',
+            hasLegend && !isPopover && 'kicl-padding-inline-narrowest',
+            'kicl-position-relative'
+          )}
+          onBlur={collapse === 'scroll' ? onBlur : undefined}
+          onPointerLeave={collapse === 'scroll' ? back : undefined}
+        >
+          {options}
+        </div>
+      </Layout>
+    );
+
+    /*
+     * One set of radios either way. Above tablet the panel is laid out in
+     * place as the usual row and the trigger is hidden, all in CSS; below it
+     * the trigger shows the choice and the panel opens as a popover.
+     */
     const fieldset = (
       <SegmentedContext.Provider
         value={{
@@ -130,115 +152,85 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
           value,
         }}
       >
-        <Layout gap='none'>
+        <Layout
+          gap={isPopover && hasLegend ? 'narrowest' : 'none'}
+          justifyItems={isPopover && hasLegend ? 'start' : undefined}
+        >
           <fieldset
             className={classNames(
               CLASS_NAME,
               collapse && `${CLASS_NAME}--collapse--${collapse}`,
               collapsed && `${CLASS_NAME}--collapsed`,
-              legendAbove && `${CLASS_NAME}--with-legend`,
+              hasLegend && `${CLASS_NAME}--with-legend`,
+              isPopover && `${CLASS_NAME}__popover`,
+              isPopover && collapsed && `${CLASS_NAME}__popover--collapsed`,
               'kicl-border-radius-md',
               // With a legend above, the options box is the track and takes the padding.
-              !legendAbove && 'kicl-padding-block-narrowest',
-              !legendAbove && 'kicl-padding-inline-narrowest',
+              !hasLegend && !isPopover && 'kicl-padding-block-narrowest',
+              !hasLegend && !isPopover && 'kicl-padding-inline-narrowest',
               'kicl-position-relative',
-              // As a popover, the outer box takes the class.
-              collapse !== 'popover' && className
+              className
             )}
             disabled={disabled}
             ref={ref}
             {...rest}
           >
-            {/* As a popover, the caption labels the trigger instead; the legend still names the radios. */}
             {legend
               ? React.cloneElement(legend, {
                   className: classNames(
                     legend.props.className,
-                    collapse === 'popover'
-                      ? 'kicl-hidden'
-                      : [
-                          'kicl-font-size-small',
-                          'kicl-inline-size-full',
-                          'kicl-margin-block-end-narrower',
-                        ]
+                    'kicl-font-size-small',
+                    'kicl-inline-size-full',
+                    !isPopover && 'kicl-margin-block-end-narrower'
                   ),
+                  id: legendId,
                 })
               : null}
-            <Layout autoFlow='column' gap='none'>
-              <div
-                className={classNames(
-                  `${CLASS_NAME}__options`,
-                  legendAbove && 'kicl-padding-block-narrowest',
-                  legendAbove && 'kicl-padding-inline-narrowest',
-                  'kicl-position-relative'
-                )}
-                onBlur={collapse === 'scroll' ? onBlur : undefined}
-                onPointerLeave={collapse === 'scroll' ? back : undefined}
-              >
-                {options}
-              </div>
-            </Layout>
+            {isPopover ? (
+              <>
+                {/* The trigger is a ghost button that reads as the choice; the panel takes the control's name. */}
+                <PopoverTrigger asChild>
+                  <Button
+                    after={<Ri.RiArrowDownSLine aria-hidden />}
+                    // It stands in for a select, so it is as tall as one.
+                    className={classNames(
+                      `${CLASS_NAME}__trigger`,
+                      'kicl-min-block-size-field'
+                    )}
+                    id={`${id}__trigger`}
+                    // A disabled control opens nothing, as its radios take nothing.
+                    disabled={disabled}
+                    size='small'
+                    variant='ghost'
+                  >
+                    {labelOf(children, current) ?? null}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  aria-label={hasLegend ? undefined : rest['aria-label']}
+                  aria-labelledby={hasLegend ? legendId : undefined}
+                  className={`${CLASS_NAME}__panel`}
+                  forceMount
+                  placement={placement}
+                  variant={variant}
+                >
+                  {optionsBox}
+                </PopoverContent>
+              </>
+            ) : (
+              optionsBox
+            )}
           </fieldset>
         </Layout>
       </SegmentedContext.Provider>
     );
 
-    if (collapse !== 'popover') {
-      return fieldset;
-    }
-
-    /*
-     * One set of radios either way. Above tablet the panel is laid out in
-     * place as the usual row and the trigger is hidden, all in CSS; below it
-     * the trigger shows the choice and the panel opens as a popover.
-     */
-    return (
-      <Popover
-        display='grid'
-        className={classNames(
-          `${CLASS_NAME}__popover`,
-          collapsed && `${CLASS_NAME}__popover--collapsed`,
-          className
-        )}
-        // With a caption, the trigger sits under it, as the track sits under its legend.
-        gap={hasLegend ? 'narrowest' : 'none'}
-        justifyItems={hasLegend ? 'start' : undefined}
-        onOpenChange={setOpen}
-        open={open}
-      >
-        {/* The caption, as a label for the trigger: a button is labelable. */}
-        {legend ? (
-          <label className='kicl-font-size-small' htmlFor={`${id}__trigger`}>
-            {legend.props.children}
-          </label>
-        ) : null}
-        {/* The trigger is a ghost button that reads as the choice; the panel takes the control's name. */}
-        <PopoverTrigger asChild>
-          <Button
-            after={<Ri.RiArrowDownSLine aria-hidden />}
-            // It stands in for a select, so it is as tall as one.
-            className={classNames(
-              `${CLASS_NAME}__trigger`,
-              'kicl-min-block-size-field'
-            )}
-            id={`${id}__trigger`}
-            // A disabled control opens nothing, as its radios take nothing.
-            disabled={disabled}
-            size='small'
-            variant='ghost'
-          >
-            {labelOf(children, current) ?? null}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent
-          aria-label={rest['aria-label']}
-          className={`${CLASS_NAME}__panel`}
-          placement={placement}
-          variant={variant}
-        >
-          {fieldset}
-        </PopoverContent>
+    return isPopover ? (
+      <Popover onOpenChange={setOpen} open={open}>
+        {fieldset}
       </Popover>
+    ) : (
+      fieldset
     );
   }
 );

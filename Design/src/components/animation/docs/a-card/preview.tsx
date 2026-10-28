@@ -7,6 +7,7 @@ import type { Props } from 'design/components/animation/docs/controls';
 const Preview: React.FC<Props> = (props) => (
   <Animation key='card' property='slide-from-bottom' {...props}>
     <Card
+      is='article'
       header={
         <>
           <CardTitle is='h3'>Daylight</CardTitle>

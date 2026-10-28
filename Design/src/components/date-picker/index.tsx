@@ -102,14 +102,9 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   return (
     <DatePickerContext.Provider value={context}>
-      {/* Block, as a field is: it fills its line, and the trigger fills it. */}
-      <Popover
-        className={className}
-        display='grid'
-        onOpenChange={setOpen}
-        open={open}
-      >
+      <Popover onOpenChange={setOpen} open={open}>
         <Trigger
+          className={className}
           id={id}
           aria-describedby={ariaDescribedBy}
           aria-invalid={ariaInvalid}

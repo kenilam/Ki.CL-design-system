@@ -4,8 +4,11 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { InputGroupButton } from 'design/components/input-group';
-import { Input } from 'design/components/input';
+import {
+  InputGroup,
+  InputGroupButton,
+  InputGroupInput,
+} from 'design/components/input-group';
 
 // Helpers
 import { mergeRefs } from 'design/helper';
@@ -24,7 +27,7 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--input--search';
 
-type Props = Omit<InputProps, 'type'>;
+type Props = Omit<InputProps, 'after' | 'label' | 'type'>;
 
 /**
  * A search field with a button that clears it. The button only shows while
@@ -33,7 +36,7 @@ type Props = Omit<InputProps, 'type'>;
  * `onChange` hears it.
  */
 const SearchInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ before, className, placeholder, ...rest }, ref) => {
+  ({ before, className, disabled, placeholder, style, ...rest }, ref) => {
     const t = useCopy();
     const node = useRef<HTMLInputElement | null>(null);
 
@@ -54,24 +57,27 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
     };
 
     return (
-      <Input
-        {...rest}
-        after={
-          <InputGroupButton
-            aria-label={t('action_clear')}
-            className={`${CLASS_NAME}__clear`}
-            onClick={clear}
-            type='button'
-          >
-            <Ri.RiCloseLine aria-hidden />
-          </InputGroupButton>
-        }
-        before={before ?? <Ri.RiSearchLine aria-hidden />}
+      <InputGroup
         className={classNames(CLASS_NAME, className)}
-        placeholder={placeholder ?? t('search')}
-        ref={mergeRefs(node, ref)}
-        type='search'
-      />
+        disabled={disabled}
+        style={style}
+      >
+        {before ?? <Ri.RiSearchLine aria-hidden />}
+        <InputGroupInput
+          {...rest}
+          placeholder={placeholder ?? t('search')}
+          ref={mergeRefs(node, ref)}
+          type='search'
+        />
+        <InputGroupButton
+          aria-label={t('action_clear')}
+          className={`${CLASS_NAME}__clear`}
+          onClick={clear}
+          type='button'
+        >
+          <Ri.RiCloseLine aria-hidden />
+        </InputGroupButton>
+      </InputGroup>
     );
   }
 );

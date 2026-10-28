@@ -220,7 +220,7 @@ $gaps: (
       --kicl--components--popover--border-color: transparent;
     }
 
-    &:popover-open:has(> :only-child) {
+    &:popover-open:has(> :only-child:not(table)) {
       display: flex;
       flex-direction: column;
       overflow: hidden;

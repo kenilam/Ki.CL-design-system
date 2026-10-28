@@ -24,7 +24,9 @@ const Header: React.FunctionComponent = () => {
   const t = useCopy();
 
   return (
-    <caption className={`${CALENDAR}__header`}>
+    <caption
+      className={classNames(`${CALENDAR}__header`, 'kicl-font-size-small')}
+    >
       <Button
         aria-label={t('action_previous_month')}
         onClick={() =>
@@ -37,11 +39,7 @@ const Header: React.FunctionComponent = () => {
       </Button>
       <output
         id={titleId}
-        className={classNames(
-          `${CALENDAR}__title`,
-          'kicl-font-size-small',
-          'kicl-font-weight-bold'
-        )}
+        className={classNames(`${CALENDAR}__title`, 'kicl-font-weight-bold')}
       >
         {monthLabel(month)}
       </output>

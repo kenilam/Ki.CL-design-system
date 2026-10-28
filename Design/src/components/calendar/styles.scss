@@ -16,7 +16,10 @@
 
   &__header {
     border-block-end: var(--kicl-size-1px) solid var(--kicl-surface-border-color);
-    line-height: var(--kicl-field-block-size);
+    line-height: calc(
+      var(--kicl-font-size-small) * var(--kicl-line-height-narrower) +
+      2 * var(--kicl-gutter-narrow) + var(--kicl-size-1px)
+    );
     margin-block-end: var(--kicl-gutter-narrow);
     padding-block-end: var(--kicl-gutter-narrow);
     text-align: center;

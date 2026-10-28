@@ -85,8 +85,9 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
     }, [open]);
 
     /*
-     * The element fills the window, so a click beside the panel lands on it
-     * rather than outside it, where `closedby` would see it.
+     * For browsers without `closedby`. A click on the backdrop and one on the
+     * panel's own padding both target the dialog, so only one outside its box
+     * closes it.
      */
     useEffect(() => {
       const dialog = node.current;
@@ -96,7 +97,18 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       }
 
       const click = (event: MouseEvent) => {
-        if (event.target === dialog) {
+        if (event.target !== dialog) {
+          return;
+        }
+
+        const box = dialog.getBoundingClientRect();
+        const outside =
+          event.clientX < box.left ||
+          event.clientX > box.right ||
+          event.clientY < box.top ||
+          event.clientY > box.bottom;
+
+        if (outside) {
           dialog.requestClose();
         }
       };
@@ -110,47 +122,40 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       <DialogContext.Provider
         value={{ closable, closeIcon: CloseIcon, fullScreen, id }}
       >
-        <dialog
-          aria-labelledby={header && !isLabelled ? headerId : undefined}
-          {...rest}
-          id={id}
-          ref={mergeRefs(node, ref)}
-          className={classNames(
-            CLASS_NAME,
-            {
-              [`${CLASS_NAME}--is-closable`]: closable,
-              [`${CLASS_NAME}--is-dense`]: dense,
-              [`${CLASS_NAME}--is-full-screen`]: fullScreen,
-            },
-            'kicl-min-block-size-screen',
-            'kicl-overscroll-behavior-contain',
-            className
-          )}
-          closedby={
-            closable === true
-              ? 'any'
-              : closable === 'keyboard'
-                ? 'closerequest'
-                : 'none'
-          }
-        >
-          {shown ? (
-            <Layout alignContent='start'>
-              <div
-                className={classNames(
-                  'kicl-box-shadow-overlay',
-                  'kicl-margin-inline-auto',
-                  'kicl-position-relative',
-                  'kicl-z-index-raised'
-                )}
-              >
+        <Layout alignContent='start'>
+          <dialog
+            aria-labelledby={header && !isLabelled ? headerId : undefined}
+            {...rest}
+            id={id}
+            ref={mergeRefs(node, ref)}
+            className={classNames(
+              CLASS_NAME,
+              {
+                [`${CLASS_NAME}--is-closable`]: closable,
+                [`${CLASS_NAME}--is-dense`]: dense,
+                [`${CLASS_NAME}--is-full-screen`]: fullScreen,
+              },
+              'kicl-box-shadow-overlay',
+              'kicl-overscroll-behavior-contain',
+              className
+            )}
+            closedby={
+              closable === true
+                ? 'any'
+                : closable === 'keyboard'
+                  ? 'closerequest'
+                  : 'none'
+            }
+          >
+            {shown ? (
+              <>
                 {header ? <header id={headerId}>{header}</header> : null}
 
                 {/*
-                Beside the header rather than in it, sharing its place in the
-                panel's grid, so it stays at the top while the header scrolls
-                away. It also keeps its label out of the dialog's name.
-              */}
+                  Beside the header rather than in it, sharing its place in the
+                  panel's grid, so it stays at the top while the header scrolls
+                  away. It also keeps its label out of the dialog's name.
+                */}
                 <Close />
 
                 {children}
@@ -158,10 +163,10 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
                 {footer ? (
                   <footer className={`${CLASS_NAME}--footer`}>{footer}</footer>
                 ) : null}
-              </div>
-            </Layout>
-          ) : null}
-        </dialog>
+              </>
+            ) : null}
+          </dialog>
+        </Layout>
       </DialogContext.Provider>
     );
   }

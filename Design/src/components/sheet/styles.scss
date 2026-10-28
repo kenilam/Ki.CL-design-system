@@ -157,6 +157,7 @@
   }
 
   &:has(> &__close) {
+    column-gap: var(--kicl-gutter-narrow);
     grid-template-columns: 1fr auto;
 
     > * {
@@ -177,6 +178,7 @@
       grid-area: 1 / 2;
       inset-block-start: var(--kicl-gutter);
       margin: var(--kicl-gutter);
+      margin-inline-start: 0;
     }
   }
 

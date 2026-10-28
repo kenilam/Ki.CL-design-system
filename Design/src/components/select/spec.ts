@@ -1,20 +1,16 @@
 import type React from 'react';
 
-import type {
-  FormDescriptionProps,
-  FormLabelProps,
-} from 'design/components/form';
+import type { FormItemFieldProps } from 'design/components/form';
 
 export type SelectProps = Omit<
   React.ComponentPropsWithoutRef<'select'>,
   'multiple' | 'size'
-> & {
-  description?: FormDescriptionProps['children'];
-  label?: FormLabelProps['children'];
-  onValueChange?: (value: string) => void;
-  /** Shown while nothing is chosen; also makes `required` meaningful. */
-  placeholder?: string;
-};
+> &
+  FormItemFieldProps & {
+    onValueChange?: (value: string) => void;
+    /** Shown while nothing is chosen; also makes `required` meaningful. */
+    placeholder?: string;
+  };
 
 export type SelectTriggerProps = React.ComponentPropsWithoutRef<'button'>;
 

@@ -1,10 +1,7 @@
 import type React from 'react';
 
 import type { CalendarMode, DateRange } from 'design/components/calendar';
-import type {
-  FormDescriptionProps,
-  FormLabelProps,
-} from 'design/components/form';
+import type { FormItemFieldProps } from 'design/components/form';
 import type { PopoverVariant } from 'design/components/popover/spec';
 
 export type DatePickerMode = CalendarMode;
@@ -23,8 +20,6 @@ export type DatePickerTriggerProps = Pick<
 type DatePickerBaseProps = DatePickerTriggerProps &
   Pick<React.ComponentPropsWithoutRef<'button'>, 'className' | 'disabled'> &
   Pick<React.ComponentPropsWithoutRef<'input'>, 'placeholder'> & {
-    description?: FormDescriptionProps['children'];
-    label?: FormLabelProps['children'];
     /** Optional format override - default uses locale date string. */
     formatDate?: (date: Date) => string;
     variant?: PopoverVariant;
@@ -44,4 +39,5 @@ export type DatePickerRangeProps = DatePickerBaseProps & {
   onValueChange?: (range: DateRange | undefined) => void;
 };
 
-export type DatePickerProps = DatePickerSingleProps | DatePickerRangeProps;
+export type DatePickerProps = (DatePickerSingleProps | DatePickerRangeProps) &
+  FormItemFieldProps;

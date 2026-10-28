@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { FormDescription, FormLabel } from 'design/components/form';
+import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components/form/context';
 
 // Styles
@@ -31,67 +31,71 @@ import type { SelectProps } from './spec';
  * on the `<select>`.
  */
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  (
-    {
+  ({ description, label, layout, ...props }, ref): React.ReactElement => {
+    const control = useFormItemControl(props);
+
+    if (label || description) {
+      return (
+        <FormItem
+          {...layout}
+          description={description}
+          label={label}
+          required={props.required}
+        >
+          <Select {...props} ref={ref} />
+        </FormItem>
+      );
+    }
+
+    const {
       children,
       className,
       defaultValue,
-      description,
-      label,
       onChange,
       onValueChange,
       placeholder,
       value,
       ...rest
-    },
-    ref
-  ) => {
-    const control = useFormItemControl({ description, ...rest });
+    } = props;
     const hasTrigger = React.Children.toArray(children).some(
       (child) => React.isValidElement(child) && child.type === SelectTrigger
     );
 
     return (
-      <>
-        <FormLabel htmlFor={control.id} required={rest.required}>
-          {label}
-        </FormLabel>
-        <select
-          ref={ref}
-          // The same type as `Input`.
-          className={classNames(
-            CLASS_NAME,
-            'kicl-font-size-small',
-            'kicl-inline-size-full',
-            className
-          )}
-          value={value}
-          defaultValue={
-            value === undefined && placeholder !== undefined
-              ? (defaultValue ?? '')
-              : defaultValue
-          }
-          onChange={(event) => {
-            onChange?.(event);
-            onValueChange?.(event.currentTarget.value);
-          }}
-          {...rest}
-          {...control}
-        >
-          {hasTrigger ? null : (
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-          )}
-          {children}
-          {placeholder !== undefined ? (
-            <option value='' disabled hidden>
-              {placeholder}
-            </option>
-          ) : null}
-        </select>
-        <FormDescription>{description}</FormDescription>
-      </>
+      <select
+        ref={ref}
+        // The same type as `Input`.
+        className={classNames(
+          CLASS_NAME,
+          'kicl-font-size-small',
+          'kicl-inline-size-full',
+          className
+        )}
+        value={value}
+        defaultValue={
+          value === undefined && placeholder !== undefined
+            ? (defaultValue ?? '')
+            : defaultValue
+        }
+        onChange={(event) => {
+          onChange?.(event);
+          onValueChange?.(event.currentTarget.value);
+        }}
+        {...rest}
+        {...control}
+      >
+        {hasTrigger ? null : (
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+        )}
+        {children}
+        {placeholder !== undefined ? (
+          <option value='' disabled hidden>
+            {placeholder}
+          </option>
+        ) : null}
+      </select>
     );
   }
 );

@@ -1,8 +1,7 @@
 import { createContext, useContext } from 'react';
 import type React from 'react';
+import { useFormContext } from 'react-hook-form';
 import type { FieldPath, FieldValues } from 'react-hook-form';
-
-import type { FormDescriptionProps } from './spec';
 
 export type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -18,47 +17,55 @@ export const FormFieldContext = createContext<FormFieldContextValue | null>(
 );
 
 export type FormItemContextValue = {
-  descriptionId: string;
+  descriptionId?: string;
   id: string;
+  messageId: string;
   required?: boolean;
 };
 
 export const FormItemContext = createContext<FormItemContextValue | null>(null);
 
-export function useFormFieldContext() {
+export function useFieldError() {
   const field = useContext(FormFieldContext);
-  const item = useContext(FormItemContext);
+  const form = useFormContext();
 
-  if (!field) {
-    throw new Error('Form field primitives must be used within <FormField>');
-  }
-
-  if (!item) {
-    throw new Error('Form field primitives must be used within <FormItem>');
-  }
-
-  return {
-    name: field.name,
-    id: item.id,
-    required: item.required ?? field.required,
-    formItemId: item.id,
-    formDescriptionId: item.descriptionId,
-    formMessageId: `${item.id}-message`,
-  };
+  return field && form
+    ? form.getFieldState(field.name, form.formState).error
+    : undefined;
 }
 
 export function useFormItemControl({
-  description,
-  id,
   'aria-describedby': describedBy,
-}: Pick<React.ComponentPropsWithoutRef<'input'>, 'aria-describedby' | 'id'> & {
-  description?: FormDescriptionProps['children'];
-}) {
+  'aria-invalid': invalid,
+  id,
+  required,
+}: Pick<
+  React.ComponentPropsWithoutRef<'input'>,
+  'aria-describedby' | 'aria-invalid' | 'id' | 'required'
+>) {
   const item = useContext(FormItemContext);
+  const field = useContext(FormFieldContext);
+  const error = useFieldError();
+
+  if (!item) {
+    return {
+      'aria-describedby': describedBy,
+      'aria-invalid': invalid,
+      id,
+      required,
+    };
+  }
+
+  const ids = new Set([
+    ...(describedBy?.split(' ') ?? []),
+    item.descriptionId,
+    error ? item.messageId : undefined,
+  ]);
 
   return {
-    id: id ?? item?.id,
-    'aria-describedby':
-      describedBy ?? (item && description ? item.descriptionId : undefined),
+    'aria-describedby': [...ids].filter(Boolean).join(' ') || undefined,
+    'aria-invalid': error ? true : invalid,
+    id: item.id,
+    required: required ?? ((item.required ?? field?.required) || undefined),
   };
 }

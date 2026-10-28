@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { FormDescription, FormLabel } from 'design/components/form';
+import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components/form/context';
 
 import type { Props } from './spec';
@@ -15,33 +15,42 @@ const CLASS_NAME = 'kicl--components--textarea';
  * https://ui.shadcn.com/docs/components/base/textarea
  */
 const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
-  ({ className, description, label, rows, style, ...rest }, ref) => {
-    const control = useFormItemControl({ description, ...rest });
+  ({ description, label, layout, ...props }, ref): React.ReactElement => {
+    const control = useFormItemControl(props);
+
+    if (label || description) {
+      return (
+        <FormItem
+          {...layout}
+          description={description}
+          label={label}
+          required={props.required}
+        >
+          <Textarea {...props} ref={ref} />
+        </FormItem>
+      );
+    }
+
+    const { className, rows, style, ...rest } = props;
 
     return (
-      <>
-        <FormLabel htmlFor={control.id} required={rest.required}>
-          {label}
-        </FormLabel>
-        <textarea
-          ref={ref}
-          className={classNames(CLASS_NAME, 'kicl-font-size-small', className)}
-          rows={rows}
-          // `field-sizing: content` ignores `rows`, so the styles turn it into a
-          // minimum height instead.
-          style={
-            rows
-              ? ({
-                  '--kicl--components--textarea--rows': rows,
-                  ...style,
-                } as never)
-              : style
-          }
-          {...rest}
-          {...control}
-        />
-        <FormDescription>{description}</FormDescription>
-      </>
+      <textarea
+        ref={ref}
+        className={classNames(CLASS_NAME, 'kicl-font-size-small', className)}
+        rows={rows}
+        // `field-sizing: content` ignores `rows`, so the styles turn it into a
+        // minimum height instead.
+        style={
+          rows
+            ? ({
+                '--kicl--components--textarea--rows': rows,
+                ...style,
+              } as never)
+            : style
+        }
+        {...rest}
+        {...control}
+      />
     );
   }
 );

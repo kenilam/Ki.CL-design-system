@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { FormDescription, FormLabel } from 'design/components/form';
+import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components/form/context';
 import {
   InputGroup,
@@ -22,6 +22,7 @@ import { useCopy } from 'design/locales/use-copy';
 import * as Ri from 'react-icons/ri';
 
 // Spec
+import type { FormItemFieldProps } from 'design/components/form';
 import type { InputProps } from 'design/components/input';
 
 // Styles
@@ -29,7 +30,8 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--input--search';
 
-type Props = Omit<InputProps, 'after' | 'type'>;
+type Props = Omit<InputProps, 'after' | 'type' | keyof FormItemFieldProps> &
+  FormItemFieldProps;
 
 /**
  * A search field with a button that clears it. The button only shows while
@@ -38,20 +40,9 @@ type Props = Omit<InputProps, 'after' | 'type'>;
  * `onChange` hears it.
  */
 const SearchInput = React.forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      before,
-      className,
-      description,
-      disabled,
-      label,
-      placeholder,
-      style,
-      ...rest
-    },
-    ref
-  ) => {
-    const control = useFormItemControl({ description, ...rest });
+  ({ description, label, layout, ...props }, ref): React.ReactElement => {
+    const { before, className, disabled, placeholder, style, ...rest } = props;
+    const control = useFormItemControl(props);
     const t = useCopy();
     const node = useRef<HTMLInputElement | null>(null);
 
@@ -71,35 +62,42 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
       element.focus();
     };
 
-    return (
-      <>
-        <FormLabel htmlFor={control.id} required={rest.required}>
-          {label}
-        </FormLabel>
-        <InputGroup
-          className={classNames(CLASS_NAME, className)}
-          disabled={disabled}
-          style={style}
+    if (label || description) {
+      return (
+        <FormItem
+          {...layout}
+          description={description}
+          label={label}
+          required={props.required}
         >
-          {before ?? <Ri.RiSearchLine aria-hidden />}
-          <InputGroupInput
-            {...rest}
-            {...control}
-            placeholder={placeholder ?? t('search')}
-            ref={mergeRefs(node, ref)}
-            type='search'
-          />
-          <InputGroupButton
-            aria-label={t('action_clear')}
-            className={`${CLASS_NAME}__clear`}
-            onClick={clear}
-            type='button'
-          >
-            <Ri.RiCloseLine aria-hidden />
-          </InputGroupButton>
-        </InputGroup>
-        <FormDescription>{description}</FormDescription>
-      </>
+          <SearchInput {...props} ref={ref} />
+        </FormItem>
+      );
+    }
+
+    return (
+      <InputGroup
+        className={classNames(CLASS_NAME, className)}
+        disabled={disabled}
+        style={style}
+      >
+        {before ?? <Ri.RiSearchLine aria-hidden />}
+        <InputGroupInput
+          {...rest}
+          {...control}
+          placeholder={placeholder ?? t('search')}
+          ref={mergeRefs(node, ref)}
+          type='search'
+        />
+        <InputGroupButton
+          aria-label={t('action_clear')}
+          className={`${CLASS_NAME}__clear`}
+          onClick={clear}
+          type='button'
+        >
+          <Ri.RiCloseLine aria-hidden />
+        </InputGroupButton>
+      </InputGroup>
     );
   }
 );

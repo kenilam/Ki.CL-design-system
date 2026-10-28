@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Components
-import { FormDescription, FormLabel } from 'design/components/form';
+import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components/form/context';
 import { Popover, PopoverContent } from 'design/components/popover';
 
@@ -29,7 +29,12 @@ import type { DatePickerProps } from './spec';
 type SingleProps = Extract<DatePickerProps, { mode?: 'single' }>;
 type RangeProps = Extract<DatePickerProps, { mode: 'range' }>;
 
-const DatePicker: React.FC<DatePickerProps> = (props) => {
+const DatePicker: React.FC<DatePickerProps> = ({
+  description,
+  label,
+  layout,
+  ...props
+}) => {
   const t = useCopy();
 
   const {
@@ -50,7 +55,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   const control = useFormItemControl({
     'aria-describedby': ariaDescribedBy,
-    description: props.description,
+    'aria-invalid': ariaInvalid,
     id,
   });
   const isControlled = props.value !== undefined;
@@ -62,6 +67,14 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   const [uncontrolledRange, setUncontrolledRange] = useState(
     mode === 'range' ? (props as RangeProps).defaultValue : undefined
   );
+
+  if (label || description) {
+    return (
+      <FormItem {...layout} description={description} label={label}>
+        <DatePicker {...props} />
+      </FormItem>
+    );
+  }
 
   const selectedSingle =
     mode === 'single'
@@ -77,7 +90,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
         : uncontrolledRange
       : undefined;
 
-  const label =
+  const shown =
     mode === 'range'
       ? formatRange(selectedRange, formatDate, (from, to) =>
           t('date_range', { from, to })
@@ -88,7 +101,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   const context: DatePickerContextValue = {
     disabled,
-    label,
+    label: shown,
     mode,
     onSelectRange: (range) => {
       if (!isControlled) {
@@ -109,13 +122,12 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   return (
     <DatePickerContext.Provider value={context}>
-      <FormLabel htmlFor={control.id}>{props.label}</FormLabel>
       <Popover onOpenChange={setOpen} open={open}>
         <Trigger
           className={className}
           id={control.id}
           aria-describedby={control['aria-describedby']}
-          aria-invalid={ariaInvalid}
+          aria-invalid={control['aria-invalid']}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
         />
@@ -128,7 +140,6 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
           <Calendar />
         </PopoverContent>
       </Popover>
-      <FormDescription>{props.description}</FormDescription>
     </DatePickerContext.Provider>
   );
 };

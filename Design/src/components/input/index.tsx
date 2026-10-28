@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { FormDescription, FormLabel } from 'design/components/form';
+import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components/form/context';
 import { InputGroup } from 'design/components/input-group';
 
@@ -27,21 +27,24 @@ const CLASS_NAME = 'kicl--components--input';
  * placeholders end in an ellipsis rather than being cut.
  */
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  (
-    {
-      after,
-      before,
-      className,
-      description,
-      label,
-      style,
-      type = 'text',
-      ...rest
-    },
-    ref
-  ) => {
+  ({ description, label, layout, ...props }, ref): React.ReactElement => {
+    const control = useFormItemControl(props);
+
+    if (label || description) {
+      return (
+        <FormItem
+          {...layout}
+          description={description}
+          label={label}
+          required={props.required}
+        >
+          <Input {...props} ref={ref} />
+        </FormItem>
+      );
+    }
+
+    const { after, before, className, style, type = 'text', ...rest } = props;
     const grouped = Boolean(before || after);
-    const control = useFormItemControl({ description, ...rest });
 
     const input = (
       <input
@@ -60,32 +63,26 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
       />
     );
 
+    if (!grouped) {
+      return input;
+    }
+
     return (
-      <>
-        <FormLabel htmlFor={control.id} required={rest.required}>
-          {label}
-        </FormLabel>
-        {grouped ? (
-          <InputGroup
-            className={classNames(
-              {
-                'kicl-padding-inline-end-narrow': after,
-                'kicl-padding-inline-start-narrow': before,
-              },
-              className
-            )}
-            is='label'
-            style={style}
-          >
-            {before}
-            {input}
-            {after}
-          </InputGroup>
-        ) : (
-          input
+      <InputGroup
+        className={classNames(
+          {
+            'kicl-padding-inline-end-narrow': after,
+            'kicl-padding-inline-start-narrow': before,
+          },
+          className
         )}
-        <FormDescription>{description}</FormDescription>
-      </>
+        is='label'
+        style={style}
+      >
+        {before}
+        {input}
+        {after}
+      </InputGroup>
     );
   }
 );

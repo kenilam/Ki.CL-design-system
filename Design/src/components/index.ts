@@ -127,14 +127,12 @@ import {
   InputGroup,
   InputGroupButton,
   InputGroupInput,
-  InputGroupText,
   InputGroupTextarea,
   type InputGroupButtonProps,
   type InputGroupInputProps,
   type InputGroupIs,
   type InputGroupProps,
   type InputGroupTextareaProps,
-  type InputGroupTextProps,
 } from './input-group';
 import { Layout, LayoutProps } from './layout';
 import { List, ListProps } from './list';
@@ -332,8 +330,6 @@ export {
   type InputGroupInputProps,
   type InputGroupIs,
   type InputGroupProps,
-  InputGroupText,
-  type InputGroupTextProps,
   InputGroupTextarea,
   type InputGroupTextareaProps,
   Layout,

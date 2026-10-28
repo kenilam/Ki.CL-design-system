@@ -18,7 +18,6 @@ import { CLASS_NAME } from './constants';
 // Partials
 import { InputGroupButton } from './button';
 import { InputGroupInput } from './input';
-import { InputGroupText } from './text';
 import { InputGroupTextarea } from './textarea';
 
 /**
@@ -56,13 +55,11 @@ export type {
   InputGroupIs,
   InputGroupProps,
   InputGroupTextareaProps,
-  InputGroupTextProps,
 } from './spec';
 
 export {
   InputGroupButton,
   InputGroupInput,
-  InputGroupText,
   InputGroupTextarea,
   InputGroup,
 };

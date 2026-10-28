@@ -26,5 +26,3 @@ export type InputGroupButtonProps = Pick<ButtonProps, 'children'> &
 export type InputGroupInputProps = ComponentPropsWithoutRef<'input'>;
 
 export type InputGroupTextareaProps = ComponentPropsWithoutRef<'textarea'>;
-
-export type InputGroupTextProps = ComponentPropsWithoutRef<'span'>;

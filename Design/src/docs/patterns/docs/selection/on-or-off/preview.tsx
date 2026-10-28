@@ -6,7 +6,11 @@ const Preview: React.FC = () => {
   const [on, setOn] = useState(true);
 
   return (
-    <Card header={<CardTitle is='h3'>Order updates</CardTitle>} size={4}>
+    <Card
+      is='section'
+      header={<CardTitle is='h3'>Order updates</CardTitle>}
+      size={4}
+    >
       <Switch checked={on} onCheckedChange={setOn}>
         Text me about my order
       </Switch>

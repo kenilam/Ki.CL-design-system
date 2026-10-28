@@ -3,7 +3,7 @@ import React from 'react';
 import { Breadcrumb, Card } from 'design/components';
 
 const Preview: React.FC = () => (
-  <Card size={3}>
+  <Card is='section' size={3}>
     <Breadcrumb
       crumbs={[
         { name: 'Shop', to: '#shop' },

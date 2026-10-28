@@ -9,7 +9,6 @@ import {
   Card,
   CardDescription,
   CardTitle,
-  Layout,
   List,
   ListItem,
   Text,
@@ -39,6 +38,7 @@ const Themes: React.FunctionComponent = () => {
           key={theme}
         >
           <Card
+            is='section'
             header={
               <>
                 <CardTitle is='h4'>
@@ -50,21 +50,21 @@ const Themes: React.FunctionComponent = () => {
               </>
             }
           >
-            <Layout
+            <List
               alignItems='center'
               autoFlow='row'
               display='flex'
               gap='narrow'
               wrap
             >
-              <div>
-                {VARIANTS.map((variant) => (
-                  <Button key={variant} size='small' variant={variant}>
+              {VARIANTS.map((variant) => (
+                <ListItem key={variant}>
+                  <Button size='small' variant={variant}>
                     {variant}
                   </Button>
-                ))}
-              </div>
-            </Layout>
+                </ListItem>
+              ))}
+            </List>
           </Card>
         </ListItem>
       ))}

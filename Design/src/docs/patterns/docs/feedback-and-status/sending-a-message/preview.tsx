@@ -42,7 +42,11 @@ const Preview: React.FC = () => {
   };
 
   return (
-    <Card header={<CardTitle is='h3'>Message us</CardTitle>} size={5}>
+    <Card
+      is='section'
+      header={<CardTitle is='h3'>Message us</CardTitle>}
+      size={5}
+    >
       {phase === 'sent' ? (
         <>
           <Text level='confirm' role='status'>

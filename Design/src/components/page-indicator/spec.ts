@@ -7,6 +7,6 @@ export type Page = {
   label: string;
 };
 
-export type Props = CardProps & {
+export type Props = Omit<Extract<CardProps, { is: 'nav' }>, 'is'> & {
   pages: readonly Page[];
 };

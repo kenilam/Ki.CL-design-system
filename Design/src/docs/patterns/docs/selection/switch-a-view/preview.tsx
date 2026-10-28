@@ -17,6 +17,7 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       header={
         <Layout
           alignItems='center'

@@ -8,7 +8,6 @@ import { useParams } from 'design/router';
 // Components
 import {
   Card,
-  CardContent,
   Layout,
   Segmented,
   SegmentedItem,
@@ -259,7 +258,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
 
   const [values, setValues] = useState<Values>(written);
   const [dark, setDark] = useState<boolean>();
-  const [stage, setStage] = useState<HTMLDivElement | null>(null);
+  const [stage, setStage] = useState<HTMLElement | null>(null);
   const [output, setOutput] = useState('');
 
   useEffect(() => {
@@ -332,31 +331,30 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
 
   return (
     <StageContext.Provider value={{ dark, setDark }}>
-      <Card gap='normal' key={preset.props.name} variant='tertiary'>
+      <Card
+        gap='normal'
+        is='section'
+        key={preset.props.name}
+        variant='tertiary'
+      >
         {presets.length > 1 ? (
-          // A row that wraps, so each field keeps its own width.
-          <Layout alignItems='end' display='flex' gap='wide' wrap>
-            <CardContent>
-              <Segmented
-                collapse='popover'
-                collapsed
-                onValueChange={pick}
-                value={chosen}
-              >
-                <legend>{t('docs_preset')}</legend>
-                {presets.map(({ props: { name } }) => (
-                  <SegmentedItem key={name} value={name}>
-                    {name}
-                  </SegmentedItem>
-                ))}
-              </Segmented>
-            </CardContent>
-          </Layout>
+          <Segmented
+            className='kicl-justify-self-start'
+            collapse='popover'
+            collapsed
+            onValueChange={pick}
+            value={chosen}
+          >
+            <legend>{t('docs_preset')}</legend>
+            {presets.map(({ props: { name } }) => (
+              <SegmentedItem key={name} value={name}>
+                {name}
+              </SegmentedItem>
+            ))}
+          </Segmented>
         ) : null}
         {preset.props.description ? (
-          <CardContent>
-            <Text variant='secondary'>{preset.props.description}</Text>
-          </CardContent>
+          <Text variant='secondary'>{preset.props.description}</Text>
         ) : null}
         {/* A spanned stage stretches the example, so a field fills it as it would a form. */}
         <Layout
@@ -366,7 +364,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
           justifyItems={span ? undefined : 'center'}
         >
           {/* A theme of its own once a preset sets one, with the theme's colours. */}
-          <div
+          <figure
             className={classNames(
               'kicl-min-block-size-columns-1',
               span && [
@@ -393,14 +391,14 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
             ref={setStage}
           >
             {dressed(preset.props.children, props)}
-          </div>
+          </figure>
         </Layout>
         {hasControls ? (
           // Each field keeps its width, and has a row of its own on phones.
           <Layout alignItems='end' display='flex' gap='normal' wrap='stack'>
-            <CardContent>
+            <form>
               <Controls controls={controls} onChange={set} values={values} />
-            </CardContent>
+            </form>
           </Layout>
         ) : null}
         <Code className='kicl-min-block-size-columns-2'>

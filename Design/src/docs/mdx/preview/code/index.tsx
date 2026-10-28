@@ -7,7 +7,7 @@ import { Highlight, themes } from 'prism-react-renderer';
 // Components
 import {
   Card,
-  CardContent,
+  CardAction,
   CardTitle,
   CopyButton,
   Text,
@@ -23,7 +23,7 @@ type Props = {
   children: string;
   language?: 'markup' | 'tsx';
   title?: string;
-} & Pick<React.ComponentProps<typeof CardContent>, 'className'>;
+} & Pick<React.ComponentProps<'pre'>, 'className'>;
 
 /** A block of JSX or HTML, highlighted, in a card whose header holds the button that copies it. */
 const Code: React.FunctionComponent<Props> = ({
@@ -38,49 +38,45 @@ const Code: React.FunctionComponent<Props> = ({
   return (
     <Card
       gap='narrow'
-      header={<CardTitle is='h3'>{title ?? t('docs_code')}</CardTitle>}
+      header={
+        <>
+          <CardTitle is='h3'>{title ?? t('docs_code')}</CardTitle>
+          <CardAction>
+            <CopyButton size='small' value={children} variant='secondary' />
+          </CardAction>
+        </>
+      }
+      is='section'
       size='default'
     >
-      <CardContent className={classNames('kicl-position-relative', className)}>
-        <Highlight
-          code={children}
-          language={language}
-          theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
-        >
-          {({ getLineProps, getTokenProps, tokens }) => (
-            <Text
-              // A long line wraps, as `pre` does here, so a phone sees it all.
-              className={classNames(
-                'kicl-inline-size-full',
-                'kicl-line-height-wide'
-              )}
-              is='pre'
-            >
-              <Text is='code'>
-                {tokens.map((line, index) => (
-                  <span {...getLineProps({ line })} key={index}>
-                    {line.map((token, position) => (
-                      <span {...getTokenProps({ token })} key={position} />
-                    ))}
-                    {'\n'}
-                  </span>
-                ))}
-              </Text>
+      <Highlight
+        code={children}
+        language={language}
+        theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
+      >
+        {({ getLineProps, getTokenProps, tokens }) => (
+          <Text
+            // A long line wraps, as `pre` does here, so a phone sees it all.
+            className={classNames(
+              'kicl-inline-size-full',
+              'kicl-line-height-wide',
+              className
+            )}
+            is='pre'
+          >
+            <Text is='code'>
+              {tokens.map((line, index) => (
+                <span {...getLineProps({ line })} key={index}>
+                  {line.map((token, position) => (
+                    <span {...getTokenProps({ token })} key={position} />
+                  ))}
+                  {'\n'}
+                </span>
+              ))}
             </Text>
-          )}
-        </Highlight>
-        <CopyButton
-          className={classNames(
-            'kicl-position-absolute',
-            'kicl-inset-block-start',
-            'kicl-inset-inline-end',
-            'kicl-z-index-floating'
-          )}
-          size='small'
-          value={children}
-          variant='secondary'
-        />
-      </CardContent>
+          </Text>
+        )}
+      </Highlight>
     </Card>
   );
 };

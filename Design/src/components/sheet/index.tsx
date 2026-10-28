@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { Button } from 'design/components/button';
-import { Card, CardAction, CardContent } from 'design/components/card';
+import { Card, CardAction } from 'design/components/card';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -245,14 +245,14 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
           </SheetHeader>
         )}
         {shown ? (
-          <CardContent
+          <section
             className={classNames(
               'kicl-padding-block-end-narrow',
               'kicl-padding-inline'
             )}
           >
             {children}
-          </CardContent>
+          </section>
         ) : null}
         {shown && footer && (
           <SheetFooter justifyContent='end'>{footer}</SheetFooter>

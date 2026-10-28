@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 import type { LookProps } from 'design/components/button/spec';
 import type { Props as LayoutProps } from 'design/components/layout/spec';
@@ -38,15 +38,15 @@ export type { Level as CardLevel } from 'design/components/spec';
  * that opens over the page, as `Sheet` does.
  */
 export type CardIs =
-  'article' | 'aside' | 'dialog' | 'div' | 'form' | 'li' | 'nav' | 'section';
+  'article' | 'aside' | 'dialog' | 'form' | 'li' | 'nav' | 'section';
 
 /** Title hosts - headings or generic text containers. */
 export type CardTitleIs =
-  'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 
-export type CardDescriptionIs = 'div' | 'p' | 'span';
+export type CardDescriptionIs = 'p' | 'span';
 
-export type CardSectionIs = 'div' | 'footer' | 'header' | 'section';
+export type CardSectionIs = 'footer' | 'header' | 'section';
 
 /**
  * `level` is what the card means, as on `Button` and `Badge`: its edge takes
@@ -71,11 +71,15 @@ type CardOwnProps = {
     'gap'
   >;
 
-export type CardProps = PolymorphicIsProps<CardIs, CardOwnProps, 'div'>;
+export type CardProps = PolymorphicIsProps<CardIs, CardOwnProps, never>;
 
-export type CardHeaderProps = PolymorphicIsProps<CardSectionIs, object, 'div'>;
+export type CardHeaderProps = PolymorphicIsProps<
+  CardSectionIs,
+  object,
+  'header'
+>;
 
-export type CardTitleProps = PolymorphicIsProps<CardTitleIs, object, 'div'>;
+export type CardTitleProps = PolymorphicIsProps<CardTitleIs, object, never>;
 
 export type CardDescriptionProps = PolymorphicIsProps<
   CardDescriptionIs,
@@ -83,10 +87,14 @@ export type CardDescriptionProps = PolymorphicIsProps<
   'p'
 >;
 
-export type CardActionProps = PolymorphicIsProps<CardSectionIs, object, 'div'>;
+export type CardActionProps = {
+  children: ReactElement<{ className?: string }>;
+};
 
-export type CardContentProps = PolymorphicIsProps<CardSectionIs, object, 'div'>;
-
-export type CardFooterProps = PolymorphicIsProps<CardSectionIs, object, 'div'> &
+export type CardFooterProps = PolymorphicIsProps<
+  CardSectionIs,
+  object,
+  'footer'
+> &
   /** Where the actions sit along the footer. They fill it unless told otherwise. */
   Pick<LayoutProps, 'justifyContent'>;

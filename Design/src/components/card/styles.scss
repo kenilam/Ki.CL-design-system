@@ -17,6 +17,10 @@
   max-inline-size: 100%;
   padding: var(--kicl--components--card--spacing);
 
+  > * {
+    min-inline-size: 0;
+  }
+
   // A card split between two sheets keeps its edge and its padding on both.
   @media print {
     box-decoration-break: clone;
@@ -28,9 +32,7 @@
 
   // The edge takes the level's colour: a card that's chosen, or needs attention.
   &[class*='kicl--components--card--level--']:not(&--level--neutral) {
-    --kicl--components--card--border-color: var(
-      --kicl--components--card--tone
-    );
+    --kicl--components--card--border-color: var(--kicl--components--card--tone);
   }
 
   // The card an in-page link jumped to, so it's clear which one of a list was
@@ -69,8 +71,8 @@
     --kicl--components--card--border-color: transparent;
 
     &[class*='kicl--components--card--level--']:not(
-      .kicl--components--card--level--neutral
-    ) {
+        .kicl--components--card--level--neutral
+      ) {
       --kicl--components--card--background-color: color-mix(
         in srgb,
         var(--kicl--components--card--tone) 12%,
@@ -92,8 +94,8 @@
 
   // With a title and nothing under it, the action centres on the title's line.
   &:has(.kicl--components--card__action):not(
-    :has(.kicl--components--card__description)
-  ) {
+      :has(.kicl--components--card__description)
+    ) {
     align-items: center;
   }
 
@@ -106,12 +108,4 @@
   grid-column: 2;
   grid-row: 1;
   justify-self: end;
-}
-
-.kicl--components--card__content {
-  min-inline-size: 0;
-}
-
-.kicl--components--card__footer {
-  min-inline-size: 0;
 }

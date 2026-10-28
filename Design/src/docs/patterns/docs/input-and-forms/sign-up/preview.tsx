@@ -28,7 +28,11 @@ const Preview: React.FC = () => {
 
   if (created) {
     return (
-      <Card header={<CardTitle is='h3'>You're in</CardTitle>} size={5}>
+      <Card
+        is='section'
+        header={<CardTitle is='h3'>You're in</CardTitle>}
+        size={5}
+      >
         <Text level='confirm' role='status'>
           We sent a link to {created} to confirm it's yours.
         </Text>
@@ -46,7 +50,11 @@ const Preview: React.FC = () => {
   }
 
   return (
-    <Card header={<CardTitle is='h3'>Create an account</CardTitle>} size={5}>
+    <Card
+      header={<CardTitle is='h3'>Create an account</CardTitle>}
+      is='section'
+      size={5}
+    >
       <Form
         {...form}
         onSubmit={form.handleSubmit(({ email }) => setCreated(email))}

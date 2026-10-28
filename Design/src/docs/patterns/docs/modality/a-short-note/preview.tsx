@@ -13,7 +13,7 @@ import {
 } from 'design/components';
 
 const Preview: React.FC = () => (
-  <Card header={<CardTitle is='h3'>Summary</CardTitle>} size={5}>
+  <Card is='section' header={<CardTitle is='h3'>Summary</CardTitle>} size={5}>
     <Layout alignItems='center' autoFlow='column' frames='auto--max-content'>
       <div>
         <Text is='span'>Total</Text>

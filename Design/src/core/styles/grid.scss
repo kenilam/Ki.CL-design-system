@@ -11,10 +11,14 @@
   }
 }
 
-// Where one item sits in its row, such as a one-line skeleton in a row a
-// taller card sets.
+// Where one item sits in its row or column, such as a one-line skeleton in a
+// row a taller card sets.
 @each $value in start, center, end, stretch {
   .kicl-align-self-#{$value} {
     align-self: #{$value};
+  }
+
+  .kicl-justify-self-#{$value} {
+    justify-self: #{$value};
   }
 }

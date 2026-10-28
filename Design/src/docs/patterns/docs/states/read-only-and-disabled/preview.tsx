@@ -25,7 +25,7 @@ const Preview: React.FC = () => {
   const pro = useWatch({ control: form.control, name: 'pro' });
 
   return (
-    <Card header={<CardTitle is='h3'>Account</CardTitle>} size={5}>
+    <Card is='section' header={<CardTitle is='h3'>Account</CardTitle>} size={5}>
       <Form {...form} onSubmit={form.handleSubmit(() => {})}>
         <FormField
           control={form.control}

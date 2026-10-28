@@ -36,7 +36,11 @@ const Preview: React.FC = () => {
     extras.reduce((sum, extra) => sum + EXTRAS[extra], 0);
 
   return (
-    <Card header={<CardTitle is='h3'>Your order</CardTitle>} size={5}>
+    <Card
+      is='section'
+      header={<CardTitle is='h3'>Your order</CardTitle>}
+      size={5}
+    >
       <Form
         {...form}
         onSubmit={form.handleSubmit((values) => form.reset(values))}

@@ -21,6 +21,7 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       header={
         <>
           <CardTitle is='h3'>Notifications</CardTitle>

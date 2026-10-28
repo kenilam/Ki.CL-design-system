@@ -1,22 +1,16 @@
 import React from 'react';
 
-import {
-  Button,
-  Card,
-  CardContent,
-  CardTitle,
-  Layout,
-} from 'design/components';
+import { Button, Card, CardTitle, Layout } from 'design/components';
 
 import type { RowProps } from 'design/components/layout/docs/controls';
 
 const Preview: React.FC<RowProps> = (props) => (
-  <Card header={<CardTitle is='h3'>Unsaved changes</CardTitle>}>
+  <Card header={<CardTitle is='h3'>Unsaved changes</CardTitle>} is='section'>
     <Layout autoFlow='column' gap='narrow' justifyContent='end' {...props}>
-      <CardContent>
+      <footer>
         <Button variant='secondary'>Cancel</Button>
         <Button>Save</Button>
-      </CardContent>
+      </footer>
     </Layout>
   </Card>
 );

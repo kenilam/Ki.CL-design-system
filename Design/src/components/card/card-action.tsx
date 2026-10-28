@@ -1,25 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type { CardActionProps, CardSectionIs } from './spec';
+import type { CardActionProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--card__action';
 
-const CardAction = React.forwardRef<HTMLElement, CardActionProps>(
-  ({ children, className, is = 'div', ...rest }, ref) => {
-    const Component = is as CardSectionIs;
+const CardAction: React.FC<CardActionProps> = ({ children }) => {
+  const child = React.Children.only(children);
 
-    return (
-      <Component
-        {...(rest as React.HTMLAttributes<HTMLElement>)}
-        className={classNames(CLASS_NAME, className)}
-        ref={ref as never}
-      >
-        {children}
-      </Component>
-    );
-  }
-);
+  return React.cloneElement(child, {
+    className: classNames(CLASS_NAME, child.props.className),
+  });
+};
 
 CardAction.displayName = 'CardAction';
 

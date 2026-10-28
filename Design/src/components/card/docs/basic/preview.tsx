@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Button,
   Card,
-  CardContent,
   CardDescription,
   CardTitle,
   Text,
@@ -13,6 +12,7 @@ import type { Props } from 'design/components/card/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
   <Card
+    is='article'
     footer={<Button>Open</Button>}
     header={
       <>
@@ -25,9 +25,7 @@ const Preview: React.FC<Props> = (props) => (
     size={4}
     {...props}
   >
-    <CardContent>
-      <Text>Drag the globe to turn it.</Text>
-    </CardContent>
+    <Text>Drag the globe to turn it.</Text>
   </Card>
 );
 

@@ -10,7 +10,6 @@ const Preview: React.FC<Props> = (props) => (
       Open
     </Button>
     <Dialog
-      className='kicl-min-block-size-columns-3'
       header={
         <Heading dense is='h2' lookLike='h4'>
           Daylight

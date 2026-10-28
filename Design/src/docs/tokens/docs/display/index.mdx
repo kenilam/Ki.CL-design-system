@@ -70,7 +70,7 @@ Single keywords only: the two-value syntax, like `block flow`, has no class.
 
 `kicl-grid-template-rows-subgrid` makes a grid item a grid on its parent's rows, and `kicl-grid-row-span-{1…6}` says how many rows it takes. Cards in a grid line up their parts this way: each card takes as many rows as it has parts, and the tallest picture, title or description in a row sets that row for every card.
 
-An item stretches to its row unless told otherwise: `kicl-align-self-{start|center|end|stretch}` sets where it sits.
+An item stretches to its row unless told otherwise: `kicl-align-self-{start|center|end|stretch}` sets where it sits in the row, and `kicl-justify-self-{start|center|end|stretch}` where it sits across its column.
 
 ```tsx
 <List fill={6}>

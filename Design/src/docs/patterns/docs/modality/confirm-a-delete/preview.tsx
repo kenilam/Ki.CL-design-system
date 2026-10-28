@@ -21,7 +21,7 @@ const Preview: React.FC = () => {
   const [deleted, setDeleted] = useState('');
 
   return (
-    <Card header={<CardTitle is='h3'>Drafts</CardTitle>} size={5}>
+    <Card is='section' header={<CardTitle is='h3'>Drafts</CardTitle>} size={5}>
       <List gap='narrow'>
         {drafts.map((draft) => (
           <ListItem

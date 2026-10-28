@@ -21,6 +21,7 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       header={
         <>
           <CardTitle is='h3'>Notifications</CardTitle>
@@ -35,7 +36,7 @@ const Preview: React.FC = () => {
         frames='auto--max-content'
         gap='normal'
       >
-        <div>
+        <p>
           <Switch onCheckedChange={save}>Email me my receipts</Switch>
           <Text
             className='kicl-font-size-small'
@@ -54,7 +55,7 @@ const Preview: React.FC = () => {
               </>
             )}
           </Text>
-        </div>
+        </p>
       </Layout>
     </Card>
   );

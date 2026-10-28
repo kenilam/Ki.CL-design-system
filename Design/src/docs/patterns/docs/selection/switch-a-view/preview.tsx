@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import {
   Card,
+  CardAction,
   CardTitle,
-  Layout,
   List,
   Segmented,
   SegmentedItem,
@@ -17,20 +17,17 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       header={
-        <Layout
-          alignItems='center'
-          autoFlow='column'
-          frames='auto--max-content'
-        >
-          <div>
-            <CardTitle is='h3'>Saved places</CardTitle>
+        <>
+          <CardTitle is='h3'>Saved places</CardTitle>
+          <CardAction>
             <Segmented aria-label='View' onValueChange={setView} value={view}>
               <SegmentedItem value='list'>List</SegmentedItem>
               <SegmentedItem value='grid'>Grid</SegmentedItem>
             </Segmented>
-          </div>
-        </Layout>
+          </CardAction>
+        </>
       }
       size={5}
     >

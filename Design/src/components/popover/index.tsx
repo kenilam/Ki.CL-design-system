@@ -1,11 +1,5 @@
 import React, { useId, useState } from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
-// Components
-import { Layout } from 'design/components/layout';
-
 // Spec
 import type { PopoverProps } from './spec';
 
@@ -35,15 +29,10 @@ import { PopoverTrigger } from './trigger';
  */
 const Popover: React.FC<PopoverProps> = ({
   children,
-  className,
   defaultOpen = false,
-  display = 'inline-grid',
-  gap = 'none',
   inline = false,
-  justifyItems,
   onOpenChange,
   open,
-  ...rest
 }) => {
   const isControlled = open !== undefined;
   const [uncontrolled, setUncontrolled] = useState(defaultOpen);
@@ -67,15 +56,6 @@ const Popover: React.FC<PopoverProps> = ({
     onOpenChange?.(next);
   };
 
-  /*
-   * Declared on the wrapper so both the trigger and the panel inherit one
-   * name. An anchor name has to be a literal in the stylesheet, and a
-   * component may be on the page many times over - passing it through a
-   * custom property is what keeps each pair talking only to itself.
-   */
-  const style = { [`--${CLASS_NAME}--anchor`]: anchor } as React.CSSProperties;
-  const state = isOpen ? 'open' : 'closed';
-
   return (
     <PopoverContext.Provider
       value={{
@@ -90,32 +70,7 @@ const Popover: React.FC<PopoverProps> = ({
         setOpen,
       }}
     >
-      {inline ? (
-        /*
-         * `display: contents`, so the trigger sits in the line as if the
-         * wrapper weren't there. The custom property still inherits, because
-         * inheritance follows the elements, not the boxes.
-         */
-        <span
-          className={classNames(CLASS_NAME, 'kicl-display-contents', className)}
-          data-state={state}
-          style={style}
-          {...(rest as React.HTMLAttributes<HTMLSpanElement>)}
-        >
-          {children}
-        </span>
-      ) : (
-        <Layout display={display} gap={gap} justifyItems={justifyItems}>
-          <div
-            className={classNames(CLASS_NAME, className)}
-            data-state={state}
-            style={style}
-            {...rest}
-          >
-            {children}
-          </div>
-        </Layout>
-      )}
+      {children}
     </PopoverContext.Provider>
   );
 };

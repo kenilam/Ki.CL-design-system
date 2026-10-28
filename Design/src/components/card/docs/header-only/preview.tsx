@@ -6,6 +6,7 @@ import type { Props } from 'design/components/card/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
   <Card
+    is='article'
     header={
       <>
         <CardTitle is='h3'>Daylight</CardTitle>

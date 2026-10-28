@@ -1,8 +1,11 @@
 import React from 'react';
 
 // Components
-import { InputGroupButton } from 'design/components/input-group';
-import { Input } from 'design/components/input';
+import {
+  InputGroup,
+  InputGroupButton,
+  InputGroupInput,
+} from 'design/components/input-group';
 
 // Hooks
 import { useClipboard } from 'design/hooks/use-clipboard';
@@ -16,7 +19,7 @@ import * as Ri from 'react-icons/ri';
 // Spec
 import type { InputProps } from 'design/components/input';
 
-type Props = Omit<InputProps, 'readOnly' | 'value'> & {
+type Props = Omit<InputProps, 'after' | 'label' | 'readOnly' | 'value'> & {
   /** What the field shows and the button copies. */
   value: string;
 };
@@ -26,29 +29,24 @@ type Props = Omit<InputProps, 'readOnly' | 'value'> & {
  * or a command. A long value ends in an ellipsis; the copy is always whole.
  */
 const CopyInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ value, ...rest }, ref) => {
+  ({ before, className, disabled, style, value, ...rest }, ref) => {
     const { copied, copy } = useClipboard();
     const t = useCopy();
 
     const Icon = copied ? Ri.RiCheckLine : Ri.RiFileCopyLine;
 
     return (
-      <Input
-        {...rest}
-        // The input group's own button, which sits in the field, on the copy hook.
-        after={
-          <InputGroupButton
-            aria-label={t(copied ? 'status_copied' : 'action_copy')}
-            onClick={() => void copy(value)}
-            type='button'
-          >
-            <Icon aria-hidden />
-          </InputGroupButton>
-        }
-        readOnly
-        ref={ref}
-        value={value}
-      />
+      <InputGroup className={className} disabled={disabled} style={style}>
+        {before}
+        <InputGroupInput {...rest} readOnly ref={ref} value={value} />
+        <InputGroupButton
+          aria-label={t(copied ? 'status_copied' : 'action_copy')}
+          onClick={() => void copy(value)}
+          type='button'
+        >
+          <Icon aria-hidden />
+        </InputGroupButton>
+      </InputGroup>
     );
   }
 );

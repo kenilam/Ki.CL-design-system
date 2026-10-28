@@ -115,6 +115,10 @@ $gaps: (
       overlay var(--kicl-transition-duration-fast) allow-discrete;
     translate: var(--kicl--components--popover--enter);
 
+    &:not(:popover-open) {
+      display: none;
+    }
+
     &:popover-open {
       opacity: 1;
       translate: 0 0;
@@ -216,22 +220,20 @@ $gaps: (
       --kicl--components--popover--border-color: transparent;
     }
 
-    &:has(> .kicl--components--popover__viewport) {
+    &:popover-open:has(> :only-child:not(table)) {
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       padding: 0;
 
-      &:popover-open {
-        display: grid;
-        grid-template-rows: minmax(0, 1fr);
+      > * {
+        @include scroll-fade;
+
+        min-block-size: 0;
+        overflow-y: auto;
+        padding: var(--kicl--components--popover--padding);
       }
     }
-  }
-
-  &__viewport {
-    @include scroll-fade;
-
-    overflow-y: auto;
-    padding: var(--kicl--components--popover--padding);
   }
 }
 

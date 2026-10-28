@@ -31,6 +31,7 @@ const Preview: React.FC = () => {
 
   return (
     <Card
+      is='section'
       aria-busy={loading}
       footer={
         <Button

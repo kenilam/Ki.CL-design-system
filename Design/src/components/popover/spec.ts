@@ -1,30 +1,19 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import type { Props as LayoutProps } from 'design/components/layout/spec';
 import { ALIGNS, SIDES, VARIANTS } from 'design/components/spec';
 import type { Align, Gap, Side, Variant } from 'design/components/spec';
 
-export type PopoverProps = ComponentPropsWithoutRef<'div'> & {
+export type PopoverProps = {
+  children?: ReactNode;
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-} & (
-    | {
-        /**
-         * For a trigger inside running text, such as a highlighted phrase.
-         * The wrapper leaves the line alone, so the trigger can wrap like the
-         * words around it, and the panel is rendered at the end of the page,
-         * where a block is valid markup.
-         */
-        inline: true;
-        display?: never;
-        gap?: never;
-        justifyItems?: never;
-      }
-    | ({
-        inline?: false;
-      } & Pick<LayoutProps, 'display' | 'gap' | 'justifyItems'>)
-  );
+  /**
+   * For a trigger inside running text, such as a highlighted phrase. The
+   * panel is rendered at the end of the page, where a block is valid markup.
+   */
+  inline?: boolean;
+};
 
 export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> & {
   /**
@@ -64,7 +53,9 @@ export const POPOVER_VARIANTS = VARIANTS.filter(
 );
 
 /** Named by the trigger's text by default; pass `aria-label` or `aria-labelledby` to override. */
-export type PopoverContentProps = ComponentPropsWithoutRef<'div'> & {
+export type PopoverContentProps = ComponentPropsWithoutRef<'section'> & {
+  /** Keeps what's inside in the page while closed, for a panel that CSS lays out in place at some widths. */
+  forceMount?: boolean;
   placement?: PopoverPlacement;
   /** The gap to the trigger, on the gutter scale `Layout` uses for `gap`. */
   offset?: Gap;
@@ -72,4 +63,4 @@ export type PopoverContentProps = ComponentPropsWithoutRef<'div'> & {
 };
 
 /** Words only, named by the trigger with `aria-describedby`. */
-export type PopoverHintProps = Omit<PopoverContentProps, 'role'>;
+export type PopoverHintProps = Omit<PopoverContentProps, 'forceMount' | 'role'>;

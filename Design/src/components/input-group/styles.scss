@@ -17,13 +17,8 @@
   border: var(--kicl--components--input-group--border-width) solid
     var(--kicl--components--input-group--border-color);
   border-radius: var(--kicl--components--input-group--border-radius);
-
-  // The control's column takes the width the addons beside it leave. An empty
-  // side has no track, so it adds no gap.
-  grid-template-columns:
-    var(--kicl--components--input-group--start-track,)
-    1fr
-    var(--kicl--components--input-group--end-track,);
+  margin: 0;
+  min-inline-size: 0;
   padding-block: var(--kicl--components--input-group--padding-block);
   padding-inline: var(--kicl--components--input-group--padding-inline-start)
     var(--kicl--components--input-group--padding-inline-end);
@@ -32,19 +27,25 @@
     --kicl--components--input--border-radius: 0;
   }
 
-  // An addon before the control sits at the start, one after it at the end.
-  &:has(> &__addon + &__control) {
+  // Something before the control sits at the start, something after it at the end.
+  &:has(> :not(&__control) + &__control) {
     --kicl--components--input-group--padding-inline-start: var(
       --kicl-gutter-narrow
     );
-    --kicl--components--input-group--start-track: max-content;
   }
 
-  &:has(> &__control + &__addon) {
+  &:has(> &__control + *) {
     --kicl--components--input-group--padding-inline-end: var(
       --kicl-gutter-narrow
     );
-    --kicl--components--input-group--end-track: max-content;
+  }
+
+  &:disabled {
+    opacity: var(--kicl-disabled-opacity);
+
+    :disabled {
+      opacity: 1;
+    }
   }
 
   // The group takes the read-only fill, since its control is transparent.
@@ -91,6 +92,7 @@
     --kicl--components--textarea--padding-inline: 0;
 
     background: transparent;
+    flex: 1 1 0;
     min-inline-size: 0;
 
     &:focus-visible {

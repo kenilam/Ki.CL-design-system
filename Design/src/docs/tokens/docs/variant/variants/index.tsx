@@ -6,8 +6,8 @@ import {
   Button,
   Card,
   CardTitle,
-  Layout,
   List,
+  ListItem,
   Text,
 } from 'design/components';
 
@@ -32,20 +32,22 @@ const Variants: React.FunctionComponent = () => {
           is='li'
           key={variant}
         >
-          <Layout
+          <List
             alignItems='center'
             autoFlow='row'
             display='flex'
             gap='narrow'
             wrap
           >
-            <div>
+            <ListItem>
               <Button variant={variant}>{variant}</Button>
-              {variant !== 'tertiary' && (
-                <Badge variant={variant}>{variant}</Badge>
-              )}
-            </div>
-          </Layout>
+            </ListItem>
+            {variant !== 'tertiary' && (
+              <Badge is='li' variant={variant}>
+                {variant}
+              </Badge>
+            )}
+          </List>
         </Card>
       ))}
     </List>

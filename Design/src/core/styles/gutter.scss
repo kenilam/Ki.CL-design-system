@@ -98,6 +98,10 @@ $gutter-properties: (
   inset-inline-end: var(--kicl--components--frame--page-inset);
 }
 
+.kicl-inset-block-start-frame {
+  inset-block-start: var(--kicl--components--frame--top);
+}
+
 // Clears the fixed global header, whose height is measured at runtime. The
 // padding keeps its height while it hides, so the page doesn't jump.
 .kicl-padding-block-start-header {

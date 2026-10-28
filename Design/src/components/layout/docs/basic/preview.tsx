@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Button,
   Card,
-  CardContent,
   CardTitle,
   EmailInput,
   Layout,
@@ -15,11 +14,11 @@ import type { StackProps } from 'design/components/layout/docs/controls';
 const Preview: React.FC<StackProps> = (props) => (
   <Card header={<CardTitle is='h3'>Sign in</CardTitle>} is='form' size={4}>
     <Layout gap='normal' {...props}>
-      <CardContent>
+      <fieldset>
         <EmailInput aria-label='Email' placeholder='you@example.com' />
         <PasswordInput aria-label='Password' />
         <Button type='submit'>Sign in</Button>
-      </CardContent>
+      </fieldset>
     </Layout>
   </Card>
 );

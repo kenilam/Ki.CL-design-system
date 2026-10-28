@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardTitle, Details, Text } from 'design/components';
 
 const Preview: React.FC = () => (
-  <Card header={<CardTitle is='h3'>Questions</CardTitle>} size={5}>
+  <Card is='section' header={<CardTitle is='h3'>Questions</CardTitle>} size={5}>
     <Details summary='Can I change my order?'>
       <Text>
         Yes, until it leaves the kitchen. Open the order and choose Edit.

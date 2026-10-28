@@ -4,8 +4,6 @@ import React, { useId, useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from 'design/components/layout';
-import { Separator } from 'design/components/separator';
 
 // Styles
 import './styles.scss';
@@ -30,7 +28,7 @@ import type { CalendarProps, DateRange } from './spec';
  * Month table - used by DatePicker (shadcn composition).
  * https://ui.shadcn.com/docs/components/base/date-picker
  */
-const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
+const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (props, ref) => {
     const {
       className,
@@ -85,26 +83,16 @@ const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
     return (
       <CalendarContext.Provider value={context}>
-        <Layout gap='narrow'>
-          <div
-            ref={ref}
-            className={classNames(CLASS_NAME, className)}
-            {...rest}
-          >
-            <Header />
-            <Separator />
-            <table
-              className={classNames(
-                `${CLASS_NAME}__table`,
-                'kicl-inline-size-full'
-              )}
-              aria-labelledby={titleId}
-            >
-              <Weekdays />
-              <Grid />
-            </table>
-          </div>
-        </Layout>
+        <table
+          ref={ref}
+          aria-labelledby={titleId}
+          className={classNames(CLASS_NAME, className)}
+          {...rest}
+        >
+          <Header />
+          <Weekdays />
+          <Grid />
+        </table>
       </CalendarContext.Provider>
     );
   }

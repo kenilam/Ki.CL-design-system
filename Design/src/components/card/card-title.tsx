@@ -6,7 +6,7 @@ import type { CardTitleIs, CardTitleProps } from './spec';
 const CLASS_NAME = 'kicl--components--card__title';
 
 const CardTitle = React.forwardRef<HTMLElement, CardTitleProps>(
-  ({ children, className, is = 'div', ...rest }, ref) => {
+  ({ children, className, is, ...rest }, ref) => {
     const Component = is as CardTitleIs;
 
     return (

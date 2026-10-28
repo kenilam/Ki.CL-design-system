@@ -73,43 +73,45 @@ const Search: React.FunctionComponent<
     : [];
 
   return (
-    <Combobox className={className} open={normalised ? undefined : false}>
-      <ComboboxAnchor>
-        <SearchInput
-          aria-keyshortcuts='/'
-          aria-label={t('docs_search')}
-          onFocus={load}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder={t('docs_search')}
-          ref={field}
-          value={query}
-        />
-      </ComboboxAnchor>
-      <ComboboxContent aria-label={t('docs_search_results')}>
-        {matches.length ? (
-          <List gap='normal'>
-            {matches.map((entry) => (
-              <ListItem gap='narrowest' key={`${entry.name}:${entry.path}`}>
-                <HyperLink
-                  className={classNames({
-                    'kicl-font-family-mono': entry.code,
-                  })}
-                  onClick={() => setQuery('')}
-                  to={parsePath(entry.path)}
-                >
-                  {entry.name}
-                </HyperLink>
-                <Text className='kicl-font-size-small' variant='secondary'>
-                  {describe(entry)}
-                </Text>
-              </ListItem>
-            ))}
-          </List>
-        ) : (
-          <Text>{t('docs_search_empty', { query: query.trim() })}</Text>
-        )}
-      </ComboboxContent>
-    </Combobox>
+    <search className={className}>
+      <Combobox open={normalised ? undefined : false}>
+        <ComboboxAnchor>
+          <SearchInput
+            aria-keyshortcuts='/'
+            aria-label={t('docs_search')}
+            onFocus={load}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder={t('docs_search')}
+            ref={field}
+            value={query}
+          />
+        </ComboboxAnchor>
+        <ComboboxContent aria-label={t('docs_search_results')}>
+          {matches.length ? (
+            <List gap='normal'>
+              {matches.map((entry) => (
+                <ListItem gap='narrowest' key={`${entry.name}:${entry.path}`}>
+                  <HyperLink
+                    className={classNames({
+                      'kicl-font-family-mono': entry.code,
+                    })}
+                    onClick={() => setQuery('')}
+                    to={parsePath(entry.path)}
+                  >
+                    {entry.name}
+                  </HyperLink>
+                  <Text className='kicl-font-size-small' variant='secondary'>
+                    {describe(entry)}
+                  </Text>
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <Text>{t('docs_search_empty', { query: query.trim() })}</Text>
+          )}
+        </ComboboxContent>
+      </Combobox>
+    </search>
   );
 };
 

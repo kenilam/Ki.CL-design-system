@@ -6,8 +6,8 @@ import {
   Button,
   Card,
   CardTitle,
-  Layout,
   List,
+  ListItem,
   Text,
 } from 'design/components';
 
@@ -33,21 +33,25 @@ const Levels: React.FunctionComponent = () => {
           key={level}
           level={level}
         >
-          <Layout
+          <List
             alignItems='center'
             autoFlow='row'
             display='flex'
             gap='narrow'
             wrap
           >
-            <div>
+            <ListItem>
               <Button level={level}>{level}</Button>
+            </ListItem>
+            <ListItem>
               <Button level={level} variant='secondary'>
                 {level}
               </Button>
-              <Badge level={level}>{level}</Badge>
-            </div>
-          </Layout>
+            </ListItem>
+            <Badge is='li' level={level}>
+              {level}
+            </Badge>
+          </List>
         </Card>
       ))}
     </List>

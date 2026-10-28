@@ -12,7 +12,7 @@ const Preview: React.FC<Props> = (props) => {
 
   return (
     <Layout gap='narrowest' justifyItems='end'>
-      <div>
+      <p>
         <Textarea
           aria-describedby={countId}
           aria-label='Bio'
@@ -22,10 +22,15 @@ const Preview: React.FC<Props> = (props) => {
           value={bio}
           {...props}
         />
-        <Text className='kicl-font-size-small' id={countId} variant='secondary'>
+        <Text
+          className='kicl-font-size-small'
+          id={countId}
+          is='span'
+          variant='secondary'
+        >
           {bio.length} / {LIMIT}
         </Text>
-      </div>
+      </p>
     </Layout>
   );
 };

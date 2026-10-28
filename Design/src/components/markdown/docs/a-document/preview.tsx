@@ -3,9 +3,9 @@ import React from 'react';
 import { Card, Markdown } from 'design/components';
 
 const Preview: React.FC = () => (
-  <Card>
+  <Card is='article'>
     <Markdown>
-    {`### Release notes
+      {`### Release notes
 
 Drafts now save **as you type**, and a saved draft opens where you left it.
 

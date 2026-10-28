@@ -6,10 +6,10 @@ import type { Props } from 'design/components/bubble/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
   <BubbleGroup>
-    <Bubble {...props}>
+    <Bubble is='li' {...props}>
       <BubbleContent>Are you around later?</BubbleContent>
     </Bubble>
-    <Bubble {...props}>
+    <Bubble is='li' {...props}>
       <BubbleContent>I have the photos.</BubbleContent>
     </Bubble>
   </BubbleGroup>

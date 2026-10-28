@@ -19,7 +19,7 @@ const Preview: React.FC<Props> = (props) => (
       id='dialog-default'
       {...props}
     >
-      <Text>The Earth lit by where the sun is now.</Text>
+      <Text>Where it’s day and where it’s night on Earth right now.</Text>
     </Dialog>
   </>
 );

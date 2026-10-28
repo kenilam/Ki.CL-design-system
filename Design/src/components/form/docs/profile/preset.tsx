@@ -8,7 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>For editing details someone already saved, where nothing is required.</>
+  <>For editing a saved profile, where no field is required.</>
 );
 
 const name = 'Profile';

@@ -1,5 +1,5 @@
 import { Variables } from 'design/docs/tokens/variables';
-import { Backdrop, Filter } from 'design/docs/tokens/previews';
+import { Backdrop } from 'design/docs/tokens/previews';
 
 Shadows, frosted panes and scrims for things that sit over the page.
 
@@ -23,17 +23,9 @@ The scrim over a picture, so text on it stays readable.
 
 <Variables names={['scrim-opacity', 'scrim-top', 'scrim-foot']} />
 
-### filter
-
-MDN: [`filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter).
-
-How a disabled link or button dims.
-
-<Variables names={['button-filter']} property='filter' preview={Filter} />
-
 ## Classes
 
-The pattern is `kicl-box-shadow-{side}`.
+Shadows follow the pattern `kicl-box-shadow-{name}`.
 
 ```tsx
 // The soft shadow under popovers and menus
@@ -46,8 +38,8 @@ The pattern is `kicl-box-shadow-{side}`.
 <figure className='kicl-position-relative kicl-scrim' />
 ```
 
-`{side}` is `center`, `top`, `bottom`, `left`, `right`, `overlay` or `none`. `overlay` is the soft shadow under popovers and menus.
+`{name}` is `center`, `top`, `bottom`, `left`, `right`, `overlay` or `none`. `overlay` is the soft shadow under popovers and menus.
 
 - `kicl-backdrop` is the frosted pane: what's behind is blurred and tinted with `--kicl-color-page-a12`, so text on it stays readable. A pane over one element, like a spinner's, sets `--kicl-backdrop-tint` to a stronger one, such as `--kicl-color-page-a64`.
-- `kicl-backdrop-blur` blurs what's behind, less and without the tint.
-- `kicl-scrim` darkens a picture from `--kicl-scrim-top` at the top to `--kicl-scrim-foot` at the foot. Put it on a positioned element.
+- `kicl-backdrop-blur` blurs what's behind less than `kicl-backdrop` does, and adds no tint.
+- `kicl-scrim` mutes a picture under a wash of the page colour, from `--kicl-scrim-top` at the top to `--kicl-scrim-foot` at the foot. Put it on a positioned element.

@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -10,7 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a database table. Each entry in <Text is='code'>rows</Text> is a column,
+    For a database table. Each line in the box is one of the table’s columns,
     with its type and an optional key or note.
   </>
 );

@@ -2,9 +2,13 @@ import { Levels } from './levels';
 import { Variables } from 'design/docs/tokens/variables';
 import { LEVELS } from 'design/components/spec';
 
-`level` says what something means, and each one has a colour: `neutral`, `confirm`, `error`, `info` and `warning`. `neutral` is black on a light page and white on a dark one, and a component with no level takes it. The same level is the same colour on Button, Badge, Card, Bubble, Heading, Text, Status, Markdown and Diagram. Status has no `neutral` or `confirm`.
+`level` says what something means, and each level has a colour: `neutral`, `confirm`, `error`, `info` and `warning`.
 
-Level and variant are separate props. A secondary error button fills with `--kicl-color-error-secondary`, and a card with a level only colours its edge. Each level has four looks: `secondary`, `tertiary` and `ghost` are steps `600`, `700` and `500` of its hue, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one.
+`neutral` is black on a light page and white on a dark one, and a component with no level takes it. The same level is the same colour on Button, Badge, Card, Bubble, Heading, Text, Status, Markdown and Diagram. Status has no `neutral` or `confirm`.
+
+Level and variant are separate props, and each component combines them its own way. A secondary error button has a faint wash of `--kicl-color-error-secondary` behind a label in that colour. A card with a level colours its edge, or, when it's `tertiary`, tints its surface. The steps each level's looks come from are on [Color](../tokens/foundations/color).
+
+Colour alone doesn't say what something means to everyone, so pair a level with words or an icon, as Status does.
 
 <Levels />
 

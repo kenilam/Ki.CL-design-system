@@ -7,9 +7,7 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>For a date that's already known, like when editing something saved.</>
-);
+const description = <>For editing a date that was saved before.</>;
 
 const name = 'Starts on a date';
 

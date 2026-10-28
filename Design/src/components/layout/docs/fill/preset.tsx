@@ -9,7 +9,9 @@ import { FILL_CONTROLS } from 'design/components/layout/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <>For a list of cards. On phones it's one per row.</>;
+const description = (
+  <>For cards of equal width: four a row here, one a row on phones.</>
+);
 
 const name = 'Fill';
 

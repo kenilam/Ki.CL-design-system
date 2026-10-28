@@ -10,7 +10,7 @@ const Preview: React.FC<Props> = (props) => (
       <>
         <CardTitle is='h3'>Daylight</CardTitle>
         <CardDescription>
-          The Earth lit by where the sun is now.
+          Where it’s day and where it’s night on Earth right now.
         </CardDescription>
       </>
     }

@@ -1,10 +1,10 @@
 import { Variables } from 'design/docs/tokens/variables';
 
-Everything you can reach with the keyboard shows where focus is, and nothing it lands on is hidden under the header.
+Someone using the keyboard needs to see where focus is, and the fixed header shouldn't hide what they've moved to.
 
 ## Focus ring
 
-Links, buttons, fields, `summary` and `video` draw an outline from three variables. The style is `none` until the element takes keyboard focus, when `:focus-visible` switches it to `dashed`. A mouse click doesn't show a ring, and Tab always does. The colour follows the theme, so the ring keeps its contrast on both.
+Links, buttons, fields, `summary` and `video` draw an outline from three variables. The style is `none` until the element takes keyboard focus, when `:focus-visible` switches it to `dashed`. Clicking a link or button doesn't show the ring, but clicking into a text field does, because the browser expects typing there. Tab always shows it. The colour follows the theme, so the ring keeps its contrast on both.
 
 An element that only script focuses, with `tabindex='-1'`, has no ring. That's how `#main` takes focus after a route change, so a screen reader starts at the new page without a stray outline.
 

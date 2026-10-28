@@ -1,16 +1,16 @@
-Cascade layers decide which rule wins when two rules set the same property on the same element. Every stylesheet in the design system and in the host goes into one of seven layers, so the answer never depends on load order or on who wrote the longer selector.
+Cascade layers decide which rule wins when two rules set the same property on the same element. Every stylesheet in the design system and in the host goes into one of seven layers, so the layer decides first, and load order and selector length only settle a tie inside a layer.
 
 ## Why we use them
 
 Without layers, CSS settles a tie between two rules by specificity, then by which stylesheet came last. Both are fragile here, for three reasons.
 
-**Load order isn't stable.** The site is two builds on one page: the host and the design system remote, loaded through Module Federation. In development, Vite injects one `<style>` per module in import order, so `core/styles` lands at the bottom of the cascade. A production build splits CSS by chunk and links each chunk's dependencies first, so the same `core/styles` lands at the top. The same source gave opposite results. The bug that showed it: in the built site only, `.kicl-layout` beat the logo's own styles, set it to `min-block-size: 100dvb`, and pushed it out of its header.
+**Load order isn't stable.** The site is two builds on one page: the host and the design system remote, loaded through Module Federation. In development, Vite injects one `<style>` per module in import order, and `core/styles` lost ties with a component's own styles. A production build splits CSS by chunk and links each chunk's dependencies first, and there the same `core/styles` won them. The same source gave opposite results. The bug that showed it: in the built site only, `.kicl-layout` beat the logo's own styles, set it to `min-block-size: 100dvb`, and pushed it out of its header.
 
-**Specificity fights don't end.** To win a tie, a rule needs a longer selector. The utilities used to repeat their own class name (`.kicl-x.kicl-x`) for exactly that, and each fix like it raises the bar for the next rule that has to win.
+**Specificity keeps rising.** To win a tie, a rule needs a longer selector. The utilities used to repeat their own class name (`.kicl-x.kicl-x`) for exactly that, and each fix like it raises the bar for the next rule that has to win.
 
 **Some rules always have to win.** A class on an element, like `kicl-padding-wide`, should beat the component it's on. A view should be able to restyle a component. A vendor reset should never override the design system. None of that could be promised by specificity alone without `!important` everywhere.
 
-Layers solve all three by deciding the winner by layer first. Load order and selector length only matter inside a layer, so a component can't beat a utility however it's written, and the order is the same in development, in production and in any host.
+Layers solve all three by deciding the winner by layer first. Load order and selector length only matter inside a layer, so a component can't beat a utility with a longer selector or a later load, and the order is the same in development, in production and in any host.
 
 ## How layers work
 
@@ -52,11 +52,11 @@ Lowest first. Each layer beats every layer above it in this list.
 4. **`components`** holds every component's stylesheet, and the docs pages' own styles.
 5. **`wrappers`** holds the components that put their class on a child, `Animation` and `Frame`. They sit above `components` so the wrapper's styles win over the child's.
 6. **`views`** holds a host's page styles. Every stylesheet in Ki.CL goes here, and so do the design system's status pages. A view can restyle any component without raising specificity.
-7. **`utilities`** holds every `kicl-*` class and the `:root` tokens in `core/styles`. A class you put on an element always wins, so `className='kicl-padding-wide'` on a Card works without `!important`.
+7. **`utilities`** holds every `kicl-*` class and the `:root` tokens in `core/styles`. A class you put on an element wins over component and view styles, so `className='kicl-padding-wide'` on a Card works without `!important`.
 
 ## How a stylesheet gets its layer
 
-Nobody writes `@layer` by hand. At build time, `getStyleLayer` in `Design/scripts/get-style-layer.ts` picks the layer from the file's path, and the Vite config wraps the compiled CSS in it. Each file also gets the full `@layer reset, base, layout, components, wrappers, views, utilities;` statement at the top, so whichever stylesheet loads first fixes the order, and no file has to be guaranteed to load first.
+Component and view stylesheets don't write `@layer` themselves. At build time, `getStyleLayer` in `Design/scripts/get-style-layer.ts` picks the layer from the file's path, and the Vite config wraps the compiled CSS in it. Each file also gets the full `@layer reset, base, layout, components, wrappers, views, utilities;` statement at the top, so whichever stylesheet loads first fixes the order, and no file has to be guaranteed to load first.
 
 - `core/styles/styles.body.scss`, `styles.generic.scss` and `styles.headings.scss` go to `base`.
 - `core/styles/layout.scss` goes to `layout`.
@@ -70,11 +70,11 @@ The host does the same in `App/.client/helper/get-style-layer.ts`, and puts ever
 
 ## Why the list is written twice
 
-The host and the design system ship separate stylesheets onto one page, and the first `@layer` statement the browser reads sets the order for both. If the two lists ever differed, which one won would depend on which file loaded first. So `LAYERS` in this repo's `Design/scripts/get-style-layer.ts` and in Ki.CL's `App/.client/helper/get-style-layer.ts` must stay identical, and changing one means changing the other in the same release.
+The host and the design system ship separate stylesheets onto one page, and the first `@layer` statement the browser reads sets the order for both. If the two lists ever differed, which one won would depend on which file loaded first. So `LAYERS` in the design system's `Design/scripts/get-style-layer.ts` and in Ki.CL's `App/.client/helper/get-style-layer.ts` must stay identical, and changing one means changing the other in the same release.
 
 ## When you write CSS
 
 - **In a view,** write plain selectors. They're already above every component.
 - **In a component,** don't raise specificity to beat another component. If one has to win, it belongs in a different layer.
 - **On an element,** use a utility class. It wins over both.
-- **Only use `!important`** for a rule that has to beat every later layer. The one case today is the 16px floor on iOS fields in `base`, which has to stay above any `kicl-font-size-*` class.
+- **Only use `!important`** for a rule that has to beat every later layer. Two rules use it today: the 16px floor on iOS fields in `base`, which has to stay above any `kicl-font-size-*` class, and `Animation` hiding an element that has left, which has to beat a display class on the same element.

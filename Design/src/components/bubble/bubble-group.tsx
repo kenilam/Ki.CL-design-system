@@ -8,7 +8,7 @@ import type { BubbleGroupIs, BubbleGroupProps } from './spec';
 const CLASS_NAME = 'kicl--components--bubble__group';
 
 const BubbleGroup = React.forwardRef<HTMLElement, BubbleGroupProps>(
-  ({ children, className, is = 'div', ...rest }, ref) => {
+  ({ children, className, is = 'ol', ...rest }, ref) => {
     const Component = is as BubbleGroupIs;
 
     return (

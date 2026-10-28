@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Components
+import { Text } from 'design/components';
+
 // Partials
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
@@ -9,8 +12,9 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a field with its name on show. The name and the field share one label,
-    so a click on the name focuses the field.
+    For a field with its name above it and a hint below. In a{' '}
+    <Text is='code'>FormItem</Text>, the three stay together and a click on the
+    name focuses the field.
   </>
 );
 

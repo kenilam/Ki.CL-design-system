@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
+import { FormDescription, FormLabel } from 'design/components/form';
+import { useFormItemControl } from 'design/components/form/context';
 import { InputGroup } from 'design/components/input-group';
-import { Layout } from 'design/components/layout';
-import { Text } from 'design/components/text';
 
 // Constants
 import { CLASS_NAME as INPUT_GROUP } from 'design/components/input-group/constants';
@@ -19,21 +19,31 @@ const CLASS_NAME = 'kicl--components--input';
  * Text field control - API aligned with
  * https://ui.shadcn.com/docs/components/base/input
  *
- * `label` puts the field's name above it, and the `label` element holds both.
  * `before` and `after` put an icon or a short text inside the field's border,
  * on either side of the text: it becomes a `label` around them and the
- * `<input>`, or a `span` inside the `label` that holds the name. Every other
- * prop still goes to the `<input>`, so a `FormControl` around it reaches the
- * control; `className` and `style` go to the outer element. A field with a
- * button is an `InputGroup`. Long values and placeholders end in an ellipsis
- * rather than being cut.
+ * `<input>`. Every other prop still goes to the `<input>`, so a `FormControl`
+ * around it reaches the control; `className` and `style` go to the outer
+ * element. A field with a button is an `InputGroup`. Long values and
+ * placeholders end in an ellipsis rather than being cut.
  */
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ after, before, className, label, style, type = 'text', ...rest }, ref) => {
+  (
+    {
+      after,
+      before,
+      className,
+      description,
+      label,
+      style,
+      type = 'text',
+      ...rest
+    },
+    ref
+  ) => {
     const grouped = Boolean(before || after);
-    const outer = label ? {} : { className, style };
+    const control = useFormItemControl({ description, ...rest });
 
-    const control = (
+    const input = (
       <input
         ref={ref}
         type={type}
@@ -42,53 +52,40 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           'kicl-font-size-small',
           'kicl-overflow-hidden',
           'kicl-text-nowrap',
-          grouped ? `${INPUT_GROUP}__control` : outer.className
+          grouped ? `${INPUT_GROUP}__control` : className
         )}
-        style={grouped ? undefined : outer.style}
+        style={grouped ? undefined : style}
         {...rest}
+        {...control}
       />
     );
 
-    const field = grouped ? (
-      <InputGroup
-        {...outer}
-        className={classNames(
-          {
-            'kicl-padding-inline-end-narrow': after,
-            'kicl-padding-inline-start-narrow': before,
-          },
-          outer.className
-        )}
-        is={label ? 'span' : 'label'}
-      >
-        {before}
-        {control}
-        {after}
-      </InputGroup>
-    ) : (
-      control
-    );
-
-    if (!label) {
-      return field;
-    }
-
     return (
-      <Layout gap='narrow'>
-        <label className={className} style={style}>
-          <Text
+      <>
+        <FormLabel htmlFor={control.id} required={rest.required}>
+          {label}
+        </FormLabel>
+        {grouped ? (
+          <InputGroup
             className={classNames(
-              'kicl-font-size-smallest',
-              'kicl-font-weight-bold',
-              'kicl-padding-inline-start'
+              {
+                'kicl-padding-inline-end-narrow': after,
+                'kicl-padding-inline-start-narrow': before,
+              },
+              className
             )}
-            is='span'
+            is='label'
+            style={style}
           >
-            {label}
-          </Text>
-          {field}
-        </label>
-      </Layout>
+            {before}
+            {input}
+            {after}
+          </InputGroup>
+        ) : (
+          input
+        )}
+        <FormDescription>{description}</FormDescription>
+      </>
     );
   }
 );

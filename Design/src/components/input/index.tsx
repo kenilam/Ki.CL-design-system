@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { InputGroup, InputGroupAddon } from 'design/components/input-group';
+import { InputGroup } from 'design/components/input-group';
 
 // Constants
 import { CLASS_NAME as INPUT_GROUP } from 'design/components/input-group/constants';
@@ -17,14 +17,15 @@ const CLASS_NAME = 'kicl--components--input';
  * Text field control - API aligned with
  * https://ui.shadcn.com/docs/components/base/input
  *
- * `before` and `after` put content inside the field's border, on either side
- * of the text: it becomes an `InputGroup` with an addon each side. Every other
- * prop still goes to the `<input>`, so a `FormControl` around it reaches the
- * control; `className` goes to the outer element. Long values and
+ * `before` and `after` put an icon or a short text inside the field's border,
+ * on either side of the text: it becomes a `label` around them and the
+ * `<input>`. Every other prop still goes to the `<input>`, so a `FormControl`
+ * around it reaches the control; `className` and `style` go to the outer
+ * element. A field with a button is an `InputGroup`. Long values and
  * placeholders end in an ellipsis rather than being cut.
  */
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ after, before, className, type = 'text', ...rest }, ref) => {
+  ({ after, before, className, style, type = 'text', ...rest }, ref) => {
     const grouped = Boolean(before || after);
 
     const control = (
@@ -38,6 +39,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           'kicl-text-nowrap',
           grouped ? `${INPUT_GROUP}__control` : className
         )}
+        style={grouped ? undefined : style}
         {...rest}
       />
     );
@@ -47,10 +49,10 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <InputGroup className={className}>
-        {before ? <InputGroupAddon>{before}</InputGroupAddon> : null}
+      <InputGroup className={className} is='label' style={style}>
+        {before}
         {control}
-        {after ? <InputGroupAddon>{after}</InputGroupAddon> : null}
+        {after}
       </InputGroup>
     );
   }

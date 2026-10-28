@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { Layout } from 'design/components/layout';
 
 // Spec
-import type { InputGroupProps } from './spec';
+import type { InputGroupIs, InputGroupProps } from './spec';
 
 // Styles
 import './styles.scss';
@@ -16,42 +16,50 @@ import './styles.scss';
 import { CLASS_NAME } from './constants';
 
 // Partials
-import { InputGroupAddon } from './addon';
 import { InputGroupButton } from './button';
 import { InputGroupInput } from './input';
 import { InputGroupText } from './text';
 import { InputGroupTextarea } from './textarea';
 
 /**
- * Input with addons - API aligned with
+ * Input with what sits inside its border: icons, text and buttons, each a
+ * direct child - API aligned with
  * https://ui.shadcn.com/docs/components/base/input-group
  */
-const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
-  ({ children, className, ...rest }, ref) => (
-    <Layout alignItems='center' gap='narrow' ref={ref}>
-      <div
-        className={classNames(CLASS_NAME, 'kicl-inline-size-full', className)}
-        {...rest}
-      >
-        {children}
-      </div>
-    </Layout>
-  )
+const InputGroup = React.forwardRef<HTMLElement, InputGroupProps>(
+  ({ children, className, is = 'fieldset', ...rest }, ref) => {
+    const Component = is as InputGroupIs;
+
+    return (
+      <Layout alignItems='center' display='flex' gap='narrow' ref={ref}>
+        <Component
+          {...(rest as React.HTMLAttributes<HTMLElement>)}
+          className={classNames(
+            CLASS_NAME,
+            'kicl-color-body-color',
+            'kicl-inline-size-full',
+            className
+          )}
+        >
+          {children}
+        </Component>
+      </Layout>
+    );
+  }
 );
 
 InputGroup.displayName = 'InputGroup';
 
 export type {
-  InputGroupAddonProps,
   InputGroupButtonProps,
   InputGroupInputProps,
+  InputGroupIs,
   InputGroupProps,
   InputGroupTextareaProps,
   InputGroupTextProps,
 } from './spec';
 
 export {
-  InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
   InputGroupText,

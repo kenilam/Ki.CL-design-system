@@ -1,12 +1,21 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
 import type { ButtonProps } from 'design/components/button';
+import type { PolymorphicIsProps } from 'design/components/polymorphic';
 import type { Variant } from 'design/components/spec';
 
-export type InputGroupProps = ComponentPropsWithoutRef<'div'>;
+/**
+ * `label` when the group only dresses its control (an icon, a prefix), so a
+ * click anywhere in it focuses the control. `fieldset` when it also holds a
+ * button, which a label can't contain.
+ */
+export type InputGroupIs = 'fieldset' | 'label';
 
-/** An addon before the control sits at its start, one after it at its end. */
-export type InputGroupAddonProps = ComponentPropsWithoutRef<'div'>;
+export type InputGroupProps = PolymorphicIsProps<
+  InputGroupIs,
+  object,
+  'fieldset'
+>;
 
 export type InputGroupButtonProps = Pick<ButtonProps, 'children'> &
   ComponentPropsWithoutRef<'button'> & {

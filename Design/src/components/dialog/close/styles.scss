@@ -1,9 +1,8 @@
 .kicl--components--dialog {
   &--is-full-screen &--close {
-    --kicl--components--dialog--padding-block: var(--kicl-gutter);
-
-    inset-inline-end: var(--kicl--components--dialog--padding-block);
-    margin-block-end: calc(-1 * var(--kicl--components--dialog--padding-block));
+    inset-inline-end: var(--kicl-gutter);
+    margin-block-start: 0;
+    margin-inline-end: 0;
   }
 
   /*

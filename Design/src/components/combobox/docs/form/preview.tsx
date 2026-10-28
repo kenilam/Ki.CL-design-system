@@ -6,11 +6,7 @@ import {
   ComboboxAnchor,
   ComboboxContent,
   Form,
-  FormControl,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
   Input,
   List,
   ListItem,
@@ -39,34 +35,28 @@ const Preview: React.FC<Props> = (props) => {
             CITIES.includes(value) || 'Pick a city from the list',
         }}
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>City</FormLabel>
-            <Combobox {...props}>
-              <ComboboxAnchor>
-                <FormControl>
-                  <Input {...field} placeholder='Search a city' />
-                </FormControl>
-              </ComboboxAnchor>
-              <ComboboxContent aria-label='Cities'>
-                <List gap='narrow'>
-                  {matches.map((name) => (
-                    <ListItem key={name}>
-                      {/* type='button', or a pick would submit the form. */}
-                      <Button
-                        className='kicl-inline-size-full'
-                        onClick={() => field.onChange(name)}
-                        type='button'
-                        variant='secondary'
-                      >
-                        {name}
-                      </Button>
-                    </ListItem>
-                  ))}
-                </List>
-              </ComboboxContent>
-            </Combobox>
-            <FormMessage />
-          </FormItem>
+          <Combobox {...props}>
+            <ComboboxAnchor>
+              <Input {...field} label='City' placeholder='Search a city' />
+            </ComboboxAnchor>
+            <ComboboxContent aria-label='Cities'>
+              <List gap='narrow'>
+                {matches.map((name) => (
+                  <ListItem key={name}>
+                    {/* type='button', or a pick would submit the form. */}
+                    <Button
+                      className='kicl-inline-size-full'
+                      onClick={() => field.onChange(name)}
+                      type='button'
+                      variant='secondary'
+                    >
+                      {name}
+                    </Button>
+                  </ListItem>
+                ))}
+              </List>
+            </ComboboxContent>
+          </Combobox>
         )}
       />
       <Button type='submit'>Save</Button>

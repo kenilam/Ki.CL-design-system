@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 
 import { Text } from 'design/components/text';
 
-import { useFormFieldContext } from './context';
+import { FormItemContext } from './context';
 import type { FormDescriptionProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--form__description';
@@ -12,7 +12,7 @@ const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   FormDescriptionProps
 >(({ className, ...rest }, ref) => {
-  const { formDescriptionId } = useFormFieldContext();
+  const item = useContext(FormItemContext);
 
   // No paragraph with nothing in it.
   if (!rest.children) {
@@ -21,10 +21,10 @@ const FormDescription = React.forwardRef<
 
   return (
     <Text
+      id={item?.descriptionId}
       {...rest}
       ref={ref}
       is='p'
-      id={formDescriptionId}
       className={classNames(
         CLASS_NAME,
         'kicl-font-size-smaller',

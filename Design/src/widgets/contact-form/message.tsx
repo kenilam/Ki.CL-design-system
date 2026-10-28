@@ -3,15 +3,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 // Components
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Textarea,
-} from 'design/components';
+import { FormField, Textarea } from 'design/components';
 
 // Constants
 import { MESSAGE_LENGTH, RETENTION_DAYS } from './constants';
@@ -32,16 +24,12 @@ const Message: React.FunctionComponent = () => {
       control={control}
       name='Message'
       render={({ field }) => (
-        <FormItem>
-          <FormLabel>{t('label_message')}</FormLabel>
-          <FormControl>
-            <Textarea {...field} rows={6} />
-          </FormControl>
-          <FormDescription>
-            {t('privacy', { days: RETENTION_DAYS })}
-          </FormDescription>
-          <FormMessage />
-        </FormItem>
+        <Textarea
+          {...field}
+          description={t('privacy', { days: RETENTION_DAYS })}
+          label={t('label_message')}
+          rows={6}
+        />
       )}
       rules={{
         maxLength: {

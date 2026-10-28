@@ -7,12 +7,7 @@ import {
   CardTitle,
   EmailInput,
   Form,
-  FormControl,
-  FormDescription,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
   PasswordInput,
   Text,
 } from 'design/components';
@@ -70,13 +65,7 @@ const Preview: React.FC = () => {
             required: 'Enter your email address',
           }}
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <EmailInput {...field} autoComplete='email' />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <EmailInput {...field} label='Email' autoComplete='email' />
           )}
         />
         <FormField
@@ -87,14 +76,12 @@ const Preview: React.FC = () => {
             required: 'Choose a password',
           }}
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput {...field} autoComplete='new-password' />
-              </FormControl>
-              <FormDescription>At least 8 characters.</FormDescription>
-              <FormMessage />
-            </FormItem>
+            <PasswordInput
+              {...field}
+              description='At least 8 characters.'
+              label='Password'
+              autoComplete='new-password'
+            />
           )}
         />
         <Button type='submit'>Create account</Button>

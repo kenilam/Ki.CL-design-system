@@ -2,13 +2,15 @@ import { Preset as Basic } from './basic';
 import { Preset as WithAPlaceholder } from './with-a-placeholder';
 import { Preset as Groups } from './groups';
 import { Preset as OneOptionDisabled } from './one-option-disabled';
+import { Preset as WithALabel } from './with-a-label';
 import { CONTROLS } from './controls';
 
-Pick one option from a list that's too long to show at once. It's a native `select`, styled where the browser supports `appearance: base-select`.
+Pick one option from a list that's too long to show at once. It's a native `select`, styled where the browser supports `appearance: base-select`. `label` puts its name above it and `description` a hint below.
 
 <Preview controls={CONTROLS} span={4}>
   {Basic}
   {WithAPlaceholder}
   {Groups}
   {OneOptionDisabled}
+  {WithALabel}
 </Preview>

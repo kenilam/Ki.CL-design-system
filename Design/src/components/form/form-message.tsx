@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
-import { useFormContext } from 'react-hook-form';
 
 import { Layout } from 'design/components/layout';
 import { Text } from 'design/components/text';
 
-import { useFormFieldContext } from './context';
+import { FormItemContext, useFieldError } from './context';
 import type { FormMessageProps } from './spec';
 import * as Ri from 'react-icons/ri';
 
@@ -13,9 +12,8 @@ const CLASS_NAME = 'kicl--components--form__message';
 
 const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
   ({ className, children, ...rest }, ref) => {
-    const { formMessageId, name } = useFormFieldContext();
-    const { getFieldState, formState } = useFormContext();
-    const { error } = getFieldState(name, formState);
+    const item = useContext(FormItemContext);
+    const error = useFieldError();
     const body = error ? String(error.message ?? '') : children;
 
     if (!body) {
@@ -34,7 +32,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
           {...rest}
           ref={ref}
           is='p'
-          id={formMessageId}
+          id={item?.messageId}
           className={classNames(
             CLASS_NAME,
             'kicl-font-size-small',

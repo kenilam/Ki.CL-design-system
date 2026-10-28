@@ -1,6 +1,8 @@
 import React from 'react';
 
 // Components
+import { FormItem } from 'design/components/form';
+import { useFormItemControl } from 'design/components/form/context';
 import {
   InputGroup,
   InputGroupButton,
@@ -17,28 +19,54 @@ import { useCopy } from 'design/locales/use-copy';
 import * as Ri from 'react-icons/ri';
 
 // Spec
+import type { FormItemFieldProps } from 'design/components/form';
 import type { InputProps } from 'design/components/input';
 
-type Props = Omit<InputProps, 'after' | 'label' | 'readOnly' | 'value'> & {
-  /** What the field shows and the button copies. */
-  value: string;
-};
+type Props = Omit<
+  InputProps,
+  'after' | 'readOnly' | 'value' | keyof FormItemFieldProps
+> &
+  FormItemFieldProps & {
+    /** What the field shows and the button copies. */
+    value: string;
+  };
 
 /**
  * A read-only field with a button that copies its value, for a token, a link
  * or a command. A long value ends in an ellipsis; the copy is always whole.
  */
 const CopyInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ before, className, disabled, style, value, ...rest }, ref) => {
+  ({ description, label, layout, ...props }, ref): React.ReactElement => {
+    const { before, className, disabled, style, value, ...rest } = props;
+    const control = useFormItemControl(props);
     const { copied, copy } = useClipboard();
     const t = useCopy();
 
     const Icon = copied ? Ri.RiCheckLine : Ri.RiFileCopyLine;
 
+    if (label || description) {
+      return (
+        <FormItem
+          {...layout}
+          description={description}
+          label={label}
+          required={props.required}
+        >
+          <CopyInput {...props} ref={ref} />
+        </FormItem>
+      );
+    }
+
     return (
       <InputGroup className={className} disabled={disabled} style={style}>
         {before}
-        <InputGroupInput {...rest} readOnly ref={ref} value={value} />
+        <InputGroupInput
+          {...rest}
+          {...control}
+          readOnly
+          ref={ref}
+          value={value}
+        />
         <InputGroupButton
           aria-label={t(copied ? 'status_copied' : 'action_copy')}
           onClick={() => void copy(value)}

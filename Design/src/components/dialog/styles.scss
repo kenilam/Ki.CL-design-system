@@ -39,7 +39,7 @@
   }
 
   &--is-full-screen {
-    --kicl--components--dialog--block-size: 100dvb;
+    --kicl--components--dialog--min-block-size: 100dvb;
     --kicl--components--dialog--border-radius: 0;
     --kicl--components--dialog--inline-size: 100dvi;
     --kicl--components--dialog--max-inline-size: 100dvi;
@@ -86,7 +86,7 @@
       block-size var(--kicl-transition-duration-fast),
       opacity var(--kicl-transition-duration-fast),
       translate var(--kicl-transition-duration-fast);
-    translate: 0 0;
+    translate: none;
   }
 
   /*
@@ -117,7 +117,7 @@
 
   &[open] > div {
     opacity: 1;
-    translate: 0 0;
+    translate: none;
     view-transition-name: kicl--components--dialog;
 
     @starting-style {

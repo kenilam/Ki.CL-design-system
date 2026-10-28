@@ -7,9 +7,10 @@ import type { Variant } from 'design/components/spec';
 /**
  * `label` when the group only dresses its control (an icon, a prefix), so a
  * click anywhere in it focuses the control. `fieldset` when it also holds a
- * button, which a label can't contain.
+ * button, which a label can't contain. `span` when it sits inside a label
+ * that already holds the field's name.
  */
-export type InputGroupIs = 'fieldset' | 'label';
+export type InputGroupIs = 'fieldset' | 'label' | 'span';
 
 export type InputGroupProps = PolymorphicIsProps<
   InputGroupIs,

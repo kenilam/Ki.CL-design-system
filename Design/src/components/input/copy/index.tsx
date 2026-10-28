@@ -19,7 +19,7 @@ import * as Ri from 'react-icons/ri';
 // Spec
 import type { InputProps } from 'design/components/input';
 
-type Props = Omit<InputProps, 'after' | 'readOnly' | 'value'> & {
+type Props = Omit<InputProps, 'after' | 'label' | 'readOnly' | 'value'> & {
   /** What the field shows and the button copies. */
   value: string;
 };

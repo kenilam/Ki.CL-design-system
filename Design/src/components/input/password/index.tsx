@@ -16,7 +16,7 @@ import * as Ri from 'react-icons/ri';
 // Spec
 import type { InputProps } from 'design/components/input';
 
-type Props = Omit<InputProps, 'after' | 'type'>;
+type Props = Omit<InputProps, 'after' | 'label' | 'type'>;
 
 /**
  * A password field with a button that shows and hides what was typed.
@@ -48,7 +48,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
           type={shown ? 'text' : 'password'}
         />
         <InputGroupButton
-          aria-label={t(shown ? 'action_hide_password' : 'action_show_password')}
+          aria-label={t(
+            shown ? 'action_hide_password' : 'action_show_password'
+          )}
           aria-pressed={shown}
           onClick={() => setShown((current) => !current)}
           type='button'

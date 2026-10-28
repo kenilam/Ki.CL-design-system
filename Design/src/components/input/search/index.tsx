@@ -27,7 +27,7 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--input--search';
 
-type Props = Omit<InputProps, 'after' | 'type'>;
+type Props = Omit<InputProps, 'after' | 'label' | 'type'>;
 
 /**
  * A search field with a button that clears it. The button only shows while

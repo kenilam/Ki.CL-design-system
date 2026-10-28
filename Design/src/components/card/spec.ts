@@ -38,7 +38,7 @@ export type { Level as CardLevel } from 'design/components/spec';
  * that opens over the page, as `Sheet` does.
  */
 export type CardIs =
-  'article' | 'aside' | 'dialog' | 'form' | 'li' | 'nav' | 'section';
+  'article' | 'aside' | 'dialog' | 'form' | 'li' | 'nav' | 'search' | 'section';
 
 /** Title hosts - headings or generic text containers. */
 export type CardTitleIs =

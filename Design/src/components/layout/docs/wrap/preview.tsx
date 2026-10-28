@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Badge, List } from 'design/components';
+import { Badge, Card, List } from 'design/components';
 
 import type { WrapProps } from 'design/components/layout/docs/controls';
 
@@ -22,13 +22,15 @@ const TAGS = [
 ];
 
 const Preview: React.FC<WrapProps> = (props) => (
-  <List display='flex' gap='narrow' wrap {...props}>
-    {TAGS.map((tag) => (
-      <Badge is='li' key={tag}>
-        {tag}
-      </Badge>
-    ))}
-  </List>
+  <Card is='section'>
+    <List display='flex' gap='narrow' wrap {...props}>
+      {TAGS.map((tag) => (
+        <Badge is='li' key={tag}>
+          {tag}
+        </Badge>
+      ))}
+    </List>
+  </Card>
 );
 
 export { Preview };

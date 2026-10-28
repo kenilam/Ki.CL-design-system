@@ -6,7 +6,7 @@ import type { ColumnsProps } from 'design/components/layout/docs/controls';
 
 const Preview: React.FC<ColumnsProps> = (props) => (
   <Layout columns gap='normal'>
-    <section className='kicl-inline-size-full'>
+    <Card is='section'>
       <Layout span={8} {...props}>
         <Card
           header={<CardTitle is='h3'>Article</CardTitle>}
@@ -21,7 +21,7 @@ const Preview: React.FC<ColumnsProps> = (props) => (
           variant='secondary'
         />
       </Layout>
-    </section>
+    </Card>
   </Layout>
 );
 

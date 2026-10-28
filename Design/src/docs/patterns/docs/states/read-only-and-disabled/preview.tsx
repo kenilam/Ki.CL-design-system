@@ -39,7 +39,7 @@ const Preview: React.FC = () => {
                 frames='auto--max-content'
                 gap='narrow'
               >
-                <div>
+                <p>
                   <FormControl>
                     <Input {...field} readOnly />
                   </FormControl>
@@ -49,7 +49,7 @@ const Preview: React.FC = () => {
                     value={field.value}
                     variant='secondary'
                   />
-                </div>
+                </p>
               </Layout>
               <FormDescription>Quote it when you contact us.</FormDescription>
             </FormItem>

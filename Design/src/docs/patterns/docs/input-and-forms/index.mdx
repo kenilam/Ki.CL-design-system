@@ -1,7 +1,9 @@
 import { Preset as ChoicesAndATotal } from './choices-and-a-total';
 import { Preset as SignUp } from './sign-up';
 
-Forms are where people do the work, so every extra step or unclear field costs something. Start from a native `form`, so Enter submits it. The `Form` component sets `noValidate` and checks fields with react-hook-form instead of the browser, so its messages look like the rest of the page.
+Forms are where people get things done, so every extra field or unclear label makes the job harder.
+
+Build forms with the `Form` component. It renders a real `form`, so pressing Enter submits it. It turns off the browser's own validation pop-ups, which look different in every browser and vanish after a few seconds, and `FormMessage` shows each error under its field instead.
 
 <Preview>
   {SignUp}

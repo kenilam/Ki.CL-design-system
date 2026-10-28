@@ -142,25 +142,10 @@
     overscroll-behavior: contain;
   }
 
-  // Notices shown between the header and the content (a `Status` that is in) take rows of their own.
-  --kicl--components--sheet--notices: ;
-
-  &:has(> .kicl--components--status[data-animation-in]) {
-    --kicl--components--sheet--notices: max-content;
-  }
-
-  &:has(
-    > .kicl--components--status[data-animation-in]
-      ~ .kicl--components--status[data-animation-in]
-  ) {
-    --kicl--components--sheet--notices: max-content max-content;
-  }
-
   // The content takes the height left over, so a footer sits at the bottom.
   --kicl--components--sheet--head: ;
   --kicl--components--sheet--foot: ;
-  --kicl-layout--grid-frames: var(--kicl--components--sheet--head)
-    var(--kicl--components--sheet--notices) 1fr
+  --kicl-layout--grid-frames: var(--kicl--components--sheet--head) 1fr
     var(--kicl--components--sheet--foot);
 
   &:has(> .kicl--components--card__header, > &__close) {

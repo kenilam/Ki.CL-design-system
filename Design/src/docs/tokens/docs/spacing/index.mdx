@@ -2,7 +2,11 @@ import { Gaps } from './gaps';
 import { Variables } from 'design/docs/tokens/variables';
 import { Length } from 'design/docs/tokens/previews';
 
-`gap` takes the gutter scale. `normal` is `--kicl-gutter`, 1rem, and each step halves or grows from it. Layout takes it, and so does every component built on Layout: List, ListItem, Button, Card and the rest. Padding, margin and inset utilities use the same steps.
+`gap` takes the gutter scale. It's a prop on Layout and on every component built on it, like List, ListItem, Button and Card, rather than a class.
+
+The default step, `normal`, is `--kicl-gutter`, 1rem, and is left out of class names. Each narrow step halves the one before, and the wide steps grow from it.
+
+Padding, margin and inset utilities use the same steps.
 
 <Gaps />
 
@@ -62,4 +66,4 @@ A few take a keyword in place of a step:
 - `kicl-padding-inline-frame`, `kicl-padding-block-frame`, `kicl-padding-block-start-frame` and `kicl-padding-block-end-frame` inset content the same as a Frame. `kicl-padding-inline-frame-columns-12` does the same and also keeps it within 12 columns.
 - `kicl-padding-block-start-header` clears the fixed global header, and `kicl-padding-block-start-header-offset` follows it as it shows and hides.
 
-`gap` itself is a Layout prop, not a class. Inset uses the same steps, see Sides.
+Inset uses the same steps, listed on [Sides](../tokens/semantics/sides).

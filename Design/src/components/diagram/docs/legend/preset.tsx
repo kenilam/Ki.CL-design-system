@@ -9,8 +9,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Explains what the colours and line styles mean, with a line underneath on
-    how to read the diagram.
+    Explains what the colours and line styles mean, with a caption underneath.
   </>
 );
 

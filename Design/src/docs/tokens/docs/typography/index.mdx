@@ -3,15 +3,17 @@ import { TypeScale } from './type-scale';
 import { Variables } from 'design/docs/tokens/variables';
 import { Specimen } from 'design/docs/tokens/previews';
 
+Type is set once on `body` and inherited, so a class on a parent reaches the text inside it.
+
 ## Families
 
-`bold` is the same face as the default, and `kicl-font-family-bold` also sets `--kicl-font-weight-bold`. `special` is the rounded face for display text. `mono` is for data, like version numbers and counts, and sets tabular figures so a column of numbers doesn't shift.
+`bold` is the same face as the default, and `kicl-font-family-bold` also sets `font-weight` to `--kicl-font-weight-bold`. `special` is the rounded face for display text. `mono` is for data, like version numbers and counts, and sets tabular figures so a column of numbers doesn't shift.
 
 <TypeScale names={['', 'bold', 'special', 'mono']} property='font-family' />
 
 ## Sizes
 
-Sizes are in rem, from the 16px root. Nothing goes below 12px, so `smallest` is still readable, and body text stays at the 16px default. `large` and `larger` set the line height to 1.2, and `largest`, `huge` and `extreme` to 1, so the gap between lines doesn't grow with the text. `huge` and `extreme` aren't shown here: they grow with the viewport.
+Sizes are in rem, so at the browser's default 16px root, body text is 16px and `smallest` is 12px. `large` and `larger` set the line height to 1.2, and `largest`, `huge` and `extreme` to 1, so large text sits in tighter lines than body text. `huge` and `extreme` aren't shown here, because they grow with the viewport.
 
 <TypeScale
   names={[
@@ -143,7 +145,7 @@ MDN: [`text-wrap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Pr
 
 MDN: [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-size), [`font-weight`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-weight) and [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color).
 
-Every `h1` to `h6` sets these for itself, so the values below are read from an `h4`. Only the size changes by level: each level steps down a size, `h4` is the body size, and `h5` and `h6` are small, with `h6` in capitals and dimmed as a label. `--kicl-heading-status-color` is set by a heading's `level`, and `--kicl-heading-font-size-scale` lets a variant quieten any level.
+Every `h1` to `h6` sets these for itself, so the values below are read from an `h4`. The size steps down from `h1` to `h4`, which is the body size. `h5` and `h6` are both small, and `h6` is also in capitals and dimmed, as a label. `--kicl-heading-status-color` is set by a heading's `level`, and `--kicl-heading-font-size-scale` lets a variant quieten any level.
 
 <Headings />
 
@@ -157,7 +159,7 @@ Every `h1` to `h6` sets these for itself, so the values below are read from an `
 
 ## Classes
 
-Each variable has a class with the same name, `kicl-font-size-{name}`, `kicl-font-weight-{name}` and so on:
+Most variables have a class with the same name, `kicl-font-size-{name}`, `kicl-font-weight-{name}` and so on:
 
 ```tsx
 // 14px text
@@ -176,7 +178,7 @@ Each variable has a class with the same name, `kicl-font-size-{name}`, `kicl-fon
 <Heading className='kicl-text-wrap-balance' />
 ```
 
-Leave the variation out for the default, as in `kicl-font-size` or `kicl-line-height`. Type is set once on `body` and inherited, so a class on a parent reaches the text inside it.
+Leave the variation out for the default, as in `kicl-font-size` or `kicl-line-height`.
 
 Keyword classes set the CSS value directly: `kicl-font-style-{normal|italic|oblique}`, `kicl-text-align-{start|center|end|justify}`, `kicl-text-transform-{none|capitalize|lowercase|uppercase}` and `kicl-text-nowrap`. `kicl-text-truncate` keeps text on one line and ends it in an ellipsis when there isn't room. Buttons, and the labels of checkboxes, radios and switches, put their text in it already.
 
@@ -194,4 +196,4 @@ Keyword classes set the CSS value directly: `kicl-font-style-{normal|italic|obli
 <Text className='kicl-text-truncate' />
 ```
 
-`kicl-look-like-{element}` gives something the look of another element without changing what it is, so a heading's level in the outline and its size on the page can differ. `{element}` is `h1` to `h6`, `blockquote`, `cite`, `code`, `del`, `em`, `ins`, `pre`, `q` or `strong`. The headings also take `--variant--secondary`, as in `kicl-look-like-h2--variant--secondary`. On `Text` and `Heading`, use the `lookLike` prop.
+`kicl-look-like-{element}` gives something the look of another element without changing what it is, so a heading's level in the outline and its size on the page can differ. `kicl-look-like-h1` to `kicl-look-like-h6` work on any element. The others, for `blockquote`, `cite`, `code`, `del`, `em`, `ins`, `pre`, `q` and `strong`, only work on `Text`. The headings also take `--variant--secondary`, as in `kicl-look-like-h2--variant--secondary`. On `Text` and `Heading`, use the `lookLike` prop.

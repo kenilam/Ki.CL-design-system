@@ -29,22 +29,6 @@
   @include level-looks($level-steps);
 }
 
-.kicl-color-gradient-rotate-0deg {
-  --kicl-color-gradient-rotate: 0deg;
-}
-
-.kicl-color-gradient-rotate-90deg {
-  --kicl-color-gradient-rotate: 90deg;
-}
-
-.kicl-color-gradient-rotate-180deg {
-  --kicl-color-gradient-rotate: 180deg;
-}
-
-.kicl-color-gradient-rotate-270deg {
-  --kicl-color-gradient-rotate: 270deg;
-}
-
 .kicl-background-color-body {
   background-color: var(--kicl-body-background-color);
 }

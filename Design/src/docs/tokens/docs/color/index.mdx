@@ -4,6 +4,8 @@ import { Variables } from 'design/docs/tokens/variables';
 import { Opacity } from 'design/docs/tokens/previews';
 import { ALL, HUES, LEVEL_SWATCHES, NEUTRALS, PURE } from './constants';
 
+Use the roles under Body and surface for anything that should follow the light and dark themes. The palette is for a colour that stays the same in both.
+
 ## Neutrals
 
 Black, grey and white, each in ten steps from `50`, the lightest, to `900`, the darkest. `500` is the colour itself, and `--kicl-color-grey` is the same as `--kicl-color-grey-500`. Body text and backgrounds come from these.
@@ -22,13 +24,15 @@ The same ten steps for each hue.
 
 ## Levels
 
-The colours behind `level`, see Level. Each has four looks taken from its hue: `secondary` is step `600`, `tertiary` `700` and `ghost` `500`, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one. Warning has no hue of its own, so its looks are worked out from its colour, and on the dark theme they follow yellow as warning does.
+The colours behind `level`, explained on [Level](../tokens/semantics/level). Each level has four looks taken from its hue: `secondary` is step `600`, `tertiary` `700` and `ghost` `500`, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one.
+
+Warning has no hue of its own. On a light page its looks are steps of its own colour, a mix of yellow and orange. On a dark page warning is plain yellow, and its looks are yellow's steps.
 
 <Palette swatches={LEVEL_SWATCHES} />
 
 ## Body and surface
 
-Four roles cover most of the page. `--kicl-body-color` is text and `--kicl-body-background-color` is the page behind it. `--kicl-surface-color` is anything raised off the page, like a card, a popover or a field, and `--kicl-surface-border-color` is its edge. A surface is a short step away from the background, lighter on both themes, so it always reads as raised.
+Four roles cover most of the page. `--kicl-body-color` is text and `--kicl-body-background-color` is the page behind it. `--kicl-surface-color` is anything raised off the page, like a card, a popover or a field, and `--kicl-surface-border-color` is its edge. A surface is a short step away from the background, lighter on both themes, so it reads as raised.
 
 `kicl--theme--light` and `kicl--theme--dark` set these roles. Components don't know which theme they're in. They read the roles, so the same card below takes both themes without a prop.
 
@@ -75,7 +79,7 @@ MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
 
 ### see-through
 
-`black-a{n}` and `white-a{n}` are black and white at `{n}`%, from 4 to 80. `neutral-a{n}` is the ink, black on a light page and white on a dark one, for washes, hovers and quieter text. `page-a{n}` is the page's own colour, for panes, scrims and fades that settle into the page. `--kicl-surface-glass-color` is a surface you can see through, for a pane with a blur behind it.
+`black-a{n}` and `white-a{n}` are black and white at `{n}`%, from 4 to 80. `neutral-a{n}` is black on a light page and white on a dark one, at `{n}`%, for washes, hovers and quieter text. `page-a{n}` is the page's own colour, for panes, scrims and fades that settle into the page. `--kicl-surface-glass-color` is a surface you can see through, for a pane with a blur behind it.
 
 <Variables
   names={[
@@ -99,8 +103,8 @@ The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-f
 // A light grey fill behind a block
 <div className='kicl-background-color-grey-300' />
 
-// The faint error fill, for a block that needs attention
-<div className='kicl-background-color-error-ghost' />
+// A faint red fill, for a block that needs attention
+<div className='kicl-background-color-red-50' />
 
 // An SVG icon in the error colour
 <svg className='kicl-fill-error' />
@@ -115,5 +119,3 @@ The body colours have their own:
 
 - `kicl-color-body-color` and `kicl-fill-body-color` use the text colour.
 - `kicl-background-color-body` uses the page colour, and `kicl-background-color-body-color` fills with the text colour.
-
-`kicl-color-gradient-rotate-0deg`, `90deg`, `180deg` and `270deg` set `--kicl-color-gradient-rotate`, the angle of the site's gradient.

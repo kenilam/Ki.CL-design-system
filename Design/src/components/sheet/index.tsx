@@ -83,6 +83,8 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
   ) => {
     const generated = useId();
     const id = rest.id ?? generated;
+    const headerId = `${id}--header`;
+    const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
     const node = useRef<HTMLElement | null>(null);
     const t = useCopy();
     // Closed, it is only its own element, which its buttons can still open.
@@ -196,6 +198,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
 
     return (
       <Card
+        aria-labelledby={header && !isLabelled ? headerId : undefined}
         {...rest}
         // Fixed chrome, so a frame on the page moves its insets inside the frame's edge.
         className={classNames(
@@ -221,7 +224,11 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       >
         {shown && (header || closable) && (
           <SheetHeader>
-            {header}
+            {header ? (
+              <div className='kicl-display-contents' id={headerId}>
+                {header}
+              </div>
+            ) : null}
             {closable && (
               <CardAction>
                 <Button

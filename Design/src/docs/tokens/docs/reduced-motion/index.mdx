@@ -1,4 +1,4 @@
-When someone sets their system to reduce motion, the site stops moving things for them and keeps everything usable.
+When someone sets their system to reduce motion, the components below stop animating on their own and still show their end state. Two classes cover anything else that moves.
 
 ## What changes by itself
 
@@ -18,7 +18,7 @@ When someone sets their system to reduce motion, the site stops moving things fo
 ```
 
 - `kicl-animation-none-reduced-motion` stops an element's own animation.
-- `kicl-visibility-hidden-reduced-motion` hides something that only works with motion. Pair it with the first when an animation sets `visibility`.
+- `kicl-visibility-hidden-reduced-motion` hides something that only works with motion. Pair it with `kicl-animation-none-reduced-motion` when an animation sets `visibility`.
 
 Write anything new that moves inside `@media (prefers-reduced-motion: no-preference)`, so it's off unless the person is happy with motion.
 

@@ -1,7 +1,7 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Duration, Easing, Instant } from 'design/docs/tokens/previews';
 
-`--kicl-transition-duration` is 600ms, and the named steps are multiples of it. Easing curves are named by family and direction.
+`--kicl-transition-duration` is 600ms, and the named steps are scaled from it, from a fifth of it to eight times as long. [Reduced motion](../tokens/accessibility/reduced-motion) covers what stops when someone asks for less motion. Easing curves are named by family and direction.
 
 ## Variables
 
@@ -106,7 +106,7 @@ The body's own transition, when the theme changes.
 
 MDN: [`animation-timeline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline).
 
-The scroll reveal and the site's moving gradient.
+The scroll reveal, and the slowly panning five-colour gradient used on the scroll indicator.
 
 <Variables
   fill={12}

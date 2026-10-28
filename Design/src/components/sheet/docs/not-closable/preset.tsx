@@ -9,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    There's no close button and Escape does nothing, so your own code decides
-    when it closes.
+    There’s no close button and Escape does nothing, so your own code decides
+    when it closes, like the Done button here.
   </>
 );
 

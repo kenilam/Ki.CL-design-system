@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
@@ -9,11 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    For steps that have to happen in order. With a{' '}
-    <Text is='code'>listStyleType</Text>, each item is a list item rather than a
-    grid, so it can carry its marker.
-  </>
+  <>For steps that have to happen in order, numbered 1, 2, 3.</>
 );
 
 const name = 'Steps';

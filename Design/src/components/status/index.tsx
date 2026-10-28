@@ -103,12 +103,17 @@ const Status: React.FunctionComponent<Spec.Props> = ({
   ) : null;
 
   return (
-    <Animation {...rest} property={property} in={transitionIn}>
-      <div className={className} role={level === 'error' ? 'alert' : 'status'}>
-        {Title}
-        {Messages}
-      </div>
-    </Animation>
+    <div
+      className='kicl-display-contents'
+      role={level === 'error' ? 'alert' : 'status'}
+    >
+      <Animation {...rest} property={property} in={transitionIn}>
+        <div className={className}>
+          {Title}
+          {Messages}
+        </div>
+      </Animation>
+    </div>
   );
 };
 

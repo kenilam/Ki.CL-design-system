@@ -3,7 +3,7 @@ import { Radii } from './radii';
 import { Variables } from 'design/docs/tokens/variables';
 import { Length, Shape } from 'design/docs/tokens/previews';
 
-`--kicl-size` is 16px, and the scale is multiples of it. Radius and the named widths pick points on it, and Card `size` takes the same names.
+`--kicl-size` is 16px, and most of the scale is multiples of it, with a few smaller steps like `half` and `hair`. Radius and the named widths pick points on it, and Card `size` takes the same names.
 
 ## Radius
 
@@ -11,7 +11,7 @@ import { Length, Shape } from 'design/docs/tokens/previews';
 
 ## Columns
 
-Widths come from a 12-column scale. Twelve columns are the page, at most 80rem, and a span of `n` is `n` columns plus the gaps between them, so a width lines up with a real 12-column grid. The utilities never go wider than their parent, so a span can't cause horizontal scroll. Card and Sheet `size`, and Layout `span`, take the same numbers.
+Widths come from a 12-column scale. Twelve columns are the page, at most 80rem, and a span of `n` is `n` columns plus the gaps between them, so a width lines up with a real 12-column grid. The `kicl-inline-size-columns-*` and `kicl-max-inline-size-columns-*` classes never go wider than their parent, so a span set with them can't cause horizontal scroll. Card and Sheet `size`, and Layout `span`, take the same numbers.
 
 <Columns />
 

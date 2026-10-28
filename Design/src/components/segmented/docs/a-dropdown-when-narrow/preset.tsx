@@ -11,8 +11,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    When the row doesn't fit, it shows only the current choice and opens the
-    rest in a popover.
+    At tablet width and below, it shows only the current choice and opens the
+    rest in a popover. It starts collapsed here so you can see it.
   </>
 );
 

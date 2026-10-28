@@ -1,7 +1,7 @@
 import { Preset as ChoicesAndATotal } from './choices-and-a-total';
 import { Preset as SignUp } from './sign-up';
 
-Forms are where people do the work, so every extra step or unclear field costs something. Start from a native `form`: it submits on Enter, validates, and works before any script loads.
+Forms are where people do the work, so every extra step or unclear field costs something. Start from a native `form`, so Enter submits it. The `Form` component sets `noValidate` and checks fields with react-hook-form instead of the browser, so its messages look like the rest of the page.
 
 <Preview>
   {SignUp}
@@ -14,11 +14,11 @@ Every field gets a visible `label`, not just a placeholder. A placeholder disapp
 
 ## Group what belongs together
 
-Wrap related radios and checkboxes in a `fieldset` with a `legend`. `RadioGroup` and `CheckboxGroup` do this, so the question is read along with each answer.
+Wrap related radios and checkboxes in a `fieldset` with a `legend`. `RadioGroup` and `CheckboxGroup` do this, so a screen reader announces the question when someone moves into the group.
 
 ## Ask for less
 
-- Leave out anything you don't need. Every field is a chance to give up.
+- Leave out anything you don't need. Each extra field is more work, and some people stop before the end.
 - Use the right input type, so phones show the right keyboard and browsers can fill it in: `EmailInput`, `PasswordInput`, `type='tel'`, `inputMode='numeric'`.
 - Set `autoComplete`, so returning people don't type their address again.
 - Offer a choice instead of typing when the answers are known.

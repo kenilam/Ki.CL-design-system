@@ -8,9 +8,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>
-    For a section title that should look quieter than its place in the outline.
-  </>
+  <>For a section title that should look smaller than its level.</>
 );
 
 const name = 'Small section title';

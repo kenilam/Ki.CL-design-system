@@ -1,7 +1,7 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Overflow } from 'design/docs/tokens/previews';
 
-How an element treats content that runs past its box, how scrolling carries on past it, and how much of it the browser can skip laying out.
+How an element treats content that runs past its box, how scrolling carries on past it, and how far its layout is kept separate from the rest of the page.
 
 ## Variables
 
@@ -101,8 +101,10 @@ The patterns are `kicl-overflow-{keyword}`, `kicl-overflow-{x|y}-{keyword}`, `ki
 <div className='kicl-contain-inline-size' />
 ```
 
-`{keyword}` for overflow is `auto`, `clip`, `hidden`, `scroll` or `visible`. For contain it's `none`, `content`, `inline-size`, `layout`, `paint`, `size` or `strict`. `kicl-contain-inline-size` keeps an element out of its parent's width, so a fit-content parent sizes to its other children and this one fills the rest.
+`{keyword}` for overflow is `auto`, `clip`, `hidden`, `scroll` or `visible`. For contain it's `none`, `content`, `inline-size`, `layout`, `paint`, `size` or `strict`.
+
+`kicl-contain-inline-size` stops an element's content from widening its parent. A parent sized to fit its content then takes its width from its other children, and this element fits inside that width.
 
 - `kicl-scrollbar-none` hides the scrollbar and keeps the scrolling.
 - `kicl-scroll-fade` fades the content out at the top and bottom edges it can scroll toward, and hides the scrollbar. `kicl-scroll-fade-inline` does the same at the start and end, for a row that scrolls sideways.
-- `kicl-stuck-line-start` and `kicl-stuck-line-end` draw the site's gradient along a sticky element's edge while it's stuck: `start` for a footer stuck to the bottom, `end` for a header stuck to the top.
+- `kicl-stuck-line-start` and `kicl-stuck-line-end` draw the slowly panning five-colour gradient used on the scroll indicator along a sticky element's edge while it's stuck: `start` for a footer stuck to the bottom, `end` for a header stuck to the top.

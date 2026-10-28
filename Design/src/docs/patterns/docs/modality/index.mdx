@@ -3,7 +3,9 @@ import { Preset as ConfirmADelete } from './confirm-a-delete';
 import { Preset as Filters } from './filters';
 import { Preset as InPlace } from './in-place';
 
-A modal layer pauses what someone is doing until they finish a short task or answer a question, then puts them back where they were. The page behind it can't be used until it closes.
+Some tasks are short enough to do without leaving the page: confirming a delete, picking filters, reading a short note. A layer shows that task over the page, or opens it in place, and puts the person back where they were when it's done.
+
+Only some layers are modal. A modal layer pauses the page behind it until it closes. The others leave the page usable.
 
 <Preview>
   {ConfirmADelete}
@@ -18,21 +20,23 @@ Use a layer for a task with a clear start and end that doesn't need the page beh
 
 ## Which layer
 
-- **`Dialog`** for a decision that has to be made now. It's modal: the rest of the page is inert until it closes.
-- **`Sheet`** for a longer task, like filters or a form, sliding in from a side.
+- **`Dialog`** for a decision that has to be made now. It's modal: the rest of the page can't be used until it closes.
+- **`Sheet`** for a longer task, like filters or a form, sliding in from an edge. By default the page stays usable beside it. With `modal`, or at tablet width and below, it's modal too.
 - **`Popover`** for a short note or a few options next to what opened it. It isn't modal, and clicking outside closes it.
 - **`Details`** when the content can just open in the page. It doesn't need a layer at all.
 
+Give every layer a title, so someone who can't see it appear knows what it's about.
+
 ## What the platform does
 
-All four are native: `dialog`, the `popover` attribute and `details`. That gives you, without any script:
+`Dialog`, `Sheet` and `Popover` are built on the browser's own `dialog` element and `popover` attribute, so the browser does most of the work. A modal `dialog` gives you, without any script:
 
-- Focus moves into a dialog when it opens and goes back to the button that opened it when it closes.
+- Focus moves into the dialog when it opens, and back to the button that opened it when it closes.
 - Escape closes it.
-- The rest of the page can't be reached with Tab while a modal dialog is open.
-- The layer sits in the top layer, above everything, without a `z-index`.
+- The rest of the page can't be reached with Tab while it's open.
+- It sits in the top layer, above everything, without a `z-index`.
 
-Every layer needs a title, so someone who can't see it appear knows what it's about.
+A popover sits in the top layer too, and closes on Escape or a click outside. A sheet that isn't modal is a manual popover, which the browser doesn't close on Escape, so the component handles Escape itself. `Details` isn't a layer: it opens in the page.
 
 ## References
 

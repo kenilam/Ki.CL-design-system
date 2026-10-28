@@ -7,11 +7,11 @@ A screen reader turns the page into speech or braille. People move through it el
 - **State:** what it's doing now: `checked`, `disabled`, `aria-expanded`, `aria-current`.
 - **Description:** anything more, from `aria-describedby`, such as a field's hint or error.
 
-A native element sets the role and state itself. `<button disabled>Save</button>` is read as "Save, button, dimmed" with nothing extra. That's why components here render the real element and only add ARIA when HTML has no way to say it.
+A native element sets the role and state itself. `<button disabled>Save</button>` is read by VoiceOver as "Save, button, dimmed" with nothing extra. That's why the design system's components render the real element, and add ARIA where HTML can't express something.
 
 ## Name everything
 
-Every control needs a name a person could say out loud, which also makes it work with voice control.
+Every control needs a name a person could say out loud, which also helps voice control users, as long as the name includes the visible text.
 
 ```tsx
 // Read as "Close, button"
@@ -32,7 +32,7 @@ Icons beside text are decorative, so they get `aria-hidden` and aren't read twic
 
 ## Group and hide
 
-- **Keep what belongs together in one element.** A card with a link in its title is one stop, not five.
+- **Keep what belongs together in one element.** A card with a link in its title is one stop for a screen reader user, rather than one for every line inside it.
 - **Hide what repeats.** If something is already said in text, hide the visual copy with `aria-hidden`.
 - **Hide visually, not from assistive technology,** with `kicl-hidden`, when a label is only needed by people who can't see the layout.
 
@@ -47,7 +47,7 @@ Let focus follow the page. Move it only when the context changes under the perso
 - **On a route change,** move focus to the main content, so the new page is read from the top.
 - **When a dialog opens,** focus moves into it. Native `dialog` does this.
 - **When it closes,** focus goes back to the control that opened it. Native `dialog` and `popover` do this too.
-- **Escape closes** a dialog, sheet or popover, and leaves the person where they were.
+- **Escape closes** a dialog, sheet or popover that can be closed, and leaves the person where they were.
 
 ## References
 

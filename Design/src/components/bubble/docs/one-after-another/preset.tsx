@@ -7,7 +7,9 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <>Messages one person sent in a row.</>;
+const description = (
+  <>Several messages from the same person, grouped together.</>
+);
 
 const name = 'One after another';
 

@@ -9,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    Only Escape closes it, so there's no close button and a click outside does
-    nothing. Use it when a footer button is already the way out.
+    There’s no close button and a click outside does nothing, so Escape or the
+    button in the footer closes it.
   </>
 );
 

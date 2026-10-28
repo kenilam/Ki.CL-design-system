@@ -248,18 +248,6 @@ const Opacity: React.FunctionComponent<Props> = ({ name }) => (
   />
 );
 
-const Filter: React.FunctionComponent<Props> = ({ name }) => (
-  <span
-    aria-hidden
-    className={classNames(
-      BLOCK,
-      'kicl-display-inline-block',
-      'kicl-padding-wide'
-    )}
-    style={{ filter: `var(--kicl-${name})` }}
-  />
-);
-
 const Backdrop: React.FunctionComponent<Props> = ({ name }) => (
   <div
     aria-hidden
@@ -286,7 +274,6 @@ export {
   Display,
   Duration,
   Easing,
-  Filter,
   Instant,
   Length,
   Opacity,

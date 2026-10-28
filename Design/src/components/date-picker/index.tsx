@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 // Components
+import { FormDescription, FormLabel } from 'design/components/form';
+import { useFormItemControl } from 'design/components/form/context';
 import { Popover, PopoverContent } from 'design/components/popover';
 
 // Context
@@ -46,6 +48,11 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
     variant,
   } = props;
 
+  const control = useFormItemControl({
+    'aria-describedby': ariaDescribedBy,
+    description: props.description,
+    id,
+  });
   const isControlled = props.value !== undefined;
   const [open, setOpen] = useState(false);
 
@@ -102,24 +109,26 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
 
   return (
     <DatePickerContext.Provider value={context}>
+      <FormLabel htmlFor={control.id}>{props.label}</FormLabel>
       <Popover onOpenChange={setOpen} open={open}>
         <Trigger
           className={className}
-          id={id}
-          aria-describedby={ariaDescribedBy}
+          id={control.id}
+          aria-describedby={control['aria-describedby']}
           aria-invalid={ariaInvalid}
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
         />
         {/* A forwarded id replaces the trigger's default one, so name the panel from it. */}
         <PopoverContent
-          aria-labelledby={id}
+          aria-labelledby={control.id}
           className={`${CLASS_NAME}__panel`}
           variant={variant}
         >
           <Calendar />
         </PopoverContent>
       </Popover>
+      <FormDescription>{props.description}</FormDescription>
     </DatePickerContext.Provider>
   );
 };

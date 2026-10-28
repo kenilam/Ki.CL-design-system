@@ -42,7 +42,7 @@ const Trigger: React.FunctionComponent<DatePickerTriggerProps> = ({
           'kicl--components--input',
           `${DATE_PICKER}__trigger`,
           'kicl-font-size-small',
-          'kicl-inline-size-full',
+          'kicl-inline-size-auto',
           'kicl-line-height',
           'kicl-text-align-start',
           className

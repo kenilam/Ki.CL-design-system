@@ -74,11 +74,11 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <Layout gap='narrowest'>
+      <Layout gap='narrow'>
         <label className={className} style={style}>
           <Text
             className={classNames(
-              'kicl-font-size-small',
+              'kicl-font-size-smallest',
               'kicl-font-weight-bold',
               'kicl-padding-inline-start'
             )}

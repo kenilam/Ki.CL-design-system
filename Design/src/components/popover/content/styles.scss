@@ -115,6 +115,10 @@ $gaps: (
       overlay var(--kicl-transition-duration-fast) allow-discrete;
     translate: var(--kicl--components--popover--enter);
 
+    &:not(:popover-open) {
+      display: none;
+    }
+
     &:popover-open {
       opacity: 1;
       translate: 0 0;

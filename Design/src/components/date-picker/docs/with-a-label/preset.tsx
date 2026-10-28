@@ -1,8 +1,5 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
@@ -12,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a date with its name above it and a hint below, kept together in a{' '}
-    <Text is='code'>FormItem</Text>. A click on the name opens the calendar.
+    For a date with its name above it and a hint below. A click on the name
+    opens the calendar.
   </>
 );
 

@@ -1,8 +1,5 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
@@ -10,12 +7,7 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a choice with its name above it and a hint below, kept together in a{' '}
-    <Text is='code'>FormItem</Text>.
-  </>
-);
+const description = <>For a choice with its name above it and a hint below.</>;
 
 const name = 'With a label';
 

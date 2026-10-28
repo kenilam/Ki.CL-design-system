@@ -72,20 +72,16 @@ const Preview: React.FC = () => {
           control={form.control}
           name='team'
           render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  {...field}
-                  description={
-                    pro
-                      ? 'Everyone on your team sees this name.'
-                      : 'Teams are part of the Pro plan. Turn it on to rename yours.'
-                  }
-                  label='Team name'
-                  disabled={!pro}
-                />
-              </FormControl>
-            </FormItem>
+            <Input
+              {...field}
+              description={
+                pro
+                  ? 'Everyone on your team sees this name.'
+                  : 'Teams are part of the Pro plan. Turn it on to rename yours.'
+              }
+              label='Team name'
+              disabled={!pro}
+            />
           )}
         />
       </Form>

@@ -61,8 +61,7 @@ const fillsScreen = () => {
  * point at it with `popovertarget` open and close it. It scrolls as a whole;
  * a `SheetHeader` or `SheetFooter` inside it stays stuck to its top or
  * bottom, with a line of the moving gradient while content runs under it.
- * `header` and `footer` are what goes in them. While `closable`, the header
- * is there even without `header`, and ends with a button that closes it.
+ * `header` and `footer` are what goes in them.
  */
 const Sheet = React.forwardRef<HTMLElement, SheetProps>(
   (

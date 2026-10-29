@@ -197,14 +197,6 @@
         grid-template-columns: minmax(0, 1fr);
       }
     }
-
-    &.kicl-layout--dense {
-      --kicl-layout--auto-flow: dense;
-    }
-
-    &.kicl-layout--revert {
-      --kicl-layout--auto-flow: revert;
-    }
   }
 
   &.kicl-layout--full-screen {

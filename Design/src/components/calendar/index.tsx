@@ -85,9 +85,12 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
       <CalendarContext.Provider value={context}>
         <table
           ref={ref}
-          aria-labelledby={titleId}
           className={classNames(CLASS_NAME, className)}
           {...rest}
+          aria-labelledby={
+            rest['aria-labelledby'] ??
+            (rest['aria-label'] ? undefined : titleId)
+          }
         >
           <Header />
           <Weekdays />

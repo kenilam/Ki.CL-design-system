@@ -14,6 +14,10 @@
   scale: 0 1;
   transform-origin: left;
 
+  &:dir(rtl) {
+    transform-origin: right;
+  }
+
   @supports (animation-timeline: scroll()) {
     animation-duration: var(--kicl-transition-duration-5m), auto;
     animation-fill-mode: none, both;

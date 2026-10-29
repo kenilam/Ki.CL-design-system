@@ -6,7 +6,6 @@ type ContextValue = Pick<
   RadioGroupProps,
   'defaultValue' | 'required' | 'value'
 > & {
-  invalid?: RadioGroupProps['aria-invalid'];
   name: string;
   onValueChange: (value: string) => void;
 };

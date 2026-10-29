@@ -25,8 +25,7 @@ import { Weekdays } from './weekdays';
 import type { CalendarProps, DateRange } from './spec';
 
 /**
- * Month table - used by DatePicker (shadcn composition).
- * https://ui.shadcn.com/docs/components/base/date-picker
+ * Month table - used by DatePicker.
  */
 const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (props, ref) => {

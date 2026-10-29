@@ -1,7 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
 /**
- * Pulsing placeholder - API aligned with
- * https://ui.shadcn.com/docs/components/skeleton
+ * Pulsing placeholder.
  */
 export type Props = ComponentPropsWithoutRef<'div'>;

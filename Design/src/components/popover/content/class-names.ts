@@ -31,7 +31,7 @@ const getContentClassNames = ({
     `${CLASS_NAME}--offset--${offset}`,
     `${CLASS_NAME}--variant--${variant}`,
     'kicl-box-shadow-overlay',
-    variant === 'secondary' && 'kicl-backdrop-blur',
+    variant !== 'primary' && 'kicl-backdrop-blur',
     className
   );
 };

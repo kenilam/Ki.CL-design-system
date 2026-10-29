@@ -24,8 +24,7 @@ const SWITCH_ATTRIBUTE = {
 } as React.ComponentPropsWithoutRef<'input'>;
 
 /**
- * Toggle switch on a native checkbox - API aligned with
- * https://ui.shadcn.com/docs/components/base/switch
+ * Toggle switch on a native checkbox.
  *
  * Its children are its visible name, as text or a {@link SwitchLabel}. The
  * `<label>` wraps the control, so the text is its accessible name.

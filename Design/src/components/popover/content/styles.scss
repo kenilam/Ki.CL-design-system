@@ -217,6 +217,11 @@ $gaps: (
     }
 
     &--variant--tertiary {
+      --kicl--components--popover--background-color: color-mix(
+        in srgb,
+        var(--kicl-surface-glass-color) 50%,
+        transparent
+      );
       --kicl--components--popover--border-color: transparent;
     }
 

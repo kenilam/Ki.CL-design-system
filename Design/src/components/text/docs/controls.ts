@@ -13,6 +13,7 @@ export const CONTROLS = {
   level: { options: LEVELS, default: 'neutral' },
   lookLike: { options: TEXT_LOOK_LIKES, except: 'is' },
   dense: 'boolean',
+  unstyled: 'boolean',
 } as const satisfies ControlsSpec;
 
 export type Props = {

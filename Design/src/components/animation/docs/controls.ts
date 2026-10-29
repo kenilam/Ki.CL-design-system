@@ -11,6 +11,7 @@ export const CONTROLS = {
   property: { options: PROPERTIES, default: 'fade' },
   duration: { options: DURATIONS, default: 'fast' },
   easing: { options: EASINGS, default: 'ease-sharp-in-out' },
+  in: { options: 'boolean', live: true },
 } satisfies ControlsSpec;
 
 /*

@@ -22,6 +22,12 @@ export const PAGES = {
       context: 'input',
       Content: lazy(() => import('design/components/input/docs/index.mdx')),
     },
+    'input-group': {
+      context: 'input_group',
+      Content: lazy(
+        () => import('design/components/input-group/docs/index.mdx')
+      ),
+    },
     textarea: {
       context: 'textarea',
       Content: lazy(() => import('design/components/textarea/docs/index.mdx')),

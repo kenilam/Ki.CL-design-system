@@ -1,0 +1,14 @@
+import { Preset as Basic } from './basic';
+import { Preset as ALabel } from './a-label';
+import { Preset as APrimaryButton } from './a-primary-button';
+import { Preset as ATextarea } from './a-textarea';
+import { CONTROLS } from './controls';
+
+A field with icons, text or buttons inside its border. With a button it's a `fieldset`, the default, since a label can't hold a button; with only icons or text it's a `label` (`is='label'`). For one field with an icon, a prefix or a unit, `Input`'s `before` and `after` build this for you.
+
+<Preview controls={CONTROLS} span={4}>
+  {Basic}
+  {ALabel}
+  {APrimaryButton}
+  {ATextarea}
+</Preview>

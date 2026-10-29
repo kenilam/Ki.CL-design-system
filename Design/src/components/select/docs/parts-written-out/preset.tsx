@@ -12,7 +12,7 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    The same select with its parts written out, as shadcn/ui shapes it:{' '}
+    The same select with its parts written out:{' '}
     <Text is='code'>SelectTrigger</Text> holding{' '}
     <Text is='code'>SelectValue</Text>, then{' '}
     <Text is='code'>SelectContent</Text> around the options.

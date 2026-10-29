@@ -20,8 +20,7 @@ import { SelectValue } from './value';
 import type { SelectProps } from './spec';
 
 /**
- * A native `<select>` - API aligned with
- * https://ui.shadcn.com/docs/components/base/select
+ * A native `<select>`.
  *
  * Where `appearance: base-select` is supported, the face is a SelectTrigger,
  * drawn here with the chosen option and the system's arrow unless the

@@ -60,7 +60,7 @@ type CardOwnProps = {
   /**
    * Width scale - `default` fills the parent; `fit` shrinks to the content;
    * `xs`…`max` apply `kicl-inline-size-*`, and `1`…`12` a column width.
-   * `xs` / `sm` also tighten spacing (shadcn-style density).
+   * `xs` / `sm` also tighten spacing.
    */
   size?: CardSize;
   variant?: CardVariant;

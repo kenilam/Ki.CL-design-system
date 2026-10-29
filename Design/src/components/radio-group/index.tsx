@@ -22,8 +22,7 @@ import { RadioGroupContext } from './context';
 import { Radio } from './radio';
 
 /**
- * Mutually exclusive options as a native `<fieldset>` of radios - API aligned
- * with https://ui.shadcn.com/docs/components/base/radio-group
+ * Mutually exclusive options as a native `<fieldset>` of radios.
  *
  * `disabled` on the fieldset disables every radio inside it.
  */

@@ -39,7 +39,7 @@
     --kicl--components--badge--font-size: var(--kicl-font-size-smaller);
   }
 
-  // Icons / spinner sit inline like shadcn data-icon slots.
+  // Icons and spinners sit inline, at the text's size.
   :is(svg, .kicl--components--spinner) {
     block-size: 1em;
     flex-shrink: 0;

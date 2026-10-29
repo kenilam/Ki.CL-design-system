@@ -16,8 +16,7 @@ import './styles.scss';
 const CLASS_NAME = 'kicl--components--input';
 
 /**
- * Text field control - API aligned with
- * https://ui.shadcn.com/docs/components/base/input
+ * Text field control.
  *
  * `before` and `after` put an icon or a short text inside the field's border,
  * on either side of the text: it becomes a `label` around them and the

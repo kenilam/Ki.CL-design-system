@@ -19,8 +19,7 @@ import { ComboboxAnchor } from './anchor';
 import { ComboboxContent } from './content';
 
 /**
- * A field with a list of suggestions under it - API after
- * https://ui.shadcn.com/docs/components/combobox, for any field, a textarea
+ * A field with a list of suggestions under it, for any field, a textarea
  * included, which a native `<datalist>` cannot serve.
  *
  * Built on `Popover`, so placement, flipping and the transition are the

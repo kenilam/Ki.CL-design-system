@@ -22,8 +22,7 @@ import { InputGroupTextarea } from './textarea';
 
 /**
  * Input with what sits inside its border: icons, text and buttons, each a
- * direct child - API aligned with
- * https://ui.shadcn.com/docs/components/base/input-group
+ * direct child.
  */
 const InputGroup = React.forwardRef<HTMLElement, InputGroupProps>(
   ({ children, className, is = 'fieldset', ...rest }, ref) => {

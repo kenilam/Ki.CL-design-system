@@ -18,8 +18,7 @@ import './styles.scss';
 const CLASS_NAME = 'kicl--components--checkbox';
 
 /**
- * Native checkbox - API aligned with
- * https://ui.shadcn.com/docs/components/base/checkbox
+ * Native checkbox.
  *
  * `indeterminate` has no HTML attribute, so it is set on the element.
  * Children are its visible label, laid out as a radio's is. With a `value`

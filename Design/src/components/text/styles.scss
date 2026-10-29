@@ -159,10 +159,10 @@
     white-space: pre-wrap;
   }
 
-  // Inline code, after shadcn's typography example. The fill is a faint wash
-  // of the ink, or of the code's level. Block padding
-  // on an inline box doesn't move the lines. Inline padding does take space,
-  // but it has to, or the fill runs into a comma or full stop right after it.
+  // Inline code. The fill is a faint wash of the ink, or of the code's level.
+  // Block padding on an inline box doesn't move the lines. Inline padding does
+  // take space, but it has to, or the fill runs into a comma or full stop
+  // right after it.
   &[data-is='code'],
   &.kicl-look-like-code {
     --kicl--components--text--background-color: var(

@@ -16,8 +16,7 @@
   }
 
   &--overlay {
-    // A light blur, so what is loading stays readable through the veil.
-    --kicl-backdrop-filter: blur(var(--kicl-size-2px));
+    --kicl-backdrop-filter: blur(var(--kicl-gutter-narrower));
 
     // Dimmed more than a pane over the page, and still readable.
     --kicl-backdrop-tint: var(--kicl-color-page-a64);

@@ -7,7 +7,6 @@ import {
 } from 'design/components/layout/spec';
 import { GAPS } from 'design/components/spec';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   autoFlow: { options: AUTO_FLOWS, default: 'column' },
   gap: {

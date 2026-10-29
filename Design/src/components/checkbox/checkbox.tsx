@@ -17,13 +17,6 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--checkbox';
 
-/**
- * Native checkbox.
- *
- * `indeterminate` has no HTML attribute, so it is set on the element.
- * Children are its visible label, laid out as a radio's is. With a `value`
- * inside a `CheckboxGroup`, the group holds whether it is checked.
- */
 const Checkbox = React.forwardRef<HTMLInputElement, Props>(
   (
     {
@@ -44,16 +37,17 @@ const Checkbox = React.forwardRef<HTMLInputElement, Props>(
 
     const { register } = group ?? {};
 
-    useEffect(
-      () =>
-        item === undefined ? undefined : register?.(item, Boolean(disabled)),
-      [disabled, item, register]
-    );
+    useEffect(() => {
+      return item === undefined
+        ? undefined
+        : register?.(item, Boolean(disabled));
+    }, [disabled, item, register]);
 
     const checked =
       item === undefined ? own : Boolean(group?.value.includes(item));
     const isIndeterminate = checked === 'indeterminate';
 
+    // `indeterminate` has no HTML attribute, so it is set on the element.
     const setRef = useCallback(
       (node: HTMLInputElement | null) => {
         if (node) {

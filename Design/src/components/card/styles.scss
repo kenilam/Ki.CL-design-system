@@ -21,7 +21,6 @@
     min-inline-size: 0;
   }
 
-  // A card split between two sheets keeps its edge and its padding on both.
   @media print {
     box-decoration-break: clone;
   }
@@ -30,13 +29,10 @@
     inline-size: fit-content;
   }
 
-  // The edge takes the level's colour: a card that's chosen, or needs attention.
   &[class*='kicl--components--card--level--']:not(&--level--neutral) {
     --kicl--components--card--border-color: var(--kicl--components--card--tone);
   }
 
-  // The card an in-page link jumped to, so it's clear which one of a list was
-  // meant. An outline, so nothing moves and the level's edge still shows.
   &:target {
     outline: var(--kicl-outline-width) dashed var(--kicl-color-info);
     outline-offset: var(--kicl-size-1px);
@@ -47,26 +43,10 @@
     --kicl--components--card--spacing: var(--kicl-gutter-narrow);
   }
 
-  /*
-   * As `Button`'s secondary: a soft fill you can see through.
-   *
-   * The fill is the surface, thinned and tinted with the secondary look of
-   * the card's level, or of neutral; the
-   * blur is what keeps text legible over whatever is behind it, which a plain
-   * transparency cannot do. Both are needed - thinning alone gives a smeared,
-   * unreadable panel over anything busy, and blurring alone leaves it opaque.
-   *
-   * The edge stays, because a translucent pane needs an outline more than a
-   * solid one does: without it there is nothing to say where the surface ends.
-   */
   &--variant--secondary {
     --kicl--components--card--background-color: var(--kicl-surface-glass-color);
   }
 
-  /*
-   * The surface with no edge. Its level has no edge to colour, so it tints the
-   * surface instead: solid, unlike secondary's see-through fill.
-   */
   &--variant--tertiary {
     --kicl--components--card--border-color: transparent;
 
@@ -92,7 +72,6 @@
     grid-template-columns: 1fr auto;
   }
 
-  // With a title and nothing under it, the action centres on the title's line.
   &:has(.kicl--components--card__action):not(
     :has(.kicl--components--card__description)
   ) {

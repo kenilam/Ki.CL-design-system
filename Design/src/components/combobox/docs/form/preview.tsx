@@ -21,9 +21,9 @@ type Values = { city: string };
 const Preview: React.FC<Props> = (props) => {
   const form = useForm<Values>({ defaultValues: { city: '' } });
   const city = form.watch('city');
-  const matches = CITIES.filter((name) =>
-    name.toLowerCase().includes(city.toLowerCase())
-  );
+  const matches = CITIES.filter((name) => {
+    return name.toLowerCase().includes(city.toLowerCase());
+  });
 
   return (
     <Form {...form} onSubmit={form.handleSubmit(() => {})}>
@@ -31,33 +31,39 @@ const Preview: React.FC<Props> = (props) => {
         control={form.control}
         name='city'
         rules={{
-          validate: (value) =>
-            CITIES.includes(value) || 'Pick a city from the list',
+          validate: (value) => {
+            return CITIES.includes(value) || 'Pick a city from the list';
+          },
         }}
-        render={({ field }) => (
-          <Combobox {...props}>
-            <ComboboxAnchor>
-              <Input {...field} label='City' placeholder='Search a city' />
-            </ComboboxAnchor>
-            <ComboboxContent aria-label='Cities'>
-              <List gap='narrow'>
-                {matches.map((name) => (
-                  <ListItem key={name}>
-                    {/* type='button', or a pick would submit the form. */}
-                    <Button
-                      className='kicl-inline-size-full'
-                      onClick={() => field.onChange(name)}
-                      type='button'
-                      variant='secondary'
-                    >
-                      {name}
-                    </Button>
-                  </ListItem>
-                ))}
-              </List>
-            </ComboboxContent>
-          </Combobox>
-        )}
+        render={({ field }) => {
+          return (
+            <Combobox {...props}>
+              <ComboboxAnchor>
+                <Input {...field} label='City' placeholder='Search a city' />
+              </ComboboxAnchor>
+              <ComboboxContent aria-label='Cities'>
+                <List gap='narrow'>
+                  {matches.map((name) => {
+                    return (
+                      <ListItem key={name}>
+                        <Button
+                          className='kicl-inline-size-full'
+                          onClick={() => {
+                            field.onChange(name);
+                          }}
+                          type='button'
+                          variant='secondary'
+                        >
+                          {name}
+                        </Button>
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </ComboboxContent>
+            </Combobox>
+          );
+        }}
       />
       <Button type='submit'>Save</Button>
     </Form>

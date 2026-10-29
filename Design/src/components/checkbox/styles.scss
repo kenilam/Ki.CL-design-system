@@ -5,9 +5,8 @@
     var(--kicl-size) + var(--kicl-size-2px)
   );
 
-  // The box is the input's own border, so its corners can round and the focus
-  // outline rounds with them, as an input's or a button's does. The same share
-  // of its size as an input's radius is of an input's height.
+  // The radius is the same share of the box as an input's radius is of its
+  // height.
   --kicl--components--checkbox--border-width: calc(
     var(--kicl--components--checkbox--size) / 9
   );
@@ -15,7 +14,7 @@
     var(--kicl--components--checkbox--size) / 4.5
   );
 
-  // Remix's check and subtract icons, as masks filled with the colour.
+  // The masks below are Remix Icon's check and subtract icons.
   --kicl--components--checkbox--mark: none;
 
   appearance: none;
@@ -24,19 +23,17 @@
     var(--kicl--components--checkbox--color);
   border-radius: var(--kicl--components--checkbox--border-radius);
   inline-size: var(--kicl--components--checkbox--size);
-
-  // In a line of text, the box sits on the text's middle, not on its baseline.
   vertical-align: middle;
 
-  // The mark, drawn on a pseudo-element: a mask on the input itself would cut
-  // away its focus outline.
+  // On a pseudo-element because a mask on the input would cut off its focus
+  // outline.
   &::before {
     content: '';
     mask: var(--kicl--components--checkbox--mark) center / 100% no-repeat;
   }
 
-  // Only a checked or partly checked box paints a mark. Unchecked, the mask is
-  // `none`, which would paint the whole box.
+  // Painted only here: unchecked, the mask is `none`, which would paint the
+  // whole box.
   &:checked,
   &:indeterminate {
     border-color: var(--kicl--components--checkbox--checked-color);
@@ -70,8 +67,6 @@
   }
 }
 
-// Under "select all", the boxes it stands for step in, so the group reads as
-// one parent and its items.
 .kicl--components--choice-label:has(
   > .kicl--components--checkbox-group__select-all
 )

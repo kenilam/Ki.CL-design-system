@@ -4,10 +4,8 @@ import classNames from 'classnames';
 // Spec
 import * as Spec from './spec';
 
-/*
- * Kept out of the component's file: React Fast Refresh only hot-swaps a
- * file that exports nothing but components.
- */
+// Kept out of the component file because Fast Refresh only hot-swaps files
+// that export nothing but components.
 const CLASS_NAME = 'kicl--components--hyper-link';
 
 const getHyperLinkClassNames = ({

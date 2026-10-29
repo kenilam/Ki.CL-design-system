@@ -12,9 +12,9 @@ export const useTokenContext = () => {
   const { context = '', Content } = pages[category]?.[token] ?? {};
 
   return {
-    category: (Object.keys(PAGES) as Category[]).find(
-      (key) => key === category
-    ),
+    category: (Object.keys(PAGES) as Category[]).find((key) => {
+      return key === category;
+    }),
     Content,
     name: t('token', { context }),
   };

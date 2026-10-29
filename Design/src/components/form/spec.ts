@@ -8,7 +8,6 @@ import type React from 'react';
 
 import type { LayoutProps } from 'design/components/layout';
 
-/** The native `<form>` attributes Form passes through. */
 type FormElementProps = Pick<
   React.ComponentPropsWithoutRef<'form'>,
   | 'action'
@@ -42,7 +41,6 @@ export type FormItemProps = React.ComponentPropsWithoutRef<'div'> &
   FormItemLayout & {
     description?: FormDescriptionProps['children'];
     label?: FormLabelProps['children'];
-    /** Marks the control and label as required. */
     required?: boolean;
   };
 

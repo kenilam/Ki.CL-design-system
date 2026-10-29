@@ -1,8 +1,3 @@
-/*
- * A 12-column width scale. Twelve columns are the page width; a span of `n` is
- * `n` columns plus the gaps between them, so widths line up with a real
- * 12-column grid using the same gap.
- */
 :root {
   --kicl-columns-count: 12;
   --kicl-columns-gap: var(--kicl-gutter);
@@ -26,7 +21,6 @@
   --kicl-columns-12: var(--kicl-columns-inline-size);
 }
 
-// Never wider than the parent, so a span can't cause horizontal scroll.
 @for $span from 1 through 12 {
   .kicl-inline-size-columns-#{$span} {
     inline-size: min(100%, var(--kicl-columns-#{$span}));
@@ -36,7 +30,6 @@
     max-inline-size: min(100%, var(--kicl-columns-#{$span}));
   }
 
-  // The same scale as a height: a box at least so tall, or at most, so it scrolls.
   .kicl-min-block-size-columns-#{$span} {
     min-block-size: var(--kicl-columns-#{$span});
   }

@@ -7,7 +7,6 @@ import type { BubbleReactionsIs, BubbleReactionsProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--bubble__reactions';
 
-/** Small chip that overlaps a corner of the bubble. */
 const BubbleReactions = React.forwardRef<HTMLElement, BubbleReactionsProps>(
   ({ children, className, is = 'ul', ...rest }, ref) => {
     const Component = is as BubbleReactionsIs;

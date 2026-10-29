@@ -19,29 +19,19 @@ const CLASS_NAME = 'kicl--widgets--background';
 
 const PROPERTY = `--${CLASS_NAME}`;
 
-/**
- * Frames per second the drift is redrawn at. The motion is slow enough that
- * more would only spend battery; fewer and the screen visibly steps.
- */
+/** About 15 fps: the drift is slow enough that more only spends battery. */
 const FRAME_INTERVAL_MS = 66;
 
-/**
- * Retina and beyond are capped at two device pixels per CSS pixel. The screen
- * is drawn per device pixel, so beyond that it costs fill rate for a texture
- * nobody can resolve.
- */
+/** Past 2x, drawing per device pixel costs fill rate for detail nobody can see. */
 const MAX_PIXEL_RATIO = 2;
 
-/** How many inks the stylesheet may declare; it stops at the first gap. */
 const MAX_INKS = 6;
 
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 
 /**
- * Every colour, the cell size and the tone count live in the stylesheet, as
- * custom properties on the canvas, so the theme owns them and the renderer
- * only reads. The inks come back as computed colours, often `oklab()`, so a
- * 2D context paints one pixel in each and reads it back as sRGB.
+ * Computed colours can come back as `oklab()`, so a 2D context paints a pixel
+ * in each and reads it back as sRGB.
  */
 function readPalette(canvas: HTMLCanvasElement): Spec.Palette {
   const styles = window.getComputedStyle(canvas);
@@ -97,16 +87,6 @@ function readNumber(
   return Number.isFinite(value) && value > 0 ? value : fallback;
 }
 
-/**
- * The dithered light behind a page.
- *
- * A canvas the size of its nearest positioned ancestor, drawn under whatever
- * is positioned after it, by a fragment shader at device
- * resolution. It redraws on a slow clock so the pools of ink drift, stops at
- * a single frame for anyone who asked for reduced motion, and re-reads its
- * colours whenever the theme class on `body` changes. If the GPU takes the
- * context away, it is set up again once it comes back.
- */
 const Background: React.FunctionComponent<Spec.Props> = ({
   className,
   ...rest
@@ -181,7 +161,9 @@ const Background: React.FunctionComponent<Spec.Props> = ({
     };
 
     const onRestored = () => {
-      setGeneration((current) => current + 1);
+      setGeneration((current) => {
+        return current + 1;
+      });
     };
 
     canvas.addEventListener('webglcontextlost', onLost);
@@ -212,8 +194,7 @@ const Background: React.FunctionComponent<Spec.Props> = ({
         className
       )}
       {...rest}
-      // After the spread: a wrapper such as Animation passes its own ref, and
-      // the renderer needs this one on the canvas.
+      // After the spread, so a wrapper's ref such as Animation's can't replace it.
       ref={node}
     />
   );

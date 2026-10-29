@@ -3,9 +3,8 @@
   --kicl--components--switch--checked: var(--kicl-color-confirm);
   --kicl--components--switch--thumb: var(--kicl-color-white-pure);
 
-  // Drawn as the native switch is: a filled track, 26 by 16 on a 24-unit
-  // square, and a white thumb two units in from its edge. The square is 2.5em,
-  // 32px at the small type a label uses.
+  // Matches the native switch: a 26 by 16 track on a 24-unit square that is
+  // 2.5em.
   --kicl--components--switch--unit: calc(2.5em / 24);
 
   appearance: none;
@@ -17,7 +16,6 @@
   transition: background-color var(--kicl-transition-duration-fast)
     var(--kicl-ease-quint-in-out);
 
-  // `size` changes only the font size the switch is drawn from, as on `Button`.
   &--size--large {
     font-size: var(--kicl-font-size);
   }
@@ -26,7 +24,6 @@
     font-size: var(--kicl-font-size-smaller);
   }
 
-  // The thumb.
   &::before {
     background-color: var(--kicl--components--switch--thumb);
     block-size: calc(var(--kicl--components--switch--unit) * 12);
@@ -35,8 +32,8 @@
     content: '';
     inline-size: calc(var(--kicl--components--switch--unit) * 12);
 
-    // Its margins fill the track's height, so it is centred even where the
-    // grid doesn't centre it: on iOS Safari it sat at the top.
+    // Margins fill the track's height so the thumb stays centred on iOS
+    // Safari, where the grid put it at the top.
     margin-block: calc(var(--kicl--components--switch--unit) * 2);
     margin-inline-start: calc(var(--kicl--components--switch--unit) * 2);
     transition: translate var(--kicl-transition-duration-fast)
@@ -60,7 +57,6 @@
   }
 }
 
-// The name beside the switch takes its size too, as a button's label does.
 .kicl--components--switch-field {
   &:has(.kicl--components--switch--size--large) {
     font-size: var(--kicl-font-size);

@@ -23,11 +23,6 @@ import { useCopy } from 'design/locales/use-copy';
 // Spec
 import type { Props, Values } from './spec';
 
-/**
- * A message to the site's owner, in place of a published address. The form is
- * sending while `onSubmit` is pending, replaced by a confirmation when it
- * resolves, and shows the error over the button when it rejects.
- */
 const ContactForm: React.FunctionComponent<Props> = ({
   className,
   email = '',
@@ -71,7 +66,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
     >
       <Email />
       <Message />
-      {errors.root?.message && (
+      {errors.root?.message ? (
         <Text
           className={classNames('kicl-font-size-small', 'kicl-color-error')}
           is='p'
@@ -79,12 +74,12 @@ const ContactForm: React.FunctionComponent<Props> = ({
         >
           {errors.root.message}
         </Text>
-      )}
+      ) : null}
       <Button
         after={
-          isSubmitting && (
+          isSubmitting ? (
             <Ri.RiLoader4Line aria-hidden className='is-revolving' />
-          )
+          ) : null
         }
         disabled={isSubmitting}
         size='small'

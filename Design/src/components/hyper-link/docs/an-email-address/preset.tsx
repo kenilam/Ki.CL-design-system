@@ -18,7 +18,6 @@ const description = (
 
 const name = 'An email address';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

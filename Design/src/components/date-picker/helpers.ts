@@ -1,11 +1,12 @@
 import type { DateRange } from 'design/components/calendar';
 
-export const defaultFormatDate = (date: Date) =>
-  date.toLocaleDateString(undefined, {
+export const defaultFormatDate = (date: Date) => {
+  return date.toLocaleDateString(undefined, {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   });
+};
 
 export const formatRange = (
   range: DateRange | undefined,

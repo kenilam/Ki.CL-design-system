@@ -8,10 +8,11 @@ import type { Variant } from 'design/components/spec';
 export type BadgeVariant = Exclude<Variant, 'tertiary'>;
 
 export const BADGE_VARIANTS = VARIANTS.filter(
-  (variant): variant is BadgeVariant => variant !== 'tertiary'
+  (variant): variant is BadgeVariant => {
+    return variant !== 'tertiary';
+  }
 );
 
-/** Semantic hosts that read as a badge / chip / tag. */
 export type BadgeIs =
   'a' | 'abbr' | 'button' | 'div' | 'li' | 'mark' | 'span' | 'time';
 

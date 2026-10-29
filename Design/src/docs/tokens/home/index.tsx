@@ -17,7 +17,6 @@ import { COMPONENTS, Pre } from 'design/docs/mdx';
 import { Explore } from './explore';
 import Welcome from './welcome.mdx';
 
-/** The welcome, then every token page by its group. */
 const Home: React.FunctionComponent = () => {
   const t = useCopy();
   const { parsePath } = useDocsContext();

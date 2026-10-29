@@ -11,38 +11,26 @@ export type SegmentedProps = Omit<
 > & {
   value?: string;
   defaultValue?: string;
-  /**
-   * `pointer` is true when a click or tap made the choice, false for the arrow
-   * keys, which move through the options one press at a time.
-   */
+  /** `pointer` is false when the arrow keys made the choice. */
   onValueChange?: (value: string, details: { pointer: boolean }) => void;
-  /** Shared by every option, so the browser groups them. */
   name?: string;
 } & (
     | {
-        /**
-         * What happens at tablet width and below. `popover` shows only the
-         * choice, and opens the options in a popover.
-         */
+        /** Applies at tablet width and below. */
         collapse: 'popover';
-        /** Lays it out as it is at tablet width and below, whatever the width. */
+        /** Uses the collapsed layout at every width. */
         collapsed?: boolean;
-        /** Where the panel opens. Its options align to match. */
         placement?: PopoverPlacement;
         variant?: PopoverVariant;
       }
     | {
-        /**
-         * `scroll` keeps the row, never wraps an option, and scrolls sideways
-         * one option at a time.
-         */
         collapse: 'scroll';
         collapsed?: boolean;
         placement?: never;
         variant?: never;
       }
     | {
-        /** Without a mode, the options share the width at any size. */
+        /** Without it, the options share the width at any size. */
         collapse?: never;
         collapsed?: never;
         placement?: never;

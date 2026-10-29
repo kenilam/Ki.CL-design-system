@@ -1,7 +1,5 @@
 name: Release
 
-# Moves main to the head of develop as a fast-forward, so both branches hold
-# the same commits and nothing has to come back to develop. Run by hand.
 on:
   workflow_dispatch:
 

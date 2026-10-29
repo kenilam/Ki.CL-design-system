@@ -11,7 +11,6 @@ const description = <>For a card that's only a title.</>;
 
 const name = 'Dense header';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

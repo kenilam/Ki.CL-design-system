@@ -20,7 +20,7 @@ export type DatePickerTriggerProps = Pick<
 type DatePickerBaseProps = DatePickerTriggerProps &
   Pick<React.ComponentPropsWithoutRef<'button'>, 'className' | 'disabled'> &
   Pick<React.ComponentPropsWithoutRef<'input'>, 'placeholder' | 'required'> & {
-    /** Optional format override - default uses locale date string. */
+    /** Defaults to the locale's date string. */
     formatDate?: (date: Date) => string;
     variant?: PopoverVariant;
   };

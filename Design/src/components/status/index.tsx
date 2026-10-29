@@ -59,8 +59,6 @@ const Status: React.FunctionComponent<Spec.Props> = ({
 
   const Icon = level ? LEVELS[level] : null;
 
-  // A message alone carries the icon itself. The level's default title only
-  // shows when there is nothing else to read.
   const hasTitle = Boolean(title) || !message;
 
   const Title = hasTitle ? (

@@ -11,43 +11,50 @@ import {
 
 import type { Props } from 'design/components/button/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Popover>
-    <PopoverTrigger asChild>
-      <Button
-        after={<Ri.RiArrowDownSLine aria-hidden />}
-        variant='secondary'
-        {...props}
-      >
-        More
-      </Button>
-    </PopoverTrigger>
-    <PopoverContent>
-      <Menu aria-label='More' autoFlow='row' alignItems='stretch' gap='narrow'>
+const Preview: React.FC<Props> = (props) => {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
         <Button
-          className='kicl-inline-size-full'
-          justifyContent='center'
+          after={<Ri.RiArrowDownSLine aria-hidden />}
           variant='secondary'
+          {...props}
         >
-          Rename
+          More
         </Button>
-        <Button
-          className='kicl-inline-size-full'
-          justifyContent='center'
-          variant='secondary'
+      </PopoverTrigger>
+      <PopoverContent>
+        <Menu
+          aria-label='More'
+          autoFlow='row'
+          alignItems='stretch'
+          gap='narrow'
         >
-          Duplicate
-        </Button>
-        <Button
-          className='kicl-font-weight-bold kicl-inline-size-full'
-          justifyContent='center'
-          level='error'
-        >
-          Delete
-        </Button>
-      </Menu>
-    </PopoverContent>
-  </Popover>
-);
+          <Button
+            className='kicl-inline-size-full'
+            justifyContent='center'
+            variant='secondary'
+          >
+            Rename
+          </Button>
+          <Button
+            className='kicl-inline-size-full'
+            justifyContent='center'
+            variant='secondary'
+          >
+            Duplicate
+          </Button>
+          <Button
+            className='kicl-font-weight-bold kicl-inline-size-full'
+            justifyContent='center'
+            level='error'
+          >
+            Delete
+          </Button>
+        </Menu>
+      </PopoverContent>
+    </Popover>
+  );
+};
 
 export { Preview };

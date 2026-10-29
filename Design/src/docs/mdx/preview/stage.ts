@@ -1,9 +1,8 @@
 import { createContext, useContext } from 'react';
 
 /**
- * What a preset may do to the stage it is on. A theme switch in a preset
- * gives the stage a theme of its own, so the reader sees the switch do
- * something. Until then `dark` is unset and the stage follows the site.
+ * `dark` stays `undefined`, and the stage follows the site, until a preset's
+ * theme switch sets it.
  */
 type Stage = {
   dark: boolean | undefined;
@@ -15,6 +14,8 @@ const StageContext = createContext<Stage>({
   setDark: () => {},
 });
 
-const useStage = () => useContext(StageContext);
+const useStage = () => {
+  return useContext(StageContext);
+};
 
 export { StageContext, useStage };

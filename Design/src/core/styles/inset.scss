@@ -1,10 +1,3 @@
-// Inset is a distance, so it has no keyword scale of its own - it borrows the
-// gutter scale, which is what every other spacing decision in the system is
-// measured in. Aliasing rather than restating keeps one source of truth: change
-// a gutter and the insets follow.
-// The logical longhands are generated alongside the shorthand because insetting
-// a corner (`inset-block-start` + `inset-inline-end`) is the common case, and
-// the shorthand cannot express it.
 $inset-properties:
   inset, inset-block, inset-inline, inset-block-start, inset-block-end,
   inset-inline-start, inset-inline-end;
@@ -22,14 +15,8 @@ $inset-sizes: none, narrowest, narrower, narrow, wide, wider, widest, extreme;
   }
 }
 
-// Centres a positioned box on one axis: `kicl-inset-block-center` half way
-// down, `kicl-inset-inline-center` half way across. The box is pinned at both
-// ends of the axis, sized to its content and given auto margins, which is the
-// one way to centre a positioned box without a transform. So on that axis it
-// cannot also be stretched or given a margin. It still needs a
-// `kicl-position-*` class.
-// A size keeps it that far from both ends when its content would reach them:
-// `kicl-inset-block-center-narrow`.
+// Centres without a transform, so on that axis the box can't also be stretched
+// or given a margin. It still needs a `kicl-position-*` class.
 @mixin inset-center($axis, $size: '0') {
   #{$axis}-size: fit-content;
   inset-#{$axis}: var(--kicl-inset-#{$axis}-#{$size});

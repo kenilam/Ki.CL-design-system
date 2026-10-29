@@ -10,9 +10,8 @@ const ENCODINGS = [
 ];
 
 /**
- * Sends the `.br` or `.gz` the build wrote beside a file, when the browser
- * takes one. It only points the request at that file: `express.static`, mounted
- * after it on the same folder, does the sending.
+ * Only points the request at the `.br` or `.gz` beside the file.
+ * `express.static`, mounted after it on the same folder, sends it.
  */
 function precompressed(root: string): RequestHandler {
   return (request, response, next) => {

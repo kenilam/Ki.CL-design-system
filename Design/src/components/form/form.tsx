@@ -9,11 +9,9 @@ import './styles.scss';
 const CLASS_NAME = 'kicl--components--form';
 
 /**
- * react-hook-form's provider around a native `<form>`. Validation is the
- * library's, so `noValidate` defaults to true.
- *
- * The grid lives in the stylesheet, not in `Layout`: callers already wrap Form
- * in their own `Layout`, and two sets of layout classes on one element clash.
+ * `noValidate` defaults to true because react-hook-form does the validation.
+ * The grid is in the stylesheet, not `Layout`, because callers wrap Form in
+ * their own `Layout` and two sets of layout classes on one element clash.
  */
 function Form<TFieldValues extends FieldValues>({
   action,
@@ -43,7 +41,12 @@ function Form<TFieldValues extends FieldValues>({
         method={method}
         name={name}
         noValidate={noValidate}
-        onSubmit={onSubmit ?? ((event) => event.preventDefault())}
+        onSubmit={
+          onSubmit ??
+          ((event) => {
+            event.preventDefault();
+          })
+        }
       >
         {children}
       </form>

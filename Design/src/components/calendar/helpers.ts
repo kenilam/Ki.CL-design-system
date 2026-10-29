@@ -17,7 +17,22 @@ export const sameDay = (a?: Date, b?: Date) => {
   );
 };
 
-export const isBefore = (a: Date, b: Date) => a.getTime() < b.getTime();
+export const isBefore = (a: Date, b: Date) => {
+  return a.getTime() < b.getTime();
+};
+
+export const nextRange = (date: Date, current?: DateRange): DateRange => {
+  if (!current?.from || current.to) {
+    return { from: date, to: undefined };
+  }
+  if (sameDay(current.from, date)) {
+    return { from: date, to: date };
+  }
+  if (isBefore(date, current.from)) {
+    return { from: date, to: current.from };
+  }
+  return { from: current.from, to: date };
+};
 
 export const isInRange = (date: Date, range?: DateRange) => {
   if (!range?.from || !range.to) {
@@ -29,11 +44,12 @@ export const isInRange = (date: Date, range?: DateRange) => {
   return time > from && time < to;
 };
 
-export const monthLabel = (date: Date) =>
-  date.toLocaleString(undefined, {
+export const monthLabel = (date: Date) => {
+  return date.toLocaleString(undefined, {
     month: 'long',
     year: 'numeric',
   });
+};
 
 export const seedMonth = (props: CalendarProps) => {
   if (props.defaultMonth) {
@@ -45,20 +61,22 @@ export const seedMonth = (props: CalendarProps) => {
   return props.selected ?? new Date();
 };
 
-export const dayLabel = (date: Date) =>
-  date.toLocaleDateString(undefined, {
+export const dayLabel = (date: Date) => {
+  return date.toLocaleDateString(undefined, {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
+};
 
-/** Sunday first, matching the grid. 7 January 2024 was a Sunday. */
-export const weekdays = () =>
-  Array.from({ length: 7 }, (_, index) => {
+// 7 January 2024 was a Sunday, so this starts on Sunday like the grid.
+export const weekdays = () => {
+  return Array.from({ length: 7 }, (_, index) => {
     const date = new Date(2024, 0, 7 + index);
     return {
       long: date.toLocaleDateString(undefined, { weekday: 'long' }),
       short: date.toLocaleDateString(undefined, { weekday: 'short' }),
     };
   });
+};

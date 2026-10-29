@@ -52,7 +52,9 @@ const Preview: React.FC = () => {
     >
       <Form
         {...form}
-        onSubmit={form.handleSubmit(({ email }) => setCreated(email))}
+        onSubmit={form.handleSubmit(({ email }) => {
+          setCreated(email);
+        })}
       >
         <FormField
           control={form.control}
@@ -64,9 +66,9 @@ const Preview: React.FC = () => {
             },
             required: 'Enter your email address',
           }}
-          render={({ field }) => (
-            <EmailInput {...field} label='Email' autoComplete='email' />
-          )}
+          render={({ field }) => {
+            return <EmailInput {...field} label='Email' autoComplete='email' />;
+          }}
         />
         <FormField
           control={form.control}
@@ -75,14 +77,16 @@ const Preview: React.FC = () => {
             minLength: { message: 'Use at least 8 characters', value: 8 },
             required: 'Choose a password',
           }}
-          render={({ field }) => (
-            <PasswordInput
-              {...field}
-              description='At least 8 characters.'
-              label='Password'
-              autoComplete='new-password'
-            />
-          )}
+          render={({ field }) => {
+            return (
+              <PasswordInput
+                {...field}
+                description='At least 8 characters.'
+                label='Password'
+                autoComplete='new-password'
+              />
+            );
+          }}
         />
         <Button type='submit'>Create account</Button>
       </Form>

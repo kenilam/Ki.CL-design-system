@@ -22,10 +22,6 @@ import type { InputProps } from 'design/components/input';
 type Props = Omit<InputProps, 'after' | 'type' | keyof FormItemFieldProps> &
   FormItemFieldProps;
 
-/**
- * A password field with a button that shows and hides what was typed.
- * Pressed, it shows the text; the button says which it will do next.
- */
 const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {
     const {
@@ -69,7 +65,11 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
             shown ? 'action_hide_password' : 'action_show_password'
           )}
           aria-pressed={shown}
-          onClick={() => setShown((current) => !current)}
+          onClick={() => {
+            setShown((current) => {
+              return !current;
+            });
+          }}
           type='button'
         >
           <Icon aria-hidden />

@@ -8,20 +8,24 @@ type Props = {
   names: string[];
 };
 
-const TypeScale: React.FunctionComponent<Props> = ({ names, property }) => (
-  <List gap='narrow'>
-    {names.map((name) => {
-      const className = name ? `kicl-${property}-${name}` : `kicl-${property}`;
+const TypeScale: React.FunctionComponent<Props> = ({ names, property }) => {
+  return (
+    <List gap='narrow'>
+      {names.map((name) => {
+        const className = name
+          ? `kicl-${property}-${name}`
+          : `kicl-${property}`;
 
-      return (
-        <ListItem key={name}>
-          <Text className={className} is='span'>
-            {className}
-          </Text>
-        </ListItem>
-      );
-    })}
-  </List>
-);
+        return (
+          <ListItem key={name}>
+            <Text className={className} is='span'>
+              {className}
+            </Text>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
+};
 
 export { TypeScale };

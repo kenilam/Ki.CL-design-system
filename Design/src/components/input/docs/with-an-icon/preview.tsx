@@ -5,13 +5,15 @@ import { Input } from 'design/components';
 
 import type { Props } from 'design/components/input/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Input
-    aria-label='Search'
-    before={<Ri.RiSearchLine aria-hidden />}
-    placeholder='Search'
-    {...props}
-  />
-);
+const Preview: React.FC<Props> = (props) => {
+  return (
+    <Input
+      aria-label='Search'
+      before={<Ri.RiSearchLine aria-hidden />}
+      placeholder='Search'
+      {...props}
+    />
+  );
+};
 
 export { Preview };

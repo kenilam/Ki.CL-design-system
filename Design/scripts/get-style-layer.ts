@@ -1,11 +1,9 @@
 import * as nodePath from 'node:path';
 
 /**
- * Cascade layers, lowest priority first.
- *
- * Must match `LAYERS` in Ki.CL's `App/.client/helper/get-style-layer.ts`. The
- * host's view styles and this package's styles end up on one page, and the
- * first `@layer` statement the browser sees fixes the order for both.
+ * Lowest priority first. Must match `LAYERS` in Ki.CL's
+ * `App/.client/helper/get-style-layer.ts`: both packages' styles share one
+ * page, and the first `@layer` statement the browser sees sets the order.
  */
 const LAYERS = [
   'reset',
@@ -20,13 +18,12 @@ const LAYERS = [
 type Layer = (typeof LAYERS)[number];
 
 /**
- * Repeated at the top of every stylesheet, so no single file has to load
- * first. `src/core/styles/reset.css` carries its own copy, since it is plain
- * CSS and never passes through the SCSS hook.
+ * Prepended to every stylesheet so no file has to load first.
+ * `src/core/styles/reset.css` keeps its own copy because plain CSS skips the
+ * SCSS hook.
  */
 const LAYER_ORDER = `@layer ${LAYERS.join(', ')};`;
 
-/** Element-level defaults - `body`, headings, form controls, theme classes. */
 const BASE = [
   'styles.body.scss',
   'styles.generic.scss',
@@ -46,8 +43,8 @@ const LAYOUT = ['layout.scss'];
 const WRAPPERS = ['components/animation/', 'components/frame/'];
 
 /**
- * Which cascade layer a stylesheet belongs to, or `null` for Sass partials -
- * wrapping those would scope their mixins and functions to a block.
+ * Sass partials get `null`: wrapping them in a layer would scope their mixins
+ * and functions to that block.
  */
 const getStyleLayer = (filename: string): Layer | null => {
   const normalized = filename.replace(/\\/g, '/');
@@ -72,12 +69,15 @@ const getStyleLayer = (filename: string): Layer | null => {
     return 'utilities';
   }
 
-  // Full pages, styled like the host's views.
   if (path.startsWith('status/')) {
     return 'views';
   }
 
-  if (WRAPPERS.some((folder) => path.startsWith(folder))) {
+  if (
+    WRAPPERS.some((folder) => {
+      return path.startsWith(folder);
+    })
+  ) {
     return 'wrappers';
   }
 

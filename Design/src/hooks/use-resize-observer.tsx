@@ -1,17 +1,18 @@
 import { useEffect, useMemo, useState } from 'react';
 
-const isSameRect = (a: DOMRect | undefined, b: DOMRect) =>
-  Object.entries(b.toJSON()).every(([key, value]) => a?.[key] === value);
+const isSameRect = (a: DOMRect | undefined, b: DOMRect) => {
+  return Object.entries(b.toJSON()).every(([key, value]) => {
+    return a?.[key] === value;
+  });
+};
 
 function useResizeObserver<Node extends HTMLElement>() {
   const [element, setElement] = useState<Node | null>(null);
   const [rect, setRect] = useState<DOMRect>();
 
   /*
-   * A ref whose `current` is kept in state, so the hook hears the element
-   * arrive. A plain ref says nothing when it is filled: called in a provider,
-   * with the element mounted later by something under it, the hook would
-   * never find out there was anything to observe.
+   * `current` is mirrored into state because a plain ref doesn't rerender when
+   * filled, so a provider would miss an element mounted later below it.
    */
   const node = useMemo(() => {
     let current: Node | null = null;
@@ -35,7 +36,9 @@ function useResizeObserver<Node extends HTMLElement>() {
     const resizeObserver = new ResizeObserver(() => {
       const next = element.getBoundingClientRect();
 
-      setRect((previous) => (isSameRect(previous, next) ? previous : next));
+      setRect((previous) => {
+        return isSameRect(previous, next) ? previous : next;
+      });
     });
 
     resizeObserver.observe(element);

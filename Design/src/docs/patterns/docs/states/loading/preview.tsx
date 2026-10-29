@@ -24,9 +24,13 @@ const Preview: React.FC = () => {
       return;
     }
 
-    const timer = setTimeout(() => setLoading(false), 1500);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [loading]);
 
   return (
@@ -36,7 +40,9 @@ const Preview: React.FC = () => {
       footer={
         <Button
           aria-disabled={loading}
-          onClick={() => setLoading(true)}
+          onClick={() => {
+            setLoading(true);
+          }}
           variant='secondary'
         >
           Reload
@@ -45,13 +51,17 @@ const Preview: React.FC = () => {
       header={<CardTitle is='h3'>Recent orders</CardTitle>}
       size={5}
     >
-      {loading && <Text className='kicl-hidden'>Loading your orders</Text>}
+      {loading ? (
+        <Text className='kicl-hidden'>Loading your orders</Text>
+      ) : null}
       <List gap='narrow'>
-        {ORDERS.map((order) => (
-          <ListItem key={order}>
-            {loading ? <Skeleton /> : <Text is='span'>{order}</Text>}
-          </ListItem>
-        ))}
+        {ORDERS.map((order) => {
+          return (
+            <ListItem key={order}>
+              {loading ? <Skeleton /> : <Text is='span'>{order}</Text>}
+            </ListItem>
+          );
+        })}
       </List>
     </Card>
   );

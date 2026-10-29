@@ -39,7 +39,7 @@ const NodeShape: React.FunctionComponent<{ modifier?: string; node: Node }> = ({
   return (
     <>
       <rect className={boxClassName} height={h} rx={8} width={w} x={x} y={y} />
-      {shape === 'queue' && (
+      {shape === 'queue' ? (
         <>
           <line
             className={`${BASE}-rule`}
@@ -56,7 +56,7 @@ const NodeShape: React.FunctionComponent<{ modifier?: string; node: Node }> = ({
             y2={y + h}
           />
         </>
-      )}
+      ) : null}
     </>
   );
 };

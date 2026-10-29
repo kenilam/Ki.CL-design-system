@@ -19,8 +19,6 @@
   min-inline-size: 0;
   padding-block: var(--kicl--components--input--padding-block);
   padding-inline: var(--kicl--components--input--padding-inline);
-
-  // A long value or placeholder ends in an ellipsis instead of being cut.
   text-overflow: ellipsis;
 
   &::placeholder {
@@ -29,7 +27,6 @@
     white-space: nowrap;
   }
 
-  // A muted fill says the value can be read and copied but not changed.
   &[readonly] {
     --kicl--components--input--background-color: var(
       --kicl--components--input--read-only-background-color

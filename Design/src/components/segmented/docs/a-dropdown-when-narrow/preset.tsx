@@ -18,7 +18,6 @@ const description = (
 
 const name = 'A dropdown when narrow';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin
     code={source}

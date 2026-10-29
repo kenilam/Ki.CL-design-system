@@ -15,13 +15,15 @@ import { CLASS_NAME } from './constants';
 const InputGroupInput = React.forwardRef<
   HTMLInputElement,
   InputGroupInputProps
->(({ className, ...rest }, ref) => (
-  <Input
-    ref={ref}
-    className={classNames(`${CLASS_NAME}__control`, className)}
-    {...rest}
-  />
-));
+>(({ className, ...rest }, ref) => {
+  return (
+    <Input
+      ref={ref}
+      className={classNames(`${CLASS_NAME}__control`, className)}
+      {...rest}
+    />
+  );
+});
 
 InputGroupInput.displayName = 'InputGroupInput';
 

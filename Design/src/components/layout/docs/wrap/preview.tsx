@@ -21,16 +21,20 @@ const TAGS = [
   'Docker',
 ];
 
-const Preview: React.FC<WrapProps> = (props) => (
-  <Card is='section'>
-    <List display='flex' gap='narrow' wrap {...props}>
-      {TAGS.map((tag) => (
-        <Badge is='li' key={tag}>
-          {tag}
-        </Badge>
-      ))}
-    </List>
-  </Card>
-);
+const Preview: React.FC<WrapProps> = (props) => {
+  return (
+    <Card is='section'>
+      <List display='flex' gap='narrow' wrap {...props}>
+        {TAGS.map((tag) => {
+          return (
+            <Badge is='li' key={tag}>
+              {tag}
+            </Badge>
+          );
+        })}
+      </List>
+    </Card>
+  );
+};
 
 export { Preview };

@@ -14,11 +14,11 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const src = path.resolve(root, 'src');
 const env = loadEnv('development', path.resolve(root, '..'), '');
 
-// Every Sass partial is available to every stylesheet in this package, as it
-// was in the host. Only this package compiles them; the host reads the CSS.
 const partials = glob
   .sync('**/_*.scss', { cwd: src, posix: true })
-  .map((file) => `@use '${path.join(src, file)}' as *;`)
+  .map((file) => {
+    return `@use '${path.join(src, file)}' as *;`;
+  })
   .join('');
 
 const prelude = `@use 'sass:color';@use 'sass:list';@use 'sass:map';@use 'sass:math';${partials}`;
@@ -28,9 +28,8 @@ export default defineConfig({
   root,
   base: '/design/',
   plugins: [
-    // A .gz and a .br beside each built file, which the server sends as they are.
     compression({ algorithms: ['gzip', 'brotliCompress'] }),
-    // The docs pages. Before React, which then compiles the JSX MDX gives it.
+    // Before React, which compiles the JSX that MDX outputs.
     { enforce: 'pre', ...mdx() },
     react({ include: /\.(mdx|tsx?)$/ }),
     federation({
@@ -47,24 +46,20 @@ export default defineConfig({
         './status': './src/status/index.ts',
         './widgets': './src/widgets/index.ts',
       },
-      // One stylesheet, loaded with whichever module the host asks for first.
       bundleAllCSS: true,
       shared: {
         react: { singleton: true, requiredVersion: '^19.0.0' },
         'react-dom': { singleton: true, requiredVersion: '^19.0.0' },
-        // NavLink and the status pages read the host's router context.
         'react-router-dom': { singleton: true, requiredVersion: '^7.0.0' },
-        // Form components read the form context a view creates with useForm.
         'react-hook-form': { singleton: true, requiredVersion: '^7.0.0' },
-        // One instance with the host, so the copy comes from its database.
         i18next: { singleton: true, requiredVersion: '^26.0.0' },
         'react-i18next': { singleton: true, requiredVersion: '^17.0.0' },
       },
       dev: {
         /*
          * Its browser plugin opens a socket to 127.0.0.1:16322 from the
-         * host's page and logs an error on every load when that fails. The
-         * host pulls types itself, as Ki.CL and moonshot do.
+         * host's page and logs an error on every load. The host pulls types
+         * itself.
          */
         disableDynamicRemoteTypeHints: true,
       },
@@ -103,11 +98,6 @@ export default defineConfig({
     cssCodeSplit: false,
     sourcemap: true,
   },
-  /*
-   * The host proxies /design here, socket included, for hot updates. It also
-   * serves /design/types.zip, regenerated on change, so development needs no
-   * Express server.
-   */
   server: {
     port: Number(env.PORT) || 3200,
     strictPort: true,

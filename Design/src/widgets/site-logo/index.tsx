@@ -22,7 +22,6 @@ const SiteLogo: React.FunctionComponent<Spec.Props> = ({
 }) => {
   const t = useCopy();
 
-  // The size of an `h2`, without being one.
   const className = classNames(
     CLASS_NAME,
     'kicl-look-like-h2',

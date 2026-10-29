@@ -20,7 +20,6 @@ const description = (
 
 const name = 'In a form';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin
     controls={{ checked: null }}

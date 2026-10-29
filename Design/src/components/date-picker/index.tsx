@@ -97,9 +97,9 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   const shown =
     mode === 'range'
-      ? formatRange(selectedRange, formatDate, (from, to) =>
-          t('date_range', { from, to })
-        )
+      ? formatRange(selectedRange, formatDate, (from, to) => {
+          return t('date_range', { from, to });
+        })
       : selectedSingle
         ? formatDate(selectedSingle)
         : null;
@@ -136,7 +136,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
         />
-        {/* A forwarded id replaces the trigger's default one, so name the panel from it. */}
         <PopoverContent
           aria-labelledby={control.id}
           className={`${CLASS_NAME}__panel`}

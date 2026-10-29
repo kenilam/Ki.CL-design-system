@@ -1,9 +1,4 @@
-/*
- * The site's moving five-colour gradient, as on the scroll indicator: the
- * brand colours drawn large and slowly panned. `--kicl-gradient-shift`
- * is the image; the `kicl-gradient-shift` keyframes pan it, over an image
- * sized `1200% 1200%` so there is room to move.
- */
+// The keyframes pan an image sized `1200% 1200%`, so there's room to move.
 :root {
   --kicl-gradient-shift: linear-gradient(
     232deg,

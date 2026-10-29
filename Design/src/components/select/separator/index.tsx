@@ -13,19 +13,21 @@ import type { SelectSeparatorProps } from 'design/components/select/spec';
 
 const CLASS_NAME = `${SELECT}__separator`;
 
-/** An `<hr>` between options; browsers without base-select skip it. */
+/** Browsers without base-select skip the `<hr>`. */
 const SelectSeparator = React.forwardRef<HTMLHRElement, SelectSeparatorProps>(
-  ({ className, ...rest }, ref) => (
-    <hr
-      ref={ref}
-      className={classNames(
-        CLASS_NAME,
-        'kicl-margin-block-narrower',
-        className
-      )}
-      {...rest}
-    />
-  )
+  ({ className, ...rest }, ref) => {
+    return (
+      <hr
+        ref={ref}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-margin-block-narrower',
+          className
+        )}
+        {...rest}
+      />
+    );
+  }
 );
 
 SelectSeparator.displayName = 'SelectSeparator';

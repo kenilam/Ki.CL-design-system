@@ -5,10 +5,12 @@ import { Button } from 'design/components';
 
 import type { Props } from 'design/components/button/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Button after={<Ri.RiArrowRightLine aria-hidden />} {...props}>
-    Next
-  </Button>
-);
+const Preview: React.FC<Props> = (props) => {
+  return (
+    <Button after={<Ri.RiArrowRightLine aria-hidden />} {...props}>
+      Next
+    </Button>
+  );
+};
 
 export { Preview };

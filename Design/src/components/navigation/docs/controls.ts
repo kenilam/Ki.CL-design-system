@@ -8,7 +8,6 @@ import {
 import { LIST_IS } from 'design/components/list/spec';
 import { GAPS } from 'design/components/spec';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   is: { options: LIST_IS, default: 'ul' },
   autoFlow: { options: AUTO_FLOWS, default: 'row' },

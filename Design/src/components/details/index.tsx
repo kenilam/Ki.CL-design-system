@@ -18,36 +18,33 @@ import { CLASS_NAME } from './constants';
 // Partials
 import { Marker } from './marker';
 
-/**
- * Native disclosure. Open/close is pure CSS via `::details-content`
- * (`content-visibility` + `allow-discrete`). With `gap`, the content is laid out
- * as a column with that gap; otherwise children own their own layout.
- */
 const Details = React.forwardRef<HTMLDetailsElement, Props>(
-  ({ children, className, gap, marker = true, summary, ...rest }, ref) => (
-    <details
-      {...rest}
-      className={classNames(
-        CLASS_NAME,
-        { [`${CLASS_NAME}--gap--${gap}`]: gap },
-        className
-      )}
-      ref={ref}
-    >
-      <Layout
-        alignItems='start'
-        autoFlow='column'
-        frames='1fr--max-content'
-        gap='narrow'
+  ({ children, className, gap, marker = true, summary, ...rest }, ref) => {
+    return (
+      <details
+        {...rest}
+        className={classNames(
+          CLASS_NAME,
+          { [`${CLASS_NAME}--gap--${gap}`]: gap },
+          className
+        )}
+        ref={ref}
       >
-        <summary className={`${CLASS_NAME}__summary`}>
-          {summary}
-          {marker ? <Marker /> : null}
-        </summary>
-      </Layout>
-      {children}
-    </details>
-  )
+        <Layout
+          alignItems='start'
+          autoFlow='column'
+          frames='1fr--max-content'
+          gap='narrow'
+        >
+          <summary className={`${CLASS_NAME}__summary`}>
+            {summary}
+            {marker ? <Marker /> : null}
+          </summary>
+        </Layout>
+        {children}
+      </details>
+    );
+  }
 );
 
 Details.displayName = 'Details';

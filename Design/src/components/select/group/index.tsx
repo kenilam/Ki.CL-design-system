@@ -15,13 +15,13 @@ const CLASS_NAME = `${SELECT}__group`;
 
 const isLabel = (
   child: React.ReactNode
-): child is React.ReactElement<React.ComponentProps<typeof SelectLabel>> =>
-  React.isValidElement(child) && child.type === SelectLabel;
+): child is React.ReactElement<React.ComponentProps<typeof SelectLabel>> => {
+  return React.isValidElement(child) && child.type === SelectLabel;
+};
 
 /**
- * A native `<optgroup>`. A SelectLabel child is its `<legend>`, which a
- * base-select shows styled, and its text is the `label` too, which a browser
- * drawing its own select shows instead.
+ * A base-select shows the SelectLabel `<legend>`; a browser drawing its own
+ * select shows the `label` attribute instead, so both get the text.
  */
 const SelectGroup = React.forwardRef<HTMLOptGroupElement, SelectGroupProps>(
   ({ children, className, label, ...rest }, ref) => {
@@ -31,7 +31,6 @@ const SelectGroup = React.forwardRef<HTMLOptGroupElement, SelectGroupProps>(
     return (
       <optgroup
         ref={ref}
-        // Flush with the options outside the group: the legend already sets it apart.
         className={classNames(
           CLASS_NAME,
           'kicl-padding-inline-start-none',

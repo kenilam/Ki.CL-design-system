@@ -12,7 +12,6 @@ import type { HomeLinkProps } from './spec';
 // Partials
 import { HyperLink } from './index';
 
-/** A link home, as a button with a house: the house alone, or with "Home". */
 const HomeLink = React.forwardRef<HTMLAnchorElement, HomeLinkProps>(
   (
     {

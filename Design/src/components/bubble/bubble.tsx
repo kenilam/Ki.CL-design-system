@@ -7,12 +7,16 @@ import type { BubbleIs, BubbleProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--bubble';
 
-/**
- * One chat message.
- */
 const Bubble = React.forwardRef<HTMLElement, BubbleProps>(
   (
-    { children, className, is = 'article', level, variant = 'primary', ...rest },
+    {
+      children,
+      className,
+      is = 'article',
+      level,
+      variant = 'primary',
+      ...rest
+    },
     ref
   ) => {
     const Component = is as BubbleIs;
@@ -24,7 +28,7 @@ const Bubble = React.forwardRef<HTMLElement, BubbleProps>(
           className={classNames(
             CLASS_NAME,
             `${CLASS_NAME}--variant--${variant}`,
-            level && `${CLASS_NAME}--level--${level}`,
+            level ? `${CLASS_NAME}--level--${level}` : null,
             'kicl-position-relative',
             className
           )}

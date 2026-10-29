@@ -20,10 +20,6 @@ import { InputGroupButton } from './button';
 import { InputGroupInput } from './input';
 import { InputGroupTextarea } from './textarea';
 
-/**
- * Input with what sits inside its border: icons, text and buttons, each a
- * direct child.
- */
 const InputGroup = React.forwardRef<HTMLElement, InputGroupProps>(
   ({ children, className, is = 'fieldset', ...rest }, ref) => {
     const Component = is as InputGroupIs;

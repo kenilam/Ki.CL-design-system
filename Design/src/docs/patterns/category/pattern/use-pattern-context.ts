@@ -12,9 +12,9 @@ export const usePatternContext = () => {
   const { context = '', Content } = pages[category]?.[pattern] ?? {};
 
   return {
-    category: (Object.keys(PAGES) as Category[]).find(
-      (key) => key === category
-    ),
+    category: (Object.keys(PAGES) as Category[]).find((key) => {
+      return key === category;
+    }),
     Content,
     name: t('pattern', { context }),
   };

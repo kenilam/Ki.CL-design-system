@@ -27,14 +27,9 @@ type Props = Omit<
   'after' | 'readOnly' | 'value' | keyof FormItemFieldProps
 > &
   FormItemFieldProps & {
-    /** What the field shows and the button copies. */
     value: string;
   };
 
-/**
- * A read-only field with a button that copies its value, for a token, a link
- * or a command. A long value ends in an ellipsis; the copy is always whole.
- */
 const CopyInput = React.forwardRef<HTMLInputElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {
     const { before, className, disabled, style, value, ...rest } = props;
@@ -69,7 +64,9 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
         />
         <InputGroupButton
           aria-label={t(copied ? 'status_copied' : 'action_copy')}
-          onClick={() => void copy(value)}
+          onClick={() => {
+            void copy(value);
+          }}
           type='button'
         >
           <Icon aria-hidden />

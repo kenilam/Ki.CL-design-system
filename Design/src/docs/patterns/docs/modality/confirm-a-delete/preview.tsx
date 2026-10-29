@@ -23,27 +23,31 @@ const Preview: React.FC = () => {
   return (
     <Card is='section' header={<CardTitle is='h3'>Drafts</CardTitle>} size={5}>
       <List gap='narrow'>
-        {drafts.map((draft) => (
-          <ListItem
-            alignItems='center'
-            autoFlow='column'
-            frames='auto--max-content'
-            key={draft}
-          >
-            <Text is='span'>{draft}</Text>
-            <Button
-              aria-label={`Delete ${draft}`}
-              command='show-modal'
-              commandFor='pattern-confirm'
-              level='error'
-              onClick={() => setTarget(draft)}
-              size='small'
-              variant='tertiary'
+        {drafts.map((draft) => {
+          return (
+            <ListItem
+              alignItems='center'
+              autoFlow='column'
+              frames='auto--max-content'
+              key={draft}
             >
-              Delete
-            </Button>
-          </ListItem>
-        ))}
+              <Text is='span'>{draft}</Text>
+              <Button
+                aria-label={`Delete ${draft}`}
+                command='show-modal'
+                commandFor='pattern-confirm'
+                level='error'
+                onClick={() => {
+                  setTarget(draft);
+                }}
+                size='small'
+                variant='tertiary'
+              >
+                Delete
+              </Button>
+            </ListItem>
+          );
+        })}
       </List>
       <Layout
         alignItems='center'
@@ -52,15 +56,15 @@ const Preview: React.FC = () => {
         justifyContent='start'
       >
         <Text is='p' role='status'>
-          {deleted && (
+          {deleted ? (
             <>
               Deleted {deleted}.{' '}
               <Button
                 onClick={() => {
                   setDrafts(
-                    DRAFTS.filter(
-                      (draft) => draft === deleted || drafts.includes(draft)
-                    )
+                    DRAFTS.filter((draft) => {
+                      return draft === deleted || drafts.includes(draft);
+                    })
                   );
                   setDeleted('');
                 }}
@@ -70,7 +74,7 @@ const Preview: React.FC = () => {
                 Undo
               </Button>
             </>
-          )}
+          ) : null}
         </Text>
       </Layout>
       <Dialog
@@ -88,7 +92,11 @@ const Preview: React.FC = () => {
               commandFor='pattern-confirm'
               level='error'
               onClick={() => {
-                setDrafts(drafts.filter((draft) => draft !== target));
+                setDrafts(
+                  drafts.filter((draft) => {
+                    return draft !== target;
+                  })
+                );
                 setDeleted(target);
               }}
             >

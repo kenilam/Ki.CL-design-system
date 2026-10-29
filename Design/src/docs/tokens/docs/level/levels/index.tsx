@@ -22,38 +22,40 @@ const Levels: React.FunctionComponent = () => {
 
   return (
     <List fill={isMobile ? 12 : 6} gap='normal'>
-      {LEVELS.map((level) => (
-        <Card
-          header={
-            <CardTitle is='h4'>
-              <Text is='code'>{`level='${level}'`}</Text>
-            </CardTitle>
-          }
-          is='li'
-          key={level}
-          level={level}
-        >
-          <List
-            alignItems='center'
-            autoFlow='row'
-            display='flex'
-            gap='narrow'
-            wrap
+      {LEVELS.map((level) => {
+        return (
+          <Card
+            header={
+              <CardTitle is='h4'>
+                <Text is='code'>{`level='${level}'`}</Text>
+              </CardTitle>
+            }
+            is='li'
+            key={level}
+            level={level}
           >
-            <ListItem>
-              <Button level={level}>{level}</Button>
-            </ListItem>
-            <ListItem>
-              <Button level={level} variant='secondary'>
+            <List
+              alignItems='center'
+              autoFlow='row'
+              display='flex'
+              gap='narrow'
+              wrap
+            >
+              <ListItem>
+                <Button level={level}>{level}</Button>
+              </ListItem>
+              <ListItem>
+                <Button level={level} variant='secondary'>
+                  {level}
+                </Button>
+              </ListItem>
+              <Badge is='li' level={level}>
                 {level}
-              </Button>
-            </ListItem>
-            <Badge is='li' level={level}>
-              {level}
-            </Badge>
-          </List>
-        </Card>
-      ))}
+              </Badge>
+            </List>
+          </Card>
+        );
+      })}
     </List>
   );
 };

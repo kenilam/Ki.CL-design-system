@@ -1,21 +1,12 @@
 import type { Pool, Renderer } from './spec';
 
 /*
- * A dither gradient in the print sense: colour that blends continuously, then
- * a fine ordered screen laid over it. The screen is what an eight-bit display
- * did to fake more tones than it had - each pixel is pushed to one of a few
- * levels, with the decision made against a fixed 8×8 threshold matrix
- * (Bayer) so the error falls in a regular, woven pattern rather than as
- * noise. Here the levels are deliberately few, so the pattern is visible: it
- * is the texture, not an artefact.
- *
- * It runs on the GPU as a fragment shader because the screen is per pixel at
- * device resolution and a CPU loop over a 4K canvas would not keep up. The
- * colour underneath is a handful of soft pools of ink, mixed in Oklab so a
- * cream meeting a blue passes through a clean lilac rather than a grey.
+ * A fragment shader, because the dither is per device pixel and a CPU loop
+ * over a 4K canvas can't keep up. The levels are deliberately few so the
+ * pattern shows, and colours mix in Oklab so cream into blue passes through
+ * lilac, not grey.
  */
 
-/** How many pools the shader is compiled for. The stylesheet may use fewer. */
 const MAX_POOLS = 6;
 
 const VERTEX = `
@@ -41,38 +32,23 @@ uniform vec3 u_ink[MAX_POOLS];
 uniform vec4 u_pool[MAX_POOLS];
 uniform vec2 u_shape[MAX_POOLS];
 
-/*
- * The copy sits in the middle, and it has to be read over this. A soft
- * clearing settles the centre back toward the paper, whatever the viewport,
- * without draining it: enough colour is kept that the light still reaches
- * behind the words.
- */
+/* Fades the centre toward the paper so the copy over it stays readable. */
 const float CLEARING_INNER = 0.14;
 const float CLEARING_OUTER = 0.55;
 const float CLEARING_KEEP = 0.28;
 
-/** How far a pool reaches past its radius before it has faded out. */
 const float FALLOFF = 1.6;
 
-/**
- * Domain warp: the pools are ellipses, and ellipses read as shapes. Bending
- * the space they are drawn into with a couple of slow sines lets their edges
- * wander like spilled light instead.
- */
+/* Warps the space so the ellipses' edges don't read as shapes. */
 const float WARP_LARGE = 0.07;
 const float WARP_SMALL = 0.03;
 
-/** A whisper of grain on top of the screen, so it never reads as a grid. */
+/* Noise so the screen doesn't read as a grid. */
 const float GRAIN = 0.03;
 
-/**
- * Chroma after the mix. Below one it settles the light further into the
- * page; the inks are already muted in the stylesheet, so this only trims
- * what the overlaps add.
- */
+/* Trims the extra chroma where pools overlap. */
 const float CHROMA = 0.92;
 
-/* The warp breathes on its own clock, a little slower than the pools. */
 const float SPEED = 0.3;
 
 vec3 toLinear(vec3 c) {
@@ -182,22 +158,11 @@ void main() {
 }
 `;
 
-/**
- * How far each pool wanders from its home, as a fraction of the canvas, and
- * how quickly. A cycle is around ten seconds, and a pool travels a tenth of
- * the viewport across it: slow enough to be calm, quick enough to be noticed
- * within the time it takes to read the copy.
- */
+/** A fraction of the canvas. */
 const DRIFT = 0.1;
 const DRIFT_SPEED = 0.5;
 
-/**
- * Four pools, laid down in this order, so the last sits on top where they
- * overlap. The composition is a diagonal: a broad field across the right and
- * top, a glow low on the right, a warm rim low on the left, and a bright band
- * running in from the top left toward the centre. Each wanders around its
- * home on its own cycle, so they never move as one.
- */
+/** Drawn in order, last on top. Ink N in the stylesheet colours pool N. */
 function pools(seconds: number): Pool[] {
   const s = seconds * DRIFT_SPEED;
 
@@ -268,10 +233,6 @@ function compile(
   return shader;
 }
 
-/**
- * Set the canvas up for drawing, or return `null` where WebGL is unavailable
- * - the page then simply shows its paper.
- */
 function createRenderer(canvas: HTMLCanvasElement): Renderer | null {
   const gl = canvas.getContext('webgl', {
     antialias: false,
@@ -315,7 +276,9 @@ function createRenderer(canvas: HTMLCanvasElement): Renderer | null {
   gl.enableVertexAttribArray(position);
   gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
 
-  const uniform = (name: string) => gl.getUniformLocation(program, name);
+  const uniform = (name: string) => {
+    return gl.getUniformLocation(program, name);
+  };
 
   const uniforms = {
     cell: uniform('u_cell'),

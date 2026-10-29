@@ -1,6 +1,5 @@
 import type { DiagramSpec } from 'design/components';
 
-/** The Boxes example's spec, which the Legend, Active and Failed examples build on. */
 const REQUEST: DiagramSpec = {
   title: 'Request',
   description:

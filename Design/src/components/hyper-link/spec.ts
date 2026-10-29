@@ -22,13 +22,15 @@ export type Props = Required<PropsWithChildren> &
 
 export type GetHyperLinkClassNamesProps = Pick<Props, 'className' | 'unstyled'>;
 
-/** A link to the home page, drawn as a button with a house: "Home" by default. */
 export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
   LookProps & {
-    /** The icon. A house when left out. */
+    /** A house by default. */
     icon?: ReactNode;
-    /** What it's called. "Home" when left out. */
+    /** "Home" by default. */
     label?: string;
-    /** Shows the label beside the icon. Without it the link is the icon alone, named by the label. */
+    /**
+     * Without it the link shows only the icon, and the label becomes its
+     * accessible name.
+     */
     showLabel?: boolean;
   };

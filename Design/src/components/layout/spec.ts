@@ -220,15 +220,15 @@ type Shared = Pick<React.HTMLAttributes<HTMLElement>, 'className'> & {
   gap?: Gap;
   justifyContent?: JustifyContent;
   justifyItems?: JustifyItems;
-  /** How many columns of a parent `columns` grid this takes, or the whole row. Full width on phones. */
+  /** Full width on phones. */
   span?: ColumnSpan | 'full';
-  /** Moves children to the next line when they run out of room. `stack` also gives each its own line on phones. */
+  /** `stack` also gives each child its own line on phones. */
   wrap?: boolean | 'stack';
 };
 
 type Tracks =
   | {
-      /** A 12-column grid, the same columns as the `--kicl-columns-*` widths. */
+      /** A 12-column grid matching the `--kicl-columns-*` widths. */
       columns?: boolean;
       fill?: never;
       frames?: never;
@@ -236,8 +236,8 @@ type Tracks =
   | {
       columns?: false;
       /**
-       * A grid of as many tracks as fit, each this many of its own 12 columns
-       * wide, so `4` is three a row. One a row on phones.
+       * Each track is this many of 12 columns wide, so `4` gives three a row.
+       * One a row on phones.
        */
       fill?: ColumnSpan;
       frames?: never;

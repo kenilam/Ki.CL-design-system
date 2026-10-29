@@ -20,7 +20,7 @@ import { useDocsContext } from 'design/docs/context';
 import { Code } from './preview/code';
 import { Preview } from './preview';
 
-/** A page links to another as `../button`, which goes from where the docs are mounted. */
+/** MDX pages link to each other as `../button`, relative to the docs' mount. */
 const Link: React.FunctionComponent<
   Pick<HyperLinkProps, 'children'> & Pick<React.ComponentProps<'a'>, 'href'>
 > = ({ children, href = '' }) => {
@@ -36,44 +36,67 @@ const Link: React.FunctionComponent<
 const Pre: React.FunctionComponent<
   Pick<React.ComponentProps<typeof Code>, 'className'> &
     Pick<React.ComponentProps<'pre'>, 'children'>
-> = ({ children, className }) => (
-  <Code className={className}>
-    {React.isValidElement<{ children?: string }>(children)
-      ? String(children.props.children ?? '')
-      : String(children ?? '')}
-  </Code>
-);
+> = ({ children, className }) => {
+  return (
+    <Code className={className}>
+      {React.isValidElement<{ children?: string }>(children)
+        ? String(children.props.children ?? '')
+        : String(children ?? '')}
+    </Code>
+  );
+};
 
 /**
- * What the Markdown in a page renders as: the design system's own
- * components, and the parts a page writes as JSX without importing them.
- * A page's headings start at `##`; its title is the component's name.
+ * No `h1`: a page's headings start at `##`, since its title is the
+ * component's name.
  */
 const COMPONENTS: MDXComponents = {
   a: Link,
-  blockquote: ({ children }) => <Text is='blockquote'>{children}</Text>,
-  code: ({ children }) => <Text is='code'>{children}</Text>,
-  em: ({ children }) => <Text is='em'>{children}</Text>,
-  h2: ({ children }) => <Heading is='h2'>{children}</Heading>,
-  h3: ({ children }) => <Heading is='h3'>{children}</Heading>,
-  hr: () => <Separator />,
+  blockquote: ({ children }) => {
+    return <Text is='blockquote'>{children}</Text>;
+  },
+  code: ({ children }) => {
+    return <Text is='code'>{children}</Text>;
+  },
+  em: ({ children }) => {
+    return <Text is='em'>{children}</Text>;
+  },
+  h2: ({ children }) => {
+    return <Heading is='h2'>{children}</Heading>;
+  },
+  h3: ({ children }) => {
+    return <Heading is='h3'>{children}</Heading>;
+  },
+  hr: () => {
+    return <Separator />;
+  },
   // A list item is a grid, so its text needs one element to stay one line.
-  li: ({ children }) => (
-    <ListItem>
-      <Text is='span'>{children}</Text>
-    </ListItem>
-  ),
-  ol: ({ children }) => (
-    <List gap='narrow' is='ol'>
-      {children}
-    </List>
-  ),
-  p: ({ children }) => <Text>{children}</Text>,
-  pre: ({ children }) => (
-    <Pre className='kicl-min-block-size-columns-2'>{children}</Pre>
-  ),
-  strong: ({ children }) => <Text is='strong'>{children}</Text>,
-  ul: ({ children }) => <List gap='narrow'>{children}</List>,
+  li: ({ children }) => {
+    return (
+      <ListItem>
+        <Text is='span'>{children}</Text>
+      </ListItem>
+    );
+  },
+  ol: ({ children }) => {
+    return (
+      <List gap='narrow' is='ol'>
+        {children}
+      </List>
+    );
+  },
+  p: ({ children }) => {
+    return <Text>{children}</Text>;
+  },
+  pre: ({ children }) => {
+    return <Pre className='kicl-min-block-size-columns-2'>{children}</Pre>;
+  },
+  strong: ({ children }) => {
+    return <Text is='strong'>{children}</Text>;
+  },
+  ul: ({ children }) => {
+    return <List gap='narrow'>{children}</List>;
+  },
 
   Preview,
 };

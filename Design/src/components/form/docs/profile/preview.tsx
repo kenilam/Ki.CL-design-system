@@ -15,29 +15,35 @@ const Preview: React.FC = () => {
       <FormField
         control={form.control}
         name='name'
-        render={({ field }) => <Input {...field} label='Display name' />}
+        render={({ field }) => {
+          return <Input {...field} label='Display name' />;
+        }}
       />
       <FormField
         control={form.control}
         name='handle'
-        render={({ field }) => (
-          <Input
-            {...field}
-            description='Letters and numbers, no spaces.'
-            label='Handle'
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <Input
+              {...field}
+              description='Letters and numbers, no spaces.'
+              label='Handle'
+            />
+          );
+        }}
       />
       <FormField
         control={form.control}
         name='bio'
-        render={({ field }) => (
-          <Textarea
-            {...field}
-            description='A line or two. Leave it empty to show nothing.'
-            label='About you'
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <Textarea
+              {...field}
+              description='A line or two. Leave it empty to show nothing.'
+              label='About you'
+            />
+          );
+        }}
       />
       <Button type='submit'>Save</Button>
     </Form>

@@ -1,6 +1,5 @@
-// The picker has the popover's surface. It slides in by its block margins
-// growing, set on both sides because CSS cannot tell which side the browser
-// placed it on; only the side next to the select shows.
+// Margins go on both sides because CSS can't tell which side the browser
+// placed the picker on.
 .kicl--components--select::picker(select) {
   background-color: var(--kicl--components--select--background-color);
   border: var(--kicl--components--select--border-width) solid
@@ -20,7 +19,6 @@
   @include box-shadow-overlay;
 }
 
-// `@starting-style` gives the open state somewhere to transition from.
 .kicl--components--select:open::picker(select) {
   margin-block: var(--kicl-gutter-narrow);
   opacity: 1;

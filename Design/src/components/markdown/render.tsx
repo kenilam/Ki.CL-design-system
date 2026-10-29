@@ -16,22 +16,22 @@ import { Text } from 'design/components/text';
 // Spec
 import type { Look } from './spec';
 
-/** `{secondary}` or `{warning}` straight after a code span, which Markdown has no way to say. */
 const LOOK = /^\{(confirm|error|info|secondary|warning)\}/;
 
-const lookOf = (token?: Token) =>
-  token?.type === 'text'
+const lookOf = (token?: Token) => {
+  return token?.type === 'text'
     ? (LOOK.exec(token.text)?.[1] as Look | undefined)
     : undefined;
+};
 
 /**
- * Tokens as the components that mean the same thing. Anything else is shown
- * as it was written, raw HTML included, so text from a database is never
- * rendered as markup.
+ * Other tokens, raw HTML included, render as plain text so text from the
+ * database is never rendered as markup.
  */
-const render = (tokens: Token[]): React.ReactNode[] =>
-  tokens.map((token, key) => {
-    const children = 'tokens' in token && token.tokens && render(token.tokens);
+const render = (tokens: Token[]): React.ReactNode[] => {
+  return tokens.map((token, key) => {
+    const children =
+      'tokens' in token && token.tokens ? render(token.tokens) : null;
 
     switch (token.type) {
       case 'blockquote':
@@ -94,9 +94,9 @@ const render = (tokens: Token[]): React.ReactNode[] =>
       case 'list':
         return (
           <List gap='narrow' is={token.ordered ? 'ol' : 'ul'} key={key}>
-            {token.items.map((item: Tokens.ListItem, index: number) => (
-              <ListItem key={index}>{render(item.tokens)}</ListItem>
-            ))}
+            {token.items.map((item: Tokens.ListItem, index: number) => {
+              return <ListItem key={index}>{render(item.tokens)}</ListItem>;
+            })}
           </List>
         );
       case 'paragraph':
@@ -114,7 +114,6 @@ const render = (tokens: Token[]): React.ReactNode[] =>
           return <Text key={key}>{children}</Text>;
         }
 
-        // The look belongs to the code before it, and is not part of the text.
         return tokens[key - 1]?.type === 'codespan'
           ? token.text.replace(LOOK, '')
           : token.text;
@@ -122,5 +121,6 @@ const render = (tokens: Token[]): React.ReactNode[] =>
         return token.raw;
     }
   });
+};
 
 export { render };

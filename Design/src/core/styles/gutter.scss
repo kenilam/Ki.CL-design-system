@@ -61,22 +61,18 @@ $gutter-properties: (
   margin-inline: auto;
 }
 
-// Pushes what follows to the end of a row.
 .kicl-margin-inline-end-auto {
   margin-inline-end: auto;
 }
 
-// Pushes the element itself to the end of a row.
 .kicl-margin-inline-start-auto {
   margin-inline-start: auto;
 }
 
-// Content inset inside a Frame (`components/frame`).
 .kicl-padding-inline-frame {
   padding-inline: var(--kicl--components--frame--inset);
 }
 
-// Content inset inside a Frame, on the block axis.
 .kicl-padding-block-frame {
   padding-block: var(--kicl--components--frame--inset);
 }
@@ -89,7 +85,6 @@ $gutter-properties: (
   padding-block-end: var(--kicl--components--frame--inset);
 }
 
-// The same, and no wider than 12 columns, on an element as wide as the Frame.
 .kicl-padding-inline-frame-columns-12 {
   padding-inline: var(--kicl--components--frame--columns-inset);
 }
@@ -102,8 +97,7 @@ $gutter-properties: (
   inset-block-start: var(--kicl--components--frame--top);
 }
 
-// Clears the fixed global header, whose height is measured at runtime. The
-// padding keeps its height while it hides, so the page doesn't jump.
+// Keeps the header's height while it hides, so the page doesn't jump.
 .kicl-padding-block-start-header {
   padding-block-start: var(--kicl--widgets--global-header--block-size);
 }
@@ -112,8 +106,6 @@ $gutter-properties: (
   padding-block-start: var(--kicl--widgets--global-header--offset);
 }
 
-// For sticky and fixed content: follows the header, so it sits under it while
-// the header shows and moves to the top when it hides.
 .kicl-inset-block-start-header {
   inset-block-start: var(--kicl--widgets--global-header--offset);
 }

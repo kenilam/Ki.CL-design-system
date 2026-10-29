@@ -113,7 +113,10 @@ const Header: React.FunctionComponent = () => {
           </Popover>
         )}
         <Breadcrumb
-          crumbs={useDocsCrumbs(PATH, category && t(`category_${category}`))}
+          crumbs={useDocsCrumbs(
+            PATH,
+            category ? t(`category_${category}`) : undefined
+          )}
           current={name}
         />
       </header>

@@ -7,13 +7,7 @@
   --kicl-breakpoint-wider: #{$wider};
 }
 
-/*
- * Which breakpoint the window is in, as flags a style query can read:
- * `--kicl-viewport-{name}` inside that band, `--kicl-viewport-up-to-{name}` at
- * that width and narrower. A media query can't read a custom property, so a
- * stylesheet without the `query` mixin writes
- * `@container style(--kicl-viewport-up-to-desktop: true)` instead.
- */
+// Flags for style queries, since a media query can't read a custom property.
 $-previous: null;
 
 @each $name in (narrow, mobile, tablet, desktop, wide, wider) {

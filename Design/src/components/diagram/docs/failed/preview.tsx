@@ -4,7 +4,6 @@ import { Diagram, type DiagramSpec } from 'design/components';
 
 import { REQUEST } from 'design/components/diagram/docs/constants';
 
-// A node with an id can be named in `state`.
 const spec: DiagramSpec = {
   ...REQUEST,
   nodes: [
@@ -22,8 +21,13 @@ const spec: DiagramSpec = {
   ],
 };
 
-const Preview: React.FC = () => (
-  <Diagram spec={spec} state={{ active: ['browser'], failed: ['database'] }} />
-);
+const Preview: React.FC = () => {
+  return (
+    <Diagram
+      spec={spec}
+      state={{ active: ['browser'], failed: ['database'] }}
+    />
+  );
+};
 
 export { Preview };

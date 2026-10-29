@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 
-/** How long `copied` stays true after a copy. */
 const COPIED_MS = 2000;
 
-/**
- * Copies text to the clipboard and says, for a moment, that it did. `copy`
- * resolves false where there is no clipboard, outside a secure context, and
- * `copied` stays false.
- */
+/** `navigator.clipboard` is missing outside a secure context, so `copy` resolves false there. */
 const useClipboard = (duration = COPIED_MS) => {
   const [copied, setCopied] = useState(false);
 
@@ -16,9 +11,13 @@ const useClipboard = (duration = COPIED_MS) => {
       return;
     }
 
-    const timer = setTimeout(() => setCopied(false), duration);
+    const timer = setTimeout(() => {
+      setCopied(false);
+    }, duration);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [copied, duration]);
 
   const copy = async (text: string) => {

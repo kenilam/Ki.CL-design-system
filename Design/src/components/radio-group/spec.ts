@@ -7,9 +7,7 @@ export type RadioGroupProps = Omit<
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  /** Visible group name, rendered as the `<legend>`. */
   legend?: React.ReactNode;
-  /** Shared by every radio, so the browser groups them. */
   name?: string;
   required?: boolean;
 };

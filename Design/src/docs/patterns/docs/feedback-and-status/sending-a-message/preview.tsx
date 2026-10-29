@@ -58,7 +58,9 @@ const Preview: React.FC = () => {
             control={form.control}
             name='message'
             rules={{ required: 'Write a message' }}
-            render={({ field }) => <Textarea {...field} label='Message' />}
+            render={({ field }) => {
+              return <Textarea {...field} label='Message' />;
+            }}
           />
           <Button
             aria-disabled={phase === 'sending'}
@@ -73,13 +75,13 @@ const Preview: React.FC = () => {
                 ? 'Try again'
                 : 'Send'}
           </Button>
-          {phase === 'failed' && (
+          {phase === 'failed' ? (
             <Status
               level='error'
               message="It didn't reach us. Check your connection and try again."
               title='Not sent'
             />
-          )}
+          ) : null}
         </Form>
       )}
     </Card>

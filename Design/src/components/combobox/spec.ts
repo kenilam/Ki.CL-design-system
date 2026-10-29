@@ -5,15 +5,11 @@ import type { PopoverContentProps } from 'design/components/popover/spec';
 export type ComboboxProps = {
   children?: ReactNode;
   /**
-   * The panel shows while this is true. Left out, the combobox opens itself
-   * when the field is focused or typed in, and closes on Escape or when focus
-   * leaves the field and the panel. A pick leaves it open, as every list in
-   * the system does.
+   * Left out, the panel opens on focus or input and closes on Escape or when
+   * focus leaves. A pick leaves it open.
    */
   open?: boolean;
-  /** Shows the panel on mount, and the combobox takes it from there. */
   defaultOpen?: boolean;
-  /** Reports each change, asked for or made by the combobox itself. */
   onOpenChange?: (open: boolean) => void;
 };
 

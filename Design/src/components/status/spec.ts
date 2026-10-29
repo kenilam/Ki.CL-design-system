@@ -10,9 +10,9 @@ import { IconType } from 'design/icons';
 
 type StatusLevel = Exclude<Level, 'confirm' | 'neutral'>;
 
-export const STATUS_LEVELS = LEVELS.filter(
-  (level): level is StatusLevel => level !== 'confirm' && level !== 'neutral'
-);
+export const STATUS_LEVELS = LEVELS.filter((level): level is StatusLevel => {
+  return level !== 'confirm' && level !== 'neutral';
+});
 
 export type Icons = {
   [level in StatusLevel]: ReturnType<IconType>;
@@ -20,10 +20,10 @@ export type Icons = {
 
 export type Props = AnimationProps &
   Pick<LayoutProps, 'justifyContent'> & {
-    /** Outline level of the title. It keeps the `h4` size whatever the level. */
+    /** Keeps the `h4` size whatever the level. */
     headingLevel?: HeadingIs;
     level?: StatusLevel;
     message?: TextProps['children'];
-    /** Left out with a `message`, no heading shows. Left out with neither, the level's default title shows. */
+    /** Without it a `message` shows alone; with neither, the level's default title shows. */
     title?: HeadingProps['children'];
   };

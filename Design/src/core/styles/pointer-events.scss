@@ -1,7 +1,5 @@
-// The last four values come from SVG, where the presentation attribute spells
-// them camelCase (`visiblePainted`). As CSS values they are ASCII
-// case-insensitive like every other keyword, so they are written lowercase
-// here to match the rest of the codebase.
+// SVG spells `visiblePainted` and the like in camelCase. CSS keywords are
+// case-insensitive, so they're lowercase here.
 :root {
   --kicl-pointer-events-all: all;
   --kicl-pointer-events-auto: auto;

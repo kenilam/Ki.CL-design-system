@@ -21,12 +21,11 @@ import * as Spec from './spec';
 
 const CLASS_NAME = 'kicl--components--spinner';
 
-/** How long the overlay's veil takes to fade. */
 const BACKDROP_DURATION: AnimationProps['duration'] = 'fast';
 
-/** `ms`, then as long as a duration token: the tokens are CSS, so the sum is too. */
-const delayAfter = (ms: number, duration: AnimationProps['duration']) =>
-  `calc(${ms}ms + var(--kicl-transition-duration-${duration}))`;
+const delayAfter = (ms: number, duration: AnimationProps['duration']) => {
+  return `calc(${ms}ms + var(--kicl-transition-duration-${duration}))`;
+};
 
 const Spinner: React.FunctionComponent<Spec.Props> = ({
   delay = 0,
@@ -46,11 +45,6 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
   const isOverlay = position === 'overlay';
   const entering = transitionIn ?? true;
 
-  /*
-   * An overlay shows its veil first and the icon once the veil is in, and
-   * leaves the other way round: the icon goes, then the veil. Inline there is
-   * no veil, and the icon shows at once or short fetches never show it.
-   */
   const backdropDelay =
     isOverlay && !entering ? delayAfter(delay, duration) : delay;
   const iconDelay =
@@ -62,7 +56,6 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
       'kicl-inset-0': isOverlay,
       'kicl-position-absolute': isOverlay,
       'kicl-z-index-overlay': isOverlay,
-      // Only an overlay has anything behind it to veil.
       'kicl-backdrop': isOverlay && backdrop,
       [`${CLASS_NAME}--overlay`]: isOverlay,
       [`${CLASS_NAME}--size--${size}`]: size,
@@ -91,7 +84,7 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
           unstyled
         >
           <span className='kicl-hidden'>{label ?? t('status_loading')}</span>
-          {/* The entrance moves `scale` or `translate`, the spin `transform`, so both run on the icon. */}
+          {/* The entrance animates `scale` or `translate` and the spin `transform`, so they don't clash. */}
           <Animation
             {...rest}
             delay={iconDelay}

@@ -14,7 +14,7 @@
     );
   }
 
-  // Neutral is the body colour, as with no level, so it needs no rule.
+  // Neutral is the body colour, so it needs no rule.
   @each $level in map.keys(map.remove($levels, 'neutral')) {
     &--level--#{$level} {
       --kicl-heading-status-color: var(--kicl-color-#{$level});

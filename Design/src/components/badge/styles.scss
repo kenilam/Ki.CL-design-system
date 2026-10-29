@@ -11,8 +11,8 @@
   --kicl--components--badge--border-width: var(--kicl-size-1px);
   --kicl--components--badge--font-size: var(--kicl-font-size-small);
 
-  // Defaults here rather than as utilities, so a caller's `kicl-font-size-*`
-  // or `kicl-border-radius-*` class replaces them instead of fighting them.
+  // Set here rather than as utility classes so a caller's utility class
+  // replaces them instead of fighting them.
   --kicl--components--badge--padding-block: var(--kicl-gutter-narrowest);
   --kicl--components--badge--padding-inline: var(--kicl-gutter-narrow);
 
@@ -30,7 +30,6 @@
   vertical-align: middle;
   white-space: normal;
 
-  // `size` changes only the text, as on `Button`.
   &--size--large {
     --kicl--components--badge--font-size: var(--kicl-font-size);
   }
@@ -39,14 +38,12 @@
     --kicl--components--badge--font-size: var(--kicl-font-size-smaller);
   }
 
-  // Icons and spinners sit inline, at the text's size.
   :is(svg, .kicl--components--spinner) {
     block-size: 1em;
     flex-shrink: 0;
     inline-size: 1em;
   }
 
-  // Prefix inside the chip - trailing “:” before the value.
   > .kicl--components--badge__label {
     opacity: 0.72;
 
@@ -55,8 +52,6 @@
     }
   }
 
-  // As on `Button`: secondary is its look over a faint fill of it, and ghost
-  // has no fill, with an edge and label in its own look.
   &--variant--secondary {
     --kicl--components--badge--background-color: color-mix(
       in srgb,

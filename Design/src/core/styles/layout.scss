@@ -144,13 +144,10 @@
 
       flex-direction: var(--kicl-layout--auto-flow);
 
-      // Without this, `wrap` only affects grid frames. Flex rows need
-      // `flex-wrap` set.
       &.kicl-layout--wrap {
         flex-wrap: wrap;
       }
 
-      // One a row on phones, as with `fill` and `span`.
       &.kicl-layout--wrap--stack > * {
         @include query('≤mobile') {
           flex-basis: 100%;
@@ -185,8 +182,7 @@
       }
     }
 
-    // Row flow over 12 equal tracks. Kept after `--row` and `--column`, which
-    // set their own template: same specificity, so the later rule wins.
+    // Kept after `--row` and `--column` so it wins at the same specificity.
     &.kicl-layout--columns {
       --kicl-layout--auto-flow: row;
 
@@ -458,7 +454,6 @@
 @include make-layout(1fr, 1fr, 2fr, 8fr);
 @include make-layout(1fr, 1fr, 1fr, 9fr);
 
-// A child's share of a parent `columns` grid. Phones get one full-width column.
 @for $span from 1 through 12 {
   .kicl-layout.kicl-layout--span--#{$span} {
     grid-column: span #{$span};
@@ -473,9 +468,7 @@
   grid-column: 1 / -1;
 }
 
-// As many tracks of so many of the grid's own 12 columns as fit in a row,
-// sharing what is left. Phones get one per row, as with `span`.
-// Three classes, to outrank the row flow's own `grid-template-columns: unset`.
+// Three classes, to outrank the row flow's `grid-template-columns: unset`.
 @for $span from 1 through 12 {
   .kicl-layout.kicl-layout--display--grid.kicl-layout--fill--#{$span},
   .kicl-layout.kicl-layout--display--inline-grid.kicl-layout--fill--#{$span} {

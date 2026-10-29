@@ -10,7 +10,6 @@ export type HeadingIs = (typeof HEADING_LEVELS)[number];
 type OwnProps<Is extends HeadingIs> = PropsWithChildren<{
   dense?: boolean;
   level?: Level;
-  /** Size of another level, so outline order and visual size can differ. */
   lookLike?: Exclude<HeadingIs, Is>;
 }>;
 

@@ -16,14 +16,8 @@ import './styles.scss';
 const CLASS_NAME = 'kicl--components--input';
 
 /**
- * Text field control.
- *
- * `before` and `after` put an icon or a short text inside the field's border,
- * on either side of the text: it becomes a `label` around them and the
- * `<input>`. Every other prop still goes to the `<input>`, so a `FormControl`
- * around it reaches the control; `className` and `style` go to the outer
- * element. A field with a button is an `InputGroup`. Long values and
- * placeholders end in an ellipsis rather than being cut.
+ * With `before` or `after`, `className` and `style` go to the wrapping label
+ * and every other prop to the `<input>`.
  */
 const Input = React.forwardRef<HTMLInputElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {

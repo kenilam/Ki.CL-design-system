@@ -10,11 +10,7 @@ import { CLASS_NAME } from './constants';
 const CssVariables: React.FunctionComponent = () => {
   const { rect } = useGlobalHeaderContext();
 
-  /*
-   * A header that is `hidden` measures as 0px. Keep the last real height, so
-   * what reads it has it as soon as the header is back. How much of that
-   * height covers the window at any moment is the stylesheet's to say.
-   */
+  // A hidden header measures 0px, so this keeps the last real height.
   const blockSize = useRef(0);
 
   if (rect?.height) {

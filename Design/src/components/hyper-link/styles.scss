@@ -1,8 +1,5 @@
 :root {
   --kicl--components--hyper-link--box-shadow--block-size: var(--kicl-size-1px);
-
-  // Thicker under the pointer and under the current page, so the page the
-  // reader is on stands out from the links around it.
   --kicl--components--hyper-link--box-shadow--block-size-active: var(
     --kicl-size-3px
   );
@@ -28,11 +25,8 @@
 
   @include transition('kicl--components--hyper-link');
 
-  /*
-   * With an icon beside it, the text is in `--line`, and only that is
-   * underlined. The icons flow with the text, so a closing arrow follows the
-   * last word when the text wraps.
-   */
+  // The icons stay inline so a closing arrow follows the last word when the
+  // text wraps.
   > :has(+ #{&}--line),
   > #{&}--line + :not(.kicl-hidden) {
     vertical-align: middle;
@@ -71,10 +65,8 @@
   }
 }
 
-/*
- * Same-page hash links jump natively. The scroll is smooth only while such a
- * link is being used, so route changes (ScrollRestoration) still jump.
- */
+// Smooth only while a hash link is hovered or focused, so route changes
+// through ScrollRestoration still jump.
 @media (prefers-reduced-motion: no-preference) {
   html:has(a[href^='#']:is(:hover, :focus)) {
     scroll-behavior: smooth;

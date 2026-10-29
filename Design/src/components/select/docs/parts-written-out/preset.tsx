@@ -21,7 +21,6 @@ const description = (
 
 const name = 'Parts written out';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

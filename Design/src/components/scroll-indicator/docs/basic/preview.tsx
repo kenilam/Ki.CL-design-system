@@ -2,13 +2,14 @@ import React from 'react';
 
 import { Layout, Markdown, ScrollIndicator } from 'design/components';
 
-const Preview: React.FC = () => (
-  <article className='kicl-background-color-body kicl-contain-paint kicl-max-block-size-columns-6 kicl-overflow-y-auto kicl-position-relative'>
-    <ScrollIndicator className='kicl-position-sticky' />
-    <Layout>
-      <section className='kicl-padding-block kicl-padding-block-end-wide kicl-padding-inline'>
-        <Markdown>
-          {`### The River Bank
+const Preview: React.FC = () => {
+  return (
+    <article className='kicl-background-color-body kicl-contain-paint kicl-max-block-size-columns-6 kicl-overflow-y-auto kicl-position-relative'>
+      <ScrollIndicator className='kicl-position-sticky' />
+      <Layout>
+        <section className='kicl-padding-block kicl-padding-block-end-wide kicl-padding-inline'>
+          <Markdown>
+            {`### The River Bank
 
 ![And a River went out from Eden: children and an otter at a stream, the frontispiece W. Graham Robertson drew for the 1908 first edition](https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Wind_in_the_Willows_-_1908_frontispiece.png/960px-Wind_in_the_Willows_-_1908_frontispiece.png)
 
@@ -199,10 +200,11 @@ The Mole was so touched by his kind manner of speaking that he could find no voi
 When they got home, the Rat made a bright fire in the parlour, and planted the Mole in an arm-chair in front of it, having fetched down a dressing-gown and slippers for him, and told him river stories till supper-time. Very thrilling stories they were, too, to an earth-dwelling animal like Mole. Stories about weirs, and sudden floods, and leaping pike, and steamers that flung hard bottles—at least bottles were certainly flung, and _from_ steamers, so presumably _by_ them; and about herons, and how particular they were whom they spoke to; and about adventures down drains, and night-fishings with Otter, or excursions far a-field with Badger. Supper was a most cheerful meal; but very shortly afterwards a terribly sleepy Mole had to be escorted upstairs by his considerate host, to the best bedroom, where he soon laid his head on his pillow in great peace and contentment, knowing that his new-found friend the River was lapping the sill of his window.
 
 This day was only the first of many similar ones for the emancipated Mole, each of them longer and full of interest as the ripening summer moved onward. He learnt to swim and to row, and entered into the joy of running water; and with his ear to the reed-stems he caught, at intervals, something of what the wind went whispering so constantly among them.`}
-        </Markdown>
-      </section>
-    </Layout>
-  </article>
-);
+          </Markdown>
+        </section>
+      </Layout>
+    </article>
+  );
+};
 
 export { Preview };

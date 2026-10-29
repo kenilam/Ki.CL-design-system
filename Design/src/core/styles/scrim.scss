@@ -1,8 +1,4 @@
-// A scrim over a picture, so text on it stays readable: the picture muted,
-// under the see-through page colour `--kicl-scrim-top` at the top and
-// `--kicl-scrim-foot` at the foot. Put it on a positioned element; it draws on
-// `::after`, above the element's children and under anything positioned after
-// it.
+// Needs a positioned element: it draws on `::after`.
 .kicl-scrim {
   --kicl-scrim-opacity: 1;
   --kicl-scrim-top: var(--kicl-color-page-a64);

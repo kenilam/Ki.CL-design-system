@@ -5,15 +5,14 @@ type IntrinsicOf<E extends keyof JSX.IntrinsicElements> =
 
 type KeysOf<E extends keyof JSX.IntrinsicElements> = keyof IntrinsicOf<E>;
 
-/** Keys that exist on some other `Is` host but not on `E`. */
 type ForeignKeys<
   Is extends keyof JSX.IntrinsicElements,
   E extends Is,
 > = Is extends unknown ? Exclude<KeysOf<Is>, KeysOf<E>> : never;
 
 /**
- * Attrs that belong only to other hosts - set to `never` so e.g. `href` is
- * rejected when `is` is not `'a'` (plain unions otherwise allow extras).
+ * Plain unions allow extra attributes, so other hosts' attributes are set to
+ * `never` to reject e.g. `href` when `is` isn't `'a'`.
  */
 type ForbidForeignAttrs<
   Is extends keyof JSX.IntrinsicElements,
@@ -22,14 +21,6 @@ type ForbidForeignAttrs<
   [K in ForeignKeys<Is, E>]?: never;
 };
 
-/**
- * Discriminated props for components that pick a host via `is`.
- *
- * - Default element: `is` is optional (`is?: Default`)
- * - Other elements: `is` is required (`is: E`)
- *
- * Intrinsic attributes follow the chosen host - e.g. `href` only when `is='a'`.
- */
 export type PolymorphicIsProps<
   Is extends keyof JSX.IntrinsicElements,
   Own extends object,

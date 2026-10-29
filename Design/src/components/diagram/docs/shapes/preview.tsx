@@ -31,6 +31,8 @@ const spec: DiagramSpec = {
   edges: [],
 };
 
-const Preview: React.FC = () => <Diagram spec={spec} />;
+const Preview: React.FC = () => {
+  return <Diagram spec={spec} />;
+};
 
 export { Preview };

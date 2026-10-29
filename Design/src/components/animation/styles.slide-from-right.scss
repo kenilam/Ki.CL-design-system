@@ -1,5 +1,4 @@
 .kicl--components--animation--property--slide-from-right {
-  /* How far it travels when out, a length or a share of its own size, and how faint it gets. */
   --kicl--components--animation--property--slide-from-right--distance: 0;
   --kicl--components--animation--property--slide-from-right--opacity: 1;
   --kicl--components--animation--transition-property: opacity, translate;
@@ -11,7 +10,6 @@
     --kicl--components--animation--property--slide-from-right--distance
   );
 
-  /* Where it starts when entering, and ends when leaving: the variables move, the properties follow. */
   @starting-style {
     --kicl--components--animation--property--slide-from-right--distance: var(
       --kicl--components--animation--slide--distance

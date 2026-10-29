@@ -51,13 +51,17 @@ const Image: React.FunctionComponent<Spec.Props> = ({
   );
 
   const onError: Spec.Props['onError'] = (event) => {
-    if (data) setResult({ src: data, failed: true });
+    if (data) {
+      setResult({ src: data, failed: true });
+    }
 
     errorHandler?.(event);
   };
 
   const onLoad: Spec.Props['onLoad'] = (event) => {
-    if (data) setResult({ src: data, failed: false });
+    if (data) {
+      setResult({ src: data, failed: false });
+    }
 
     loadHandler?.(event);
   };
@@ -65,12 +69,10 @@ const Image: React.FunctionComponent<Spec.Props> = ({
   return (
     <span {...props} className={className}>
       {/*
-       * The picture fills the box the component was given, rather than
-       * setting it. `object-fit` is inert until the box has a definite height;
-       * a percentage against an indefinite height still resolves to `auto`,
-       * so an image left to its natural ratio is unaffected.
+       * A percentage height resolves to `auto` when the box has no definite
+       * height, so an image left at its natural ratio is unaffected.
        */}
-      {!hasError && (
+      {!hasError ? (
         <img
           className={classNames(
             'kicl-block-size-full',
@@ -83,8 +85,8 @@ const Image: React.FunctionComponent<Spec.Props> = ({
           onLoad={onLoad}
           onError={onError}
         />
-      )}
-      {hasError && alt && <span className='kicl-hidden'>{alt}</span>}
+      ) : null}
+      {hasError && alt ? <span className='kicl-hidden'>{alt}</span> : null}
       <Animation in={hasError} duration='faster' property='blur'>
         <Layout>
           <span

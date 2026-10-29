@@ -6,7 +6,6 @@ import {
 } from 'design/components/popover/spec';
 import { GAPS } from 'design/components/spec';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   open: 'boolean',
   offset: {
@@ -23,7 +22,6 @@ export const CONTROLS = {
   },
 } satisfies ControlsSpec;
 
-/** A hint opens above its trigger unless told otherwise. */
 export const HINT_CONTROLS = {
   placement: {
     options: POPOVER_PLACEMENTS,

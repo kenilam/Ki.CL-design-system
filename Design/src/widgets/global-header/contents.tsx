@@ -42,7 +42,6 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
   );
 
   return (
-    // The logo's column takes the room, and everything after it keeps to the end.
     <Layout
       alignItems='center'
       autoFlow='column'
@@ -52,7 +51,6 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     >
       <header className={className}>
         <SiteLogo />
-        {/* On mobile the menu button ends the row. */}
         {isMobile ? null : children}
         <ThemeToggle />
         {isMobile ? children : null}

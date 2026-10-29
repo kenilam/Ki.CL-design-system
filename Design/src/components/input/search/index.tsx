@@ -34,10 +34,8 @@ type Props = Omit<InputProps, 'after' | 'type' | keyof FormItemFieldProps> &
   FormItemFieldProps;
 
 /**
- * A search field with a button that clears it. The button only shows while
- * there's text, which CSS reads from the placeholder, so one is always set.
- * Clearing goes through the input's own change event, so a controlled field's
- * `onChange` hears it.
+ * The clear button hides with `:placeholder-shown`, which needs a placeholder,
+ * so one is always set.
  */
 const SearchInput = React.forwardRef<HTMLInputElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {

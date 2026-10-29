@@ -45,10 +45,8 @@ import {
 import { outputOf } from './output';
 import { StageContext } from './stage';
 
-/** The light theme's class, for a stage that is light on a dark site. */
 const LIGHT_THEME_CLASS_NAME = 'kicl--theme--light';
 
-/** How a component reports the props a reader can also change by using it. */
 const REPORTS: Record<string, string> = {
   checked: 'onCheckedChange',
   open: 'onOpenChange',
@@ -56,37 +54,33 @@ const REPORTS: Record<string, string> = {
 };
 
 /**
- * What an example takes from the controls: the props a page's `controls.ts`
- * names, on its component. The example spreads them last on that component,
- * so a control wins over what the file writes.
+ * The example spreads these last on its component, so a control wins over
+ * what the file writes.
  */
 export type Controlled<
   Component extends React.ElementType,
   Key extends keyof React.ComponentPropsWithoutRef<Component>,
 > = Partial<Pick<React.ComponentPropsWithoutRef<Component>, Key>> &
-  // The stage sets the columns an example takes through it.
   Pick<React.HTMLAttributes<HTMLElement>, 'className'>;
 
 export type { ControlsSpec } from './controls';
 
 type PresetProps = React.PropsWithChildren<{
-  /** What the preset shows, as the dropdown reads it. */
   name: string;
   /**
-   * The code to show: the example's own file, read with `?raw`. Its
-   * component is `Preview`, and is shown under the preset's name.
+   * The example's own file, read with `?raw`. Its component must be named
+   * `Preview`; the code shown renames it after the page and preset.
    */
   code: string;
   /**
-   * Toggles only this preset has, on top of the page's. `null` takes off a
-   * page toggle that means nothing for this example.
+   * Added to the page's toggles. `null` removes a page toggle that doesn't
+   * apply to this example.
    */
   controls?: Record<string, ControlsSpec[string] | null>;
   description?: React.ReactNode;
 }>;
 
 type PreviewProps = React.PropsWithChildren<{
-  /** The props the reader can toggle, on the component that spreads `props`. */
   controls?: ControlsSpec;
   /**
    * Mounts the example again when a control changes, for a component that
@@ -94,24 +88,24 @@ type PreviewProps = React.PropsWithChildren<{
    */
   replay?: boolean;
   /**
-   * The columns the stage is at most, for a component that fills its
-   * parent, like a field. Without it the stage is as wide as the page.
+   * The stage's maximum width in columns. Without it the stage is as wide as
+   * the page.
    */
   span?: ColumnSpan;
 }>;
 
-/** One way to set a component up. `Preview` reads it; it renders nothing itself. */
-const Preset: React.FunctionComponent<PresetProps> = ({ children }) => (
-  <>{children}</>
-);
+const Preset: React.FunctionComponent<PresetProps> = ({ children }) => {
+  return <>{children}</>;
+};
 
-/** The preset's name as an identifier: `With a label` is `WithALabel`. */
-const identifierOf = (name: string) =>
-  name
-    .replace(/(?:^|[^A-Za-z0-9]+)([A-Za-z0-9])/g, (_, first: string) =>
-      first.toUpperCase()
-    )
+/** `With a label` becomes `WithALabel`. */
+const identifierOf = (name: string) => {
+  return name
+    .replace(/(?:^|[^A-Za-z0-9]+)([A-Za-z0-9])/g, (_, first: string) => {
+      return first.toUpperCase();
+    })
     .replace(/[^A-Za-z0-9]/g, '');
+};
 
 const codeOf = (
   { code, name }: PresetProps,
@@ -123,31 +117,33 @@ const codeOf = (
   // A control the example passes on by name is written there, not on the spread.
   const forwarded = forwardedOf(code, names);
   const spread = Object.fromEntries(
-    Object.entries(values).filter(([prop]) => !forwarded.has(prop))
+    Object.entries(values).filter(([prop]) => {
+      return !forwarded.has(prop);
+    })
   );
 
   return snippetOf(
     withForwarded(
-      readTags(code).reduceRight(
-        (source, tag) => withValues(source, tag, literals, spread),
-        code
-      ),
+      readTags(code).reduceRight((source, tag) => {
+        return withValues(source, tag, literals, spread);
+      }, code),
       forwarded,
       values
     )
   ).replace(/\bPreview\b/g, `${identifierOf(slug)}${identifierOf(name)}`);
 };
 
-/** What a component reports: the value itself, or the element's own state from an event. */
-const reported = (name: string, report: unknown) =>
-  report !== null && typeof report === 'object' && 'currentTarget' in report
+const reported = (name: string, report: unknown) => {
+  return report !== null &&
+    typeof report === 'object' &&
+    'currentTarget' in report
     ? ((report.currentTarget as Record<string, Value>)[name] ?? undefined)
     : (report as Value);
+};
 
 /**
- * The props the example gets: each control's value, `undefined` included
- * where the file writes the prop, so that the control can take it off, and
- * a handler for each prop the component reports.
+ * Sets `undefined` where the file writes a prop, so the control can take it
+ * off.
  */
 const propsOf = (
   controls: Record<string, Control>,
@@ -158,7 +154,6 @@ const propsOf = (
   const props: Record<string, unknown> = {};
 
   for (const [name, control] of Object.entries(controls)) {
-    // A prop that doesn't apply is left out, the file's own value with it.
     if (!isAllowed(control, values)) {
       if (literals.has(name)) {
         props[name] = undefined;
@@ -174,20 +169,25 @@ const propsOf = (
     const report = control.on ?? REPORTS[name];
 
     if (report) {
-      props[report] = (next: unknown) => onReport(name, reported(name, next));
+      props[report] = (next: unknown) => {
+        onReport(name, reported(name, next));
+      };
     }
   }
 
   return props;
 };
 
-/** What the controls that are on bring with them, where the file doesn't write it. */
 const extrasOf = (
   controls: Record<string, Control>,
   values: Values,
   tag: Tag | null
 ) => {
-  const written = new Set(tag?.attributes.map(({ name }) => name));
+  const written = new Set(
+    tag?.attributes.map(({ name }) => {
+      return name;
+    })
+  );
   const extras: Values = {};
 
   for (const [name, control] of Object.entries(controls)) {
@@ -197,9 +197,9 @@ const extrasOf = (
 
     for (const [prop, value] of Object.entries(control.with ?? {})) {
       // A file that writes `value` has already set what `defaultValue` would.
-      const controlled = prop.replace(/^default(\w)/, (_, first: string) =>
-        first.toLowerCase()
-      );
+      const controlled = prop.replace(/^default(\w)/, (_, first: string) => {
+        return first.toLowerCase();
+      });
 
       if (!written.has(prop) && !written.has(controlled)) {
         extras[prop] = value;
@@ -210,20 +210,14 @@ const extrasOf = (
   return extras;
 };
 
-/** The example with the props, on its first element. */
-const dressed = (children: React.ReactNode, props: Record<string, unknown>) =>
-  React.Children.map(children, (child, index) =>
-    index === 0 && React.isValidElement(child)
+const dressed = (children: React.ReactNode, props: Record<string, unknown>) => {
+  return React.Children.map(children, (child, index) => {
+    return index === 0 && React.isValidElement(child)
       ? React.cloneElement(child, props)
-      : child
-  );
+      : child;
+  });
+};
 
-/**
- * The example on a stage, a dropdown of presets and a toggle for each prop
- * under it, then the code for what is shown. The code is the example's file
- * with the chosen values written in, and using the component moves the
- * toggle that reports it.
- */
 const Preview: React.FunctionComponent<PreviewProps> = ({
   children,
   controls: spec = {},
@@ -234,25 +228,29 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   const { slug = '' } = useParams();
 
   const presets = React.Children.toArray(children).filter(
-    (child): child is React.ReactElement<PresetProps> =>
-      React.isValidElement(child) && child.type === Preset
+    (child): child is React.ReactElement<PresetProps> => {
+      return React.isValidElement(child) && child.type === Preset;
+    }
   );
 
   const [chosen, setChosen] = useState(presets[0]?.props.name);
   const preset =
-    presets.find(({ props }) => props.name === chosen) ?? presets[0];
+    presets.find(({ props }) => {
+      return props.name === chosen;
+    }) ?? presets[0];
 
-  // The page's toggles, and the preset's own after them.
-  const controlsOf = (shown?: React.ReactElement<PresetProps>) =>
-    Object.fromEntries(
+  const controlsOf = (shown?: React.ReactElement<PresetProps>) => {
+    return Object.fromEntries(
       Object.entries({ ...spec, ...shown?.props.controls }).flatMap(
-        ([name, control]) => (control ? [[name, controlOf(control)]] : [])
+        ([name, control]) => {
+          return control ? [[name, controlOf(control)]] : [];
+        }
       )
     );
+  };
   const controls = controlsOf(preset);
   const names = Object.keys(controls);
 
-  // The file's own values: what a control starts from, and what it can take off.
   const tag = preset ? readTag(preset.props.code) : null;
   const { literals, values: written } = valuesOf(tag, names);
 
@@ -266,7 +264,9 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
       return undefined;
     }
 
-    const read = () => setOutput(outputOf(stage));
+    const read = () => {
+      setOutput(outputOf(stage));
+    };
     const observer = new MutationObserver(read);
 
     read();
@@ -277,7 +277,9 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
       subtree: true,
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [stage]);
 
   if (!preset) {
@@ -285,7 +287,9 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   }
 
   const pick = (name: string) => {
-    const next = presets.find(({ props }) => props.name === name);
+    const next = presets.find(({ props }) => {
+      return props.name === name;
+    });
 
     setChosen(name);
     setValues(
@@ -296,35 +300,42 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
     );
   };
 
-  const set = (name: string, value: Value) =>
-    setValues((current) => ({
-      ...current,
-      [name]: value,
-      ...Object.fromEntries(
-        Object.entries(controls)
-          .filter(
-            ([other, control]) =>
-              control.except === name &&
-              current[other] === (value ?? controls[name]?.default)
-          )
-          .map(([other]) => [other, undefined])
-      ),
-    }));
+  const set = (name: string, value: Value) => {
+    setValues((current) => {
+      return {
+        ...current,
+        [name]: value,
+        ...Object.fromEntries(
+          Object.entries(controls)
+            .filter(([other, control]) => {
+              return (
+                control.except === name &&
+                current[other] === (value ?? controls[name]?.default)
+              );
+            })
+            .map(([other]) => {
+              return [other, undefined];
+            })
+        ),
+      };
+    });
+  };
 
   const hasControls = names.length > 0 && tag !== null;
   const extras = hasControls ? extrasOf(controls, values, tag) : {};
   const props = hasControls
     ? { ...extras, ...propsOf(controls, values, literals, set) }
     : {};
-  // What the code writes: nothing for a prop that doesn't apply.
   const applied = {
     ...Object.fromEntries(
-      Object.entries(values).map(([name, value]) => [
-        name,
-        controls[name] && !isAllowed(controls[name], values)
-          ? undefined
-          : value,
-      ])
+      Object.entries(values).map(([name, value]) => {
+        return [
+          name,
+          controls[name] && !isAllowed(controls[name], values)
+            ? undefined
+            : value,
+        ];
+      })
     ),
     ...extras,
   };
@@ -346,11 +357,13 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
             value={chosen}
           >
             <legend>{t('docs_preset')}</legend>
-            {presets.map(({ props: { name } }) => (
-              <SegmentedItem key={name} value={name}>
-                {name}
-              </SegmentedItem>
-            ))}
+            {presets.map(({ props: { name } }) => {
+              return (
+                <SegmentedItem key={name} value={name}>
+                  {name}
+                </SegmentedItem>
+              );
+            })}
           </Segmented>
         ) : null}
         {preset.props.description ? (
@@ -363,28 +376,31 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
           display='grid'
           justifyItems={span ? undefined : 'center'}
         >
-          {/* A theme of its own once a preset sets one, with the theme's colours. */}
           <figure
             className={classNames(
               'kicl-min-block-size-columns-1',
-              span && [
-                'kicl-inline-size-full',
-                'kicl-margin-inline-auto',
-                `kicl-max-inline-size-columns-${span}`,
-              ],
-              dark !== undefined && [
-                dark ? DARK_THEME_CLASS_NAME : LIGHT_THEME_CLASS_NAME,
-                'kicl-background-color-body',
-                'kicl-border-radius-md',
-                'kicl-color-body-color',
-              ]
+              span
+                ? [
+                    'kicl-inline-size-full',
+                    'kicl-margin-inline-auto',
+                    `kicl-max-inline-size-columns-${span}`,
+                  ]
+                : null,
+              dark !== undefined
+                ? [
+                    dark ? DARK_THEME_CLASS_NAME : LIGHT_THEME_CLASS_NAME,
+                    'kicl-background-color-body',
+                    'kicl-border-radius-md',
+                    'kicl-color-body-color',
+                  ]
+                : null
             )}
             key={
               replay
                 ? JSON.stringify(
-                    Object.entries(applied).filter(
-                      ([name]) => !controls[name]?.live
-                    )
+                    Object.entries(applied).filter(([name]) => {
+                      return !controls[name]?.live;
+                    })
                   )
                 : undefined
             }
@@ -394,7 +410,6 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
           </figure>
         </Layout>
         {hasControls ? (
-          // Each field keeps its width, and has a row of its own on phones.
           <Layout alignItems='end' display='flex' gap='normal' wrap='stack'>
             <form>
               <Controls controls={controls} onChange={set} values={values} />

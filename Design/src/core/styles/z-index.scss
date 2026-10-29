@@ -1,6 +1,3 @@
-// One stacking scale, so layers are chosen by role rather than by outbidding
-// the last number someone picked. The values keep the order the hand-set
-// numbers already had.
 $z-index-levels: (
   'behind': -1,
   'base': 0,

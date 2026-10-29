@@ -15,10 +15,6 @@ import type { CopyButtonProps } from './spec';
 // Partials
 import { Button } from './button';
 
-/**
- * A button that copies a value and, for a moment, says it did: the label
- * turns to "Copied", the icon to a check and the level to `confirm`.
- */
 const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
   (
     {
@@ -40,8 +36,9 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
       : (label ?? t('action_copy'));
     const mark = copied ? <Ri.RiCheckLine aria-hidden /> : icon;
 
-    const onClick = () =>
-      void copy(typeof value === 'function' ? value() : value);
+    const onClick = () => {
+      return void copy(typeof value === 'function' ? value() : value);
+    };
 
     return showLabel ? (
       <Button

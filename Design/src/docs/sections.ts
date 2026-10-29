@@ -14,7 +14,6 @@ import { PATH as COMPONENTS_PATH } from 'design/docs/components/constants';
 import { PATH as PATTERNS_PATH } from 'design/docs/patterns/constants';
 import { PATH as TOKENS_PATH } from 'design/docs/tokens/constants';
 
-/** The docs' sections, in order, for the home page and the breadcrumb. */
 const SECTIONS = [
   {
     Icon: Ri.RiShapesLine,
@@ -38,18 +37,16 @@ const SECTIONS = [
 
 type Section = (typeof SECTIONS)[number];
 
-/**
- * The trail above a docs page: the design system, its section with the other
- * sections beside it, then its category, which has no page of its own.
- */
 const useDocsCrumbs = (path: Section['path'], category?: string): Crumb[] => {
   const t = useCopy();
   const { parsePath } = useDocsContext();
 
-  const siblings = SECTIONS.map((section) => ({
-    name: t(section.title),
-    to: parsePath(section.path),
-  }));
+  const siblings = SECTIONS.map((section) => {
+    return {
+      name: t(section.title),
+      to: parsePath(section.path),
+    };
+  });
 
   return [
     { name: t('docs_design_system'), to: parsePath() },

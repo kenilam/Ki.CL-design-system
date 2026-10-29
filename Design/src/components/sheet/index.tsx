@@ -32,10 +32,7 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--sheet';
 
-/**
- * Tablet width and below, where the sheet fills the screen. Read on each call:
- * the breakpoint is a CSS token, and may not be loaded yet when this module is.
- */
+/** Read on each call because the CSS token may not be loaded when this module is. */
 const fillsScreen = () => {
   const tablet = getComputedStyle(document.documentElement)
     .getPropertyValue('--kicl-breakpoint-tablet')
@@ -44,25 +41,7 @@ const fillsScreen = () => {
   return Boolean(tablet) && matchMedia(`(max-width: ${tablet})`).matches;
 };
 
-/**
- * A panel at the side of the page, over what's behind it but not in its way:
- * the page stays usable while it's open, and a click on the page leaves it
- * open. It slides in from its `side`, and on small screens it fills the screen.
- *
- * It's a dialog: assistive tech announces it as one, and Escape closes it
- * while `closable`. When `modal`, and always on small screens where it covers
- * the page anyway, it opens modal: focus stays inside it, and the page behind
- * is blurred, inert and doesn't scroll. Its buttons still work there:
- * a show becomes `showModal()` and a hide closes it. Code that closes it
- * itself should call `close()` when `open` is set, `hidePopover()`
- * otherwise.
- *
- * It's a `Card` in the top layer as a manual popover, so only buttons that
- * point at it with `popovertarget` open and close it. It scrolls as a whole;
- * a `SheetHeader` or `SheetFooter` inside it stays stuck to its top or
- * bottom, with a line of the moving gradient while content runs under it.
- * `header` and `footer` are what goes in them.
- */
+/** Code that closes the sheet should call `close()` when `open` is set, `hidePopover()` otherwise. */
 const Sheet = React.forwardRef<HTMLElement, SheetProps>(
   (
     {
@@ -87,9 +66,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
     const node = useRef<HTMLElement | null>(null);
     const t = useCopy();
-    // Closed, it is only its own element, which its buttons can still open.
     const shown = useOverlayContents(node, defaultOpen);
-    // Only the open state it mounts with counts; after that its buttons lead.
     const opening = useRef(defaultOpen);
     const report = useRef(onOpenChange);
     const modally = useRef(modal);
@@ -108,7 +85,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
         return;
       }
 
-      // Set while this opens it modal, so its own toggle isn't turned away.
+      // `showModal()` fires `beforetoggle` too, and this lets that one through.
       let modaling = false;
 
       const beforeToggle = (event: Event) => {
@@ -129,9 +106,9 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
         modaling = false;
       };
 
-      // Popover and dialog both report through `toggle`.
-      const toggle = (event: Event) =>
+      const toggle = (event: Event) => {
         report.current?.((event as ToggleEvent).newState === 'open');
+      };
 
       // A modal sheet isn't a popover, so its hide buttons close it here.
       const click = (event: MouseEvent) => {
@@ -177,7 +154,6 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       };
     }, []);
 
-    // Open when `modal` changes, it reopens in the other mode at once.
     useEffect(() => {
       const element = node.current as HTMLDialogElement | null;
 
@@ -200,7 +176,6 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       <Card
         aria-labelledby={header && !isLabelled ? headerId : undefined}
         {...rest}
-        // Fixed chrome, so a frame on the page moves its insets inside the frame's edge.
         className={classNames(
           CLASS_NAME,
           `${CLASS_NAME}--${side}`,
@@ -209,7 +184,6 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
           'kicl-position-fixed',
           className
         )}
-        // As on `Dialog`: a click on the backdrop or Escape closes it while `closable`.
         closedby={closable ? 'any' : 'none'}
         id={id}
         is='dialog'
@@ -253,9 +227,9 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
             </section>
           </Layout>
         ) : null}
-        {shown && footer && (
+        {shown && footer ? (
           <SheetFooter justifyContent='end'>{footer}</SheetFooter>
-        )}
+        ) : null}
       </Card>
     );
   }

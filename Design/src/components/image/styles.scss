@@ -19,8 +19,6 @@
   // Here rather than a utility, so a caller's `kicl-position-*` class wins.
   position: relative;
 
-  // Filled while there is no picture, so the box it keeps for one shows,
-  // as a skeleton does.
   &--is-loading,
   &--has-error {
     --kicl--components--image--background-color: var(

@@ -1,5 +1,3 @@
-// How an element answers the pointer and touch: its cursor, which gestures the
-// page keeps, whether its text selects, and whether a scroll carries past it.
 $interaction: (
   'cursor': (auto, default, pointer, grab, grabbing, zoom-in, not-allowed),
   'touch-action': (auto, none, manipulation, pan-x, pan-y),

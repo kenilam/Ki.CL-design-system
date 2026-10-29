@@ -1,10 +1,3 @@
-/*
- * A frosted pane for things that sit over the page while it scrolls behind
- * them, such as the global header and the pinned composer. The page behind is
- * blurred and tinted with the page colour so text on the pane stays readable.
- * `--kicl-backdrop-tint` changes the tint; it defaults to `page-a12` read
- * where the pane is, so it follows the pane's theme.
- */
 :root {
   --kicl-backdrop-filter: blur(var(--kicl-gutter-widest));
   --kicl-backdrop-blur: blur(var(--kicl-size-2x));

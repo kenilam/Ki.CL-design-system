@@ -14,10 +14,6 @@ import { useSegmented } from './context';
 
 const CLASS_NAME = 'kicl--components--segmented__item';
 
-/**
- * One option: a native radio, hidden, inside the label that shows it. The
- * label is what's seen and clicked; the radio carries the keyboard and value.
- */
 const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
   (
     { children, className, onChange, onKeyDown, onPointerDown, value, ...rest },
@@ -56,11 +52,6 @@ const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
               onChange?.(event);
               group.onValueChange(value);
 
-              /*
-               * In a scrolling row, a click on an option cut off at the edge
-               * brings it into view. `nearest` leaves a visible option where
-               * it is; the row's `scroll-behavior` decides how it moves.
-               */
               event.currentTarget.parentElement?.scrollIntoView({
                 block: 'nearest',
                 inline: 'nearest',

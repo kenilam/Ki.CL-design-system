@@ -16,18 +16,17 @@ const Text = React.forwardRef<HTMLElement, Spec.Props>(
     { children, dense, is = 'p', level, lookLike, unstyled, variant, ...rest },
     ref
   ) => {
-    // A heading look has its own quieter variant; the rest take Text's.
     const looksLikeHeading = /^h[1-6]$/.test(lookLike ?? '');
 
     const className = classNames(
       {
         [CLASS_NAME]: !unstyled,
-        [`kicl-look-like-${lookLike}`]: !unstyled && lookLike,
+        [`kicl-look-like-${lookLike}`]: !unstyled ? lookLike : null,
         [`${CLASS_NAME}--variant--${variant}`]:
-          !unstyled && !looksLikeHeading && variant,
-        [`${CLASS_NAME}--level--${level}`]: !unstyled && level,
+          !unstyled && !looksLikeHeading ? variant : null,
+        [`${CLASS_NAME}--level--${level}`]: !unstyled ? level : null,
         [`kicl-look-like-${lookLike}--variant--${variant}`]:
-          !unstyled && looksLikeHeading && variant,
+          !unstyled && looksLikeHeading ? variant : null,
         [`${CLASS_NAME}--is-dense`]: !unstyled && dense,
       },
       rest.className

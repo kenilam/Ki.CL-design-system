@@ -11,10 +11,6 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--badge';
 
-/**
- * A compact label chip. `variant` sets how it looks and `level` what it
- * means, the same split as `Button`.
- */
 const Badge = React.forwardRef<HTMLElement, Props>(
   (
     {
@@ -41,8 +37,6 @@ const Badge = React.forwardRef<HTMLElement, Props>(
         justifyItems='center'
       >
         <Component
-          // Discriminated `Props` collapse to a host-specific attrs bag at call
-          // sites; the implementation spreads the residual host attrs.
           {...(rest as React.HTMLAttributes<HTMLElement>)}
           className={classNames(
             CLASS_NAME,

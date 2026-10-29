@@ -16,33 +16,39 @@ import { CITIES } from 'design/components/combobox/docs/constants';
 
 const Preview: React.FC<Props> = (props) => {
   const [query, setQuery] = useState('');
-  const matches = CITIES.filter((city) =>
-    city.toLowerCase().includes(query.toLowerCase())
-  );
+  const matches = CITIES.filter((city) => {
+    return city.toLowerCase().includes(query.toLowerCase());
+  });
 
   return (
     <Combobox {...props}>
       <ComboboxAnchor>
         <Input
           aria-label='City'
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => {
+            setQuery(event.target.value);
+          }}
           placeholder='Search a city'
           value={query}
         />
       </ComboboxAnchor>
       <ComboboxContent aria-label='Cities'>
         <List gap='narrow'>
-          {matches.map((city) => (
-            <ListItem key={city}>
-              <Button
-                className='kicl-inline-size-full'
-                onClick={() => setQuery(city)}
-                variant='secondary'
-              >
-                {city}
-              </Button>
-            </ListItem>
-          ))}
+          {matches.map((city) => {
+            return (
+              <ListItem key={city}>
+                <Button
+                  className='kicl-inline-size-full'
+                  onClick={() => {
+                    setQuery(city);
+                  }}
+                  variant='secondary'
+                >
+                  {city}
+                </Button>
+              </ListItem>
+            );
+          })}
         </List>
       </ComboboxContent>
     </Combobox>

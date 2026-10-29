@@ -11,22 +11,23 @@ const CLASS_NAME = 'kicl--components--menu';
 const Menu = React.forwardRef<
   HTMLMenuElement,
   Required<PropsWithChildren> & Spec.Props
->(({ autoFlow = 'column', children, gap = 'normal', ...rest }, ref) => (
-  // Layout takes its own props and passes the rest on to the `menu`.
-  <Layout {...rest} autoFlow={autoFlow} gap={gap}>
-    <menu className={CLASS_NAME} ref={ref}>
-      {React.Children.toArray(children).map((child) => {
-        let key = String(child);
+>(({ autoFlow = 'column', children, gap = 'normal', ...rest }, ref) => {
+  return (
+    <Layout {...rest} autoFlow={autoFlow} gap={gap}>
+      <menu className={CLASS_NAME} ref={ref}>
+        {React.Children.toArray(children).map((child) => {
+          let key = String(child);
 
-        if (React.isValidElement(child)) {
-          key = String(child.key);
-        }
+          if (React.isValidElement(child)) {
+            key = String(child.key);
+          }
 
-        return <ListItem key={key}>{child}</ListItem>;
-      })}
-    </menu>
-  </Layout>
-));
+          return <ListItem key={key}>{child}</ListItem>;
+        })}
+      </menu>
+    </Layout>
+  );
+});
 
 Menu.displayName = 'Menu';
 

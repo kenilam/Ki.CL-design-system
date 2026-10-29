@@ -9,7 +9,6 @@ import { LEVELS } from 'design/components/spec';
 import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from 'design/components/text/spec';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   split: { options: ANIMATED_TEXT_SPLITS, default: 'letter' },
   property: { options: PROPERTIES, default: 'slide-from-top' },

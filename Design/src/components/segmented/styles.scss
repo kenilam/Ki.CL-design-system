@@ -1,13 +1,3 @@
-/*
- * Two boxes. The fieldset is the track: its colour, its rounded ends. The
- * options sit in `__options`, which lays them out and is the box that scrolls
- * in `collapse='scroll'`.
- *
- * The options share the track, each an equal share. The highlight is
- * `__options`'s own `::before`, anchored to whichever option is checked: it
- * takes that option's box, and slides when the choice changes, since its
- * insets transition. `anchor-scope` keeps each control's anchor its own.
- */
 .kicl--components--segmented {
   --kicl--components--segmented--track: var(--kicl-color-neutral-a8);
   --kicl--components--segmented--thumb: var(--kicl-color-neutral-a16);
@@ -15,11 +5,11 @@
   background-color: var(--kicl--components--segmented--track);
   min-inline-size: 0;
 
-  // With a legend, the legend is a line above and the options box is the
-  // track. Floated, the legend leaves the fieldset's border and joins the flow.
   &--with-legend {
     background-color: transparent;
 
+    // Floating the legend takes it out of the fieldset's border and into the
+    // flow.
     > legend {
       float: inline-start;
     }
@@ -30,13 +20,13 @@
   }
 }
 
-// Its options are labels over hidden radios, so a disabled fieldset fades them
-// here. The legend stays as it is.
+// Fades the options rather than the fieldset so the legend stays as it is.
 .kicl--components--segmented:disabled .kicl--components--segmented__options {
   opacity: var(--kicl-disabled-opacity);
 }
 
 .kicl--components--segmented__options {
+  // `anchor-scope` stops two controls on one page sharing the checked anchor.
   anchor-scope: --kicl--components--segmented--checked;
   border-radius: inherit;
   grid-auto-columns: minmax(0, 1fr);
@@ -56,12 +46,10 @@
     }
   }
 
-  // Nothing chosen: no option to highlight.
   &:not(:has(:checked))::before {
     content: none;
   }
 
-  // Without anchor positioning there's nothing to slide; the option itself is filled.
   @supports not (anchor-name: --a) {
     &::before {
       content: none;
@@ -70,10 +58,8 @@
 }
 
 .kicl--components--segmented__item {
-  // The highlight's corners, so the focus ring follows them.
+  // So the focus ring follows the highlight's corners.
   border-radius: inherit;
-
-  // Unchosen options keep some of the body colour, so they read on either theme.
   color: var(--kicl-color-neutral-a64);
   transition: color var(--kicl-transition-duration-fast);
 
@@ -90,14 +76,14 @@
     }
   }
 
-  // The radio is unseen, so its label draws the ring every other control does.
   &:has(:focus-visible) {
     outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
     outline-offset: var(--kicl-size-1px);
   }
 }
 
-// The radio stays in the page for the keyboard and screen readers, unseen.
+// Hidden with opacity, not `display`, so the keyboard and screen readers still
+// reach it.
 .kicl--components--segmented__item__control {
   appearance: none;
   opacity: 0;
@@ -110,8 +96,6 @@
   scroll-snap-type: inline mandatory;
   scroll-behavior: smooth;
 
-  // The faded edge shows there are more options to scroll to. An option
-  // settles clear of it.
   @include scroll-fade(inline);
 
   scroll-padding-inline: var(--kicl-scroll-fade-distance);
@@ -124,16 +108,12 @@
     scroll-snap-align: start;
     white-space: nowrap;
 
-    // On load, the row starts scrolled to the chosen option.
     &:has(:checked) {
       scroll-initial-target: nearest;
     }
   }
 }
 
-// `collapse='scroll'`: below tablet the row keeps its options whole and
-// scrolls sideways instead, settling on one option at a time. `collapsed`
-// does the same at any width.
 .kicl--components--segmented--collapse--scroll {
   .kicl--components--segmented__options {
     @include query('≤tablet') {
@@ -148,18 +128,11 @@
   }
 }
 
-/*
- * `collapse='popover'`: one set of radios, in a popover panel inside the
- * fieldset. Above tablet the panel is laid out in place as the usual row, so
- * it overrides what the popover would do, and the trigger isn't needed. Below
- * it the trigger shows the choice and the panel opens as a list.
- */
 .kicl--components--segmented__popover {
   background-color: transparent;
 }
 
 .kicl--components--segmented__trigger {
-  // As wide as the choice, the arrow right after it.
   justify-self: start;
 }
 
@@ -176,21 +149,18 @@
     min-block-size: calc(#{$item} * 6 + #{$edge} * 2);
   }
 
-  // The panel is the surface now, so the options sit on it without a track.
   .kicl--components--segmented__options {
     background-color: transparent;
     grid-auto-columns: auto;
     grid-auto-flow: row;
   }
 
-  // The options line up the way the panel does, from the popover's placement.
   .kicl--components--segmented__item {
     justify-items: var(--kicl--components--popover--align, start);
     scroll-snap-align: start;
   }
 }
 
-// `collapsed` keeps the trigger and the panel at any width.
 @include query('>tablet') {
   .kicl--components--segmented__popover:not(
     .kicl--components--segmented__popover--collapsed

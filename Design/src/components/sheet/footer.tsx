@@ -8,15 +8,21 @@ import { CardFooter, type CardFooterProps } from 'design/components/card';
 
 const CLASS_NAME = 'kicl--components--sheet__footer';
 
-/** The sheet's footer: stays at its bottom as it scrolls, over what runs under it. */
 const SheetFooter = React.forwardRef<HTMLElement, CardFooterProps>(
-  ({ className, ...rest }, ref) => (
-    <CardFooter
-      {...rest}
-      className={classNames(CLASS_NAME, 'kicl-stuck-line-start', 'kicl-padding', className)}
-      ref={ref}
-    />
-  )
+  ({ className, ...rest }, ref) => {
+    return (
+      <CardFooter
+        {...rest}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-stuck-line-start',
+          'kicl-padding',
+          className
+        )}
+        ref={ref}
+      />
+    );
+  }
 );
 
 SheetFooter.displayName = 'SheetFooter';

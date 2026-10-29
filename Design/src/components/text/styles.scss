@@ -14,8 +14,7 @@
 .kicl--components--text {
   --kicl--components--text--color: var(--kicl-body-color);
 
-  // Reset per element, or the sibling spacing below inherits into any Text
-  // nested inside, like the chips in a legend that follows a paragraph.
+  // Reset per element, or the sibling spacing below inherits into nested Text.
   --kicl--components--text--padding-block-end: 0;
   --kicl--components--text--padding-block-start: 0;
   --kicl--components--text--color-secondary: var(--kicl-color-neutral-a64);
@@ -43,8 +42,7 @@
     --kicl--components--text--padding-block-start: var(--kicl-gutter-narrower);
   }
 
-  // Blockquotes draw a start-edge rule - keep separation in margin so the
-  // border hugs the copy instead of framing empty padding above the text.
+  // Spaced with margin so the start border doesn't run up through empty padding.
   & + &[data-is='blockquote']:not(&--is-dense),
   & + &.kicl-look-like-blockquote:not(&--is-dense) {
     --kicl--components--text--padding-block-start: 0;
@@ -61,8 +59,6 @@
     white-space-collapse: preserve;
   }
 
-  // Block quote - semantic host or visual `lookLike="blockquote"`.
-  // Keep roman (not italic): italic is reserved for `q` / `cite`.
   &[data-is='blockquote'],
   &.kicl-look-like-blockquote {
     --kicl--components--text--border-inline-start-color: var(
@@ -79,7 +75,6 @@
     padding-inline-start: var(--kicl--components--text--padding-inline-start);
   }
 
-  // Inline quote - UA quotation marks; keep phrasing-level display
   &[data-is='q'],
   &.kicl-look-like-q {
     --kicl--components--text--font-style: italic;
@@ -87,7 +82,6 @@
     font-style: var(--kicl--components--text--font-style);
   }
 
-  // A lookalike gets the marks a real `q` takes from the browser.
   &.kicl-look-like-q:not([data-is='q']) {
     &::before {
       content: open-quote;
@@ -98,7 +92,6 @@
     }
   }
 
-  // What the browser gives a real `em` and `strong`.
   &.kicl-look-like-em {
     font-style: italic;
   }
@@ -111,8 +104,6 @@
     --kicl--components--text--ink: var(--kicl--components--text--color-secondary);
   }
 
-  // A level colours the words, the quieter variant and the fill behind code.
-  // Neutral is the body colour, as with no level, so it needs no rule.
   @each $level in map.keys(map.remove($levels, 'neutral')) {
     &--level--#{$level} {
       --kicl--components--text--color: var(--kicl-color-#{$level});
@@ -135,22 +126,19 @@
     }
   }
 
-  // A `pre` wraps its long lines, breaking anywhere. Kept on one line, the
-  // longest is the narrowest the page can be, and on a phone the page runs
-  // off the screen.
+  // Unwrapped, the longest line sets the page's minimum width and overflows on
+  // phones.
   &[data-is='pre'],
   &.kicl-look-like-pre {
     white-space: pre-wrap;
     word-break: break-all;
   }
 
-  // What the browser gives a real `pre`.
   &.kicl-look-like-pre:not([data-is='pre']) {
     display: block;
     font-family: var(--kicl-font-family-mono);
   }
 
-  // A code block: code inside `pre` is one box, not a fill around each line.
   &:is([data-is='pre'], .kicl-look-like-pre)
   > &:is([data-is='code'], .kicl-look-like-code) {
     display: block;
@@ -159,10 +147,8 @@
     white-space: pre-wrap;
   }
 
-  // Inline code. The fill is a faint wash of the ink, or of the code's level.
-  // Block padding on an inline box doesn't move the lines. Inline padding does
-  // take space, but it has to, or the fill runs into a comma or full stop
-  // right after it.
+  // Block padding on an inline box doesn't move the lines. Inline padding is
+  // needed to keep the fill off punctuation right after it.
   &[data-is='code'],
   &.kicl-look-like-code {
     --kicl--components--text--background-color: var(
@@ -185,17 +171,14 @@
     font-weight: var(--kicl-font-weight-bold);
     padding: var(--kicl--components--text--offset);
 
-    // An outline in place of the fill; the text keeps its colour.
     &.kicl--components--text--variant--secondary {
       --kicl--components--text--background-color: transparent;
       --kicl--components--text--border-color: var(--kicl-color-neutral-a32);
     }
   }
 
-  // Text an edit removes or adds, as in a diff. The fill is a wash of the
-  // error or confirm colour; the words keep the body colour so they stay
-  // readable. Removed text keeps its strike, so the meaning doesn't rest on
-  // colour alone, and added text drops the underline that reads as a link.
+  // `del` keeps its strike so the meaning doesn't rest on colour alone; `ins`
+  // drops its underline, which reads as a link.
   &[data-is='del'],
   &[data-is='ins'],
   &.kicl-look-like-del,
@@ -235,7 +218,6 @@
     text-decoration-line: none;
   }
 
-  // Citation / source title
   &[data-is='cite'],
   &.kicl-look-like-cite {
     --kicl--components--text--font-style: italic;

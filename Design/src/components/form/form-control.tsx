@@ -8,10 +8,6 @@ type ControlProps = Pick<
   'aria-describedby' | 'aria-invalid' | 'id' | 'required'
 >;
 
-/**
- * Gives its one child the item's id, `required`, `aria-invalid` and the
- * description/message ids, added to any `aria-describedby` it already has.
- */
 const FormControl = ({ children }: FormControlProps) => {
   const child = React.Children.only(children);
   const valid = React.isValidElement<ControlProps>(child);

@@ -1,4 +1,3 @@
-// Turns an element round and round, for a loading icon.
 .is-revolving {
   animation: kicl-revolving 1s linear infinite;
 }
@@ -13,22 +12,18 @@
   }
 }
 
-// Stops an element's own animation, such as a skeleton standing in for
-// something that isn't loading.
 .kicl-animation-none {
   animation: none;
 }
 
-// Stops an element's own animation when the person asks for less motion.
 .kicl-animation-none-reduced-motion {
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
 }
 
-// Hides an element that only makes sense with motion, such as a control for
-// scroll-driven panels that flow as a plain list under reduced motion. Pair it
-// with `kicl-animation-none-reduced-motion` when an animation sets `visibility`.
+// Pair it with `kicl-animation-none-reduced-motion` when an animation sets
+// `visibility`.
 .kicl-visibility-hidden-reduced-motion {
   @media (prefers-reduced-motion: reduce) {
     visibility: hidden;

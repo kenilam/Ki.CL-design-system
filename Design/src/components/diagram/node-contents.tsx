@@ -46,7 +46,7 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
 
           return (
             <React.Fragment key={row.name}>
-              {index > 0 && (
+              {index > 0 ? (
                 <line
                   className={classNames(`${BASE}-rule`, `${BASE}-rule--faint`)}
                   x1={x}
@@ -54,7 +54,7 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
                   y1={y + TITLE_SIZE + index * ROW_SIZE}
                   y2={y + TITLE_SIZE + index * ROW_SIZE}
                 />
-              )}
+              ) : null}
               {Icon ? (
                 <Icon
                   className={`${BASE}-icon`}
@@ -81,7 +81,7 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
               >
                 {row.name}
               </text>
-              {(row.key || row.note) && (
+              {row.key || row.note ? (
                 <text
                   className={`${BASE}-key`}
                   textAnchor='end'
@@ -90,7 +90,7 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
                 >
                   {row.key || row.note}
                 </text>
-              )}
+              ) : null}
             </React.Fragment>
           );
         })}
@@ -115,17 +115,19 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
       >
         {title}
       </text>
-      {lines?.map((line, index) => (
-        <text
-          className={`${BASE}-line`}
-          key={line}
-          textAnchor='middle'
-          x={cx}
-          y={titleY + 16 + index * 14}
-        >
-          {line}
-        </text>
-      ))}
+      {lines?.map((line, index) => {
+        return (
+          <text
+            className={`${BASE}-line`}
+            key={line}
+            textAnchor='middle'
+            x={cx}
+            y={titleY + 16 + index * 14}
+          >
+            {line}
+          </text>
+        );
+      })}
     </>
   );
 };

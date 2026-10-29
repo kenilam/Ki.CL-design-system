@@ -5,7 +5,6 @@ import { HEADING_LEVELS } from 'design/components/heading/spec';
 import { ALIGNS } from 'design/components/spec';
 import { STATUS_LEVELS } from 'design/components/status/spec';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   level: STATUS_LEVELS,
   justifyContent: { options: ALIGNS, default: 'start' },
@@ -16,7 +15,6 @@ export const CONTROLS = {
   in: { options: 'boolean', live: true },
 } as const satisfies ControlsSpec;
 
-/** A message alone has no heading, so only a preset with a title takes its level. */
 export const TITLE_CONTROLS = {
   headingLevel: {
     options: HEADING_LEVELS,
@@ -24,8 +22,8 @@ export const TITLE_CONTROLS = {
   },
 } as const satisfies ControlsSpec;
 
-// Not `Controlled`: through the component type, the animation props' index
-// signature loses each key's type. A `Pick` of the props keeps them.
+// `Controlled` loses the animation props' key types to their index signature;
+// a `Pick` of the props keeps them.
 export type Props = Pick<
   StatusProps,
   'className' | keyof typeof CONTROLS | keyof typeof TITLE_CONTROLS

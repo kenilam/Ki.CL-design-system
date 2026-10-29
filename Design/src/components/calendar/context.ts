@@ -10,7 +10,6 @@ export type CalendarContextValue = {
   selectedRange?: DateRange;
   selectedSingle?: Date;
   setMonth: (month: Date) => void;
-  /** Id of the month title, which names the table. */
   titleId: string;
   today: Date;
 };

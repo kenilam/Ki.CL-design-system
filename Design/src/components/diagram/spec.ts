@@ -4,7 +4,7 @@ import type { Level } from 'design/components/spec';
 
 export type Accent = 'blue' | 'green' | 'orange' | 'red' | 'yellow';
 
-/** One legend chip: `label` is the colour or line style, `value` what it means. */
+/** `label` names a colour or line style, and `value` says what it means. */
 export type LegendItem = {
   label: string;
   level?: Level;
@@ -19,9 +19,8 @@ export type Group = {
   y: number;
 };
 
-/** One attribute line of an entity table. */
 export type Row = {
-  /** Drawn in place of `type`, before the name. */
+  /** Drawn in place of `type`. */
   icon?: IconType;
   key?: string;
   name: string;
@@ -31,11 +30,10 @@ export type Row = {
 
 export type Node = {
   h: number;
-  /** Stable handle so a simulation can address this node. */
+  /** Lets `state` name this node. */
   id?: string;
-  /** Secondary description lines under the title. */
   lines?: string[];
-  /** Entity attribute rows - renders the node as a table. */
+  /** Renders the node as a table. */
   rows?: Row[];
   shape?: 'cylinder' | 'queue' | 'rect';
   title: string;
@@ -53,22 +51,18 @@ export type Edge = {
   label?: string;
   lx?: number;
   ly?: number;
-  /** Polyline waypoints; corners are rounded automatically. */
   points: Array<[number, number]>;
 };
 
 export type Spec = {
-  /** Shown under the diagram, for how to read it. */
   caption?: ReactNode;
-  /** Chips under the diagram for what its colours and line styles mean. */
   legend?: LegendItem[];
-  /** Accessible description of what the diagram shows. */
+  /** Visually hidden; it describes the diagram to assistive tech. */
   description: string;
   edges: Edge[];
   groups?: Group[];
   height: number;
   nodes: Node[];
-  /** Short name, used for the open button and the full-size dialog. */
   title: string;
   width: number;
 };

@@ -9,7 +9,6 @@ import { startOfDay } from 'design/components/calendar/helpers';
 // Partials
 import { Day } from './day';
 
-/** How far an arrow key moves through the days: one along a row, a week down a column. */
 const STEPS: Record<string, number> = {
   ArrowDown: 7,
   ArrowLeft: -1,
@@ -17,11 +16,6 @@ const STEPS: Record<string, number> = {
   ArrowUp: -7,
 };
 
-/**
- * The arrow keys move focus between the days, as a grid expects; Tab still
- * moves through them one by one. The handler sits on the body, since the
- * keys belong to the grid rather than to any day.
- */
 const onKeyDown = (event: React.KeyboardEvent<HTMLTableSectionElement>) => {
   const step = STEPS[event.key];
   const body = event.currentTarget;
@@ -45,7 +39,6 @@ const onKeyDown = (event: React.KeyboardEvent<HTMLTableSectionElement>) => {
   next.focus();
 };
 
-/** Six weeks of seven days, starting on the Sunday before the 1st. */
 const Grid: React.FunctionComponent = () => {
   const { month } = useCalendar();
 
@@ -54,28 +47,32 @@ const Grid: React.FunctionComponent = () => {
     const gridStart = new Date(first);
     gridStart.setDate(first.getDate() - first.getDay());
 
-    return Array.from({ length: 6 }, (_, week) =>
-      Array.from({ length: 7 }, (_, day) => {
+    return Array.from({ length: 6 }, (_, week) => {
+      return Array.from({ length: 7 }, (_, day) => {
         const date = new Date(gridStart);
         date.setDate(gridStart.getDate() + week * 7 + day);
         return startOfDay(date);
-      })
-    );
+      });
+    });
   }, [month]);
 
   return (
-    // The grid pattern: the keys belong to the group, and move focus between its buttons.
+    // Arrow keys on the body move focus between the day buttons.
     // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <tbody onKeyDown={onKeyDown}>
-      {weeks.map((days) => (
-        <tr key={days[0].toISOString()}>
-          {days.map((date) => (
-            <td key={date.toISOString()}>
-              <Day date={date} />
-            </td>
-          ))}
-        </tr>
-      ))}
+      {weeks.map((days) => {
+        return (
+          <tr key={days[0].toISOString()}>
+            {days.map((date) => {
+              return (
+                <td key={date.toISOString()}>
+                  <Day date={date} />
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
     </tbody>
   );
 };

@@ -26,7 +26,6 @@ import { CLASS_NAME, getHyperLinkClassNames } from './class-names';
 // Styles
 import './styles.scss';
 
-/** Drops the router-only props a native anchor would render as attributes. */
 const getAnchorProps = ({
   caseSensitive: _caseSensitive,
   discover: _discover,
@@ -38,10 +37,12 @@ const getAnchorProps = ({
   style,
   viewTransition: _viewTransition,
   ...rest
-}: Omit<Spec.Props, 'children' | 'to'>) => ({
-  ...rest,
-  style: typeof style === 'function' ? undefined : style,
-});
+}: Omit<Spec.Props, 'children' | 'to'>) => {
+  return {
+    ...rest,
+    style: typeof style === 'function' ? undefined : style,
+  };
+};
 
 const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
   (
@@ -76,7 +77,6 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       clickHandler?.(event);
     };
 
-    // One look at a time: the classes of a button or of a link, never both.
     const className = lookLikeButton
       ? getButtonClassNames({
           className: _className,
@@ -100,7 +100,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       Content = (
         <>
           {before}
-          {/* A link underlines its text and not the icons beside it, so the text needs an element. */}
+          {/* The span lets the underline skip the icons. */}
           {lookLikeButton ? (
             (children as React.ReactNode)
           ) : (
@@ -130,11 +130,8 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       target,
     };
 
-    /*
-     * A same-page hash is a plain anchor, so the browser jumps and moves focus
-     * itself; the router would swallow the click. Smooth scrolling and the
-     * header offset are CSS (see `styles.scss` and `html { scroll-padding }`).
-     */
+    // A same-page hash uses a plain anchor because the router would swallow
+    // the click; the browser then handles the jump and focus.
     const Link =
       status.isHash && typeof to === 'string' ? (
         <a {...getAnchorProps(rest)} {...shared} href={to} ref={ref}>
@@ -148,7 +145,6 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
 
     if (lookLikeButton) {
       return (
-        // Inline, as a link is: it sits in a line of text without breaking it.
         <Layout {...LAYOUT} display='inline-grid'>
           {Link}
         </Layout>

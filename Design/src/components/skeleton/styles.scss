@@ -21,7 +21,7 @@
   );
   aspect-ratio: var(--kicl--components--skeleton--aspect-ratio);
 
-  // Read here, not on :root, so the wash follows the theme it sits in.
+  // Read here, not on `:root`, so it follows the theme it sits in.
   background-color: var(
     --kicl--components--skeleton--background-color,
     var(--kicl-color-neutral-a12)

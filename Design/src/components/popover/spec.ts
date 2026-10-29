@@ -9,58 +9,52 @@ export type PopoverProps = {
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   /**
-   * For a trigger inside running text, such as a highlighted phrase. The
-   * panel is rendered at the end of the page, where a block is valid markup.
+   * For a trigger inside running text. The panel renders at the end of the
+   * page, where a block is valid markup.
    */
   inline?: boolean;
 };
 
 export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> & {
-  /**
-   * Makes the one child the trigger instead of wrapping it in a button: a
-   * `Button`, or a `HyperLink` that should still work as a link without
-   * script. If the child has its own `id`, name the panel with `aria-label`.
-   */
+  /** If the child has its own `id`, name the panel with `aria-label`. */
   asChild?: boolean;
 };
 
-/**
- * Which side of the trigger the panel opens on.
- *
- * A preference rather than an instruction: whichever side is asked for, the
- * panel flips to the opposite one when there is no room, so a picker near the
- * foot of the window opens upward instead of off the screen.
- */
+/** The panel flips to the opposite side when there's no room. */
 export type { Side as PopoverSide } from 'design/components/spec';
 
-/**
- * Where the panel lines up along that side: its start edge with the trigger's
- * start, centred on the trigger, or its end edge with the trigger's end.
- */
 export type { Align as PopoverAlign } from 'design/components/spec';
 
-/** A side alone aligns to `start`, which is how every placement used to work. */
+/** A side alone aligns to `start`. */
 export type PopoverPlacement = Side | `${Side}-${Align}`;
 
-export const POPOVER_PLACEMENTS = SIDES.flatMap((side) =>
-  ALIGNS.map((align) => `${side}-${align}` as const)
-);
+export const POPOVER_PLACEMENTS = SIDES.flatMap((side) => {
+  return ALIGNS.map((align) => {
+    return `${side}-${align}` as const;
+  });
+});
 
 export type PopoverVariant = Exclude<Variant, 'ghost'>;
 
 export const POPOVER_VARIANTS = VARIANTS.filter(
-  (variant): variant is PopoverVariant => variant !== 'ghost'
+  (variant): variant is PopoverVariant => {
+    return variant !== 'ghost';
+  }
 );
 
-/** Named by the trigger's text by default; pass `aria-label` or `aria-labelledby` to override. */
+/**
+ * Named by the trigger's text unless given `aria-label` or `aria-labelledby`.
+ */
 export type PopoverContentProps = ComponentPropsWithoutRef<'section'> & {
-  /** Keeps what's inside in the page while closed, for a panel that CSS lays out in place at some widths. */
+  /**
+   * Renders the children while closed, for a panel CSS shows in place at some
+   * widths.
+   */
   forceMount?: boolean;
   placement?: PopoverPlacement;
-  /** The gap to the trigger, on the gutter scale `Layout` uses for `gap`. */
   offset?: Gap;
   variant?: PopoverVariant;
 };
 
-/** Words only, named by the trigger with `aria-describedby`. */
+/** Text only, since the trigger reads it through `aria-describedby`. */
 export type PopoverHintProps = Omit<PopoverContentProps, 'forceMount' | 'role'>;

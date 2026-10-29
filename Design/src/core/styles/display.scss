@@ -1,6 +1,5 @@
-// Single-keyword values only. The two-value syntax (`display: block flow`) is
-// omitted because an identifier per pair would run to dozens of classes, and
-// `run-in` because no engine implements it.
+// Single keywords only: two-value pairs would need dozens of classes, and no
+// engine implements `run-in`.
 :root {
   --kicl-display-block: block;
   --kicl-display-contents: contents;

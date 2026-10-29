@@ -44,26 +44,28 @@ const Explore: React.FunctionComponent = () => {
         <section>
           <Heading is='h3'>{t(`category_${category}`)}</Heading>
           <List fill={isMobile ? 12 : isTablet ? 6 : 4} gap='normal'>
-            {pages.map(([pattern, { context }]) => (
-              <Card
-                header={
-                  <>
-                    <CardTitle is='h4'>
-                      <HyperLink
-                        to={parsePath(`${PATH}/${category}/${pattern}`)}
-                      >
-                        {t('pattern', { context })}
-                      </HyperLink>
-                    </CardTitle>
-                    <CardDescription>
-                      {t('pattern_summary', { context })}
-                    </CardDescription>
-                  </>
-                }
-                is='li'
-                key={pattern}
-              />
-            ))}
+            {pages.map(([pattern, { context }]) => {
+              return (
+                <Card
+                  header={
+                    <>
+                      <CardTitle is='h4'>
+                        <HyperLink
+                          to={parsePath(`${PATH}/${category}/${pattern}`)}
+                        >
+                          {t('pattern', { context })}
+                        </HyperLink>
+                      </CardTitle>
+                      <CardDescription>
+                        {t('pattern_summary', { context })}
+                      </CardDescription>
+                    </>
+                  }
+                  is='li'
+                  key={pattern}
+                />
+              );
+            })}
           </List>
         </section>
       </Layout>

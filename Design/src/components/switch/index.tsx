@@ -16,23 +16,17 @@ const CLASS_NAME = 'kicl--components--switch';
 const FIELD_CLASS_NAME = 'kicl--components--switch-field';
 
 /**
- * `switch` is not in React's attribute list yet; an empty string still
- * renders it. Safari draws a native switch from it; `role` covers the rest.
+ * React doesn't know the `switch` attribute yet, but an empty string still
+ * renders it. Safari draws a native switch from it.
  */
 const SWITCH_ATTRIBUTE = {
   switch: '',
 } as React.ComponentPropsWithoutRef<'input'>;
 
-/**
- * Toggle switch on a native checkbox.
- *
- * Its children are its visible name, as text or a {@link SwitchLabel}. The
- * `<label>` wraps the control, so the text is its accessible name.
- */
 const Switch = React.forwardRef<HTMLInputElement, Props>(
   ({ children, className, onChange, onCheckedChange, size, ...rest }, ref) => {
     const control = (
-      // The thumb is its `::before`, centred on the track's block axis.
+      // Centres the `::before` thumb on the track.
       <Layout alignItems='center' display='inline-grid' gap='none'>
         <input
           ref={ref}

@@ -1,7 +1,6 @@
 .kicl--components--button {
   @include level-tones('kicl--components--button');
 
-  // The label reads against whatever fill the variant and level give it.
   --kicl-body-color: contrast-color(
     var(--kicl--components--button--background-color)
   );
@@ -26,11 +25,9 @@
   );
 
   border-radius: var(--kicl--components--button--border-radius);
-
-  // One line. Its label truncates when there isn't room (see `truncateText`).
   white-space: nowrap;
 
-  // For a link that looks like a button, which has none of the link's own styles.
+  // For a HyperLink with the button look.
   text-decoration: none;
 
   @include transition('kicl--components--button');
@@ -55,11 +52,7 @@
     }
   }
 
-  /*
-   * An icon button: an icon or a spinner and nothing else to see. `--icon`
-   * says it holds no text, which CSS can't see, and `:has()` checks the
-   * elements. A visually hidden label doesn't count.
-   */
+  // `--icon` rules out text nodes, which `:has()` can't see.
   &#{&}--icon:is(:has(> svg), :has(> .kicl--components--spinner)):not(
     :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
   ) {
@@ -67,9 +60,6 @@
 
     backdrop-filter: blur(var(--kicl-gutter));
     display: grid;
-
-    // The icon takes three fifths of the square and the padding the rest, so
-    // it reads at every size without filling the circle.
     padding: calc(var(--kicl--components--button--block-size) * 0.2);
 
     > svg,

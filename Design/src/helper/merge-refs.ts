@@ -1,16 +1,18 @@
 import type React from 'react';
 
-/** One callback ref that hands the node to every ref given, of either kind. */
-const mergeRefs =
-  <Node>(...refs: (React.Ref<Node> | undefined)[]) =>
-  (node: Node | null) => {
+const mergeRefs = <Node>(...refs: (React.Ref<Node> | undefined)[]) => {
+  return (node: Node | null) => {
     refs.forEach((ref) => {
+      if (!ref) {
+        return;
+      }
       if (typeof ref === 'function') {
         ref(node);
-      } else if (ref) {
-        (ref as React.RefObject<Node | null>).current = node;
+        return;
       }
+      (ref as React.RefObject<Node | null>).current = node;
     });
   };
+};
 
 export { mergeRefs };

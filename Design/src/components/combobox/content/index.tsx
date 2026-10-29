@@ -20,10 +20,6 @@ import { focusables, useCombobox } from 'design/components/combobox/context';
 
 const CLASS_NAME = `${COMBOBOX}__content`;
 
-/**
- * The list under the field. The arrow keys move between its links and
- * buttons; up from the first, or Escape, goes back to the field.
- */
 const ComboboxContent: React.FC<ComboboxContentProps> = ({
   children,
   className,
@@ -32,7 +28,9 @@ const ComboboxContent: React.FC<ComboboxContentProps> = ({
 }) => {
   const combobox = useCombobox();
 
-  const toField = () => combobox.anchor.current?.focus();
+  const toField = () => {
+    combobox.anchor.current?.focus();
+  };
 
   return (
     <PopoverContent
@@ -55,9 +53,9 @@ const ComboboxContent: React.FC<ComboboxContentProps> = ({
           event.preventDefault();
           if (at <= 0) {
             toField();
-          } else {
-            items[at - 1]?.focus();
+            return;
           }
+          items[at - 1]?.focus();
         }
         if (event.key === 'Escape') {
           event.preventDefault();
@@ -65,11 +63,8 @@ const ComboboxContent: React.FC<ComboboxContentProps> = ({
           toField();
         }
       }}
-      /*
-       * `manual`, because an `auto` popover closes on any click outside it, and
-       * the field is outside it. It's a named group, not a dialog, because it's
-       * a list of links next to the field.
-       */
+      // `manual` because an `auto` popover closes on a click outside it, and
+      // the field is outside it.
       popover='manual'
       ref={combobox.content}
       role='group'

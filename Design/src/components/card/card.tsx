@@ -10,9 +10,6 @@ import type { CardIs, CardProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--card';
 
-/**
- * Surface container.
- */
 const Card = React.forwardRef<HTMLElement, CardProps>(
   (
     {
@@ -31,7 +28,6 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
   ) => {
     const Component = is as CardIs;
 
-    // A column of its parts, packed to the top: a card taller than its parts doesn't space them out.
     return (
       <Layout
         alignContent='start'
@@ -44,20 +40,20 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
             CLASS_NAME,
             `${CLASS_NAME}--size--${size}`,
             `${CLASS_NAME}--variant--${variant}`,
-            level && `${CLASS_NAME}--level--${level}`,
-            variant === 'secondary' && 'kicl-backdrop-blur',
+            level ? `${CLASS_NAME}--level--${level}` : null,
+            variant === 'secondary' ? 'kicl-backdrop-blur' : null,
             typeof size === 'number'
               ? `kicl-inline-size-columns-${size}`
-              : size !== 'default' &&
-                  size !== 'fit' &&
-                  `kicl-inline-size-${size}`,
+              : size !== 'default' && size !== 'fit'
+                ? `kicl-inline-size-${size}`
+                : null,
             'kicl-overflow-hidden',
             className
           )}
         >
-          {header && <CardHeader>{header}</CardHeader>}
+          {header ? <CardHeader>{header}</CardHeader> : null}
           {children}
-          {footer && <CardFooter>{footer}</CardFooter>}
+          {footer ? <CardFooter>{footer}</CardFooter> : null}
         </Component>
       </Layout>
     );

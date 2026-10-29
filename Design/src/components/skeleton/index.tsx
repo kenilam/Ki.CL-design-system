@@ -7,19 +7,17 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--skeleton';
 
-/**
- * Pulsing placeholder, hidden from assistive tech (pass `aria-hidden={false}`
- * to expose it).
- */
 const Skeleton = React.forwardRef<HTMLDivElement, Props>(
-  ({ className, ...rest }, ref) => (
-    <div
-      aria-hidden
-      ref={ref}
-      className={classNames(CLASS_NAME, className)}
-      {...rest}
-    />
-  )
+  ({ className, ...rest }, ref) => {
+    return (
+      <div
+        aria-hidden
+        ref={ref}
+        className={classNames(CLASS_NAME, className)}
+        {...rest}
+      />
+    );
+  }
 );
 
 Skeleton.displayName = 'Skeleton';

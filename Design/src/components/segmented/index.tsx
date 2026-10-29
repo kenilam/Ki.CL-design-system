@@ -29,25 +29,23 @@ import { SegmentedItem } from './item';
 
 const CLASS_NAME = 'kicl--components--segmented';
 
-/** The label of the option whose value is chosen, read from the children. */
-const labelOf = (children: React.ReactNode, value: string | undefined) =>
-  React.Children.toArray(children).find(
+const labelOf = (children: React.ReactNode, value: string | undefined) => {
+  return React.Children.toArray(children).find(
     (
       child
     ): child is React.ReactElement<{
       value: string;
       children?: React.ReactNode;
-    }> =>
-      React.isValidElement(child) &&
-      (child.props as { value?: string }).value === value
+    }> => {
+      return (
+        React.isValidElement(child) &&
+        (child.props as { value?: string }).value === value
+      );
+    }
   )?.props.children;
+};
 
-/**
- * A segmented control: one choice of a few, side by side on one track, as
- * a native `<fieldset>` of radios. The chosen option's highlight slides to
- * it, anchored to that option in CSS. Name it with `aria-label`, or a
- * `<legend>` as the first child.
- */
+/** Name it with `aria-label`, or a `<legend>` as the first child. */
 const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
   (
     {
@@ -73,23 +71,14 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
     const [open, setOpen] = useState(false);
     const current = value ?? chosen;
 
-    /*
-     * Whether the last press was a pointer or an arrow key, reported with the
-     * value. The panel stays open either way: a reader may want another look.
-     */
     const pointer = useRef(false);
 
-    /*
-     * In a scrolling row, a choice scrolled out of view comes back as soon as
-     * the reader leaves the row, by pointer or by focus, so the row never
-     * stays showing options the reader hasn't picked. `nearest` moves nothing
-     * while the choice is in view.
-     */
-    const back = (event: React.SyntheticEvent<HTMLDivElement>) =>
+    const back = (event: React.SyntheticEvent<HTMLDivElement>) => {
       event.currentTarget
         .querySelector(':checked')
         ?.closest('label')
         ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    };
 
     const onBlur = (event: React.FocusEvent<HTMLDivElement>) => {
       if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -115,8 +104,8 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
         <div
           className={classNames(
             `${CLASS_NAME}__options`,
-            hasLegend && !isPopover && 'kicl-padding-block-narrowest',
-            hasLegend && !isPopover && 'kicl-padding-inline-narrowest',
+            hasLegend && !isPopover ? 'kicl-padding-block-narrowest' : null,
+            hasLegend && !isPopover ? 'kicl-padding-inline-narrowest' : null,
             'kicl-position-relative'
           )}
           onBlur={collapse === 'scroll' ? onBlur : undefined}
@@ -127,11 +116,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
       </Layout>
     );
 
-    /*
-     * One set of radios either way. Above tablet the panel is laid out in
-     * place as the usual row and the trigger is hidden, all in CSS; below it
-     * the trigger shows the choice and the panel opens as a popover.
-     */
+    // Above tablet, CSS lays the panel out in place and hides the trigger.
     const fieldset = (
       <SegmentedContext.Provider
         value={{
@@ -159,15 +144,16 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
           <fieldset
             className={classNames(
               CLASS_NAME,
-              collapse && `${CLASS_NAME}--collapse--${collapse}`,
-              collapsed && `${CLASS_NAME}--collapsed`,
-              hasLegend && `${CLASS_NAME}--with-legend`,
-              isPopover && `${CLASS_NAME}__popover`,
-              isPopover && collapsed && `${CLASS_NAME}__popover--collapsed`,
+              collapse ? `${CLASS_NAME}--collapse--${collapse}` : null,
+              collapsed ? `${CLASS_NAME}--collapsed` : null,
+              hasLegend ? `${CLASS_NAME}--with-legend` : null,
+              isPopover ? `${CLASS_NAME}__popover` : null,
+              isPopover && collapsed
+                ? `${CLASS_NAME}__popover--collapsed`
+                : null,
               'kicl-border-radius-md',
-              // With a legend above, the options box is the track and takes the padding.
-              !hasLegend && !isPopover && 'kicl-padding-block-narrowest',
-              !hasLegend && !isPopover && 'kicl-padding-inline-narrowest',
+              !hasLegend && !isPopover ? 'kicl-padding-block-narrowest' : null,
+              !hasLegend && !isPopover ? 'kicl-padding-inline-narrowest' : null,
               'kicl-position-relative',
               className
             )}
@@ -181,24 +167,21 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
                     legend.props.className,
                     'kicl-font-size-small',
                     'kicl-inline-size-full',
-                    !isPopover && 'kicl-margin-block-end-narrower'
+                    !isPopover ? 'kicl-margin-block-end-narrower' : null
                   ),
                   id: legendId,
                 })
               : null}
             {isPopover ? (
               <>
-                {/* The trigger is a ghost button that reads as the choice; the panel takes the control's name. */}
                 <PopoverTrigger asChild>
                   <Button
                     after={<Ri.RiArrowDownSLine aria-hidden />}
-                    // It stands in for a select, so it is as tall as one.
                     className={classNames(
                       `${CLASS_NAME}__trigger`,
                       'kicl-min-block-size-field'
                     )}
                     id={`${id}__trigger`}
-                    // A disabled control opens nothing, as its radios take nothing.
                     disabled={disabled}
                     size='small'
                     variant='ghost'

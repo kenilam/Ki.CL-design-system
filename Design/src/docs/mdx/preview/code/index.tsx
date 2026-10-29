@@ -25,7 +25,6 @@ type Props = {
   title?: string;
 } & Pick<React.ComponentProps<'pre'>, 'className'>;
 
-/** A block of JSX or HTML, highlighted, in a card whose header holds the button that copies it. */
 const Code: React.FunctionComponent<Props> = ({
   children,
   className,
@@ -54,28 +53,33 @@ const Code: React.FunctionComponent<Props> = ({
         language={language}
         theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
       >
-        {({ getLineProps, getTokenProps, tokens }) => (
-          <Text
-            // A long line wraps, as `pre` does here, so a phone sees it all.
-            className={classNames(
-              'kicl-inline-size-full',
-              'kicl-line-height-wide',
-              className
-            )}
-            is='pre'
-          >
-            <Text is='code'>
-              {tokens.map((line, index) => (
-                <span {...getLineProps({ line })} key={index}>
-                  {line.map((token, position) => (
-                    <span {...getTokenProps({ token })} key={position} />
-                  ))}
-                  {'\n'}
-                </span>
-              ))}
+        {({ getLineProps, getTokenProps, tokens }) => {
+          return (
+            <Text
+              className={classNames(
+                'kicl-inline-size-full',
+                'kicl-line-height-wide',
+                className
+              )}
+              is='pre'
+            >
+              <Text is='code'>
+                {tokens.map((line, index) => {
+                  return (
+                    <span {...getLineProps({ line })} key={index}>
+                      {line.map((token, position) => {
+                        return (
+                          <span {...getTokenProps({ token })} key={position} />
+                        );
+                      })}
+                      {'\n'}
+                    </span>
+                  );
+                })}
+              </Text>
             </Text>
-          </Text>
-        )}
+          );
+        }}
       </Highlight>
     </Card>
   );

@@ -5,9 +5,8 @@ import type { PolymorphicIsProps } from 'design/components/polymorphic';
 import type { Variant } from 'design/components/spec';
 
 /**
- * `label` when the group only dresses its control (an icon, a prefix), so a
- * click anywhere in it focuses the control. `fieldset` when it also holds a
- * button, which a label can't contain.
+ * `label` makes a click anywhere focus the control. Use `fieldset` when the
+ * group holds a button, which a label can't contain.
  */
 export type InputGroupIs = 'fieldset' | 'label';
 

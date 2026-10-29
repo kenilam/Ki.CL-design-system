@@ -1,6 +1,3 @@
-// Each variant reads the looks of its level, or of neutral. Secondary and
-// tertiary show theirs through a faint see-through fill; ghost has no fill and
-// an edge and label in its own look.
 .kicl--components--button {
   &:not(&--unstyled) {
     &.kicl--components--button--variant {

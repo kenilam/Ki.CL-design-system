@@ -27,21 +27,6 @@ import { DialogContext } from './context';
 // Partials
 import { Close } from './close';
 
-/**
- * A `<dialog>`, and as little around it as the platform allows.
- *
- * What used to live here in JavaScript - a state mirroring `open`, four nested
- * animation wrappers, `inert` toggled by hand during the enter, a `close()`
- * deferred until the exit finished, Escape re-implemented on `keyup`, and a
- * button standing in for a backdrop - is now the element's own behaviour and a
- * transition in the stylesheet.
- *
- * The one thing the platform has no opinion about is that `open` is a prop
- * rather than an attribute: React would set `open` directly, which shows the
- * dialog without giving it the top layer, focus trapping or an inert
- * background. So the prop is applied through `showModal()` instead, and the
- * attribute is never rendered.
- */
 const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
   (
     {
@@ -65,9 +50,10 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
 
     const node = useRef<HTMLDialogElement>(null);
 
-    // Closed, it is only the `<dialog>`, which a command can still open.
     const shown = useOverlayContents(node, open);
 
+    // Not the `open` attribute: it shows the dialog without the top layer,
+    // focus trap or inert background that `showModal()` gives.
     useEffect(() => {
       const dialog = node.current;
 
@@ -84,10 +70,8 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       }
     }, [open]);
 
-    /*
-     * The element fills the window, so a click beside the panel lands on it
-     * rather than outside it, where `closedby` would see it.
-     */
+    // The element fills the window, so a click beside the panel lands on the
+    // dialog itself, which `closedby` doesn't count as outside.
     useEffect(() => {
       const dialog = node.current;
 
@@ -103,7 +87,9 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
 
       dialog.addEventListener('click', click);
 
-      return () => dialog.removeEventListener('click', click);
+      return () => {
+        dialog.removeEventListener('click', click);
+      };
     }, [closable]);
 
     return (
@@ -146,11 +132,7 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
               >
                 {header ? <header id={headerId}>{header}</header> : null}
 
-                {/*
-                Beside the header rather than in it, sharing its place in the
-                panel's grid, so it stays at the top while the header scrolls
-                away. It also keeps its label out of the dialog's name.
-              */}
+                {/* Outside the header so the dialog's name skips its label. */}
                 <Close />
 
                 {children}

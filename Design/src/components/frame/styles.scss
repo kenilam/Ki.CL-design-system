@@ -1,30 +1,9 @@
-/*
- * A frame is what the window has left: its height less a gap on every side,
- * and less the global header while the header shows. The header sits over the
- * top of the page and publishes how much of the window it covers as
- * `--kicl--widgets--global-header--offset`, and its height on a page that has
- * one as `--room`.
- *
- * A frame of the window's height follows the header: it starts under it and
- * takes the header's room when the header slides away. The offset is eased
- * where it is set, so the frame needs no transition of its own, and whatever
- * else reads the offset moves with it. A growing frame is
- * longer than the window, so moving its top would move the whole page each
- * time. It keeps the header's room above it for good, and follows the header
- * with its least height: it gets longer at the foot as the header slides
- * away, so once its top reaches the window's it still fills the window.
- */
 :root {
   $frame: '--kicl--components--frame';
 
   --kicl--components--frame--delay: 0ms;
   --kicl--components--frame--gap: var(--kicl-gutter);
   --kicl--components--frame--radius: var(--kicl-size);
-
-  /*
-   * How far content sits in from the frame's edge; every experiment reads it.
-   * Scales with the window, so a phone keeps its width for content.
-   */
   --kicl--components--frame--inset: clamp(
     var(--kicl-gutter),
     5vi,
@@ -32,9 +11,9 @@
   );
 
   /*
-   * Content inset that also keeps content within 12 columns, centred.
-   * `100%` resolves where it's used: `--columns-inset` on an element as
-   * wide as the frame, `--page-inset` on one as wide as the window.
+   * `100%` resolves where the property is used, so read `--columns-inset` on
+   * an element as wide as the frame and `--page-inset` on one as wide as the
+   * window.
    */
   --kicl--components--frame--columns-inset: calc(
     var(#{$frame}--inset) +
@@ -52,8 +31,8 @@
     )
   );
 
-  // On paper the gap round a frame is the page's margin, and the inset is a
-  // fixed step: there is no window for it to scale with.
+  // In print the `@page` margin is the gap, and there's no window for the
+  // inset to scale with.
   @media print {
     --kicl--components--frame--gap: 0px;
     --kicl--components--frame--inset: var(--kicl-gutter-wide);
@@ -61,11 +40,9 @@
 }
 
 /*
- * On the body, where the header's offset is set, and not on the root, where
- * it would be read before the body had said it. `--top` is where a frame's
- * top edge is in the window: against the header's bottom edge, or a gap from
- * the top once the header has gone. There is no gap under the header: a
- * picture that bleeds past the frame would show in it.
+ * Set on the body, not the root, because the header sets its offset on the
+ * body. There's no gap under the header, or a picture bleeding past the frame
+ * would show in it.
  */
 body {
   $frame: '--kicl--components--frame';
@@ -79,15 +56,11 @@ body {
   );
 }
 
-/*
- * In the `wrappers` layer, above `components`: the frame's sizing and clipping
- * land on another component's element and should beat that component's own.
- */
+// In the `wrappers` layer, above `components`, so the frame's sizing and
+// clipping beat the styles of the component it lands on.
 .kicl--components--frame {
   $frame: '--kicl--components--frame';
 
-  // Shows the frame's shape before whatever fills it has loaded. The light
-  // theme needs the border too, or the grey fades into the white page.
   --kicl--components--frame--background-color: var(--kicl-color-grey-200);
   --kicl--components--frame--border-color: var(--kicl-color-grey-300);
 
@@ -96,8 +69,9 @@ body {
   border: var(--kicl-size-1px) solid var(#{$frame}--border-color);
   border-radius: var(#{$frame}--radius);
 
-  // Sized by the page, never by what's inside, such as a canvas still at the
-  // width of a larger window. `clip` doesn't lift a grid item's content minimum.
+  // Stops content, such as a canvas still at a wider window's width, from
+  // sizing the frame. `overflow: clip` doesn't lift a grid item's content
+  // minimum.
   contain: inline-size;
   inline-size: calc(100% - var(#{$frame}--gap) * 2);
   margin-block: var(#{$frame}--top) var(#{$frame}--gap);
@@ -105,7 +79,6 @@ body {
   min-inline-size: 0;
   overflow: clip;
 
-  // `useResponsive` puts the dark theme's class on the body.
   @at-root .kicl--theme--dark & {
     --kicl--components--frame--background-color: var(--kicl-color-neutral-a8);
     --kicl--components--frame--border-color: transparent;
@@ -115,8 +88,6 @@ body {
     overflow: visible;
   }
 
-  // Eases from the window's full height into the frame, after `--delay`. The
-  // `in` modifier names the animation, and a growing frame swaps in its own.
   @media (prefers-reduced-motion: no-preference) {
     animation-delay: var(#{$frame}--delay);
     animation-duration: var(--kicl-transition-duration-slow);
@@ -129,6 +100,8 @@ body {
     }
   }
 
+  // A growing frame is taller than the window, so it keeps the header's room
+  // above it instead of following `--top`, which would move the whole page.
   &.kicl--components--frame--grow {
     block-size: auto;
     margin-block-start: max(
@@ -137,19 +110,14 @@ body {
     );
     min-block-size: var(#{$frame}--block-size);
 
-    // Growing content has no fixed height to ease from.
+    // `block-size: auto` can't be animated, so this eases the minimum height.
     &.kicl--components--frame--in {
       #{$frame}--in: kicl--components--frame--grow-in;
     }
   }
 
-  /*
-   * On paper a frame is the sheet less the page's margin, once on every
-   * sheet. The element lets go of its size and its clipping so what it holds
-   * runs on from sheet to sheet, and keeps its padding on each one. The frame
-   * itself is a border, drawn by a fixed box, which a browser repeats on
-   * every printed page at the size of the page.
-   */
+  // A fixed box repeats on every printed page, so `::before` draws the
+  // frame's border on each sheet.
   @media print {
     &,
     &.kicl--components--frame--grow {
@@ -180,11 +148,8 @@ body {
   }
 }
 
-/*
- * The gap round a printed frame. The whole document takes the page, not the
- * frame alone: a change of page between the frame and what follows it would
- * force a break, and print an empty last sheet.
- */
+// The named page goes on the whole document, not the frame, because changing
+// page after the frame forces a break and prints an empty last sheet.
 @media print {
   :root:has(.kicl--components--frame) {
     page: kicl-frame;
@@ -195,10 +160,6 @@ body {
   margin: 6mm;
 }
 
-/*
- * Fixed chrome is placed against the window. While a frame is on the page,
- * the default insets clear the frame instead, so controls sit inside its edge.
- */
 :root:has(.kicl--components--frame) .kicl-position-fixed {
   $frame: '--kicl--components--frame';
 
@@ -208,7 +169,6 @@ body {
   --kicl-inset-inline-end: calc(var(#{$frame}--gap) + var(--kicl-gutter));
 }
 
-// The window's full height. The sides keep their gap throughout.
 @keyframes kicl--components--frame--in {
   from {
     block-size: 100dvb;

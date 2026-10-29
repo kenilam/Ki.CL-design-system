@@ -1,12 +1,11 @@
 .kicl--components--select__item {
-  // The wash marks focus as well, so the item draws no ring over it.
+  // The background marks focus, so no outline.
   &:hover,
   &:focus-visible {
     background: var(--kicl-color-neutral-a16);
     outline: none;
   }
 
-  // The chosen option's mark is the system's check, not the browser's.
   &::checkmark {
     background-color: currentcolor;
     block-size: var(--kicl-size);

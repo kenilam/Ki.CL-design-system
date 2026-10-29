@@ -21,11 +21,6 @@ import { RadioGroupContext } from './context';
 // Partials
 import { Radio } from './radio';
 
-/**
- * Mutually exclusive options as a native `<fieldset>` of radios.
- *
- * `disabled` on the fieldset disables every radio inside it.
- */
 const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
   (
     {
@@ -48,7 +43,9 @@ const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
         value={{
           defaultValue,
           name: name ?? reactId,
-          onValueChange: (next) => onValueChange?.(next),
+          onValueChange: (next) => {
+            onValueChange?.(next);
+          },
           required,
           value,
         }}

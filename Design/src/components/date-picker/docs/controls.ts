@@ -9,6 +9,8 @@ export const CONTROLS = {
     options: POPOVER_VARIANTS,
     default: 'primary',
   },
+  required: 'boolean',
+  'aria-invalid': 'boolean',
 } satisfies ControlsSpec;
 
 export type Props = Controlled<typeof DatePicker, keyof typeof CONTROLS>;

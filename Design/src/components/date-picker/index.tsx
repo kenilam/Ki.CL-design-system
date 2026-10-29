@@ -70,7 +70,12 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   if (label || description) {
     return (
-      <FormItem {...layout} description={description} label={label}>
+      <FormItem
+        {...layout}
+        description={description}
+        label={label}
+        required={props.required}
+      >
         <DatePicker {...props} />
       </FormItem>
     );

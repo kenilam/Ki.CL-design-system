@@ -25,12 +25,16 @@ const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
     ref
   ) => {
     const id = useId();
+    const described =
+      Boolean(description) ||
+      React.Children.toArray(children).some(
+        (child) => React.isValidElement(child) && child.type === FormDescription
+      );
 
     return (
       <FormItemContext.Provider
         value={{
-          descriptionId:
-            label && !description ? undefined : `${id}-description`,
+          descriptionId: described ? `${id}-description` : undefined,
           id,
           messageId: `${id}-message`,
           required,

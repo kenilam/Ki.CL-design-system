@@ -63,24 +63,12 @@
   }
 }
 
-/*
- * Registered as a length so it can be eased. The header slides away over a
- * moment, and what follows it, such as a `Frame` growing into its room, has
- * to move with the header's edge and not jump to where it will end up.
- */
 @property --kicl--widgets--global-header--offset {
   syntax: '<length>';
   inherits: true;
   initial-value: 0;
 }
 
-/*
- * How much of the window the header covers now: its height while it shows,
- * and nothing once it has slid away, or on a page that has no header. It is
- * set on the body and not the root, because the root is the container the
- * query reads and a query cannot style its own container. Whatever sizes
- * itself to the window, such as `Frame`, reads it.
- */
 body:has(.kicl--widgets--global-header) {
   --kicl--widgets--global-header--offset: var(
     --kicl--widgets--global-header--block-size

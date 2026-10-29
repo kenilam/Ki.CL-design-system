@@ -11,3 +11,11 @@
 :is(li, fieldset) > .kicl--components--choice-label {
   min-block-size: auto;
 }
+
+.kicl--components--choice-label:has(
+  > :is(.kicl--components--checkbox, .kicl--components--switch):required
+)::after {
+  color: var(--kicl-color-error);
+  content: '*' / '';
+  margin-inline-start: calc(0.2em - var(--kicl-gutter-narrow));
+}

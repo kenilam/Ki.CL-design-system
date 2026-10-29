@@ -59,14 +59,17 @@
     --kicl--components--switch--track: var(--kicl-color-grey-300);
   }
 
-  &[aria-invalid='true'],
-  &:user-invalid {
-    --kicl--components--switch--track: var(--kicl-color-error);
-  }
 }
 
 // The name beside the switch takes its size too, as a button's label does.
 .kicl--components--switch-field {
+  &:has(
+    > .kicl--components--switch[aria-invalid='true'],
+    > .kicl--components--switch:user-invalid
+  ) {
+    color: var(--kicl-color-error);
+  }
+
   &:has(.kicl--components--switch--size--large) {
     font-size: var(--kicl-font-size);
   }

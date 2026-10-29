@@ -112,8 +112,8 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
                 <PopoverTrigger asChild>
                   <Button
                     aria-label={t('label_breadcrumb_more')}
-                    size='small'
-                    variant='tertiary'
+                    className={classNames('kicl-border-radius-sm')}
+                    unstyled
                   >
                     <Ri.RiMoreLine aria-hidden />
                   </Button>

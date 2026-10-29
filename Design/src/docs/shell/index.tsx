@@ -26,7 +26,7 @@ const Shell: React.FunctionComponent = () => (
         'kicl-padding-inline-frame'
       )}
     >
-      <Search className='kicl-margin-block-end-wide kicl-max-inline-size-columns-4' />
+      <Search className='kicl-max-inline-size-columns-4' />
       <Outlet />
     </article>
   </Layout>

@@ -13,7 +13,7 @@
 }
 
 .kicl--components--choice-label:has(
-  > :is(.kicl--components--checkbox, .kicl--components--switch):required
+  > .kicl--components--checkbox:required
 )::after {
   color: var(--kicl-color-error);
   content: '*' / '';

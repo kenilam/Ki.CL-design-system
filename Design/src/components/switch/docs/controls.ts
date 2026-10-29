@@ -7,8 +7,6 @@ export const CONTROLS = {
   checked: 'boolean',
   disabled: 'boolean',
   size: BUTTON_SIZES,
-  required: 'boolean',
-  'aria-invalid': 'boolean',
 } satisfies ControlsSpec;
 
 export type Props = Controlled<typeof Switch, keyof typeof CONTROLS>;

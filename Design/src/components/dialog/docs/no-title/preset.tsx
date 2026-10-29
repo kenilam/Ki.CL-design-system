@@ -10,8 +10,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For a dialog that only shows something, like a photo. Without a header, name
-    it with <Text is='code'>aria-label</Text>.
+    For a dialog that only shows something, like a picture. Without a header,
+    name it with <Text is='code'>aria-label</Text>.
   </>
 );
 

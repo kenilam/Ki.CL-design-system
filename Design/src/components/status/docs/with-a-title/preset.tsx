@@ -11,7 +11,7 @@ import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
 const description = (
-  <>A confirmation after saving, with a short title over the message.</>
+  <>A note after saving, with a short title over the message.</>
 );
 
 const name = 'With a title';

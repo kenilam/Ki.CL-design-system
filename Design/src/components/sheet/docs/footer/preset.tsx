@@ -9,8 +9,8 @@ import source from './preview.tsx?raw';
 
 const description = (
   <>
-    For editing something and then saving it. Cancel and Save stay at the bottom
-    while the content scrolls.
+    For editing something and then saving it, with Cancel and Save at the
+    bottom.
   </>
 );
 

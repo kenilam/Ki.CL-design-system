@@ -10,7 +10,7 @@ const Preview: React.FC<Props> = (props) => (
       <HyperLink to='#'>Button</HyperLink>
       <Details summary='Navigation'>
         <Navigation
-          aria-label='Components'
+          aria-label='Navigation'
           className='kicl-padding-inline-start-narrow'
         >
           <HyperLink to='#'>Button</HyperLink>

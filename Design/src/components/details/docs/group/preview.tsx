@@ -9,7 +9,7 @@ const Preview: React.FC<Props> = (props) => (
     <Details name='faq' summary='Is there a free plan?' {...props}>
       <Text>Yes, for up to three projects.</Text>
     </Details>
-    <Details name='faq' summary='Can I change plan later?'>
+    <Details name='faq' summary='Can I change plan later?' {...props}>
       <Text>Yes, at any time. The difference is charged pro rata.</Text>
     </Details>
   </Card>

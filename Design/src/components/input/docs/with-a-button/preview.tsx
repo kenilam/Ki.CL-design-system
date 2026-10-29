@@ -9,8 +9,8 @@ import {
 
 import type { Props } from 'design/components/input/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <InputGroup>
+const Preview: React.FC<Props> = ({ disabled, ...props }) => (
+  <InputGroup disabled={disabled}>
     <InputGroupInput
       aria-label='Message'
       placeholder='Write a message'

@@ -110,6 +110,17 @@ const Animation: FunctionComponent<Props> = ({
       }
     };
 
+  const style = {
+    [`--${CLASS_NAME}--transition-duration`]: `var(--kicl-transition-duration-${duration})`,
+    [`--${CLASS_NAME}--transition-timing-function`]: `var(--kicl-${easing})`,
+    ...props.style,
+  } as React.CSSProperties;
+
+  if (delay !== undefined) {
+    style[`--${CLASS_NAME}--transition-delay`] =
+      typeof delay === 'number' ? `${delay}ms` : delay;
+  }
+
   return React.cloneElement(
     child as React.ReactElement<Record<string, unknown>>,
     {
@@ -132,17 +143,7 @@ const Animation: FunctionComponent<Props> = ({
       onTransitionEnd: leave(handlers.onTransitionEnd ?? props.onTransitionEnd),
       // The child may already own a ref, and `cloneElement` would drop it.
       ref: mergeRefs(nodeRef, props.ref),
-      style: {
-        ...(delay === undefined
-          ? {}
-          : {
-              [`--${CLASS_NAME}--transition-delay`]:
-                typeof delay === 'number' ? `${delay}ms` : delay,
-            }),
-        [`--${CLASS_NAME}--transition-duration`]: `var(--kicl-transition-duration-${duration})`,
-        [`--${CLASS_NAME}--transition-timing-function`]: `var(--kicl-${easing})`,
-        ...props.style,
-      } as React.CSSProperties,
+      style,
     }
   );
 };

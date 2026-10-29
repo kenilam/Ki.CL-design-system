@@ -24,22 +24,24 @@ const Preview: React.FC<Props> = (props) => {
         control={form.control}
         name='plan'
         rules={{ required: 'Choose a plan.' }}
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <RadioGroup
-                legend='Plan'
-                onValueChange={field.onChange}
-                value={field.value}
-                {...props}
-              >
-                <Radio value='monthly'>Monthly</Radio>
-                <Radio value='yearly'>Yearly</Radio>
-              </RadioGroup>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
+        render={({ field }) => {
+          return (
+            <FormItem>
+              <FormControl>
+                <RadioGroup
+                  legend='Plan'
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  {...props}
+                >
+                  <Radio value='monthly'>Monthly</Radio>
+                  <Radio value='yearly'>Yearly</Radio>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          );
+        }}
       />
     </Form>
   );

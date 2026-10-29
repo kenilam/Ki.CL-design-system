@@ -66,30 +66,32 @@ const Home: React.FunctionComponent = () => {
           <section>
             <Heading is='h2'>{t('docs_explore')}</Heading>
             <List fill={isMobile ? 12 : 4} gap='normal'>
-              {SECTIONS.map(({ Icon, path, summary, title }) => (
-                <Card is='li' key={path}>
-                  <Layout alignItems='center' justifyContent='center'>
-                    <div
-                      aria-hidden
-                      className={classNames(
-                        'kicl-aspect-ratio-video',
-                        'kicl-background-color-black-pure',
-                        'kicl-border-radius-sm',
-                        'kicl-color-white',
-                        'kicl-font-size-largest'
-                      )}
-                    >
-                      <Icon />
-                    </div>
-                  </Layout>
-                  <CardHeader>
-                    <CardTitle is='h3'>
-                      <HyperLink to={parsePath(path)}>{t(title)}</HyperLink>
-                    </CardTitle>
-                    <CardDescription>{t(summary)}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
+              {SECTIONS.map(({ Icon, path, summary, title }) => {
+                return (
+                  <Card is='li' key={path}>
+                    <Layout alignItems='center' justifyContent='center'>
+                      <div
+                        aria-hidden
+                        className={classNames(
+                          'kicl-aspect-ratio-video',
+                          'kicl-background-color-black-pure',
+                          'kicl-border-radius-sm',
+                          'kicl-color-white',
+                          'kicl-font-size-largest'
+                        )}
+                      >
+                        <Icon />
+                      </div>
+                    </Layout>
+                    <CardHeader>
+                      <CardTitle is='h3'>
+                        <HyperLink to={parsePath(path)}>{t(title)}</HyperLink>
+                      </CardTitle>
+                      <CardDescription>{t(summary)}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                );
+              })}
             </List>
           </section>
         </Layout>

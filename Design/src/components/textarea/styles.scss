@@ -24,13 +24,11 @@
   padding-inline: var(--kicl--components--textarea--padding-inline);
   resize: vertical;
 
-  // `field-sizing: content` would widen the field to the one-line
-  // placeholder; this keeps it at its own width so the placeholder truncates.
+  // `field-sizing: content` would widen the field to fit the placeholder.
   &:placeholder-shown {
     contain: inline-size;
   }
 
-  // `rows` sets the lines the field shows before it grows with its content.
   &[rows] {
     $lines: calc(var(--kicl--components--textarea--rows) * 1lh);
     $padding: var(--kicl--components--textarea--padding-block);
@@ -46,7 +44,6 @@
     resize: none;
   }
 
-  // A muted fill says the value can be read and copied but not changed.
   &[readonly] {
     --kicl--components--textarea--background-color: var(
       --kicl--components--textarea--read-only-background-color

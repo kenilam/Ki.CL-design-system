@@ -28,7 +28,6 @@ import { PAGES, type Category } from 'design/docs/patterns/pages';
 // Constants
 import { PATH } from 'design/docs/patterns/constants';
 
-/** Every page, grouped as on the home page. Only the open page's group starts open. */
 const Sidebar: React.FunctionComponent<NavigationProps> = ({
   className,
   ...props
@@ -59,23 +58,25 @@ const Sidebar: React.FunctionComponent<NavigationProps> = ({
             <ListItem key={category} gap='narrower'>
               <Heading is='h5'>{t(`category_${category}`)}</Heading>
               <List gap='narrower'>
-                {pages.map(([pattern, { context }]) => (
-                  <ListItem key={pattern}>
-                    <HyperLink
-                      className='kicl-inline-size-full'
-                      lookLikeButton
-                      to={parsePath(`${PATH}/${category}/${pattern}`)}
-                      variant={
-                        category === params.category &&
-                        pattern === params.pattern
-                          ? 'secondary'
-                          : 'tertiary'
-                      }
-                    >
-                      {t('pattern', { context })}
-                    </HyperLink>
-                  </ListItem>
-                ))}
+                {pages.map(([pattern, { context }]) => {
+                  return (
+                    <ListItem key={pattern}>
+                      <HyperLink
+                        className='kicl-inline-size-full'
+                        lookLikeButton
+                        to={parsePath(`${PATH}/${category}/${pattern}`)}
+                        variant={
+                          category === params.category &&
+                          pattern === params.pattern
+                            ? 'secondary'
+                            : 'tertiary'
+                        }
+                      >
+                        {t('pattern', { context })}
+                      </HyperLink>
+                    </ListItem>
+                  );
+                })}
               </List>
             </ListItem>
           );

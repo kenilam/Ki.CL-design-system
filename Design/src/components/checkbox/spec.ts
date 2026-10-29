@@ -9,7 +9,6 @@ export type Props = Omit<
   checked?: CheckedState;
   defaultChecked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
-  /** The visible label. The `<label>` wraps the box, so clicking the text toggles it. */
   children?: React.ReactNode;
 };
 
@@ -17,17 +16,11 @@ export type CheckboxGroupProps = Omit<
   React.ComponentPropsWithoutRef<'fieldset'>,
   'onChange' | 'defaultValue'
 > & {
-  /** The values of the checked boxes, for a group the page controls. */
   value?: string[];
   defaultValue?: string[];
   onValueChange?: (value: string[]) => void;
-  /** Visible group name, rendered as the `<legend>`. */
   legend?: React.ReactNode;
-  /** Shared by every box, so a form sends the checked values under one name. */
   name?: string;
-  /**
-   * The label of a box above the others that checks or clears them all. It
-   * is checked when they all are, and partly checked when some are.
-   */
+  /** Label for a box that checks or clears every box in the group. */
   selectAll?: React.ReactNode;
 };

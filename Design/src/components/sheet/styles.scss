@@ -1,10 +1,4 @@
-/*
- * The browser centres a popover at its content's height; a sheet undoes that
- * and stands at one side of the page, within the insets its ancestors set, or
- * fills the screen on small ones. It slides in from that side and fades.
- */
 .kicl--components--sheet {
-  // The side it stands at, as -1, 0 or 1 on each axis: the end of the line by default.
   --kicl--components--sheet--side-inline: 1;
   --kicl--components--sheet--side-block: 0;
 
@@ -47,8 +41,8 @@
     --kicl--components--sheet--side-block: 1;
   }
 
-  // Card's own `display` would otherwise keep it on screen while closed. Open
-  // modal on small screens, it's a dialog with `[open]` instead of a popover.
+  // Card's own `display` would keep it on screen while closed. Open modal, it
+  // matches `[open]` instead of `:popover-open`.
   &:not(:popover-open, [open]) {
     display: none;
     opacity: 0;
@@ -60,7 +54,6 @@
     translate: var(--kicl--components--sheet--from);
   }
 
-  // Clear while it's a popover, so the page stays sharp and takes clicks.
   &::backdrop {
     backdrop-filter: blur(0);
     pointer-events: none;
@@ -70,7 +63,6 @@
       overlay var(--kicl-transition-duration-fast) allow-discrete;
   }
 
-  // Open modal (`[open]`), it blurs the page, which is inert behind it.
   &[open]::backdrop {
     pointer-events: auto;
     backdrop-filter: blur(var(--kicl-size-half));
@@ -89,7 +81,6 @@
   }
 
   @include query('>tablet') {
-    // Cast onto the page it slides over, lighter than the shared shadow.
     $x: calc(var(--kicl--components--sheet--x) * #{$shadow-distant-negative});
     $y: calc(var(--kicl--components--sheet--y) * #{$shadow-distant-negative});
 
@@ -111,7 +102,6 @@
       inset-inline: auto var(--kicl-inset-inline-end);
     }
 
-    // As tall as its content, up to the space between the insets.
     &--block-start,
     &--block-end {
       inline-size: auto;
@@ -136,13 +126,12 @@
     inline-size: auto;
     inset: 0;
 
-    // The browser keeps a modal dialog off the screen's edges; a sheet fills it.
+    // The browser keeps a modal dialog off the screen's edges.
     max-block-size: none;
     max-inline-size: none;
     overscroll-behavior: contain;
   }
 
-  // The content takes the height left over, so a footer sits at the bottom.
   --kicl--components--sheet--head: ;
   --kicl--components--sheet--foot: ;
   --kicl-layout--grid-frames: var(--kicl--components--sheet--head) 1fr
@@ -182,14 +171,12 @@
     }
   }
 
-  // Over the sheet's fill, so what scrolls under them is hidden.
   &__header,
   &__footer {
     background-color: var(--kicl--components--card--background-color);
   }
 }
 
-// The page behind a modal sheet is inert, and doesn't scroll either.
 :root:has(.kicl--components--sheet:modal) {
   overflow: hidden;
 }

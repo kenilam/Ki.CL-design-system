@@ -11,17 +11,12 @@ type Props = Pick<
   'className' | 'offset' | 'placement' | 'variant'
 >;
 
-/**
- * The panel's look and position, shared by the click panel and the hint so
- * both read placement and offset the same way.
- */
 const getContentClassNames = ({
   className,
   offset = 'narrow',
   placement = 'block-end',
   variant = 'primary',
 }: Props) => {
-  // `block-end` reads as `block-end-start`: the side, then the alignment.
   const [axis, edge, align = 'start'] = placement.split('-');
 
   return classNames(
@@ -31,7 +26,7 @@ const getContentClassNames = ({
     `${CLASS_NAME}--offset--${offset}`,
     `${CLASS_NAME}--variant--${variant}`,
     'kicl-box-shadow-overlay',
-    variant !== 'primary' && 'kicl-backdrop-blur',
+    variant !== 'primary' ? 'kicl-backdrop-blur' : null,
     className
   );
 };

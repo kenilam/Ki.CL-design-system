@@ -25,17 +25,17 @@ import { type Entry, useEntries } from './use-entries';
 
 const LIMIT = 12;
 
-/** Pages first, then names that start with the query, then shorter names. */
-const rank = (query: string) => (a: Entry, b: Entry) =>
-  Number(a.code) - Number(b.code) ||
-  Number(!a.name.toLowerCase().startsWith(query)) -
-    Number(!b.name.toLowerCase().startsWith(query)) ||
-  a.name.length - b.name.length;
+const rank = (query: string) => {
+  return (a: Entry, b: Entry) => {
+    return (
+      Number(a.code) - Number(b.code) ||
+      Number(!a.name.toLowerCase().startsWith(query)) -
+        Number(!b.name.toLowerCase().startsWith(query)) ||
+      a.name.length - b.name.length
+    );
+  };
+};
 
-/**
- * Finds a page, class or variable and opens the page that documents it. `/`
- * focuses the field from anywhere on the page.
- */
 const Search: React.FunctionComponent<
   Pick<React.ComponentProps<'div'>, 'className'>
 > = ({ className }) => {
@@ -61,13 +61,17 @@ const Search: React.FunctionComponent<
 
     document.addEventListener('keydown', onKeyDown);
 
-    return () => document.removeEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }, []);
 
   const normalised = query.trim().toLowerCase();
   const matches = normalised
     ? entries
-        .filter(({ name }) => name.toLowerCase().includes(normalised))
+        .filter(({ name }) => {
+          return name.toLowerCase().includes(normalised);
+        })
         .sort(rank(normalised))
         .slice(0, LIMIT)
     : [];
@@ -80,7 +84,9 @@ const Search: React.FunctionComponent<
             aria-keyshortcuts='/'
             aria-label={t('docs_search')}
             onFocus={load}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+            }}
             placeholder={t('docs_search')}
             ref={field}
             value={query}
@@ -89,22 +95,26 @@ const Search: React.FunctionComponent<
         <ComboboxContent aria-label={t('docs_search_results')}>
           {matches.length ? (
             <List gap='normal'>
-              {matches.map((entry) => (
-                <ListItem gap='narrowest' key={`${entry.name}:${entry.path}`}>
-                  <HyperLink
-                    className={classNames({
-                      'kicl-font-family-mono': entry.code,
-                    })}
-                    onClick={() => setQuery('')}
-                    to={parsePath(entry.path)}
-                  >
-                    {entry.name}
-                  </HyperLink>
-                  <Text className='kicl-font-size-small' variant='secondary'>
-                    {describe(entry)}
-                  </Text>
-                </ListItem>
-              ))}
+              {matches.map((entry) => {
+                return (
+                  <ListItem gap='narrowest' key={`${entry.name}:${entry.path}`}>
+                    <HyperLink
+                      className={classNames({
+                        'kicl-font-family-mono': entry.code,
+                      })}
+                      onClick={() => {
+                        setQuery('');
+                      }}
+                      to={parsePath(entry.path)}
+                    >
+                      {entry.name}
+                    </HyperLink>
+                    <Text className='kicl-font-size-small' variant='secondary'>
+                      {describe(entry)}
+                    </Text>
+                  </ListItem>
+                );
+              })}
             </List>
           ) : (
             <Text>{t('docs_search_empty', { query: query.trim() })}</Text>

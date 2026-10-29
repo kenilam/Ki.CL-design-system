@@ -1,10 +1,8 @@
 // Spec
 import * as Spec from 'design/components/hyper-link/spec';
 
-/**
- * Another site, which opens in a new tab. A `mailto:` or `tel:` link parses as
- * a URL too, but hands off to an app, and a new tab for it stays blank.
- */
+// Only http and https count: a `mailto:` or `tel:` link also parses as a URL,
+// but a new tab for it stays blank.
 const isExternal = (value: string) => {
   try {
     return ['http:', 'https:'].includes(new URL(value).protocol);

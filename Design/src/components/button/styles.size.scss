@@ -1,9 +1,6 @@
 .kicl--components--button {
   --kicl--components--button--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--button--padding-inline: var(--kicl-gutter);
-
-  // As tall as a text button of the same size: one line of its text and its
-  // padding. An icon button is a square of it. See `--icon` in `styles.scss`.
   --kicl--components--button--block-size: calc(
     1lh + 2 * var(--kicl--components--button--padding-block)
   );
@@ -12,8 +9,6 @@
     padding-block: var(--kicl--components--button--padding-block);
     padding-inline: var(--kicl--components--button--padding-inline);
 
-    // Every size takes the padding above; `size` changes only the text, as on
-    // `Badge`.
     &.kicl--components--button--size {
       &--large {
         font-size: var(--kicl-font-size-moderate);

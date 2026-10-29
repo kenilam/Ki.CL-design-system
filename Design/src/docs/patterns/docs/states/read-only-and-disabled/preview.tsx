@@ -30,59 +30,68 @@ const Preview: React.FC = () => {
         <FormField
           control={form.control}
           name='id'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Account ID</FormLabel>
-              <Layout
-                alignItems='center'
-                autoFlow='column'
-                frames='auto--max-content'
-                gap='narrow'
-              >
-                <p>
-                  <FormControl>
-                    <Input {...field} readOnly />
-                  </FormControl>
-                  <CopyButton
-                    showLabel
-                    size='small'
-                    value={field.value}
-                    variant='secondary'
-                  />
-                </p>
-              </Layout>
-              <FormDescription>Quote it when you contact us.</FormDescription>
-            </FormItem>
-          )}
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormLabel>Account ID</FormLabel>
+                <Layout
+                  alignItems='center'
+                  autoFlow='column'
+                  frames='auto--max-content'
+                  gap='narrow'
+                >
+                  <p>
+                    <FormControl>
+                      <Input {...field} readOnly />
+                    </FormControl>
+                    <CopyButton
+                      showLabel
+                      size='small'
+                      value={field.value}
+                      variant='secondary'
+                    />
+                  </p>
+                </Layout>
+                <FormDescription>Quote it when you contact us.</FormDescription>
+              </FormItem>
+            );
+          }}
         />
         <FormField
           control={form.control}
           name='pro'
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Switch checked={field.value} onCheckedChange={field.onChange}>
-                  Pro plan
-                </Switch>
-              </FormControl>
-            </FormItem>
-          )}
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  >
+                    Pro plan
+                  </Switch>
+                </FormControl>
+              </FormItem>
+            );
+          }}
         />
         <FormField
           control={form.control}
           name='team'
-          render={({ field }) => (
-            <Input
-              {...field}
-              description={
-                pro
-                  ? 'Everyone on your team sees this name.'
-                  : 'Teams are part of the Pro plan. Turn it on to rename yours.'
-              }
-              label='Team name'
-              disabled={!pro}
-            />
-          )}
+          render={({ field }) => {
+            return (
+              <Input
+                {...field}
+                description={
+                  pro
+                    ? 'Everyone on your team sees this name.'
+                    : 'Teams are part of the Pro plan. Turn it on to rename yours.'
+                }
+                label='Team name'
+                disabled={!pro}
+              />
+            );
+          }}
         />
       </Form>
     </Card>

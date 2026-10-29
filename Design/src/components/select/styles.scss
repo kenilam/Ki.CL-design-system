@@ -1,8 +1,6 @@
 .kicl--components--select {
   --kicl--components--select--background-color: var(--kicl-surface-color);
   --kicl--components--select--border-color: var(--kicl-color-grey-900);
-
-  // The same box as `Input`: a field, whichever way it is filled in.
   --kicl--components--select--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--select--border-width: var(--kicl-size-1px);
   --kicl--components--select--color: var(--kicl-body-color);
@@ -20,7 +18,6 @@
   padding-block: var(--kicl--components--select--padding-block);
   padding-inline: var(--kicl--components--select--padding-inline);
 
-  // Opt in to the styleable select; older browsers keep the native one.
   @supports (appearance: base-select) {
     &,
     &::picker(select) {
@@ -31,7 +28,7 @@
     // line of text, which otherwise sits at the top.
     align-items: center;
 
-    // The trigger draws the system's arrow; the browser's own stays away.
+    // The trigger draws its own arrow.
     &::picker-icon {
       display: none;
     }

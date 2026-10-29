@@ -41,17 +41,16 @@ const PopoverContent = React.forwardRef<HTMLElement, PopoverContentProps>(
     const isLabelled = Boolean(rest['aria-label'] || rest['aria-labelledby']);
     const nodeRef = useRef<HTMLElement | null>(null);
     const { setContent } = popover;
-    // Closed, it is only the panel, which its trigger can still open.
     const shown = useOverlayContents(nodeRef, popover.open);
 
-    // Lets the trigger know there is a panel to open.
     useEffect(() => {
       setContent(true);
 
-      return () => setContent(false);
+      return () => {
+        setContent(false);
+      };
     }, [setContent]);
 
-    /* The browser is the source of truth; this reports what it decided. */
     useEffect(() => {
       const node = nodeRef.current;
 
@@ -69,14 +68,13 @@ const PopoverContent = React.forwardRef<HTMLElement, PopoverContentProps>(
 
       node.addEventListener('toggle', onToggle);
 
-      return () => node.removeEventListener('toggle', onToggle);
+      return () => {
+        node.removeEventListener('toggle', onToggle);
+      };
     }, [popover]);
 
-    /*
-     * And this pushes a caller's decision back the other way, for the openings
-     * and closings no click caused - a date chosen inside the panel, or a
-     * `defaultOpen` panel that has to be shown once on mount.
-     */
+    // Applies a change to `open` that no click caused, such as a date chosen
+    // inside the panel or `defaultOpen` on mount.
     useEffect(() => {
       const node = nodeRef.current;
 
@@ -166,7 +164,6 @@ const PopoverContent = React.forwardRef<HTMLElement, PopoverContentProps>(
         id={popover.id}
         popover='auto'
         role='dialog'
-        /* Named by its trigger unless the caller gives it a name. */
         aria-labelledby={isLabelled ? undefined : `${popover.id}__trigger`}
         className={getContentClassNames({
           className,
@@ -186,11 +183,6 @@ const PopoverContent = React.forwardRef<HTMLElement, PopoverContentProps>(
       </section>
     );
 
-    /*
-     * A panel inside running text would be a block inside a phrase, which is
-     * invalid markup. It shows in the top layer either way, so where it sits
-     * in the document only matters for validity.
-     */
     return popover.inline ? createPortal(panel, document.body) : panel;
   }
 );

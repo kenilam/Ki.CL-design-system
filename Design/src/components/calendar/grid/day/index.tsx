@@ -26,10 +26,6 @@ const CLASS_NAME = `${CALENDAR}__day`;
 
 type Props = { date: Date };
 
-/**
- * One day of the month table. The label is the full date, since the cell's
- * text alone ("15") says nothing out of context.
- */
 const Day: React.FunctionComponent<Props> = ({ date }) => {
   const {
     disabled,
@@ -46,7 +42,7 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
   const isDisabled = disabled?.(date) ?? false;
 
   const isRangeStart = sameDay(date, selectedRange?.from);
-  // A range with no end yet is one day, which rounds at both ends.
+  // A range with no end yet is a single day.
   const isRangeEnd = sameDay(date, selectedRange?.to ?? selectedRange?.from);
   const isRangeMiddle = isInRange(date, selectedRange);
   const isSelected =
@@ -67,15 +63,12 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
           'kicl-border-radius-sm',
           'kicl-font-size-small',
           'kicl-line-height-narrower',
-          // The fill is positioned against the day.
           'kicl-position-relative',
           {
             [`${CLASS_NAME}--selected`]: isSelected,
             [`${CLASS_NAME}--range-start`]: isRangeStart,
             [`${CLASS_NAME}--range-end`]: isRangeEnd,
             [`${CLASS_NAME}--range-middle`]: isRangeMiddle,
-            // A day of another month is quieter until it is picked; the fill
-            // behind it is never dimmed.
             'kicl-color-grey':
               outside &&
               !isToday &&
@@ -83,14 +76,14 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
               !isRangeStart &&
               !isRangeEnd &&
               !isRangeMiddle,
-            // Today reads in bold and in the confirm green, chosen or not.
             'kicl-color-confirm': isToday,
             'kicl-font-weight-bold': isToday,
-            // The chosen day's label on its dark fill.
             'kicl-color-white-pure': (isSelected || isRangeMiddle) && !isToday,
           }
         )}
-        onClick={() => onDayClick(date)}
+        onClick={() => {
+          onDayClick(date);
+        }}
       >
         {date.getDate()}
       </button>

@@ -29,11 +29,6 @@ type Props = Pick<React.ComponentProps<'figure'>, 'className' | 'ref'> & {
   state?: DiagramState;
 };
 
-/**
- * Declarative SVG diagram (boxes, stores, queues and the arrows between
- * them), drawn with the design system's own tokens - surfaces, borders, brand accents, and the site typeface - so it
- * follows the theme instead of shipping as a static image.
- */
 const Diagram: React.FunctionComponent<Props> = ({
   className,
   opens,

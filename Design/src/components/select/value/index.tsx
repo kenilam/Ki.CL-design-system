@@ -14,14 +14,14 @@ import type { SelectValueProps } from 'design/components/select/spec';
 const CLASS_NAME = `${SELECT}__value`;
 
 /**
- * `<selectedcontent>` copies the chosen option into the trigger. The
- * placeholder is an option too, so it goes on Select.
+ * `<selectedcontent>` copies the chosen option in. The placeholder is an
+ * option too, so it goes on Select.
  */
 const SelectValue: React.FunctionComponent<SelectValueProps> = ({
   className,
   ...rest
-}) =>
-  React.createElement('selectedcontent', {
+}) => {
+  return React.createElement('selectedcontent', {
     className: classNames(
       CLASS_NAME,
       'kicl-overflow-hidden',
@@ -30,6 +30,7 @@ const SelectValue: React.FunctionComponent<SelectValueProps> = ({
     ),
     ...rest,
   });
+};
 
 SelectValue.displayName = 'SelectValue';
 

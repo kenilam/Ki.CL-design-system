@@ -8,13 +8,10 @@ export type BubbleVariant = Variant;
 
 export type { Level as BubbleLevel } from 'design/components/spec';
 
-/** Semantic hosts for one message. */
 export type BubbleIs = 'article' | 'li' | 'section';
 
-/** The text surface; `a` and `button` make the whole bubble a control. */
 export type BubbleContentIs = 'a' | 'blockquote' | 'button' | 'p' | 'span';
 
-/** Consecutive messages from one sender. */
 export type BubbleGroupIs = 'li' | 'ol' | 'section' | 'ul';
 
 export type BubbleReactionsIs = 'ul';

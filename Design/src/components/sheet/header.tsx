@@ -8,23 +8,24 @@ import { CardHeader, type CardHeaderProps } from 'design/components/card';
 
 const CLASS_NAME = 'kicl--components--sheet__header';
 
-/** The sheet's header: stays at its top as it scrolls, over what runs under it. */
 const SheetHeader = React.forwardRef<HTMLElement, CardHeaderProps>(
-  ({ className, ...rest }, ref) => (
-    <CardHeader
-      {...(rest as CardHeaderProps)}
-      className={classNames(
-        CLASS_NAME,
-        'kicl-inset-block-start-0',
-        'kicl-padding',
-        'kicl-position-sticky',
-        'kicl-stuck-line-end',
-        'kicl-z-index-raised',
-        className
-      )}
-      ref={ref}
-    />
-  )
+  ({ className, ...rest }, ref) => {
+    return (
+      <CardHeader
+        {...(rest as CardHeaderProps)}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-inset-block-start-0',
+          'kicl-padding',
+          'kicl-position-sticky',
+          'kicl-stuck-line-end',
+          'kicl-z-index-raised',
+          className
+        )}
+        ref={ref}
+      />
+    );
+  }
 );
 
 SheetHeader.displayName = 'SheetHeader';

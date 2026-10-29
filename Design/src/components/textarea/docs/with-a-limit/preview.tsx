@@ -17,7 +17,9 @@ const Preview: React.FC<Props> = (props) => {
           aria-describedby={countId}
           aria-label='Bio'
           maxLength={LIMIT}
-          onChange={(event) => setBio(event.target.value)}
+          onChange={(event) => {
+            setBio(event.target.value);
+          }}
           placeholder={`Up to ${LIMIT} characters`}
           value={bio}
           {...props}

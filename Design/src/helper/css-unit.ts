@@ -16,7 +16,11 @@ const CSSUnit: CSSUnitType = (prop) => {
     return value;
   }
 
-  if (TIME_UNITS.some((dependedUnit) => dependedUnit === unit)) {
+  if (
+    TIME_UNITS.some((dependedUnit) => {
+      return dependedUnit === unit;
+    })
+  ) {
     return unit === 's' ? value * 1000 : value;
   }
 
@@ -24,7 +28,11 @@ const CSSUnit: CSSUnitType = (prop) => {
     return 0;
   }
 
-  if (DOM_DEPENDED_UNITS.some((dependedUnit) => dependedUnit === unit)) {
+  if (
+    DOM_DEPENDED_UNITS.some((dependedUnit) => {
+      return dependedUnit === unit;
+    })
+  ) {
     return engine.convert(BASE_UNIT, prop.values, document.body);
   }
 

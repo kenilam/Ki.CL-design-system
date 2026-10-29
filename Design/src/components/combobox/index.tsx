@@ -18,15 +18,7 @@ import { ComboboxContext } from './context';
 import { ComboboxAnchor } from './anchor';
 import { ComboboxContent } from './content';
 
-/**
- * A field with a list of suggestions under it, for any field, a textarea
- * included, which a native `<datalist>` cannot serve.
- *
- * Built on `Popover`, so placement, flipping and the transition are the
- * popover's. The differences: the panel is placed against the field rather
- * than a button, it is a `manual` popover so typing in the field does not
- * dismiss it, and the arrow keys move from the field into the list and back.
- */
+// Not a native `<datalist>`, which can't serve a textarea.
 const Combobox: React.FC<ComboboxProps> = ({
   children,
   defaultOpen = false,
@@ -36,11 +28,6 @@ const Combobox: React.FC<ComboboxProps> = ({
   const anchor = useRef<HTMLElement | null>(null);
   const content = useRef<HTMLElement | null>(null);
 
-  /*
-   * Its own open state unless given one. A text field can't be an invoker,
-   * so no `popovertarget` or `commandfor` opens the panel as the reader
-   * types; the field's focus and input do, here.
-   */
   const [own, setOwn] = useState(defaultOpen);
   const isOpen = open ?? own;
 
@@ -51,8 +38,12 @@ const Combobox: React.FC<ComboboxProps> = ({
     },
     [onOpenChange]
   );
-  const close = useCallback(() => setOpen(false), [setOpen]);
+  const close = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
 
+  // A text field can't be a popover invoker, so its focus and input open the
+  // panel here.
   useEffect(() => {
     const field = anchor.current;
     const list = content.current;
@@ -61,10 +52,15 @@ const Combobox: React.FC<ComboboxProps> = ({
       return undefined;
     }
 
-    const inside = (node: EventTarget | null) =>
-      node instanceof Node &&
-      (field.contains(node) || Boolean(list?.contains(node)));
-    const show = () => setOpen(true);
+    const inside = (node: EventTarget | null) => {
+      return (
+        node instanceof Node &&
+        (field.contains(node) || Boolean(list?.contains(node)))
+      );
+    };
+    const show = () => {
+      setOpen(true);
+    };
     const leave = (event: FocusEvent) => {
       if (!inside(event.relatedTarget)) {
         close();

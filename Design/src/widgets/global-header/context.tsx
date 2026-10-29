@@ -10,7 +10,6 @@ const DEFAULT: ReturnType<typeof useResizeObserver> = {
 
 const Context = React.createContext(DEFAULT);
 
-/** Measures the header, for the height the stylesheet reads. */
 const GlobalHeaderProvider: React.FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
@@ -19,6 +18,8 @@ const GlobalHeaderProvider: React.FunctionComponent<PropsWithChildren> = ({
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-const useGlobalHeaderContext = () => useContext(Context);
+const useGlobalHeaderContext = () => {
+  return useContext(Context);
+};
 
 export { useGlobalHeaderContext, GlobalHeaderProvider };

@@ -15,18 +15,15 @@ import { CLASS_NAME } from './constants';
 import { CalendarContext, type CalendarContextValue } from './context';
 
 // Helpers
-import { isBefore, sameDay, seedMonth, startOfDay } from './helpers';
+import { nextRange, seedMonth, startOfDay } from './helpers';
 
 // Partials
 import { Grid } from './grid';
 import { Header } from './header';
 import { Weekdays } from './weekdays';
 
-import type { CalendarProps, DateRange } from './spec';
+import type { CalendarProps } from './spec';
 
-/**
- * Month table - used by DatePicker.
- */
 const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
   (props, ref) => {
     const {
@@ -40,7 +37,9 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     } = props;
 
     const titleId = useId();
-    const today = useMemo(() => startOfDay(new Date()), []);
+    const today = useMemo(() => {
+      return startOfDay(new Date());
+    }, []);
     const [month, setMonth] = useState(() => {
       const seed = seedMonth(props);
       return new Date(seed.getFullYear(), seed.getMonth(), 1);
@@ -48,20 +47,7 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
 
     const onDayClick = (date: Date) => {
       if (props.mode === 'range') {
-        const current = props.selected;
-        let next: DateRange;
-
-        if (!current?.from || (current.from && current.to)) {
-          next = { from: date, to: undefined };
-        } else if (sameDay(current.from, date)) {
-          next = { from: date, to: date };
-        } else if (isBefore(date, current.from)) {
-          next = { from: date, to: current.from };
-        } else {
-          next = { from: current.from, to: date };
-        }
-
-        props.onSelect?.(next);
+        props.onSelect?.(nextRange(date, props.selected));
         return;
       }
 

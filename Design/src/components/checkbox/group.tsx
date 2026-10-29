@@ -19,12 +19,6 @@ const CLASS_NAME = 'kicl--components--checkbox-group';
 
 type Item = { disabled: boolean; value: string };
 
-/**
- * Checkboxes as a native `<fieldset>`, holding which of them are checked.
- * Each `Checkbox` inside it with a `value` is one of the group. With
- * `selectAll`, a box above them checks or clears them all, and shows partly
- * checked while only some are. A disabled box keeps its state through it.
- */
 const CheckboxGroup = React.forwardRef<HTMLFieldSetElement, CheckboxGroupProps>(
   (
     {
@@ -55,36 +49,61 @@ const CheckboxGroup = React.forwardRef<HTMLFieldSetElement, CheckboxGroupProps>(
     };
 
     const register = useCallback((item: string, disabled: boolean) => {
-      setItems((current) => [
-        ...current.filter(({ value }) => value !== item),
-        { disabled, value: item },
-      ]);
+      setItems((current) => {
+        return [
+          ...current.filter(({ value }) => {
+            return value !== item;
+          }),
+          { disabled, value: item },
+        ];
+      });
 
-      return () =>
-        setItems((current) => current.filter(({ value }) => value !== item));
+      return () => {
+        setItems((current) => {
+          return current.filter(({ value }) => {
+            return value !== item;
+          });
+        });
+      };
     }, []);
 
-    // What "select all" acts on: the boxes a reader can change.
-    const enabled = useMemo(
-      () => items.filter(({ disabled }) => !disabled).map(({ value }) => value),
-      [items]
-    );
-    const picked = enabled.filter((item) => value.includes(item));
-    const all: boolean | 'indeterminate' =
-      enabled.length > 0 && picked.length === enabled.length
-        ? true
-        : picked.length > 0 && 'indeterminate';
+    const enabled = useMemo(() => {
+      return items
+        .filter(({ disabled }) => {
+          return !disabled;
+        })
+        .map(({ value }) => {
+          return value;
+        });
+    }, [items]);
+    const picked = enabled.filter((item) => {
+      return value.includes(item);
+    });
+    let all: boolean | 'indeterminate' =
+      picked.length > 0 ? 'indeterminate' : false;
+
+    if (enabled.length > 0 && picked.length === enabled.length) {
+      all = true;
+    }
 
     return (
       <CheckboxGroupContext.Provider
         value={{
           name: name ?? reactId,
-          onCheck: (item, checked) =>
+          onCheck: (item, checked) => {
             change(
               checked
-                ? [...value.filter((current) => current !== item), item]
-                : value.filter((current) => current !== item)
-            ),
+                ? [
+                    ...value.filter((current) => {
+                      return current !== item;
+                    }),
+                    item,
+                  ]
+                : value.filter((current) => {
+                    return current !== item;
+                  })
+            );
+          },
           register,
           value,
         }}
@@ -109,16 +128,20 @@ const CheckboxGroup = React.forwardRef<HTMLFieldSetElement, CheckboxGroupProps>(
               <Checkbox
                 checked={all}
                 className={`${CLASS_NAME}__select-all`}
-                onCheckedChange={(checked) =>
+                onCheckedChange={(checked) => {
                   change(
                     checked
                       ? [
-                          ...value.filter((item) => !enabled.includes(item)),
+                          ...value.filter((item) => {
+                            return !enabled.includes(item);
+                          }),
                           ...enabled,
                         ]
-                      : value.filter((item) => !enabled.includes(item))
-                  )
-                }
+                      : value.filter((item) => {
+                          return !enabled.includes(item);
+                        })
+                  );
+                }}
               >
                 {selectAll}
               </Checkbox>

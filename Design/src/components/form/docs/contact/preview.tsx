@@ -23,13 +23,15 @@ const Preview: React.FC = () => {
         control={form.control}
         name='email'
         rules={{ required: 'Enter an email address' }}
-        render={({ field }) => (
-          <EmailInput
-            {...field}
-            label='Your email'
-            placeholder='you@example.com'
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <EmailInput
+              {...field}
+              label='Your email'
+              placeholder='you@example.com'
+            />
+          );
+        }}
       />
       <FormField
         control={form.control}
@@ -38,13 +40,15 @@ const Preview: React.FC = () => {
           maxLength: { message: 'Keep it under 200 characters', value: 200 },
           required: 'Write a message',
         }}
-        render={({ field }) => (
-          <Textarea
-            {...field}
-            description='Up to 200 characters.'
-            label='Message'
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <Textarea
+              {...field}
+              description='Up to 200 characters.'
+              label='Message'
+            />
+          );
+        }}
       />
       <Button type='submit'>Send</Button>
     </Form>

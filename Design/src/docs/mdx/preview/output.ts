@@ -14,14 +14,16 @@ const VOID = new Set([
   'wbr',
 ]);
 
-const attributesOf = (element: Element) =>
-  Array.from(element.attributes)
-    .map(({ name, value }) =>
-      value === '' ? ` ${name}` : ` ${name}="${value.replace(/"/g, '&quot;')}"`
-    )
+const attributesOf = (element: Element) => {
+  return Array.from(element.attributes)
+    .map(({ name, value }) => {
+      return value === ''
+        ? ` ${name}`
+        : ` ${name}="${value.replace(/"/g, '&quot;')}"`;
+    })
     .join('');
+};
 
-/** A node as indented lines of HTML. An icon's drawing is left out. */
 const linesOf = (node: Node, depth: number): string[] => {
   const indent = '  '.repeat(depth);
 
@@ -46,9 +48,9 @@ const linesOf = (node: Node, depth: number): string[] => {
     return [`${open}…</svg>`];
   }
 
-  const children = Array.from(node.childNodes).flatMap((child) =>
-    linesOf(child, depth + 1)
-  );
+  const children = Array.from(node.childNodes).flatMap((child) => {
+    return linesOf(child, depth + 1);
+  });
 
   if (children.length === 0) {
     return [`${open}</${tag}>`];
@@ -61,8 +63,10 @@ const linesOf = (node: Node, depth: number): string[] => {
   return [open, ...children, `${indent}</${tag}>`];
 };
 
-/** What the stage renders, as the HTML a reader would write. */
-export const outputOf = (stage: Element) =>
-  Array.from(stage.childNodes)
-    .flatMap((node) => linesOf(node, 0))
+export const outputOf = (stage: Element) => {
+  return Array.from(stage.childNodes)
+    .flatMap((node) => {
+      return linesOf(node, 0);
+    })
     .join('\n');
+};

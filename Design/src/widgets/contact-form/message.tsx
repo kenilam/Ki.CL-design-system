@@ -14,7 +14,6 @@ import { useCopy } from 'design/locales/use-copy';
 // Spec
 import type { Values } from './spec';
 
-/** The message, with the privacy line as its description. */
 const Message: React.FunctionComponent = () => {
   const { control } = useFormContext<Values>();
   const t = useCopy();
@@ -23,22 +22,25 @@ const Message: React.FunctionComponent = () => {
     <FormField
       control={control}
       name='Message'
-      render={({ field }) => (
-        <Textarea
-          {...field}
-          description={t('privacy', { days: RETENTION_DAYS })}
-          label={t('label_message')}
-          rows={6}
-        />
-      )}
+      render={({ field }) => {
+        return (
+          <Textarea
+            {...field}
+            description={t('privacy', { days: RETENTION_DAYS })}
+            label={t('label_message')}
+            rows={6}
+          />
+        );
+      }}
       rules={{
         maxLength: {
           message: t('error_message_long', { max: MESSAGE_LENGTH }),
           value: MESSAGE_LENGTH,
         },
         required: t('error_message_required'),
-        validate: (value) =>
-          Boolean(value.trim()) || t('error_message_required'),
+        validate: (value) => {
+          return Boolean(value.trim()) || t('error_message_required');
+        },
       }}
     />
   );

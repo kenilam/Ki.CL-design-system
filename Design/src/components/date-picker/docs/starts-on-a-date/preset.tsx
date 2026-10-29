@@ -11,7 +11,6 @@ const description = <>For editing a date that was saved before.</>;
 
 const name = 'Starts on a date';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

@@ -6,11 +6,8 @@ export type Values = {
 };
 
 export type Props = Pick<React.ComponentProps<'form'>, 'className'> & {
-  /** The address the form starts with, for a visitor whose address is known. */
+  /** Prefills the email field. */
   email?: string;
-  /**
-   * Sends the message. Rejecting fails the form, and the error's message is
-   * shown over the button with what was typed still in the fields.
-   */
+  /** A rejection's message shows over the button, and the fields keep what was typed. */
   onSubmit: (values: Values) => Promise<unknown>;
 };

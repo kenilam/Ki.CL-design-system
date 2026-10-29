@@ -38,8 +38,12 @@ const Palette: React.FunctionComponent<Props> = ({ swatches }) => {
     setHexes(
       Object.fromEntries(
         swatches
-          .flatMap(({ tokens }) => tokens)
-          .map((token) => [token, toHex(element, `color-${token}`)])
+          .flatMap(({ tokens }) => {
+            return tokens;
+          })
+          .map((token) => {
+            return [token, toHex(element, `color-${token}`)];
+          })
       )
     );
   }, [swatches, theme]);
@@ -52,41 +56,47 @@ const Palette: React.FunctionComponent<Props> = ({ swatches }) => {
         fill={isMobile ? 12 : isTablet ? 6 : 3}
         gap='normal'
       >
-        {swatches.map(({ name, tokens }) => (
-          <Card
-            header={
-              <CardTitle is='h4'>
-                <Text is='code'>{name}</Text>
-              </CardTitle>
-            }
-            is='li'
-            key={name}
-          >
-            <List gap='narrow' is='ol'>
-              {tokens.map((token) => (
-                <ListItem gap='narrowest' key={token}>
-                  <Layout autoFlow='column' justifyContent='space-between'>
-                    <Text className='kicl-font-size-small' is='p'>
-                      <span>{token}</span>
-                      <Text
-                        className='kicl-font-family-mono'
-                        is='span'
-                        variant='secondary'
-                      >
-                        {hexes[token]}
-                      </Text>
-                    </Text>
-                  </Layout>
-                  <span
-                    aria-hidden
-                    className='kicl-border-radius-sm kicl-box-shadow-overlay kicl-padding-block'
-                    style={{ backgroundColor: `var(--kicl-color-${token})` }}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </Card>
-        ))}
+        {swatches.map(({ name, tokens }) => {
+          return (
+            <Card
+              header={
+                <CardTitle is='h4'>
+                  <Text is='code'>{name}</Text>
+                </CardTitle>
+              }
+              is='li'
+              key={name}
+            >
+              <List gap='narrow' is='ol'>
+                {tokens.map((token) => {
+                  return (
+                    <ListItem gap='narrowest' key={token}>
+                      <Layout autoFlow='column' justifyContent='space-between'>
+                        <Text className='kicl-font-size-small' is='p'>
+                          <span>{token}</span>
+                          <Text
+                            className='kicl-font-family-mono'
+                            is='span'
+                            variant='secondary'
+                          >
+                            {hexes[token]}
+                          </Text>
+                        </Text>
+                      </Layout>
+                      <span
+                        aria-hidden
+                        className='kicl-border-radius-sm kicl-box-shadow-overlay kicl-padding-block'
+                        style={{
+                          backgroundColor: `var(--kicl-color-${token})`,
+                        }}
+                      />
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </Card>
+          );
+        })}
       </List>
     </>
   );

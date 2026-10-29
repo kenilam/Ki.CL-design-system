@@ -4,10 +4,12 @@ import { AnimatedText } from 'design/components';
 
 import type { Props } from 'design/components/animated-text/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <AnimatedText key='word' {...props}>
-    Hello there
-  </AnimatedText>
-);
+const Preview: React.FC<Props> = (props) => {
+  return (
+    <AnimatedText key='word' {...props}>
+      Hello there
+    </AnimatedText>
+  );
+};
 
 export { Preview };

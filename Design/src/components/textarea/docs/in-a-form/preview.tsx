@@ -16,14 +16,16 @@ const Preview: React.FC<Props> = (props) => {
           maxLength: { message: 'Keep it under 200 characters.', value: 200 },
           required: 'Write a message.',
         }}
-        render={({ field }) => (
-          <Textarea
-            {...field}
-            description='Up to 200 characters.'
-            label='Message'
-            {...props}
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <Textarea
+              {...field}
+              description='Up to 200 characters.'
+              label='Message'
+              {...props}
+            />
+          );
+        }}
       />
       <Button type='submit'>Send</Button>
     </Form>

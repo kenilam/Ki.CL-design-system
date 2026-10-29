@@ -2,10 +2,11 @@ import React from 'react';
 
 import { Card, Markdown } from 'design/components';
 
-const Preview: React.FC = () => (
-  <Card is='article'>
-    <Markdown>
-      {`### Release notes
+const Preview: React.FC = () => {
+  return (
+    <Card is='article'>
+      <Markdown>
+        {`### Release notes
 
 Drafts now save **as you type**, and a saved draft opens where you left it.
 
@@ -20,8 +21,9 @@ Drafts now save **as you type**, and a saved draft opens where you left it.
 1. Open a draft
 2. Pick **History**
 3. Choose a version to restore`}
-    </Markdown>
-  </Card>
-);
+      </Markdown>
+    </Card>
+  );
+};
 
 export { Preview };

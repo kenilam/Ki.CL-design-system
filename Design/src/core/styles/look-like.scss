@@ -1,15 +1,6 @@
 /*
- * `kicl-look-like-h1` … `kicl-look-like-h6` - heading appearance on something
- * that is not a heading, so the level in the outline and the size on the page
- * can differ without lying about the document structure.
- *
- * A utility, and in the utilities layer for the reason every utility is: it has
- * to win. It previously sat with the element rules in the base layer, where
- * `Text` - a component, and so a later layer - set `font-size` over the top of
- * it. Since `lookLike` is a `Text` prop, that was every real use of the class:
- * `<Text lookLike='h1'>` measured the same as body copy. The doubled class
- * names it carried to buy specificity could not help, because layer order is
- * settled before specificity is looked at.
+ * In the utilities layer, not with the heading rules in base, so `Text`'s
+ * component styles can't override its `font-size`.
  */
 @each $level in (1, 2, 3, 4, 5, 6) {
   .kicl-look-like-h#{$level} {
@@ -17,11 +8,6 @@
     @include heading-size($level);
   }
 
-  /*
-   * Quieter than the heading it imitates - a subtitle rather than a title.
-   * `Text` puts both classes on the element, so this is a compound, not a
-   * descendant.
-   */
   .kicl-look-like-h#{$level}--variant--secondary {
     --kicl-heading-font-color: var(
       --kicl-heading-status-color-secondary,

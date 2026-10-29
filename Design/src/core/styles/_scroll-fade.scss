@@ -1,4 +1,3 @@
-// `inline` fades the start and end of a row that scrolls sideways.
 @mixin scroll-fade($axis: block) {
   $angle: 180deg;
 

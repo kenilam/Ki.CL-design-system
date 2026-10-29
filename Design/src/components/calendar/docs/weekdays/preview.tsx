@@ -10,7 +10,9 @@ const Preview: React.FC<Props> = (props) => {
   return (
     <Calendar
       aria-label='Meeting date'
-      disabled={(day) => day.getDay() === 0 || day.getDay() === 6}
+      disabled={(day) => {
+        return day.getDay() === 0 || day.getDay() === 6;
+      }}
       onSelect={setDate}
       selected={date}
       {...props}

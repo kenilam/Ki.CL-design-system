@@ -7,11 +7,8 @@
     --kicl-ease-quint-in-out
   );
 
-  /*
-   * `rotate` and `translate`, not `transform`: the bars are positioned with
-   * the independent properties, and a transition still naming `transform`
-   * animates nothing while the real change lands in one frame.
-   */
+  // The bars move with `rotate` and `translate`, which a `transform`
+  // transition wouldn't animate.
   --kicl--icons--menu--transition-property: block-size, fill, inline-size, rotate, translate;
   --kicl--icons--menu--rect--inline-size--spaces: var(--kicl-size-2x);
   --kicl--icons--menu--cross--transform--rotate: 45deg;

@@ -37,7 +37,6 @@ const Trigger: React.FunctionComponent<DatePickerTriggerProps> = ({
       <PopoverTrigger
         {...props}
         disabled={disabled}
-        // An input's box and type, since it shows a value the way an input does.
         className={classNames(
           'kicl--components--input',
           `${DATE_PICKER}__trigger`,

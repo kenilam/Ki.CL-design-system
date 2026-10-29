@@ -4,8 +4,8 @@ import { DatePicker } from 'design/components';
 
 import type { Props } from 'design/components/date-picker/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <DatePicker aria-label='Trip dates' mode='range' {...props} />
-);
+const Preview: React.FC<Props> = (props) => {
+  return <DatePicker aria-label='Trip dates' mode='range' {...props} />;
+};
 
 export { Preview };

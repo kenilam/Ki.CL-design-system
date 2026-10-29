@@ -1,12 +1,9 @@
 .kicl--components--calendar {
   --kicl--components--calendar--cell-size: var(--kicl-size-3x);
 
-  // The month's own width. `kicl-inline-size-full` makes it fill its box, and
-  // its columns follow. Auto-laid, not fixed: fixed, a percentage width
-  // inflates the table to its first row inside a shrink-to-fit box.
+  // Not `table-layout: fixed`: inside a shrink-to-fit box, fixed layout with
+  // percentage widths inflates the table.
   border-collapse: separate;
-
-  // No spacing: a range reads as one bar from its first day to its last.
   border-spacing: 0;
   inline-size: fit-content;
 

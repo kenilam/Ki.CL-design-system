@@ -1,7 +1,3 @@
-// A line of the site's moving gradient along one block edge of a sticky
-// element, drawn while it's stuck over content: `start` for a footer stuck to
-// the bottom, `end` for a header stuck to the top. It draws on `::before`, so
-// the element needs a position, which `position: sticky` gives it.
 @each $edge, $stuck in (start: bottom, end: top) {
   .kicl-stuck-line-#{$edge} {
     container-type: scroll-state;

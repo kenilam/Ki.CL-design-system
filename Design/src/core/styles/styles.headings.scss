@@ -5,18 +5,6 @@
   --kicl-heading--transition-timing-function: var(--kicl-ease-quint-in-out);
 }
 
-/*
- * The elements themselves.
- *
- * These used to share a selector list with the `kicl-look-like-h*` classes,
- * which meant the per-level sizes - written for the classes alone - never
- * reached `h1` or `h2`. Every heading on the page rendered at body size, told
- * apart from a paragraph by weight only.
- *
- * The classes now live in `look-like.scss`, in the utilities layer where a
- * visual override belongs. Both read the same mixins, so the two cannot drift
- * apart again.
- */
 h1,
 h2,
 h3,

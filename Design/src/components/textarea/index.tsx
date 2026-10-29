@@ -10,9 +10,6 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--textarea';
 
-/**
- * Multiline text control.
- */
 const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {
     const control = useFormItemControl(props);

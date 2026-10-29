@@ -16,7 +16,9 @@ const Preview: React.FC = () => {
 
   const save = () => {
     setState('saving');
-    setTimeout(() => setState('saved'), 800);
+    setTimeout(() => {
+      setState('saved');
+    }, 800);
   };
 
   return (
@@ -44,16 +46,16 @@ const Preview: React.FC = () => {
             level={state === 'saved' ? 'confirm' : undefined}
             role='status'
           >
-            {state === 'saving' && (
+            {state === 'saving' ? (
               <>
                 <Spinner position='inline' /> Saving
               </>
-            )}
-            {state === 'saved' && (
+            ) : null}
+            {state === 'saved' ? (
               <>
                 <Ri.RiCheckLine aria-hidden /> Saved
               </>
-            )}
+            ) : null}
           </Text>
         </p>
       </Layout>

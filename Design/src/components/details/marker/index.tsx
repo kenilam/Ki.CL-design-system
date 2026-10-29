@@ -14,12 +14,13 @@ import { CLASS_NAME as DETAILS } from 'design/components/details/constants';
 
 const CLASS_NAME = `${DETAILS}__marker`;
 
-/** A chevron: down while closed, turned up once the `<details>` is open. */
-const Marker: React.FunctionComponent = () => (
-  <Ri.RiArrowDownSLine
-    aria-hidden
-    className={classNames(CLASS_NAME, 'kicl-print-hidden')}
-  />
-);
+const Marker: React.FunctionComponent = () => {
+  return (
+    <Ri.RiArrowDownSLine
+      aria-hidden
+      className={classNames(CLASS_NAME, 'kicl-print-hidden')}
+    />
+  );
+};
 
 export { Marker };

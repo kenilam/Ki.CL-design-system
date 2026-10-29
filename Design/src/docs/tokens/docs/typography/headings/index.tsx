@@ -24,20 +24,22 @@ const Headings: React.FunctionComponent = () => {
 
   return (
     <List alignItems='start' fill={isMobile ? 12 : 6} gap='normal'>
-      {LEVELS.map(([level, size]) => (
-        <ListItem fill={12} gap='narrowest' justifyItems='start' key={level}>
-          <Text is='code'>{`<${level}>`}</Text>
-          <Text
-            className='kicl-font-family-mono kicl-font-size-small'
-            is='span'
-          >
-            {`--kicl-heading-font-size: var(--kicl-${size})`}
-          </Text>
-          <Heading aria-hidden is={level}>
-            {t('docs_specimen')}
-          </Heading>
-        </ListItem>
-      ))}
+      {LEVELS.map(([level, size]) => {
+        return (
+          <ListItem fill={12} gap='narrowest' justifyItems='start' key={level}>
+            <Text is='code'>{`<${level}>`}</Text>
+            <Text
+              className='kicl-font-family-mono kicl-font-size-small'
+              is='span'
+            >
+              {`--kicl-heading-font-size: var(--kicl-${size})`}
+            </Text>
+            <Heading aria-hidden is={level}>
+              {t('docs_specimen')}
+            </Heading>
+          </ListItem>
+        );
+      })}
     </List>
   );
 };

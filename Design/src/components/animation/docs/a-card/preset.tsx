@@ -11,7 +11,6 @@ const description = <>A card that slides up from below as it comes in.</>;
 
 const name = 'A card';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

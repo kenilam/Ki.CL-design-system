@@ -1,12 +1,10 @@
 .kicl--components--spinner {
-  // The icon is about the size of a letter, so the animation's own share of
-  // its size would move it a pixel or two. A fixed distance and a wider zoom
-  // keep the entrance visible.
+  // The icon is too small for the animation's relative distance and scale to
+  // show, so these are fixed.
   --kicl--components--animation--slide--distance: var(--kicl-size);
   --kicl--components--animation--zoom-in--scale: 0.5;
   --kicl--components--animation--zoom-out--scale: 1.5;
 
-  // `size` changes only the icon's font size, as on `Button`.
   &--size--large {
     font-size: var(--kicl-font-size-moderate);
   }
@@ -17,8 +15,6 @@
 
   &--overlay {
     --kicl-backdrop-filter: blur(var(--kicl-gutter-narrower));
-
-    // Dimmed more than a pane over the page, and still readable.
     --kicl-backdrop-tint: var(--kicl-color-page-a64);
 
     @at-root *:has(> &) {

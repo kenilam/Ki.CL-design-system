@@ -1,18 +1,10 @@
 /*
- * A surface is a panel raised off the page: a card, a popover, a field. Each
- * theme picks it from the palette a step lighter than the page, white on light
- * and black-400 on dark, because on either one it is the step away from the
- * background that reads as raised. The edge is a step further.
- *
- * Every theme restates its colours, so a light island inside a dark page, or
+ * Each theme restates these colours, so a light island inside a dark page, or
  * the reverse, gets its own.
  */
 :root {
   --kicl-surface-color: var(--kicl-color-white-pure);
   --kicl-surface-border-color: var(--kicl-color-grey-200);
-
-  // A surface you can see through, for a pane over something busy; it needs a
-  // blur to stay readable.
   --kicl-surface-glass-color: var(--kicl-color-white-a64);
   --kicl-body-background-color: var(--kicl-color-white);
   --kicl-body-color: var(--kicl-color-grey-900);
@@ -66,11 +58,9 @@
 }
 
 html {
-  /* Anchors and focused elements stop below the fixed header. */
   scroll-padding-block-start: var(--kicl--widgets--global-header--block-size);
 }
 
-/* And a little short of it, so a jump never lands flush against the edge. */
 :target {
   scroll-margin-block: var(--kicl-gutter-wide);
 }

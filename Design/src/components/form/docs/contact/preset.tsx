@@ -11,7 +11,6 @@ const description = <>Checks each field as soon as you leave it.</>;
 
 const name = 'Contact';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

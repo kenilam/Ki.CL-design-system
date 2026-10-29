@@ -14,15 +14,9 @@ import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
 import { usePopover } from 'design/components/popover/context';
 
 /**
- * A short note that shows while the trigger is hovered or focused, such as
- * what a highlighted phrase means. The trigger points at it with
- * `interestfor`, so the browser opens and closes it, with its own delays, and
- * no script runs. Browsers without `interestfor` don't show it; the trigger
- * still names it with `aria-describedby`, so assistive tech reads it anyway.
- *
- * Only for words. Anything to click belongs in `PopoverContent`, because a
- * panel that opens on hover is gone before the pointer reaches it, and touch
- * has no hover at all.
+ * Only for words: a panel that opens on hover closes before the pointer
+ * reaches it, and touch has no hover. Browsers without `interestfor` don't
+ * show it, but assistive tech still reads it through `aria-describedby`.
  */
 const PopoverHint: React.FC<PopoverHintProps> = ({
   children,
@@ -37,11 +31,12 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
   const { setHint } = popover;
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
-  // Lets the trigger know there is a hint to point at.
   useEffect(() => {
     setHint(true);
 
-    return () => setHint(false);
+    return () => {
+      setHint(false);
+    };
   }, [setHint]);
 
   useEffect(() => {

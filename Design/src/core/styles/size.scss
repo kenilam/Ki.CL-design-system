@@ -25,8 +25,6 @@
   --kicl-size-19x: calc(var(--kicl-size) * 19);
   --kicl-size-20x: calc(var(--kicl-size) * 20);
   --kicl-size-full: 100%;
-
-  // An input's height: its line of small text, its padding and its border.
   --kicl-field-line: calc(
     var(--kicl-font-size-small) * var(--kicl-line-height)
   );
@@ -63,11 +61,6 @@
   min-block-size: 100dvb;
 }
 
-/*
- * Caps by share of the screen, for a panel that shouldn't cover it - a sheet
- * held at the foot, say - paired with an overflow utility to scroll inside.
- * `dvb` follows the visible viewport as mobile browser bars come and go.
- */
 .kicl-max-block-size-screen {
   max-block-size: 100dvb;
 }
@@ -80,14 +73,10 @@
   max-block-size: calc(100dvb / 3);
 }
 
-// As tall as an input. A collapsed segmented control's trigger takes it to line
-// up with one.
 .kicl-min-block-size-field {
   min-block-size: var(--kicl-field-block-size);
 }
 
-// Lets a grid or flex child shrink below its content, so text in it can
-// truncate instead of pushing the row wider.
 .kicl-min-inline-size-0 {
   min-inline-size: 0;
 }

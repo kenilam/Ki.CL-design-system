@@ -7,7 +7,6 @@ type ContextValue = {
   closable?: boolean | 'keyboard';
   closeIcon?: IconType;
   fullScreen?: boolean;
-  /** The dialog's id, which the close button targets with `commandFor`. */
   id: string;
 };
 

@@ -11,7 +11,6 @@ const description = <>For a summary with its own look, like a badge.</>;
 
 const name = 'Own marker';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

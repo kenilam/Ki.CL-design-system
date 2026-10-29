@@ -17,7 +17,7 @@ type Name =
   | (typeof monochrome.Names)[keyof typeof monochrome.Names]
   | (typeof polychrome.Names)[keyof typeof polychrome.Names];
 
-/** Only what both an `img` and the injected SVG's wrapper take. It is `1em`, so a `kicl-font-size-*` class sizes it. */
+/** Only what both an `img` and the SVG wrapper take. It's `1em`, so a `kicl-font-size-*` class sizes it. */
 type Props = Pick<
   React.HTMLAttributes<HTMLElement>,
   'className' | 'id' | 'title'
@@ -42,9 +42,11 @@ type Snake<Text extends string> = Text extends `${infer Head}${infer Tail}`
   ? `${Head extends Lowercase<Head> ? Head : `_${Lowercase<Head>}`}${Snake<Tail>}`
   : Text;
 
-// `epicGames` → `company_epic_games`, the key of its name for when no `alt` is given.
-const toKey = <Source extends NonNullable<Name>>(name: Source) =>
-  `company_${name.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)}` as `company_${Snake<Source>}`;
+const toKey = <Source extends NonNullable<Name>>(name: Source) => {
+  return `company_${name.replace(/[A-Z]/g, (letter) => {
+    return `_${letter.toLowerCase()}`;
+  })}` as `company_${Snake<Source>}`;
+};
 
 const Company: React.FunctionComponent<Props> = ({
   alt,

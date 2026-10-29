@@ -4,13 +4,15 @@ import { Textarea } from 'design/components';
 
 import type { Props } from 'design/components/textarea/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Textarea
-    description='Up to 200 characters.'
-    label='Message'
-    placeholder='Write a message'
-    {...props}
-  />
-);
+const Preview: React.FC<Props> = (props) => {
+  return (
+    <Textarea
+      description='Up to 200 characters.'
+      label='Message'
+      placeholder='Write a message'
+      {...props}
+    />
+  );
+};
 
 export { Preview };

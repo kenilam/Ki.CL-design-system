@@ -90,11 +90,6 @@
     translate: none;
   }
 
-  /*
-   * A sheet from below on a small screen: it reaches the foot of the window
-   * and grows past it with its content, and the dialog scrolls with the page
-   * rather than the sheet scrolling inside itself.
-   */
   @include query('≤tablet') {
     --kicl--components--dialog--min-block-size: calc(
       100svb - var(--kicl--components--dialog--offset)
@@ -104,11 +99,6 @@
     --kicl--components--dialog--border-end-start-radius: 0;
   }
 
-  /*
-   * The header shares the first place in the panel's grid with the close
-   * button, and keeps clear of it at its end so a long title doesn't run
-   * under it.
-   */
   &--is-closable > div > header {
     grid-area: 1 / 1;
     padding-inline-end: calc(
@@ -177,13 +167,8 @@
   }
 }
 
-/*
- * A dialog a route change adds or removes does it in a view transition: the
- * router takes it out of the page at once, and the browser animates its
- * picture instead. Leaving, the picture falls away as the dialog does when it
- * closes in place. Arriving needs nothing here: the new picture is live, so the
- * dialog's own opening transition plays in it.
- */
+/* A route change removes the dialog at once, so its exit plays on the view
+ * transition's old picture. */
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(kicl--components--dialog) {
     animation: kicl--components--dialog--leave

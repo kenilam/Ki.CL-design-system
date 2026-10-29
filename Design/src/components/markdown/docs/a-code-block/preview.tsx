@@ -2,14 +2,16 @@ import React from 'react';
 
 import { Markdown } from 'design/components';
 
-const Preview: React.FC = () => (
-  <Markdown>
-    {`Install it with:
+const Preview: React.FC = () => {
+  return (
+    <Markdown>
+      {`Install it with:
 
 \`\`\`
 yarn add @ki-cl/design
 \`\`\``}
-  </Markdown>
-);
+    </Markdown>
+  );
+};
 
 export { Preview };

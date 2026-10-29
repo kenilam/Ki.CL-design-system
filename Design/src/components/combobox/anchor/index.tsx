@@ -24,11 +24,6 @@ import { usePopover } from 'design/components/popover/context';
 
 const CLASS_NAME = `${COMBOBOX}__anchor`;
 
-/**
- * Marks the field the list belongs to: it becomes the anchor the list is
- * placed against. ArrowDown moves into the list while it is showing; Escape
- * closes it.
- */
 const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({ children }) => {
   const combobox = useCombobox();
   const popover = usePopover();
@@ -58,7 +53,9 @@ const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({ children }) => {
     };
 
     node.addEventListener('keydown', onKeyDown);
-    return () => node.removeEventListener('keydown', onKeyDown);
+    return () => {
+      node.removeEventListener('keydown', onKeyDown);
+    };
   }, [combobox, open]);
 
   const child = React.Children.only(children);

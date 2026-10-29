@@ -15,7 +15,6 @@ import { NodeShape } from './node-shape';
 
 const ACCENTS: Accent[] = ['blue', 'green', 'orange', 'red', 'yellow'];
 
-/** Polyline with rounded corners. */
 const roundedPath = (points: Edge['points'], radius = 10): string => {
   if (points.length < 2) {
     return '';
@@ -54,7 +53,6 @@ type Props = {
   state?: DiagramState;
 };
 
-/** The SVG itself. It is hidden from assistive tech; the figure's caption describes it. */
 const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
   const id = useId().replace(/:/g, '');
   const { description, edges, groups, height, nodes, width } = spec;
@@ -77,48 +75,52 @@ const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
         >
           <path className={`${BASE}-arrow`} d='M 0 0 L 9 4 L 0 8 Z' />
         </marker>
-        {ACCENTS.map((accent) => (
-          <marker
-            id={`${id}-arrow-${accent}`}
-            key={accent}
-            markerHeight={8}
-            markerWidth={10}
-            orient='auto-start-reverse'
-            refX={8}
-            refY={4}
-          >
-            <path
-              className={classNames(
-                `${BASE}-arrow`,
-                `${BASE}-arrow--${accent}`
-              )}
-              d='M 0 0 L 9 4 L 0 8 Z'
-            />
-          </marker>
-        ))}
+        {ACCENTS.map((accent) => {
+          return (
+            <marker
+              id={`${id}-arrow-${accent}`}
+              key={accent}
+              markerHeight={8}
+              markerWidth={10}
+              orient='auto-start-reverse'
+              refX={8}
+              refY={4}
+            >
+              <path
+                className={classNames(
+                  `${BASE}-arrow`,
+                  `${BASE}-arrow--${accent}`
+                )}
+                d='M 0 0 L 9 4 L 0 8 Z'
+              />
+            </marker>
+          );
+        })}
       </defs>
-      {groups?.map((group) => (
-        <React.Fragment key={group.label}>
-          <rect
-            className={`${BASE}-group`}
-            height={group.h}
-            rx={10}
-            width={group.w}
-            x={group.x}
-            y={group.y}
-          />
-          <text
-            className={classNames(
-              `${BASE}-group-label`,
-              'kicl-text-transform-uppercase'
-            )}
-            x={group.x + 14}
-            y={group.y + 22}
-          >
-            {group.label}
-          </text>
-        </React.Fragment>
-      ))}
+      {groups?.map((group) => {
+        return (
+          <React.Fragment key={group.label}>
+            <rect
+              className={`${BASE}-group`}
+              height={group.h}
+              rx={10}
+              width={group.w}
+              x={group.x}
+              y={group.y}
+            />
+            <text
+              className={classNames(
+                `${BASE}-group-label`,
+                'kicl-text-transform-uppercase'
+              )}
+              x={group.x + 14}
+              y={group.y + 22}
+            >
+              {group.label}
+            </text>
+          </React.Fragment>
+        );
+      })}
       {edges.map((edge, index) => {
         const marker = edge.accent
           ? `${id}-arrow-${edge.accent}`
@@ -135,7 +137,7 @@ const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
               markerEnd={`url(#${marker})`}
               markerStart={edge.both ? `url(#${marker})` : undefined}
             />
-            {edge.label && (
+            {edge.label ? (
               <text
                 className={`${BASE}-edge-label`}
                 textAnchor={edge.anchor || 'middle'}
@@ -144,7 +146,7 @@ const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
               >
                 {edge.label}
               </text>
-            )}
+            ) : null}
           </React.Fragment>
         );
       })}

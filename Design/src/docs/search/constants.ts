@@ -5,10 +5,9 @@ type TokenPath = {
 }[keyof typeof PAGES];
 
 /**
- * The token page that documents each class and variable, by the start of its
- * name after `kicl-`. The longest match wins. `null` leaves a name out of the
- * search because a component prop sets it. `yarn check:search` fails when a
- * name in the built CSS matches nothing here.
+ * Matched by the name's start after `kicl-`, longest first. `null` leaves a
+ * name out because a component prop sets it, and `yarn check:search` fails on
+ * a built name that matches nothing here.
  */
 const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'align-self': 'utilities/display',
@@ -73,30 +72,38 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
 };
 
 /**
- * Where a class or variable name, without `kicl-` or `--kicl-`, is
- * documented: a token path, `null` when it is left out on purpose, or
- * `undefined` when no page covers it.
+ * `null` when the name is left out on purpose, `undefined` when no page
+ * covers it.
  */
 const pageFor = (name: string) => {
   const prefix = Object.keys(PAGE_BY_PREFIX)
-    .filter((key) => name === key || name.startsWith(`${key}-`))
-    .sort((a, b) => b.length - a.length)[0];
+    .filter((key) => {
+      return name === key || name.startsWith(`${key}-`);
+    })
+    .sort((a, b) => {
+      return b.length - a.length;
+    })[0];
 
   return prefix === undefined ? undefined : PAGE_BY_PREFIX[prefix];
 };
 
-/** Class and variable names in a stylesheet's text, without their `kicl-` prefix. */
-const namesIn = (css: string) => ({
-  classes: new Set(
-    Array.from(css.matchAll(/\.kicl-([a-z0-9][a-z0-9-]*)/g), ([, name]) => name)
-  ),
-  variables: new Set(
-    Array.from(
-      css.matchAll(/--kicl-([a-z0-9][a-z0-9-]*)\s*:/g),
-      ([, name]) => name
-    )
-  ),
-});
+const namesIn = (css: string) => {
+  return {
+    classes: new Set(
+      Array.from(css.matchAll(/\.kicl-([a-z0-9][a-z0-9-]*)/g), ([, name]) => {
+        return name;
+      })
+    ),
+    variables: new Set(
+      Array.from(
+        css.matchAll(/--kicl-([a-z0-9][a-z0-9-]*)\s*:/g),
+        ([, name]) => {
+          return name;
+        }
+      )
+    ),
+  };
+};
 
 export type { TokenPath };
 export { namesIn, PAGE_BY_PREFIX, pageFor };

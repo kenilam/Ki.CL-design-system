@@ -1,8 +1,4 @@
-/*
- * Type is set once on `body` and inherited, so a class on a parent reaches the
- * text inside it. `inherit` also overrides the browser's own font on form
- * controls.
- */
+// `inherit` also overrides the browser's own font on form controls.
 * {
   @include font-smoothing;
 
@@ -28,8 +24,6 @@ strong {
   --kicl-outline-color: var(--kicl-color-grey-700);
   --kicl-outline-style: none;
   --kicl-outline-width: var(--kicl-size-1px);
-
-  // How far a disabled control fades.
   --kicl-disabled-opacity: 0.4;
 }
 
@@ -66,8 +60,8 @@ select {
   }
 }
 
-// A disabled fieldset is left out: its controls are disabled with it and fade
-// on their own, so its legend and labels stay readable.
+// Fieldsets are left out: their controls fade on their own, so the legend and
+// labels stay readable.
 *:disabled:not(fieldset),
 *[aria-disabled='true'] {
   opacity: var(--kicl-disabled-opacity);
@@ -79,8 +73,6 @@ select {
   }
 }
 
-// A disabled control's label, and everything in a disabled fieldset, is as
-// disabled as the control.
 label:has(:disabled),
 label:has([aria-disabled='true']),
 :disabled label,
@@ -129,10 +121,9 @@ input {
 }
 
 /*
- * iOS Safari zooms the page into any field set below 16px when it takes focus.
- * Only iOS supports `-webkit-touch-callout`, so other browsers keep the
- * smaller size. The `kicl-font-size-*` classes are doubled for specificity,
- * so only `!important` keeps this floor above them.
+ * iOS Safari zooms into any field under 16px when it takes focus, and only iOS
+ * supports `-webkit-touch-callout`. `!important` keeps this floor above the
+ * `kicl-font-size-*` utilities.
  */
 @supports (-webkit-touch-callout: none) {
   input,

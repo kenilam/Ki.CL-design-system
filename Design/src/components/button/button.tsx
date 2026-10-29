@@ -44,7 +44,6 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
     },
     ref
   ) => {
-    // One look at a time: the classes of a link or of a button, never both.
     const className = lookLikeHyperLink
       ? getHyperLinkClassNames({ className: _className, unstyled })
       : getButtonClassNames({
@@ -62,7 +61,6 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
         alignContent={alignContent}
         alignItems={alignItems}
         autoFlow={autoFlow}
-        // A link sits in a line of text, so it must not start a line of its own.
         display={lookLikeHyperLink ? 'inline-grid' : undefined}
         gap={gap}
         justifyContent={justifyContent}

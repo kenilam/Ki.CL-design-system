@@ -1,11 +1,6 @@
 /*
- * Dot `n` is the current one from half a page before its page is in place to
- * half a page after. The ranges are in page heights, not in shares of the
- * whole scroll: the page is longer than its pages when something follows
- * them, and a share would light the wrong dot.
- *
- * The column goes just before the last dot stops being current, so it does
- * not sit over whatever follows.
+ * Ranges are in page heights, not shares of the whole scroll, because the
+ * document is longer than its pages when something follows them.
  */
 .kicl--components--page-indicator {
   $name: '--kicl--components--page-indicator';
@@ -28,7 +23,7 @@
     animation-timeline: scroll(root block);
   }
 
-  /* Which dot is current is only known from these, so without them there is no column. */
+  // Without these there's no way to tell the current dot, so the column hides.
   @supports not (
     (animation-timeline: scroll()) and (width: calc(sibling-index() * 1px))
   ) {

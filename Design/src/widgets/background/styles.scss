@@ -1,27 +1,4 @@
-/*
- * The renderer reads every one of these off the canvas, so the theme decides
- * the colours and this file never needs a script change to try another set.
- *
- * `paper` has to be the body background: the canvas covers the section edge
- * to edge, and any difference would show as a hairline at its border. It is
- * restated per theme rather than aliased to `--kicl-body-background-color`,
- * because a custom property substitutes its `var()` references where it is
- * declared - here, on `:root` - not where it is read, and the dark value only
- * exists further down, on `body`.
- *
- * The inks are laid down in order, first underneath, and each is tied to a
- * pool in `dither.ts`: a broad field on the right, a glow low on the right, a
- * rim low on the left, a band from the top left. Each is a step of the
- * palette: light ones on the light theme, so the colour sits inside the page,
- * and dark ones on the dark theme, so the page stays dark. Each is registered
- * as a `<color>`, so the renderer reads the colour, not the `var()`.
- *
- * `cell` is the size of one screen dot in CSS pixels and `levels` is how
- * many tones each channel is allowed: fewer levels, coarser cells, and the
- * weave shows more. Both are raster parameters rather than spacing, so they
- * are not drawn from the size scale.
- */
-
+// Registered as `<color>` so the renderer reads the colour, not the `var()`.
 @each $name in (paper, ink-1, ink-2, ink-3, ink-4) {
   @property --kicl--widgets--background--#{$name} {
     syntax: '<color>';
@@ -31,17 +8,19 @@
 }
 
 :root {
+  // Raster parameters, so they don't come from the size scale.
   --kicl--widgets--background--cell: 1px;
   --kicl--widgets--background--levels: 48;
 
-  // Light: a print on cream - sky, peach, coral and the brand yellow, faded.
+  // Must match the body background. Not aliased to
+  // `--kicl-body-background-color` because `var()` resolves here on `:root`,
+  // and the dark value only exists on `body`.
   --kicl--widgets--background--paper: var(--kicl-color-white);
   --kicl--widgets--background--ink-1: var(--kicl-color-blue-200);
   --kicl--widgets--background--ink-2: var(--kicl-color-orange-100);
   --kicl--widgets--background--ink-3: var(--kicl-color-red-200);
   --kicl--widgets--background--ink-4: var(--kicl-color-yellow-200);
 
-  // Dark: a deep field, a glow, a warm rim and a grey band.
   @at-root .kicl--theme--dark {
     --kicl--widgets--background--paper: var(--kicl-color-black);
     --kicl--widgets--background--ink-1: var(--kicl-color-blue-900);

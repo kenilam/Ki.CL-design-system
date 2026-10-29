@@ -9,9 +9,8 @@ dotenv.config({ path: appRoot.resolve('.env') });
 const PORT = Number(process.env.PORT) || 3200;
 const DIST = appRoot.resolve('Design/dist');
 /*
- * No CORS. Browsers never call this server directly: Cloud Run only accepts
- * internal traffic, and the host proxies /design to it same-origin, in Vite
- * locally and in its Express server on Cloud Run.
+ * No CORS: browsers never call this server. Cloud Run only accepts internal
+ * traffic, and the host proxies /design to it same-origin.
  */
 
 const app = express();

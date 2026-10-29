@@ -30,6 +30,7 @@ import { Radio } from './radio';
 const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
   (
     {
+      'aria-invalid': invalid,
       children,
       className,
       defaultValue,
@@ -48,6 +49,7 @@ const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
       <RadioGroupContext.Provider
         value={{
           defaultValue,
+          invalid,
           name: name ?? reactId,
           onValueChange: (next) => onValueChange?.(next),
           required,

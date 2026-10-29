@@ -48,6 +48,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             )}
             name={group.name}
             value={value}
+            aria-invalid={group.invalid}
             required={group.required}
             checked={isControlled ? group.value === value : undefined}
             defaultChecked={

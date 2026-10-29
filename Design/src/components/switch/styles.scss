@@ -58,6 +58,11 @@
   @at-root .kicl--theme--light & {
     --kicl--components--switch--track: var(--kicl-color-grey-300);
   }
+
+  &[aria-invalid='true'],
+  &:user-invalid {
+    --kicl--components--switch--track: var(--kicl-color-error);
+  }
 }
 
 // The name beside the switch takes its size too, as a button's label does.

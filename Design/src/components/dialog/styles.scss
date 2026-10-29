@@ -46,6 +46,7 @@
     --kicl--components--dialog--padding-block: 0;
     --kicl--components--dialog--padding-inline: 0;
     --kicl--components--dialog--offset: 0px;
+    --kicl--components--dialog--opacity--starting-style: 0;
     --kicl--components--dialog--section-offset: 0px;
   }
 
@@ -125,7 +126,7 @@
         --kicl--components--dialog--block-size--starting-style,
         auto
       );
-      opacity: 1;
+      opacity: var(--kicl--components--dialog--opacity--starting-style, 1);
       translate: 0
         var(
           --kicl--components--dialog--translate--starting-style,

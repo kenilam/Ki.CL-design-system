@@ -15,9 +15,6 @@ import { useResponsive } from 'design/hooks';
 // Context
 import { useGlobalHeaderContext } from './context';
 
-// Hooks
-import { useScrolled } from './use-scrolled';
-
 // Constants
 import { CLASS_NAME } from './constants';
 
@@ -29,8 +26,6 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
 }) => {
   const { node } = useGlobalHeaderContext();
   const { isMobile } = useResponsive();
-
-  useScrolled();
 
   const className = classNames(
     'kicl-backdrop',

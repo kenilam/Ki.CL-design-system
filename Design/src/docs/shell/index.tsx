@@ -22,7 +22,7 @@ const Shell: React.FunctionComponent = () => (
         'kicl-inline-size-full',
         'kicl-max-inline-size-columns-12',
         'kicl-padding-block-frame',
-        'kicl-padding-block-start-header',
+        'kicl-padding-block-start-header-offset',
         'kicl-padding-inline-frame'
       )}
     >

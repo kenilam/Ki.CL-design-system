@@ -1,10 +1,8 @@
 import { Preset as Basic } from './basic';
-import { Preset as PlaysOnPress } from './plays-on-press';
 import { CONTROLS } from './controls';
 
 An MP4 in a `figure` with a spinner until the first frame loads. By default it plays on its own, muted and looped, without controls. Pass `controls` when people need to pause it.
 
-<Preview controls={CONTROLS}>
+<Preview controls={CONTROLS} replay>
   {Basic}
-  {PlaysOnPress}
 </Preview>

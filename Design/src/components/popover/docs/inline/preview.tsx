@@ -14,8 +14,8 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => (
       eight minutes
     </Text>
     <Popover inline {...props}>
-      <PopoverTrigger>
-        <Ri.RiInformationLine />
+      <PopoverTrigger aria-label='How long exactly'>
+        <Ri.RiInformationLine aria-hidden />
       </PopoverTrigger>
       <PopoverHint offset={offset} placement={placement} variant={variant}>
         8 minutes and 20 seconds, on average.

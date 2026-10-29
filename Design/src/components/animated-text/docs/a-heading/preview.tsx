@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { AnimatedText } from 'design/components';
+import { AnimatedText, Heading } from 'design/components';
 
 import type { Props } from 'design/components/animated-text/docs/controls';
 
 const Preview: React.FC<Props> = (props) => (
-  <AnimatedText key='heading' lookLike='h2' {...props}>
-    Experiments
-  </AnimatedText>
+  <Heading is='h2'>
+    <AnimatedText is='span' key='heading' unstyled {...props}>
+      Experiments
+    </AnimatedText>
+  </Heading>
 );
 
 export { Preview };

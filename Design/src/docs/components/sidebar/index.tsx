@@ -41,11 +41,7 @@ const Sidebar: React.FunctionComponent<NavigationProps> = ({
     <Navigation
       {...props}
       aria-label={t('docs_components')}
-      className={classNames(
-        'kicl-min-block-size-screen',
-        'kicl-padding',
-        className
-      )}
+      className={classNames('kicl-padding', className)}
     >
       <List>
         <ListItem>

@@ -1,19 +1,3 @@
-/*
- * A frame is what the window has left: its height less a gap on every side,
- * and less the global header while the header shows. The header sits over the
- * top of the page and publishes how much of the window it covers as
- * `--kicl--widgets--global-header--offset`, and its height on a page that has
- * one as `--room`.
- *
- * A frame of the window's height follows the header: it starts under it and
- * takes the header's room when the header slides away. The offset is eased
- * where it is set, so the frame needs no transition of its own, and whatever
- * else reads the offset moves with it. A growing frame is
- * longer than the window, so moving its top would move the whole page each
- * time. It keeps the header's room above it for good, and follows the header
- * with its least height: it gets longer at the foot as the header slides
- * away, so once its top reaches the window's it still fills the window.
- */
 :root {
   $frame: '--kicl--components--frame';
 
@@ -60,19 +44,12 @@
   }
 }
 
-/*
- * On the body, where the header's offset is set, and not on the root, where
- * it would be read before the body had said it. `--top` is where a frame's
- * top edge is in the window: against the header's bottom edge, or a gap from
- * the top once the header has gone. There is no gap under the header: a
- * picture that bleeds past the frame would show in it.
- */
 body {
   $frame: '--kicl--components--frame';
 
   --kicl--components--frame--top: max(
     var(#{$frame}--gap),
-    var(--kicl--widgets--global-header--offset, 0px)
+    var(--kicl--widgets--global-header--room, 0px)
   );
   --kicl--components--frame--block-size: calc(
     100dvb - var(#{$frame}--top) - var(#{$frame}--gap)
@@ -131,10 +108,6 @@ body {
 
   &.kicl--components--frame--grow {
     block-size: auto;
-    margin-block-start: max(
-      var(#{$frame}--gap),
-      var(--kicl--widgets--global-header--room, 0px)
-    );
     min-block-size: var(#{$frame}--block-size);
 
     // Growing content has no fixed height to ease from.

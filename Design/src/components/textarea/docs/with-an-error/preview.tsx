@@ -19,9 +19,9 @@ const Preview: React.FC<Props> = (props) => {
       <FormField
         control={form.control}
         name='message'
-        render={({ field }) => (
-          <Textarea {...field} label='Message' {...props} />
-        )}
+        render={({ field }) => {
+          return <Textarea {...field} label='Message' {...props} />;
+        }}
       />
     </Form>
   );

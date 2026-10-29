@@ -17,17 +17,15 @@ import { usePopover } from 'design/components/popover/context';
 
 const CLASS_NAME = `${POPOVER}__trigger`;
 
-/** Toggles the panel by script, naming the trigger as its invoker. */
 const toggle = (panel: HTMLElement, source: HTMLElement) => {
   const popover = panel as HTMLElement & {
     togglePopover: (options?: { source?: HTMLElement }) => boolean;
   };
 
   /*
-   * With a source the browser treats the element as the invoker, as it does a
-   * button with `popovertarget`: clicking it again isn't an outside click that
-   * dismisses and reopens, and Tab moves on into the panel. Older browsers
-   * reject the option, and toggle without it.
+   * With `source` the browser treats the trigger as the invoker, so a second
+   * click isn't an outside click that dismisses and reopens. Older browsers
+   * reject the option.
    */
   try {
     popover.togglePopover({ source });
@@ -42,28 +40,23 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
     const anchor = { [`--${POPOVER}--anchor`]: popover.anchor };
 
     const shared = {
-      // Only a trigger with a panel opens anything.
-      ...(popover.content && {
-        'aria-expanded': popover.open,
-        'aria-haspopup': 'dialog' as const,
-      }),
+      ...(popover.content
+        ? {
+            'aria-expanded': popover.open,
+            'aria-haspopup': 'dialog' as const,
+          }
+        : null),
       id: `${popover.id}__trigger`,
-      /*
-       * Hover and focus open the hint by themselves. React passes the
-       * attribute through as written; it isn't in the DOM types yet.
-       */
-      ...(popover.hint && {
-        'aria-describedby': `${popover.id}__hint`,
-        interestfor: `${popover.id}__hint`,
-      }),
+      // `interestfor` isn't in React's DOM types yet, so it's passed as written.
+      ...(popover.hint
+        ? {
+            'aria-describedby': `${popover.id}__hint`,
+            interestfor: `${popover.id}__hint`,
+          }
+        : null),
     };
 
-    /*
-     * The child stays itself, a link included, and takes on the trigger's
-     * part: the anchor name, the state for assistive tech, and the toggle.
-     * `popovertarget` only works on buttons, so the click toggles by script;
-     * a link's own navigation is what's left without it.
-     */
+    // `popovertarget` only works on buttons, so the child toggles by script.
     if (asChild && React.isValidElement(children)) {
       const child = children as React.ReactElement<
         React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }
@@ -81,10 +74,6 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
 
           const panel = document.getElementById(popover.id);
 
-          /*
-           * With no panel to open - a trigger that only has a hint - the
-           * click is the child's own, and a link just follows its href.
-           */
           if (event.defaultPrevented || !panel) {
             return;
           }
@@ -107,9 +96,8 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
           className
         )}
         /*
-         * The browser toggles the panel from this attribute. The handler is
-         * passed through untouched and no longer sets state - whatever
-         * happens, the `toggle` event on the panel is what reports it back.
+         * The panel's `toggle` event reports the open state back, so the click
+         * handler doesn't set it.
          */
         popoverTarget={popover.id}
         onClick={onClick}

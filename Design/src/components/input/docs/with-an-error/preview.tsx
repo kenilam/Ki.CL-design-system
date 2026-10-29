@@ -22,9 +22,9 @@ const Preview: React.FC<Props> = (props) => {
       <FormField
         control={form.control}
         name='email'
-        render={({ field }) => (
-          <EmailInput {...field} label='Email' {...props} />
-        )}
+        render={({ field }) => {
+          return <EmailInput {...field} label='Email' {...props} />;
+        }}
       />
     </Form>
   );

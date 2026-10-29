@@ -5,14 +5,12 @@ import './styles.scss';
 
 import type { SelectContentProps } from 'design/components/select/spec';
 
-/**
- * The options sit straight inside the `<select>` - a wrapper would hide them
- * from browsers without base-select. The picker is styled with
- * `::picker(select)`.
- */
+/** No wrapper: one would hide the options from browsers without base-select. */
 const SelectContent: React.FunctionComponent<SelectContentProps> = ({
   children,
-}) => <>{children}</>;
+}) => {
+  return <>{children}</>;
+};
 
 SelectContent.displayName = 'SelectContent';
 

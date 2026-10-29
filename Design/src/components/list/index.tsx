@@ -23,21 +23,22 @@ const List = React.forwardRef<HTMLOListElement | HTMLUListElement, Spec.Props>(
       ...rest
     },
     ref
-  ) => (
-    // Layout takes its own props and passes the rest on to the list.
-    <Layout {...rest} gap={gap}>
-      <Component
-        className={classNames(
-          CLASS_NAME,
-          listStyleType && `${CLASS_NAME}--list-style`
-        )}
-        ref={ref as never}
-        style={{ ...style, listStyleType }}
-      >
-        {children}
-      </Component>
-    </Layout>
-  )
+  ) => {
+    return (
+      <Layout {...rest} gap={gap}>
+        <Component
+          className={classNames(
+            CLASS_NAME,
+            listStyleType ? `${CLASS_NAME}--list-style` : null
+          )}
+          ref={ref as never}
+          style={{ ...style, listStyleType }}
+        >
+          {children}
+        </Component>
+      </Layout>
+    );
+  }
 );
 
 List.displayName = 'List';

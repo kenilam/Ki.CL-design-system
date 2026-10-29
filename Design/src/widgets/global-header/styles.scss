@@ -1,28 +1,18 @@
 :root {
   --kicl--widgets--global-header--block-size: 0;
   --kicl--widgets--global-header--offset: 0px;
-
-  // In line with the content of a Frame, 12 columns at most.
   --kicl--widgets--global-header--padding-inline: var(
     --kicl--components--frame--page-inset
   );
   --kicl--widgets--global-header--top: 0px;
 }
 
-/*
- * The page says which way it last scrolled. A scroll-state query styles what
- * is inside its container and never the container, and the root is the
- * element that scrolls, so the root is the container and the header reads it.
- */
+// A scroll-state query can't style its own container, and the root is what
+// scrolls, so the root is the container.
 :root:has(.kicl--widgets--global-header) {
   container: kicl-page / scroll-state;
 }
 
-/*
- * The header leaves when the page scrolls down and comes back when it
- * scrolls up: up and out, then down and in. Neither changes layout, so the
- * page under it does not move.
- */
 @mixin -scrolled-down {
   @container kicl-page scroll-state((scrolled: bottom) and (scrollable: top)) {
     @content;
@@ -32,12 +22,8 @@
 .kicl--widgets--global-header {
   --kicl--components--hyper-link--text-color: var(--kicl-body-color);
 
-  /*
-   * It is sticky, but it gives its room in the flow back: the pages under it
-   * are built to fill the window, and with the header's height added to
-   * theirs every one of them would scroll by that much. So it sits over the
-   * top of the page, and what must clear it reads `--offset` or `--room`.
-   */
+  // Gives its height back to the flow, or pages that fill the window would
+  // scroll by that much. What must clear it reads `--offset` or `--room`.
   margin-block-end: calc(var(--kicl--widgets--global-header--block-size) * -1);
 
   // The Frame's page inset, which no utility reads.
@@ -55,36 +41,26 @@
   }
 }
 
-/*
- * Registered as a length so it can be eased. The header slides away over a
- * moment, and what follows it, such as a `Frame` growing into its room, has
- * to move with the header's edge and not jump to where it will end up.
- */
+// Registered as a length so it can transition with the header.
 @property --kicl--widgets--global-header--offset {
   syntax: '<length>';
   inherits: true;
   initial-value: 0;
 }
 
-/*
- * How much of the window the header covers now: its height while it shows,
- * and nothing once it has slid away, or on a page that has no header. It is
- * set on the body and not the root, because the root is the container the
- * query reads and a query cannot style its own container. Whatever sizes
- * itself to the window, such as `Frame`, reads it.
- */
+// On `body`, not the root, because a container query can't style its own
+// container.
 body:has(.kicl--widgets--global-header) {
   --kicl--widgets--global-header--offset: var(
     --kicl--widgets--global-header--block-size
   );
 
-  // At the header's own pace, so the two move as one.
   @media (prefers-reduced-motion: no-preference) {
     transition: --kicl--widgets--global-header--offset
       var(--kicl-transition-duration) var(--kicl-ease-sine-out);
   }
 
-  // The header's height on a page that has one, whether or not it is in view.
+  // Unlike `--offset`, stays at the full height while the header is out of view.
   --kicl--widgets--global-header--room: var(
     --kicl--widgets--global-header--block-size
   );

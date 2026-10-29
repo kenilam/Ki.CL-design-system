@@ -3,8 +3,6 @@
   --kicl--components--input-group--border-color: var(--kicl-color-grey-900);
   --kicl--components--input-group--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input-group--border-width: var(--kicl-size-1px);
-
-  // Softer than the error colour itself, which the focus outline uses.
   --kicl--components--input-group--invalid-border-color: var(
     --kicl-color-error-secondary
   );
@@ -27,7 +25,6 @@
     --kicl--components--input--border-radius: 0;
   }
 
-  // Something before the control sits at the start, something after it at the end.
   &:has(> :not(&__control) + &__control) {
     --kicl--components--input-group--padding-inline-start: var(
       --kicl-gutter-narrow
@@ -48,14 +45,12 @@
     }
   }
 
-  // The group takes the read-only fill, since its control is transparent.
   &:has(&__control[readonly]) {
     --kicl--components--input-group--background-color: var(
       --kicl--components--input-group--read-only-background-color
     );
   }
 
-  // The ring moves from the borderless control to the group.
   &:has(&__control:focus-visible) {
     outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
     outline-offset: var(--kicl-size-1px);
@@ -76,13 +71,8 @@
     }
   }
 
-  /*
-   * `& &__control`, not `&__control`: the control keeps its own component
-   * class, whose stylesheet loads after this one and sets the same custom
-   * properties at the same specificity - so a single-class rule here lost,
-   * and the control drew its own border inside the group's. Two classes win
-   * whatever the load order.
-   */
+  // Two classes, because the control's own stylesheet loads later and sets
+  // the same properties with one class, so a single class here loses.
   & &__control {
     --kicl--components--input--border-width: 0;
     --kicl--components--input--padding-block: 0;

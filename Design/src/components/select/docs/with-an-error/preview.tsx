@@ -23,18 +23,20 @@ const Preview: React.FC<Props> = (props) => {
         control={form.control}
         name='country'
         rules={{ required: 'Choose a country.' }}
-        render={({ field }) => (
-          <Select
-            {...field}
-            label='Country'
-            placeholder='Choose one'
-            {...props}
-          >
-            <SelectItem value='ca'>Canada</SelectItem>
-            <SelectItem value='gb'>United Kingdom</SelectItem>
-            <SelectItem value='us'>United States</SelectItem>
-          </Select>
-        )}
+        render={({ field }) => {
+          return (
+            <Select
+              {...field}
+              label='Country'
+              placeholder='Choose one'
+              {...props}
+            >
+              <SelectItem value='ca'>Canada</SelectItem>
+              <SelectItem value='gb'>United Kingdom</SelectItem>
+              <SelectItem value='us'>United States</SelectItem>
+            </Select>
+          );
+        }}
       />
     </Form>
   );

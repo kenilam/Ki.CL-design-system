@@ -11,7 +11,6 @@ const description = <>For lines of code, kept as written.</>;
 
 const name = 'A code block';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin
     controls={{ is: null, lookLike: null }}

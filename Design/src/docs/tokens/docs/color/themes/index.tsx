@@ -27,47 +27,51 @@ const Themes: React.FunctionComponent = () => {
 
   return (
     <List fill={isMobile ? 12 : 6} gap='normal'>
-      {THEMES.map((theme) => (
-        <ListItem
-          className={classNames(
-            theme,
-            'kicl-background-color-body',
-            'kicl-border-radius-md',
-            'kicl-padding'
-          )}
-          key={theme}
-        >
-          <Card
-            is='section'
-            header={
-              <>
-                <CardTitle is='h4'>
-                  <Text is='code'>{theme}</Text>
-                </CardTitle>
-                <CardDescription>
-                  <Text is='code'>--kicl-surface-color</Text>
-                </CardDescription>
-              </>
-            }
+      {THEMES.map((theme) => {
+        return (
+          <ListItem
+            className={classNames(
+              theme,
+              'kicl-background-color-body',
+              'kicl-border-radius-md',
+              'kicl-padding'
+            )}
+            key={theme}
           >
-            <List
-              alignItems='center'
-              autoFlow='row'
-              display='flex'
-              gap='narrow'
-              wrap
+            <Card
+              is='section'
+              header={
+                <>
+                  <CardTitle is='h4'>
+                    <Text is='code'>{theme}</Text>
+                  </CardTitle>
+                  <CardDescription>
+                    <Text is='code'>--kicl-surface-color</Text>
+                  </CardDescription>
+                </>
+              }
             >
-              {VARIANTS.map((variant) => (
-                <ListItem key={variant}>
-                  <Button size='small' variant={variant}>
-                    {variant}
-                  </Button>
-                </ListItem>
-              ))}
-            </List>
-          </Card>
-        </ListItem>
-      ))}
+              <List
+                alignItems='center'
+                autoFlow='row'
+                display='flex'
+                gap='narrow'
+                wrap
+              >
+                {VARIANTS.map((variant) => {
+                  return (
+                    <ListItem key={variant}>
+                      <Button size='small' variant={variant}>
+                        {variant}
+                      </Button>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </Card>
+          </ListItem>
+        );
+      })}
     </List>
   );
 };

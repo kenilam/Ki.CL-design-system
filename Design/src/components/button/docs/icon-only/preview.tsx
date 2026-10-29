@@ -5,10 +5,12 @@ import { Button } from 'design/components';
 
 import type { Props } from 'design/components/button/docs/controls';
 
-const Preview: React.FC<Props> = (props) => (
-  <Button aria-label='Close' variant='ghost' {...props}>
-    <Ri.RiCloseLine aria-hidden />
-  </Button>
-);
+const Preview: React.FC<Props> = (props) => {
+  return (
+    <Button aria-label='Close' variant='ghost' {...props}>
+      <Ri.RiCloseLine aria-hidden />
+    </Button>
+  );
+};
 
 export { Preview };

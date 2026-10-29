@@ -1,7 +1,7 @@
 name: CI
 
-# On push, for every branch. Pull requests opened by a workflow do not start
-# pull_request runs, so the check has to come from the commit itself.
+# On push, because pull requests opened by a workflow don't start
+# pull_request runs.
 on:
   push:
 
@@ -33,8 +33,6 @@ jobs:
 
       - run: yarn typecheck
 
-      # The federated package the Ki.CL host loads at runtime.
       - run: yarn build
 
-      # Every class and variable in the build has a page the docs search opens.
       - run: yarn check:search

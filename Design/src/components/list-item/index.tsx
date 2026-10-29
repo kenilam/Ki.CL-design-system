@@ -11,12 +11,13 @@ type ListItemProps = Required<PropsWithChildren> & Spec.Props;
 const CLASS_NAME = 'kicl--components--list-item';
 
 const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
-  ({ children, ...rest }, ref) => (
-    // Layout takes its own props and passes the rest on to the item.
-    <Layout {...rest} ref={ref}>
-      <li className={CLASS_NAME}>{children}</li>
-    </Layout>
-  )
+  ({ children, ...rest }, ref) => {
+    return (
+      <Layout {...rest} ref={ref}>
+        <li className={CLASS_NAME}>{children}</li>
+      </Layout>
+    );
+  }
 );
 
 ListItem.displayName = 'ListItem';

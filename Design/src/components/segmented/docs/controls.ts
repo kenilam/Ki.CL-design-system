@@ -5,7 +5,6 @@ import {
 } from 'design/components/popover/spec';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   disabled: 'boolean',
 } satisfies ControlsSpec;

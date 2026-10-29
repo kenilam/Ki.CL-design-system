@@ -1,6 +1,6 @@
 /*
- * Registered, so the value is worked out on the item that sets it. A list
- * nested inside that item inherits the time, not the `sibling-index()` in it.
+ * Registered so it computes on the item that sets it, and a nested list
+ * inherits the time instead of re-evaluating `sibling-index()`.
  */
 @property --kicl--components--navigation--delay {
   syntax: '<time>';
@@ -10,18 +10,15 @@
 
 .kicl--components--navigation--list-item {
   /*
-   * Shorter than the gap between items, so an item never slides over the one
-   * above it. A percentage was of the item's own height, which grows with a
-   * nested list.
+   * Shorter than the gap so an item never slides over the one above. A
+   * percentage would follow the item's height, which grows with a nested list.
    */
   --kicl--components--animation--property--slide-from-top--distance: var(
     --kicl-gutter-narrow
   );
 
-  /*
-   * Each item follows the one before it. Browsers without `sibling-index()`
-   * drop the delay and bring the items in together.
-   */
+  // Browsers without `sibling-index()` drop the delay and bring the items in
+  // together.
   --kicl--components--navigation--delay: calc(
     300ms + 60ms * (sibling-index() - 1)
   );
@@ -29,12 +26,8 @@
     --kicl--components--navigation--delay
   );
 
-  /*
-   * Items of a nested list wait for the item they sit in to finish, then
-   * follow each other. `faster` is the duration `Navigation` gives its items.
-   */
+  // `faster` matches the duration `Navigation` gives its items.
   li {
-    // Nested items sit a `narrow` gap apart, so they travel less.
     --kicl--components--animation--property--slide-from-top--distance: var(
       --kicl-gutter-narrower
     );

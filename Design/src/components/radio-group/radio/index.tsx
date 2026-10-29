@@ -25,10 +25,6 @@ import { useRadioGroup } from 'design/components/radio-group/context';
 
 const CLASS_NAME = `${RADIO_GROUP}__item`;
 
-/**
- * One native radio. Children are its visible label; the `<label>` wraps both
- * so clicking the text selects the radio.
- */
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   ({ children, className, onChange, value, ...rest }, ref) => {
     const group = useRadioGroup();

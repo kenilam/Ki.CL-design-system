@@ -10,9 +10,6 @@
   --kicl--components--bubble--color: contrast-color(
     var(--kicl--components--bubble--background-color)
   );
-
-  // A wash over the fill on hover: the page colour over a full one, the ink
-  // over the lighter looks.
   --kicl--components--bubble--hover: var(--kicl-color-page-a16);
   --kicl--components--bubble--max-inline-size: 80%;
   --kicl--components--bubble--padding-block: var(--kicl-gutter-narrow);
@@ -22,8 +19,6 @@
   max-inline-size: var(--kicl--components--bubble--max-inline-size);
   min-inline-size: 0;
 
-  // As on `Button`: secondary and tertiary are a look over a faint fill, and
-  // ghost has no fill, with an edge and label in its own look.
   &--variant--secondary {
     --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
     --kicl--components--bubble--background-color: color-mix(
@@ -36,7 +31,6 @@
     );
   }
 
-  // Takes the whole row.
   &--variant--tertiary {
     --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
     --kicl--components--bubble--background-color: color-mix(
@@ -72,8 +66,6 @@
   max-inline-size: 100%;
   min-inline-size: 0;
   overflow-wrap: anywhere;
-
-  // A message keeps the line breaks it was written with.
   white-space: pre-wrap;
   padding-block: var(--kicl--components--bubble--padding-block);
   padding-inline: var(--kicl--components--bubble--padding-inline);
@@ -101,7 +93,6 @@
   min-inline-size: 0;
 }
 
-// Overlaps the bubble's bottom corner by three quarters of its own height.
 .kicl--components--bubble__reactions {
   background-color: var(--kicl-surface-color);
   box-shadow: 0 0 0 var(--kicl-size-3px) var(--kicl-body-background-color);

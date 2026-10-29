@@ -16,9 +16,9 @@ export const useComponentContext = () => {
   const { context = '', Content } = pages[category]?.[component] ?? {};
 
   return {
-    category: (Object.keys(PAGES) as Category[]).find(
-      (key) => key === category
-    ),
+    category: (Object.keys(PAGES) as Category[]).find((key) => {
+      return key === category;
+    }),
     Content,
     name: t('component', { context }),
   };

@@ -16,8 +16,8 @@ const useCombobox = () => {
   return ctx;
 };
 
-/** The focusable things in a container, in document order. */
-const focusables = (node: HTMLElement | null, selector: string) =>
-  node ? Array.from(node.querySelectorAll<HTMLElement>(selector)) : [];
+const focusables = (node: HTMLElement | null, selector: string) => {
+  return node ? Array.from(node.querySelectorAll<HTMLElement>(selector)) : [];
+};
 
 export { ComboboxContext, focusables, useCombobox };

@@ -1,6 +1,5 @@
 import type { Value, Values } from './controls';
 
-/** The spread a preset's example puts last on the component the controls are for. */
 const SPREAD = '{...props}';
 
 type Attribute = {
@@ -9,25 +8,21 @@ type Attribute = {
   raw: string;
 };
 
-/** The opening tag that carries `{...props}`, as the file writes it. */
 export type Tag = {
   start: number;
   end: number;
   name: string;
   attributes: Attribute[];
-  /** The tag's own closing, `>` or `/>`. */
   closing: string;
-  /** Whether each attribute is on a line of its own. */
   multiline: boolean;
-  /** The whitespace before an attribute on a multiline tag. */
+  /** Before each attribute on a multiline tag. */
   indent: string;
-  /** The whitespace before the tag's name, which its closing takes too. */
+  /** Before the tag's name and its closing. */
   lineIndent: string;
 };
 
 const QUOTES = new Set(["'", '"', '`']);
 
-/** The index after the `}` that closes the brace at `from`, skipping strings. */
 const closeBrace = (source: string, from: number) => {
   let depth = 0;
 
@@ -42,23 +37,28 @@ const closeBrace = (source: string, from: number) => {
 
     if (char === '{') {
       depth += 1;
-    } else if (char === '}') {
-      depth -= 1;
 
-      if (depth === 0) {
-        return index + 1;
-      }
+      continue;
+    }
+
+    if (char !== '}') {
+      continue;
+    }
+
+    depth -= 1;
+
+    if (depth === 0) {
+      return index + 1;
     }
   }
 
   return source.length;
 };
 
-/** The index after the quote that closes the one at `from`. */
-const closeQuote = (source: string, from: number) =>
-  source.indexOf(source[from], from + 1) + 1;
+const closeQuote = (source: string, from: number) => {
+  return source.indexOf(source[from], from + 1) + 1;
+};
 
-/** The tag that opens at `start`, and whether `{...props}` is among its attributes. */
 const parseTag = (source: string, start: number) => {
   const name = /^<([A-Za-z][\w.]*)/.exec(source.slice(start))?.[1] ?? '';
   const attributes: Attribute[] = [];
@@ -94,9 +94,11 @@ const parseTag = (source: string, start: number) => {
 
       if (raw === SPREAD) {
         spread = true;
-      } else {
-        attributes.push({ name: '', raw });
+
+        continue;
       }
+
+      attributes.push({ name: '', raw });
 
       continue;
     }
@@ -119,17 +121,14 @@ const parseTag = (source: string, start: number) => {
   return { attributes, closing, end: position, name, spread };
 };
 
-const lineStart = (source: string, index: number) =>
-  source.lastIndexOf('\n', index - 1) + 1;
+const lineStart = (source: string, index: number) => {
+  return source.lastIndexOf('\n', index - 1) + 1;
+};
 
-const indentAt = (source: string, index: number) =>
-  /^\s*/.exec(source.slice(lineStart(source, index)))?.[0] ?? '';
+const indentAt = (source: string, index: number) => {
+  return /^\s*/.exec(source.slice(lineStart(source, index)))?.[0] ?? '';
+};
 
-/**
- * The first tag at or after `from` that spreads `props`, or null when there is
- * none, so an example without one takes no controls. Tags are tried from the
- * one nearest the spread.
- */
 export const readTag = (source: string, from = 0): Tag | null => {
   const at = source.indexOf(SPREAD, from);
 
@@ -163,7 +162,6 @@ export const readTag = (source: string, from = 0): Tag | null => {
   return null;
 };
 
-/** Every tag that spreads `props`, for an example that repeats the component. */
 export const readTags = (source: string) => {
   const tags: Tag[] = [];
 
@@ -174,7 +172,6 @@ export const readTags = (source: string) => {
   return tags;
 };
 
-/** What a literal attribute sets, or `undefined` for an expression the controls can't read. */
 const valueOf = ({ raw }: Attribute): Value => {
   const match = /^[\w.:-]+(?:=(.*))?$/s.exec(raw);
   const value = match?.[1];
@@ -194,7 +191,6 @@ const valueOf = ({ raw }: Attribute): Value => {
   return /^(['"]).*\1$/s.test(value) ? value.slice(1, -1) : undefined;
 };
 
-/** The values a tag writes for the controls, and which controls it writes at all. */
 export const valuesOf = (tag: Tag | null, names: string[]) => {
   const values: Values = {};
   const literals = new Set<string>();
@@ -231,12 +227,6 @@ const attributeOf = (name: string, value: Value) => {
   return value.includes(`'`) ? `${name}={\`${value}\`}` : `${name}='${value}'`;
 };
 
-/**
- * The example's source with the chosen values written on the tag, in place
- * of what it wrote for those props and of the spread. A control at its
- * default writes nothing, and a `false` flag is left out as one unless the
- * file wrote the flag.
- */
 export const withValues = (
   source: string,
   tag: Tag | null,
@@ -256,14 +246,24 @@ export const withValues = (
 
     return attribute ? [{ attribute, name }] : [];
   });
-  // A chosen value replaces what the file wrote for that prop, an expression
-  // such as `size={4}` included, as the spread does when it renders.
-  const replaced = new Set(chosen.map(({ name }) => name));
+  // Replaces what the file wrote for that prop, expressions included, as the
+  // spread does at render.
+  const replaced = new Set(
+    chosen.map(({ name }) => {
+      return name;
+    })
+  );
   const attributes = [
     ...tag.attributes
-      .filter(({ name }) => !literals.has(name) && !replaced.has(name))
-      .map(({ raw }) => raw),
-    ...chosen.map(({ attribute }) => attribute),
+      .filter(({ name }) => {
+        return !literals.has(name) && !replaced.has(name);
+      })
+      .map(({ raw }) => {
+        return raw;
+      }),
+    ...chosen.map(({ attribute }) => {
+      return attribute;
+    }),
   ];
 
   const opening = `<${tag.name}`;
@@ -272,7 +272,9 @@ export const withValues = (
     : tag.multiline
       ? [
           opening,
-          ...attributes.map((attribute) => `${tag.indent}${attribute}`),
+          ...attributes.map((attribute) => {
+            return `${tag.indent}${attribute}`;
+          }),
           `${tag.lineIndent}${tag.closing}`,
         ].join('\n')
       : `${opening} ${attributes.join(' ')}${tag.closing === '/>' ? ' />' : '>'}`;
@@ -280,19 +282,18 @@ export const withValues = (
   return `${source.slice(0, tag.start)}${text}${source.slice(tag.end)}`;
 };
 
-/** A prop the example passes on by name, as `offset={offset}`, rather than through the spread. */
-const forwardOf = (name: string) =>
-  new RegExp(`(\\s+)${name}=\\{${name}\\}`, 'g');
+const forwardOf = (name: string) => {
+  return new RegExp(`(\\s+)${name}=\\{${name}\\}`, 'g');
+};
 
-/** The controls the example passes on by name to a component other than the one that spreads `props`. */
-export const forwardedOf = (source: string, names: string[]) =>
-  new Set(names.filter((name) => forwardOf(name).test(source)));
+export const forwardedOf = (source: string, names: string[]) => {
+  return new Set(
+    names.filter((name) => {
+      return forwardOf(name).test(source);
+    })
+  );
+};
 
-/**
- * The example's source with the chosen value written wherever it passes a
- * control on by name, and that name taken out of its parameters once nothing
- * else reads it.
- */
 export const withForwarded = (
   source: string,
   forwarded: Set<string>,
@@ -314,16 +315,19 @@ export const withForwarded = (
       const body = written.slice(written.indexOf(head) + head.length);
       const kept = list
         .split(',')
-        .map((parameter) => parameter.trim())
-        .filter(
-          (parameter) =>
+        .map((parameter) => {
+          return parameter.trim();
+        })
+        .filter((parameter) => {
+          return (
             parameter &&
             !(
               forwarded.has(parameter) &&
               // Read as a value, not written as an attribute's name.
               !new RegExp(`\\b${parameter}\\b(?!=)`).test(body)
             )
-        );
+          );
+        });
 
       if (!kept.length) {
         return `${start})`;
@@ -336,10 +340,12 @@ export const withForwarded = (
   );
 };
 
-const indent = (body: string, by: string) => body.replace(/^(?=.)/gm, by);
+const indent = (body: string, by: string) => {
+  return body.replace(/^(?=.)/gm, by);
+};
 
-export const snippetOf = (source: string) =>
-  source
+export const snippetOf = (source: string) => {
+  return source
     .replace(/^import React from 'react';\n/m, '')
     .replace(/^import React, \{/m, 'import {')
     .replace(/^import type [^;]*;\n/gm, '')
@@ -349,13 +355,16 @@ export const snippetOf = (source: string) =>
     .replace(/^(const Preview = \(\{.*), \.\.\.props \}\)/m, '$1 })')
     .replace(
       /^(const Preview = \(.*\)) =>\s*\(\n([\s\S]*?)\n\);$/m,
-      (_, head: string, body: string) =>
-        `${head} => {\n  return (\n${indent(body, '  ')}\n  );\n};`
+      (_, head: string, body: string) => {
+        return `${head} => {\n  return (\n${indent(body, '  ')}\n  );\n};`;
+      }
     )
     .replace(
       /^(const Preview = \(.*\)) => (<.*>);$/m,
-      (_, head: string, body: string) =>
-        `${head} => {\n  return (\n    ${body}\n  );\n};`
+      (_, head: string, body: string) => {
+        return `${head} => {\n  return (\n    ${body}\n  );\n};`;
+      }
     )
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+};

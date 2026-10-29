@@ -1,12 +1,9 @@
-// The four sides, each with the axis it sits on.
 $sides: (
   block-end: block,
   block-start: block,
   inline-start: inline,
   inline-end: inline,
 );
-
-// The gutter scale `Layout` takes for `gap`. `normal` is the gutter itself.
 $gaps: (
   none,
   narrowest,
@@ -19,18 +16,16 @@ $gaps: (
   extreme
 );
 
-/*
- * A panel is as wide as what it holds. Placed by `position-area` it would
- * otherwise fill the area beside the trigger, and a width cap on its contents
- * can't help: `min(100%, ...)` doesn't resolve while the panel measures
- * them. Cap the panel itself instead. `:where()` keeps this a default that
- * any component's own width - the combobox's, say - wins over.
- */
 :root {
   --kicl--components--popover--border-radius: var(--kicl-size-half);
   --kicl--components--popover--padding: var(--kicl-gutter-narrow);
 }
 
+/*
+ * `fit-content` stops `position-area` stretching the panel across the area
+ * beside the trigger. `:where()` keeps it a default a component's own width
+ * overrides.
+ */
 :where(.kicl--components--popover__content) {
   inline-size: fit-content;
 }
@@ -39,11 +34,7 @@ $gaps: (
   &__content {
     --kicl--components--popover--background-color: var(--kicl-surface-color);
     --kicl--components--popover--border-color: var(--kicl-surface-border-color);
-
-    /* Which side of the trigger the panel prefers. Modifiers move this. */
     --kicl--components--popover--position-area: block-end span-inline-end;
-
-    /* The gap to the trigger, and the axis it sits on. Modifiers set both. */
     --kicl--components--popover--offset: var(--kicl-gutter-narrow);
     --kicl--components--popover--margin-block: var(
       --kicl--components--popover--offset
@@ -62,37 +53,19 @@ $gaps: (
     padding: var(--kicl--components--popover--padding);
 
     /*
-     * Held against the trigger rather than the window.
-     *
-     * A popover is placed by the browser in the centre of the viewport, with
-     * `inset: 0` and automatic margins - right for a modal, wrong for
-     * something that belongs to a control. Clearing those hands placement to
-     * the anchor instead, and the margin becomes the gap between the two,
-     * applied on every side so it survives a flip.
-     *
-     * Guarded, because a browser without anchor positioning has no way to
-     * relate the two boxes. There it keeps the centred placement, which is
-     * plain but never lands off-screen.
+     * The browser centres a popover with `inset: 0` and auto margins, so this
+     * clears them for the anchor. Without anchor positioning the panel stays
+     * centred, which is plain but never off-screen.
      */
     @supports (position-area: block-end) {
       inset: auto;
 
-      /*
-       * Only on the axis facing the trigger, so the panel's edge still lines
-       * up with the trigger's. Both ends of that axis carry it, so the gap
-       * survives a flip to the other side.
-       */
+      // Both ends of the axis facing the trigger carry the margin, so the gap
+      // survives a flip.
       margin-block: var(--kicl--components--popover--margin-block);
       margin-inline: var(--kicl--components--popover--margin-inline);
       position-anchor: var(--kicl--components--popover--anchor);
       position-area: var(--kicl--components--popover--position-area);
-
-      /*
-       * The preferred side is a preference. When the panel would not fit
-       * there, the browser tries the opposite side, then the opposite
-       * inline side, then both - so a picker near the foot of the window
-       * opens upward instead of off the edge.
-       */
       position-try-fallbacks: var(
         --kicl--components--popover--fallbacks,
         flip-block,
@@ -101,12 +74,8 @@ $gaps: (
       );
     }
 
-    /*
-     * The panel stays mounted while closed, so it has a state to animate from
-     * and one to animate to. `allow-discrete` is what carries `display` and
-     * the top layer through the transition rather than switching them at the
-     * first frame.
-     */
+    // `allow-discrete` keeps `display` and the top layer through the
+    // transition instead of switching them on the first frame.
     opacity: 0;
     transition:
       opacity var(--kicl-transition-duration-fast),
@@ -129,11 +98,8 @@ $gaps: (
       }
     }
 
-    /*
-     * Side and alignment. The span is the direction the panel grows in from
-     * the trigger: towards the end to line up with its start, away from it to
-     * line up with its end, and across both for the centre.
-     */
+    // To line up with the trigger's start the panel spans toward the end, and
+    // the reverse for end.
     @each $side, $axis in $sides {
       $across: block;
 
@@ -148,11 +114,6 @@ $gaps: (
       );
 
       @each $align, $span in $spans {
-        /*
-         * `--align` is for what's inside: text and items line up the way the
-         * panel does. Above or below the trigger that's the panel's own
-         * alignment; beside it, the side facing the trigger.
-         */
         $text: $align;
 
         @if $side == inline-start {

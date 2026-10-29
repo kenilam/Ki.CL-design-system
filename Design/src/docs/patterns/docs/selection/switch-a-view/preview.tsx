@@ -32,11 +32,13 @@ const Preview: React.FC = () => {
       size={5}
     >
       <List fill={view === 'grid' ? 6 : 12} gap='narrow'>
-        {PLACES.map((place) => (
-          <Card is='li' key={place} size='default' variant='secondary'>
-            <Text is='span'>{place}</Text>
-          </Card>
-        ))}
+        {PLACES.map((place) => {
+          return (
+            <Card is='li' key={place} size='default' variant='secondary'>
+              <Text is='span'>{place}</Text>
+            </Card>
+          );
+        })}
       </List>
     </Card>
   );

@@ -11,7 +11,6 @@ const description = <>For a date next to a post or a change.</>;
 
 const name = 'A date';
 
-/** The preset as `Preview` reads it, with the example's own file as its code. */
 const Preset = (
   <Origin code={source} description={description} name={name}>
     <Preview />

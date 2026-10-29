@@ -1,20 +1,9 @@
 :root {
-  // font-family
   --kicl-font-family: 'roboto', #{$base-font};
   --kicl-font-family-bold: 'roboto', #{$base-font};
   --kicl-font-family-special: 'mic-32-new-web', #{$base-font};
-
-  /*
-   * The voice for data: version numbers, scores, identifiers, counts.
-   *
-   * Set in the brand face these read as prose, which is why nothing on the page
-   * currently looks like a measurement. A fixed advance width also stops a
-   * column of figures from shifting as the digits change.
-   */
   --kicl-font-family-mono: 'roboto-mono', ui-monospace, 'Menlo', monospace;
   --kicl-font-size: #{$base-font-size};
-
-  // font-size
   --kicl-font-size-smallest: 0.75rem;
   --kicl-font-size-smaller: 0.8125rem;
   --kicl-font-size-small: 0.875rem;
@@ -25,8 +14,6 @@
   --kicl-font-size-largest: 4rem;
   --kicl-font-size-huge: clamp(var(--kicl-font-size-large), 12dvi, 5rem);
   --kicl-font-size-extreme: min(25dvw, 10rem);
-
-  // font-weight
   --kicl-font-weight-lightest: 100;
   --kicl-font-weight-lighter: 200;
   --kicl-font-weight-light: 300;
@@ -34,19 +21,13 @@
   --kicl-font-weight-bold: 600;
   --kicl-font-weight-bolder: 700;
   --kicl-font-weight-boldest: 800;
-
-  // letter-spacing
   --kicl-letter-spacing: 0.08rem;
-
-  // line-height
   --kicl-line-height-dense: 0.7;
   --kicl-line-height-narrowest: 0.8;
   --kicl-line-height-narrower: 1;
   --kicl-line-height-narrow: 1.2;
   --kicl-line-height: 1.5;
   --kicl-line-height-wide: 1.8;
-
-  // font-style
   --kicl-font-style-italic: italic;
   --kicl-font-style-oblique: oblique;
 }
@@ -95,8 +76,8 @@
   text-align: justify;
 }
 
-// One line, ending in an ellipsis when there isn't room. It can shrink below
-// its text, and no wider than its grid cell even when not stretched to it.
+// The size limits let it shrink below its text and keep it inside a grid cell
+// it isn't stretched to.
 .kicl-text-truncate {
   max-inline-size: 100%;
   min-inline-size: 0;
@@ -164,7 +145,6 @@
 @include make-variable-class('line-height', 'wide');
 @include make-variable-class('line-height', 'dense');
 
-// How lines break: `balance` evens out short headings, `pretty` avoids a lone last word.
 :root {
   --kicl-text-wrap-balance: balance;
   --kicl-text-wrap-pretty: pretty;

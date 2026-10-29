@@ -15,13 +15,15 @@ import { CLASS_NAME } from './constants';
 const InputGroupTextarea = React.forwardRef<
   HTMLTextAreaElement,
   InputGroupTextareaProps
->(({ className, ...rest }, ref) => (
-  <Textarea
-    ref={ref}
-    className={classNames(`${CLASS_NAME}__control`, className)}
-    {...rest}
-  />
-));
+>(({ className, ...rest }, ref) => {
+  return (
+    <Textarea
+      ref={ref}
+      className={classNames(`${CLASS_NAME}__control`, className)}
+      {...rest}
+    />
+  );
+});
 
 InputGroupTextarea.displayName = 'InputGroupTextarea';
 

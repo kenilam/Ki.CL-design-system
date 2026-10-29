@@ -14,7 +14,6 @@ const FormDescription = React.forwardRef<
 >(({ className, ...rest }, ref) => {
   const item = useContext(FormItemContext);
 
-  // No paragraph with nothing in it.
   if (!rest.children) {
     return null;
   }

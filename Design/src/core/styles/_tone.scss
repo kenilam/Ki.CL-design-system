@@ -1,12 +1,7 @@
 @use 'sass:map';
 @use './_color.scss' as *;
 
-/*
- * A component's colour and its three looks, as `--{block}--tone`,
- * `--{block}--tone-secondary`, `-tertiary` and `-ghost`: its level's, or
- * neutral's without one. Its variants read these, so a level needs no rule of
- * its own. Include it at the top of the component's root rule.
- */
+// Include it at the top of the component's root rule.
 @mixin level-tones($block) {
   --#{$block}--tone: var(--kicl-color-neutral);
 

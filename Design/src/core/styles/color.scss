@@ -17,13 +17,10 @@
 
   @include theme-alphas('black', 'white');
 
-  // functional
   --kicl-color-warning: #{$warning};
   --kicl-color-info: var(--kicl-color-blue);
   --kicl-color-error: var(--kicl-color-red);
   --kicl-color-confirm: var(--kicl-color-green);
-
-  // The colour of a component with no level. The themes restate it.
   --kicl-color-neutral: var(--kicl-color-black);
 
   @include level-looks($level-steps);

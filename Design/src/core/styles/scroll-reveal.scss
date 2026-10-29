@@ -1,17 +1,3 @@
-/*
- * Scroll reveal: an element fades and slides into place as it scrolls into
- * view, and back out as it leaves at the other edge, so scrolling back up works
- * the same way. The suffix sets the direction: from below by default, or from
- * the inline start or end, as for the two sides of a chat.
- *
- * Two animations on one view timeline, one over the entry range and one over
- * the exit range. Each only applies on its own side (the first before and
- * during entry, the second during and after exit), so in between the element
- * keeps its normal styles.
- *
- * Where view timelines aren't supported, or the person prefers reduced motion,
- * the element isn't animated.
- */
 :root {
   --kicl-scroll-reveal-distance: var(--kicl-gutter-wide);
 }

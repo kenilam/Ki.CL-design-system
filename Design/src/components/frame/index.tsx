@@ -11,11 +11,6 @@ import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--frame';
 
-/**
- * Frames one full-screen element: the window less a gap on every side, with
- * rounded corners that clip what bleeds past them. The top follows the global
- * header as it shows and hides.
- */
 const Frame: React.FunctionComponent<Props> = ({
   animate = true,
   children,
@@ -24,8 +19,8 @@ const Frame: React.FunctionComponent<Props> = ({
   delay = 0,
   grow,
   ...rest
-}) =>
-  React.cloneElement(children, {
+}) => {
+  return React.cloneElement(children, {
     ...rest,
     className: classNames(
       CLASS_NAME,
@@ -42,6 +37,7 @@ const Frame: React.FunctionComponent<Props> = ({
       ...children.props.style,
     } as React.CSSProperties,
   });
+};
 
 Frame.displayName = 'Frame';
 

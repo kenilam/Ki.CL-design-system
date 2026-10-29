@@ -1,5 +1,4 @@
 .kicl--components--animation--property--blur {
-  /* How blurred and how faint it gets when out. */
   --kicl--components--animation--property--blur--radius: 0;
   --kicl--components--animation--property--blur--opacity: 1;
   --kicl--components--animation--transition-property: filter, opacity;
@@ -7,7 +6,6 @@
   filter: blur(var(--kicl--components--animation--property--blur--radius));
   opacity: var(--kicl--components--animation--property--blur--opacity);
 
-  /* Where it starts when entering, and ends when leaving: the variables move, the properties follow. */
   @starting-style {
     --kicl--components--animation--property--blur--radius: var(
       --kicl-gutter-narrow

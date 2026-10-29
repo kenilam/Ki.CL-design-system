@@ -33,7 +33,9 @@ const Preview: React.FC = () => {
   const total =
     20 +
     DELIVERY[delivery] +
-    extras.reduce((sum, extra) => sum + EXTRAS[extra], 0);
+    extras.reduce((sum, extra) => {
+      return sum + EXTRAS[extra];
+    }, 0);
 
   return (
     <Card
@@ -43,41 +45,47 @@ const Preview: React.FC = () => {
     >
       <Form
         {...form}
-        onSubmit={form.handleSubmit((values) => form.reset(values))}
+        onSubmit={form.handleSubmit((values) => {
+          form.reset(values);
+        })}
       >
         <FormField
           control={form.control}
           name='delivery'
-          render={({ field }) => (
-            <FormItem>
-              <RadioGroup
-                legend='Delivery'
-                name={field.name}
-                onValueChange={field.onChange}
-                value={field.value}
-              >
-                <Radio value='standard'>Standard, 3 to 5 days, free</Radio>
-                <Radio value='express'>Express, next day, $6</Radio>
-              </RadioGroup>
-            </FormItem>
-          )}
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <RadioGroup
+                  legend='Delivery'
+                  name={field.name}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  <Radio value='standard'>Standard, 3 to 5 days, free</Radio>
+                  <Radio value='express'>Express, next day, $6</Radio>
+                </RadioGroup>
+              </FormItem>
+            );
+          }}
         />
         <FormField
           control={form.control}
           name='extras'
-          render={({ field }) => (
-            <FormItem>
-              <CheckboxGroup
-                legend='Extras'
-                name={field.name}
-                onValueChange={field.onChange}
-                value={field.value}
-              >
-                <Checkbox value='wrap'>Gift wrap, $3</Checkbox>
-                <Checkbox value='card'>A card with a note, $1</Checkbox>
-              </CheckboxGroup>
-            </FormItem>
-          )}
+          render={({ field }) => {
+            return (
+              <FormItem>
+                <CheckboxGroup
+                  legend='Extras'
+                  name={field.name}
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  <Checkbox value='wrap'>Gift wrap, $3</Checkbox>
+                  <Checkbox value='card'>A card with a note, $1</Checkbox>
+                </CheckboxGroup>
+              </FormItem>
+            );
+          }}
         />
         <Text className='kicl-font-weight-bold' role='status'>
           Total ${total.toFixed(2)}

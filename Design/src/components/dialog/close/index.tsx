@@ -23,7 +23,6 @@ import { useDialog } from 'design/components/dialog/context';
 
 const CLASS_NAME = `${DIALOG}--close`;
 
-/** Sticks to the top of the panel; fixed to the window when full screen. */
 const Close: React.FunctionComponent = () => {
   const { closable, closeIcon: CloseIcon, fullScreen, id } = useDialog();
   const t = useCopy();

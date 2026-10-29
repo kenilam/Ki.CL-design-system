@@ -15,14 +15,16 @@ const Preview: React.FC<Props> = (props) => {
         control={form.control}
         name='start'
         rules={{ required: 'Pick a start date.' }}
-        render={({ field }) => (
-          <DatePicker
-            label='Start date'
-            onValueChange={field.onChange}
-            value={field.value}
-            {...props}
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <DatePicker
+              label='Start date'
+              onValueChange={field.onChange}
+              value={field.value}
+              {...props}
+            />
+          );
+        }}
       />
     </Form>
   );

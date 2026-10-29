@@ -3,7 +3,6 @@ import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 import { CARD_VARIANTS } from 'design/components/card/spec';
 import { COLUMN_SPANS, SIDES } from 'design/components/spec';
 
-/** The props the reader can toggle on the page, and the type an example takes. */
 export const CONTROLS = {
   modal: 'boolean',
   size: { options: COLUMN_SPANS, default: 4 },

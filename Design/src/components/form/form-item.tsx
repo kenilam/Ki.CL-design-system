@@ -27,9 +27,9 @@ const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
     const id = useId();
     const described =
       Boolean(description) ||
-      React.Children.toArray(children).some(
-        (child) => React.isValidElement(child) && child.type === FormDescription
-      );
+      React.Children.toArray(children).some((child) => {
+        return React.isValidElement(child) && child.type === FormDescription;
+      });
 
     return (
       <FormItemContext.Provider

@@ -13,7 +13,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from 'design/components/popover';
-import { Text } from 'design/components/text';
 
 // Helpers
 import { mergeRefs } from 'design/helper';
@@ -32,17 +31,11 @@ import * as Spec from './spec';
 
 const CLASS_NAME = 'kicl--components--breadcrumb';
 
-/**
- * Where a page sits, on one line. While the page's name is cut short, the
- * crumbs fold into a menu one at a time from the start, and a crumb without a
- * link is left out of it. Once every crumb has folded, the name truncates.
- */
 const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
   ({ className, crumbs, current, ...rest }, ref) => {
     const t = useCopy();
     const { node, rect } = useResizeObserver<HTMLElement>();
 
-    // How many crumbs have folded, for the width it was worked out at.
     const [fit, setFit] = useState({ folded: 0, width: 0 });
     const width = Math.round(rect?.width ?? 0);
     const fitted = fit.width === width ? fit.folded : 0;
@@ -50,10 +43,12 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
 
     const menu = crumbs
       .slice(0, fitted)
-      .filter((crumb): crumb is Spec.Crumb & Spec.Page => Boolean(crumb.to));
+      .filter((crumb): crumb is Spec.Crumb & Spec.Page => {
+        return Boolean(crumb.to);
+      });
 
     const trail = [
-      menu.length > 0 && (
+      menu.length > 0 ? (
         <Popover key='menu'>
           <PopoverTrigger asChild>
             <Button
@@ -68,39 +63,23 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
             <Menu crumbs={menu} />
           </PopoverContent>
         </Popover>
-      ),
-      ...crumbs.slice(fitted).map(({ name, to }) =>
-        to ? (
+      ) : null,
+      ...crumbs.slice(fitted).map(({ name, to }) => {
+        return to ? (
           <HyperLink className='kicl-text-nowrap' key={name} to={to}>
             {name}
           </HyperLink>
-        ) : (
-          <Text
-            className='kicl-text-nowrap'
-            is='span'
-            key={name}
-            variant='secondary'
-          >
-            {name}
-          </Text>
-        )
-      ),
-      <Text
-        aria-current='page'
-        className={classNames('kicl-font-weight-bold', 'kicl-text-truncate')}
-        is='span'
-        key='current'
-      >
+        ) : null;
+      }),
+      <HyperLink className='kicl-text-nowrap' key={current} to=''>
         {current}
-      </Text>,
-    ].filter((crumb) => crumb !== false);
+      </HyperLink>,
+    ].filter((crumb) => {
+      return crumb !== null;
+    });
 
-    /*
-     * Measured before paint. A new width starts again with every crumb
-     * shown, so a wider screen gets them back. While the page's name is cut
-     * short, or the line still overflows, one more crumb folds. Only JS can
-     * tell that text is cut short.
-     */
+    // CSS can't tell when text is cut short, so this folds one more crumb per
+    // pass until nothing overflows.
     useLayoutEffect(() => {
       const element = node.current;
       const page = element?.querySelector('[aria-current="page"]');
@@ -135,12 +114,14 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
           ref={mergeRefs(ref, node)}
           {...rest}
         >
-          {trail.map((crumb, index) => (
-            <React.Fragment key={crumb.key}>
-              {index > 0 && <Ri.RiArrowRightSLine aria-hidden />}
-              {crumb}
-            </React.Fragment>
-          ))}
+          {trail.map((crumb, index) => {
+            return (
+              <React.Fragment key={crumb.key}>
+                {index > 0 ? <Ri.RiArrowRightSLine aria-hidden /> : null}
+                {crumb}
+              </React.Fragment>
+            );
+          })}
         </nav>
       </Layout>
     );

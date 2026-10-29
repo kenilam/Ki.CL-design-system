@@ -22,20 +22,22 @@ const Preview: React.FC<Props> = (props) => {
         control={form.control}
         name='terms'
         rules={{ required: 'Accept the terms to continue.' }}
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <Checkbox
-                checked={field.value}
-                onCheckedChange={field.onChange}
-                {...props}
-              >
-                I accept the terms
-              </Checkbox>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
+        render={({ field }) => {
+          return (
+            <FormItem>
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  {...props}
+                >
+                  I accept the terms
+                </Checkbox>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          );
+        }}
       />
       <Button type='submit'>Continue</Button>
     </Form>

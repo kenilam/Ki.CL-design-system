@@ -1,6 +1,6 @@
 /**
- * The hex of a colour token, read by painting it: a computed `color` can come
- * back as `oklab()` or `color-mix()`, which a reader can't compare.
+ * Read by painting the colour: a computed `color` can come back as `oklab()`
+ * or `color-mix()`, which can't be compared.
  */
 const toHex = (probe: HTMLElement, name: string) => {
   const canvas = document.createElement('canvas').getContext('2d', {
@@ -17,7 +17,9 @@ const toHex = (probe: HTMLElement, name: string) => {
   canvas.fillRect(0, 0, 1, 1);
 
   return `#${Array.from(canvas.getImageData(0, 0, 1, 1).data.slice(0, 3))
-    .map((channel) => channel.toString(16).padStart(2, '0'))
+    .map((channel) => {
+      return channel.toString(16).padStart(2, '0');
+    })
     .join('')}`;
 };
 

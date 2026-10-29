@@ -37,32 +37,28 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
 
     const words = text.split(/(\s+)/);
 
-    const renderPiece = (piece: string, order: number) => (
-      <Animation
-        delay={delay + stagger * order}
-        duration={duration}
-        easing={easing}
-        property={property}
-        key={order}
-      >
-        <span aria-hidden className='kicl-display-inline-block'>
-          {piece}
-        </span>
-      </Animation>
-    );
+    const renderPiece = (piece: string, order: number) => {
+      return (
+        <Animation
+          delay={delay + stagger * order}
+          duration={duration}
+          easing={easing}
+          property={property}
+          key={order}
+        >
+          <span aria-hidden className='kicl-display-inline-block'>
+            {piece}
+          </span>
+        </Animation>
+      );
+    };
 
     return (
-      /*
-       * `is` arrives as the whole union, so TypeScript cannot pick the
-       * matching branch of the polymorphic props through a spread. The
-       * value is correct by construction; only the narrowing is lost.
-       */
       <Text
         {...(props as React.ComponentProps<typeof Text>)}
         className={classNames(CLASS_NAME, className)}
         ref={ref}
       >
-        {/* Read once as a word; the letters below are only for the eye. */}
         <span className='kicl-hidden'>{text}</span>
         {words.map((word, index) => {
           if (/^\s*$/.test(word)) {
@@ -77,9 +73,9 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
 
           return (
             <span className='kicl-text-nowrap' key={index}>
-              {word
-                .split('')
-                .map((letter, offset) => renderPiece(letter, start + offset))}
+              {word.split('').map((letter, offset) => {
+                return renderPiece(letter, start + offset);
+              })}
             </span>
           );
         })}

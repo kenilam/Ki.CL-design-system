@@ -13,14 +13,16 @@ const Preview: React.FC<Props> = (props) => {
         control={form.control}
         name='name'
         rules={{ required: 'Enter your name.' }}
-        render={({ field }) => (
-          <Input
-            {...field}
-            description='Shown next to your comments.'
-            label='Name'
-            {...props}
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <Input
+              {...field}
+              description='Shown next to your comments.'
+              label='Name'
+              {...props}
+            />
+          );
+        }}
       />
       <Button type='submit'>Save</Button>
     </Form>

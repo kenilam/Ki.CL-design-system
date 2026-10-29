@@ -11,59 +11,58 @@ type Props = {
   items: LegendItem[];
 };
 
-/**
- * What the colours and line styles in a diagram mean: one outlined chip per
- * item, the key filled in the item's level and the meaning beside it.
- */
-const Legend: React.FunctionComponent<Props> = ({ items }) => (
-  <List display='flex' gap='narrow' wrap>
-    {items.map(({ label, level, value }) => (
-      <ListItem key={label}>
-        <Layout
-          alignContent='center'
-          alignItems='center'
-          autoFlow='column'
-          display='inline-grid'
-          gap='narrow'
-          justifyContent='center'
-          justifyItems='center'
-        >
-          <Text
-            level={level}
-            className={classNames(
-              'kicl-border-radius-sm',
-              'kicl-padding-inline-end-narrow'
-            )}
-            is='code'
-            variant='secondary'
-          >
-            <Text
-              level={level}
-              className={classNames(
-                'kicl-line-height-narrower',
-                'kicl-padding-inline-narrower'
-              )}
-              is='code'
+const Legend: React.FunctionComponent<Props> = ({ items }) => {
+  return (
+    <List display='flex' gap='narrow' wrap>
+      {items.map(({ label, level, value }) => {
+        return (
+          <ListItem key={label}>
+            <Layout
+              alignContent='center'
+              alignItems='center'
+              autoFlow='column'
+              display='inline-grid'
+              gap='narrow'
+              justifyContent='center'
+              justifyItems='center'
             >
-              {label}
-            </Text>
-            {/* The chip is a `code` for its outline; the meaning is plain copy. */}
-            <Text
-              is='span'
-              dense
-              className={classNames(
-                'kicl-font-family',
-                'kicl-font-weight-light',
-                'kicl-line-height-narrower'
-              )}
-            >
-              {value}
-            </Text>
-          </Text>
-        </Layout>
-      </ListItem>
-    ))}
-  </List>
-);
+              <Text
+                level={level}
+                className={classNames(
+                  'kicl-border-radius-sm',
+                  'kicl-padding-inline-end-narrow'
+                )}
+                is='code'
+                variant='secondary'
+              >
+                <Text
+                  level={level}
+                  className={classNames(
+                    'kicl-line-height-narrower',
+                    'kicl-padding-inline-narrower'
+                  )}
+                  is='code'
+                >
+                  {label}
+                </Text>
+                <Text
+                  is='span'
+                  dense
+                  className={classNames(
+                    'kicl-font-family',
+                    'kicl-font-weight-light',
+                    'kicl-line-height-narrower'
+                  )}
+                >
+                  {value}
+                </Text>
+              </Text>
+            </Layout>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
+};
 
 export { Legend };

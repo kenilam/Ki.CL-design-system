@@ -24,7 +24,6 @@
 .kicl--components--details {
   padding-block-start: var(--kicl--components--details--padding-block-start);
 
-  // A rule between stacked disclosures, so each summary reads as its own row.
   & + & {
     --kicl--components--details--padding-block-start: var(--kicl-gutter);
 
@@ -36,13 +35,12 @@
     interpolate-size: allow-keywords;
   }
 
-  // Native content slot - fade + height (height needs interpolate-size).
   &::details-content {
     block-size: 0;
     opacity: var(--kicl--components--details--content--opacity);
     overflow: clip;
 
-    // A link's underline is a shadow under its line, so the last link needs room past the edge.
+    // Room for a link's underline, which is a shadow below the line.
     overflow-clip-margin: var(--kicl-size-3px);
     transition-duration: var(
       --kicl--components--details--content--transition-duration
@@ -54,7 +52,6 @@
     transition-behavior: allow-discrete;
   }
 
-  // `gap`: the content slot itself is the column, so the content needs no wrapper.
   @each $gap in extreme, none, narrow, narrower, narrowest, normal, wide, wider,
     widest {
     $token: --kicl-gutter-#{$gap};
@@ -104,12 +101,6 @@
     --kicl--components--details--summary--marker--rotate: 180deg;
   }
 
-  /*
-   * Paper cannot be clicked, so every disclosure prints open. The content
-   * slot shows whatever state the element is in, and a closed one keeps the
-   * space under its summary that an open one has. The marker has nothing to
-   * say on paper: it carries `kicl-print-hidden`.
-   */
   @media print {
     &::details-content {
       block-size: auto;

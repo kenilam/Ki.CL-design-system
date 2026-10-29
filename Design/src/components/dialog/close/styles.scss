@@ -5,11 +5,8 @@
     margin-inline-end: 0;
   }
 
-  /*
-   * In the header's place in the panel's grid, at its end. A grid item that
-   * doesn't stretch stays stuck for the panel's whole height, not just its
-   * own row, so it holds a gutter from the top while the content scrolls.
-   */
+  /* Not stretched, so the sticky button stays stuck for the panel's whole
+   * height, not just its row. */
   &--close {
     align-self: start;
     grid-area: 1 / 1;

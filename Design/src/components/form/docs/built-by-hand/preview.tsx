@@ -22,16 +22,18 @@ const Preview: React.FC = () => {
         control={form.control}
         name='name'
         rules={{ required: 'Enter your name.' }}
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Name</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
-            <FormDescription>Shown next to your comments.</FormDescription>
-            <FormMessage />
-          </FormItem>
-        )}
+        render={({ field }) => {
+          return (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormDescription>Shown next to your comments.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          );
+        }}
       />
       <Button type='submit'>Save</Button>
     </Form>

@@ -19,18 +19,20 @@ const Preview: React.FC<Props> = (props) => {
       <FormField
         control={form.control}
         name='period'
-        render={({ field }) => (
-          <Segmented
-            name={field.name}
-            onValueChange={field.onChange}
-            value={field.value}
-            {...props}
-          >
-            <legend>Billing</legend>
-            <SegmentedItem value='monthly'>Monthly</SegmentedItem>
-            <SegmentedItem value='yearly'>Yearly</SegmentedItem>
-          </Segmented>
-        )}
+        render={({ field }) => {
+          return (
+            <Segmented
+              name={field.name}
+              onValueChange={field.onChange}
+              value={field.value}
+              {...props}
+            >
+              <legend>Billing</legend>
+              <SegmentedItem value='monthly'>Monthly</SegmentedItem>
+              <SegmentedItem value='yearly'>Yearly</SegmentedItem>
+            </Segmented>
+          );
+        }}
       />
       <Button type='submit'>Save</Button>
     </Form>

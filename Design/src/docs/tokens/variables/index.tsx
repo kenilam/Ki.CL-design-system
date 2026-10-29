@@ -77,29 +77,31 @@ const Variables: React.FunctionComponent<Props> = ({
         ref: probe,
       })}
       <List alignItems='start' fill={isMobile ? 12 : fill} gap='normal'>
-        {names.map((name) => (
-          <ListItem fill={12} gap='narrowest' justifyItems='start' key={name}>
-            <Layout alignItems='center' autoFlow='column' gap='narrow'>
-              <span>
-                <Text is='code'>{`--kicl-${name}`}</Text>
-                {values[name]?.startsWith('#') && (
-                  <span
-                    aria-hidden
-                    className='kicl-border-radius-xs kicl-box-shadow-overlay kicl-padding-narrow'
-                    style={{ backgroundColor: `var(--kicl-${name})` }}
-                  />
-                )}
-              </span>
-            </Layout>
-            <Text
-              className='kicl-font-family-mono kicl-font-size-small'
-              is='span'
-            >
-              {`${property ?? `--kicl-${name}`}: ${values[name] ?? ''}`}
-            </Text>
-            {Preview && <Preview name={name} />}
-          </ListItem>
-        ))}
+        {names.map((name) => {
+          return (
+            <ListItem fill={12} gap='narrowest' justifyItems='start' key={name}>
+              <Layout alignItems='center' autoFlow='column' gap='narrow'>
+                <span>
+                  <Text is='code'>{`--kicl-${name}`}</Text>
+                  {values[name]?.startsWith('#') ? (
+                    <span
+                      aria-hidden
+                      className='kicl-border-radius-xs kicl-box-shadow-overlay kicl-padding-narrow'
+                      style={{ backgroundColor: `var(--kicl-${name})` }}
+                    />
+                  ) : null}
+                </span>
+              </Layout>
+              <Text
+                className='kicl-font-family-mono kicl-font-size-small'
+                is='span'
+              >
+                {`${property ?? `--kicl-${name}`}: ${values[name] ?? ''}`}
+              </Text>
+              {Preview ? <Preview name={name} /> : null}
+            </ListItem>
+          );
+        })}
       </List>
     </>
   );

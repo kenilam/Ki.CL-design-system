@@ -16,7 +16,9 @@ const Preview: React.FC = () => {
       <RadioGroup
         legend='Size'
         name='size'
-        onValueChange={(value) => setSize(value as keyof typeof SIZES)}
+        onValueChange={(value) => {
+          setSize(value as keyof typeof SIZES);
+        }}
         value={size}
       >
         <Radio value='small'>Small</Radio>

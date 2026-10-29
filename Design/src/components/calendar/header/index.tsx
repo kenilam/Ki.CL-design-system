@@ -29,9 +29,9 @@ const Header: React.FunctionComponent = () => {
     >
       <Button
         aria-label={t('action_previous_month')}
-        onClick={() =>
-          setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1))
-        }
+        onClick={() => {
+          setMonth(new Date(month.getFullYear(), month.getMonth() - 1, 1));
+        }}
         size='small'
         variant='secondary'
       >
@@ -45,9 +45,9 @@ const Header: React.FunctionComponent = () => {
       </output>
       <Button
         aria-label={t('action_next_month')}
-        onClick={() =>
-          setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1))
-        }
+        onClick={() => {
+          setMonth(new Date(month.getFullYear(), month.getMonth() + 1, 1));
+        }}
         size='small'
         variant='secondary'
       >

@@ -14,26 +14,30 @@ const Preview: React.FC = () => {
         control={form.control}
         name='name'
         rules={{ required: 'Enter your name' }}
-        render={({ field }) => (
-          <Input
-            {...field}
-            description='Shown next to your comments.'
-            label='Name'
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <Input
+              {...field}
+              description='Shown next to your comments.'
+              label='Name'
+            />
+          );
+        }}
       />
       <FormField
         control={form.control}
         name='email'
         rules={{ required: 'Enter an email address' }}
-        render={({ field }) => (
-          <EmailInput
-            {...field}
-            description='For the confirmation only.'
-            label='Email'
-            placeholder='you@example.com'
-          />
-        )}
+        render={({ field }) => {
+          return (
+            <EmailInput
+              {...field}
+              description='For the confirmation only.'
+              label='Email'
+              placeholder='you@example.com'
+            />
+          );
+        }}
       />
       <Button type='submit'>Create account</Button>
     </Form>

@@ -8,7 +8,6 @@ export type FormFieldContextValue<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   name: TName;
-  /** From the field's `rules.required`. */
   required: boolean;
 };
 

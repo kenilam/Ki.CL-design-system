@@ -2,17 +2,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 /**
- * Whether an overlay's contents belong in the page: from the moment it starts
- * to open until its closing transition has finished. A closed dialog, sheet or
- * popover keeps only its own element, so a `command` or `popovertarget` button
- * can still find it, and nothing inside it stays mounted or keeps running.
- *
- * `open` is for an overlay its props open; its contents go in on the render
- * that opens it, before the effect that shows it. One a button opens is heard
- * from the element: `command` for a dialog, since not every browser sends a
- * dialog `beforetoggle` yet, and `beforetoggle` for a popover. Both come
- * before it shows, so the contents go in synchronously and it opens with them
- * rather than filling in a frame later.
+ * Listens for `command` because not every browser sends a dialog
+ * `beforetoggle` yet. The contents go in synchronously so the overlay opens
+ * with them, not a frame later.
  */
 const useOverlayContents = (
   node: React.RefObject<HTMLElement | null>,
@@ -45,7 +37,9 @@ const useOverlayContents = (
     const opening = () => {
       if (!showing.current) {
         showing.current = true;
-        flushSync(() => setShown(true));
+        flushSync(() => {
+          setShown(true);
+        });
       }
     };
 
@@ -61,12 +55,11 @@ const useOverlayContents = (
       }
     };
 
-    // Out once whatever it animates on the way out, itself or inside, is done.
     const closed = () => {
       void Promise.allSettled(
-        element
-          .getAnimations({ subtree: true })
-          .map((animation) => animation.finished)
+        element.getAnimations({ subtree: true }).map((animation) => {
+          return animation.finished;
+        })
       ).then(() => {
         if (!element.matches(':popover-open, [open]')) {
           setShown(false);

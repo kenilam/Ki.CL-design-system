@@ -7,10 +7,7 @@ import { CSSUnit } from 'design/helper';
 
 type Theme = 'dark' | 'light';
 
-/**
- * A cookie rather than local storage, so a server can read the choice and
- * render in it once there is one that renders.
- */
+/** A cookie, not local storage, so a future server render can read it. */
 const COOKIE_NAME = 'kicl-theme';
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
@@ -27,7 +24,9 @@ const subscribe = (listener: () => void) => {
 const readCookie = (): Theme | undefined => {
   const value = document.cookie
     .split('; ')
-    .find((entry) => entry.startsWith(`${COOKIE_NAME}=`))
+    .find((entry) => {
+      return entry.startsWith(`${COOKIE_NAME}=`);
+    })
     ?.split('=')[1];
 
   return value === 'dark' || value === 'light' ? value : undefined;
@@ -36,12 +35,14 @@ const readCookie = (): Theme | undefined => {
 const setTheme = (theme: Theme) => {
   document.cookie = `${COOKIE_NAME}=${theme}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
 
-  listeners.forEach((listener) => listener());
+  listeners.forEach((listener) => {
+    listener();
+  });
 };
 
 const DARK_THEME_CLASS_NAME = 'kicl--theme--dark';
 
-/** The class of a light island inside the dark theme. */
+/** For a light island inside the dark theme. */
 const LIGHT_THEME_CLASS_NAME = 'kicl--theme--light';
 
 type Breakpoint = 'desktop' | 'mobile' | 'tablet' | 'wide';
@@ -65,11 +66,6 @@ const breakpoints: Breakpoints = {
   wide: CSSUnit({ values: root.getPropertyValue('--kicl-breakpoint-wide') }),
 };
 
-/**
- * The window's breakpoints and the theme. The theme is the person's pick from
- * the cookie, then the system's light preference, and dark otherwise. Its
- * class goes on the body.
- */
 const useResponsive = () => {
   const isLightColorSchemePrefers = useMediaQuery({
     query: '(prefers-color-scheme: light)',
@@ -84,10 +80,9 @@ const useResponsive = () => {
   }, [theme]);
 
   /*
-   * Paper is light. The dark theme would print as a sheet of ink under pale
-   * type, so its class comes off for the print and goes back after. It is
-   * done on the element, in the event: the browser lays the print out as
-   * soon as the handler returns, and a state update would land too late.
+   * The dark class comes off for printing. It's done on the element in the
+   * event because the browser lays out the print as soon as the handler
+   * returns, before a state update would land.
    */
   useEffect(() => {
     if (theme !== 'dark') {

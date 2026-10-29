@@ -7,6 +7,7 @@ export const CONTROLS = {
   // A read-only field shows its look only with something in it.
   readOnly: { options: 'boolean', with: { defaultValue: 'John Smith' } },
   required: 'boolean',
+  'aria-invalid': 'boolean',
 } satisfies ControlsSpec;
 
 export type Props = Controlled<typeof Input, keyof typeof CONTROLS>;

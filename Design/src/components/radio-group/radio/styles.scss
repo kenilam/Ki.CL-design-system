@@ -20,10 +20,13 @@
       );
     }
 
-    &[aria-invalid='true'],
     &:user-invalid {
       border-color: var(--kicl-color-error);
     }
+  }
+
+  &[aria-invalid='true'] &__item__control {
+    border-color: var(--kicl-color-error);
   }
 
   @at-root .kicl--theme--dark &__item__control {

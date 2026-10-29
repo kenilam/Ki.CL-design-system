@@ -13,6 +13,7 @@ export const CONTROLS = {
     },
   },
   required: 'boolean',
+  'aria-invalid': 'boolean',
 } satisfies ControlsSpec;
 
 export type Props = Controlled<typeof Textarea, keyof typeof CONTROLS>;

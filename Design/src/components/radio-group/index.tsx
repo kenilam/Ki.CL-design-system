@@ -58,6 +58,7 @@ const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
           <fieldset
             ref={ref}
             className={classNames(CLASS_NAME, className)}
+            role='radiogroup'
             {...rest}
           >
             {legend ? (

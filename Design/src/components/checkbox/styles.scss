@@ -54,11 +54,6 @@
     --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 11V13H19V11H5Z'/%3E%3C/svg%3E");
   }
 
-  &[aria-invalid='true'],
-  &:user-invalid {
-    --kicl--components--checkbox--color: var(--kicl-color-error);
-  }
-
   @at-root .kicl--theme--dark & {
     --kicl--components--checkbox--color: var(--kicl-color-grey);
     --kicl--components--checkbox--checked-color: var(--kicl-color-white);
@@ -67,6 +62,11 @@
   @at-root .kicl--theme--light & {
     --kicl--components--checkbox--color: var(--kicl-color-grey-900);
     --kicl--components--checkbox--checked-color: var(--kicl-color-grey-900);
+  }
+
+  &[aria-invalid='true'],
+  &:user-invalid {
+    --kicl--components--checkbox--color: var(--kicl-color-error);
   }
 }
 

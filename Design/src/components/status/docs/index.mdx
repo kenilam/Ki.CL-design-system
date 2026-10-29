@@ -1,5 +1,6 @@
 import { Preset as Basic } from './basic';
 import { Preset as WithATitle } from './with-a-title';
+import { Preset as OnlyALevel } from './only-a-level';
 import { CONTROLS } from './controls';
 
 A short title and message about how something went: an error, a warning or information. A message without a title shows the level's icon in front of it. With neither, the level's default title shows, such as "Something went wrong" for an error.
@@ -7,6 +8,7 @@ A short title and message about how something went: an error, a warning or infor
 <Preview controls={CONTROLS} replay>
   {Basic}
   {WithATitle}
+  {OnlyALevel}
 </Preview>
 
 `headingLevel` sets where the title sits in the page outline, from `h1` to `h6`. The title keeps the `h4` size at every level, so the toggle changes the code and the markup but not the look.

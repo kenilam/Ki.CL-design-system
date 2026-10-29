@@ -13,6 +13,7 @@ export const CONTROLS = {
     options: PROPERTIES,
     default: 'slide-from-bottom',
   },
+  in: { options: 'boolean', live: true },
 } as const satisfies ControlsSpec;
 
 /** A message alone has no heading, so only a preset with a title takes its level. */

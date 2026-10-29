@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
@@ -37,6 +37,12 @@ const Video = React.forwardRef<HTMLElement, Spec.Props>(
   ) => {
     const [loading, isLoading] = useState(true);
 
+    const video = useCallback((node: HTMLVideoElement | null) => {
+      if (node && node.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        isLoading(false);
+      }
+    }, []);
+
     const onLoadedData: Spec.Props['onLoadedData'] = (event) => {
       isLoading(false);
 
@@ -64,6 +70,7 @@ const Video = React.forwardRef<HTMLElement, Spec.Props>(
           {/* oxlint-disable-next-line jsx-a11y/media-has-caption */}
           <video
             {...rest}
+            ref={video}
             className={classNames(
               'kicl-block-size-full',
               'kicl-inline-size-full'

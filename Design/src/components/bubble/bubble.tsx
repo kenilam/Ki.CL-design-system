@@ -8,8 +8,7 @@ import type { BubbleIs, BubbleProps } from './spec';
 const CLASS_NAME = 'kicl--components--bubble';
 
 /**
- * One chat message - API aligned with
- * https://ui.shadcn.com/docs/components/base/bubble
+ * One chat message.
  */
 const Bubble = React.forwardRef<HTMLElement, BubbleProps>(
   (

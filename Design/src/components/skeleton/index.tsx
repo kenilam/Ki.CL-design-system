@@ -9,8 +9,7 @@ const CLASS_NAME = 'kicl--components--skeleton';
 
 /**
  * Pulsing placeholder, hidden from assistive tech (pass `aria-hidden={false}`
- * to expose it) - API aligned with
- * https://ui.shadcn.com/docs/components/skeleton
+ * to expose it).
  */
 const Skeleton = React.forwardRef<HTMLDivElement, Props>(
   ({ className, ...rest }, ref) => (

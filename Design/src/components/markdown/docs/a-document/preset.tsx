@@ -12,10 +12,9 @@ const description = (
   <>
     More than one paragraph renders as blocks: <Text is='code'>#</Text> for a
     heading, <Text is='code'>-</Text> or <Text is='code'>1.</Text> for a list,{' '}
-    <Text is='code'>&gt;</Text> for a quote, <Text is='code'>---</Text> for a
-    rule and <Text is='code'>![alt](url)</Text> for an image. A heading&apos;s
-    level is its number of <Text is='code'>#</Text>, so pick the one that fits
-    the page.
+    <Text is='code'>&gt;</Text> for a quote and <Text is='code'>---</Text> for a
+    rule. A heading&apos;s level is its number of <Text is='code'>#</Text>, so
+    pick the one that fits the page.
   </>
 );
 

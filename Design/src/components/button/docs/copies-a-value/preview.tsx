@@ -2,8 +2,17 @@ import React from 'react';
 
 import { CopyButton } from 'design/components';
 
-const Preview: React.FC = () => (
-  <CopyButton showLabel value='npm install @ki-cl/design' variant='secondary' />
+import type { Props } from 'design/components/button/docs/controls';
+
+const Preview: React.FC<Omit<Props, 'lookLikeHyperLink' | 'unstyled'>> = (
+  props
+) => (
+  <CopyButton
+    showLabel
+    value='npm install @ki-cl/design'
+    variant='secondary'
+    {...props}
+  />
 );
 
 export { Preview };

@@ -117,7 +117,12 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
           {trail.map((crumb, index) => {
             return (
               <React.Fragment key={crumb.key}>
-                {index > 0 ? <Ri.RiArrowRightSLine aria-hidden /> : null}
+                {index > 0 ? (
+                  <Ri.RiArrowRightSLine
+                    aria-hidden
+                    className='kicl-rtl-mirror'
+                  />
+                ) : null}
                 {crumb}
               </React.Fragment>
             );

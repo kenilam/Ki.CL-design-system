@@ -1,3 +1,6 @@
+// Libraries
+import i18next from 'i18next';
+
 import type { CalendarProps, DateRange } from './spec';
 
 export const startOfDay = (date: Date) => {
@@ -45,7 +48,7 @@ export const isInRange = (date: Date, range?: DateRange) => {
 };
 
 export const monthLabel = (date: Date) => {
-  return date.toLocaleString(undefined, {
+  return date.toLocaleString(i18next.language, {
     month: 'long',
     year: 'numeric',
   });
@@ -62,7 +65,7 @@ export const seedMonth = (props: CalendarProps) => {
 };
 
 export const dayLabel = (date: Date) => {
-  return date.toLocaleDateString(undefined, {
+  return date.toLocaleDateString(i18next.language, {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -75,8 +78,8 @@ export const weekdays = () => {
   return Array.from({ length: 7 }, (_, index) => {
     const date = new Date(2024, 0, 7 + index);
     return {
-      long: date.toLocaleDateString(undefined, { weekday: 'long' }),
-      short: date.toLocaleDateString(undefined, { weekday: 'short' }),
+      long: date.toLocaleDateString(i18next.language, { weekday: 'long' }),
+      short: date.toLocaleDateString(i18next.language, { weekday: 'short' }),
     };
   });
 };

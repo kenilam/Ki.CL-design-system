@@ -1,7 +1,10 @@
+// Libraries
+import i18next from 'i18next';
+
 import type { DateRange } from 'design/components/calendar';
 
 export const defaultFormatDate = (date: Date) => {
-  return date.toLocaleDateString(undefined, {
+  return date.toLocaleDateString(i18next.language, {
     year: 'numeric',
     month: 'short',
     day: 'numeric',

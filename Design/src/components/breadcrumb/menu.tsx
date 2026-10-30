@@ -47,7 +47,7 @@ const Menu: React.FunctionComponent<MenuProps> = ({ className, crumbs }) => {
                   })}
                   is='span'
                 >
-                  <Icon />
+                  <Icon className='kicl-rtl-mirror' />
                 </Text>
               }
               to={to}

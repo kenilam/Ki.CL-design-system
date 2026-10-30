@@ -35,7 +35,7 @@ const Header: React.FunctionComponent = () => {
         size='small'
         variant='secondary'
       >
-        <Ri.RiArrowLeftSLine aria-hidden />
+        <Ri.RiArrowLeftSLine aria-hidden className='kicl-rtl-mirror' />
       </Button>
       <output
         id={titleId}
@@ -51,7 +51,7 @@ const Header: React.FunctionComponent = () => {
         size='small'
         variant='secondary'
       >
-        <Ri.RiArrowRightSLine aria-hidden />
+        <Ri.RiArrowRightSLine aria-hidden className='kicl-rtl-mirror' />
       </Button>
     </caption>
   );

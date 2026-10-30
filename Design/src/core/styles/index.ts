@@ -16,6 +16,7 @@ import './columns.scss';
 import './contain.scss';
 import './backdrop.scss';
 import './breakpoint.scss';
+import './direction.scss';
 import './display.scss';
 import './duration.scss';
 import './ease.scss';

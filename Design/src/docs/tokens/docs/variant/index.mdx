@@ -2,7 +2,7 @@ import { Variants } from './variants';
 
 `variant` says how much a component stands out, from a filled `primary` down to an outlined `ghost`.
 
-`primary` fills with the level's colour, and its label is black or white, whichever reads against that fill. `secondary` and `tertiary` put a faint, see-through wash of the level's colour behind a label in that colour, with `tertiary` the fainter of the two. `ghost` has no fill, only an edge and a label in the level's colour.
+`primary` fills with the level's color, and its label is black or white, whichever reads against that fill. `secondary` and `tertiary` put a faint, see-through wash of the level's color behind a label in that color, with `tertiary` the fainter of the two. `ghost` has no fill, only an edge and a label in the level's color.
 
 Button, Badge, Card, Bubble, Text and Popover take it, and `InputGroupButton` takes `primary` or `ghost`. Badge has no `tertiary` and Card has no `ghost`. Card tints its own surface instead of a wash: see-through for `secondary`, solid for `tertiary`.
 
@@ -10,7 +10,7 @@ Button, Badge, Card, Bubble, Text and Popover take it, and `InputGroupButton` ta
 
 ## Classes
 
-Variant is a prop, not a utility, so it has no variables or `kicl-*` classes of its own. Each component turns it into its own modifier class, `kicl--components--{component}--variant--{variant}`. Don't write those by hand. Set the prop, and the component picks the colours from its `level`, or `neutral` without one.
+Variant is a prop, not a utility, so it has no variables or `kicl-*` classes of its own. Each component turns it into its own modifier class, `kicl--components--{component}--variant--{variant}`. Don't write those by hand. Set the prop, and the component picks the colors from its `level`, or `neutral` without one.
 
 ```tsx
 // Filled, for the one action that matters most on the page

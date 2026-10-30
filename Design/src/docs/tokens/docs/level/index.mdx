@@ -2,13 +2,13 @@ import { Levels } from './levels';
 import { Variables } from 'design/docs/tokens/variables';
 import { LEVELS } from 'design/components/spec';
 
-`level` says what something means, and each level has a colour: `neutral`, `confirm`, `error`, `info` and `warning`.
+`level` says what something means, and each level has a color: `neutral`, `confirm`, `error`, `info` and `warning`.
 
-`neutral` is black on a light page and white on a dark one, and a component with no level takes it. The same level is the same colour on Button, Badge, Card, Bubble, Heading, Text, Status, Markdown and Diagram. Status has no `neutral` or `confirm`.
+`neutral` is black on a light page and white on a dark one, and a component with no level takes it. The same level is the same color on Button, Badge, Card, Bubble, Heading, Text, Status, Markdown and Diagram. Status has no `neutral` or `confirm`.
 
-Level and variant are separate props, and each component combines them its own way. A secondary error button has a faint wash of `--kicl-color-error-secondary` behind a label in that colour. A card with a level colours its edge, or, when it's `tertiary`, tints its surface. The steps each level's looks come from are on [Color](../tokens/foundations/color).
+Level and variant are separate props, and each component combines them its own way. A secondary error button has a faint wash of `--kicl-color-error-secondary` behind a label in that color. A card with a level colors its edge, or, when it's `tertiary`, tints its surface. The steps each level's looks come from are on [Color](../tokens/foundations/color).
 
-Colour alone doesn't say what something means to everyone, so pair a level with words or an icon, as Status does.
+Color alone doesn't say what something means to everyone, so pair a level with words or an icon, as Status does.
 
 <Levels />
 
@@ -32,7 +32,7 @@ MDN: [`<color>`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Valu
 
 ## Classes
 
-In a component, use the `level` prop, so the label, the fill and the edge stay in step. Outside one, the same colours apply with `kicl-color-{level}`, `kicl-background-color-{level}` and `kicl-fill-{level}`, where `{level}` is `neutral`, `confirm`, `error`, `info` or `warning`, with `-secondary`, `-tertiary`, `-ghost` or `-ink` for a look.
+In a component, use the `level` prop, so the label, the fill and the edge stay in step. Outside one, the same colors apply with `kicl-color-{level}`, `kicl-background-color-{level}` and `kicl-fill-{level}`, where `{level}` is `neutral`, `confirm`, `error`, `info` or `warning`, with `-secondary`, `-tertiary`, `-ghost` or `-ink` for a look.
 
 ```tsx
 // A card with its edge in the error colour

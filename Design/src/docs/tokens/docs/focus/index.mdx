@@ -4,7 +4,7 @@ Someone using the keyboard needs to see where focus is, and the fixed header sho
 
 ## Focus ring
 
-Links, buttons, fields, `summary` and `video` draw an outline from three variables. The style is `none` until the element takes keyboard focus, when `:focus-visible` switches it to `dashed`. Clicking a link or button doesn't show the ring, but clicking into a text field does, because the browser expects typing there. Tab always shows it. The colour follows the theme, so the ring keeps its contrast on both.
+Links, buttons, fields, `summary` and `video` draw an outline from three variables. The style is `none` until the element takes keyboard focus, when `:focus-visible` switches it to `dashed`. Clicking a link or button doesn't show the ring, but clicking into a text field does, because the browser expects typing there. Tab always shows it. The color follows the theme, so the ring keeps its contrast on both.
 
 An element that only script focuses, with `tabindex='-1'`, has no ring. That's how `#main` takes focus after a route change, so a screen reader starts at the new page without a stray outline.
 

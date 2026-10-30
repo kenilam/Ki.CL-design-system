@@ -4,10 +4,21 @@ import React, { useEffect } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'design/router';
 
 // Components
-import { Heading, Text } from 'design/components';
+import {
+  Button,
+  Dialog,
+  Heading,
+  HyperLink,
+  Menu,
+  Text,
+} from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
+
+const reload = () => {
+  window.location.reload();
+};
 
 const ErrorElement: React.FunctionComponent = () => {
   const error = useRouteError();
@@ -29,29 +40,57 @@ const ErrorElement: React.FunctionComponent = () => {
     });
   }, [error, t]);
 
+  if (!error) {
+    return null;
+  }
+
+  let message = String(error);
+
   if (isRouteErrorResponse(error)) {
-    return (
-      <main>
-        <Heading is='h1'>
-          {t('route_error', { status: error.status, text: error.statusText })}
-        </Heading>
-        <Text>{String(error.data)}</Text>
-      </main>
-    );
+    message = t('route_error', {
+      status: error.status,
+      text: error.statusText,
+    });
   }
 
   if (error instanceof Error) {
-    return (
-      <main>
-        <Heading is='h1'>{error.message}</Heading>
+    message = error.message;
+  }
+
+  return (
+    <Dialog
+      closable={false}
+      footer={
+        <Menu aria-label={t('title_error')} justifyContent='end'>
+          <HyperLink
+            lookLikeButton
+            reloadDocument
+            size='small'
+            to='/'
+            variant='secondary'
+          >
+            {t('action_home')}
+          </HyperLink>
+          <Button onClick={reload} size='small'>
+            {t('action_reload')}
+          </Button>
+        </Menu>
+      }
+      header={
+        <Heading dense is='h2' lookLike='h4'>
+          {t('title_error')}
+        </Heading>
+      }
+      open
+    >
+      <Text>{message}</Text>
+      {import.meta.env.DEV && error instanceof Error ? (
         <Text is='pre'>
           <Text is='code'>{error.stack}</Text>
         </Text>
-      </main>
-    );
-  }
-
-  return null;
+      ) : null}
+    </Dialog>
+  );
 };
 
 export { ErrorElement };

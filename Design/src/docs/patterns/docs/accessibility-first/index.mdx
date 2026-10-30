@@ -1,6 +1,6 @@
 Accessibility determines who can use your product, how independently they can use it, and how much effort it takes.
 
-A button that only works with a mouse excludes someone navigating by keyboard. An unlabeled control leaves a screen reader user guessing. An error communicated only through colour can leave someone unaware that anything went wrong.
+A button that only works with a mouse excludes someone navigating by keyboard. An unlabeled control leaves a screen reader user guessing. An error communicated only through color can leave someone unaware that anything went wrong.
 
 These aren't unusual edge cases. They're ordinary interface decisions that work for some people and create barriers for others.
 
@@ -14,13 +14,13 @@ The goal isn't to add accessibility to a finished product. It's to build a produ
 
 The best place to start is often the browser itself.
 
-Native HTML elements already provide much of the behaviour accessible interfaces need: keyboard interaction, focus handling, accessible names, states and form validation.
+Native HTML elements already provide much of the behavior accessible interfaces need: keyboard interaction, focus handling, accessible names, states and form validation.
 
-Using those elements consistently also makes behaviour more predictable across the product.
+Using those elements consistently also makes behavior more predictable across the product.
 
 When a requirement isn't met by your existing components, look for a native element before building a custom one. A `<dialog>`, `<details>`, `<input type="date">` or native form validation may already solve much of the problem.
 
-Native elements aren't automatically accessible in every context, but they're a stronger starting point than rebuilding browser behaviour without a good reason.
+Native elements aren't automatically accessible in every context, but they're a stronger starting point than rebuilding browser behavior without a good reason.
 
 From there, accessibility becomes part of every step of development.
 
@@ -54,11 +54,11 @@ Body text is 16px and secondary text 14px, and the smallest size is 12px. [Contr
 
 Size things with rem and the column scale rather than fixed pixel widths. Then the page reflows to a 320px-wide window without scrolling sideways, and text can be zoomed to 200% without anything being cut off.
 
-Don't rely on colour alone. An error needs words as well as red, and `FormMessage` and `Status` both say what went wrong.
+Don't rely on color alone. An error needs words as well as red, and `FormMessage` and `Status` both say what went wrong.
 
 Small text needs a contrast of at least 4.5:1 against its background, and large text 3:1. The edges of controls and focus rings need 3:1 as well.
 
-Dark mode helps people with light sensitivity and anyone reading at night. You get it by using the colour roles instead of fixed colours.
+Dark mode helps people with light sensitivity and anyone reading at night. You get it by using the color roles instead of fixed colors.
 
 ## Interaction and motion
 

@@ -10,6 +10,8 @@ import { BASE, CYLINDER_EDGE } from './constants';
 import type { Node } from './spec';
 
 const ICON_SIZE = 14;
+const LINE_SIZE = 16;
+const LINE_START = 18;
 const ROW_SIZE = 24;
 const TITLE_SIZE = 30;
 
@@ -76,7 +78,7 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
               ) : null}
               <text
                 className={`${BASE}-name`}
-                x={x + (Icon ? 10 + ICON_SIZE + 10 : row.type ? 62 : 10)}
+                x={x + (Icon ? 10 + ICON_SIZE + 10 : row.type ? 84 : 10)}
                 y={baseline}
               >
                 {row.name}
@@ -99,7 +101,9 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
   }
 
   const middle = y + offset + (h - offset) / 2;
-  const titleY = lines?.length ? middle - (lines.length * 14) / 2 : middle + 5;
+  const titleY = lines?.length
+    ? middle - (lines.length * LINE_SIZE) / 2
+    : middle + 5;
 
   return (
     <>
@@ -122,7 +126,7 @@ const NodeContents: React.FunctionComponent<{ node: Node }> = ({ node }) => {
             key={line}
             textAnchor='middle'
             x={cx}
-            y={titleY + 16 + index * 14}
+            y={titleY + LINE_START + index * LINE_SIZE}
           >
             {line}
           </text>

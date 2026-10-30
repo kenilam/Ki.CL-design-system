@@ -194,6 +194,15 @@ MDN: [`inset-inline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
   preview={Placement}
 />
 
+## Mirroring
+
+```tsx
+// Points to where the next crumb is, in either reading direction
+<Ri.RiArrowRightSLine aria-hidden className='kicl-rtl-mirror' />
+```
+
+`kicl-rtl-mirror` flips an icon on a right-to-left page. Use it on icons that point along the reading direction, such as arrows. Leave out anything that means the same either way, like play buttons and clocks.
+
 ## References
 
 - [MDN, Logical properties and values](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values)

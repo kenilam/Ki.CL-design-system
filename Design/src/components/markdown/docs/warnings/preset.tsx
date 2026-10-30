@@ -1,25 +1,24 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Flags something deprecated or removed. <Text is='code'>{'{warning}'}</Text>{' '}
-    and <Text is='code'>{'{error}'}</Text> after the code show it in those
-    colours.
-  </>
-);
+const description = <Copy id='markdown_preset_warnings' />;
 
 const name = 'Warnings';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='markdown_preset_warnings_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

@@ -1,21 +1,14 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a field in a form, with its rule on the <Text is='code'>FormField</Text>
-    . Saving it empty shows the error under it.
-  </>
-);
+const description = <Copy id='input_preset_in_a_form' />;
 
 const name = 'In a form';
 
@@ -24,6 +17,7 @@ const Preset = (
     controls={{ readOnly: null }}
     code={source}
     description={description}
+    label='input_preset_in_a_form_name'
     name={name}
   >
     <Preview />

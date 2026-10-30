@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>For a section title that should look smaller than its level.</>
-);
+const description = <Copy id='heading_preset_small_section_title' />;
 
 const name = 'Small section title';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='heading_preset_small_section_title_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

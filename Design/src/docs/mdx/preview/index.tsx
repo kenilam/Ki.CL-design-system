@@ -22,6 +22,7 @@ import { DARK_THEME_CLASS_NAME } from 'design/hooks';
 import { useCopy } from 'design/locales/use-copy';
 
 // Partials
+import { useDocsCopy } from 'design/docs/mdx/copy';
 import { Code } from './code';
 import {
   type Control,
@@ -66,6 +67,8 @@ export type Controlled<
 export type { ControlsSpec } from './controls';
 
 type PresetProps = React.PropsWithChildren<{
+  /** The key of its name on the page. `name` stays in English for the code. */
+  label: Parameters<ReturnType<typeof useDocsCopy>>[0];
   name: string;
   /**
    * The example's own file, read with `?raw`. Its component must be named
@@ -225,6 +228,7 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
   span,
 }) => {
   const t = useCopy();
+  const docsCopy = useDocsCopy();
   const { slug = '' } = useParams();
 
   const presets = React.Children.toArray(children).filter(
@@ -357,10 +361,10 @@ const Preview: React.FunctionComponent<PreviewProps> = ({
             value={chosen}
           >
             <legend>{t('docs_preset')}</legend>
-            {presets.map(({ props: { name } }) => {
+            {presets.map(({ props: { label, name } }) => {
               return (
                 <SegmentedItem key={name} value={name}>
-                  {name}
+                  {docsCopy(label)}
                 </SegmentedItem>
               );
             })}

@@ -1,28 +1,24 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    The same select with its parts written out:{' '}
-    <Text is='code'>SelectTrigger</Text> holding{' '}
-    <Text is='code'>SelectValue</Text>, then{' '}
-    <Text is='code'>SelectContent</Text> around the options.
-  </>
-);
+const description = <Copy id='select_preset_parts_written_out' />;
 
 const name = 'Parts written out';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='select_preset_parts_written_out_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

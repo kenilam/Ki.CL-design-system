@@ -1,22 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a calendar that opens on dates chosen before, like an existing booking.
-  </>
-);
+const description = <Copy id='calendar_preset_already_picked' />;
 
 const name = 'Already picked';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='calendar_preset_already_picked_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

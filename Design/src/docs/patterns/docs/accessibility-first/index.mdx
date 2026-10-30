@@ -1,94 +1,15 @@
-Accessibility determines who can use your product, how independently they can use it, and how much effort it takes.
+<Copy id='pattern_accessibility_first_intro' />
 
-A button that only works with a mouse excludes someone navigating by keyboard. An unlabeled control leaves a screen reader user guessing. An error communicated only through color can leave someone unaware that anything went wrong.
+<Copy id='pattern_accessibility_first_start_with_the_system' />
 
-These aren't unusual edge cases. They're ordinary interface decisions that work for some people and create barriers for others.
+<Copy id='pattern_accessibility_first_research' />
 
-Accessibility is about removing those barriers. It's about letting people understand information, navigate an interface and complete tasks without unnecessary obstacles.
+<Copy id='pattern_accessibility_first_content' />
 
-It's also an engineering concern. When accessibility is considered from the start, it shapes research, content, design, component APIs and testing. When it's postponed until after launch, the same problems can be spread across components, pages and user journeys, making them harder and more expensive to fix.
+<Copy id='pattern_accessibility_first_visual_design' />
 
-The goal isn't to add accessibility to a finished product. It's to build a product that works for more people from the beginning.
+<Copy id='pattern_accessibility_first_interaction_and_motion' />
 
-## Start with the system
+<Copy id='pattern_accessibility_first_build' />
 
-The best place to start is often the browser itself.
-
-Native HTML elements already provide much of the behavior accessible interfaces need: keyboard interaction, focus handling, accessible names, states and form validation.
-
-Using those elements consistently also makes behavior more predictable across the product.
-
-When a requirement isn't met by your existing components, look for a native element before building a custom one. A `<dialog>`, `<details>`, `<input type="date">` or native form validation may already solve much of the problem.
-
-Native elements aren't automatically accessible in every context, but they're a stronger starting point than rebuilding browser behavior without a good reason.
-
-From there, accessibility becomes part of every step of development.
-
-## Research
-
-Accessibility starts with who you learn from.
-
-Include disabled people in research from the start. Ask the questions you'd ask anyone, then add a few about how they get around: which assistive technology they use, what slows them down, and what workarounds they rely on.
-
-Recruiting can take longer, so plan for it.
-
-## Content
-
-The words on a page, and the order they come in, decide whether people can follow it.
-
-Give every page a title, and every dialog too. Someone who can't see a transition relies on the title to know where they've landed. A `Dialog` takes its name from its `header`.
-
-Use headings to give the page a structure. Screen reader users move between headings to skim, so pick each heading's level for its place in the outline, and use `lookLike` if it should look bigger or smaller.
-
-Write plainly: short sentences, everyday words, and acronyms spelled out the first time.
-
-Keep the reading order the same as the visual order. If a total updates when an option changes, put the total after the options, where focus will reach it next.
-
-Give everything that isn't text a text alternative. An image needs `alt` text, and a button with only an icon needs an `aria-label`.
-
-## Visual design
-
-Visual design decides whether people can read the page at their own size and in their own conditions.
-
-Body text is 16px and secondary text 14px, and the smallest size is 12px. [Contrast and size](../tokens/accessibility/contrast) has the details.
-
-Size things with rem and the column scale rather than fixed pixel widths. Then the page reflows to a 320px-wide window without scrolling sideways, and text can be zoomed to 200% without anything being cut off.
-
-Don't rely on color alone. An error needs words as well as red, and `FormMessage` and `Status` both say what went wrong.
-
-Small text needs a contrast of at least 4.5:1 against its background, and large text 3:1. The edges of controls and focus rings need 3:1 as well.
-
-Dark mode helps people with light sensitivity and anyone reading at night. You get it by using the color roles instead of fixed colors.
-
-## Interaction and motion
-
-Not everyone uses a mouse, has a steady hand or reads at the same pace.
-
-Make controls at least 24px, and bigger where you can, especially on touch screens. A button, or a link styled as one, is easier to hit than a short text link.
-
-Avoid time limits. Where one can't be avoided, let people extend it.
-
-Anything that moves on its own for more than five seconds needs a way to pause or stop it. Motion should also stop when someone turns on reduced motion in their system settings. [Reduced motion](../tokens/accessibility/reduced-motion) lists what the components already do.
-
-## Build
-
-Then check the result the way people will use it.
-
-- Test with the keyboard alone. Everything should be reachable, in a sensible order, with a visible focus ring.
-- Test with a screen reader: VoiceOver on macOS and iOS, NVDA on Windows, TalkBack on Android.
-- Zoom to 200% and check that nothing is cut off or overlapping.
-- Run an automated check too, but don't stop there. It can't tell whether a name makes sense or an order is logical.
-
-## References
-
-- [WCAG 2.2, 3.2 Predictable](https://www.w3.org/WAI/WCAG22/Understanding/predictable)
-- [WCAG 2.2, 2.4.2 Page Titled](https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html)
-- [WCAG 2.2, 1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html)
-- [WCAG 2.2, 1.3.2 Meaningful Sequence](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html)
-- [WCAG 2.2, 1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html)
-- [WCAG 2.2, 1.4.1 Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
-- [WCAG 2.2, 1.4.10 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
-- [WCAG 2.2, 1.4.4 Resize Text](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html)
-- [WCAG 2.2, 2.5.8 Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
-- [WCAG 2.2, 2.2.1 Timing Adjustable](https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html)
-- [WCAG 2.2, 2.2.2 Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)
+<Copy id='pattern_accessibility_first_references' />

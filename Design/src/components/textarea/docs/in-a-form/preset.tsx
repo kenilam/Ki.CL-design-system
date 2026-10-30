@@ -1,22 +1,14 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a message in a form, with a length rule on the{' '}
-    <Text is='code'>FormField</Text>. Sending it empty or too long shows the
-    error under it.
-  </>
-);
+const description = <Copy id='textarea_preset_in_a_form' />;
 
 const name = 'In a form';
 
@@ -25,6 +17,7 @@ const Preset = (
     controls={{ readOnly: null }}
     code={source}
     description={description}
+    label='textarea_preset_in_a_form_name'
     name={name}
   >
     <Preview />

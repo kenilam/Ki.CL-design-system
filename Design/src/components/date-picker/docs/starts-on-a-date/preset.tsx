@@ -1,18 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <>For editing a date that was saved before.</>;
+const description = <Copy id='date_picker_preset_starts_on_a_date' />;
 
 const name = 'Starts on a date';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='date_picker_preset_starts_on_a_date_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

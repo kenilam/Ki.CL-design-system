@@ -1,22 +1,14 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a box a form needs ticked, like accepting terms. It has no label prop,
-    since its text is its name, so it goes in a <Text is='code'>FormItem</Text>{' '}
-    with its message.
-  </>
-);
+const description = <Copy id='checkbox_preset_in_a_form' />;
 
 const name = 'In a form';
 
@@ -25,6 +17,7 @@ const Preset = (
     controls={{ checked: null }}
     code={source}
     description={description}
+    label='checkbox_preset_in_a_form_name'
     name={name}
   >
     <Preview />

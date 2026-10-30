@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Only an icon and text around the field, so the group is a label, and a click
-    anywhere in it focuses the field.
-  </>
-);
+const description = <Copy id='input_group_preset_a_label' />;
 
 const name = 'A label';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='input_group_preset_a_label_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

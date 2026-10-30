@@ -1,18 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <>Colours a status so it reads at a glance.</>;
+const description = <Copy id='text_preset_code_with_a_look' />;
 
 const name = 'Code with a look';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='text_preset_code_with_a_look_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

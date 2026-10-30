@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { COLUMNS_CONTROLS } from 'design/components/layout/docs/controls';
@@ -9,9 +10,7 @@ import { COLUMNS_CONTROLS } from 'design/components/layout/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>Lays things out on 12 columns. On phones every item is full width.</>
-);
+const description = <Copy id='layout_preset_columns' />;
 
 const name = 'Columns';
 
@@ -20,6 +19,7 @@ const Preset = (
     code={source}
     controls={COLUMNS_CONTROLS}
     description={description}
+    label='layout_preset_columns_name'
     name={name}
   >
     <Preview />

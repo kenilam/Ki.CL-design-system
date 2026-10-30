@@ -1,24 +1,24 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    A section title with a smaller one under it, an <Text is='code'>h2</Text>{' '}
-    then an <Text is='code'>h3</Text>.
-  </>
-);
+const description = <Copy id='heading_preset_two_headings' />;
 
 const name = 'Two headings';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='heading_preset_two_headings_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

@@ -1,23 +1,15 @@
 import { Specimen } from 'design/docs/tokens/previews';
 import { Variables } from 'design/docs/tokens/variables';
 
-These rules keep text readable at every size. Two things go below them on purpose, disabled controls and placeholders, and both are explained below.
+<Text><Copy id='token_contrast_intro' /></Text>
 
-## Secondary text
-
-Secondary text, like `Text variant='secondary'`, a faded heading or a hint, is `--kicl-color-neutral-a64`, or the secondary look of its level. On the page that gives about 5.3:1 on light and 7.4:1 on dark, above the 4.5:1 WCAG AA asks of small text. A wash, like a hover, is `--kicl-color-neutral-a16`, since it sits behind text rather than being read.
+<Copy id='token_contrast_secondary_text' />
 
 <Variables names={['color-neutral-a64', 'color-neutral-a16']} />
 
-## Text size
+<Copy id='token_contrast_text_size' />
 
-Body text is 16px, and the smallest size, `smallest`, is 12px. `smaller` is 13px and `small` 14px. Sizes are in rem, so these are at the browser's default 16px and grow with the reader's settings. Body line height is 1.5.
-
-On iOS, fields never drop below 16px, since Safari zooms the page into any smaller field when it takes focus.
-
-### font-size
-
-MDN: [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-size).
+<Copy id='token_contrast_font_size' />
 
 <Variables
   names={['font-size-smallest', 'font-size']}
@@ -25,31 +17,16 @@ MDN: [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Pr
   property='font-size'
 />
 
-### line-height
-
-MDN: [`line-height`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/line-height).
+<Copy id='token_contrast_line_height' />
 
 <Variables names={['line-height']} preview={Specimen} property='line-height' />
 
-## Disabled
+<Copy id='token_contrast_disabled' />
 
-A disabled control fades to 40% and shows a `not-allowed` cursor, and its label gets the same cursor. A disabled button also loses a little saturation. WCAG doesn't ask disabled controls to meet contrast.
-
-A disabled fieldset doesn't fade itself, only its controls, so its legend stays readable.
-
-### opacity
-
-MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/opacity).
+<Copy id='token_contrast_opacity' />
 
 <Variables names={['disabled-opacity']} property='opacity' />
 
-## Highlights and placeholders
+<Copy id='token_contrast_highlights_and_placeholders' />
 
-`mark` is filled with the warning color, and its text picks the color that contrasts with it (`contrast-color()`). A placeholder is the body color at 50%, which is lighter than 4.5:1 on purpose: it's a hint, so every field still needs a visible label.
-
-## References
-
-- [WCAG 2.2, 1.4.3 Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
-- [WCAG 2.2, 1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
-- [WCAG 2.2, 1.4.4 Resize Text](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html)
-- [MDN, `contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color)
+<Copy id='token_contrast_references' />

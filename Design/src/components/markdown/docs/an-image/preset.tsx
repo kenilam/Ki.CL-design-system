@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>For a picture, with its description in the square brackets.</>
-);
+const description = <Copy id='markdown_preset_an_image' />;
 
 const name = 'An image';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='markdown_preset_an_image_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

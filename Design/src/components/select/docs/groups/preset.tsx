@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>Splits a long list under headings, like cities by region.</>
-);
+const description = <Copy id='select_preset_groups' />;
 
 const name = 'Groups';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='select_preset_groups_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

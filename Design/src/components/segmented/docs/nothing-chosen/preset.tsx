@@ -1,18 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <>Before anything is picked, no option is highlighted.</>;
+const description = <Copy id='segmented_preset_nothing_chosen' />;
 
 const name = 'Nothing chosen';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='segmented_preset_nothing_chosen_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

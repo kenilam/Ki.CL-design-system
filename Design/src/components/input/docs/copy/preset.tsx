@@ -1,18 +1,14 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a link or token the user needs to copy. The field can't be edited, and
-    the button copies the whole value even when it's cut short.
-  </>
-);
+const description = <Copy id='input_preset_copy' />;
 
 const name = 'Copy';
 
@@ -21,6 +17,7 @@ const Preset = (
     code={source}
     controls={{ readOnly: null }}
     description={description}
+    label='input_preset_copy_name'
     name={name}
   >
     <Preview />

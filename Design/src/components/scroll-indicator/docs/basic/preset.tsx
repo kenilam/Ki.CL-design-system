@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>Scroll the text and the bar at the top fills up to show how far you are.</>
-);
+const description = <Copy id='scroll_indicator_preset_basic' />;
 
 const name = 'Basic';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='scroll_indicator_preset_basic_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

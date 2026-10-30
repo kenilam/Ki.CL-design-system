@@ -1,13 +1,11 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Display } from 'design/docs/tokens/previews';
 
-Classes that set `display` on an element that isn't laid out with the Layout component. For grid and flex layouts, use Layout and its props.
+<Text><Copy id='token_display_intro' /></Text>
 
-## Variables
+<Copy id='token_display_variables' />
 
-### display
-
-MDN: [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display).
+<Copy id='token_display_display' />
 
 <Variables
   names={[
@@ -47,9 +45,7 @@ MDN: [`display`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
   preview={Display}
 />
 
-## Classes
-
-The pattern is `kicl-display-{keyword}`, where `{keyword}` is any value above.
+<Copy id='token_display_classes' />
 
 ```tsx
 // Takes up no space and isn't read out
@@ -62,15 +58,9 @@ The pattern is `kicl-display-{keyword}`, where `{keyword}` is any value above.
 <div className='kicl-display-contents' />
 ```
 
-Single keywords only: the two-value syntax, like `block flow`, has no class.
+<Copy id='token_display_part_5' />
 
-`kicl-layout` is the class the Layout component puts on its child. Use the component.
-
-## Subgrid
-
-`kicl-grid-template-rows-subgrid` makes a grid item a grid on its parent's rows, and `kicl-grid-row-span-{1…6}` says how many rows it takes. Cards in a grid line up their parts this way: each card takes as many rows as it has parts, and the tallest picture, title or description in a row sets that row for every card.
-
-An item stretches to its row unless told otherwise: `kicl-align-self-{start|center|end|stretch}` sets where it sits in the row, and `kicl-justify-self-{start|center|end|stretch}` where it sits across its column.
+<Copy id='token_display_subgrid' />
 
 ```tsx
 <List fill={6}>

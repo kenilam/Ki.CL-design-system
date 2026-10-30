@@ -1,28 +1,24 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    When the first cell names its row, make it a <Text is='code'>th</Text> with{' '}
-    <Text is='code'>scope=&apos;row&apos;</Text>. Screen readers then read it
-    with every cell in the row. It keeps the body&apos;s weight, so the column
-    headers still stand out.
-  </>
-);
+const description = <Copy id='table_preset_row_headers' />;
 
 const name = 'Row headers';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='table_preset_row_headers_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

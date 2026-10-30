@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>For a question with buttons to answer it, like confirming a delete.</>
-);
+const description = <Copy id='card_preset_footer' />;
 
 const name = 'Footer';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='card_preset_footer_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

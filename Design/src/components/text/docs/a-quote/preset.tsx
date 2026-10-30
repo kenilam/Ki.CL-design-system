@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a quote that stands on its own. A line down its side sets it apart from
-    the text around it.
-  </>
-);
+const description = <Copy id='text_preset_a_quote' />;
 
 const name = 'A quote';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='text_preset_a_quote_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

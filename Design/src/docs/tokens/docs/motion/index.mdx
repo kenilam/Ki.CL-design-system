@@ -1,13 +1,11 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Duration, Easing, Instant } from 'design/docs/tokens/previews';
 
-`--kicl-transition-duration` is 600ms, and the named steps are scaled from it, from a fifth of it to eight times as long. [Reduced motion](../tokens/accessibility/reduced-motion) covers what stops when someone asks for less motion. Easing curves are named by family and direction.
+<Text><Copy id='token_motion_intro' /></Text>
 
-## Variables
+<Copy id='token_motion_variables' />
 
-### transition-duration
-
-MDN: [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-duration).
+<Copy id='token_motion_transition_duration' />
 
 <Variables
   fill={12}
@@ -37,9 +35,7 @@ MDN: [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/Re
   property='transition-duration'
 />
 
-### transition-timing-function
-
-MDN: [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-timing-function).
+<Copy id='token_motion_transition_timing_function' />
 
 <Variables
   fill={12}
@@ -76,11 +72,7 @@ MDN: [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web
   preview={Easing}
 />
 
-### body transition
-
-MDN: [`transition-duration`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-duration), [`transition-property`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-property) and [`transition-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-timing-function).
-
-The body's own transition, when the theme changes.
+<Copy id='token_motion_body_transition' />
 
 <Variables
   fill={12}
@@ -102,20 +94,14 @@ The body's own transition, when the theme changes.
   preview={Easing}
 />
 
-### scroll-reveal
-
-MDN: [`animation-timeline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline).
-
-The scroll reveal, and the slowly panning five-color gradient used on the scroll indicator.
+<Copy id='token_motion_scroll_reveal' />
 
 <Variables
   fill={12}
   names={['scroll-reveal-distance', 'scroll-reveal-from', 'gradient-shift']}
 />
 
-## Classes
-
-The pattern is `kicl-transition-duration-{step}`.
+<Copy id='token_motion_classes' />
 
 ```tsx
 // Transitions over 480ms
@@ -128,11 +114,4 @@ The pattern is `kicl-transition-duration-{step}`.
 <svg className='kicl-animation-none-reduced-motion' />
 ```
 
-`{step}` is `fastest`, `faster`, `fast`, `slow`, `slower`, `slowest` or `extreme`. Leave it out for the default. The longer durations, `6s` to `5m`, are variables only.
-
-Easing has no classes. Read it in CSS, as in `transition-timing-function: var(--kicl-ease-quad-out)`.
-
-- `kicl-scroll-reveal` fades and slides an element in from below as it scrolls into view. `kicl-scroll-reveal-start` and `kicl-scroll-reveal-end` bring it in from the inline start or end.
-- `kicl-animation-none` stops an element's own animation, such as a skeleton standing in for something that isn't loading.
-- `kicl-animation-none-reduced-motion` stops an element's animation when the person asks for less motion.
-- `kicl-visibility-hidden-reduced-motion` hides something that only makes sense with motion.
+<Copy id='token_motion_part_8' />

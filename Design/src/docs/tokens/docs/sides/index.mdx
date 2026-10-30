@@ -1,19 +1,9 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Placement } from 'design/docs/tokens/previews';
 
-Spacing and position are written with logical properties, block and inline, start and end, rather than top or left. On a left-to-right page, `block-start` is the top, `block-end` the bottom, `inline-start` the left and `inline-end` the right. A right-to-left page flips without any change.
+<Copy id='token_sides_intro' />
 
-Popover placements and Sheet sides take the same four names, `block-start`, `block-end`, `inline-start` and `inline-end`.
-
-## Classes
-
-A class that sets one side names the axis, then the edge, then the step: `kicl-{property}-{axis}-{edge}-{step}`.
-
-- `{axis}` is `block` or `inline`. Leave it out for both axes.
-- `{edge}` is `start` or `end`. Leave it out for both edges of the axis.
-- `{step}` is a gutter step, listed on [Spacing](../tokens/semantics/spacing). Leave it out for the default.
-
-So `kicl-padding` is all four sides, `kicl-padding-block` is top and bottom, and `kicl-padding-block-start` is the top alone. Padding, margin and inset all follow this order.
+<Copy id='token_sides_classes' />
 
 ```tsx
 // All four sides, 1rem
@@ -32,9 +22,7 @@ So `kicl-padding` is all four sides, `kicl-padding-block` is top and bottom, and
 <div className='kicl-margin-inline-end-narrower' />
 ```
 
-## Inset
-
-Inset places a positioned element, so it only has an effect on an element with a `kicl-position-*` class or another position. It takes the gutter steps and also `0` and `auto`, as `kicl-inset-{axis}-{edge}-{step}`.
+<Copy id='token_sides_inset' />
 
 ```tsx
 // Pinned to the top-right corner on a left-to-right page
@@ -47,18 +35,11 @@ Inset places a positioned element, so it only has an effect on an element with a
 <div className='kicl-position-absolute kicl-inset-block-center' />
 ```
 
-Some insets are named for what they line up with:
+<Copy id='token_sides_part_4' />
 
-- `kicl-inset-block-start-header` sits under the global header while it shows, and at the top while it hides.
-- `kicl-inset-inline-end-frame` lines up with the page's frame.
-- `kicl-inset-inline-screen` stretches a positioned element to the full screen width from inside a narrower parent.
-- `kicl-inset-block-center` and `kicl-inset-inline-center` center a positioned box on one axis without a transform. Add a step, as in `kicl-inset-block-center-wide`, to keep it that far from both ends.
+<Copy id='token_sides_variables' />
 
-## Variables
-
-### inset
-
-MDN: [`inset`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset).
+<Copy id='token_sides_inset_2' />
 
 <Variables
   names={[
@@ -78,9 +59,7 @@ MDN: [`inset`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Proper
   preview={Placement}
 />
 
-### inset-block
-
-MDN: [`inset-block`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block), [`inset-block-start`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block-start) and [`inset-block-end`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-block-end).
+<Copy id='token_sides_inset_block' />
 
 <Variables
   names={[
@@ -136,9 +115,7 @@ MDN: [`inset-block`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/
   preview={Placement}
 />
 
-### inset-inline
-
-MDN: [`inset-inline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline), [`inset-inline-start`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-start) and [`inset-inline-end`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset-inline-end).
+<Copy id='token_sides_inset_inline' />
 
 <Variables
   names={[
@@ -194,15 +171,13 @@ MDN: [`inset-inline`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
   preview={Placement}
 />
 
-## Mirroring
+<Copy id='token_sides_mirroring' />
 
 ```tsx
 // Points to where the next crumb is, in either reading direction
 <Ri.RiArrowRightSLine aria-hidden className='kicl-rtl-mirror' />
 ```
 
-`kicl-rtl-mirror` flips an icon on a right-to-left page. Use it on icons that point along the reading direction, such as arrows. Leave out anything that means the same either way, like play buttons and clocks.
+<Text><Copy id='token_sides_mirroring_usage' /></Text>
 
-## References
-
-- [MDN, Logical properties and values](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values)
+<Copy id='token_sides_references' />

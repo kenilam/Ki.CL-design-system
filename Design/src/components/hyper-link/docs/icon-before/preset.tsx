@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>Puts an icon in front of the text, like the logo of the site it goes to.</>
-);
+const description = <Copy id='hyper_link_preset_icon_before' />;
 
 const name = 'Icon before';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='hyper_link_preset_icon_before_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

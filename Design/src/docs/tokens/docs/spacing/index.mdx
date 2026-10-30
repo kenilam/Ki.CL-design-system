@@ -2,19 +2,13 @@ import { Gaps } from './gaps';
 import { Variables } from 'design/docs/tokens/variables';
 import { Length } from 'design/docs/tokens/previews';
 
-`gap` takes the gutter scale. It's a prop on Layout and on every component built on it, like List, ListItem, Button and Card, rather than a class.
-
-The default step, `normal`, is `--kicl-gutter`, 1rem, and is left out of class names. Each narrow step halves the one before, and the wide steps grow from it.
-
-Padding, margin and inset utilities use the same steps.
+<Copy id='token_spacing_intro' />
 
 <Gaps />
 
-## Variables
+<Copy id='token_spacing_variables' />
 
-### gutter
-
-MDN: [`gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap), [`padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding) and [`margin`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin).
+<Copy id='token_spacing_gutter' />
 
 <Variables
   names={[
@@ -31,9 +25,7 @@ MDN: [`gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properti
   preview={Length}
 />
 
-## Classes
-
-The pattern is `kicl-{property}-{step}`.
+<Copy id='token_spacing_classes' />
 
 ```tsx
 // Spacing between children, through Layout and anything built on it
@@ -52,18 +44,4 @@ The pattern is `kicl-{property}-{step}`.
 <p className='kicl-margin-none' />
 ```
 
-`{property}` is one of:
-
-- `padding`, `padding-block`, `padding-block-start`, `padding-block-end`, `padding-inline`, `padding-inline-start`, `padding-inline-end`
-- `margin`, `margin-block`, `margin-block-start`, `margin-block-end`, `margin-inline`, `margin-inline-start`, `margin-inline-end`
-
-`{step}` is `none`, `narrowest`, `narrower`, `narrow`, `wide`, `wider`, `widest` or `extreme`. Leave it out for the default gutter.
-
-A few take a keyword in place of a step:
-
-- `kicl-margin-inline-auto` centers a block in its row.
-- `kicl-margin-inline-start-auto` pushes the element to the end of its row, and `kicl-margin-inline-end-auto` pushes what follows it.
-- `kicl-padding-inline-frame`, `kicl-padding-block-frame`, `kicl-padding-block-start-frame` and `kicl-padding-block-end-frame` inset content the same as a Frame. `kicl-padding-inline-frame-columns-12` does the same and also keeps it within 12 columns.
-- `kicl-padding-block-start-header` clears the fixed global header, and `kicl-padding-block-start-header-offset` follows it as it shows and hides.
-
-Inset uses the same steps, listed on [Sides](../tokens/semantics/sides).
+<Copy id='token_spacing_part_5' />

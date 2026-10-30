@@ -1,21 +1,14 @@
 import React from 'react';
 
-// Components
-import { Text } from 'design/components';
-
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a page title, inside a <Text is='code'>Heading</Text> so the page still
-    has a heading there.
-  </>
-);
+const description = <Copy id='animated_text_preset_a_heading' />;
 
 const name = 'A heading';
 
@@ -24,6 +17,7 @@ const Preset = (
     code={source}
     controls={{ dense: null, level: null, lookLike: null, variant: null }}
     description={description}
+    label='animated_text_preset_a_heading_name'
     name={name}
   >
     <Preview />

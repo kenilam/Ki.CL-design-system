@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 import { FLEX_CONTROLS } from 'design/components/list/docs/controls';
 
@@ -8,12 +9,7 @@ import { FLEX_CONTROLS } from 'design/components/list/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a long run of short items, like these component names. They move to the
-    next line when the row runs out of room.
-  </>
-);
+const description = <Copy id='list_preset_a_row_that_wraps' />;
 
 const name = 'A row that wraps';
 
@@ -22,6 +18,7 @@ const Preset = (
     code={source}
     controls={FLEX_CONTROLS}
     description={description}
+    label='list_preset_a_row_that_wraps_name'
     name={name}
   >
     <Preview />

@@ -43,7 +43,9 @@ const Home: React.FunctionComponent = () => {
       <article>
         <Layout gap='normal'>
           <header>
-            <Heading>{t('docs_title')}</Heading>
+            <Heading className='kicl-font-size-huge'>
+              {t('docs_title')}
+            </Heading>
             <Text>
               <HyperLink
                 before={<Ri.RiGithubLine aria-hidden />}

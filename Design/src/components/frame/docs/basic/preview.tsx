@@ -7,7 +7,7 @@ import type { Props } from 'design/components/frame/docs/controls';
 const Preview: React.FC<Props> = (props) => {
   return (
     <>
-      <Button command='show-modal' commandFor='frame-preview'>
+      <Button command='show-modal' commandfor='frame-preview'>
         Open
       </Button>
       <Dialog aria-label='A framed page' fullScreen id='frame-preview'>

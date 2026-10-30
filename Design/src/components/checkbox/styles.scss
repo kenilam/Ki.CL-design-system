@@ -13,8 +13,6 @@
   --kicl--components--checkbox--border-radius: calc(
     var(--kicl--components--checkbox--size) / 4.5
   );
-
-  // The masks below are Remix Icon's check and subtract icons.
   --kicl--components--checkbox--mark: none;
 
   appearance: none;
@@ -44,11 +42,11 @@
   }
 
   &:checked {
-    --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 15.1716L19.1924 5.97919L20.6066 7.3934L10 18L3.63604 11.636L5.05025 10.2218L10 15.1716Z'/%3E%3C/svg%3E");
+    --kicl--components--checkbox--mark: var(--kicl-icon-check-line);
   }
 
   &:indeterminate {
-    --kicl--components--checkbox--mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 11V13H19V11H5Z'/%3E%3C/svg%3E");
+    --kicl--components--checkbox--mark: var(--kicl-icon-subtract-line);
   }
 
   @at-root .kicl--theme--dark & {

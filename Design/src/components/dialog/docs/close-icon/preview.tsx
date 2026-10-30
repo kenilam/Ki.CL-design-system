@@ -8,7 +8,7 @@ import type { Props } from 'design/components/dialog/docs/controls';
 const Preview: React.FC<Props> = (props) => {
   return (
     <>
-      <Button command='show-modal' commandFor='dialog-close-icon'>
+      <Button command='show-modal' commandfor='dialog-close-icon'>
         Open
       </Button>
       <Dialog

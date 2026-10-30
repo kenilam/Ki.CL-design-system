@@ -5,7 +5,7 @@ import i18next, { createInstance } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 // Copy
-import en from './en/design.json';
+import en from './en-US/design.json';
 
 const NAMESPACE = 'design';
 
@@ -21,9 +21,9 @@ void bundled.init({
   defaultNS: NAMESPACE,
   // React escapes what it renders.
   interpolation: { escapeValue: false },
-  lng: 'en',
+  lng: 'en-US',
   ns: [NAMESPACE],
-  resources: { en: { [NAMESPACE]: en } },
+  resources: { 'en-US': { [NAMESPACE]: en } },
 });
 
 const HOSTED = { i18n: i18next, useSuspense: false };

@@ -7,6 +7,7 @@ export type SelectProps = Omit<
   'multiple' | 'size'
 > &
   FormItemFieldProps & {
+    inline?: boolean;
     onValueChange?: (value: string) => void;
     /** Shown while nothing is chosen; also makes `required` meaningful. */
     placeholder?: string;

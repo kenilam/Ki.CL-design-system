@@ -5,7 +5,7 @@ import { Button, Dialog, Heading, Text } from 'design/components';
 const Preview: React.FC = () => {
   return (
     <>
-      <Button command='show-modal' commandFor='dialog-full-screen'>
+      <Button command='show-modal' commandfor='dialog-full-screen'>
         Open
       </Button>
       <Dialog

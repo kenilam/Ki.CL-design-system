@@ -60,7 +60,7 @@ const Diagram: React.FunctionComponent<Props> = ({
             `${BASE}-preview`
           )}
           command='show-modal'
-          commandFor={opens}
+          commandfor={opens}
           justifyContent='stretch'
           unstyled
         >

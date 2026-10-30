@@ -14,6 +14,7 @@ import * as Spec from './spec';
 import './styles.scss';
 
 const GlobalHeader: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
+  before,
   children,
   hidden,
 }) => {
@@ -21,7 +22,7 @@ const GlobalHeader: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     <>
       {/* Rendered even when hidden, so the next page has the height at once. */}
       <CssVariables />
-      {hidden ? null : <Contents>{children}</Contents>}
+      {hidden ? null : <Contents before={before}>{children}</Contents>}
     </>
   );
 };

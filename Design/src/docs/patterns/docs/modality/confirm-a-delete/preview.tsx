@@ -35,7 +35,7 @@ const Preview: React.FC = () => {
               <Button
                 aria-label={`Delete ${draft}`}
                 command='show-modal'
-                commandFor='pattern-confirm'
+                commandfor='pattern-confirm'
                 level='error'
                 onClick={() => {
                   setTarget(draft);
@@ -82,14 +82,14 @@ const Preview: React.FC = () => {
           <Menu aria-label={`Delete ${target}`} justifyContent='end'>
             <Button
               command='close'
-              commandFor='pattern-confirm'
+              commandfor='pattern-confirm'
               variant='tertiary'
             >
               Keep it
             </Button>
             <Button
               command='close'
-              commandFor='pattern-confirm'
+              commandfor='pattern-confirm'
               level='error'
               onClick={() => {
                 setDrafts(

@@ -7,6 +7,7 @@ import {
   CompanyVectors,
 } from './company';
 import { Logo, LogoProps } from './logo';
+import { Masks } from './masks';
 import { Menu } from './menu';
 
 export {
@@ -16,6 +17,7 @@ export {
   CompanyVectors,
   Logo,
   type LogoProps,
+  Masks,
   Menu,
   type IconType,
 };

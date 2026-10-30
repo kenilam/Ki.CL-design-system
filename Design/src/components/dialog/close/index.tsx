@@ -41,7 +41,7 @@ const Close: React.FunctionComponent = () => {
       )}
       aria-label={t('action_close_dialog')}
       command='request-close'
-      commandFor={id}
+      commandfor={id}
       size='small'
       variant='secondary'
     >

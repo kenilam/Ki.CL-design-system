@@ -51,22 +51,26 @@ type Breakpoints = {
   [breakpoint in Breakpoint]: ReturnType<typeof CSSUnit>;
 };
 
-const root = window.getComputedStyle(document.documentElement);
+const getBreakpoints = (): Breakpoints => {
+  const root = window.getComputedStyle(document.documentElement);
 
-const breakpoints: Breakpoints = {
-  desktop: CSSUnit({
-    values: root.getPropertyValue('--kicl-breakpoint-desktop'),
-  }),
-  tablet: CSSUnit({
-    values: root.getPropertyValue('--kicl-breakpoint-tablet'),
-  }),
-  mobile: CSSUnit({
-    values: root.getPropertyValue('--kicl-breakpoint-mobile'),
-  }),
-  wide: CSSUnit({ values: root.getPropertyValue('--kicl-breakpoint-wide') }),
+  return {
+    desktop: CSSUnit({
+      values: root.getPropertyValue('--kicl-breakpoint-desktop'),
+    }),
+    tablet: CSSUnit({
+      values: root.getPropertyValue('--kicl-breakpoint-tablet'),
+    }),
+    mobile: CSSUnit({
+      values: root.getPropertyValue('--kicl-breakpoint-mobile'),
+    }),
+    wide: CSSUnit({ values: root.getPropertyValue('--kicl-breakpoint-wide') }),
+  };
 };
 
 const useResponsive = () => {
+  const breakpoints = getBreakpoints();
+
   const isLightColorSchemePrefers = useMediaQuery({
     query: '(prefers-color-scheme: light)',
   });
@@ -144,6 +148,5 @@ export {
   DARK_THEME_CLASS_NAME,
   LIGHT_THEME_CLASS_NAME,
   type Theme,
-  breakpoints,
   useResponsive,
 };

@@ -1,9 +1,18 @@
 .kicl--components--select__item {
-  // The background marks focus, so no outline.
-  &:hover,
+  // The select's focus ring style is inherited, so each option resets it.
+  --kicl-outline-style: none;
+
+  & + & {
+    margin-block-start: var(--kicl-gutter-narrower);
+  }
+
+  &:hover:not(:disabled),
   &:focus-visible {
     background: var(--kicl-color-neutral-a16);
-    outline: none;
+  }
+
+  &:focus-visible {
+    --kicl-outline-style: dashed;
   }
 
   &::checkmark {
@@ -12,7 +21,37 @@
     content: '';
     inline-size: var(--kicl-size);
     margin-inline-start: auto;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: var(--kicl-icon-check-line) center / contain no-repeat;
     order: 1;
+  }
+
+  // Not faded: a disabled option still shows its name and why it can't be picked.
+  &:disabled {
+    --kicl-disabled-opacity: 1;
+  }
+
+  // An option can't hold markup, so its marks are drawn here: a warning icon for
+  // one with a note in `title`, a spinner for one that is being prepared.
+  &[title]::after,
+  &[aria-busy='true']::after {
+    background-color: currentcolor;
+    block-size: var(--kicl-size);
+    content: '';
+    inline-size: var(--kicl-size);
+  }
+
+  &[title]::after {
+    background-color: var(--kicl-color-warning);
+    mask: var(--kicl-icon-error-warning-line) center / contain no-repeat;
+  }
+
+  &[aria-busy='true']::after {
+    animation: kicl-revolving 1s linear infinite;
+    background-color: currentcolor;
+    mask: var(--kicl-icon-loader-4-line) center / contain no-repeat;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 }

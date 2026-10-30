@@ -40,6 +40,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       children,
       className,
       defaultValue,
+      inline,
       onChange,
       onValueChange,
       placeholder,
@@ -55,8 +56,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         ref={ref}
         className={classNames(
           CLASS_NAME,
-          'kicl-font-size-small',
-          'kicl-inline-size-full',
+          {
+            [`${CLASS_NAME}--inline`]: inline,
+            'kicl-font-size-small': !inline,
+            'kicl-inline-size-full': !inline,
+          },
           className
         )}
         value={value}

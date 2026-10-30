@@ -18,6 +18,14 @@
   padding-block: var(--kicl--components--select--padding-block);
   padding-inline: var(--kicl--components--select--padding-inline);
 
+  &--inline {
+    background-color: transparent;
+    border-width: 0;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+  }
+
   @supports (appearance: base-select) {
     &,
     &::picker(select) {

@@ -7,13 +7,13 @@ import type { Props } from 'design/components/dialog/docs/controls';
 const Preview: React.FC<Props> = (props) => {
   return (
     <>
-      <Button command='show-modal' commandFor='dialog-keyboard'>
+      <Button command='show-modal' commandfor='dialog-keyboard'>
         Open
       </Button>
       <Dialog
         closable='keyboard'
         footer={
-          <Button command='close' commandFor='dialog-keyboard'>
+          <Button command='close' commandfor='dialog-keyboard'>
             Done
           </Button>
         }

@@ -20,11 +20,11 @@ declare module 'react' {
   // exactly.
   interface ButtonHTMLAttributes<T> {
     command?: Command;
-    commandFor?: string;
+    commandfor?: string;
   }
 
   interface InputHTMLAttributes<T> {
     command?: Command;
-    commandFor?: string;
+    commandfor?: string;
   }
 }

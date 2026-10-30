@@ -22,6 +22,7 @@ import { CLASS_NAME } from './constants';
 import * as Spec from './spec';
 
 const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
+  before,
   children,
 }) => {
   const { node } = useGlobalHeaderContext();
@@ -45,13 +46,18 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     <Layout
       alignItems='center'
       autoFlow='column'
-      frames='auto--max-content--max-content'
+      frames={
+        before
+          ? 'auto--max-content--max-content--max-content'
+          : 'auto--max-content--max-content'
+      }
       gap='normal'
       ref={node}
     >
       <header className={className}>
         <SiteLogo />
         {isMobile ? null : children}
+        {before}
         <ThemeToggle />
         {isMobile ? children : null}
       </header>

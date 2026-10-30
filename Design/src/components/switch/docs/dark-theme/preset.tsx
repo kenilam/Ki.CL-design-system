@@ -1,18 +1,13 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 
-const description = (
-  <>
-    Turns this preview dark. The code shows the same switch wired to{' '}
-    <Text is='code'>useResponsive</Text> for the whole site.
-  </>
-);
+const description = <Copy id='switch_preset_dark_theme' />;
 
 const name = 'Dark theme';
 
@@ -33,7 +28,12 @@ const { setTheme, theme } = useResponsive();
 `;
 
 const Preset = (
-  <Origin code={code} description={description} name={name}>
+  <Origin
+    code={code}
+    description={description}
+    label='switch_preset_dark_theme_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

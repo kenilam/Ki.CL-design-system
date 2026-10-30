@@ -1,13 +1,14 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <>For an FAQ where only one answer is open at a time.</>;
+const description = <Copy id='details_preset_group' />;
 
 const name = 'Group';
 
@@ -16,6 +17,7 @@ const Preset = (
     code={source}
     controls={{ open: null }}
     description={description}
+    label='details_preset_group_name'
     name={name}
   >
     <Preview />

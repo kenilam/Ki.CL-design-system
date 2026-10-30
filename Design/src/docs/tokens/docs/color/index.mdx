@@ -4,53 +4,35 @@ import { Variables } from 'design/docs/tokens/variables';
 import { Opacity } from 'design/docs/tokens/previews';
 import { ALL, HUES, LEVEL_SWATCHES, NEUTRALS, PURE } from './constants';
 
-Use the roles under Body and surface for anything that should follow the light and dark themes. The palette is for a color that stays the same in both.
+<Text><Copy id='token_color_intro' /></Text>
 
-## Neutrals
-
-Black, gray and white, each in ten steps from `50`, the lightest, to `900`, the darkest. `500` is the color itself, and `--kicl-color-grey` is the same as `--kicl-color-grey-500`. Body text and backgrounds come from these.
+<Copy id='token_color_neutrals' />
 
 <Palette swatches={NEUTRALS} />
 
-`black-pure` and `white-pure` are `#000` and `#fff`, outside the scale.
+<Text><Copy id='token_color_part_3' /></Text>
 
 <Palette swatches={PURE} />
 
-## Hues
-
-The same ten steps for each hue.
+<Copy id='token_color_hues' />
 
 <Palette swatches={HUES} />
 
-## Levels
-
-The colors behind `level`, explained on [Level](../tokens/semantics/level). Each level has four looks taken from its hue: `secondary` is step `600`, `tertiary` `700` and `ghost` `500`, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one.
-
-Warning has no hue of its own. On a light page its looks are steps of its own color, a mix of yellow and orange. On a dark page warning is plain yellow, and its looks are yellow's steps.
+<Copy id='token_color_levels' />
 
 <Palette swatches={LEVEL_SWATCHES} />
 
-## Body and surface
-
-Four roles cover most of the page. `--kicl-body-color` is text and `--kicl-body-background-color` is the page behind it. `--kicl-surface-color` is anything raised off the page, like a card, a popover or a field, and `--kicl-surface-border-color` is its edge. A surface is a short step away from the background, lighter on both themes, so it reads as raised.
-
-`kicl--theme--light` and `kicl--theme--dark` set these roles. Components don't know which theme they're in. They read the roles, so the same card below takes both themes without a prop.
+<Copy id='token_color_body_and_surface' />
 
 <Themes />
 
-## Variables
+<Copy id='token_color_variables' />
 
-### color
-
-MDN: [`<color>`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value).
+<Copy id='token_color_color' />
 
 <Variables names={ALL.map((name) => `color-${name}`)} />
 
-### body and surface
-
-MDN: [`color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color), [`background-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-color) and [`border-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-color).
-
-The roles, which the theme classes change.
+<Copy id='token_color_body_and_surface_2' />
 
 <Variables
   names={[
@@ -61,9 +43,7 @@ The roles, which the theme classes change.
   ]}
 />
 
-### outline
-
-MDN: [`outline-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-color), [`outline-style`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-style) and [`outline-width`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-width).
+<Copy id='token_color_outline' />
 
 <Variables names={['outline-color']} />
 
@@ -71,15 +51,11 @@ MDN: [`outline-color`](https://developer.mozilla.org/en-US/docs/Web/CSS/Referenc
 
 <Variables names={['outline-width']} property='outline-width' />
 
-### opacity
-
-MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/opacity).
+<Copy id='token_color_opacity' />
 
 <Variables names={['disabled-opacity']} property='opacity' preview={Opacity} />
 
-### see-through
-
-`black-a{n}` and `white-a{n}` are black and white at `{n}`%, from 4 to 80. `neutral-a{n}` is black on a light page and white on a dark one, at `{n}`%, for washes, hovers and quieter text. `page-a{n}` is the page's own color, for panes, scrims and fades that settle into the page. `--kicl-surface-glass-color` is a surface you can see through, for a pane with a blur behind it.
+<Copy id='token_color_see_through' />
 
 <Variables
   names={[
@@ -92,9 +68,7 @@ MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
   ]}
 />
 
-## Classes
-
-The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-fill-{name}`, where `{name}` is any color above.
+<Copy id='token_color_classes' />
 
 ```tsx
 // Text in blue, and anything inside that reads the body colour
@@ -113,9 +87,4 @@ The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-f
 <aside className='kicl-background-color-body' />
 ```
 
-`kicl-color-{name}` sets `--kicl-body-color` as well as `color`, so an icon or a border inside picks up the color too. `kicl-fill-{name}` is for SVG.
-
-The body colors have their own:
-
-- `kicl-color-body-color` and `kicl-fill-body-color` use the text color.
-- `kicl-background-color-body` uses the page color, and `kicl-background-color-body-color` fills with the text color.
+<Copy id='token_color_part_14' />

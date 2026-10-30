@@ -1,13 +1,11 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Stack } from 'design/docs/tokens/previews';
 
-`--kicl-z-index-{role}` picks a layer by what it's for, not by a number higher than the last one.
+<Text><Copy id='token_stacking_intro' /></Text>
 
-## Variables
+<Copy id='token_stacking_variables' />
 
-### z-index
-
-MDN: [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/z-index).
+<Copy id='token_stacking_z_index' />
 
 <Variables
   names={[
@@ -24,9 +22,7 @@ MDN: [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
   preview={Stack}
 />
 
-## Classes
-
-The pattern is `kicl-z-index-{role}`.
+<Copy id='token_stacking_classes' />
 
 ```tsx
 // Above the content around it, as a sticky toolbar
@@ -36,4 +32,4 @@ The pattern is `kicl-z-index-{role}`.
 <div className='kicl-position-absolute kicl-z-index-behind' />
 ```
 
-`{role}` is `behind`, `base`, `raised`, `floating`, `popover`, `overlay`, `header` or `top`, lowest first.
+<Text><Copy id='token_stacking_part_5' /></Text>

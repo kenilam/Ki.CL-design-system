@@ -1,22 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Besides the plain box there's a cylinder for a store and a queue for jobs.
-  </>
-);
+const description = <Copy id='diagram_preset_shapes' />;
 
 const name = 'Shapes';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='diagram_preset_shapes_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

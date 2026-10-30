@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { FRAMES_CONTROLS } from 'design/components/layout/docs/controls';
@@ -9,12 +10,7 @@ import { FRAMES_CONTROLS } from 'design/components/layout/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Gives each item its own width. Here the button is as wide as its label and
-    the search field takes the rest.
-  </>
-);
+const description = <Copy id='layout_preset_frames' />;
 
 const name = 'Frames';
 
@@ -23,6 +19,7 @@ const Preset = (
     code={source}
     controls={FRAMES_CONTROLS}
     description={description}
+    label='layout_preset_frames_name'
     name={name}
   >
     <Preview />

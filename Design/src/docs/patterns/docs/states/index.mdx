@@ -2,7 +2,7 @@ import { Preset as Empty } from './empty';
 import { Preset as Loading } from './loading';
 import { Preset as ReadOnlyAndDisabled } from './read-only-and-disabled';
 
-A state tells people what a component is doing or what they can do with it. Each one should be clear without relying on color, and most of them come from the browser.
+<Text><Copy id='pattern_states_intro' /></Text>
 
 <Preview>
   {Loading}
@@ -10,28 +10,10 @@ A state tells people what a component is doing or what they can do with it. Each
   {ReadOnlyAndDisabled}
 </Preview>
 
-## Interaction states
+<Copy id='pattern_states_interaction_states' />
 
-- **Hover** shows something can be used. It's a hint, never the only way to find something, since touch screens and keyboards don't hover.
-- **Focus** shows where the keyboard is. It's a dashed outline on `:focus-visible`, so it shows for the keyboard and not for every click.
-- **Pressed** confirms the click landed.
-- **Selected** or **current** marks the chosen option or the page you're on, with `aria-current='page'` on links.
+<Copy id='pattern_states_availability' />
 
-## Availability
+<Copy id='pattern_states_content_states' />
 
-- **Read-only** for a value people should see and copy but not change.
-- **Disabled** for a control that doesn't apply right now. Tab skips it, so a keyboard user may never reach it or learn why it's off. Say why, or leave the control out.
-- Inside a form, keep the submit button enabled and explain what's missing instead.
-
-## Content states
-
-- **Loading:** placeholders the shape of the content, so the layout doesn't jump. Mark the area `aria-busy` while it fills.
-- **Empty:** say why it's empty and what to do next.
-- **Error:** say what went wrong and how to recover. See [Feedback and status](../patterns/interaction/feedback-and-status).
-
-## References
-
-- [WCAG 2.2, 2.4.7 Focus Visible](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html)
-- [WCAG 2.2, 1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
-- [MDN, aria-busy](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-busy)
-- [MDN, aria-current](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-current)
+<Copy id='pattern_states_references' />

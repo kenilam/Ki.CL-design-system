@@ -1,18 +1,14 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a field that failed a check. Its name, border and message turn red, and
-    a screen reader reads the message with the field.
-  </>
-);
+const description = <Copy id='input_preset_with_an_error' />;
 
 const name = 'With an error';
 
@@ -21,6 +17,7 @@ const Preset = (
     controls={{ readOnly: null }}
     code={source}
     description={description}
+    label='input_preset_with_an_error_name'
     name={name}
   >
     <Preview />

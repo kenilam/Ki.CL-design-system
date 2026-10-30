@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    A frame needs the whole window, so it opens in a full-screen dialog, and
-    eases in each time it opens.
-  </>
-);
+const description = <Copy id='frame_preset_basic' />;
 
 const name = 'Basic';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='frame_preset_basic_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

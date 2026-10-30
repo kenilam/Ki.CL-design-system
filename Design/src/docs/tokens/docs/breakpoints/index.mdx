@@ -1,12 +1,10 @@
 import { Variables } from 'design/docs/tokens/variables';
 
-Each breakpoint is the top of its range: `narrow` is up to 352px, `mobile` up to 480px, and so on. `useResponsive` reads them in script.
+<Text><Copy id='token_breakpoints_intro' /></Text>
 
-## Variables
+<Copy id='token_breakpoints_variables' />
 
-### breakpoint
-
-MDN: [`@media`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media).
+<Copy id='token_breakpoints_breakpoint' />
 
 <Variables
   names={[
@@ -19,11 +17,7 @@ MDN: [`@media`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-ru
   ]}
 />
 
-### viewport
-
-MDN: [`@container`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container).
-
-A media query can't read a custom property, so these flags say which range the window is in for a style query to read. `--kicl-viewport-{name}` is `true` inside that range, and `--kicl-viewport-up-to-{name}` at that width and narrower.
+<Copy id='token_breakpoints_viewport' />
 
 <Variables
   names={[
@@ -42,15 +36,13 @@ A media query can't read a custom property, so these flags say which range the w
   ]}
 />
 
-A stylesheet reads them with `@container style(--kicl-viewport-up-to-desktop: true)`.
+<Text><Copy id='token_breakpoints_part_5' /></Text>
 
-## Classes
-
-The pattern is `kicl-hidden-up-to-{name}`.
+<Copy id='token_breakpoints_classes' />
 
 ```tsx
 // A label that phones don't show, still read by screen readers
 <span className='kicl-hidden-up-to-mobile'>Settings</span>
 ```
 
-`kicl-hidden-up-to-{name}` visually hides an element at that width and narrower, and leaves it for screen readers. `{name}` is `narrow`, `mobile`, `tablet`, `desktop`, `wide` or `wider`.
+<Text><Copy id='token_breakpoints_part_7' /></Text>

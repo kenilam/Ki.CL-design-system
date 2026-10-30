@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Controls
@@ -10,9 +11,7 @@ import { OVERLAY_CONTROLS } from 'design/components/spinner/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>Covers a card with a light blur and a spinner while its content loads.</>
-);
+const description = <Copy id='spinner_preset_over_its_parent' />;
 
 const name = 'Over its parent';
 
@@ -21,6 +20,7 @@ const Preset = (
     code={source}
     controls={OVERLAY_CONTROLS}
     description={description}
+    label='spinner_preset_over_its_parent_name'
     name={name}
   >
     <Preview />

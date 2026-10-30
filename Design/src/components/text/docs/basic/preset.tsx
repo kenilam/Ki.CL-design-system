@@ -1,24 +1,24 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    A single paragraph of body copy, which is what you get when you leave out{' '}
-    <Text is='code'>is</Text>.
-  </>
-);
+const description = <Copy id='text_preset_basic' />;
 
 const name = 'Basic';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='text_preset_basic_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

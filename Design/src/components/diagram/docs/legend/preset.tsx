@@ -1,22 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Explains what the colours and line styles mean, with a caption underneath.
-  </>
-);
+const description = <Copy id='diagram_preset_legend' />;
 
 const name = 'Legend';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='diagram_preset_legend_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

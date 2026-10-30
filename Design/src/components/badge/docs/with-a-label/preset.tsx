@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a name and a value together, like a version number. The colon after the
-    name is added for you.
-  </>
-);
+const description = <Copy id='badge_preset_with_a_label' />;
 
 const name = 'With a label';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='badge_preset_with_a_label_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

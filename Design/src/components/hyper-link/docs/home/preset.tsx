@@ -1,24 +1,18 @@
 import React from 'react';
 
 // Components
-import { Text } from 'design/components';
 import { BUTTON_SIZES } from 'design/components/button/spec';
 import { LEVELS, VARIANTS } from 'design/components/spec';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For the link back to the home page: <Text is='code'>HomeLink</Text>, a house
-    with the look of a button, its name read by screen readers or shown beside
-    it.
-  </>
-);
+const description = <Copy id='hyper_link_preset_home' />;
 
 const name = 'Home';
 
@@ -35,6 +29,7 @@ const Preset = (
       variant: { default: 'secondary', options: VARIANTS },
     }}
     description={description}
+    label='hyper_link_preset_home_name'
     name={name}
   >
     <Preview />

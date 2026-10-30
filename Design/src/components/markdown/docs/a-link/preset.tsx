@@ -1,24 +1,24 @@
 import React from 'react';
 
 // Partials
-import { Text } from 'design/components';
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Turns <Text is='code'>[text](url)</Text> into a link. A link to another site
-    opens in a new tab.
-  </>
-);
+const description = <Copy id='markdown_preset_a_link' />;
 
 const name = 'A link';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='markdown_preset_a_link_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

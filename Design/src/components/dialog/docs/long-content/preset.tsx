@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For more than fits on the screen. It scrolls, and the close button stays in
-    view as the heading scrolls away.
-  </>
-);
+const description = <Copy id='dialog_preset_long_content' />;
 
 const name = 'Long content';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='dialog_preset_long_content_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

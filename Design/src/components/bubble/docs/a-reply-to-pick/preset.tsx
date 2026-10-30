@@ -1,20 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>For a message that does something when clicked, like a suggested reply.</>
-);
+const description = <Copy id='bubble_preset_a_reply_to_pick' />;
 
 const name = 'A reply to pick';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='bubble_preset_a_reply_to_pick_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

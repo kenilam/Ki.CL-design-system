@@ -4,11 +4,11 @@ import { Variables } from 'design/docs/tokens/variables';
 import { Opacity } from 'design/docs/tokens/previews';
 import { ALL, HUES, LEVEL_SWATCHES, NEUTRALS, PURE } from './constants';
 
-Use the roles under Body and surface for anything that should follow the light and dark themes. The palette is for a colour that stays the same in both.
+Use the roles under Body and surface for anything that should follow the light and dark themes. The palette is for a color that stays the same in both.
 
 ## Neutrals
 
-Black, grey and white, each in ten steps from `50`, the lightest, to `900`, the darkest. `500` is the colour itself, and `--kicl-color-grey` is the same as `--kicl-color-grey-500`. Body text and backgrounds come from these.
+Black, gray and white, each in ten steps from `50`, the lightest, to `900`, the darkest. `500` is the color itself, and `--kicl-color-grey` is the same as `--kicl-color-grey-500`. Body text and backgrounds come from these.
 
 <Palette swatches={NEUTRALS} />
 
@@ -24,9 +24,9 @@ The same ten steps for each hue.
 
 ## Levels
 
-The colours behind `level`, explained on [Level](../tokens/semantics/level). Each level has four looks taken from its hue: `secondary` is step `600`, `tertiary` `700` and `ghost` `500`, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one.
+The colors behind `level`, explained on [Level](../tokens/semantics/level). Each level has four looks taken from its hue: `secondary` is step `600`, `tertiary` `700` and `ghost` `500`, and `ink`, for words on a tinted fill, is `800` on a light page and `200` on a dark one.
 
-Warning has no hue of its own. On a light page its looks are steps of its own colour, a mix of yellow and orange. On a dark page warning is plain yellow, and its looks are yellow's steps.
+Warning has no hue of its own. On a light page its looks are steps of its own color, a mix of yellow and orange. On a dark page warning is plain yellow, and its looks are yellow's steps.
 
 <Palette swatches={LEVEL_SWATCHES} />
 
@@ -79,7 +79,7 @@ MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
 
 ### see-through
 
-`black-a{n}` and `white-a{n}` are black and white at `{n}`%, from 4 to 80. `neutral-a{n}` is black on a light page and white on a dark one, at `{n}`%, for washes, hovers and quieter text. `page-a{n}` is the page's own colour, for panes, scrims and fades that settle into the page. `--kicl-surface-glass-color` is a surface you can see through, for a pane with a blur behind it.
+`black-a{n}` and `white-a{n}` are black and white at `{n}`%, from 4 to 80. `neutral-a{n}` is black on a light page and white on a dark one, at `{n}`%, for washes, hovers and quieter text. `page-a{n}` is the page's own color, for panes, scrims and fades that settle into the page. `--kicl-surface-glass-color` is a surface you can see through, for a pane with a blur behind it.
 
 <Variables
   names={[
@@ -94,7 +94,7 @@ MDN: [`opacity`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
 
 ## Classes
 
-The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-fill-{name}`, where `{name}` is any colour above.
+The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-fill-{name}`, where `{name}` is any color above.
 
 ```tsx
 // Text in blue, and anything inside that reads the body colour
@@ -113,9 +113,9 @@ The patterns are `kicl-color-{name}`, `kicl-background-color-{name}` and `kicl-f
 <aside className='kicl-background-color-body' />
 ```
 
-`kicl-color-{name}` sets `--kicl-body-color` as well as `color`, so an icon or a border inside picks up the colour too. `kicl-fill-{name}` is for SVG.
+`kicl-color-{name}` sets `--kicl-body-color` as well as `color`, so an icon or a border inside picks up the color too. `kicl-fill-{name}` is for SVG.
 
-The body colours have their own:
+The body colors have their own:
 
-- `kicl-color-body-color` and `kicl-fill-body-color` use the text colour.
-- `kicl-background-color-body` uses the page colour, and `kicl-background-color-body-color` fills with the text colour.
+- `kicl-color-body-color` and `kicl-fill-body-color` use the text color.
+- `kicl-background-color-body` uses the page color, and `kicl-background-color-body-color` fills with the text color.

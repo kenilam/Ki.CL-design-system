@@ -314,7 +314,7 @@
   "markdown_preset_a_link_name": "A link",
   "markdown_preset_an_image": "For a picture, with its description in the square brackets.",
   "markdown_preset_an_image_name": "An image",
-  "markdown_preset_basic": "Makes a word bold with `**two**` or italic with `*one*`.",
+  "markdown_preset_basic": "Makes text bold with `**` on each side, or italic with `*`.",
   "markdown_preset_basic_name": "Basic",
   "markdown_preset_code": "For commands and names inside a sentence. Wrap them in backticks and they show as code.",
   "markdown_preset_code_name": "Code",

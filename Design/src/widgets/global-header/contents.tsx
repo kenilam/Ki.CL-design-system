@@ -22,6 +22,7 @@ import { CLASS_NAME } from './constants';
 import * as Spec from './spec';
 
 const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
+  after,
   before,
   children,
 }) => {
@@ -35,7 +36,6 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     'kicl-inset-block-start-0',
     'kicl-padding-block',
     'kicl-position-sticky',
-    // A sticky header would print over the top of every sheet.
     'kicl-print-hidden',
     'kicl-text-transform-uppercase',
     'kicl-z-index-header',
@@ -46,11 +46,7 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     <Layout
       alignItems='center'
       autoFlow='column'
-      frames={
-        before
-          ? 'auto--max-content--max-content--max-content'
-          : 'auto--max-content--max-content'
-      }
+      frames='1fr--max-content'
       gap='normal'
       ref={node}
     >
@@ -59,6 +55,7 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
         {isMobile ? null : children}
         {before}
         <ThemeToggle />
+        {after}
         {isMobile ? children : null}
       </header>
     </Layout>

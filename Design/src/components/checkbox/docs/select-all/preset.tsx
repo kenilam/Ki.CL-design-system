@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 import { GROUP_CONTROLS } from 'design/components/checkbox/docs/controls';
 
@@ -8,12 +9,7 @@ import { GROUP_CONTROLS } from 'design/components/checkbox/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a list where people often want everything. The box on top ticks or
-    clears the rest, and looks partly ticked when only some are.
-  </>
-);
+const description = <Copy id='checkbox_preset_select_all' />;
 
 const name = 'Select all';
 
@@ -22,6 +18,7 @@ const Preset = (
     code={source}
     controls={GROUP_CONTROLS}
     description={description}
+    label='checkbox_preset_select_all_name'
     name={name}
   >
     <Preview />

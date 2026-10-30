@@ -1,15 +1,11 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Backdrop } from 'design/docs/tokens/previews';
 
-Shadows, frosted panes and scrims for things that sit over the page.
+<Text><Copy id='token_effects_intro' /></Text>
 
-## Variables
+<Copy id='token_effects_variables' />
 
-### backdrop-filter
-
-MDN: [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter).
-
-The frosted pane behind the global header and anything else over a scrolling page.
+<Copy id='token_effects_backdrop_filter' />
 
 <Variables
   names={['backdrop-blur', 'backdrop-filter']}
@@ -17,15 +13,11 @@ The frosted pane behind the global header and anything else over a scrolling pag
   preview={Backdrop}
 />
 
-### scrim
-
-The scrim over a picture, so text on it stays readable.
+<Copy id='token_effects_scrim' />
 
 <Variables names={['scrim-opacity', 'scrim-top', 'scrim-foot']} />
 
-## Classes
-
-Shadows follow the pattern `kicl-box-shadow-{name}`.
+<Copy id='token_effects_classes' />
 
 ```tsx
 // The soft shadow under popovers and menus
@@ -38,8 +30,4 @@ Shadows follow the pattern `kicl-box-shadow-{name}`.
 <figure className='kicl-position-relative kicl-scrim' />
 ```
 
-`{name}` is `center`, `top`, `bottom`, `left`, `right`, `overlay` or `none`. `overlay` is the soft shadow under popovers and menus.
-
-- `kicl-backdrop` is the frosted pane: what's behind is blurred and tinted with `--kicl-color-page-a12`, so text on it stays readable. A pane over one element, like a spinner's, sets `--kicl-backdrop-tint` to a stronger one, such as `--kicl-color-page-a64`.
-- `kicl-backdrop-blur` blurs what's behind less than `kicl-backdrop` does, and adds no tint.
-- `kicl-scrim` mutes a picture under a wash of the page color, from `--kicl-scrim-top` at the top to `--kicl-scrim-foot` at the foot. Put it on a positioned element.
+<Copy id='token_effects_part_6' />

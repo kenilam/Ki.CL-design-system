@@ -17,6 +17,7 @@ import {
 import { useDocsContext } from 'design/docs/context';
 
 // Partials
+import { Copy } from './copy';
 import { Code } from './preview/code';
 import { Preview } from './preview';
 
@@ -98,7 +99,9 @@ const COMPONENTS: MDXComponents = {
     return <List gap='narrow'>{children}</List>;
   },
 
+  Copy,
   Preview,
+  Text,
 };
 
 export { COMPONENTS, Pre };

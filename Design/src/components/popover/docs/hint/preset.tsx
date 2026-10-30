@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 import { HINT_CONTROLS } from 'design/components/popover/docs/controls';
 
@@ -8,12 +9,7 @@ import { HINT_CONTROLS } from 'design/components/popover/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    A short note that shows while the trigger is hovered or focused, like a
-    tooltip.
-  </>
-);
+const description = <Copy id='popover_preset_hint' />;
 
 const name = 'Hint';
 
@@ -22,6 +18,7 @@ const Preset = (
     code={source}
     controls={HINT_CONTROLS}
     description={description}
+    label='popover_preset_hint_name'
     name={name}
   >
     <Preview />

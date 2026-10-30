@@ -1,13 +1,11 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Overflow } from 'design/docs/tokens/previews';
 
-How an element treats content that runs past its box, how scrolling carries on past it, and how far its layout is kept separate from the rest of the page.
+<Text><Copy id='token_overflow_intro' /></Text>
 
-## Variables
+<Copy id='token_overflow_variables' />
 
-### overflow
-
-MDN: [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow), [`overflow-x`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-x) and [`overflow-y`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-y).
+<Copy id='token_overflow_overflow' />
 
 <Variables
   names={[
@@ -45,9 +43,7 @@ MDN: [`overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Pro
   preview={Overflow}
 />
 
-### overscroll-behavior
-
-MDN: [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior).
+<Copy id='token_overflow_overscroll_behavior' />
 
 <Variables
   names={[
@@ -58,9 +54,7 @@ MDN: [`overscroll-behavior`](https://developer.mozilla.org/en-US/docs/Web/CSS/Re
   property='overscroll-behavior'
 />
 
-### contain
-
-MDN: [`contain`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain).
+<Copy id='token_overflow_contain' />
 
 <Variables
   names={[
@@ -75,17 +69,13 @@ MDN: [`contain`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prop
   property='contain'
 />
 
-### scroll-fade
-
-MDN: [`mask-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image).
+<Copy id='token_overflow_scroll_fade' />
 
 <Variables
   names={['scroll-fade-distance', 'scroll-fade-start', 'scroll-fade-end']}
 />
 
-## Classes
-
-The patterns are `kicl-overflow-{keyword}`, `kicl-overflow-{x|y}-{keyword}`, `kicl-overscroll-behavior-{keyword}` and `kicl-contain-{keyword}`.
+<Copy id='token_overflow_classes' />
 
 ```tsx
 // Scrolls top to bottom when its content is taller than it
@@ -101,10 +91,4 @@ The patterns are `kicl-overflow-{keyword}`, `kicl-overflow-{x|y}-{keyword}`, `ki
 <div className='kicl-contain-inline-size' />
 ```
 
-`{keyword}` for overflow is `auto`, `clip`, `hidden`, `scroll` or `visible`. For contain it's `none`, `content`, `inline-size`, `layout`, `paint`, `size` or `strict`.
-
-`kicl-contain-inline-size` stops an element's content from widening its parent. A parent sized to fit its content then takes its width from its other children, and this element fits inside that width.
-
-- `kicl-scrollbar-none` hides the scrollbar and keeps the scrolling.
-- `kicl-scroll-fade` fades the content out at the top and bottom edges it can scroll toward, and hides the scrollbar. `kicl-scroll-fade-inline` does the same at the start and end, for a row that scrolls sideways.
-- `kicl-stuck-line-start` and `kicl-stuck-line-end` draw the slowly panning five-color gradient used on the scroll indicator along a sticky element's edge while it's stuck: `start` for a footer stuck to the bottom, `end` for a header stuck to the top.
+<Copy id='token_overflow_part_8' />

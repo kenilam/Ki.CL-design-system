@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    An icon, the field and a button that acts on it. A button can&apos;t sit in
-    a label, so the group is a fieldset, and disabling it disables both.
-  </>
-);
+const description = <Copy id='input_group_preset_basic' />;
 
 const name = 'Basic';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='input_group_preset_basic_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

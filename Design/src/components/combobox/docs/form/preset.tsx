@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    A city field in a form. Picking a city sets the field's value, and Save
-    shows an error if what's typed isn't on the list.
-  </>
-);
+const description = <Copy id='combobox_preset_form' />;
 
 const name = 'In a form';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='combobox_preset_form_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

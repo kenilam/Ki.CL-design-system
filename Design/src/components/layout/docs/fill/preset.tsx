@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { FILL_CONTROLS } from 'design/components/layout/docs/controls';
@@ -9,9 +10,7 @@ import { FILL_CONTROLS } from 'design/components/layout/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>For cards of equal width: four a row here, one a row on phones.</>
-);
+const description = <Copy id='layout_preset_fill' />;
 
 const name = 'Fill';
 
@@ -20,6 +19,7 @@ const Preset = (
     code={source}
     controls={FILL_CONTROLS}
     description={description}
+    label='layout_preset_fill_name'
     name={name}
   >
     <Preview />

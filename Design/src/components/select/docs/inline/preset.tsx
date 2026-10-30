@@ -1,24 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a choice inside a sentence. Without its box, the select reads as the
-    chosen value followed by an arrow, in the size and colour of the text around
-    it.
-  </>
-);
+const description = <Copy id='select_preset_inline' />;
 
 const name = 'Inline';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='select_preset_inline_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

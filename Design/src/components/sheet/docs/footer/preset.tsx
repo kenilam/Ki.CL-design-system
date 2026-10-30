@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For editing something and then saving it, with Cancel and Save at the
-    bottom.
-  </>
-);
+const description = <Copy id='sheet_preset_footer' />;
 
 const name = 'Footer';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='sheet_preset_footer_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

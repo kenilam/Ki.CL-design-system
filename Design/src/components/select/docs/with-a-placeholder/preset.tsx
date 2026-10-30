@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Shows a prompt until something is picked, so the field doesn't start on a
-    real answer. The prompt isn't one of the options.
-  </>
-);
+const description = <Copy id='select_preset_with_a_placeholder' />;
 
 const name = 'With a placeholder';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='select_preset_with_a_placeholder_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

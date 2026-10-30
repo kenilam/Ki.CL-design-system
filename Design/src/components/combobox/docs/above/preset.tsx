@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a field near the bottom of the screen. The list opens above it, and
-    starts open here so you can see it.
-  </>
-);
+const description = <Copy id='combobox_preset_above' />;
 
 const name = 'Above';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='combobox_preset_above_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

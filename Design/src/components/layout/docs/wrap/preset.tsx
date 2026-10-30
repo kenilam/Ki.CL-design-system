@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { WRAP_CONTROLS } from 'design/components/layout/docs/controls';
@@ -9,12 +10,7 @@ import { WRAP_CONTROLS } from 'design/components/layout/docs/controls';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For tags and other things of different widths. They sit in a line and move
-    to the next line when they run out of room.
-  </>
-);
+const description = <Copy id='layout_preset_wrap' />;
 
 const name = 'Wrap';
 
@@ -23,6 +19,7 @@ const Preset = (
     code={source}
     controls={WRAP_CONTROLS}
     description={description}
+    label='layout_preset_wrap_name'
     name={name}
   >
     <Preview />

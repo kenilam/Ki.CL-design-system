@@ -1,13 +1,8 @@
-When someone sets their system to reduce motion, the components below stop animating on their own and still show their end state. Two classes cover anything else that moves.
+<Text><Copy id='token_reduced_motion_intro' /></Text>
 
-## What changes by itself
+<Copy id='token_reduced_motion_what_changes_by_itself' />
 
-- `Animation` cuts its duration to nothing, so the end state and its events still arrive.
-- Frames, sheets, the segmented control's thumb and skeleton shimmer stop animating.
-- `kicl-scroll-reveal` content just shows, without sliding in.
-- Same-page links jump instead of scrolling smoothly, and the global header stops sliding.
-
-## Classes
+<Copy id='token_reduced_motion_classes' />
 
 ```tsx
 // A spinner that stops for anyone who asks for less motion
@@ -17,12 +12,6 @@ When someone sets their system to reduce motion, the components below stop anima
 <button className='kicl-visibility-hidden-reduced-motion' />
 ```
 
-- `kicl-animation-none-reduced-motion` stops an element's own animation.
-- `kicl-visibility-hidden-reduced-motion` hides something that only works with motion. Pair it with `kicl-animation-none-reduced-motion` when an animation sets `visibility`.
+<Copy id='token_reduced_motion_part_4' />
 
-Write anything new that moves inside `@media (prefers-reduced-motion: no-preference)`, so it's off unless the person is happy with motion.
-
-## References
-
-- [WCAG 2.2, 2.3.3 Animation from Interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html)
-- [MDN, `prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
+<Copy id='token_reduced_motion_references' />

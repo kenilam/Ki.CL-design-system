@@ -1,13 +1,11 @@
 import { Variables } from 'design/docs/tokens/variables';
 import { Specimen } from 'design/docs/tokens/previews';
 
-How an element answers the pointer and touch: its cursor, which gestures the page keeps, whether its text selects, and whether it takes clicks at all.
+<Text><Copy id='token_interaction_intro' /></Text>
 
-## Variables
+<Copy id='token_interaction_variables' />
 
-### pointer-events
-
-MDN: [`pointer-events`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/pointer-events).
+<Copy id='token_interaction_pointer_events' />
 
 <Variables
   names={[
@@ -30,9 +28,7 @@ MDN: [`pointer-events`](https://developer.mozilla.org/en-US/docs/Web/CSS/Referen
   property='pointer-events'
 />
 
-### cursor
-
-MDN: [`cursor`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/cursor).
+<Copy id='token_interaction_cursor' />
 
 <Variables
   names={[
@@ -48,9 +44,7 @@ MDN: [`cursor`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Prope
   preview={Specimen}
 />
 
-### touch-action
-
-MDN: [`touch-action`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action).
+<Copy id='token_interaction_touch_action' />
 
 <Variables
   names={[
@@ -63,9 +57,7 @@ MDN: [`touch-action`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
   property='touch-action'
 />
 
-### user-select
-
-MDN: [`user-select`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/user-select).
+<Copy id='token_interaction_user_select' />
 
 <Variables
   names={[
@@ -78,9 +70,7 @@ MDN: [`user-select`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/
   preview={Specimen}
 />
 
-## Classes
-
-The patterns are `kicl-pointer-events-{keyword}`, `kicl-cursor-{keyword}`, `kicl-touch-action-{keyword}` and `kicl-user-select-{keyword}`, where `{keyword}` is the CSS value listed above.
+<Copy id='token_interaction_classes' />
 
 ```tsx
 // Clicks go through it to whatever is underneath

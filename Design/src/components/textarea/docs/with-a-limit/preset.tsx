@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    For a bio or anything else with a length cap. Typing stops at 160 characters
-    and the count under the field keeps track.
-  </>
-);
+const description = <Copy id='textarea_preset_with_a_limit' />;
 
 const name = 'With a limit';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='textarea_preset_with_a_limit_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

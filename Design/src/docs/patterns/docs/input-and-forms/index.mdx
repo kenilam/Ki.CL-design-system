@@ -1,42 +1,19 @@
 import { Preset as ChoicesAndATotal } from './choices-and-a-total';
 import { Preset as SignUp } from './sign-up';
 
-Forms are where people get things done, so every extra field or unclear label makes the job harder.
-
-Build forms with the `Form` component. It renders a real `form`, so pressing Enter submits it. It turns off the browser's own validation pop-ups, which look different in every browser and vanish after a few seconds, and `FormMessage` shows each error under its field instead.
+<Copy id='pattern_input_and_forms_intro' />
 
 <Preview>
   {SignUp}
   {ChoicesAndATotal}
 </Preview>
 
-## Label every field
+<Copy id='pattern_input_and_forms_label_every_field' />
 
-Every field gets a visible `label`, not just a placeholder. A placeholder disappears as soon as someone types, is usually too faint to pass contrast, and isn't a reliable name for assistive technology. Put hints in `FormDescription`, which the field points to with `aria-describedby`.
+<Copy id='pattern_input_and_forms_group_what_belongs_together' />
 
-## Group what belongs together
+<Copy id='pattern_input_and_forms_ask_for_less' />
 
-Wrap related radios and checkboxes in a `fieldset` with a `legend`. `RadioGroup` and `CheckboxGroup` do this, so a screen reader announces the question when someone moves into the group.
+<Copy id='pattern_input_and_forms_errors' />
 
-## Ask for less
-
-- Leave out anything you don't need. Each extra field is more work, and some people stop before the end.
-- Use the right input type, so phones show the right keyboard and browsers can fill it in: `EmailInput`, `PasswordInput`, `type='tel'`, `inputMode='numeric'`.
-- Set `autoComplete`, so returning people don't type their address again.
-- Offer a choice instead of typing when the answers are known.
-- Split a long form into steps, and let people save and come back.
-
-## Errors
-
-- Check a field when the person leaves it, not on every keystroke.
-- Put the error under the field, in words that say how to fix it. `FormMessage` does this and links it to the field.
-- Keep the submit button enabled. Pressing it shows what's missing; a disabled button just leaves people guessing why.
-
-## References
-
-- [WCAG 2.2, 3.3.2 Labels or Instructions](https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html)
-- [WCAG 2.2, 3.3.1 Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)
-- [WCAG 2.2, 3.3.3 Error Suggestion](https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html)
-- [WCAG 2.2, 1.3.5 Identify Input Purpose](https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html)
-- [W3C WAI, Forms tutorial](https://www.w3.org/WAI/tutorials/forms/)
-- [MDN, autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete)
+<Copy id='pattern_input_and_forms_references' />

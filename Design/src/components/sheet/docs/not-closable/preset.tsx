@@ -1,23 +1,24 @@
 import React from 'react';
 
 // Partials
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 // Preview
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    There’s no close button and Escape does nothing, so your own code decides
-    when it closes, like the Done button here.
-  </>
-);
+const description = <Copy id='sheet_preset_not_closable' />;
 
 const name = 'Not closable';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='sheet_preset_not_closable_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

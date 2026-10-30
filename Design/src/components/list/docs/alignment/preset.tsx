@@ -1,23 +1,22 @@
 import React from 'react';
 
-import { Text } from 'design/components';
+import { Copy } from 'design/docs/mdx/copy';
 import { Preset as Origin } from 'design/docs/mdx/preview';
 
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = (
-  <>
-    Cards of different heights side by side. Each stretches to the tallest until{' '}
-    <Text is='code'>alignItems</Text> lines them up at the start, centre or end
-    instead.
-  </>
-);
+const description = <Copy id='list_preset_alignment' />;
 
 const name = 'Alignment';
 
 const Preset = (
-  <Origin code={source} description={description} name={name}>
+  <Origin
+    code={source}
+    description={description}
+    label='list_preset_alignment_name'
+    name={name}
+  >
     <Preview />
   </Origin>
 );

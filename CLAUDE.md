@@ -14,7 +14,7 @@ Ki.CL's design system, built as the Module Federation remote `design`. See READM
 - Each exposed module is a public API. If you rename or remove an export, the host has to change in the same release.
 - Don't re-export a third-party namespace (`react-icons/ri` and the like). Everything in it ships to the host.
 - A package that holds React context or an instance the host also uses (router, forms, i18next) has to be a `shared` singleton here and in the host.
-- No copy in components: visible text, `aria-label`, `alt`, `placeholder` and messages are keys in `Design/src/locales/en/design.json`, read with `useCopy` from `Design/src/locales/use-copy.ts`. Keys are flat, lower case with underscores, and values that come from code are templated (`{{email}}`). The namespace can't use the host's `common`, because the design system also renders with no host. Seed the database after changing a key (README, Decisions).
+- No copy in components: visible text, `aria-label`, `alt`, `placeholder` and messages are keys in `Design/src/locales/en-US/design.json`, read with `useCopy` from `Design/src/locales/use-copy.ts`. Keys are flat, lower case with underscores, and values that come from code are templated (`{{email}}`). The namespace can't use the host's `common`, because the design system also renders with no host. Seed the database after changing a key (README, Decisions).
 - Keep `LAYERS` in `Design/scripts/get-style-layer.ts` the same as in Ki.CL's `App/.client/helper/get-style-layer.ts`.
 - Single quotes, named exports only. Files and folders are lowercase with dashes.
 - Git: same strategy as Ki.CL. Squash into `develop`. The Release workflow fast-forwards `main` to `develop`.

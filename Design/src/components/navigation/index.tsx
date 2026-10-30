@@ -69,7 +69,12 @@ const Navigation = React.forwardRef<
 
       return (
         <Animation {...animation} key={key}>
-          <ListItem className={`${CLASS_NAME}--list-item`}>{child}</ListItem>
+          <ListItem
+            className={`${CLASS_NAME}--list-item`}
+            justifyItems={justifyItems}
+          >
+            {child}
+          </ListItem>
         </Animation>
       );
     });

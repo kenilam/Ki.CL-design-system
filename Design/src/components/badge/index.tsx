@@ -4,6 +4,9 @@ import classNames from 'classnames';
 //Components
 import { Layout } from 'design/components/layout';
 
+// Helpers
+import { truncateText } from 'design/helper';
+
 import type { BadgeIs, Props } from './spec';
 import { BadgeLabel } from './badge-label';
 
@@ -53,7 +56,7 @@ const Badge = React.forwardRef<HTMLElement, Props>(
           )}
           ref={ref as never}
         >
-          {children}
+          {truncateText(children)}
         </Component>
       </Layout>
     );

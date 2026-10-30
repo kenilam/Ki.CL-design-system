@@ -150,6 +150,14 @@
   // Block padding on an inline box doesn't move the lines. Inline padding is
   // needed to keep the fill off punctuation right after it.
   &[data-is='code'],
+  &[data-is='pre'],
+  &.kicl-look-like-code,
+  &.kicl-look-like-pre {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  &[data-is='code'],
   &.kicl-look-like-code {
     --kicl--components--text--background-color: var(
       --kicl--components--text--fill

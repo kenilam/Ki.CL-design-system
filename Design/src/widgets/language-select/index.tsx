@@ -123,7 +123,7 @@ const LanguageSelect = <Tag extends string>({
             title={note}
             value={acceptLanguage}
           >
-            {[name, flag].join(' ').trim()}
+            <bdi>{name}</bdi> {flag}
           </SelectItem>
         );
       })}

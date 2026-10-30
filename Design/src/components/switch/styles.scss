@@ -36,7 +36,7 @@
     // Safari, where the grid put it at the top.
     margin-block: calc(var(--kicl--components--switch--unit) * 2);
     margin-inline-start: calc(var(--kicl--components--switch--unit) * 2);
-    transition: translate var(--kicl-transition-duration-fast)
+    transition: margin-inline-start var(--kicl-transition-duration-fast)
       var(--kicl-ease-quint-in-out);
   }
 
@@ -44,7 +44,7 @@
     background-color: var(--kicl--components--switch--checked);
 
     &::before {
-      translate: calc(var(--kicl--components--switch--unit) * 10);
+      margin-inline-start: calc(var(--kicl--components--switch--unit) * 12);
     }
   }
 

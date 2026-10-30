@@ -9,16 +9,16 @@ import { startOfDay } from 'design/components/calendar/helpers';
 // Partials
 import { Day } from './day';
 
-const STEPS: Record<string, number> = {
-  ArrowDown: 7,
-  ArrowLeft: -1,
-  ArrowRight: 1,
-  ArrowUp: -7,
-};
-
 const onKeyDown = (event: React.KeyboardEvent<HTMLTableSectionElement>) => {
-  const step = STEPS[event.key];
   const body = event.currentTarget;
+  const forward = body.matches(':dir(rtl)') ? -1 : 1;
+  const steps: Record<string, number> = {
+    ArrowDown: 7,
+    ArrowLeft: -forward,
+    ArrowRight: forward,
+    ArrowUp: -7,
+  };
+  const step = steps[event.key];
 
   if (!step || event.defaultPrevented) {
     return;

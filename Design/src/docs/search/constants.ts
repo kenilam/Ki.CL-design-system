@@ -55,6 +55,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'pointer-events': 'utilities/interaction',
   position: 'utilities/position',
   print: 'accessibility/visibility',
+  'rtl-mirror': 'semantics/sides',
   scrim: 'utilities/effects',
   'scroll-fade': 'utilities/overflow',
   'scroll-reveal': 'foundations/motion',

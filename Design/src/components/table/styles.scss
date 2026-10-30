@@ -1,0 +1,43 @@
+:root {
+  --kicl--components--table--border-color: var(--kicl-surface-border-color);
+  --kicl--components--table--border-width: var(--kicl-size-1px);
+  --kicl--components--table--padding-block: var(--kicl-gutter-narrower);
+  --kicl--components--table--padding-inline: var(--kicl-gutter);
+}
+
+.kicl--components--table {
+  border-collapse: collapse;
+  inline-size: 100%;
+
+  caption {
+    caption-side: top;
+    padding-block-end: var(--kicl--components--table--padding-block);
+    text-align: start;
+  }
+
+  th,
+  td {
+    border-block-end: var(--kicl--components--table--border-width) solid
+      var(--kicl--components--table--border-color);
+    padding: var(--kicl--components--table--padding-block)
+      var(--kicl--components--table--padding-inline);
+    text-align: start;
+    vertical-align: top;
+
+    &:first-child {
+      padding-inline-start: 0;
+    }
+
+    &:last-child {
+      padding-inline-end: 0;
+    }
+  }
+
+  thead th {
+    font-weight: var(--kicl-font-weight-bold);
+  }
+
+  tbody th {
+    font-weight: inherit;
+  }
+}

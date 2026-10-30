@@ -120,6 +120,12 @@ export const PAGES = {
         return import('design/components/list/docs/index.mdx');
       }),
     },
+    table: {
+      context: 'table',
+      Content: lazy(() => {
+        return import('design/components/table/docs/index.mdx');
+      }),
+    },
     image: {
       context: 'image',
       Content: lazy(() => {

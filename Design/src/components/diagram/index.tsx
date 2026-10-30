@@ -45,6 +45,8 @@ const Diagram: React.FunctionComponent<Props> = ({
       className={classNames(
         BASE,
         'kicl-inline-size-full',
+        'kicl-margin-block-wide',
+        'kicl-max-inline-size-columns-8',
         'kicl-position-relative',
         className
       )}

@@ -1,7 +1,13 @@
 .kicl--components--list--list-style {
-  list-style-position: inside;
+  list-style-position: outside;
+  padding-inline-start: var(--kicl-gutter-wide);
 
   > .kicl--components--list-item {
     display: list-item;
+
+    // An inline-block too wide for the line drops below its marker.
+    > .kicl--components--text[data-is='span'] {
+      display: inline;
+    }
   }
 }

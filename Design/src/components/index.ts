@@ -197,6 +197,7 @@ import {
   type SwitchLabelProps,
   type SwitchProps,
 } from './switch';
+import { Table, type TableProps } from './table';
 import { AnimatedText, AnimatedTextProps } from './animated-text';
 import {
   Text,
@@ -401,6 +402,8 @@ export {
   SwitchLabel,
   type SwitchLabelProps,
   type SwitchProps,
+  Table,
+  type TableProps,
   Text,
   type TextIs,
   type TextLevel,

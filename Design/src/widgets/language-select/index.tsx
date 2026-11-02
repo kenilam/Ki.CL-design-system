@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 
+// Libraries
+import classNames from 'classnames';
+
 // Components
-import { Select, SelectItem, SelectTrigger, Spinner } from 'design/components';
+import {
+  Select,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  type SelectProps,
+} from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -9,7 +18,11 @@ import { useCopy } from 'design/locales/use-copy';
 const CLASS_NAME = 'kicl--widgets--language-select';
 
 // The design system doesn't load the API, so this is the part of its language status the widget reads. `Tag` is whatever the caller's tags are.
-type LanguageSelectProps<Tag extends string> = {
+type LanguageSelectProps<Tag extends string> = Pick<
+  SelectProps,
+  'className' | 'inline' | 'placement'
+> & {
+  'aria-busy'?: boolean;
   languages: readonly {
     acceptLanguage: Tag;
     complete?: boolean;
@@ -20,12 +33,17 @@ type LanguageSelectProps<Tag extends string> = {
 };
 
 const LanguageSelect = <Tag extends string>({
+  'aria-busy': waiting = false,
+  className,
+  inline = true,
   languages,
   onValueChange,
+  placement,
   value,
 }: LanguageSelectProps<Tag>) => {
   const t = useCopy();
   const [loading, setLoading] = useState(false);
+  const busy = waiting || loading;
 
   const options = languages
     .map(({ acceptLanguage, complete, translating }) => {
@@ -81,23 +99,26 @@ const LanguageSelect = <Tag extends string>({
     return acceptLanguage === value;
   });
 
-  let face: React.ReactNode = current?.flag || [...(current?.name ?? '')][0];
+  let face: React.ReactNode = <SelectValue />;
 
-  if (loading) {
-    face = <Spinner position='inline' size='small' />;
+  if (inline) {
+    face = current?.flag || [...(current?.name ?? '')][0];
   }
 
   return (
     <Select
+      aria-busy={busy}
       aria-label={t('label_language')}
-      className={CLASS_NAME}
-      inline
+      className={classNames(CLASS_NAME, className)}
+      disabled={waiting}
+      inline={inline}
+      placement={placement}
       onValueChange={(picked) => {
         const option = options.find(({ acceptLanguage }) => {
           return acceptLanguage === picked;
         });
 
-        if (!option) {
+        if (!option || loading) {
           return;
         }
 

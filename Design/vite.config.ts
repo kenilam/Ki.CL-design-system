@@ -8,7 +8,7 @@ import mdx from '@mdx-js/rollup';
 import { federation } from '@module-federation/vite';
 import { compression } from 'vite-plugin-compression2';
 
-import { getStyleLayer, LAYER_ORDER } from './scripts/get-style-layer';
+import { getStyleLayer, LAYER_ORDER } from './scripts/get-style-layer.ts';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const src = path.resolve(root, 'src');

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
@@ -29,11 +29,38 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
     },
     ref
   ) => {
-    if (!['string', 'number'].includes(typeof children)) {
+    let text: string | null = null;
+
+    if (['string', 'number'].includes(typeof children)) {
+      text = String(children);
+    }
+
+    const [first, setFirst] = useState(text);
+    const [replaced, setReplaced] = useState(false);
+
+    if (first === null && text !== null) {
+      setFirst(text);
+    }
+
+    if (first !== null && text !== first && !replaced) {
+      setReplaced(true);
+    }
+
+    if (text === null) {
       return null;
     }
 
-    const text = String(children);
+    if (replaced) {
+      return (
+        <Text
+          {...(props as React.ComponentProps<typeof Text>)}
+          className={classNames(CLASS_NAME, className)}
+          ref={ref}
+        >
+          {text}
+        </Text>
+      );
+    }
 
     const words = text.split(/(\s+)/);
 

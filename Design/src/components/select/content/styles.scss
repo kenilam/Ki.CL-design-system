@@ -6,12 +6,20 @@
     var(--kicl-surface-border-color);
   border-radius: var(--kicl--components--popover--border-radius);
   color: var(--kicl--components--select--color);
-  margin-block: 0;
+  margin: 0;
   max-block-size: var(--kicl--components--select--content-max-block-size);
   opacity: 0;
   padding: var(--kicl--components--popover--padding);
+  position-area: var(--kicl--components--select--position-area);
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  scroll-padding-block: var(--kicl--components--popover--padding);
+  scroll-snap-type: block mandatory;
+  scrollbar-width: none;
   transition:
-    margin-block var(--kicl-transition-duration-fast),
+    margin var(--kicl-transition-duration-fast),
     opacity var(--kicl-transition-duration-fast),
     display var(--kicl-transition-duration-fast) allow-discrete,
     overlay var(--kicl-transition-duration-fast) allow-discrete;
@@ -20,11 +28,12 @@
 }
 
 .kicl--components--select:open::picker(select) {
-  margin-block: var(--kicl-gutter-narrow);
+  margin-block: var(--kicl--components--select--picker-margin-block);
+  margin-inline: var(--kicl--components--select--picker-margin-inline);
   opacity: 1;
 
   @starting-style {
-    margin-block: 0;
+    margin: 0;
     opacity: 0;
   }
 }

@@ -16,4 +16,18 @@
   .kicl--components--select:open & {
     rotate: 180deg;
   }
+
+  .kicl--components--select[aria-busy='true'] & {
+    animation: kicl-revolving 1s linear infinite;
+    background-color: currentcolor;
+    mask: var(--kicl-icon-loader-4-line) center / contain no-repeat;
+
+    > * {
+      visibility: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
 }

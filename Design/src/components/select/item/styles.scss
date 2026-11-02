@@ -2,6 +2,18 @@
   // The select's focus ring style is inherited, so each option resets it.
   --kicl-outline-style: none;
 
+  scroll-snap-align: start;
+
+  @supports (animation-timeline: view()) {
+    --kicl-scroll-reveal-from: 0 0;
+
+    animation:
+      kicl-scroll-reveal-in linear backwards,
+      kicl-scroll-reveal-out linear forwards;
+    animation-range: entry, exit;
+    animation-timeline: view(), view();
+  }
+
   & + & {
     margin-block-start: var(--kicl-gutter-narrower);
   }

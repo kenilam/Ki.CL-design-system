@@ -1,6 +1,7 @@
 import type React from 'react';
 
 import type { FormItemFieldProps } from 'design/components/form';
+import type { PopoverPlacement } from 'design/components/popover/spec';
 
 export type SelectProps = Omit<
   React.ComponentPropsWithoutRef<'select'>,
@@ -9,6 +10,7 @@ export type SelectProps = Omit<
   FormItemFieldProps & {
     inline?: boolean;
     onValueChange?: (value: string) => void;
+    placement?: PopoverPlacement;
     /** Shown while nothing is chosen; also makes `required` meaningful. */
     placeholder?: string;
   };

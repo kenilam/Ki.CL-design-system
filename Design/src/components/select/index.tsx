@@ -44,9 +44,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       onChange,
       onValueChange,
       placeholder,
+      placement = 'block-end',
       value,
       ...rest
     } = props;
+    const [axis, edge, align = 'start'] = placement.split('-');
     const hasTrigger = React.Children.toArray(children).some((child) => {
       return React.isValidElement(child) && child.type === SelectTrigger;
     });
@@ -56,10 +58,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         ref={ref}
         className={classNames(
           CLASS_NAME,
+          `${CLASS_NAME}--${axis}-${edge}--${align}`,
           {
             [`${CLASS_NAME}--inline`]: inline,
             'kicl-font-size-small': !inline,
-            'kicl-inline-size-full': !inline,
+            'kicl-inline-size-fit': !inline,
           },
           className
         )}

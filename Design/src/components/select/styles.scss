@@ -1,3 +1,10 @@
+$sides: (
+  block-end: block,
+  block-start: block,
+  inline-start: inline,
+  inline-end: inline,
+);
+
 .kicl--components--select {
   --kicl--components--select--background-color: var(--kicl-surface-color);
   --kicl--components--select--border-color: var(--kicl-color-grey-900);
@@ -7,6 +14,9 @@
   --kicl--components--select--content-max-block-size: 16rem;
   --kicl--components--select--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--select--padding-inline: var(--kicl-gutter);
+  --kicl--components--select--picker-margin-block: var(--kicl-gutter-narrow);
+  --kicl--components--select--picker-margin-inline: 0;
+  --kicl--components--select--position-area: block-end span-inline-end;
 
   background-color: var(--kicl--components--select--background-color);
   border: var(--kicl--components--select--border-width) solid
@@ -26,6 +36,49 @@
     padding: 0;
   }
 
+  @each $side, $axis in $sides {
+    $across: block;
+
+    @if $axis == block {
+      $across: inline;
+    }
+
+    $spans: (
+      start: span-#{$across}-end,
+      center: span-all,
+      end: span-#{$across}-start,
+    );
+
+    @each $align, $span in $spans {
+      &--#{$side}--#{$align} {
+        --kicl--components--select--position-area: #{$side} #{$span};
+
+        @if $axis == inline {
+          --kicl--components--select--picker-margin-block: 0;
+          --kicl--components--select--picker-margin-inline: var(
+            --kicl-gutter-narrow
+          );
+        }
+
+        @if $align == center {
+          .kicl--components--select__item {
+            justify-content: center;
+
+            &::before {
+              content: '';
+              flex-shrink: 0;
+              inline-size: var(--kicl-size);
+            }
+
+            &::checkmark {
+              margin-inline-start: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
   @supports (appearance: base-select) {
     &,
     &::picker(select) {
@@ -40,6 +93,12 @@
     &::picker-icon {
       display: none;
     }
+  }
+
+  &[aria-busy='true'] {
+    --kicl-disabled-opacity: 1;
+
+    cursor: progress;
   }
 
   &[aria-invalid='true'],

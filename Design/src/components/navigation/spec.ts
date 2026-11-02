@@ -9,6 +9,7 @@ export type Props = React.ComponentPropsWithoutRef<'nav'> &
     | 'alignContent'
     | 'alignItems'
     | 'autoFlow'
+    | 'display'
     | 'frames'
     | 'fullScreen'
     | 'gap'

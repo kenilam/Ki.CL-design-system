@@ -15,7 +15,6 @@
 
   &--overlay {
     --kicl-backdrop-filter: blur(var(--kicl-gutter-narrower));
-    --kicl-backdrop-tint: var(--kicl-color-page-a64);
 
     @at-root *:has(> &) {
       position: relative;

@@ -34,3 +34,8 @@ export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
      */
     showLabel?: boolean;
   };
+
+export type BackLinkProps = Pick<Props, 'className'> &
+  Partial<Pick<Props, 'relative' | 'to'>> & {
+    label?: string;
+  };

@@ -13,6 +13,10 @@
   container: kicl-page / scroll-state;
 }
 
+:root:has(.kicl--widgets--global-header:focus-within) {
+  scroll-padding-block-start: 0;
+}
+
 @mixin -scrolled-down {
   @container kicl-page scroll-state((scrolled: bottom) and (scrollable: top)) {
     @content;

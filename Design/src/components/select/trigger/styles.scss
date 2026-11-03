@@ -4,6 +4,20 @@
 
   // The select already draws the focus ring.
   outline: none;
+
+  .kicl--components--select[aria-busy='true'] &::after {
+    animation: kicl-revolving 1s linear infinite;
+    background-color: currentcolor;
+    block-size: 1em;
+    content: '';
+    flex-shrink: 0;
+    inline-size: 1em;
+    mask: var(--kicl-icon-loader-4-line) center / contain no-repeat;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
 }
 
 .kicl--components--select__icon {
@@ -18,16 +32,6 @@
   }
 
   .kicl--components--select[aria-busy='true'] & {
-    animation: kicl-revolving 1s linear infinite;
-    background-color: currentcolor;
-    mask: var(--kicl-icon-loader-4-line) center / contain no-repeat;
-
-    > * {
-      visibility: hidden;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
+    display: none;
   }
 }

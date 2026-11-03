@@ -114,8 +114,9 @@ import {
   GetHyperLinkClassNamesProps,
   HyperLinkProps,
 } from './hyper-link';
+import { BackLink } from './hyper-link/back-link';
 import { HomeLink } from './hyper-link/home-link';
-import type { HomeLinkProps } from './hyper-link/spec';
+import type { BackLinkProps, HomeLinkProps } from './hyper-link/spec';
 import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
 import { Input, type InputProps } from './input';
@@ -215,6 +216,8 @@ export {
   type AnimationProps,
   AnimatedText,
   type AnimatedTextProps,
+  BackLink,
+  type BackLinkProps,
   Badge,
   BADGE_VARIANTS,
   BadgeLabel,

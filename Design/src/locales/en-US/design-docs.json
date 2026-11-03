@@ -214,6 +214,8 @@
   "hyper_link_preset_an_email_address_name": "An email address",
   "hyper_link_preset_another_site": "A link to another site opens in a new tab, and screen readers are told that it does.",
   "hyper_link_preset_another_site_name": "Another site",
+  "hyper_link_preset_back": "For the link back to the parent page: `BackLink`, an arrow before its name. It goes one level up the path unless it's given a `to`.",
+  "hyper_link_preset_back_name": "Back",
   "hyper_link_preset_basic": "The plain link you'd put inside a sentence.",
   "hyper_link_preset_basic_name": "Basic",
   "hyper_link_preset_home": "For the link back to the home page: `HomeLink`, a house with the look of a button, its name read by screen readers or shown beside it.",

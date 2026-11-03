@@ -40,7 +40,7 @@
     opacity: var(--kicl--components--details--content--opacity);
     overflow: clip;
 
-    // Room for a link's underline, which is a shadow below the line.
+    // Room for a link's underline, which sits below the line.
     overflow-clip-margin: var(--kicl-size-3px);
     transition-duration: var(
       --kicl--components--details--content--transition-duration

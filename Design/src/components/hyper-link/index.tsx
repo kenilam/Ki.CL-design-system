@@ -53,6 +53,8 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
       className: _className = '',
       disabled,
       end = true,
+      frames,
+      justifyContent = LAYOUT.justifyContent,
       level,
       lookLikeButton,
       target: _target,
@@ -145,7 +147,12 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
 
     if (lookLikeButton) {
       return (
-        <Layout {...LAYOUT} display='inline-grid'>
+        <Layout
+          {...LAYOUT}
+          display='inline-grid'
+          frames={frames}
+          justifyContent={justifyContent}
+        >
           {Link}
         </Layout>
       );

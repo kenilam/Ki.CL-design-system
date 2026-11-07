@@ -8,16 +8,15 @@ import { Preset as Origin } from 'design/docs/mdx/preview';
 import { Preview } from './preview';
 import source from './preview.tsx?raw';
 
-const description = <Copy id='input_preset_a_file' />;
+const description = <Copy id='notification_preset_stack' />;
 
-const name = 'A file';
+const name = 'Stack';
 
 const Preset = (
   <Origin
-    controls={{ readOnly: null }}
     code={source}
     description={description}
-    label='input_preset_a_file_name'
+    label='notification_preset_stack_name'
     name={name}
   >
     <Preview />

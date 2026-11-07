@@ -170,6 +170,12 @@ export const PAGES = {
         return import('design/components/status/docs/index.mdx');
       }),
     },
+    notification: {
+      context: 'notification',
+      Content: lazy(() => {
+        return import('design/components/notification/docs/index.mdx');
+      }),
+    },
     bubble: {
       context: 'bubble',
       Content: lazy(() => {

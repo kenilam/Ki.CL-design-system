@@ -21,7 +21,7 @@ const Message: React.FunctionComponent = () => {
   return (
     <FormField
       control={control}
-      name='Message'
+      name='message'
       render={({ field }) => {
         return (
           <Textarea

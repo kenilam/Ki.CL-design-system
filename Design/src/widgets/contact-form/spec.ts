@@ -1,8 +1,8 @@
 import type React from 'react';
 
 export type Values = {
-  Email: string;
-  Message: string;
+  email: string;
+  message: string;
 };
 
 export type Props = Pick<React.ComponentProps<'form'>, 'className'> & {

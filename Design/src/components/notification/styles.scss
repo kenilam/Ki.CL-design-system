@@ -1,0 +1,179 @@
+$group: 'kicl--components--notification-group';
+$direction: var(--#{$group}--direction);
+$index: var(--#{$group}--index);
+$depth: min(#{$index}, 2);
+$gap: var(--kicl-gutter-narrow);
+$peek: var(--kicl-gutter-narrower);
+$lift: 0 #{$shadow-distant-overlay} #{$shadow-distant-overlay * 2.5}
+  #{rgba($shadow-color, $shadow-alpha-overlay)};
+$motion: var(--kicl-transition-duration-fast) var(--kicl-ease-quint-in-out);
+
+.kicl--components--notification-group {
+  --kicl--components--notification-group--direction: 1;
+  --kicl--components--notification-group--saturation: 0.4;
+  --kicl--components--notification-group--narrow: 0.04;
+
+  background: none;
+  border: 0;
+  color: inherit;
+  inline-size: fit-content;
+  inset-block: var(--kicl-inset-block-start) auto;
+  max-inline-size: var(--kicl-columns-4);
+  min-inline-size: var(--kicl-columns-3);
+  opacity: 1;
+  overflow: visible;
+  padding: 0;
+  pointer-events: none;
+  transition:
+    display var(--kicl-transition-duration-fast) allow-discrete,
+    opacity var(--kicl-transition-duration-fast),
+    overlay var(--kicl-transition-duration-fast) allow-discrete,
+    translate var(--kicl-transition-duration-fast);
+  translate: 0 0;
+
+  &:is(:hover, :focus-within) &__list,
+  &__item {
+    pointer-events: auto;
+  }
+
+  &__list {
+    isolation: isolate;
+  }
+
+  &__item {
+    transform-origin: 50% 100%;
+    transition:
+      filter $motion,
+      opacity $motion,
+      scale $motion,
+      translate $motion;
+    z-index: calc(-1 * #{$index});
+  }
+
+  @media (hover: hover) {
+    &:not(:hover, :focus-within) &__item:nth-child(n + 2) {
+      filter: saturate(calc(1 - #{$depth} * var(--#{$group}--saturation)));
+      pointer-events: none;
+      scale: calc(1 - #{$depth} * var(--#{$group}--narrow));
+      translate: 0
+        calc(
+          #{$direction} * (#{$depth} * #{$peek} - #{$index} * (100% + #{$gap}))
+        );
+    }
+
+    &:not(:hover, :focus-within) &__item:nth-child(n + 4) {
+      opacity: 0;
+    }
+  }
+
+  &--inline-start {
+    inset-inline: var(--kicl-inset-inline-start) auto;
+  }
+
+  &--inline-end {
+    inset-inline: auto var(--kicl-inset-inline-end);
+  }
+
+  &--block-start,
+  &--block-end {
+    inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
+    margin-inline: auto;
+  }
+
+  &--block-end {
+    --kicl--components--notification-group--direction: -1;
+
+    inset-block: auto var(--kicl-inset-block-end);
+
+    .kicl--components--notification-group__list {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .kicl--components--notification-group__item {
+      transform-origin: 50% 0;
+    }
+  }
+
+  &:not(:popover-open) {
+    display: none;
+    opacity: 0;
+    translate: 0 calc(-1 * #{$direction} * #{$peek});
+  }
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 calc(-1 * #{$direction} * #{$peek});
+  }
+
+  @include query('≤tablet') {
+    inline-size: auto;
+    inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
+    min-inline-size: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &__item {
+      transition: none;
+    }
+  }
+}
+
+.kicl--components--notification {
+  align-items: center;
+  box-shadow: $lift;
+  column-gap: var(--kicl-gutter-narrow);
+  grid-template-areas: 'title' 'message';
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0;
+
+  &:has(> &__avatar) {
+    grid-template-areas: 'avatar title' 'avatar message';
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  &:has(> &__clear) {
+    grid-template-areas: 'title clear' 'message clear';
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+
+  &:has(> &__avatar):has(> &__clear) {
+    grid-template-areas: 'avatar title clear' 'avatar message clear';
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__message {
+    grid-area: message;
+  }
+
+  &__avatar {
+    aspect-ratio: 1;
+    background-color: color-mix(in srgb, currentcolor 12%, transparent);
+    border-radius: 50%;
+    display: grid;
+    grid-area: avatar;
+    inline-size: var(--kicl-size-2x);
+    place-items: center;
+  }
+
+  &__title :is(a, button)::after {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+
+  &__clear {
+    border-radius: 50%;
+    grid-area: clear;
+    padding: var(--kicl-gutter-narrowest);
+
+    &:is(:hover, :focus-visible) {
+      background-color: color-mix(in srgb, currentcolor 12%, transparent);
+    }
+  }
+}

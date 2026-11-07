@@ -210,7 +210,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
             popoverTarget={id}
             popoverTargetAction='hide'
             size='small'
-            variant='secondary'
+            variant='tertiary'
           >
             <Ri.RiCloseLine aria-hidden />
           </Button>

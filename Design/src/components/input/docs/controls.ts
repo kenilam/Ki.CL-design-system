@@ -1,4 +1,4 @@
-import type { Input } from 'design/components';
+import type { FileInput, Input } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
 
 export const CONTROLS = {
@@ -10,3 +10,8 @@ export const CONTROLS = {
 } satisfies ControlsSpec;
 
 export type Props = Controlled<typeof Input, keyof typeof CONTROLS>;
+
+export type FileProps = Controlled<
+  typeof FileInput,
+  keyof typeof CONTROLS | 'inline' | 'multiple'
+>;

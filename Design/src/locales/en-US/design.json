@@ -1,5 +1,6 @@
 {
   "action_clear": "Clear",
+  "action_remove_file": "Remove {{name}}",
   "action_close_dialog": "Close this dialog",
   "action_close_sheet": "Close this sheet",
   "action_copy": "Copy",
@@ -267,5 +268,12 @@
   "token_typography": "Typography",
   "token_variant": "Variant",
   "token_visibility": "Visibility",
-  "url_github": "https://github.com/kenilam/Ki.CL-design-system"
+  "url_github": "https://github.com/kenilam/Ki.CL-design-system",
+  "file_input_drop": "Drop a file here, or **choose one**",
+  "file_input_drop_multiple": "Drop files here, or **choose them**",
+  "component_notification": "Notification",
+  "component_summary_notification": "Short messages, stacked, that spread out when you point at them.",
+  "notifications": "Notifications",
+  "action_clear_notification": "Clear this notification",
+  "file_input_files": "{{count}} files"
 }

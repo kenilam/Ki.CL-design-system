@@ -16,10 +16,15 @@ export type InputGroupProps = PolymorphicIsProps<
   'fieldset'
 >;
 
-export type InputGroupButtonProps = Pick<ButtonProps, 'children'> &
-  ComponentPropsWithoutRef<'button'> & {
-    variant?: Extract<Variant, 'primary' | 'ghost'>;
-  };
+export type InputGroupButtonProps = Pick<
+  ButtonProps,
+  'after' | 'before' | 'children'
+> &
+  ComponentPropsWithoutRef<'button'> &
+  (
+    | { size?: never; variant?: Extract<Variant, 'ghost'> }
+    | { size?: ButtonProps['size']; variant: Extract<Variant, 'primary'> }
+  );
 
 export type InputGroupInputProps = ComponentPropsWithoutRef<'input'>;
 

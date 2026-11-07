@@ -52,9 +52,4 @@ export type {
   InputGroupTextareaProps,
 } from './spec';
 
-export {
-  InputGroupButton,
-  InputGroupInput,
-  InputGroupTextarea,
-  InputGroup,
-};
+export { InputGroupButton, InputGroupInput, InputGroupTextarea, InputGroup };

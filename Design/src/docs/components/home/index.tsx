@@ -10,10 +10,10 @@ import { useCopy } from 'design/locales/use-copy';
 import { useResponsive } from 'design/hooks';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 // Partials
-import { COMPONENTS, Pre } from 'design/docs/mdx';
+import { COMPONENTS, Pre } from 'design/mdx';
 import { Explore } from './explore';
 import Welcome from './welcome.mdx';
 

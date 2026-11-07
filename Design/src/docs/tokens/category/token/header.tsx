@@ -23,11 +23,11 @@ import { useLocation } from 'design/router';
 
 import { useCopy } from 'design/locales/use-copy';
 
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 import { useDocsCrumbs } from 'design/docs/sections';
 import { Sidebar } from 'design/docs/tokens/sidebar';
-import { PATH } from 'design/docs/tokens/constants';
+import { TOKENS_PATH as PATH } from 'design/docs/paths';
 
 import { useTokenContext } from './use-token-context';
 

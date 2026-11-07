@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AnimationProps } from 'design/components';
-import type { Props as ButtonProps } from 'design/components/button/spec';
+import type { ButtonProps } from 'design/components';
 
 type Overlay = {
   position?: 'overlay';

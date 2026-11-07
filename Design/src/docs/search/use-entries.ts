@@ -4,14 +4,14 @@ import { useMemo, useState } from 'react';
 import { useCopy } from 'design/locales/use-copy';
 
 // Pages
-import { PAGES as COMPONENTS } from 'design/docs/components/pages';
-import { PAGES as PATTERNS } from 'design/docs/patterns/pages';
-import { PAGES as TOKENS } from 'design/docs/tokens/pages';
+import { PAGES as COMPONENTS } from 'design/component-pages';
+import { PAGES as PATTERNS } from 'design/pattern-pages';
+import { PAGES as TOKENS } from 'design/token-pages';
 
 // Constants
-import { PATH as COMPONENTS_PATH } from 'design/docs/components/constants';
-import { PATH as PATTERNS_PATH } from 'design/docs/patterns/constants';
-import { PATH as TOKENS_PATH } from 'design/docs/tokens/constants';
+import { COMPONENTS_PATH } from 'design/docs/paths';
+import { PATTERNS_PATH } from 'design/docs/paths';
+import { TOKENS_PATH } from 'design/docs/paths';
 
 import { namesIn, pageFor } from './constants';
 

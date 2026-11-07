@@ -1,5 +1,5 @@
 import type { Dialog } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 // No `fullScreen` control: the props type doesn't allow it with `dense`.
 export const CONTROLS = {

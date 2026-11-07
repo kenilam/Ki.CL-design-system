@@ -18,13 +18,13 @@ import { useResponsive } from 'design/hooks';
 import { useCopy } from 'design/locales/use-copy';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 // Pages
-import { PAGES, type Category } from 'design/docs/tokens/pages';
+import { PAGES, type Category } from 'design/token-pages';
 
 // Constants
-import { PATH } from 'design/docs/tokens/constants';
+import { TOKENS_PATH as PATH } from 'design/docs/paths';
 
 const Explore: React.FunctionComponent = () => {
   const t = useCopy();

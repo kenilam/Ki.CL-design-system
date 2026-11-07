@@ -5,10 +5,7 @@ import { createPortal } from 'react-dom';
 import type { PopoverHintProps } from 'design/components/popover/spec';
 
 // Class names
-import { getContentClassNames } from 'design/components/popover/content/class-names';
-
-// Constants
-import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
+import { getContentClassNames } from 'design/components/popover/class-names';
 
 // Context
 import { usePopover } from 'design/components/popover/context';
@@ -71,7 +68,7 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
       })}
       style={
         {
-          [`--${POPOVER}--anchor`]: popover.anchor,
+          ...popover.anchorStyle,
           ...style,
         } as React.CSSProperties
       }

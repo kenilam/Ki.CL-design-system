@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { Props as ButtonProps } from 'design/components/button/spec';
+import type { ButtonProps } from 'design/components';
 
 export type Props = Omit<
   React.ComponentPropsWithoutRef<'input'>,

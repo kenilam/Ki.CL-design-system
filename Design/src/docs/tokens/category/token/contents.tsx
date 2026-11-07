@@ -5,7 +5,7 @@ import { Heading, Spinner } from 'design/components';
 import { Status404 } from 'design/status';
 
 import { Header } from './header';
-import { COMPONENTS, Pre } from 'design/docs/mdx';
+import { COMPONENTS, Pre } from 'design/mdx';
 
 import { useTokenContext } from './use-token-context';
 

@@ -1,6 +1,6 @@
 import type { Button, HyperLinkProps } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
-import { BUTTON_SIZES } from 'design/components/button/spec';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
+import { BUTTON_SIZES } from 'design/components';
 import { LEVELS, VARIANTS } from 'design/components/spec';
 
 export const CONTROLS = {

@@ -5,10 +5,10 @@ import { NavLinkProps } from 'design/router';
 
 // Components
 import type {
-  ContentProps,
-  LookProps,
-  NoLookProps,
-} from 'design/components/button/spec';
+  ButtonContentProps as ContentProps,
+  ButtonLookProps as LookProps,
+  ButtonNoLookProps as NoLookProps,
+} from 'design/components';
 import type { LayoutProps } from 'design/components/layout';
 
 export type Props = Required<PropsWithChildren> &

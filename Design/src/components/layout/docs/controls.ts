@@ -1,5 +1,5 @@
 import type { Layout } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import {
   ALIGN_CONTENTS,
   ALIGN_ITEMS,

@@ -5,7 +5,7 @@ import {
   TEXT_VARIANTS,
 } from 'design/components/text/spec';
 import type { TextLevel } from 'design/components/text/spec';
-import type { ControlsSpec } from 'design/docs/mdx/preview';
+import type { ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
   is: { options: TEXT_IS, default: 'p' },

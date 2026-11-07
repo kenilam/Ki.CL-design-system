@@ -1,8 +1,14 @@
-import type { Duration, Property } from 'design/components/animation/spec';
+import type {
+  AnimationDuration as Duration,
+  AnimationProperty as Property,
+} from 'design/components';
 import type { SpinnerProps } from 'design/components';
-import type { ControlsSpec } from 'design/docs/mdx/preview';
-import { DURATIONS, PROPERTIES } from 'design/components/animation/spec';
-import { BUTTON_SIZES } from 'design/components/button/spec';
+import type { ControlsSpec } from 'design/mdx/preview';
+import {
+  ANIMATION_DURATIONS as DURATIONS,
+  ANIMATION_PROPERTIES as PROPERTIES,
+} from 'design/components';
+import { BUTTON_SIZES } from 'design/components';
 
 export const CONTROLS = {
   size: BUTTON_SIZES,

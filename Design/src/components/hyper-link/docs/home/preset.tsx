@@ -1,12 +1,12 @@
 import React from 'react';
 
 // Components
-import { BUTTON_SIZES } from 'design/components/button/spec';
+import { BUTTON_SIZES } from 'design/components';
 import { LEVELS, VARIANTS } from 'design/components/spec';
 
 // Partials
-import { Copy } from 'design/docs/mdx/copy';
-import { Preset as Origin } from 'design/docs/mdx/preview';
+import { Copy } from 'design/mdx/copy';
+import { Preset as Origin } from 'design/mdx/preview';
 
 // Preview
 import { Preview } from './preview';

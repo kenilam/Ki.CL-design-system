@@ -19,7 +19,7 @@ import {
 import { useCopy } from 'design/locales/use-copy';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 import { type Entry, useEntries } from './use-entries';
 

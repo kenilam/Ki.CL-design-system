@@ -15,7 +15,7 @@ import {
 import { useResponsive } from 'design/hooks';
 
 // Spec
-import { LEVELS } from 'design/components/spec';
+import { LEVELS } from 'design/components';
 
 const Levels: React.FunctionComponent = () => {
   const { isMobile } = useResponsive();

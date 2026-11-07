@@ -20,13 +20,13 @@ import {
 import { useCopy } from 'design/locales/use-copy';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 // Pages
-import { PAGES, type Category } from 'design/docs/patterns/pages';
+import { PAGES, type Category } from 'design/pattern-pages';
 
 // Constants
-import { PATH } from 'design/docs/patterns/constants';
+import { PATTERNS_PATH as PATH } from 'design/docs/paths';
 
 const Sidebar: React.FunctionComponent<NavigationProps> = ({
   className,

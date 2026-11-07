@@ -7,12 +7,12 @@ import type { Crumb } from 'design/components';
 import { useCopy } from 'design/locales/use-copy';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 // Constants
-import { PATH as COMPONENTS_PATH } from 'design/docs/components/constants';
-import { PATH as PATTERNS_PATH } from 'design/docs/patterns/constants';
-import { PATH as TOKENS_PATH } from 'design/docs/tokens/constants';
+import { COMPONENTS_PATH } from 'design/docs/paths';
+import { PATTERNS_PATH } from 'design/docs/paths';
+import { TOKENS_PATH } from 'design/docs/paths';
 
 const SECTIONS = [
   {

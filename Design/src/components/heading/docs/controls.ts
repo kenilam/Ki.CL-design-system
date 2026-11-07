@@ -1,5 +1,5 @@
 import type { Heading } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import { HEADING_LEVELS } from 'design/components/heading/spec';
 import { LEVELS } from 'design/components/spec';
 

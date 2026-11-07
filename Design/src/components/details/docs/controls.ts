@@ -1,5 +1,5 @@
 import type { Details } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import { GAPS } from 'design/components/spec';
 
 export const CONTROLS = {

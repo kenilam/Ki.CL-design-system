@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components/form/context';
+import { useFormItemControl } from 'design/components';
 import {
   InputGroup,
   InputGroupButton,

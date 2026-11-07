@@ -4,7 +4,7 @@ import React from 'react';
 import { Layout, List, ListItem, Text } from 'design/components';
 
 // Spec
-import { GAPS } from 'design/components/spec';
+import { GAPS } from 'design/components';
 
 const Gaps: React.FunctionComponent = () => {
   return (

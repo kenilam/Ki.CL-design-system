@@ -10,7 +10,7 @@ import { Markdown } from 'design/components';
 import type en from 'design/locales/en-US/design-docs.json';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from './context';
 
 type Key = keyof typeof en;
 

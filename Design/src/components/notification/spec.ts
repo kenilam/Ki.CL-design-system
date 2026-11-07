@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
-import type { CardProps } from 'design/components/card/spec';
-import type { Props as HyperLinkProps } from 'design/components/hyper-link/spec';
+import type { CardProps } from 'design/components';
+import type { HyperLinkProps } from 'design/components';
 import type { Side } from 'design/components/spec';
 
 export type NotificationGroupProps = Omit<

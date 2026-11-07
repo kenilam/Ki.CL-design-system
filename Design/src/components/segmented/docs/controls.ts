@@ -1,9 +1,6 @@
 import type { Segmented } from 'design/components';
-import {
-  POPOVER_PLACEMENTS,
-  POPOVER_VARIANTS,
-} from 'design/components/popover/spec';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import { POPOVER_PLACEMENTS, POPOVER_VARIANTS } from 'design/components';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
   disabled: 'boolean',

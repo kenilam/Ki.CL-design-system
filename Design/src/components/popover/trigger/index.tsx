@@ -37,7 +37,7 @@ const toggle = (panel: HTMLElement, source: HTMLElement) => {
 const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
   ({ asChild, children, className, onClick, style, ...rest }, ref) => {
     const popover = usePopover();
-    const anchor = { [`--${POPOVER}--anchor`]: popover.anchor };
+    const anchor = popover.anchorStyle;
 
     const shared = {
       ...(popover.content

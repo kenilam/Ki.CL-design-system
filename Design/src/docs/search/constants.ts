@@ -1,4 +1,4 @@
-import type { PAGES } from 'design/docs/tokens/pages';
+import type { PAGES } from 'design/token-pages';
 
 type TokenPath = {
   [C in keyof typeof PAGES]: `${C}/${keyof (typeof PAGES)[C] & string}`;

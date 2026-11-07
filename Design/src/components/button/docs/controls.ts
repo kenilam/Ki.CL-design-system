@@ -1,5 +1,5 @@
 import type { ButtonProps } from 'design/components';
-import type { ControlsSpec } from 'design/docs/mdx/preview';
+import type { ControlsSpec } from 'design/mdx/preview';
 import { BUTTON_SIZES } from 'design/components/button/spec';
 import { LEVELS, VARIANTS } from 'design/components/spec';
 

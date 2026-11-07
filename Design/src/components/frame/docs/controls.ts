@@ -1,5 +1,5 @@
 import type { Frame } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
   animate: 'boolean',

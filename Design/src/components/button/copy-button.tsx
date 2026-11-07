@@ -4,7 +4,7 @@ import React from 'react';
 import * as Ri from 'react-icons/ri';
 
 // Hooks
-import { useClipboard } from 'design/hooks/use-clipboard';
+import { useClipboard } from 'design/hooks';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';

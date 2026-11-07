@@ -5,7 +5,7 @@ import { Heading, Spinner } from 'design/components';
 import { Status404 } from 'design/status';
 
 import { Header } from './header';
-import { COMPONENTS } from 'design/docs/mdx';
+import { COMPONENTS } from 'design/mdx';
 
 import { useComponentContext } from './use-component-context';
 

@@ -7,11 +7,11 @@ import { Layout, List, ListItem, Text } from 'design/components';
 import { useResponsive } from 'design/hooks';
 
 // Helpers
-import { toHex } from './to-hex';
+import { toHex } from 'design/docs/tokens/to-hex';
 
 // Spec
-import type { ColumnSpan } from 'design/components/spec';
-import type { HeadingIs } from 'design/components/heading/spec';
+import type { ColumnSpan } from 'design/components';
+import type { HeadingIs } from 'design/components';
 
 type Props = {
   fill?: ColumnSpan;

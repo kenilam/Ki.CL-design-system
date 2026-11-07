@@ -1,8 +1,4 @@
-import {
-  PAGES,
-  type Category,
-  type Component,
-} from 'design/docs/components/pages';
+import { PAGES, type Category, type Component } from 'design/component-pages';
 import { useCopy } from 'design/locales/use-copy';
 import { useParams } from 'design/router';
 

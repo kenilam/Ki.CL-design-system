@@ -1,7 +1,7 @@
 // Components
 import { AnimationProps, HeadingProps, TextProps } from 'design/components';
-import type { HeadingIs } from 'design/components/heading/spec';
-import type { Props as LayoutProps } from 'design/components/layout/spec';
+import type { HeadingIs } from 'design/components';
+import type { LayoutProps } from 'design/components';
 import { LEVELS } from 'design/components/spec';
 import type { Level } from 'design/components/spec';
 

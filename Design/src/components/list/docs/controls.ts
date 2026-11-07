@@ -1,11 +1,11 @@
 import type { List } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import {
-  ALIGN_CONTENTS,
-  ALIGN_ITEMS,
-  AUTO_FLOWS,
-  DISPLAYS,
-} from 'design/components/layout/spec';
+  LAYOUT_ALIGN_CONTENTS as ALIGN_CONTENTS,
+  LAYOUT_ALIGN_ITEMS as ALIGN_ITEMS,
+  LAYOUT_AUTO_FLOWS as AUTO_FLOWS,
+  LAYOUT_DISPLAYS as DISPLAYS,
+} from 'design/components';
 import { LIST_IS } from 'design/components/list/spec';
 import { COLUMN_SPANS, GAPS } from 'design/components/spec';
 

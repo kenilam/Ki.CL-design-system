@@ -1,8 +1,10 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, type CSSProperties } from 'react';
 
 type ContextValue = {
   id: string;
   anchor: string;
+  /** Sets the anchor on the element it's spread on, for parts and composed anchors. */
+  anchorStyle: CSSProperties;
   inline: boolean;
   open: boolean;
   setOpen: (open: boolean) => void;

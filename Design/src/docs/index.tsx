@@ -13,7 +13,7 @@ import { Patterns } from './patterns';
 import { Tokens } from './tokens';
 
 // Partials
-import { Provider } from './context';
+import { Provider } from 'design/mdx/context';
 import { Shell } from './shell';
 
 const Docs: React.FunctionComponent = () => {

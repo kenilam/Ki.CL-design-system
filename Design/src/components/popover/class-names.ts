@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 
-import type { PopoverContentProps } from 'design/components/popover/spec';
+import type { PopoverContentProps } from './spec';
 
-import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
+import { CLASS_NAME as POPOVER } from './constants';
 
 const CLASS_NAME = `${POPOVER}__content`;
 

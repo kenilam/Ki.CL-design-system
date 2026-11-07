@@ -1,4 +1,4 @@
-import { PAGES, type Category, type Token } from 'design/docs/tokens/pages';
+import { PAGES, type Category, type Token } from 'design/token-pages';
 import { useCopy } from 'design/locales/use-copy';
 import { useParams } from 'design/router';
 

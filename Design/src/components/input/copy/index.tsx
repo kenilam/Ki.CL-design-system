@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components/form/context';
+import { useFormItemControl } from 'design/components';
 import {
   InputGroup,
   InputGroupButton,
@@ -10,7 +10,7 @@ import {
 } from 'design/components/input-group';
 
 // Hooks
-import { useClipboard } from 'design/hooks/use-clipboard';
+import { useClipboard } from 'design/hooks';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';

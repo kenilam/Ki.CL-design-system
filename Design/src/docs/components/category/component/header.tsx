@@ -23,11 +23,11 @@ import { useLocation } from 'design/router';
 
 import { useCopy } from 'design/locales/use-copy';
 
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 import { useDocsCrumbs } from 'design/docs/sections';
 import { Sidebar } from 'design/docs/components/sidebar';
-import { PATH } from 'design/docs/components/constants';
+import { COMPONENTS_PATH as PATH } from 'design/docs/paths';
 
 import { useComponentContext } from './use-component-context';
 

@@ -18,7 +18,7 @@ import {
 import { DARK_THEME_CLASS_NAME, useResponsive } from 'design/hooks';
 
 // Spec
-import { VARIANTS } from 'design/components/spec';
+import { VARIANTS } from 'design/components';
 
 const THEMES = ['kicl--theme--light', DARK_THEME_CLASS_NAME];
 

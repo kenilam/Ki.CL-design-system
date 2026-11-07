@@ -1,4 +1,4 @@
-import { PAGES, type Category, type Pattern } from 'design/docs/patterns/pages';
+import { PAGES, type Category, type Pattern } from 'design/pattern-pages';
 import { useCopy } from 'design/locales/use-copy';
 import { useParams } from 'design/router';
 

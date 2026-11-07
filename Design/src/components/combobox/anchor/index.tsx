@@ -15,12 +15,9 @@ import {
 // Helpers
 import { mergeRefs } from 'design/helper';
 
-// Constants
-import { CLASS_NAME as POPOVER } from 'design/components/popover/constants';
-
 // Context
 import { focusables, useCombobox } from 'design/components/combobox/context';
-import { usePopover } from 'design/components/popover/context';
+import { usePopover } from 'design/components';
 
 const CLASS_NAME = `${COMBOBOX}__anchor`;
 
@@ -63,10 +60,7 @@ const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({ children }) => {
   return React.cloneElement(child, {
     className: classNames(CLASS_NAME, child.props.className),
     ref: mergeRefs(combobox.anchor, child.props.ref),
-    style: {
-      [`--${POPOVER}--anchor`]: popover.anchor,
-      ...child.props.style,
-    } as React.CSSProperties,
+    style: { ...popover.anchorStyle, ...child.props.style },
   });
 };
 

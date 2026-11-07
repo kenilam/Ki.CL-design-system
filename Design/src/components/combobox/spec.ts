@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactElement, ReactNode, Ref } from 'react';
 
-import type { PopoverContentProps } from 'design/components/popover/spec';
+import type { PopoverContentProps } from 'design/components';
 
 export type ComboboxProps = {
   children?: ReactNode;

@@ -1,5 +1,5 @@
 import type { Popover, PopoverContent } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import {
   POPOVER_PLACEMENTS,
   POPOVER_VARIANTS,

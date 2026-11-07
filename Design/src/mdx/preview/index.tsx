@@ -13,7 +13,7 @@ import {
   SegmentedItem,
   Text,
 } from 'design/components';
-import type { ColumnSpan } from 'design/components/spec';
+import type { ColumnSpan } from 'design/components';
 
 // Hooks
 import { DARK_THEME_CLASS_NAME } from 'design/hooks';
@@ -22,7 +22,7 @@ import { DARK_THEME_CLASS_NAME } from 'design/hooks';
 import { useCopy } from 'design/locales/use-copy';
 
 // Partials
-import { useDocsCopy } from 'design/docs/mdx/copy';
+import { useDocsCopy } from 'design/mdx/copy';
 import { Code } from './code';
 import {
   type Control,

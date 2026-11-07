@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
 
-import type { LookProps } from 'design/components/button/spec';
-import type { Props as LayoutProps } from 'design/components/layout/spec';
+import type { ButtonLookProps as LookProps } from 'design/components';
+import type { LayoutProps } from 'design/components';
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
 import { VARIANTS } from 'design/components/spec';
 import type { ColumnSpan, Variant } from 'design/components/spec';

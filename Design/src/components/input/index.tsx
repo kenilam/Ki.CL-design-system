@@ -3,11 +3,11 @@ import classNames from 'classnames';
 
 // Components
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components/form/context';
+import { useFormItemControl } from 'design/components';
 import { InputGroup } from 'design/components/input-group';
 
 // Constants
-import { CLASS_NAME as INPUT_GROUP } from 'design/components/input-group/constants';
+import { INPUT_GROUP_CLASS_NAME as INPUT_GROUP } from 'design/components';
 
 import type { Props } from './spec';
 

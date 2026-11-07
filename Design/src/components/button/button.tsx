@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { getHyperLinkClassNames } from 'design/components/hyper-link/class-names';
+import { getHyperLinkClassNames } from 'design/components';
 import { Layout } from 'design/components/layout';
 import { truncateText } from 'design/helper';
 

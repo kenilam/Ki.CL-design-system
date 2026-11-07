@@ -1,9 +1,6 @@
 import type React from 'react';
 
-import type {
-  PopoverPlacement,
-  PopoverVariant,
-} from 'design/components/popover/spec';
+import type { PopoverPlacement, PopoverVariant } from 'design/components';
 
 export type SegmentedProps = Omit<
   React.ComponentPropsWithoutRef<'fieldset'>,

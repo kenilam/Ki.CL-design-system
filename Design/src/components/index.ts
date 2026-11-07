@@ -217,6 +217,43 @@ import {
 import { Textarea, type TextareaProps } from './textarea';
 import { Video, VideoProps } from './video';
 import type { Align, ColumnSpan, Gap, Level, Side, Variant } from './spec';
+import {
+  DURATIONS as ANIMATION_DURATIONS,
+  type Duration as AnimationDuration,
+  EASINGS as ANIMATION_EASINGS,
+  PROPERTIES as ANIMATION_PROPERTIES,
+  type Property as AnimationProperty,
+} from './animation/spec';
+import {
+  LAYOUT as BUTTON_LAYOUT,
+  hasText as hasButtonText,
+} from './button/class-names';
+import {
+  BUTTON_SIZES,
+  type ContentProps as ButtonContentProps,
+  type LookProps as ButtonLookProps,
+  type NoLookProps as ButtonNoLookProps,
+} from './button/spec';
+import { CARD_VARIANTS } from './card/spec';
+import { useFormItemControl } from './form/context';
+import { HEADING_LEVELS, type HeadingIs } from './heading/spec';
+import { CLASS_NAME as INPUT_GROUP_CLASS_NAME } from './input-group/constants';
+import {
+  ALIGN_CONTENTS as LAYOUT_ALIGN_CONTENTS,
+  ALIGN_ITEMS as LAYOUT_ALIGN_ITEMS,
+  AUTO_FLOWS as LAYOUT_AUTO_FLOWS,
+  DISPLAYS as LAYOUT_DISPLAYS,
+} from './layout/spec';
+import { LIST_IS } from './list/spec';
+import { usePopover } from './popover/context';
+import {
+  POPOVER_PLACEMENTS,
+  POPOVER_VARIANTS,
+  type PopoverPlacement,
+  type PopoverVariant,
+} from './popover/spec';
+import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from './text/spec';
+import { LEVELS, VARIANTS, GAPS, COLUMN_SPANS } from './spec';
 
 export {
   Animation,
@@ -433,4 +470,36 @@ export {
   type Level,
   type Side,
   type Variant,
+  ANIMATION_DURATIONS,
+  type AnimationDuration,
+  ANIMATION_EASINGS,
+  ANIMATION_PROPERTIES,
+  type AnimationProperty,
+  BUTTON_LAYOUT,
+  hasButtonText,
+  BUTTON_SIZES,
+  type ButtonContentProps,
+  type ButtonLookProps,
+  type ButtonNoLookProps,
+  CARD_VARIANTS,
+  useFormItemControl,
+  HEADING_LEVELS,
+  type HeadingIs,
+  INPUT_GROUP_CLASS_NAME,
+  LAYOUT_ALIGN_CONTENTS,
+  LAYOUT_ALIGN_ITEMS,
+  LAYOUT_AUTO_FLOWS,
+  LAYOUT_DISPLAYS,
+  LIST_IS,
+  usePopover,
+  POPOVER_PLACEMENTS,
+  POPOVER_VARIANTS,
+  type PopoverPlacement,
+  type PopoverVariant,
+  TEXT_LOOK_LIKES,
+  TEXT_VARIANTS,
+  LEVELS,
+  VARIANTS,
+  GAPS,
+  COLUMN_SPANS,
 };

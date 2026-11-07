@@ -1,13 +1,13 @@
 import type { AnimatedText } from 'design/components';
 import { ANIMATED_TEXT_SPLITS } from 'design/components/animated-text/spec';
 import {
-  DURATIONS,
-  EASINGS,
-  PROPERTIES,
-} from 'design/components/animation/spec';
+  ANIMATION_DURATIONS as DURATIONS,
+  ANIMATION_EASINGS as EASINGS,
+  ANIMATION_PROPERTIES as PROPERTIES,
+} from 'design/components';
 import { LEVELS } from 'design/components/spec';
-import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from 'design/components/text/spec';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from 'design/components';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
   split: { options: ANIMATED_TEXT_SPLITS, default: 'letter' },

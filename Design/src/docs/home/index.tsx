@@ -24,11 +24,11 @@ import { useResponsive } from 'design/hooks';
 import { useCopy } from 'design/locales/use-copy';
 
 // Partials
-import { COMPONENTS, Pre } from 'design/docs/mdx';
+import { COMPONENTS, Pre } from 'design/mdx';
 import Motivation from './motivation.mdx';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from 'design/mdx/context';
 
 // Constants
 import { SECTIONS } from 'design/docs/sections';
@@ -43,9 +43,7 @@ const Home: React.FunctionComponent = () => {
       <article>
         <Layout gap='normal'>
           <header>
-            <Heading className='kicl-font-size-huge'>
-              {t('docs_title')}
-            </Heading>
+            <Heading className='kicl-font-size-huge'>{t('docs_title')}</Heading>
             <Text>
               <HyperLink
                 before={<Ri.RiGithubLine aria-hidden />}

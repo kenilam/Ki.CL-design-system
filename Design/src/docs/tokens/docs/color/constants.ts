@@ -1,5 +1,5 @@
 // Spec
-import { LEVELS } from 'design/components/spec';
+import { LEVELS } from 'design/components';
 
 export type Swatch = { name: string; tokens: string[] };
 

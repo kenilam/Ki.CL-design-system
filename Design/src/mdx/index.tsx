@@ -14,11 +14,11 @@ import {
 } from 'design/components';
 
 // Paths
-import { useDocsContext } from 'design/docs/context';
+import { useDocsContext } from './context';
 
 // Partials
 import { Copy } from './copy';
-import { Code } from './preview/code';
+import { Code } from 'design/mdx/preview/code';
 import { Preview } from './preview';
 
 /** MDX pages link to each other as `../button`, relative to the docs' mount. */

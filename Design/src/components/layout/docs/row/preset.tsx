@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Partials
-import { Copy } from 'design/docs/mdx/copy';
-import { Preset as Origin } from 'design/docs/mdx/preview';
+import { Copy } from 'design/mdx/copy';
+import { Preset as Origin } from 'design/mdx/preview';
 
 import { ROW_CONTROLS } from 'design/components/layout/docs/controls';
 

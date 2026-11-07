@@ -1,11 +1,11 @@
 import type { Navigation } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import {
-  ALIGN_CONTENTS,
-  ALIGN_ITEMS,
-  AUTO_FLOWS,
-} from 'design/components/layout/spec';
-import { LIST_IS } from 'design/components/list/spec';
+  LAYOUT_ALIGN_CONTENTS as ALIGN_CONTENTS,
+  LAYOUT_ALIGN_ITEMS as ALIGN_ITEMS,
+  LAYOUT_AUTO_FLOWS as AUTO_FLOWS,
+} from 'design/components';
+import { LIST_IS } from 'design/components';
 import { GAPS } from 'design/components/spec';
 
 export const CONTROLS = {

@@ -1,6 +1,6 @@
 import type { Sheet } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
-import { CARD_VARIANTS } from 'design/components/card/spec';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
+import { CARD_VARIANTS } from 'design/components';
 import { COLUMN_SPANS, LEVELS, SIDES } from 'design/components/spec';
 
 export const CONTROLS = {

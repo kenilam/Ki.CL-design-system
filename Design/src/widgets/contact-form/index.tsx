@@ -31,7 +31,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
   const t = useCopy();
 
   const form = useForm<Values>({
-    defaultValues: { Email: email, Message: '' },
+    defaultValues: { email, message: '' },
   });
 
   const { errors, isSubmitSuccessful, isSubmitting } = form.formState;
@@ -52,7 +52,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
       <Status
         className={className}
         level='info'
-        message={t('sent_to', { email: form.getValues('Email') })}
+        message={t('sent_to', { email: form.getValues('email') })}
         title={t('message_sent')}
       />
     );

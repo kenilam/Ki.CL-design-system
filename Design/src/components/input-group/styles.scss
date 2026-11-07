@@ -9,7 +9,9 @@
   --kicl--components--input-group--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input-group--padding-inline-end: var(--kicl-gutter);
   --kicl--components--input-group--padding-inline-start: var(--kicl-gutter);
-  --kicl--components--input-group--read-only-background-color: var(--kicl-body-background-color);
+  --kicl--components--input-group--read-only-background-color: var(
+    --kicl-body-background-color
+  );
 
   background-color: var(--kicl--components--input-group--background-color);
   border: var(--kicl--components--input-group--border-width) solid
@@ -95,8 +97,6 @@
   }
 
   @at-root .kicl--theme--light & {
-    --kicl--components--input-group--border-color: var(
-      --kicl-color-grey-900
-    );
+    --kicl--components--input-group--border-color: var(--kicl-color-grey-900);
   }
 }

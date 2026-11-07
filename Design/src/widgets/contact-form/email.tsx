@@ -21,7 +21,7 @@ const Email: React.FunctionComponent = () => {
   return (
     <FormField
       control={control}
-      name='Email'
+      name='email'
       render={({ field }) => {
         return (
           <EmailInput

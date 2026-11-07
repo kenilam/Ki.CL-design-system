@@ -250,9 +250,7 @@
   "input_group_preset_a_textarea_name": "A textarea",
   "input_group_preset_basic": "An icon, the field and a button that acts on it. A button can't sit in a label, so the group is a fieldset, and disabling it disables both.",
   "input_group_preset_basic_name": "Basic",
-  "input_intro": "A single-line text field. `label` puts its name above it and `description` a hint below. `before` and `after` put an icon or a short text, like a prefix or a unit, inside its border. A field with a button is an `InputGroup`. The email, password, search and copy inputs are ready-made versions of both.",
-  "input_preset_a_file": "For picking a file. The browser draws its own button inside the field.",
-  "input_preset_a_file_name": "A file",
+  "input_intro": "A single-line text field. `label` puts its name above it and `description` a hint below. `before` and `after` put an icon or a short text, like a prefix or a unit, inside its border. A field with a button is an `InputGroup`. The email, password, search, copy and file inputs are ready-made versions of both.",
   "input_preset_basic": "What the user sees before typing. The placeholder hints at what to enter.",
   "input_preset_basic_name": "Basic",
   "input_preset_copy": "For a link or token the user needs to copy. The field can't be edited, and the button copies the whole value even when it's cut short.",
@@ -731,5 +729,12 @@
   "tokens_home_tokens": "## Tokens",
   "video_intro": "An MP4 in a `figure` with a spinner until the first frame loads. By default it plays on its own, muted and looped, without controls. Pass `controls` when people need to pause it.",
   "video_preset_basic": "Plays on its own, muted and looped, like a moving picture.",
-  "video_preset_basic_name": "Basic"
+  "video_preset_basic_name": "Basic",
+  "notification_intro": "A stack of short messages, newest on top. Point at the stack or tab into it and the messages spread out into a list. `onClear` gives each one a Clear button, and a link in its `title` makes the whole message clickable. The stack sits above the page on the `side` you pick, and Escape closes it.",
+  "notification_preset_basic": "One message with an icon and a Clear button.",
+  "notification_preset_basic_name": "Basic",
+  "notification_preset_stack": "Three messages, stacked. Point at them to spread them out. The first one’s title is a link, so the whole message is clickable.",
+  "notification_preset_stack_name": "Stack",
+  "input_preset_file_input": "For picking a file. Click the zone or drop a file on it. What you picked opens from the line underneath, where you can remove it. With `inline`, it’s a field like the others, with an icon in front.",
+  "input_preset_file_input_name": "File input"
 }

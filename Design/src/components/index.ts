@@ -122,6 +122,7 @@ import { Image, ImageProps } from './image';
 import { Input, type InputProps } from './input';
 import { CopyInput } from './input/copy';
 import { EmailInput } from './input/email';
+import { FileInput } from './input/file';
 import { PasswordInput } from './input/password';
 import { SearchInput } from './input/search';
 import {
@@ -140,6 +141,12 @@ import { List, ListProps } from './list';
 import { ListItem, ListItemProps } from './list-item';
 import { Markdown, type MarkdownProps } from './markdown';
 import { Menu, MenuProps } from './menu';
+import {
+  Notification,
+  NotificationGroup,
+  type NotificationGroupProps,
+  type NotificationProps,
+} from './notification';
 import { Navigation, NavigationProps } from './navigation';
 import {
   PageIndicator,
@@ -298,6 +305,7 @@ export {
   Dialog,
   type DialogProps,
   EmailInput,
+  FileInput,
   Frame,
   type FrameProps,
   useForm,
@@ -349,6 +357,10 @@ export {
   type MenuProps,
   Navigation,
   type NavigationProps,
+  Notification,
+  NotificationGroup,
+  type NotificationGroupProps,
+  type NotificationProps,
   PageIndicator,
   type PageIndicatorPage,
   type PageIndicatorProps,

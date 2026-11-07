@@ -15,7 +15,7 @@ import {
 import { useResponsive } from 'design/hooks';
 
 // Spec
-import { VARIANTS } from 'design/components/spec';
+import { VARIANTS } from 'design/components';
 
 const Variants: React.FunctionComponent = () => {
   const { isMobile } = useResponsive();

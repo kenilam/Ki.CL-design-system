@@ -2,7 +2,7 @@ import type React from 'react';
 
 import type { CalendarMode, DateRange } from 'design/components/calendar';
 import type { FormItemFieldProps } from 'design/components/form';
-import type { PopoverVariant } from 'design/components/popover/spec';
+import type { PopoverVariant } from 'design/components';
 
 export type DatePickerMode = CalendarMode;
 

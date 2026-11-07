@@ -10,7 +10,7 @@ import { Category } from './category';
 import { Home } from './home';
 
 // Constants
-import { PATH } from './constants';
+import { TOKENS_PATH as PATH } from 'design/docs/paths';
 
 const Tokens = (
   <Route path={PATH}>

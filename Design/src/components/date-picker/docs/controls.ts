@@ -1,6 +1,6 @@
 import type { DatePicker } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
-import { POPOVER_VARIANTS } from 'design/components/popover/spec';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
+import { POPOVER_VARIANTS } from 'design/components';
 
 export const CONTROLS = {
   disabled: 'boolean',

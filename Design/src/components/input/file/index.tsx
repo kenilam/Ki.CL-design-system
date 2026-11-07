@@ -7,7 +7,7 @@ import i18next from 'i18next';
 // Components
 import { Button } from 'design/components/button';
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components/form/context';
+import { useFormItemControl } from 'design/components';
 import { InputGroup, InputGroupInput } from 'design/components/input-group';
 import { Layout } from 'design/components/layout';
 import { List } from 'design/components/list';

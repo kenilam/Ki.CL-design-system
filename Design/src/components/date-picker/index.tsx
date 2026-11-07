@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // Components
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components/form/context';
+import { useFormItemControl } from 'design/components';
 import { Popover, PopoverContent } from 'design/components/popover';
 
 // Context

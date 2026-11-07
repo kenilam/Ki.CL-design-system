@@ -11,13 +11,13 @@ import {
 } from 'design/components';
 
 // Helpers
-import { toHex } from 'design/docs/tokens/variables/to-hex';
+import { toHex } from 'design/docs/tokens/to-hex';
 
 // Hooks
 import { useResponsive } from 'design/hooks';
 
 // Spec
-import type { Swatch } from '../constants';
+import type { Swatch } from 'design/docs/tokens/docs/color/constants';
 
 type Props = {
   swatches: Swatch[];

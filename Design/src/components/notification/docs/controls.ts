@@ -1,6 +1,6 @@
 import type { Notification, NotificationGroup } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
-import { CARD_VARIANTS } from 'design/components/card/spec';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
+import { CARD_VARIANTS } from 'design/components';
 import { LEVELS, SIDES } from 'design/components/spec';
 
 export const CONTROLS = {

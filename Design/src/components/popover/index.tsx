@@ -31,6 +31,9 @@ const Popover: React.FC<PopoverProps> = ({
   const key = useId().replace(/[^a-zA-Z0-9]/g, '');
   const id = `${CLASS_NAME}--${key}`;
   const anchor = `--${CLASS_NAME}--${key}`;
+  const anchorStyle = {
+    [`--${CLASS_NAME}--anchor`]: anchor,
+  } as React.CSSProperties;
 
   const setOpen = (next: boolean) => {
     if (!isControlled) {
@@ -45,6 +48,7 @@ const Popover: React.FC<PopoverProps> = ({
       value={{
         id,
         anchor,
+        anchorStyle,
         content,
         hint,
         inline,

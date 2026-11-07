@@ -1,10 +1,10 @@
 import type { Menu } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import {
-  ALIGN_CONTENTS,
-  ALIGN_ITEMS,
-  AUTO_FLOWS,
-} from 'design/components/layout/spec';
+  LAYOUT_ALIGN_CONTENTS as ALIGN_CONTENTS,
+  LAYOUT_ALIGN_ITEMS as ALIGN_ITEMS,
+  LAYOUT_AUTO_FLOWS as AUTO_FLOWS,
+} from 'design/components';
 import { GAPS } from 'design/components/spec';
 
 export const CONTROLS = {

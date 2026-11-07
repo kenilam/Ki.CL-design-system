@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Switch } from 'design/components';
 import { useResponsive } from 'design/hooks';
 
-import { useStage } from 'design/docs/mdx/preview/stage';
+import { useStage } from 'design/mdx/preview/stage';
 
 import type { Props } from 'design/components/switch/docs/controls';
 

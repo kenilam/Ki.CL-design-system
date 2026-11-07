@@ -1,7 +1,7 @@
 import type { StatusProps } from 'design/components';
-import type { ControlsSpec } from 'design/docs/mdx/preview';
-import { PROPERTIES } from 'design/components/animation/spec';
-import { HEADING_LEVELS } from 'design/components/heading/spec';
+import type { ControlsSpec } from 'design/mdx/preview';
+import { ANIMATION_PROPERTIES as PROPERTIES } from 'design/components';
+import { HEADING_LEVELS } from 'design/components';
 import { ALIGNS } from 'design/components/spec';
 import { STATUS_LEVELS } from 'design/components/status/spec';
 

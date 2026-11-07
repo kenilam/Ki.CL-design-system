@@ -12,7 +12,6 @@ import * as Ri from 'react-icons/ri';
 import type { DatePickerTriggerProps } from 'design/components/date-picker/spec';
 
 // Styles
-import 'design/components/input/styles.scss';
 import './styles.scss';
 
 // Constants

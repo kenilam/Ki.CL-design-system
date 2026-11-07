@@ -4,7 +4,7 @@ import {
   PROPERTIES,
 } from 'design/components/animation/spec';
 import type { Options } from 'design/components/animation/spec';
-import type { ControlsSpec } from 'design/docs/mdx/preview';
+import type { ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
   property: { options: PROPERTIES, default: 'fade' },

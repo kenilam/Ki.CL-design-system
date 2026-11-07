@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components/form/context';
+import { useFormItemControl } from 'design/components';
 
 import type { Props } from './spec';
 

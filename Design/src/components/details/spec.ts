@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
-import type { Props as LayoutProps } from 'design/components/layout/spec';
+import type { LayoutProps } from 'design/components';
 
 export type Props = ComponentPropsWithoutRef<'details'> &
   Pick<LayoutProps, 'gap'> & {

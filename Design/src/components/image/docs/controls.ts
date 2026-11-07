@@ -1,5 +1,5 @@
 import type { Image } from 'design/components';
-import type { Controlled, ControlsSpec } from 'design/docs/mdx/preview';
+import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
   loading: { options: ['lazy', 'eager'], default: 'lazy' },

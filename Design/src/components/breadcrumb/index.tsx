@@ -18,7 +18,7 @@ import {
 import { mergeRefs } from 'design/helper';
 
 // Hooks
-import { useResizeObserver } from 'design/hooks/use-resize-observer';
+import { useResizeObserver } from 'design/hooks';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';

@@ -1,7 +1,7 @@
 import type React from 'react';
 
 import type { FormItemFieldProps } from 'design/components/form';
-import type { PopoverPlacement } from 'design/components/popover/spec';
+import type { PopoverPlacement } from 'design/components';
 
 export type SelectProps = Omit<
   React.ComponentPropsWithoutRef<'select'>,

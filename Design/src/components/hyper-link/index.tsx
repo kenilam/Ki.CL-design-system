@@ -6,10 +6,10 @@ import { NavLink } from 'design/router';
 // Components
 import { Layout } from 'design/components/layout';
 import {
-  LAYOUT,
+  BUTTON_LAYOUT as LAYOUT,
   getButtonClassNames,
-  hasText,
-} from 'design/components/button/class-names';
+  hasButtonText as hasText,
+} from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';

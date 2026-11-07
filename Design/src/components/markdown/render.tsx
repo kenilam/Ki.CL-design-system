@@ -5,7 +5,7 @@ import type { Token, Tokens } from 'marked';
 
 // Components
 import { Heading } from 'design/components/heading';
-import type { HeadingIs } from 'design/components/heading/spec';
+import type { HeadingIs } from 'design/components';
 import { HyperLink } from 'design/components/hyper-link';
 import { Image } from 'design/components/image';
 import { List } from 'design/components/list';

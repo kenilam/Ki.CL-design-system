@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { List, ListItem, Text } from 'design/components';
 
 // Spec
-import { COLUMN_SPANS } from 'design/components/spec';
+import { COLUMN_SPANS } from 'design/components';
 
 const Columns: React.FunctionComponent = () => {
   return (

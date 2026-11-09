@@ -17,12 +17,15 @@ export type ContentProps = PropsWithChildren<{
 }>;
 
 export type LookProps = {
+  block?: boolean;
   level?: Level;
   size?: Size;
   variant?: Variant;
 };
 
-export type NoLookProps = { [Key in keyof LookProps]?: never };
+export type NoLookProps = Pick<LookProps, 'block'> & {
+  [Key in Exclude<keyof LookProps, 'block'>]?: never;
+};
 
 export type Props = Required<PropsWithChildren> &
   ContentProps &

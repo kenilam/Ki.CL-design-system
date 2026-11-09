@@ -22,6 +22,7 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
     {
       after,
       before,
+      block,
       children,
       className: _className = '',
       disabled,
@@ -45,8 +46,9 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
     ref
   ) => {
     const className = lookLikeHyperLink
-      ? getHyperLinkClassNames({ className: _className, unstyled })
+      ? getHyperLinkClassNames({ block, className: _className, unstyled })
       : getButtonClassNames({
+          block,
           className: _className,
           disabled,
           icon: !hasText(before, children, after),

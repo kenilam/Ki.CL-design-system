@@ -17,6 +17,7 @@ export const CONTROLS = {
   },
   size: { options: BUTTON_SIZES, when: { lookLikeButton: true } },
   unstyled: { options: 'boolean', when: { lookLikeButton: false } },
+  block: 'boolean',
   disabled: 'boolean',
 } satisfies ControlsSpec;
 
@@ -28,9 +29,9 @@ export type Props = Pick<HyperLinkProps, 'className' | 'disabled'> &
   (
     | ({ lookLikeButton: true } & Controlled<
         typeof Button,
-        'level' | 'size' | 'variant'
+        'block' | 'level' | 'size' | 'variant'
       >)
-    | ({ lookLikeButton?: false } & Pick<HyperLinkProps, 'unstyled'>)
+    | ({ lookLikeButton?: false } & Pick<HyperLinkProps, 'block' | 'unstyled'>)
   );
 
 /**
@@ -41,7 +42,7 @@ export type ButtonLookProps = Pick<HyperLinkProps, 'className' | 'disabled'> &
   (
     | ({ lookLikeButton: true } & Controlled<
         typeof Button,
-        'level' | 'size' | 'variant'
+        'block' | 'level' | 'size' | 'variant'
       >)
-    | { lookLikeButton?: false }
+    | ({ lookLikeButton?: false } & Pick<HyperLinkProps, 'block'>)
   );

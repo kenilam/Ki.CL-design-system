@@ -51,11 +51,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
       menu.length > 0 ? (
         <Popover key='menu'>
           <PopoverTrigger asChild>
-            <Button
-              aria-label={t('label_breadcrumb_more')}
-              className='kicl-border-radius-sm'
-              unstyled
-            >
+            <Button aria-label={t('label_breadcrumb_more')} block unstyled>
               <Bs.BsThreeDots aria-hidden />
             </Button>
           </PopoverTrigger>

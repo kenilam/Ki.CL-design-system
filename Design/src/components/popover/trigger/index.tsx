@@ -35,7 +35,7 @@ const toggle = (panel: HTMLElement, source: HTMLElement) => {
 };
 
 const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
-  ({ asChild, children, className, onClick, style, ...rest }, ref) => {
+  ({ asChild, block, children, className, onClick, style, ...rest }, ref) => {
     const popover = usePopover();
     const anchor = popover.anchorStyle;
 
@@ -66,7 +66,12 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
         ...shared,
         ...(rest as React.HTMLAttributes<HTMLElement>),
         ...child.props,
-        className: classNames(CLASS_NAME, className, child.props.className),
+        className: classNames(
+          CLASS_NAME,
+          { 'kicl-border-radius-sm': block },
+          className,
+          child.props.className
+        ),
         style: { ...anchor, ...style, ...child.props.style },
         onClick: (event: React.MouseEvent<HTMLElement>) => {
           child.props.onClick?.(event);
@@ -93,6 +98,7 @@ const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
         className={classNames(
           CLASS_NAME,
           'kicl-line-height-narrower',
+          { 'kicl-border-radius-sm': block },
           className
         )}
         /*

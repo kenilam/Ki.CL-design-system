@@ -18,7 +18,7 @@ export type InputGroupProps = PolymorphicIsProps<
 
 export type InputGroupButtonProps = Pick<
   ButtonProps,
-  'after' | 'before' | 'children'
+  'after' | 'before' | 'block' | 'children'
 > &
   ComponentPropsWithoutRef<'button'> &
   (

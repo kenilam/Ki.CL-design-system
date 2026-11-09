@@ -52,25 +52,33 @@ const Diagram: React.FunctionComponent<Props> = ({
       )}
       ref={ref}
     >
-      {opens ? (
-        <Button
-          alignItems='center'
-          aria-label={t('action_open_image', { title: spec.title })}
-          className={classNames(
-            'kicl-cursor-zoom-in',
-            'kicl-inline-size-full',
-            `${BASE}-preview`
-          )}
-          command='show-modal'
-          commandfor={opens}
-          justifyContent='stretch'
-          unstyled
-        >
-          {drawing}
-        </Button>
-      ) : (
-        drawing
-      )}
+      <div
+        className={classNames(
+          'kicl-contain-inline-size',
+          'kicl-overflow-x-auto',
+          'kicl-scroll-fade-inline'
+        )}
+      >
+        {opens ? (
+          <Button
+            alignItems='center'
+            aria-label={t('action_open_image', { title: spec.title })}
+            className={classNames(
+              'kicl-cursor-zoom-in',
+              'kicl-inline-size-full',
+              `${BASE}-preview`
+            )}
+            command='show-modal'
+            commandfor={opens}
+            justifyContent='stretch'
+            unstyled
+          >
+            {drawing}
+          </Button>
+        ) : (
+          drawing
+        )}
+      </div>
       {spec.caption || spec.legend ? (
         <figcaption className='kicl-padding-block-start-narrow'>
           {spec.legend ? <Legend items={spec.legend} /> : null}

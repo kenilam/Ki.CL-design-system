@@ -11,7 +11,7 @@ import type { HeadingProps } from 'design/components';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import * as Spec from './spec';
@@ -20,19 +20,16 @@ const CLASS_NAME = 'kicl--components--status';
 
 const LEVELS: Spec.Icons = {
   error: (
-    <Ri.RiErrorWarningLine
+    <Bs.BsExclamationCircle
       aria-hidden
       className='kicl-font-size kicl-color-error'
     />
   ),
   info: (
-    <Ri.RiInformationLine
-      aria-hidden
-      className='kicl-font-size kicl-color-info'
-    />
+    <Bs.BsInfoCircle aria-hidden className='kicl-font-size kicl-color-info' />
   ),
   warning: (
-    <Ri.RiAlarmWarningLine
+    <Bs.BsExclamationOctagon
       aria-hidden
       className='kicl-font-size kicl-color-warning'
     />

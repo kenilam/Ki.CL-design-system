@@ -18,7 +18,7 @@ import { mergeRefs } from 'design/helper';
 import { useOverlayContents } from 'design/hooks';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Partials
 import { SheetFooter } from './footer';
@@ -212,7 +212,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
             size='small'
             variant='tertiary'
           >
-            <Ri.RiCloseLine aria-hidden />
+            <Bs.BsXLg aria-hidden />
           </Button>
         ) : null}
         {shown ? (

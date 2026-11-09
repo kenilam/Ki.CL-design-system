@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import {
   Card,
@@ -53,7 +53,7 @@ const Preview: React.FC = () => {
             ) : null}
             {state === 'saved' ? (
               <>
-                <Ri.RiCheckLine aria-hidden /> Saved
+                <Bs.BsCheckLg aria-hidden /> Saved
               </>
             ) : null}
           </Text>

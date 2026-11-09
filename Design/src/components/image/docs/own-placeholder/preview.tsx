@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import { Image } from 'design/components';
 
@@ -12,7 +12,7 @@ const Preview: React.FC<Props> = (props) => {
       className='kicl-aspect-ratio-video kicl-inline-size-columns-3'
       data='/assets/static/missing.webp'
       placeholder={
-        <Ri.RiImageLine
+        <Bs.BsImage
           aria-hidden
           className='kicl-color-grey kicl-font-size-large'
         />

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import { Animation, Heading, Layout, Text } from 'design/components';
@@ -29,7 +29,7 @@ const Status204: React.FunctionComponent<Props> = ({ message, title }) => {
             justifyItems='center'
           >
             <Text lookLike='h1'>
-              <Ri.RiFileUnknowLine
+              <Bs.BsFileEarmarkX
                 aria-hidden
                 className='kicl-font-size-extreme'
               />

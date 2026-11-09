@@ -6,7 +6,7 @@ import { Text } from 'design/components/text';
 
 import { FormItemContext, useFieldError } from './context';
 import type { FormMessageProps } from './spec';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 const CLASS_NAME = 'kicl--components--form__message';
 
@@ -41,7 +41,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
           )}
           role={error ? 'alert' : undefined}
         >
-          <Ri.RiErrorWarningLine />
+          <Bs.BsExclamationCircle />
           {body}
         </Text>
       </Layout>

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 // Components
 import { Layout } from 'design/components/layout';
 import { PopoverTrigger } from 'design/components/popover';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import type { DatePickerTriggerProps } from 'design/components/date-picker/spec';
@@ -46,7 +46,7 @@ const Trigger: React.FunctionComponent<DatePickerTriggerProps> = ({
           className
         )}
       >
-        <Ri.RiCalendarLine className={`${DATE_PICKER}__icon`} aria-hidden />
+        <Bs.BsCalendar className={`${DATE_PICKER}__icon`} aria-hidden />
         <span className={label ? undefined : 'kicl-color-grey'}>
           {label ?? placeholder}
         </span>

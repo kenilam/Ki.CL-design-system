@@ -14,7 +14,7 @@ import { Text } from 'design/components/text';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import type { NotificationProps } from './spec';
@@ -110,7 +110,7 @@ const Notification = React.forwardRef<HTMLElement, NotificationProps>(
               type='button'
               unstyled
             >
-              <Ri.RiCloseLine aria-hidden />
+              <Bs.BsXLg aria-hidden />
             </Button>
           ) : null}
         </Card>

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import { Button } from 'design/components';
 
@@ -8,8 +8,8 @@ import type { Props } from 'design/components/button/docs/controls';
 const Preview: React.FC<Props> = (props) => {
   return (
     <Button
-      after={<Ri.RiArrowRightLine aria-hidden />}
-      before={<Ri.RiSaveLine aria-hidden />}
+      after={<Bs.BsArrowRight aria-hidden />}
+      before={<Bs.BsFloppy aria-hidden />}
       {...props}
     >
       Save and continue

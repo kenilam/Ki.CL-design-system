@@ -49,6 +49,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
     {
       after,
       before,
+      block,
       children,
       className: _className = '',
       disabled,
@@ -81,6 +82,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
 
     const className = lookLikeButton
       ? getButtonClassNames({
+          block,
           className: _className,
           disabled,
           icon: !hasText(before, children, after),
@@ -88,7 +90,7 @@ const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
           size,
           variant,
         })
-      : getHyperLinkClassNames({ className: _className, unstyled });
+      : getHyperLinkClassNames({ block, className: _className, unstyled });
 
     let target: Spec.Props['target'] = _target;
 

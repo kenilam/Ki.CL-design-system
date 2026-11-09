@@ -3,6 +3,7 @@ import { POPOVER_PLACEMENTS, POPOVER_VARIANTS } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
+  block: 'boolean',
   disabled: 'boolean',
 } satisfies ControlsSpec;
 

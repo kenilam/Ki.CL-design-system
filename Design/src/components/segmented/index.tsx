@@ -49,6 +49,7 @@ const labelOf = (children: React.ReactNode, value: string | undefined) => {
 const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
   (
     {
+      block,
       children,
       className,
       collapse,
@@ -151,7 +152,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
               isPopover && collapsed
                 ? `${CLASS_NAME}__popover--collapsed`
                 : null,
-              'kicl-border-radius-md',
+              block ? 'kicl-border-radius-sm' : 'kicl-border-radius-md',
               !hasLegend && !isPopover ? 'kicl-padding-block-narrowest' : null,
               !hasLegend && !isPopover ? 'kicl-padding-inline-narrowest' : null,
               'kicl-position-relative',
@@ -177,6 +178,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
                 <PopoverTrigger asChild>
                   <Button
                     after={<Bs.BsChevronDown aria-hidden />}
+                    block={block}
                     className={classNames(
                       `${CLASS_NAME}__trigger`,
                       'kicl-min-block-size-field'

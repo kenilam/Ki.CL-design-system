@@ -62,6 +62,7 @@ const Sidebar: React.FunctionComponent<NavigationProps> = ({
                   return (
                     <ListItem key={component}>
                       <HyperLink
+                        block
                         className='kicl-inline-size-full'
                         lookLikeButton
                         to={parsePath(`${PATH}/${category}/${component}`)}

@@ -11,6 +11,7 @@ import * as Spec from './spec';
 const CLASS_NAME = 'kicl--components--button';
 
 const getButtonClassNames = ({
+  block,
   className = '',
   disabled,
   icon,
@@ -28,6 +29,7 @@ const getButtonClassNames = ({
       [`${CLASS_NAME}--level--${level}`]: !unstyled ? level : null,
       [`${CLASS_NAME}--variant--${variant}`]: !unstyled ? variant : null,
       [`${CLASS_NAME}--unstyled`]: unstyled,
+      'kicl-border-radius-sm': block,
       'kicl-line-height-narrower': !unstyled,
       'kicl-text-transform-uppercase': !unstyled,
     },

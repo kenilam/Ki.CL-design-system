@@ -9,6 +9,8 @@ import { isRouteErrorResponse, useRouteError } from 'design/router';
 // Components
 import {
   Button,
+  Card,
+  Details,
   Dialog,
   Heading,
   HyperLink,
@@ -65,6 +67,13 @@ const ErrorElement: React.FunctionComponent = () => {
       closable={false}
       footer={
         <Menu aria-label={t('title_error')} justifyContent='end'>
+          <Button
+            before={<Bs.BsArrowClockwise aria-hidden />}
+            onClick={reload}
+            size='small'
+          >
+            {t('action_reload')}
+          </Button>
           <HyperLink
             before={<Bs.BsHouse aria-hidden />}
             lookLikeButton
@@ -75,13 +84,6 @@ const ErrorElement: React.FunctionComponent = () => {
           >
             {t('action_home')}
           </HyperLink>
-          <Button
-            before={<Bs.BsArrowClockwise aria-hidden />}
-            onClick={reload}
-            size='small'
-          >
-            {t('action_reload')}
-          </Button>
         </Menu>
       }
       header={
@@ -93,9 +95,13 @@ const ErrorElement: React.FunctionComponent = () => {
     >
       <Text>{message}</Text>
       {import.meta.env.DEV && error instanceof Error ? (
-        <Text is='pre'>
-          <Text is='code'>{error.stack}</Text>
-        </Text>
+        <Card is='section' variant='secondary'>
+          <Details gap='narrow' summary={t('label_stack')}>
+            <Text is='pre'>
+              <Text is='code'>{error.stack}</Text>
+            </Text>
+          </Details>
+        </Card>
       ) : null}
     </Dialog>
   );

@@ -183,6 +183,7 @@
   "label_home": "Ki.CL home",
   "label_language": "Language",
   "label_message": "Message",
+  "label_stack": "Stack trace",
   "language_incomplete": "Not fully translated yet.",
   "language_incomplete_translating": "Being translated. You can pick it once it’s done.",
   "message_404": "The page **`{{pathname}}`** you are looking for might have been removed, had its name changed, or is temporarily unavailable.",

@@ -5,6 +5,7 @@ import { COLUMN_SPANS, LEVELS, SIDES } from 'design/components/spec';
 
 export const CONTROLS = {
   modal: 'boolean',
+  popover: { options: ['manual', 'auto'], default: 'manual' },
   size: { options: COLUMN_SPANS, default: 4 },
   side: {
     options: SIDES,

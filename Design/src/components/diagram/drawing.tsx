@@ -61,6 +61,7 @@ const Drawing: React.FunctionComponent<Props> = ({ spec, state }) => {
     <svg
       aria-hidden
       className={classNames('kicl-display-block', 'kicl-inline-size-full')}
+      style={{ minInlineSize: width }}
       viewBox={`0 0 ${width} ${height}`}
     >
       <title>{description}</title>

@@ -30,7 +30,10 @@ export type Props = Required<PropsWithChildren> &
       })
   );
 
-export type GetHyperLinkClassNamesProps = Pick<Props, 'className' | 'unstyled'>;
+export type GetHyperLinkClassNamesProps = Pick<
+  Props,
+  'block' | 'className' | 'unstyled'
+>;
 
 export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
   LookProps & {

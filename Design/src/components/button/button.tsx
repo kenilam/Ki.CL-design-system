@@ -46,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>(
     ref
   ) => {
     const className = lookLikeHyperLink
-      ? getHyperLinkClassNames({ className: _className, unstyled })
+      ? getHyperLinkClassNames({ block, className: _className, unstyled })
       : getButtonClassNames({
           block,
           className: _className,

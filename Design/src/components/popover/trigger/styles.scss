@@ -5,5 +5,18 @@
     @supports (anchor-name: --a) {
       anchor-name: var(--kicl--components--popover--anchor);
     }
+
+    // A button or link child keeps its own transitions.
+    &:not(.kicl--components--button, .kicl--components--hyper-link) {
+      --kicl--components--popover--trigger--transition-duration: var(
+        --kicl-transition-duration-fast
+      );
+      --kicl--components--popover--trigger--transition-property: border-radius;
+      --kicl--components--popover--trigger--transition-timing-function: var(
+        --kicl-ease-quint-in-out
+      );
+
+      @include transition('kicl--components--popover--trigger');
+    }
   }
 }

@@ -1,6 +1,15 @@
 .kicl--components--segmented {
   --kicl--components--segmented--track: var(--kicl-color-neutral-a8);
   --kicl--components--segmented--thumb: var(--kicl-color-neutral-a16);
+  --kicl--components--segmented--transition-duration: var(
+    --kicl-transition-duration-fast
+  );
+  --kicl--components--segmented--transition-property: border-radius;
+  --kicl--components--segmented--transition-timing-function: var(
+    --kicl-ease-quint-in-out
+  );
+
+  @include transition('kicl--components--segmented');
 
   background-color: var(--kicl--components--segmented--track);
   min-inline-size: 0;

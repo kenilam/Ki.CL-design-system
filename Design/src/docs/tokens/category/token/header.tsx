@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import {
   Breadcrumb,
@@ -48,7 +48,7 @@ const Header: React.FunctionComponent = () => {
       variant='secondary'
       popoverTarget={isMobile ? MENU_ID : undefined}
     >
-      <Ri.RiMenuLine aria-hidden />
+      <Bs.BsList aria-hidden />
     </Button>
   );
 

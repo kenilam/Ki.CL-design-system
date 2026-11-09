@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import { Input } from 'design/components';
 
@@ -9,7 +9,7 @@ const Preview: React.FC<Props> = (props) => {
   return (
     <Input
       aria-label='Search'
-      before={<Ri.RiSearchLine aria-hidden />}
+      before={<Bs.BsSearch aria-hidden />}
       placeholder='Search'
       {...props}
     />

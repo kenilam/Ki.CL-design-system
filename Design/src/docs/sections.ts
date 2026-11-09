@@ -1,4 +1,4 @@
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import type { Crumb } from 'design/components';
@@ -16,19 +16,19 @@ import { TOKENS_PATH } from 'design/docs/paths';
 
 const SECTIONS = [
   {
-    Icon: Ri.RiShapesLine,
+    Icon: Bs.BsBoundingBoxCircles,
     path: COMPONENTS_PATH,
     summary: 'docs_components_summary',
     title: 'docs_components',
   },
   {
-    Icon: Ri.RiPaletteLine,
+    Icon: Bs.BsPalette,
     path: TOKENS_PATH,
     summary: 'docs_tokens_summary',
     title: 'docs_tokens',
   },
   {
-    Icon: Ri.RiPuzzle2Line,
+    Icon: Bs.BsPuzzle,
     path: PATTERNS_PATH,
     summary: 'docs_patterns_summary',
     title: 'docs_patterns',

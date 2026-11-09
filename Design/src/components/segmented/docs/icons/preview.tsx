@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import { Segmented, SegmentedItem } from 'design/components';
 
@@ -9,10 +9,10 @@ const Preview: React.FC<Props> = (props) => {
   return (
     <Segmented aria-label='Theme' defaultValue='light' {...props}>
       <SegmentedItem aria-label='Light' value='light'>
-        <Ri.RiSunLine aria-hidden />
+        <Bs.BsSun aria-hidden />
       </SegmentedItem>
       <SegmentedItem aria-label='Dark' value='dark'>
-        <Ri.RiMoonLine aria-hidden />
+        <Bs.BsMoon aria-hidden />
       </SegmentedItem>
     </Segmented>
   );

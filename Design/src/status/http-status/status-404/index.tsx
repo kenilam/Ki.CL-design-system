@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import { Animation, Heading, Layout, Text } from 'design/components';
@@ -32,10 +32,7 @@ const Status404: React.FunctionComponent = () => {
             justifyItems='center'
           >
             <Text lookLike='h1'>
-              <Ri.RiLandscapeLine
-                aria-hidden
-                className='kicl-font-size-extreme'
-              />
+              <Bs.BsImageAlt aria-hidden className='kicl-font-size-extreme' />
               {t('something_not_right')}
             </Text>
           </Layout>

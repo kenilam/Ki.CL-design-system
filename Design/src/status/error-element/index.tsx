@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Routes
 import { isRouteErrorResponse, useRouteError } from 'design/router';
@@ -66,7 +66,7 @@ const ErrorElement: React.FunctionComponent = () => {
       footer={
         <Menu aria-label={t('title_error')} justifyContent='end'>
           <HyperLink
-            before={<Ri.RiHomeLine aria-hidden />}
+            before={<Bs.BsHouse aria-hidden />}
             lookLikeButton
             reloadDocument
             size='small'
@@ -76,7 +76,7 @@ const ErrorElement: React.FunctionComponent = () => {
             {t('action_home')}
           </HyperLink>
           <Button
-            before={<Ri.RiRefreshLine aria-hidden />}
+            before={<Bs.BsArrowClockwise aria-hidden />}
             onClick={reload}
             size='small'
           >

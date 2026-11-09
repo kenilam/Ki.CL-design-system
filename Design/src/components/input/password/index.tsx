@@ -13,7 +13,7 @@ import {
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -35,7 +35,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
     const control = useFormItemControl(props);
     const [shown, setShown] = useState(false);
     const t = useCopy();
-    const Icon = shown ? Ri.RiEyeOffLine : Ri.RiEyeLine;
+    const Icon = shown ? Bs.BsEyeSlash : Bs.BsEye;
 
     if (label || description) {
       return (
@@ -52,7 +52,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <InputGroup className={className} disabled={disabled} style={style}>
-        {before ?? <Ri.RiLockLine aria-hidden />}
+        {before ?? <Bs.BsLock aria-hidden />}
         <InputGroupInput
           {...rest}
           {...control}

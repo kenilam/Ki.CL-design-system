@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Routes
 import { useLocation, useNavigate } from 'design/router';
@@ -43,7 +43,7 @@ const GoBack: React.FunctionComponent = () => {
 
   return (
     <HyperLink
-      before={<Ri.RiArrowLeftSLine aria-hidden className='kicl-rtl-mirror' />}
+      before={<Bs.BsChevronLeft aria-hidden className='kicl-rtl-mirror' />}
       level='confirm'
       lookLikeButton
       onClick={onClick}

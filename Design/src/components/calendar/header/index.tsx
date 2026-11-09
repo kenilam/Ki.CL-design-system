@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { Button } from 'design/components/button';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Constants
 import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
@@ -35,7 +35,7 @@ const Header: React.FunctionComponent = () => {
         size='small'
         variant='secondary'
       >
-        <Ri.RiArrowLeftSLine aria-hidden className='kicl-rtl-mirror' />
+        <Bs.BsChevronLeft aria-hidden className='kicl-rtl-mirror' />
       </Button>
       <output
         id={titleId}
@@ -51,7 +51,7 @@ const Header: React.FunctionComponent = () => {
         size='small'
         variant='secondary'
       >
-        <Ri.RiArrowRightSLine aria-hidden className='kicl-rtl-mirror' />
+        <Bs.BsChevronRight aria-hidden className='kicl-rtl-mirror' />
       </Button>
     </caption>
   );

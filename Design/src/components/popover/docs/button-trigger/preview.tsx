@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import {
   Button,
@@ -15,7 +15,7 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
   return (
     <Popover {...props}>
       <PopoverTrigger asChild>
-        <Button after={<Ri.RiArrowDownSLine aria-hidden />} variant='secondary'>
+        <Button after={<Bs.BsChevronDown aria-hidden />} variant='secondary'>
           Options
         </Button>
       </PopoverTrigger>

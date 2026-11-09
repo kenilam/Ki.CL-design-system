@@ -10,7 +10,7 @@ import { Button } from 'design/components';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Styles
 import './styles.scss';
@@ -45,7 +45,7 @@ const Close: React.FunctionComponent = () => {
       size='small'
       variant='secondary'
     >
-      {CloseIcon ? <CloseIcon aria-hidden /> : <Ri.RiCloseLine aria-hidden />}
+      {CloseIcon ? <CloseIcon aria-hidden /> : <Bs.BsXLg aria-hidden />}
     </Button>
   );
 };

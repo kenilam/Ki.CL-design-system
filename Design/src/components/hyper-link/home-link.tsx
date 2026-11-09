@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -15,7 +15,7 @@ import { HyperLink } from './index';
 const HomeLink = React.forwardRef<HTMLAnchorElement, HomeLinkProps>(
   (
     {
-      icon = <Ri.RiHomeLine aria-hidden />,
+      icon = <Bs.BsHouse aria-hidden />,
       label,
       showLabel,
       variant = 'secondary',

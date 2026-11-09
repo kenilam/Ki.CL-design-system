@@ -2,7 +2,7 @@ import React from 'react';
 
 // Libraries
 import classNames from 'classnames';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import {
@@ -46,7 +46,7 @@ const Home: React.FunctionComponent = () => {
             <Heading className='kicl-font-size-huge'>{t('docs_title')}</Heading>
             <Text>
               <HyperLink
-                before={<Ri.RiGithubLine aria-hidden />}
+                before={<Bs.BsGithub aria-hidden />}
                 lookLikeButton
                 to={t('url_github')}
                 variant='secondary'

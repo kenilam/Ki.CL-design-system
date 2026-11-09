@@ -6,21 +6,21 @@ import {
   InputGroupInput,
 } from 'design/components';
 
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import type { Props } from 'design/components/input-group/docs/controls';
 
 const Preview: React.FC<Props> = ({ disabled, ...props }) => {
   return (
     <InputGroup disabled={disabled}>
-      <Ri.RiSearchLine aria-hidden />
+      <Bs.BsSearch aria-hidden />
       <InputGroupInput
         aria-label='Search'
         placeholder='Search the docs'
         {...props}
       />
       <InputGroupButton aria-label='Clear'>
-        <Ri.RiCloseLine aria-hidden />
+        <Bs.BsXLg aria-hidden />
       </InputGroupButton>
     </InputGroup>
   );

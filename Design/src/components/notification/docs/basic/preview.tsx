@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import { Button, Notification, NotificationGroup } from 'design/components';
 
@@ -17,7 +17,7 @@ const Preview: React.FC<Props> = ({ level, side, variant }) => {
       <NotificationGroup id='notification-basic' side={side}>
         {shown ? (
           <Notification
-            avatar={<Ri.RiErrorWarningFill aria-hidden />}
+            avatar={<Bs.BsExclamationCircleFill aria-hidden />}
             level={level}
             onClear={() => setShown(false)}
             title='Interstellar'

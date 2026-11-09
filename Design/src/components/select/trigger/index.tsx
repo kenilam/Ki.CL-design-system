@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { Layout } from 'design/components/layout';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Styles
 import './styles.scss';
@@ -43,7 +43,7 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {...rest}
         >
           {children}
-          <Ri.RiArrowDownSLine className={`${SELECT}__icon`} aria-hidden />
+          <Bs.BsChevronDown className={`${SELECT}__icon`} aria-hidden />
         </button>
       </Layout>
     );

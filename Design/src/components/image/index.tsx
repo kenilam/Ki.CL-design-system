@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import { Animation, Layout, Spinner } from 'design/components';
@@ -25,7 +25,7 @@ const Image: React.FunctionComponent<Spec.Props> = ({
   data,
   loading = 'lazy',
   placeholder = (
-    <Ri.RiFileUnknowLine
+    <Bs.BsFileEarmarkX
       className={classNames('kicl-color-warning', 'kicl-font-size-large')}
     />
   ),

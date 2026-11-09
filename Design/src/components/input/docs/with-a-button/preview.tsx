@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import {
   InputGroup,
@@ -18,7 +18,7 @@ const Preview: React.FC<Props> = ({ disabled, ...props }) => {
         {...props}
       />
       <InputGroupButton aria-label='Send'>
-        <Ri.RiSendPlaneLine aria-hidden />
+        <Bs.BsSend aria-hidden />
       </InputGroupButton>
     </InputGroup>
   );

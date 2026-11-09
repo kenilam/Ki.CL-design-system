@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import {
   Button,
@@ -27,7 +27,7 @@ const Preview: React.FC<Props> = (props) => {
             <CardAction>
               <PopoverTrigger asChild>
                 <Button aria-label='More' variant='ghost' size='small'>
-                  <Ri.RiMoreLine aria-hidden />
+                  <Bs.BsThreeDots aria-hidden />
                 </Button>
               </PopoverTrigger>
             </CardAction>
@@ -39,7 +39,7 @@ const Preview: React.FC<Props> = (props) => {
                 gap='narrow'
               >
                 <Button
-                  before={<Ri.RiVolumeMuteLine aria-hidden />}
+                  before={<Bs.BsVolumeMute aria-hidden />}
                   className='kicl-inline-size-full'
                   level='warning'
                   size='small'
@@ -48,7 +48,7 @@ const Preview: React.FC<Props> = (props) => {
                   Mute
                 </Button>
                 <Button
-                  before={<Ri.RiCheckLine aria-hidden />}
+                  before={<Bs.BsCheckLg aria-hidden />}
                   className='kicl-inline-size-full'
                   level='confirm'
                   size='small'

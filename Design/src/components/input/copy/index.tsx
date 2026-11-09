@@ -16,7 +16,7 @@ import { useClipboard } from 'design/hooks';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -37,7 +37,7 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
     const { copied, copy } = useClipboard();
     const t = useCopy();
 
-    const Icon = copied ? Ri.RiCheckLine : Ri.RiFileCopyLine;
+    const Icon = copied ? Bs.BsCheckLg : Bs.BsFiles;
 
     if (label || description) {
       return (

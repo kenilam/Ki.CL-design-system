@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { Button, Form, Status, Text } from 'design/components';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Partials
 import { Email } from './email';
@@ -78,7 +78,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
       <Button
         after={
           isSubmitting ? (
-            <Ri.RiLoader4Line aria-hidden className='is-revolving' />
+            <Bs.BsArrowClockwise aria-hidden className='is-revolving' />
           ) : null
         }
         disabled={isSubmitting}

@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Badge } from 'design/components';
 
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import type { Props } from 'design/components/badge/docs/controls';
 
 const Preview: React.FC<Props> = (props) => {
   return (
     <Badge {...props}>
-      <Ri.RiStarLine aria-hidden />
+      <Bs.BsStar aria-hidden />
       Featured
     </Badge>
   );

@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import { Button } from 'design/components/button';
@@ -56,7 +56,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
               className='kicl-border-radius-sm'
               unstyled
             >
-              <Ri.RiMoreLine aria-hidden />
+              <Bs.BsThreeDots aria-hidden />
             </Button>
           </PopoverTrigger>
           <PopoverContent placement='block-end-start'>
@@ -118,10 +118,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, Spec.Props>(
             return (
               <React.Fragment key={crumb.key}>
                 {index > 0 ? (
-                  <Ri.RiArrowRightSLine
-                    aria-hidden
-                    className='kicl-rtl-mirror'
-                  />
+                  <Bs.BsChevronRight aria-hidden className='kicl-rtl-mirror' />
                 ) : null}
                 {crumb}
               </React.Fragment>

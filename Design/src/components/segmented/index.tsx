@@ -4,7 +4,7 @@ import React, { useId, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import { Button } from 'design/components/button';
@@ -176,7 +176,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
               <>
                 <PopoverTrigger asChild>
                   <Button
-                    after={<Ri.RiArrowDownSLine aria-hidden />}
+                    after={<Bs.BsChevronDown aria-hidden />}
                     className={classNames(
                       `${CLASS_NAME}__trigger`,
                       'kicl-min-block-size-field'

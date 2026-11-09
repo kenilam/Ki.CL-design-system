@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -19,7 +19,7 @@ const BackLink = React.forwardRef<HTMLAnchorElement, BackLinkProps>(
     return (
       <HyperLink
         {...rest}
-        before={<Ri.RiArrowLeftSLine aria-hidden className='kicl-rtl-mirror' />}
+        before={<Bs.BsChevronLeft aria-hidden className='kicl-rtl-mirror' />}
         ref={ref}
         relative={relative}
         to={to}

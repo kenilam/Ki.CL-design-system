@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Components
 import { HyperLink } from 'design/components/hyper-link';
@@ -26,10 +26,10 @@ const Menu: React.FunctionComponent<MenuProps> = ({ className, crumbs }) => {
 
   const hasChildren = rest.length > 0;
 
-  let Icon = Ri.RiArrowRightSLine;
+  let Icon = Bs.BsChevronRight;
 
   if (hasChildren) {
-    Icon = Ri.RiArrowDownSLine;
+    Icon = Bs.BsChevronDown;
   }
 
   return (

@@ -6,7 +6,7 @@ import {
   InputGroupTextarea,
 } from 'design/components';
 
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import type { Props } from 'design/components/input-group/docs/controls';
 
@@ -20,7 +20,7 @@ const Preview: React.FC<Props> = ({ disabled, ...props }) => {
         {...props}
       />
       <InputGroupButton aria-label='Send' type='submit'>
-        <Ri.RiSendPlaneLine aria-hidden />
+        <Bs.BsSend aria-hidden />
       </InputGroupButton>
     </InputGroup>
   );

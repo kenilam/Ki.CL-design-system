@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 const ICONS = {
-  'check-line': Ri.RiCheckLine,
-  'subtract-line': Ri.RiSubtractLine,
-  'error-warning-line': Ri.RiErrorWarningLine,
-  'loader-4-line': Ri.RiLoader4Line,
+  'check-line': Bs.BsCheckLg,
+  'subtract-line': Bs.BsDashLg,
+  'error-warning-line': Bs.BsExclamationCircle,
+  'loader-4-line': Bs.BsArrowClockwise,
 };
 
 const Masks: React.FunctionComponent = () => {

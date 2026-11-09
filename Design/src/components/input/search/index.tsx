@@ -19,7 +19,7 @@ import { mergeRefs } from 'design/helper';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -79,7 +79,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         style={style}
       >
-        {before ?? <Ri.RiSearchLine aria-hidden />}
+        {before ?? <Bs.BsSearch aria-hidden />}
         <InputGroupInput
           {...rest}
           {...control}
@@ -93,7 +93,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
           onClick={clear}
           type='button'
         >
-          <Ri.RiCloseLine aria-hidden />
+          <Bs.BsXLg aria-hidden />
         </InputGroupButton>
       </InputGroup>
     );

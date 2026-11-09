@@ -11,7 +11,7 @@ import { Animation, AnimationProps, Layout, Text } from 'design/components';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Styles
 import './styles.scss';
@@ -92,7 +92,7 @@ const Spinner: React.FunctionComponent<Spec.Props> = ({
             property={property}
             in={entering}
           >
-            <Ri.RiLoader4Line aria-hidden className='is-revolving' />
+            <Bs.BsArrowClockwise aria-hidden className='is-revolving' />
           </Animation>
         </Text>
       </Layout>

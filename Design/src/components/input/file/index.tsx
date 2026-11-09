@@ -27,7 +27,7 @@ import { mergeRefs } from 'design/helper';
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -90,7 +90,7 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
       const group = classNames(`${CLASS_NAME}--inline`, className);
       const field = (
         <>
-          <Ri.RiFileUploadLine aria-hidden />
+          <Bs.BsFileEarmarkArrowUp aria-hidden />
           <InputGroupInput
             {...rest}
             disabled={disabled}
@@ -180,7 +180,10 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
                 title={rest.title ?? ''}
                 type='file'
               />
-              <Ri.RiFileAddLine aria-hidden className='kicl-font-size-larger' />
+              <Bs.BsFileEarmarkPlus
+                aria-hidden
+                className='kicl-font-size-larger'
+              />
               <Text is='span' className='kicl-font-size-small'>
                 <Markdown>
                   {t(multiple ? 'file_input_drop_multiple' : 'file_input_drop')}
@@ -192,8 +195,8 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  after={<Ri.RiArrowDownSLine aria-hidden />}
-                  before={<Ri.RiFileLine aria-hidden />}
+                  after={<Bs.BsChevronDown aria-hidden />}
+                  before={<Bs.BsFileEarmark aria-hidden />}
                   className='kicl-text-truncate'
                   size='small'
                   type='button'
@@ -226,7 +229,7 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
                       gap='narrow'
                       key={`${file.name}-${file.lastModified}`}
                     >
-                      <Ri.RiFileLine aria-hidden />
+                      <Bs.BsFileEarmark aria-hidden />
                       <span className='kicl-overflow-hidden'>
                         <Text
                           is='span'
@@ -251,7 +254,7 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
                         type='button'
                         variant='tertiary'
                       >
-                        <Ri.RiCloseLine aria-hidden />
+                        <Bs.BsXLg aria-hidden />
                       </Button>
                     </ListItem>
                   ))}

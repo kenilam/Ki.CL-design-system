@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Ri from 'react-icons/ri';
+import * as Bs from 'react-icons/bs';
 
 import { Button, Menu } from 'design/components';
 
@@ -9,13 +9,13 @@ const Preview: React.FC<Props> = (props) => {
   return (
     <Menu aria-label='Formatting' gap='narrowest' {...props}>
       <Button aria-label='Bold' variant='ghost'>
-        <Ri.RiBold aria-hidden />
+        <Bs.BsTypeBold aria-hidden />
       </Button>
       <Button aria-label='Italic' variant='ghost'>
-        <Ri.RiItalic aria-hidden />
+        <Bs.BsTypeItalic aria-hidden />
       </Button>
       <Button aria-label='Link' variant='ghost'>
-        <Ri.RiLink aria-hidden />
+        <Bs.BsLink aria-hidden />
       </Button>
     </Menu>
   );

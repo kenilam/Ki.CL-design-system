@@ -26,8 +26,7 @@ export type NoLookProps = { [Key in keyof LookProps]?: never };
 
 export type Props = Required<PropsWithChildren> &
   ContentProps &
-  ComponentPropsWithoutRef<'button'> &
-  Pick<
+  ComponentPropsWithoutRef<'button'> & { block?: boolean } & Pick<
     LayoutProps,
     | 'autoFlow'
     | 'alignContent'
@@ -43,7 +42,7 @@ export type Props = Required<PropsWithChildren> &
   );
 
 export type GetButtonClassNamesProps = LookProps &
-  Pick<Props, 'className' | 'disabled'> & {
+  Pick<Props, 'block' | 'className' | 'disabled'> & {
     icon?: boolean;
     unstyled?: boolean;
   };

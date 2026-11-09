@@ -43,7 +43,7 @@ const Header: React.FunctionComponent = () => {
   const Trigger = (
     <Button
       aria-label={t('docs_tokens_open')}
-      className='kicl-border-radius-sm'
+      block
       size='small'
       variant='secondary'
       popoverTarget={isMobile ? MENU_ID : undefined}

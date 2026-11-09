@@ -53,6 +53,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       header,
       modal = false,
       onOpenChange,
+      popover = 'manual',
       side = 'inline-end',
       size = 4,
       style,
@@ -142,7 +143,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       element.addEventListener('keydown', keydown);
       document.addEventListener('click', click);
 
-      if (opening.current && !element.matches(':popover-open')) {
+      if (opening.current && !element.matches(':popover-open, [open]')) {
         element.showPopover();
       }
 
@@ -187,7 +188,7 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
         closedby={closable ? 'any' : 'none'}
         id={id}
         is='dialog'
-        popover='manual'
+        popover={closable ? popover : 'manual'}
         ref={mergeRefs(node, ref)}
         style={
           {

@@ -497,7 +497,7 @@
   "separator_preset_basic_name": "Basic",
   "separator_preset_between_words": "For a line between things side by side, like details in a row.",
   "separator_preset_between_words_name": "Between words",
-  "sheet_intro": "A panel that slides in from an edge of the page, the end of the line by default. By default the page stays usable behind it. With `modal`, or on screens up to tablet width, where it fills the screen, it opens as a modal and the page behind can't be used.",
+  "sheet_intro": "A panel that slides in from an edge of the page, the end of the line by default. By default the page stays usable behind it, and a click on the page leaves it open. With `popover='auto'`, a click outside closes it, as it does any other popover. With `modal`, or on screens up to tablet width, where it fills the screen, it opens as a modal and the page behind can't be used.",
   "sheet_preset_basic": "A panel of filters that opens from the Open button. The button in its header closes it, and so does Escape.",
   "sheet_preset_basic_name": "Basic",
   "sheet_preset_footer": "For editing something and then saving it, with Cancel and Save at the bottom.",

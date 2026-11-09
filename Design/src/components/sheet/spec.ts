@@ -4,7 +4,7 @@ import type { CardProps } from 'design/components';
 import type { ColumnSpan, Side } from 'design/components/spec';
 
 /** `size` is a column count and applies only at an inline side; at a block side it spans the page. */
-export type SheetProps = Omit<ComponentPropsWithoutRef<'dialog'>, 'popover'> &
+export type SheetProps = ComponentPropsWithoutRef<'dialog'> &
   Pick<CardProps, 'level' | 'variant'> & {
     closable?: boolean;
     defaultOpen?: boolean;

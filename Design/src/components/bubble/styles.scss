@@ -1,6 +1,7 @@
 .kicl--components--bubble {
   @include level-tones('kicl--components--bubble');
 
+  --kicl--components--bubble--backdrop-filter: none;
   --kicl--components--bubble--background-color: var(
     --kicl--components--bubble--tone
   );
@@ -46,6 +47,7 @@
 
   &--variant--ghost {
     --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
+    --kicl--components--bubble--backdrop-filter: var(--kicl-backdrop-blur);
     --kicl--components--bubble--background-color: transparent;
     --kicl--components--bubble--border-color: var(
       --kicl--components--bubble--tone-ghost
@@ -57,6 +59,7 @@
 }
 
 .kicl--components--bubble__content {
+  backdrop-filter: var(--kicl--components--bubble--backdrop-filter);
   background-color: var(--kicl--components--bubble--background-color);
   border: var(--kicl--components--bubble--border-width) solid
     var(--kicl--components--bubble--border-color);

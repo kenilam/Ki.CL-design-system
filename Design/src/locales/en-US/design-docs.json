@@ -139,7 +139,7 @@
   "details_preset_basic_name": "Basic",
   "details_preset_gap": "For an answer with several paragraphs.",
   "details_preset_gap_name": "Gap",
-  "details_preset_group": "For an FAQ where only one answer is open at a time.",
+  "details_preset_group": "Details that share a parent open one at a time, like the answers in an FAQ. To group Details in different parents, give them the same `name`.",
   "details_preset_group_name": "Group",
   "details_preset_own_marker": "For a summary with its own look, like a badge.",
   "details_preset_own_marker_name": "Own marker",

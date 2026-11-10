@@ -18,5 +18,14 @@
 
       @include transition('kicl--components--popover--trigger');
     }
+
+    > svg:last-child:not(:only-child) {
+      transition: rotate var(--kicl-transition-duration-fast)
+        var(--kicl-ease-quint-in-out);
+    }
+
+    &[aria-expanded='true'] > svg:last-child:not(:only-child) {
+      rotate: 180deg;
+    }
   }
 }

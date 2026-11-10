@@ -21,7 +21,7 @@ const Status204: React.FunctionComponent<Props> = ({ message, title }) => {
   return (
     <Animation>
       <Layout alignContent='center' autoFlow='row' justifyItems='center'>
-        <section className='kicl-max-inline-size-columns-12 kicl-text-align-center'>
+        <section className='kicl-max-inline-size-columns-12 kicl-min-block-size-screen kicl-text-align-center'>
           <Layout
             alignContent='center'
             alignItems='center'

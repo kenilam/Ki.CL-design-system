@@ -87,19 +87,21 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
     }
 
     if (inline) {
-      const group = classNames(`${CLASS_NAME}--inline`, className);
+      const group = classNames(
+        CLASS_NAME,
+        `${CLASS_NAME}--inline`,
+        'kicl-backdrop-blur',
+        className
+      );
       const field = (
-        <>
-          <Bs.BsFileEarmarkArrowUp aria-hidden />
-          <InputGroupInput
-            {...rest}
-            disabled={disabled}
-            multiple={multiple}
-            onChange={onChange}
-            ref={ref}
-            type='file'
-          />
-        </>
+        <InputGroupInput
+          {...rest}
+          disabled={disabled}
+          multiple={multiple}
+          onChange={onChange}
+          ref={ref}
+          type='file'
+        />
       );
 
       if (after) {

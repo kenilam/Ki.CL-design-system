@@ -1,9 +1,26 @@
 $sides: (
-  block-end: block,
-  block-start: block,
-  inline-start: inline,
-  inline-end: inline,
+  block-end: (
+    axis: block,
+    in: start,
+    out: end,
+  ),
+  block-start: (
+    axis: block,
+    in: end,
+    out: start,
+  ),
+  inline-start: (
+    axis: inline,
+    in: end,
+    out: start,
+  ),
+  inline-end: (
+    axis: inline,
+    in: start,
+    out: end,
+  ),
 );
+$aligns: (start, center, end);
 $gaps: (
   none,
   narrowest,
@@ -16,30 +33,65 @@ $gaps: (
   extreme
 );
 
+@mixin place-popover($side, $align, $offset) {
+  $place: map.get($sides, $side);
+  $axis: map.get($place, axis);
+  $inset: var(--kicl--components--popover--inset);
+  $across: block;
+  $self: align-self;
+  $other-self: justify-self;
+  $max-block-size: calc(100% - 2 * #{$inset});
+
+  @if $axis == block {
+    $across: inline;
+    $self: justify-self;
+    $other-self: align-self;
+    $max-block-size: calc(100% - #{$inset} - #{$offset});
+  }
+
+  inset: auto;
+  margin-#{$across}: $inset;
+  margin-#{$axis}-#{map.get($place, in)}: $offset;
+  margin-#{$axis}-#{map.get($place, out)}: $inset;
+  max-block-size: $max-block-size;
+  position-area: #{$side} span-all;
+  #{$other-self}: normal;
+
+  @if $align == center {
+    #{$self}: anchor-center;
+  } @else {
+    inset-#{$across}-#{$align}: calc(anchor(#{$align}) - #{$inset});
+    #{$self}: $align;
+  }
+}
+
 :root {
   --kicl--components--popover--border-radius: var(--kicl-size-half);
-  --kicl--components--popover--padding: var(--kicl-gutter-narrow);
+  --kicl--components--popover--inset: var(--kicl-gutter);
+  --kicl--components--popover--padding: var(--kicl-gutter-narrow) var(--kicl-gutter-narrow) var(--kicl-gutter) ;
 }
 
 /*
- * `fit-content` stops `position-area` stretching the panel across the area
- * beside the trigger. `:where()` keeps it a default a component's own width
- * overrides.
+ * As wide as the content, up to the window less the inset on each side, so a
+ * trigger near an edge doesn't narrow it. `:where()` keeps it a default a
+ * component's own width overrides.
  */
 :where(.kicl--components--popover__content) {
   inline-size: fit-content;
+
+  @supports (inline-size: calc-size(max-content, size)) {
+    inline-size: calc-size(
+      max-content,
+      min(size, 100% - 2 * var(--kicl--components--popover--inset))
+    );
+  }
 }
 
 .kicl--components--popover {
   &__content {
     --kicl--components--popover--background-color: var(--kicl-surface-color);
     --kicl--components--popover--border-color: var(--kicl-surface-border-color);
-    --kicl--components--popover--position-area: block-end span-inline-end;
     --kicl--components--popover--offset: var(--kicl-gutter-narrow);
-    --kicl--components--popover--margin-block: var(
-      --kicl--components--popover--offset
-    );
-    --kicl--components--popover--margin-inline: 0;
     --kicl--components--popover--back: calc(var(--kicl-gutter-narrower) * -1);
     --kicl--components--popover--ahead: var(--kicl-gutter-narrower);
     --kicl--components--popover--enter: 0 var(--kicl--components--popover--back);
@@ -48,30 +100,17 @@ $gaps: (
     border: var(--kicl-size-1px) solid
       var(--kicl--components--popover--border-color);
     border-radius: var(--kicl--components--popover--border-radius);
-    max-block-size: calc(100% - 2 * var(--kicl--components--popover--offset));
+    max-block-size: calc(100% - 2 * var(--kicl--components--popover--inset));
     overflow-y: auto;
     padding: var(--kicl--components--popover--padding);
 
     /*
-     * The browser centres a popover with `inset: 0` and auto margins, so this
-     * clears them for the anchor. Without anchor positioning the panel stays
-     * centred, which is plain but never off-screen.
+     * The browser centres a popover with `inset: 0` and auto margins. Each
+     * placement below clears them for the anchor. Without anchor positioning
+     * the panel stays centred, which is plain but never off-screen.
      */
     @supports (position-area: block-end) {
-      inset: auto;
-
-      // Both ends of the axis facing the trigger carry the margin, so the gap
-      // survives a flip.
-      margin-block: var(--kicl--components--popover--margin-block);
-      margin-inline: var(--kicl--components--popover--margin-inline);
       position-anchor: var(--kicl--components--popover--anchor);
-      position-area: var(--kicl--components--popover--position-area);
-      position-try-fallbacks: var(
-        --kicl--components--popover--fallbacks,
-        flip-block,
-        flip-inline,
-        flip-block flip-inline
-      );
     }
 
     // `allow-discrete` keeps `display` and the top layer through the
@@ -98,22 +137,10 @@ $gaps: (
       }
     }
 
-    // To line up with the trigger's start the panel spans toward the end, and
-    // the reverse for end.
-    @each $side, $axis in $sides {
-      $across: block;
+    @each $side, $place in $sides {
+      $flip: flip-#{map.get($place, axis)};
 
-      @if $axis == block {
-        $across: inline;
-      }
-
-      $spans: (
-        start: span-#{$across}-end,
-        center: span-all,
-        end: span-#{$across}-start,
-      );
-
-      @each $align, $span in $spans {
+      @each $align in $aligns {
         $text: $align;
 
         @if $side == inline-start {
@@ -124,7 +151,21 @@ $gaps: (
 
         &--#{$side}--#{$align} {
           --kicl--components--popover--align: #{$text};
-          --kicl--components--popover--position-area: #{$side} #{$span};
+
+          @supports (position-area: block-end) {
+            @include place-popover(
+              $side,
+              $align,
+              var(--kicl--components--popover--offset)
+            );
+
+            position-try-fallbacks: var(
+              --kicl--components--popover--fallbacks,
+              #{$flip},
+              --kicl--components--popover--#{$side}--center,
+              --kicl--components--popover--#{$side}--center #{$flip}
+            );
+          }
         }
       }
     }
@@ -134,18 +175,6 @@ $gaps: (
     &--block-start--end {
       --kicl--components--popover--enter: 0
         var(--kicl--components--popover--ahead);
-    }
-
-    &--inline-start--start,
-    &--inline-start--center,
-    &--inline-start--end,
-    &--inline-end--start,
-    &--inline-end--center,
-    &--inline-end--end {
-      --kicl--components--popover--margin-block: 0;
-      --kicl--components--popover--margin-inline: var(
-        --kicl--components--popover--offset
-      );
     }
 
     &--inline-start--start,
@@ -203,27 +232,17 @@ $gaps: (
   }
 }
 
-@each $side, $axis in $sides {
-  $across: block;
-
-  @if $axis == block {
-    $across: inline;
-  }
-
-  $spans: (
-    start: span-#{$across}-end,
-    center: span-all,
-    end: span-#{$across}-start,
-  );
-
-  @each $align, $span in $spans {
+@each $side, $place in $sides {
+  @each $align in $aligns {
     @position-try --kicl--components--popover--#{$side}--#{$align} {
-      margin-#{$across}: 0;
-      margin-#{$axis}: var(
-        --kicl--components--popover--fallback-offset,
-        var(--kicl--components--popover--offset)
+      @include place-popover(
+        $side,
+        $align,
+        var(
+          --kicl--components--popover--fallback-offset,
+          var(--kicl--components--popover--offset)
+        )
       );
-      position-area: #{$side} #{$span};
     }
   }
 }

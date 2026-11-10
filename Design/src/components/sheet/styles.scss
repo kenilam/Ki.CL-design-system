@@ -7,6 +7,21 @@
 .kicl--components--sheet {
   --kicl--components--sheet--side-inline: 1;
   --kicl--components--sheet--side-block: 0;
+  --kicl--components--sheet--solid-background-color: var(
+    --kicl-color-white-100
+  );
+
+  @at-root .kicl--theme--dark & {
+    --kicl--components--sheet--solid-background-color: var(
+      --kicl-color-black-800
+    );
+  }
+
+  @at-root .kicl--theme--light & {
+    --kicl--components--sheet--solid-background-color: var(
+      --kicl-color-white-100
+    );
+  }
 
   // The inline axis turns around in right-to-left text; `translate` and `box-shadow` don't.
   --kicl--components--sheet--direction: 1;
@@ -136,6 +151,12 @@
     max-block-size: none;
     max-inline-size: none;
     overscroll-behavior: contain;
+
+    &.kicl--components--card--variant--secondary {
+      --kicl--components--card--background-color: var(
+        --kicl--components--sheet--solid-background-color
+      );
+    }
   }
 
   --kicl--components--sheet--head: ;

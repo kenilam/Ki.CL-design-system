@@ -47,7 +47,6 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
               : size !== 'default' && size !== 'fit'
                 ? `kicl-inline-size-${size}`
                 : null,
-            'kicl-overflow-hidden',
             className
           )}
         >

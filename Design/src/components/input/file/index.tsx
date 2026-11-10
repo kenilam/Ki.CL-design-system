@@ -139,7 +139,7 @@ const FileInput = React.forwardRef<HTMLInputElement, Props>(
 
       element.files = kept.files;
       element.dispatchEvent(new Event('change', { bubbles: true }));
-      element.focus();
+      element.focus({ focusVisible: true });
     };
 
     return (

@@ -31,8 +31,7 @@
   }
 
   &:has(&__control:focus-visible) {
-    outline: var(--kicl-outline-width) solid
-      var(--kicl--components--input--file--tone);
+    outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
     outline-offset: var(--kicl-size-1px);
   }
 
@@ -49,6 +48,7 @@
   }
 
   &:has(&__control[aria-invalid='true'], &__control:user-invalid) {
+    --kicl-outline-color: var(--kicl-color-error);
     --kicl--components--input--file--tone: var(--kicl-color-error);
     --kicl--components--input--file--border-color: var(
       --kicl--components--input--file--tone

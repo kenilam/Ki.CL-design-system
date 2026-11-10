@@ -1,5 +1,6 @@
 import { useClipboard } from './use-clipboard';
 import { useOverlayContents } from './use-overlay-contents';
+import { usePrinting } from './use-printing';
 import { useResizeObserver } from './use-resize-observer';
 import {
   DARK_THEME_CLASS_NAME,
@@ -14,6 +15,7 @@ export {
   type Theme,
   useClipboard,
   useOverlayContents,
+  usePrinting,
   useResizeObserver,
   useResponsive,
 };

@@ -108,7 +108,27 @@ const Sheet = React.forwardRef<HTMLElement, SheetProps>(
       };
 
       const toggle = (event: Event) => {
-        report.current?.((event as ToggleEvent).newState === 'open');
+        const open = (event as ToggleEvent).newState === 'open';
+        const active = document.activeElement as HTMLElement | null;
+
+        report.current?.(open);
+
+        if (
+          open ||
+          (active && active.tabIndex >= 0 && !element.contains(active))
+        ) {
+          return;
+        }
+
+        const opener = Array.from(
+          document.querySelectorAll<HTMLButtonElement>('button[popovertarget]')
+        ).find((button) => {
+          return (
+            button.popoverTargetElement === element && !element.contains(button)
+          );
+        });
+
+        opener?.focus({ focusVisible: true, preventScroll: true });
       };
 
       // A modal sheet isn't a popover, so its hide buttons close it here.

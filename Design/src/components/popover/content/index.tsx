@@ -107,7 +107,7 @@ const PopoverContent = React.forwardRef<HTMLElement, PopoverContentProps>(
         if (focused) {
           document
             .getElementById(`${popover.id}__trigger`)
-            ?.focus({ preventScroll: true });
+            ?.focus({ focusVisible: true, preventScroll: true });
         }
       };
 

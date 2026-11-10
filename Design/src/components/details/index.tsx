@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId, useRef } from 'react';
 
 // Libraries
 import classNames from 'classnames';
@@ -16,10 +16,18 @@ import './styles.scss';
 import { CLASS_NAME } from './constants';
 
 // Partials
+import { group } from './group';
 import { Marker } from './marker';
+import { reveal } from './reveal';
 
 const Details = React.forwardRef<HTMLDetailsElement, Props>(
-  ({ children, className, gap, marker = true, summary, ...rest }, ref) => {
+  (
+    { children, className, gap, marker = true, onToggle, summary, ...rest },
+    ref
+  ) => {
+    const clicked = useRef(false);
+    const name = useId();
+
     return (
       <details
         {...rest}
@@ -28,6 +36,16 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
           { [`${CLASS_NAME}--gap--${gap}`]: gap },
           className
         )}
+        onToggle={(event) => {
+          onToggle?.(event);
+
+          if (clicked.current && event.currentTarget.open) {
+            group(event.currentTarget, name);
+            reveal(event.currentTarget);
+          }
+
+          clicked.current = false;
+        }}
         ref={ref}
       >
         <Layout
@@ -36,7 +54,12 @@ const Details = React.forwardRef<HTMLDetailsElement, Props>(
           frames='1fr--max-content'
           gap='narrow'
         >
-          <summary className={`${CLASS_NAME}__summary`}>
+          <summary
+            className={`${CLASS_NAME}__summary`}
+            onClick={() => {
+              clicked.current = true;
+            }}
+          >
             {summary}
             {marker ? <Marker /> : null}
           </summary>

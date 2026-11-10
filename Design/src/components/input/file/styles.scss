@@ -30,12 +30,12 @@
     );
   }
 
-  &:has(&__control:focus-visible) {
+  &:has(input:focus-visible) {
     outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
     outline-offset: var(--kicl-size-1px);
   }
 
-  &:has(&__control:disabled) {
+  &:has(input:disabled) {
     --kicl--components--input--file--background-color: var(
       --kicl-surface-glass-color
     );
@@ -47,7 +47,7 @@
     opacity: var(--kicl-disabled-opacity);
   }
 
-  &:has(&__control[aria-invalid='true'], &__control:user-invalid) {
+  &:has(input[aria-invalid='true'], input:user-invalid) {
     --kicl-outline-color: var(--kicl-color-error);
     --kicl--components--input--file--tone: var(--kicl-color-error);
     --kicl--components--input--file--border-color: var(
@@ -84,14 +84,26 @@
   }
 
   &--inline {
-    cursor: pointer;
+    --kicl--components--input-group--padding-inline-end: var(
+      --kicl-gutter-narrow
+    );
+    --kicl--components--input-group--padding-inline-start: var(
+      --kicl-gutter-narrow
+    );
 
-    &:has(input:disabled) {
-      cursor: not-allowed;
+    input[type='file'] {
+      cursor: inherit;
+      padding-block: 0;
     }
 
-    input {
-      cursor: inherit;
+    // As tall as the file selector button, so the row keeps its height.
+    .kicl--components--input-group__button {
+      $border: var(--kicl--components--button--border-width);
+      $gutter: var(--kicl-gutter-narrowest);
+
+      --kicl--components--button--block-size: calc(
+        var(--kicl-line-height) * 1em + 2 * (#{$gutter} - #{$border})
+      );
     }
 
     input::file-selector-button {

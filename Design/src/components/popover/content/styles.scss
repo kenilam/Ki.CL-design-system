@@ -68,7 +68,8 @@ $gaps: (
 :root {
   --kicl--components--popover--border-radius: var(--kicl-size-half);
   --kicl--components--popover--inset: var(--kicl-gutter);
-  --kicl--components--popover--padding: var(--kicl-gutter-narrow) var(--kicl-gutter-narrow) var(--kicl-gutter) ;
+  --kicl--components--popover--padding: var(--kicl-gutter-narrow)
+    var(--kicl-gutter-narrow) var(--kicl-gutter);
 }
 
 /*
@@ -203,7 +204,9 @@ $gaps: (
     }
 
     &--variant--secondary {
-      --kicl--components--popover--background-color: var(--kicl-surface-glass-color);
+      --kicl--components--popover--background-color: var(
+        --kicl-surface-glass-color
+      );
     }
 
     &--variant--tertiary {

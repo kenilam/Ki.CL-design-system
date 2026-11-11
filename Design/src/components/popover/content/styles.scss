@@ -73,17 +73,21 @@ $gaps: (
 
 /*
  * As wide as the content, up to the window less the inset on each side, so a
- * trigger near an edge doesn't narrow it. `:where()` keeps it a default a
+ * trigger near an edge doesn't narrow it. Without `calc-size()` (Safari) the
+ * same cap is a `max-inline-size`; `fit-content` would shrink the popover into
+ * the room left beside the anchor. `:where()` keeps it a default a
  * component's own width overrides.
  */
 :where(.kicl--components--popover__content) {
-  inline-size: fit-content;
+  inline-size: max-content;
+  max-inline-size: calc(100% - 2 * var(--kicl--components--popover--inset));
 
   @supports (inline-size: calc-size(max-content, size)) {
     inline-size: calc-size(
       max-content,
       min(size, 100% - 2 * var(--kicl--components--popover--inset))
     );
+    max-inline-size: none;
   }
 }
 

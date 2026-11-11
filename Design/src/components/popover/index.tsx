@@ -1,65 +1,30 @@
-import React, { useId, useState } from 'react';
+import React from 'react';
 
 // Spec
 import type { PopoverProps } from './spec';
 
-// Constants
-import { CLASS_NAME } from './constants';
-
-// Context
-import { PopoverContext } from './context';
-
 // Partials
 import { PopoverContent } from './content';
 import { PopoverHint } from './hint';
+import { Provider } from './context';
 import { PopoverTrigger } from './trigger';
 
 const Popover: React.FC<PopoverProps> = ({
   children,
-  defaultOpen = false,
-  inline = false,
+  defaultOpen,
+  inline,
   onOpenChange,
   open,
 }) => {
-  const isControlled = open !== undefined;
-  const [uncontrolled, setUncontrolled] = useState(defaultOpen);
-  const [content, setContent] = useState(false);
-  const [hint, setHint] = useState(false);
-  const isOpen = isControlled ? Boolean(open) : uncontrolled;
-
-  // `useId` output has characters an anchor name or selector won't accept.
-  const key = useId().replace(/[^a-zA-Z0-9]/g, '');
-  const id = `${CLASS_NAME}--${key}`;
-  const anchor = `--${CLASS_NAME}--${key}`;
-  const anchorStyle = {
-    [`--${CLASS_NAME}--anchor`]: anchor,
-  } as React.CSSProperties;
-
-  const setOpen = (next: boolean) => {
-    if (!isControlled) {
-      setUncontrolled(next);
-    }
-
-    onOpenChange?.(next);
-  };
-
   return (
-    <PopoverContext.Provider
-      value={{
-        id,
-        anchor,
-        anchorStyle,
-        content,
-        hint,
-        inline,
-        open: isOpen,
-        setContent,
-        setHint,
-        setOpen,
-      }}
+    <Provider
+      defaultOpen={defaultOpen}
+      inline={inline}
+      onOpenChange={onOpenChange}
+      open={open}
     >
       {children}
-    </PopoverContext.Provider>
+    </Provider>
   );
 };
 

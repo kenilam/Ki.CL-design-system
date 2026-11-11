@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 
-// Icons
-import * as Bs from 'react-icons/bs';
+// Partials
+import { Mask } from './mask';
 
-const ICONS = {
-  'check-line': Bs.BsCheckLg,
-  'subtract-line': Bs.BsDashLg,
-  'error-warning-line': Bs.BsExclamationCircle,
-  'loader-4-line': Bs.BsArrowClockwise,
-};
+// Constants
+import { ICONS } from './constants';
 
 const Masks: React.FunctionComponent = () => {
   const [icons, setIcons] = useState<HTMLDivElement | null>(null);
@@ -24,8 +20,8 @@ const Masks: React.FunctionComponent = () => {
   return (
     <>
       <div hidden ref={setIcons}>
-        {Object.entries(ICONS).map(([name, Icon]) => {
-          return <Icon key={name} />;
+        {(Object.keys(ICONS) as (keyof typeof ICONS)[]).map((name) => {
+          return <Mask id={name} key={name} />;
         })}
       </div>
       <style>{`:root {${properties.join('')}}`}</style>

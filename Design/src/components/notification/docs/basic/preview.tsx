@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import { Button, Notification, NotificationGroup } from 'design/components';
 
@@ -17,7 +17,7 @@ const Preview: React.FC<Props> = ({ level, side, variant }) => {
       <NotificationGroup id='notification-basic' side={side}>
         {shown ? (
           <Notification
-            avatar={<Bs.BsExclamationCircleFill aria-hidden />}
+            avatar={<Tb.TbAlertCircleFilled aria-hidden />}
             level={level}
             onClear={() => setShown(false)}
             title='Interstellar'

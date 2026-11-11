@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 import { Text } from 'design/components/text';
 
-import { FormItemContext, useFieldError } from './context';
+import { useFieldError, useFormItem } from './context';
 import type { FormMessageProps } from './spec';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 const CLASS_NAME = 'kicl--components--form__message';
 
 const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
   ({ className, children, ...rest }, ref) => {
-    const item = useContext(FormItemContext);
+    const item = useFormItem();
     const error = useFieldError();
     const body = error ? String(error.message ?? '') : children;
 
@@ -41,7 +41,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
           )}
           role={error ? 'alert' : undefined}
         >
-          <Bs.BsExclamationCircle />
+          <Tb.TbAlertCircle />
           {body}
         </Text>
       </Layout>

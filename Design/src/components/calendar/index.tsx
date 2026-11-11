@@ -1,26 +1,13 @@
-import React, { useId, useMemo, useState } from 'react';
-
-// Libraries
-import classNames from 'classnames';
-
-// Components
+import React from 'react';
 
 // Styles
 import './styles.scss';
 
-// Constants
-import { CLASS_NAME } from './constants';
-
 // Context
-import { CalendarContext, type CalendarContextValue } from './context';
-
-// Helpers
-import { nextRange, seedMonth, startOfDay } from './helpers';
+import { Provider } from './context';
 
 // Partials
-import { Grid } from './grid';
-import { Header } from './header';
-import { Weekdays } from './weekdays';
+import { Root } from './root';
 
 import type { CalendarProps } from './spec';
 
@@ -29,59 +16,17 @@ const Calendar = React.forwardRef<HTMLTableElement, CalendarProps>(
     const {
       className,
       defaultMonth: _defaultMonth,
-      disabled,
-      mode = 'single',
+      disabled: _disabled,
+      mode: _mode,
       onSelect: _onSelect,
       selected: _selected,
       ...rest
     } = props;
 
-    const titleId = useId();
-    const today = useMemo(() => {
-      return startOfDay(new Date());
-    }, []);
-    const [month, setMonth] = useState(() => {
-      const seed = seedMonth(props);
-      return new Date(seed.getFullYear(), seed.getMonth(), 1);
-    });
-
-    const onDayClick = (date: Date) => {
-      if (props.mode === 'range') {
-        props.onSelect?.(nextRange(date, props.selected));
-        return;
-      }
-
-      props.onSelect?.(date);
-    };
-
-    const context: CalendarContextValue = {
-      disabled,
-      mode,
-      month,
-      onDayClick,
-      selectedRange: props.mode === 'range' ? props.selected : undefined,
-      selectedSingle: props.mode === 'range' ? undefined : props.selected,
-      setMonth,
-      titleId,
-      today,
-    };
-
     return (
-      <CalendarContext.Provider value={context}>
-        <table
-          ref={ref}
-          className={classNames(CLASS_NAME, className)}
-          {...rest}
-          aria-labelledby={
-            rest['aria-labelledby'] ??
-            (rest['aria-label'] ? undefined : titleId)
-          }
-        >
-          <Header />
-          <Weekdays />
-          <Grid />
-        </table>
-      </CalendarContext.Provider>
+      <Provider {...props}>
+        <Root className={className} ref={ref} {...rest} />
+      </Provider>
     );
   }
 );

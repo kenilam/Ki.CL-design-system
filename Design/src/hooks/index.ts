@@ -1,3 +1,7 @@
+// Libraries
+import type { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
 import { useClipboard } from './use-clipboard';
 import { useOverlayContents } from './use-overlay-contents';
 import { usePrinting } from './use-printing';
@@ -12,10 +16,12 @@ import {
 export {
   DARK_THEME_CLASS_NAME,
   LIGHT_THEME_CLASS_NAME,
+  type TFunction,
   type Theme,
   useClipboard,
   useOverlayContents,
   usePrinting,
   useResizeObserver,
   useResponsive,
+  useTranslation,
 };

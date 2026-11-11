@@ -12,9 +12,13 @@ import { Preset as CopyField } from './copy';
 import { Preset as WithAnError } from './with-an-error';
 import { Preset as InAForm } from './in-a-form';
 import { Preset as FileUpload } from './file-input';
+import { Preset as Slider } from './slider';
+import { Preset as VerticalSlider } from './vertical-slider';
 import { CONTROLS } from './controls';
 
-<Text><Copy id='input_intro' /></Text>
+<Text>
+  <Copy id='input_intro' />
+</Text>
 
 <Preview controls={CONTROLS} span={4}>
   {Basic}
@@ -31,4 +35,6 @@ import { CONTROLS } from './controls';
   {WithAnError}
   {InAForm}
   {FileUpload}
+  {Slider}
+  {VerticalSlider}
 </Preview>

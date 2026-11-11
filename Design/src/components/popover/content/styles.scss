@@ -68,8 +68,7 @@ $gaps: (
 :root {
   --kicl--components--popover--border-radius: var(--kicl-size-half);
   --kicl--components--popover--inset: var(--kicl-gutter);
-  --kicl--components--popover--padding: var(--kicl-gutter-narrow)
-    var(--kicl-gutter-narrow) var(--kicl-gutter);
+  --kicl--components--popover--padding: var(--kicl-gutter-narrow);
 }
 
 /*
@@ -218,7 +217,7 @@ $gaps: (
       --kicl--components--popover--border-color: transparent;
     }
 
-    &:popover-open:has(> :only-child:not(table)) {
+    &:popover-open:has(> :only-child:not(table, input)) {
       display: flex;
       flex-direction: column;
       overflow: hidden;

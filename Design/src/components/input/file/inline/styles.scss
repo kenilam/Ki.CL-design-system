@@ -1,0 +1,50 @@
+.kicl--components--input--file {
+  &--inline {
+    --kicl--components--input-group--padding-inline-end: var(
+      --kicl-gutter-narrow
+    );
+    --kicl--components--input-group--padding-inline-start: var(
+      --kicl-gutter-narrow
+    );
+
+    input[type='file'] {
+      cursor: inherit;
+      padding-block: 0;
+    }
+
+    // As tall as the file selector button, so the row keeps its height.
+    .kicl--components--input-group__button {
+      $border: var(--kicl--components--button--border-width);
+      $gutter: var(--kicl-gutter-narrowest);
+
+      --kicl--components--button--block-size: calc(
+        var(--kicl-line-height) * 1em + 2 * (#{$gutter} - #{$border})
+      );
+    }
+
+    input::file-selector-button {
+      background-color: color-mix(
+        in srgb,
+        var(--kicl-body-color) 10%,
+        transparent
+      );
+      border: 0;
+      border-radius: var(--kicl-gutter-narrow);
+      color: inherit;
+      cursor: inherit;
+      font: inherit;
+      margin-inline-end: var(--kicl-gutter-narrow);
+      padding-block: var(--kicl-gutter-narrowest);
+      padding-inline: var(--kicl-gutter-narrow);
+      text-transform: uppercase;
+    }
+
+    input:enabled:is(:hover, :focus-visible)::file-selector-button {
+      background-color: color-mix(
+        in srgb,
+        var(--kicl-body-color) 16%,
+        transparent
+      );
+    }
+  }
+}

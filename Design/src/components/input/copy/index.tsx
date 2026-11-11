@@ -3,20 +3,10 @@ import React from 'react';
 // Components
 import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components';
-import {
-  InputGroup,
-  InputGroupButton,
-  InputGroupInput,
-} from 'design/components/input-group';
+import { InputGroup, InputGroupInput } from 'design/components/input-group';
 
-// Hooks
-import { useClipboard } from 'design/hooks';
-
-// Copy
-import { useCopy } from 'design/locales/use-copy';
-
-// Icons
-import * as Bs from 'react-icons/bs';
+// Partials
+import { Copy } from './copy';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -34,10 +24,6 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {
     const { before, className, disabled, style, value, ...rest } = props;
     const control = useFormItemControl(props);
-    const { copied, copy } = useClipboard();
-    const t = useCopy();
-
-    const Icon = copied ? Bs.BsCheckLg : Bs.BsFiles;
 
     if (label || description) {
       return (
@@ -62,15 +48,7 @@ const CopyInput = React.forwardRef<HTMLInputElement, Props>(
           ref={ref}
           value={value}
         />
-        <InputGroupButton
-          aria-label={t(copied ? 'status_copied' : 'action_copy')}
-          onClick={() => {
-            void copy(value);
-          }}
-          type='button'
-        >
-          <Icon aria-hidden />
-        </InputGroupButton>
+        <Copy value={value} />
       </InputGroup>
     );
   }

@@ -10,13 +10,13 @@ import { PopoverContent } from 'design/components/popover';
 import type { ComboboxContentProps } from 'design/components/combobox/spec';
 
 // Constants
-import {
-  CLASS_NAME as COMBOBOX,
-  FOCUSABLE,
-} from 'design/components/combobox/constants';
+import { CLASS_NAME as COMBOBOX } from 'design/components/combobox/constants';
 
 // Context
-import { focusables, useCombobox } from 'design/components/combobox/context';
+import { useComboboxNodes } from 'design/components/combobox/context';
+
+// Partials
+import { useKeyDown } from './use-key-down';
 
 const CLASS_NAME = `${COMBOBOX}__content`;
 
@@ -26,47 +26,18 @@ const ComboboxContent: React.FC<ComboboxContentProps> = ({
   onKeyDown,
   ...rest
 }) => {
-  const combobox = useCombobox();
-
-  const toField = () => {
-    combobox.anchor.current?.focus();
-  };
+  const { content } = useComboboxNodes();
+  const keyDown = useKeyDown(onKeyDown);
 
   return (
     <PopoverContent
       {...rest}
       className={classNames(CLASS_NAME, className)}
-      onKeyDown={(event) => {
-        onKeyDown?.(event);
-        if (event.defaultPrevented) {
-          return;
-        }
-
-        const items = focusables(combobox.content.current, FOCUSABLE);
-        const at = items.indexOf(document.activeElement as HTMLElement);
-
-        if (event.key === 'ArrowDown') {
-          event.preventDefault();
-          items[Math.min(at + 1, items.length - 1)]?.focus();
-        }
-        if (event.key === 'ArrowUp') {
-          event.preventDefault();
-          if (at <= 0) {
-            toField();
-            return;
-          }
-          items[at - 1]?.focus();
-        }
-        if (event.key === 'Escape') {
-          event.preventDefault();
-          combobox.close();
-          toField();
-        }
-      }}
+      onKeyDown={keyDown}
       // `manual` because an `auto` popover closes on a click outside it, and
       // the field is outside it.
       popover='manual'
-      ref={combobox.content}
+      ref={content}
       role='group'
     >
       {children}

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import {
   Button,
@@ -15,7 +15,7 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
   return (
     <Popover {...props}>
       <PopoverTrigger asChild>
-        <Button after={<Bs.BsChevronDown aria-hidden />} variant='secondary'>
+        <Button after={<Tb.TbChevronDown aria-hidden />} variant='secondary'>
           Options
         </Button>
       </PopoverTrigger>

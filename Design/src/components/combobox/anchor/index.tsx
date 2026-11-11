@@ -1,66 +1,40 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Libraries
 import classNames from 'classnames';
+
+// Components
+import { usePopover } from 'design/components';
 
 // Spec
 import type { ComboboxAnchorProps } from 'design/components/combobox/spec';
 
 // Constants
-import {
-  CLASS_NAME as COMBOBOX,
-  FOCUSABLE,
-} from 'design/components/combobox/constants';
+import { CLASS_NAME as COMBOBOX } from 'design/components/combobox/constants';
 
 // Helpers
 import { mergeRefs } from 'design/helper';
 
 // Context
-import { focusables, useCombobox } from 'design/components/combobox/context';
-import { usePopover } from 'design/components';
+import { useComboboxNodes } from 'design/components/combobox/context';
+
+// Partials
+import { useKeyDown } from './use-key-down';
 
 const CLASS_NAME = `${COMBOBOX}__anchor`;
 
 const ComboboxAnchor: React.FC<ComboboxAnchorProps> = ({ children }) => {
-  const combobox = useCombobox();
-  const popover = usePopover();
-  const { open } = popover;
+  const { anchor } = useComboboxNodes();
+  const { anchorStyle } = usePopover();
 
-  useEffect(() => {
-    const node = combobox.anchor.current;
-    if (!node || !open) {
-      return undefined;
-    }
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.defaultPrevented) {
-        return;
-      }
-      if (event.key === 'ArrowDown') {
-        const [first] = focusables(combobox.content.current, FOCUSABLE);
-        if (first) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        combobox.close();
-      }
-    };
-
-    node.addEventListener('keydown', onKeyDown);
-    return () => {
-      node.removeEventListener('keydown', onKeyDown);
-    };
-  }, [combobox, open]);
+  useKeyDown();
 
   const child = React.Children.only(children);
 
   return React.cloneElement(child, {
     className: classNames(CLASS_NAME, child.props.className),
-    ref: mergeRefs(combobox.anchor, child.props.ref),
-    style: { ...popover.anchorStyle, ...child.props.style },
+    ref: mergeRefs(anchor, child.props.ref),
+    style: { ...anchorStyle, ...child.props.style },
   });
 };
 

@@ -107,7 +107,12 @@ import { Length, Shape } from 'design/docs/tokens/previews';
 <div className='kicl-border-radius-md' />
 
 // A circle, on a square box
-<img className='kicl-border-radius-full kicl-aspect-ratio-square' />
+<img
+  className={classNames(
+    'kicl-border-radius-full',
+    'kicl-aspect-ratio-square'
+  )}
+/>
 ```
 
 <Copy id='token_size_part_11' />
@@ -133,7 +138,12 @@ import { Length, Shape } from 'design/docs/tokens/previews';
 <main className='kicl-min-block-size-screen' />
 
 // No taller than half the screen, and scrolls inside
-<div className='kicl-max-block-size-screen-half kicl-overflow-y-auto' />
+<div
+  className={classNames(
+    'kicl-max-block-size-screen-half',
+    'kicl-overflow-y-auto'
+  )}
+/>
 
 // As tall as an input, to line up with one
 <div className='kicl-min-block-size-field' />

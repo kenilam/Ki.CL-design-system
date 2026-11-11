@@ -27,6 +27,8 @@ import {
   type ButtonProps,
   CopyButton,
   type CopyButtonProps,
+  VolumeButton,
+  type VolumeButtonProps,
   type GetButtonClassNamesProps,
 } from './button';
 import { getButtonClassNames } from './button/class-names';
@@ -93,6 +95,14 @@ import { Dialog, DialogProps } from './dialog';
 import { Frame, type FrameProps } from './frame';
 import {
   useForm,
+  useFormContext,
+  useFormState,
+  useWatch,
+  valibotResolver,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
+  type UseFormReturn,
   Form,
   FormControl,
   FormDescription,
@@ -124,6 +134,7 @@ import { CopyInput } from './input/copy';
 import { EmailInput } from './input/email';
 import { FileInput } from './input/file';
 import { PasswordInput } from './input/password';
+import { RangeInput, type RangeInputProps } from './input/range';
 import { SearchInput } from './input/search';
 import {
   InputGroup,
@@ -289,6 +300,8 @@ export {
   type GetButtonClassNamesProps,
   CopyButton,
   type CopyButtonProps,
+  VolumeButton,
+  type VolumeButtonProps,
   Calendar,
   type CalendarMode,
   type CalendarProps,
@@ -346,6 +359,14 @@ export {
   Frame,
   type FrameProps,
   useForm,
+  useFormContext,
+  useFormState,
+  useWatch,
+  valibotResolver,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
+  type UseFormReturn,
   Form,
   FormControl,
   type FormControlProps,
@@ -414,6 +435,8 @@ export {
   RadioGroup,
   type RadioGroupProps,
   type RadioProps,
+  RangeInput,
+  type RangeInputProps,
   SearchInput,
   ScrollIndicator,
   type ScrollIndicatorProps,

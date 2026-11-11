@@ -22,7 +22,7 @@ app-root {
   @include -visually-hidden;
 }
 
-@each $name in (narrow, mobile, tablet, desktop, wide, wider) {
+@each $name in $breakpoint-names {
   @include query('≤#{$name}') {
     .kicl-hidden-up-to-#{$name} {
       @include -visually-hidden;

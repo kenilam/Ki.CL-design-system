@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Routes
 import { resolvePath, useLocation } from 'design/router';
@@ -18,7 +18,7 @@ const GoBack: React.FunctionComponent = () => {
 
   return (
     <HyperLink
-      before={<Bs.BsChevronLeft aria-hidden className='kicl-rtl-mirror' />}
+      before={<Tb.TbChevronLeft aria-hidden className='kicl-rtl-mirror' />}
       level='confirm'
       lookLikeButton
       size='small'

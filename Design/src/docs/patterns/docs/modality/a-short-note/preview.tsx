@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import {
   Button,
@@ -30,7 +30,7 @@ const Preview: React.FC = () => {
                     size='small'
                     variant='tertiary'
                   >
-                    <Bs.BsInfoCircle aria-hidden />
+                    <Tb.TbInfoCircle aria-hidden />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent>

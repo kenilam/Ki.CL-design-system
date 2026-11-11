@@ -1,10 +1,4 @@
-import React, { useCallback, useState } from 'react';
-
-// Libraries
-import classNames from 'classnames';
-
-// Components
-import { Layout, Spinner } from 'design/components';
+import React from 'react';
 
 // Spec
 import * as Spec from './spec';
@@ -12,89 +6,16 @@ import * as Spec from './spec';
 // Styles
 import './styles.scss';
 
-const CLASS_NAME = 'kicl--components--video';
+// Partials
+import { Provider } from './context';
+import { Root } from './root';
 
 const Video = React.forwardRef<HTMLElement, Spec.Props>(
-  (
-    {
-      autoPlay = true,
-      captions,
-      className: _className,
-      controls = false,
-      controlsList = 'nofullscreen nodownload',
-      height = 'auto',
-      loop = true,
-      muted = true,
-      onLoadedData: loadDataHandler,
-      onLoadStart: loadStartHandler,
-      playsInline = true,
-      preload = 'auto',
-      src,
-      width = 'auto',
-      ...rest
-    },
-    ref
-  ) => {
-    const [loading, isLoading] = useState(true);
-
-    const video = useCallback((node: HTMLVideoElement | null) => {
-      if (node && node.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-        isLoading(false);
-      }
-    }, []);
-
-    const onLoadedData: Spec.Props['onLoadedData'] = (event) => {
-      isLoading(false);
-
-      loadDataHandler?.(event);
-    };
-
-    const onLoadStart: Spec.Props['onLoadStart'] = (event) => {
-      isLoading(true);
-
-      loadStartHandler?.(event);
-    };
-
-    const className = classNames(
-      CLASS_NAME,
-      'kicl-overflow-hidden',
-      'kicl-position-relative',
-      _className
-    );
-
-    // A video is a replaced element, which only stretches to its cell when told.
+  ({ className, ...props }, ref) => {
     return (
-      <Layout alignItems='stretch' justifyItems='stretch' ref={ref}>
-        <figure className={className}>
-          {/* Muted by default; a video with speech passes `captions`. */}
-          {/* oxlint-disable-next-line jsx-a11y/media-has-caption */}
-          <video
-            {...rest}
-            ref={video}
-            className={classNames(
-              'kicl-block-size-full',
-              'kicl-inline-size-full'
-            )}
-            autoPlay={autoPlay}
-            controls={controls}
-            controlsList={controlsList}
-            height={height}
-            loop={loop}
-            muted={muted}
-            onLoadStart={onLoadStart}
-            onLoadedData={onLoadedData}
-            playsInline={playsInline}
-            preload={preload}
-            width={width}
-          >
-            <source src={src} type='video/mp4' />
-            {captions ? (
-              <track default kind='captions' src={captions} srcLang='en' />
-            ) : null}
-          </video>
-          <Spinner in={loading} />
-        </figure>
-      </Layout>
+      <Provider {...props}>
+        <Root className={className} ref={ref} />
+      </Provider>
     );
   }
 );

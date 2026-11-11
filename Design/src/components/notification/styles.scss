@@ -106,7 +106,7 @@ $motion: var(--kicl-transition-duration-fast) var(--kicl-ease-quint-in-out);
     translate: 0 calc(-1 * #{$direction} * #{$peek});
   }
 
-  @include query('≤tablet') {
+  @include query('≤narrow') {
     inline-size: auto;
     inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
     min-inline-size: 0;

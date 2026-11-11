@@ -66,10 +66,26 @@ import { Display } from 'design/docs/tokens/previews';
 <List fill={6}>
   <Card
     is='li'
-    className='kicl-grid-row-span-2 kicl-grid-template-rows-subgrid'
+    className={classNames(
+      'kicl-grid-row-span-2',
+      'kicl-grid-template-rows-subgrid'
+    )}
   >
     <Image />
     <CardHeader />
   </Card>
+</List>
+```
+
+<Copy id='token_display_flex' />
+
+```tsx
+<List alignItems='center' display='flex' gap='narrow' wrap>
+  <ListItem>
+    <Button />
+  </ListItem>
+  <ListItem className='kicl-flex-1'>
+    <Input type='range' />
+  </ListItem>
 </List>
 ```

@@ -1,5 +1,6 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import classNames from 'classnames';
+import * as Tb from 'react-icons/tb';
 
 import { Image } from 'design/components';
 
@@ -9,12 +10,15 @@ const Preview: React.FC<Props> = (props) => {
   return (
     <Image
       alt='A picture that is missing'
-      className='kicl-aspect-ratio-video kicl-inline-size-columns-3'
+      className={classNames(
+        'kicl-aspect-ratio-video',
+        'kicl-inline-size-columns-3'
+      )}
       data='/assets/static/missing.webp'
       placeholder={
-        <Bs.BsImage
+        <Tb.TbPhoto
           aria-hidden
-          className='kicl-color-grey kicl-font-size-large'
+          className={classNames('kicl-color-grey', 'kicl-font-size-large')}
         />
       }
       {...props}

@@ -2,17 +2,15 @@ import React from 'react';
 
 // Libraries
 import classNames from 'classnames';
-import { useForm } from 'react-hook-form';
 
 // Components
-import { Button, Form, Status, Text } from 'design/components';
-
-// Icons
-import * as Bs from 'react-icons/bs';
+import { Form, Status, useForm } from 'design/components';
 
 // Partials
 import { Email } from './email';
+import { SendError } from './send-error';
 import { Message } from './message';
+import { Send } from './send';
 
 // Constants
 import { CLASS_NAME } from './constants';
@@ -34,7 +32,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
     defaultValues: { email, message: '' },
   });
 
-  const { errors, isSubmitSuccessful, isSubmitting } = form.formState;
+  const { isSubmitSuccessful } = form.formState;
 
   const submit = form.handleSubmit(async (values) => {
     try {
@@ -66,27 +64,8 @@ const ContactForm: React.FunctionComponent<Props> = ({
     >
       <Email />
       <Message />
-      {errors.root?.message ? (
-        <Text
-          className={classNames('kicl-font-size-small', 'kicl-color-error')}
-          is='p'
-          role='alert'
-        >
-          {errors.root.message}
-        </Text>
-      ) : null}
-      <Button
-        after={
-          isSubmitting ? (
-            <Bs.BsArrowClockwise aria-hidden className='is-revolving' />
-          ) : null
-        }
-        disabled={isSubmitting}
-        size='small'
-        type='submit'
-      >
-        {t('action_send')}
-      </Button>
+      <SendError />
+      <Send />
     </Form>
   );
 };

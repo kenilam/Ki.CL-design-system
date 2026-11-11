@@ -101,7 +101,7 @@
     }
   }
 
-  @include query('>tablet') {
+  @include query('>narrow') {
     $x: calc(var(--kicl--components--sheet--x) * #{$shadow-distant-negative});
     $y: calc(var(--kicl--components--sheet--y) * #{$shadow-distant-negative});
 
@@ -141,7 +141,7 @@
     }
   }
 
-  @include query('≤tablet') {
+  @include query('≤narrow') {
     border: 0;
     border-radius: 0;
     inline-size: auto;

@@ -1,10 +1,4 @@
-import React, { useState } from 'react';
-
-// Libraries
-import classNames from 'classnames';
-
-// Components
-import { Animation, Text } from 'design/components';
+import React from 'react';
 
 // Spec
 import * as Spec from './spec';
@@ -12,101 +6,27 @@ import * as Spec from './spec';
 // Styles
 import './styles.scss';
 
-const CLASS_NAME = 'kicl--components--animated-text';
+// Partials
+import { Provider } from './context';
+import { Root } from './root';
 
 const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
   (
-    {
-      delay = 0,
-      duration = 'fastest',
-      easing,
-      property = 'slide-from-top',
-      children,
-      split = 'letter',
-      stagger = 10,
-      className,
-      ...props
-    },
+    { children, delay, duration, easing, property, split, stagger, ...props },
     ref
   ) => {
-    let text: string | null = null;
-
-    if (['string', 'number'].includes(typeof children)) {
-      text = String(children);
-    }
-
-    const [first, setFirst] = useState(text);
-    const [replaced, setReplaced] = useState(false);
-
-    if (first === null && text !== null) {
-      setFirst(text);
-    }
-
-    if (first !== null && text !== first && !replaced) {
-      setReplaced(true);
-    }
-
-    if (text === null) {
-      return null;
-    }
-
-    if (replaced) {
-      return (
-        <Text
-          {...(props as React.ComponentProps<typeof Text>)}
-          className={classNames(CLASS_NAME, className)}
-          ref={ref}
-        >
-          {text}
-        </Text>
-      );
-    }
-
-    const words = text.split(/(\s+)/);
-
-    const renderPiece = (piece: string, order: number) => {
-      return (
-        <Animation
-          delay={delay + stagger * order}
-          duration={duration}
-          easing={easing}
-          property={property}
-          key={order}
-        >
-          <span aria-hidden className='kicl-display-inline-block'>
-            {piece}
-          </span>
-        </Animation>
-      );
-    };
-
     return (
-      <Text
-        {...(props as React.ComponentProps<typeof Text>)}
-        className={classNames(CLASS_NAME, className)}
-        ref={ref}
+      <Provider
+        delay={delay}
+        duration={duration}
+        easing={easing}
+        property={property}
+        split={split}
+        stagger={stagger}
+        text={children}
       >
-        <span className='kicl-hidden'>{text}</span>
-        {words.map((word, index) => {
-          if (/^\s*$/.test(word)) {
-            return word;
-          }
-
-          if (split === 'word') {
-            return renderPiece(word, index / 2);
-          }
-
-          const start = words.slice(0, index).join('').length;
-
-          return (
-            <span className='kicl-text-nowrap' key={index}>
-              {word.split('').map((letter, offset) => {
-                return renderPiece(letter, start + offset);
-              })}
-            </span>
-          );
-        })}
-      </Text>
+        <Root {...props} ref={ref} />
+      </Provider>
     );
   }
 );

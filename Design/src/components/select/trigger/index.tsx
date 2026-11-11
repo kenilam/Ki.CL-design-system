@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 // Components
 import { Layout } from 'design/components/layout';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Styles
 import './styles.scss';
@@ -43,7 +43,7 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
           {...rest}
         >
           {children}
-          <Bs.BsChevronDown className={`${SELECT}__icon`} aria-hidden />
+          <Tb.TbChevronDown className={`${SELECT}__icon`} aria-hidden />
         </button>
       </Layout>
     );

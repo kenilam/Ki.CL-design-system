@@ -1,13 +1,29 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import { Layout, Markdown, ScrollIndicator } from 'design/components';
 
 const Preview: React.FC = () => {
   return (
-    <article className='kicl-background-color-body kicl-contain-paint kicl-max-block-size-columns-6 kicl-overflow-y-auto kicl-position-relative'>
+    <article
+      className={classNames(
+        'kicl-background-color-body',
+        'kicl-contain-paint',
+        'kicl-max-block-size-columns-6',
+        'kicl-overflow-y-auto',
+        'kicl-position-relative'
+      )}
+    >
       <ScrollIndicator className='kicl-position-sticky' />
       <Layout>
-        <section className='kicl-padding-block kicl-padding-block-end-wide kicl-padding-inline'>
+        <section
+          className={classNames(
+            'kicl-padding-block',
+            'kicl-padding-block-end-wide',
+            'kicl-padding-inline'
+          )}
+        >
           <Markdown>
             {`### The River Bank
 

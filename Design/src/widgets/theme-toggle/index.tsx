@@ -13,7 +13,7 @@ import { useCopy } from 'design/locales/use-copy';
 import { useResponsive } from 'design/hooks';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 const CLASS_NAME = 'kicl--widgets--theme-toggle';
 
@@ -33,7 +33,7 @@ const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
 
   const isDark = theme === 'dark';
 
-  const Icon = isDark ? Bs.BsSun : Bs.BsMoon;
+  const Icon = isDark ? Tb.TbSun : Tb.TbMoon;
 
   return (
     <Button

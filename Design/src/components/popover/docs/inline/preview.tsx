@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import { Popover, PopoverHint, PopoverTrigger, Text } from 'design/components';
 
@@ -16,7 +16,7 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
       </Text>
       <Popover inline {...props}>
         <PopoverTrigger aria-label='How long exactly'>
-          <Bs.BsInfoCircle aria-hidden />
+          <Tb.TbInfoCircle aria-hidden />
         </PopoverTrigger>
         <PopoverHint offset={offset} placement={placement} variant={variant}>
           8 minutes and 20 seconds, on average.

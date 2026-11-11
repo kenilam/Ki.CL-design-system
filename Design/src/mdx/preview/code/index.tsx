@@ -19,6 +19,9 @@ import { useResponsive } from 'design/hooks';
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
+// Partials
+import { renderLines } from './render-lines';
+
 type Props = {
   children: string;
   language?: 'markup' | 'tsx';
@@ -53,7 +56,7 @@ const Code: React.FunctionComponent<Props> = ({
         language={language}
         theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
       >
-        {({ getLineProps, getTokenProps, tokens }) => {
+        {(highlight) => {
           return (
             <Text
               className={classNames(
@@ -63,20 +66,7 @@ const Code: React.FunctionComponent<Props> = ({
               )}
               is='pre'
             >
-              <Text is='code'>
-                {tokens.map((line, index) => {
-                  return (
-                    <span {...getLineProps({ line })} key={index}>
-                      {line.map((token, position) => {
-                        return (
-                          <span {...getTokenProps({ token })} key={position} />
-                        );
-                      })}
-                      {'\n'}
-                    </span>
-                  );
-                })}
-              </Text>
+              <Text is='code'>{renderLines(highlight)}</Text>
             </Text>
           );
         }}

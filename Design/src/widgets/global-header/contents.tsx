@@ -27,7 +27,7 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
   children,
 }) => {
   const { node } = useGlobalHeaderContext();
-  const { isMobile } = useResponsive();
+  const { isNarrow } = useResponsive();
 
   const className = classNames(
     'kicl-backdrop',
@@ -52,11 +52,11 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     >
       <header className={className}>
         <SiteLogo />
-        {isMobile ? null : children}
+        {isNarrow ? null : children}
         {before}
         <ThemeToggle />
         {after}
-        {isMobile ? children : null}
+        {isNarrow ? children : null}
       </header>
     </Layout>
   );

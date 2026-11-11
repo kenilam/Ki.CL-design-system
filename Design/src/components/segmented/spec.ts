@@ -18,7 +18,7 @@ export type SegmentedProps = Omit<
     name?: string;
   } & (
     | {
-        /** Applies at tablet width and below. */
+        /** Applies at the `narrow` breakpoint and below. */
         collapse: 'popover';
         /** Uses the collapsed layout at every width. */
         collapsed?: boolean;

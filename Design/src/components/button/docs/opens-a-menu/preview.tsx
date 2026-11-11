@@ -1,5 +1,6 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import classNames from 'classnames';
+import * as Tb from 'react-icons/tb';
 
 import {
   Button,
@@ -16,7 +17,7 @@ const Preview: React.FC<Props> = (props) => {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          after={<Bs.BsChevronDown aria-hidden />}
+          after={<Tb.TbChevronDown aria-hidden />}
           variant='secondary'
           {...props}
         >
@@ -45,7 +46,10 @@ const Preview: React.FC<Props> = (props) => {
             Duplicate
           </Button>
           <Button
-            className='kicl-font-weight-bold kicl-inline-size-full'
+            className={classNames(
+              'kicl-font-weight-bold',
+              'kicl-inline-size-full'
+            )}
             justifyContent='center'
             level='error'
           >

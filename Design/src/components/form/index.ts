@@ -1,4 +1,14 @@
-export { useForm } from 'react-hook-form';
+export { valibotResolver } from '@hookform/resolvers/valibot';
+export {
+  useForm,
+  useFormContext,
+  useFormState,
+  useWatch,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues,
+  type UseFormReturn,
+} from 'react-hook-form';
 export { Form } from './form';
 export { FormField } from './form-field';
 export { FormItem } from './form-item';

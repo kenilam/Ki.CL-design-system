@@ -20,20 +20,20 @@ import Welcome from './welcome.mdx';
 const Home: React.FunctionComponent = () => {
   const t = useCopy();
   const { parsePath } = useDocsContext();
-  const { isMobile } = useResponsive();
+  const { isNarrow } = useResponsive();
 
   return (
     <Layout alignContent='start' gap='wide'>
       <article>
         <Layout
-          alignItems={isMobile ? 'start' : 'center'}
-          autoFlow={isMobile ? 'row' : 'column'}
+          alignItems={isNarrow ? 'start' : 'center'}
+          autoFlow={isNarrow ? 'row' : 'column'}
           gap='normal'
           justifyContent='start'
           justifyItems='start'
         >
           <header>
-            <HomeLink showLabel={isMobile} to={parsePath()} />
+            <HomeLink showLabel={isNarrow} to={parsePath()} />
             <Heading>{t('docs_title', { context: 'components' })}</Heading>
           </header>
         </Layout>

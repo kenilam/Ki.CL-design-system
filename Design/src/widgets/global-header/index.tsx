@@ -5,7 +5,7 @@ import { Contents } from './contents';
 import { CssVariables } from './css-variables';
 
 // Context
-import { useGlobalHeaderContext, GlobalHeaderProvider } from './context';
+import { Provider, useGlobalHeaderContext } from './context';
 
 // Spec
 import * as Spec from './spec';
@@ -32,4 +32,8 @@ const GlobalHeader: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
   );
 };
 
-export { GlobalHeaderProvider, useGlobalHeaderContext, GlobalHeader };
+export {
+  Provider as GlobalHeaderProvider,
+  useGlobalHeaderContext,
+  GlobalHeader,
+};

@@ -1,166 +1,29 @@
 import React from 'react';
 
-// Routes
-import { NavLink } from 'design/router';
-
-// Components
-import { Layout } from 'design/components/layout';
-import {
-  BUTTON_LAYOUT as LAYOUT,
-  getButtonClassNames,
-  hasButtonText as hasText,
-} from 'design/components';
-
-// Copy
-import { useCopy } from 'design/locales/use-copy';
-
-// Hooks
-import { useURLStatus } from './hooks';
-
 // Spec
 import * as Spec from './spec';
-
-// Class names
-import { CLASS_NAME, getHyperLinkClassNames } from './class-names';
 
 // Styles
 import './styles.scss';
 
-const getAnchorProps = ({
-  caseSensitive: _caseSensitive,
-  discover: _discover,
-  preventScrollReset: _preventScrollReset,
-  relative: _relative,
-  reloadDocument: _reloadDocument,
-  replace: _replace,
-  state: _state,
-  style,
-  viewTransition: _viewTransition,
-  ...rest
-}: Omit<Spec.Props, 'children' | 'to'>) => {
-  return {
-    ...rest,
-    style: typeof style === 'function' ? undefined : style,
-  };
-};
+// Partials
+import { Provider } from './context';
+import { Root } from './root';
 
 const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
-  (
-    {
-      after,
-      before,
-      block,
-      children,
-      className: _className = '',
-      disabled,
-      end = true,
-      frames,
-      justifyContent = LAYOUT.justifyContent,
-      level,
-      lookLikeButton,
-      target: _target,
-      onClick: clickHandler,
-      size,
-      to,
-      variant,
-      unstyled,
-      ...rest
-    },
-    ref
-  ) => {
-    const status = useURLStatus(to);
-    const t = useCopy();
-
-    const onClick: Spec.Props['onClick'] = (event) => {
-      if (disabled) {
-        event.preventDefault();
-        return;
-      }
-
-      clickHandler?.(event);
-    };
-
-    const className = lookLikeButton
-      ? getButtonClassNames({
-          block,
-          className: _className,
-          disabled,
-          icon: !hasText(before, children, after),
-          level,
-          size,
-          variant,
-        })
-      : getHyperLinkClassNames({ block, className: _className, unstyled });
-
-    let target: Spec.Props['target'] = _target;
-
-    if (status.isExternal) {
-      target = '_blank';
-    }
-
-    let Content = children;
-
-    if (after || before) {
-      Content = (
-        <>
-          {before}
-          {/* The span lets the underline skip the icons. */}
-          {lookLikeButton ? (
-            (children as React.ReactNode)
-          ) : (
-            <span className={`${CLASS_NAME}--line`}>
-              {children as React.ReactNode}
-            </span>
-          )}
-          {after}
-        </>
-      );
-    }
-
-    if (target === '_blank') {
-      Content = (
-        <>
-          {Content}
-          <span className='kicl-hidden'> {t('new_tab')}</span>
-        </>
-      );
-    }
-
-    const shared = {
-      'aria-disabled': disabled,
-      className,
-      onClick,
-      tabIndex: disabled ? -1 : undefined,
-      target,
-    };
-
-    // A same-page hash uses a plain anchor because the router would swallow
-    // the click; the browser then handles the jump and focus.
-    const Link =
-      status.isHash && typeof to === 'string' ? (
-        <a {...getAnchorProps(rest)} {...shared} href={to} ref={ref}>
-          {Content as React.ReactNode}
-        </a>
-      ) : (
-        <NavLink {...rest} {...shared} end={end} ref={ref} to={to}>
-          {Content}
-        </NavLink>
-      );
-
-    if (lookLikeButton) {
-      return (
-        <Layout
-          {...LAYOUT}
-          display='inline-grid'
-          frames={frames}
-          justifyContent={justifyContent}
-        >
-          {Link}
-        </Layout>
-      );
-    }
-
-    return Link;
+  ({ after, before, children, lookLikeButton, target, ...rest }, ref) => {
+    return (
+      <Provider
+        after={after}
+        before={before}
+        contents={children}
+        lookLikeButton={lookLikeButton}
+        target={target}
+        to={rest.to}
+      >
+        <Root {...rest} ref={ref} />
+      </Provider>
+    );
   }
 );
 

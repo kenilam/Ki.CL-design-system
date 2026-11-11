@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-import { FormFieldContext, FormItemContext, useFieldError } from './context';
+import { useFieldError, useFormField, useFormItem } from './context';
 import type { FormLabelProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--form__label';
 
 const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
   ({ className, required, children, ...rest }, ref) => {
-    const field = useContext(FormFieldContext);
-    const item = useContext(FormItemContext);
+    const field = useFormField();
+    const item = useFormItem();
     const error = useFieldError();
 
     if (!children) {

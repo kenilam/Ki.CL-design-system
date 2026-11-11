@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Components
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components';
-import {
-  InputGroup,
-  InputGroupButton,
-  InputGroupInput,
-} from 'design/components/input-group';
 
-// Copy
-import { useCopy } from 'design/locales/use-copy';
-
-// Icons
-import * as Bs from 'react-icons/bs';
+// Partials
+import { Provider } from './context';
+import { Root } from './root';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -24,19 +16,6 @@ type Props = Omit<InputProps, 'after' | 'type' | keyof FormItemFieldProps> &
 
 const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {
-    const {
-      autoComplete = 'current-password',
-      before,
-      className,
-      disabled,
-      style,
-      ...rest
-    } = props;
-    const control = useFormItemControl(props);
-    const [shown, setShown] = useState(false);
-    const t = useCopy();
-    const Icon = shown ? Bs.BsEyeSlash : Bs.BsEye;
-
     if (label || description) {
       return (
         <FormItem
@@ -51,30 +30,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <InputGroup className={className} disabled={disabled} style={style}>
-        {before ?? <Bs.BsLock aria-hidden />}
-        <InputGroupInput
-          {...rest}
-          {...control}
-          autoComplete={autoComplete}
-          ref={ref}
-          type={shown ? 'text' : 'password'}
-        />
-        <InputGroupButton
-          aria-label={t(
-            shown ? 'action_hide_password' : 'action_show_password'
-          )}
-          aria-pressed={shown}
-          onClick={() => {
-            setShown((current) => {
-              return !current;
-            });
-          }}
-          type='button'
-        >
-          <Icon aria-hidden />
-        </InputGroupButton>
-      </InputGroup>
+      <Provider>
+        <Root {...props} ref={ref} />
+      </Provider>
     );
   }
 );

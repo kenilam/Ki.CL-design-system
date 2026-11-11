@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import {
   Button,
@@ -20,7 +20,7 @@ const MESSAGES: Array<{
   to?: string;
 }> = [
   {
-    avatar: <Bs.BsMusicNoteBeamed aria-hidden />,
+    avatar: <Tb.TbMusic aria-hidden />,
     id: 'aerith',
     level: 'neutral',
     message: 'Ready to play.',
@@ -28,14 +28,14 @@ const MESSAGES: Array<{
     to: '#notification-stack',
   },
   {
-    avatar: <Bs.BsExclamationCircleFill aria-hidden />,
+    avatar: <Tb.TbAlertCircleFilled aria-hidden />,
     id: 'interstellar',
     level: 'error',
     message: 'No music was found in this file.',
     title: 'Interstellar',
   },
   {
-    avatar: <Bs.BsMusicNoteBeamed aria-hidden />,
+    avatar: <Tb.TbMusic aria-hidden />,
     id: 'eternity',
     level: 'neutral',
     message:

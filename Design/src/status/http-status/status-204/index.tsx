@@ -1,7 +1,10 @@
 import React from 'react';
 
+// Libraries
+import classNames from 'classnames';
+
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Components
 import { Animation, Heading, Layout, Text } from 'design/components';
@@ -21,7 +24,13 @@ const Status204: React.FunctionComponent<Props> = ({ message, title }) => {
   return (
     <Animation>
       <Layout alignContent='center' autoFlow='row' justifyItems='center'>
-        <section className='kicl-max-inline-size-columns-12 kicl-min-block-size-screen kicl-text-align-center'>
+        <section
+          className={classNames(
+            'kicl-max-inline-size-columns-12',
+            'kicl-min-block-size-screen',
+            'kicl-text-align-center'
+          )}
+        >
           <Layout
             alignContent='center'
             alignItems='center'
@@ -29,10 +38,7 @@ const Status204: React.FunctionComponent<Props> = ({ message, title }) => {
             justifyItems='center'
           >
             <Text lookLike='h1'>
-              <Bs.BsFileEarmarkX
-                aria-hidden
-                className='kicl-font-size-extreme'
-              />
+              <Tb.TbFileX aria-hidden className='kicl-font-size-extreme' />
               {t('nothing_here')}
             </Text>
           </Layout>

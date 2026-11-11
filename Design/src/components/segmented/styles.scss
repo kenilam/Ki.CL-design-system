@@ -125,7 +125,7 @@
 
 .kicl--components--segmented--collapse--scroll {
   .kicl--components--segmented__options {
-    @include query('≤tablet') {
+    @include query('≤narrow') {
       @include segmented-scroll;
     }
   }
@@ -170,7 +170,7 @@
   }
 }
 
-@include query('>tablet') {
+@include query('>narrow') {
   .kicl--components--segmented__popover:not(
     .kicl--components--segmented__popover--collapsed
   ) {

@@ -1,28 +1,18 @@
 import React from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
 // Components
 import { FormItem } from 'design/components/form';
-import { useFormItemControl } from 'design/components';
 
 // Styles
 import './styles.scss';
 
-// Constants
-import { CLASS_NAME } from './constants';
-
 // Partials
-import { SelectTrigger } from './trigger';
-import { SelectValue } from './value';
+import { Root } from './root';
 
 import type { SelectProps } from './spec';
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ description, label, layout, ...props }, ref): React.ReactElement => {
-    const control = useFormItemControl(props);
-
     if (label || description) {
       return (
         <FormItem
@@ -31,67 +21,12 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           label={label}
           required={props.required}
         >
-          <Select {...props} ref={ref} />
+          <Root {...props} ref={ref} />
         </FormItem>
       );
     }
 
-    const {
-      children,
-      className,
-      defaultValue,
-      inline,
-      onChange,
-      onValueChange,
-      placeholder,
-      placement = 'block-end',
-      value,
-      ...rest
-    } = props;
-    const [axis, edge, align = 'start'] = placement.split('-');
-    const hasTrigger = React.Children.toArray(children).some((child) => {
-      return React.isValidElement(child) && child.type === SelectTrigger;
-    });
-
-    return (
-      <select
-        ref={ref}
-        className={classNames(
-          CLASS_NAME,
-          `${CLASS_NAME}--${axis}-${edge}--${align}`,
-          {
-            [`${CLASS_NAME}--inline`]: inline,
-            'kicl-font-size-small': !inline,
-            'kicl-inline-size-fit': !inline,
-          },
-          className
-        )}
-        value={value}
-        defaultValue={
-          value === undefined && placeholder !== undefined
-            ? (defaultValue ?? '')
-            : defaultValue
-        }
-        onChange={(event) => {
-          onChange?.(event);
-          onValueChange?.(event.currentTarget.value);
-        }}
-        {...rest}
-        {...control}
-      >
-        {hasTrigger ? null : (
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-        )}
-        {children}
-        {placeholder !== undefined ? (
-          <option value='' disabled hidden>
-            {placeholder}
-          </option>
-        ) : null}
-      </select>
-    );
+    return <Root {...props} ref={ref} />;
   }
 );
 

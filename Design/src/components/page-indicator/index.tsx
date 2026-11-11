@@ -4,15 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import {
-  Card,
-  HyperLink,
-  List,
-  ListItem,
-  Popover,
-  PopoverHint,
-  PopoverTrigger,
-} from 'design/components';
+import { Card, List } from 'design/components';
+
+// Partials
+import { Page } from './page';
 
 // Spec
 import * as Spec from './spec';
@@ -50,39 +45,7 @@ const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
       >
         <List is='ol'>
           {pages.map(({ id, label }) => {
-            return (
-              <ListItem key={id}>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <HyperLink
-                      /*
-                       * The hint repeats the link's hidden text, so it isn't
-                       * read twice.
-                       */
-                      aria-describedby={undefined}
-                      className={classNames(
-                        'kicl-padding-narrower',
-                        'kicl-pointer-events-auto'
-                      )}
-                      lookLikeButton
-                      size='small'
-                      to={`#${id}`}
-                      variant='ghost'
-                    >
-                      <span className='kicl-hidden'>{label}</span>
-                    </HyperLink>
-                  </PopoverTrigger>
-                  <PopoverHint
-                    aria-hidden
-                    className='kicl-padding-narrow'
-                    offset='normal'
-                    placement='inline-start-center'
-                  >
-                    {label}
-                  </PopoverHint>
-                </Popover>
-              </ListItem>
-            );
+            return <Page id={id} key={id} label={label} />;
           })}
         </List>
       </Card>

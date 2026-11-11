@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 // Spec
@@ -8,7 +8,10 @@ import type { PopoverHintProps } from 'design/components/popover/spec';
 import { getContentClassNames } from 'design/components/popover/class-names';
 
 // Context
-import { usePopover } from 'design/components/popover/context';
+import { usePopoverIds } from 'design/components/popover/context';
+
+// Partials
+import { useSyncOpen } from './use-sync-open';
 
 /**
  * Only for words: a panel that opens on hover closes before the pointer
@@ -24,40 +27,15 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
   variant,
   ...rest
 }) => {
-  const popover = usePopover();
-  const { setHint } = popover;
+  const ids = usePopoverIds();
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    setHint(true);
-
-    return () => {
-      setHint(false);
-    };
-  }, [setHint]);
-
-  useEffect(() => {
-    const node = nodeRef.current;
-
-    if (!node || popover.content) {
-      return;
-    }
-
-    const shown = node.matches(':popover-open');
-
-    if (popover.open && !shown) {
-      node.showPopover();
-    }
-
-    if (!popover.open && shown) {
-      node.hidePopover();
-    }
-  }, [popover.content, popover.open]);
+  useSyncOpen(nodeRef);
 
   const hint = (
     <div
       ref={nodeRef}
-      id={`${popover.id}__hint`}
+      id={`${ids.id}__hint`}
       popover='hint'
       role='tooltip'
       className={getContentClassNames({
@@ -68,7 +46,7 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
       })}
       style={
         {
-          ...popover.anchorStyle,
+          ...ids.anchorStyle,
           ...style,
         } as React.CSSProperties
       }
@@ -78,7 +56,7 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
     </div>
   );
 
-  return popover.inline ? createPortal(hint, document.body) : hint;
+  return ids.inline ? createPortal(hint, document.body) : hint;
 };
 
 PopoverHint.displayName = 'PopoverHint';

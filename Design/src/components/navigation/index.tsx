@@ -4,12 +4,7 @@ import React, { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 
 // Components
-import {
-  Animation,
-  type AnimationProps,
-  List,
-  ListItem,
-} from 'design/components';
+import { Animation, List, ListItem } from 'design/components';
 
 // Styles
 import './styles.scss';
@@ -17,83 +12,48 @@ import './styles.scss';
 // Spec
 import * as Spec from './spec';
 
+// Partials
+import { useLayout } from './use-layout';
+
 const CLASS_NAME = 'kicl--components--navigation';
 
 const Navigation = React.forwardRef<
   HTMLElement,
   Required<PropsWithChildren> & Spec.Props
->(
-  (
-    {
-      children,
-      className,
+>(({ children, className, ...props }, ref) => {
+  const { is, layout, rest } = useLayout(props);
 
-      alignContent,
-      alignItems,
-      autoFlow,
-      display,
-      frames,
-      fullScreen,
-      gap = 'normal',
-      is = 'ul',
-      justifyContent,
-      justifyItems,
-      wrap,
+  const items = React.Children.toArray(children).map((child) => {
+    let key = String(child);
 
-      ...rest
-    },
-    ref
-  ) => {
-    const animation: AnimationProps = {
-      duration: 'faster',
-      property: 'slide-from-top',
-    };
-
-    const layout = {
-      alignContent,
-      alignItems,
-      autoFlow,
-      display,
-      frames,
-      fullScreen,
-      gap,
-      justifyContent,
-      justifyItems,
-      wrap,
-    };
-
-    const items = React.Children.toArray(children).map((child) => {
-      let key = String(child);
-
-      if (React.isValidElement(child)) {
-        key = String(child.key);
-      }
-
-      return (
-        <Animation {...animation} key={key}>
-          <ListItem
-            className={`${CLASS_NAME}--list-item`}
-            justifyItems={justifyItems}
-          >
-            {child}
-          </ListItem>
-        </Animation>
-      );
-    });
+    if (React.isValidElement(child)) {
+      key = String(child.key);
+    }
 
     return (
-      <nav {...rest} className={classNames(CLASS_NAME, className)} ref={ref}>
-        {is === 'ol' ? (
-          <List {...layout} is='ol'>
-            {items}
-          </List>
-        ) : (
-          <List {...layout}>{items}</List>
-        )}
-      </nav>
+      <Animation duration='faster' key={key} property='slide-from-top'>
+        <ListItem
+          className={`${CLASS_NAME}--list-item`}
+          justifyItems={layout.justifyItems}
+        >
+          {child}
+        </ListItem>
+      </Animation>
     );
-  }
-);
+  });
+
+  return (
+    <nav {...rest} className={classNames(CLASS_NAME, className)} ref={ref}>
+      {is === 'ol' ? (
+        <List {...layout} is='ol'>
+          {items}
+        </List>
+      ) : (
+        <List {...layout}>{items}</List>
+      )}
+    </nav>
+  );
+});
 
 Navigation.displayName = 'Navigation';
 

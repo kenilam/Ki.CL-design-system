@@ -7,46 +7,17 @@ import { ReactSVG } from 'react-svg';
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
-// Vectors
-import { monochrome, polychrome } from './vectors';
+// Spec
+import type { Props } from './spec';
+
+// Constants
+import { CLASS_NAME, CompanyNames, CompanyVectors } from './constants';
+
+// Partials
+import { toKey } from './to-key';
 
 // Styles
 import './styles.scss';
-
-type Name =
-  | (typeof monochrome.Names)[keyof typeof monochrome.Names]
-  | (typeof polychrome.Names)[keyof typeof polychrome.Names];
-
-/** Only what both an `img` and the SVG wrapper take. It's `1em`, so a `kicl-font-size-*` class sizes it. */
-type Props = Pick<
-  React.HTMLAttributes<HTMLElement>,
-  'className' | 'id' | 'title'
-> &
-  Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'alt'> & {
-    src?: Name;
-  };
-
-const CLASS_NAME = 'kicl--icons--company';
-
-const CompanyNames = {
-  monochrome: monochrome.Names,
-  polychrome: polychrome.Names,
-};
-
-const CompanyVectors = {
-  monochrome: monochrome.Vectors,
-  polychrome: polychrome.Vectors,
-};
-
-type Snake<Text extends string> = Text extends `${infer Head}${infer Tail}`
-  ? `${Head extends Lowercase<Head> ? Head : `_${Lowercase<Head>}`}${Snake<Tail>}`
-  : Text;
-
-const toKey = <Source extends NonNullable<Name>>(name: Source) => {
-  return `company_${name.replace(/[A-Z]/g, (letter) => {
-    return `_${letter.toLowerCase()}`;
-  })}` as `company_${Snake<Source>}`;
-};
 
 const Company: React.FunctionComponent<Props> = ({
   alt,

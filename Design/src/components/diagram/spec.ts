@@ -66,3 +66,8 @@ export type Spec = {
   title: string;
   width: number;
 };
+
+export type DiagramState = {
+  active?: string[];
+  failed?: string[];
+};

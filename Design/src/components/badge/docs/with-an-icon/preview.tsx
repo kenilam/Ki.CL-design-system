@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Badge } from 'design/components';
 
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import type { Props } from 'design/components/badge/docs/controls';
 
 const Preview: React.FC<Props> = (props) => {
   return (
     <Badge {...props}>
-      <Bs.BsStar aria-hidden />
+      <Tb.TbStar aria-hidden />
       Featured
     </Badge>
   );

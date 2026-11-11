@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import { Button, Dialog, Heading, Text } from 'design/components';
 
@@ -12,7 +12,7 @@ const Preview: React.FC<Props> = (props) => {
         Open
       </Button>
       <Dialog
-        closeIcon={Bs.BsEmojiSmile}
+        closeIcon={Tb.TbMoodSmile}
         header={
           <Heading dense is='h2' lookLike='h4'>
             Choose a photo

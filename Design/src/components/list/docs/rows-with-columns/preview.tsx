@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import { List, ListItem, Text } from 'design/components';
 
@@ -14,7 +14,7 @@ const Preview: React.FC<Props> = (props) => {
         frames='max-content--auto'
         gap='narrow'
       >
-        <Bs.BsCheckLg aria-hidden />
+        <Tb.TbCheck aria-hidden />
         <Text>Types generated</Text>
       </ListItem>
       <ListItem
@@ -23,7 +23,7 @@ const Preview: React.FC<Props> = (props) => {
         frames='max-content--auto'
         gap='narrow'
       >
-        <Bs.BsCheckLg aria-hidden />
+        <Tb.TbCheck aria-hidden />
         <Text>Styles bundled</Text>
       </ListItem>
     </List>

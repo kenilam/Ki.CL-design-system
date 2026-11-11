@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 // Libraries
 import classNames from 'classnames';
@@ -6,29 +6,26 @@ import classNames from 'classnames';
 // Components
 import { FormItem } from 'design/components/form';
 import { useFormItemControl } from 'design/components';
-import {
-  InputGroup,
-  InputGroupButton,
-  InputGroupInput,
-} from 'design/components/input-group';
-
-// Helpers
-import { mergeRefs } from 'design/helper';
+import { InputGroup, InputGroupInput } from 'design/components/input-group';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
 import type { InputProps } from 'design/components/input';
 
+// Partials
+import { Clear } from './clear';
+
 // Styles
 import './styles.scss';
 
-const CLASS_NAME = 'kicl--components--input--search';
+// Constants
+import { CLASS_NAME } from './constants';
 
 type Props = Omit<InputProps, 'after' | 'type' | keyof FormItemFieldProps> &
   FormItemFieldProps;
@@ -42,23 +39,6 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
     const { before, className, disabled, placeholder, style, ...rest } = props;
     const control = useFormItemControl(props);
     const t = useCopy();
-    const node = useRef<HTMLInputElement | null>(null);
-
-    const clear = () => {
-      const element = node.current;
-
-      if (!element) {
-        return;
-      }
-
-      // React only hears a change made through the native setter.
-      Object.getOwnPropertyDescriptor(
-        HTMLInputElement.prototype,
-        'value'
-      )?.set?.call(element, '');
-      element.dispatchEvent(new Event('input', { bubbles: true }));
-      element.focus();
-    };
 
     if (label || description) {
       return (
@@ -79,22 +59,15 @@ const SearchInput = React.forwardRef<HTMLInputElement, Props>(
         disabled={disabled}
         style={style}
       >
-        {before ?? <Bs.BsSearch aria-hidden />}
+        {before ?? <Tb.TbSearch aria-hidden />}
         <InputGroupInput
           {...rest}
           {...control}
           placeholder={placeholder ?? t('search')}
-          ref={mergeRefs(node, ref)}
+          ref={ref}
           type='search'
         />
-        <InputGroupButton
-          aria-label={t('action_clear')}
-          className={`${CLASS_NAME}__clear`}
-          onClick={clear}
-          type='button'
-        >
-          <Bs.BsXLg aria-hidden />
-        </InputGroupButton>
+        <Clear />
       </InputGroup>
     );
   }

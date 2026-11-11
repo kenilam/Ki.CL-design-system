@@ -1,7 +1,10 @@
 import React from 'react';
 
+// Libraries
+import classNames from 'classnames';
+
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Components
 import { Animation, Heading, Layout, Text } from 'design/components';
@@ -24,7 +27,13 @@ const Status404: React.FunctionComponent = () => {
         justifyContent='center'
         justifyItems='center'
       >
-        <section className='kicl-max-inline-size-columns-12 kicl-min-block-size-screen kicl-text-align-center'>
+        <section
+          className={classNames(
+            'kicl-max-inline-size-columns-12',
+            'kicl-min-block-size-screen',
+            'kicl-text-align-center'
+          )}
+        >
           <Layout
             alignContent='center'
             alignItems='center'
@@ -32,7 +41,7 @@ const Status404: React.FunctionComponent = () => {
             justifyItems='center'
           >
             <Text lookLike='h1'>
-              <Bs.BsImageAlt aria-hidden className='kicl-font-size-extreme' />
+              <Tb.TbMountain aria-hidden className='kicl-font-size-extreme' />
               {t('something_not_right')}
             </Text>
           </Layout>

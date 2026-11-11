@@ -90,7 +90,7 @@
     translate: none;
   }
 
-  @include query('≤tablet') {
+  @include query('≤narrow') {
     --kicl--components--dialog--min-block-size: calc(
       100svb - var(--kicl--components--dialog--offset)
     );
@@ -133,7 +133,7 @@
         var(--kicl--components--dialog--section-offset)
       );
 
-    @include query('≤tablet') {
+    @include query('≤narrow') {
       translate: 0
         var(
           --kicl--components--dialog--translate--starting-style,

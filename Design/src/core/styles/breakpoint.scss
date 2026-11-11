@@ -1,16 +1,18 @@
 :root {
+  --kicl-breakpoint-attenuated: #{$attenuated};
+  --kicl-breakpoint-narrowest: #{$narrowest};
+  --kicl-breakpoint-narrower: #{$narrower};
   --kicl-breakpoint-narrow: #{$narrow};
-  --kicl-breakpoint-mobile: #{$mobile};
-  --kicl-breakpoint-tablet: #{$tablet};
-  --kicl-breakpoint-desktop: #{$desktop};
+  --kicl-breakpoint-normal: #{$normal};
   --kicl-breakpoint-wide: #{$wide};
   --kicl-breakpoint-wider: #{$wider};
+  --kicl-breakpoint-widest: #{$widest};
 }
 
 // Flags for style queries, since a media query can't read a custom property.
 $-previous: null;
 
-@each $name in (narrow, mobile, tablet, desktop, wide, wider) {
+@each $name in $breakpoint-names {
   @include query('≤#{$name}') {
     :root {
       --kicl-viewport-up-to-#{$name}: true;

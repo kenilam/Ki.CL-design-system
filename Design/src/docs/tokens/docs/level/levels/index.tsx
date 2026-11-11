@@ -1,15 +1,7 @@
 import React from 'react';
 
 // Components
-import {
-  Badge,
-  Button,
-  Card,
-  CardTitle,
-  List,
-  ListItem,
-  Text,
-} from 'design/components';
+import { List } from 'design/components';
 
 // Hooks
 import { useResponsive } from 'design/hooks';
@@ -17,44 +9,16 @@ import { useResponsive } from 'design/hooks';
 // Spec
 import { LEVELS } from 'design/components';
 
+// Partials
+import { Level } from './level';
+
 const Levels: React.FunctionComponent = () => {
-  const { isMobile } = useResponsive();
+  const { isNarrow } = useResponsive();
 
   return (
-    <List fill={isMobile ? 12 : 6} gap='normal'>
+    <List fill={isNarrow ? 12 : 6} gap='normal'>
       {LEVELS.map((level) => {
-        return (
-          <Card
-            header={
-              <CardTitle is='h4'>
-                <Text is='code'>{`level='${level}'`}</Text>
-              </CardTitle>
-            }
-            is='li'
-            key={level}
-            level={level}
-          >
-            <List
-              alignItems='center'
-              autoFlow='row'
-              display='flex'
-              gap='narrow'
-              wrap
-            >
-              <ListItem>
-                <Button level={level}>{level}</Button>
-              </ListItem>
-              <ListItem>
-                <Button level={level} variant='secondary'>
-                  {level}
-                </Button>
-              </ListItem>
-              <Badge is='li' level={level}>
-                {level}
-              </Badge>
-            </List>
-          </Card>
-        );
+        return <Level key={level} level={level} />;
       })}
     </List>
   );

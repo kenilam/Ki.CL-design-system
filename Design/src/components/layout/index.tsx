@@ -9,80 +9,56 @@ import { mergeRefs } from 'design/helper';
 // Spec
 import * as Spec from './spec';
 
-const CLASS_NAME = 'kicl-layout';
+// Class names
+import { getLayoutClassNames } from './class-names';
 
 type Props = PropsWithChildren<Spec.Props>;
 
-const Layout = React.forwardRef<HTMLElement, Props>(
-  (
-    {
-      children,
+const Layout = React.forwardRef<HTMLElement, Props>((layout, ref) => {
+  const {
+    children,
+    alignContent,
+    alignItems,
+    autoFlow,
+    columns,
+    display,
+    fill,
+    frames,
+    fullScreen,
+    gap,
+    justifyContent,
+    justifyItems,
+    span,
+    wrap,
+    ...rest
+  } = layout;
+  const className = getLayoutClassNames(layout);
 
-      alignContent,
-      alignItems,
-      autoFlow = 'row',
-      columns,
-      display = 'grid',
-      fill,
-      frames,
-      fullScreen,
-      gap = 'normal',
-      justifyContent,
-      justifyItems,
-      span,
-      wrap,
+  const Element = React.Children.only(children);
 
-      ...rest
-    },
-    ref
-  ) => {
-    const className = classNames(
-      CLASS_NAME,
-      {
-        [`${CLASS_NAME}--align-content--${alignContent}`]: alignContent,
-        [`${CLASS_NAME}--align-items--${alignItems}`]: alignItems,
-        [`${CLASS_NAME}--${autoFlow}`]: autoFlow,
-        [`${CLASS_NAME}--columns`]: columns,
-        [`${CLASS_NAME}--display--${display}`]: display,
-        [`${CLASS_NAME}--fill--${fill}`]: fill,
-        [`${CLASS_NAME}--full-screen`]: fullScreen,
-        [`${CLASS_NAME}--gap--${gap}`]: gap,
-        [`${CLASS_NAME}--justify-content--${justifyContent}`]: justifyContent,
-        [`${CLASS_NAME}--justify-items--${justifyItems}`]: justifyItems,
-        [`${CLASS_NAME}--span--${span}`]: span,
-        [`${CLASS_NAME}--wrap`]: wrap,
-        [`${CLASS_NAME}--wrap--stack`]: wrap === 'stack',
-        [`${CLASS_NAME}--${frames}`]: frames,
-      },
-      rest.className
-    );
-
-    const Element = React.Children.only(children);
-
-    if (!Element) {
-      return Element;
-    }
-
-    if (!React.isValidElement(Element)) {
-      return Element;
-    }
-
-    const props: Props = Element.props || {};
-    const childRef = (props as { ref?: React.Ref<HTMLElement | null> }).ref;
-
-    return React.cloneElement(
-      Element as React.ReactElement<
-        Props & { ref?: React.Ref<HTMLElement | null> }
-      >,
-      {
-        ...rest,
-        ...props,
-        className: classNames(className, props.className),
-        ref: mergeRefs(ref, childRef),
-      }
-    );
+  if (!Element) {
+    return Element;
   }
-);
+
+  if (!React.isValidElement(Element)) {
+    return Element;
+  }
+
+  const props: Props = Element.props || {};
+  const childRef = (props as { ref?: React.Ref<HTMLElement | null> }).ref;
+
+  return React.cloneElement(
+    Element as React.ReactElement<
+      Props & { ref?: React.Ref<HTMLElement | null> }
+    >,
+    {
+      ...rest,
+      ...props,
+      className: classNames(className, props.className),
+      ref: mergeRefs(ref, childRef),
+    }
+  );
+});
 
 Layout.displayName = 'Layout';
 

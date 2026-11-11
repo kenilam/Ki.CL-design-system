@@ -63,3 +63,9 @@ export type CopyButtonProps = LookProps &
     /** A check replaces it after a copy. */
     icon?: ReactNode;
   };
+
+export type VolumeButtonProps = Pick<LookProps, 'size' | 'variant'> &
+  Pick<
+    ComponentPropsWithoutRef<'input'>,
+    'defaultValue' | 'onChange' | 'value'
+  >;

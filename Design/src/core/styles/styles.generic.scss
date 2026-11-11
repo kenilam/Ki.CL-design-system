@@ -163,6 +163,6 @@ input {
   }
 }
 
-svg {
+svg:not([fill]) {
   fill: currentcolor;
 }

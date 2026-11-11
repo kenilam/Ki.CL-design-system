@@ -1,0 +1,110 @@
+// Chrome has no pseudo-element for the filled part of the track, so
+// `RangeInput` passes the value in and the track draws the fill.
+.kicl--components--input.kicl--components--input--range {
+  $input: '--kicl--components--input';
+
+  --kicl--components--input--background-color: transparent;
+  --kicl--components--input--border-width: 0;
+  --kicl--components--input--fill: calc(
+    var(#{$input}--offset) + var(#{$input}--thumb-box) / 2
+  );
+  --kicl--components--input--offset: calc(
+    var(#{$input}--value) * var(#{$input}--travel)
+  );
+  --kicl--components--input--padding-block: var(#{$input}--ring);
+  --kicl--components--input--padding-inline: var(#{$input}--ring);
+  --kicl--components--input--ring: calc(
+    var(--kicl-outline-width) + var(--kicl-size-1px)
+  );
+  --kicl--components--input--thumb: var(--kicl-size);
+  --kicl--components--input--thumb-box: calc(
+    var(--kicl-size) + var(--kicl-size-3px) * 2
+  );
+  --kicl--components--input--thumb-dot: radial-gradient(
+    circle closest-side,
+    var(#{$input}--color) calc(100% - var(--kicl-size-1px)),
+    transparent
+  );
+  --kicl--components--input--track: var(--kicl-size-3px);
+  --kicl--components--input--travel: calc(100% - var(#{$input}--thumb-box));
+  --kicl--components--input--track-direction: to right;
+
+  appearance: none;
+  block-size: calc(var(#{$input}--thumb-box) + var(#{$input}--ring) * 2);
+  min-inline-size: var(--kicl-size-4x);
+  outline: none;
+
+  &::-webkit-slider-runnable-track {
+    background-image: linear-gradient(
+      var(#{$input}--track-direction),
+      var(#{$input}--color) var(#{$input}--fill),
+      var(#{$input}--border-color) 0
+    );
+    block-size: var(#{$input}--track);
+    border-radius: var(#{$input}--track);
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    background-image: var(#{$input}--thumb-dot);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(#{$input}--thumb) var(#{$input}--thumb);
+    block-size: var(#{$input}--thumb-box);
+    border-radius: 50%;
+    inline-size: var(#{$input}--thumb-box);
+    margin-block-start: calc(
+      (var(#{$input}--track) - var(#{$input}--thumb-box)) / 2
+    );
+    outline: var(--kicl-outline-width) var(--kicl-outline-style)
+      var(--kicl-outline-color);
+    outline-offset: var(--kicl-size-1px);
+    transition-duration: var(--kicl-transition-duration-fast);
+    transition-property: background-size;
+    transition-timing-function: var(--kicl-ease-cubic-out);
+  }
+
+  &::-moz-range-track {
+    background-color: var(#{$input}--border-color);
+    block-size: var(#{$input}--track);
+    border-radius: var(#{$input}--track);
+  }
+
+  &::-moz-range-progress {
+    background-color: var(#{$input}--color);
+    block-size: var(#{$input}--track);
+    border-radius: var(#{$input}--track);
+  }
+
+  &::-moz-range-thumb {
+    background-image: var(#{$input}--thumb-dot);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(#{$input}--thumb) var(#{$input}--thumb);
+    block-size: var(#{$input}--thumb-box);
+    border: 0;
+    border-radius: 50%;
+    inline-size: var(#{$input}--thumb-box);
+    outline: var(--kicl-outline-width) var(--kicl-outline-style)
+      var(--kicl-outline-color);
+    outline-offset: var(--kicl-size-1px);
+    transition-duration: var(--kicl-transition-duration-fast);
+    transition-property: background-size;
+    transition-timing-function: var(--kicl-ease-cubic-out);
+  }
+
+  &:focus {
+    --kicl--components--input--thumb: var(#{$input}--thumb-box);
+  }
+
+  &:dir(rtl) {
+    --kicl--components--input--track-direction: to left;
+  }
+
+  &[aria-orientation='vertical'] {
+    --kicl--components--input--track-direction: to top;
+
+    direction: rtl;
+    writing-mode: vertical-lr;
+  }
+}

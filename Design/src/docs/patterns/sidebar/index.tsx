@@ -3,38 +3,24 @@ import React from 'react';
 // Libraries
 import classNames from 'classnames';
 
-// Routes
-import { useParams } from 'design/router';
-
 // Components
-import {
-  Heading,
-  HyperLink,
-  List,
-  ListItem,
-  Navigation,
-  NavigationProps,
-} from 'design/components';
+import { List, Navigation, NavigationProps } from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
-// Paths
-import { useDocsContext } from 'design/mdx/context';
-
 // Pages
-import { PAGES, type Category } from 'design/pattern-pages';
+import { PAGES, type Category as CategoryName } from 'design/pattern-pages';
 
-// Constants
-import { PATTERNS_PATH as PATH } from 'design/docs/paths';
+// Partials
+import { Category } from './category';
+import { Overview } from './overview';
 
 const Sidebar: React.FunctionComponent<NavigationProps> = ({
   className,
   ...props
 }) => {
   const t = useCopy();
-  const { parsePath } = useDocsContext();
-  const params = useParams();
 
   return (
     <Navigation
@@ -43,44 +29,9 @@ const Sidebar: React.FunctionComponent<NavigationProps> = ({
       className={classNames('kicl-padding', className)}
     >
       <List>
-        <ListItem>
-          <HyperLink to={parsePath(PATH)}>{t('docs_overview')}</HyperLink>
-        </ListItem>
-        {(Object.keys(PAGES) as Category[]).map((category) => {
-          const group = PAGES[category];
-          const pages = Object.entries(group);
-
-          if (!pages.length) {
-            return null;
-          }
-
-          return (
-            <ListItem key={category} gap='narrower'>
-              <Heading is='h5'>{t(`category_${category}`)}</Heading>
-              <List gap='narrower'>
-                {pages.map(([pattern, { context }]) => {
-                  return (
-                    <ListItem key={pattern}>
-                      <HyperLink
-                        block
-                        className='kicl-inline-size-full'
-                        lookLikeButton
-                        to={parsePath(`${PATH}/${category}/${pattern}`)}
-                        variant={
-                          category === params.category &&
-                          pattern === params.pattern
-                            ? 'secondary'
-                            : 'tertiary'
-                        }
-                      >
-                        {t('pattern', { context })}
-                      </HyperLink>
-                    </ListItem>
-                  );
-                })}
-              </List>
-            </ListItem>
-          );
+        <Overview />
+        {(Object.keys(PAGES) as CategoryName[]).map((category) => {
+          return <Category category={category} key={category} />;
         })}
       </List>
     </Navigation>

@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Styles
 import './styles.scss';
@@ -16,7 +16,7 @@ const CLASS_NAME = `${DETAILS}__marker`;
 
 const Marker: React.FunctionComponent = () => {
   return (
-    <Bs.BsChevronDown
+    <Tb.TbChevronDown
       aria-hidden
       className={classNames(CLASS_NAME, 'kicl-print-hidden')}
     />

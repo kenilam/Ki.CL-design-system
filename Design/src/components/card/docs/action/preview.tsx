@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import {
   Button,
@@ -27,7 +27,7 @@ const Preview: React.FC<Props> = (props) => {
             <CardAction>
               <PopoverTrigger asChild>
                 <Button aria-label='More' variant='ghost' size='small'>
-                  <Bs.BsThreeDots aria-hidden />
+                  <Tb.TbDots aria-hidden />
                 </Button>
               </PopoverTrigger>
             </CardAction>
@@ -39,7 +39,7 @@ const Preview: React.FC<Props> = (props) => {
                 gap='narrow'
               >
                 <Button
-                  before={<Bs.BsVolumeMute aria-hidden />}
+                  before={<Tb.TbVolume3 aria-hidden />}
                   className='kicl-inline-size-full'
                   level='warning'
                   size='small'
@@ -48,7 +48,7 @@ const Preview: React.FC<Props> = (props) => {
                   Mute
                 </Button>
                 <Button
-                  before={<Bs.BsCheckLg aria-hidden />}
+                  before={<Tb.TbCheck aria-hidden />}
                   className='kicl-inline-size-full'
                   level='confirm'
                   size='small'

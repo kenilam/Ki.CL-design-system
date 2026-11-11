@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { Text } from 'design/components/text';
 
-import { FormItemContext } from './context';
+import { useFormItem } from './context';
 import type { FormDescriptionProps } from './spec';
 
 const CLASS_NAME = 'kicl--components--form__description';
@@ -12,7 +12,7 @@ const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   FormDescriptionProps
 >(({ className, ...rest }, ref) => {
-  const item = useContext(FormItemContext);
+  const item = useFormItem();
 
   if (!rest.children) {
     return null;

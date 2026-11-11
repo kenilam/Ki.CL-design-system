@@ -3,49 +3,13 @@ import React from 'react';
 import type { MDXComponents } from 'mdx/types';
 
 // Components
-import {
-  Heading,
-  HyperLink,
-  type HyperLinkProps,
-  List,
-  ListItem,
-  Separator,
-  Text,
-} from 'design/components';
-
-// Paths
-import { useDocsContext } from './context';
+import { Heading, List, ListItem, Separator, Text } from 'design/components';
 
 // Partials
 import { Copy } from './copy';
-import { Code } from 'design/mdx/preview/code';
+import { Link } from './link';
+import { Pre } from './pre';
 import { Preview } from './preview';
-
-/** MDX pages link to each other as `../button`, relative to the docs' mount. */
-const Link: React.FunctionComponent<
-  Pick<HyperLinkProps, 'children'> & Pick<React.ComponentProps<'a'>, 'href'>
-> = ({ children, href = '' }) => {
-  const { parsePath } = useDocsContext();
-
-  return (
-    <HyperLink to={href.startsWith('../') ? parsePath(href.slice(3)) : href}>
-      {children}
-    </HyperLink>
-  );
-};
-
-const Pre: React.FunctionComponent<
-  Pick<React.ComponentProps<typeof Code>, 'className'> &
-    Pick<React.ComponentProps<'pre'>, 'children'>
-> = ({ children, className }) => {
-  return (
-    <Code className={className}>
-      {React.isValidElement<{ children?: string }>(children)
-        ? String(children.props.children ?? '')
-        : String(children ?? '')}
-    </Code>
-  );
-};
 
 /**
  * No `h1`: a page's headings start at `##`, since its title is the

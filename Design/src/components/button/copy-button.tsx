@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Hooks
 import { useClipboard } from 'design/hooks';
@@ -19,7 +19,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
   (
     {
       copiedLabel,
-      icon = <Bs.BsFiles aria-hidden />,
+      icon = <Tb.TbFiles aria-hidden />,
       label,
       level,
       showLabel,
@@ -34,7 +34,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
     const name = copied
       ? (copiedLabel ?? t('status_copied'))
       : (label ?? t('action_copy'));
-    const mark = copied ? <Bs.BsCheckLg aria-hidden /> : icon;
+    const mark = copied ? <Tb.TbCheck aria-hidden /> : icon;
 
     const onClick = () => {
       return void copy(typeof value === 'function' ? value() : value);

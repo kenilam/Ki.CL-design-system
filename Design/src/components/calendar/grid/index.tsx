@@ -1,13 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 // Context
-import { useCalendar } from 'design/components/calendar/context';
-
-// Helpers
-import { startOfDay } from 'design/components/calendar/helpers';
+import { useMonth } from 'design/components/calendar/context';
 
 // Partials
-import { Day } from './day';
+import { Week } from './week';
 
 const onKeyDown = (event: React.KeyboardEvent<HTMLTableSectionElement>) => {
   const body = event.currentTarget;
@@ -40,38 +37,14 @@ const onKeyDown = (event: React.KeyboardEvent<HTMLTableSectionElement>) => {
 };
 
 const Grid: React.FunctionComponent = () => {
-  const { month } = useCalendar();
-
-  const weeks = useMemo(() => {
-    const first = new Date(month.getFullYear(), month.getMonth(), 1);
-    const gridStart = new Date(first);
-    gridStart.setDate(first.getDate() - first.getDay());
-
-    return Array.from({ length: 6 }, (_, week) => {
-      return Array.from({ length: 7 }, (_, day) => {
-        const date = new Date(gridStart);
-        date.setDate(gridStart.getDate() + week * 7 + day);
-        return startOfDay(date);
-      });
-    });
-  }, [month]);
+  const { weeks } = useMonth();
 
   return (
     // Arrow keys on the body move focus between the day buttons.
     // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <tbody onKeyDown={onKeyDown}>
-      {weeks.map((days) => {
-        return (
-          <tr key={days[0].toISOString()}>
-            {days.map((date) => {
-              return (
-                <td key={date.toISOString()}>
-                  <Day date={date} />
-                </td>
-              );
-            })}
-          </tr>
-        );
+      {weeks.map(([start]) => {
+        return <Week key={start.toISOString()} start={start} />;
       })}
     </tbody>
   );

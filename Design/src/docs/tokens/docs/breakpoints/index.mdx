@@ -8,12 +8,14 @@ import { Variables } from 'design/docs/tokens/variables';
 
 <Variables
   names={[
+    'breakpoint-attenuated',
+    'breakpoint-narrowest',
+    'breakpoint-narrower',
     'breakpoint-narrow',
-    'breakpoint-mobile',
-    'breakpoint-tablet',
-    'breakpoint-desktop',
+    'breakpoint-normal',
     'breakpoint-wide',
     'breakpoint-wider',
+    'breakpoint-widest',
   ]}
 />
 
@@ -21,18 +23,22 @@ import { Variables } from 'design/docs/tokens/variables';
 
 <Variables
   names={[
+    'viewport-attenuated',
+    'viewport-narrowest',
+    'viewport-narrower',
     'viewport-narrow',
-    'viewport-mobile',
-    'viewport-tablet',
-    'viewport-desktop',
+    'viewport-normal',
     'viewport-wide',
     'viewport-wider',
+    'viewport-widest',
+    'viewport-up-to-attenuated',
+    'viewport-up-to-narrowest',
+    'viewport-up-to-narrower',
     'viewport-up-to-narrow',
-    'viewport-up-to-mobile',
-    'viewport-up-to-tablet',
-    'viewport-up-to-desktop',
+    'viewport-up-to-normal',
     'viewport-up-to-wide',
     'viewport-up-to-wider',
+    'viewport-up-to-widest',
   ]}
 />
 
@@ -42,7 +48,7 @@ import { Variables } from 'design/docs/tokens/variables';
 
 ```tsx
 // A label that phones don't show, still read by screen readers
-<span className='kicl-hidden-up-to-mobile'>Settings</span>
+<span className='kicl-hidden-up-to-narrowest'>Settings</span>
 ```
 
 <Text><Copy id='token_breakpoints_part_7' /></Text>

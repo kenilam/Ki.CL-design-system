@@ -1,0 +1,15 @@
+.kicl--components--input--file {
+  &__control {
+    cursor: inherit;
+    opacity: 0;
+  }
+
+  strong {
+    text-decoration: underline;
+    text-underline-position: under;
+  }
+
+  &__field {
+    anchor-scope: --kicl--components--input--file;
+  }
+}

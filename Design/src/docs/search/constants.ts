@@ -29,6 +29,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   ease: 'foundations/motion',
   field: 'foundations/size',
   fill: 'foundations/color',
+  flex: 'utilities/display',
   font: 'foundations/typography',
   gradient: 'foundations/motion',
   grid: 'utilities/display',

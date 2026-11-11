@@ -31,8 +31,19 @@ import { Position } from 'design/docs/tokens/previews';
 <figure className='kicl-position-relative' />
 
 // Pinned to the top-right corner of that box on a left-to-right page
-<span className='kicl-position-absolute kicl-inset-block-start-0 kicl-inset-inline-end-0' />
+<span
+  className={classNames(
+    'kicl-position-absolute',
+    'kicl-inset-block-start-0',
+    'kicl-inset-inline-end-0'
+  )}
+/>
 
 // Sticks under the global header as the page scrolls
-<nav className='kicl-position-sticky kicl-inset-block-start-header' />
+<nav
+  className={classNames(
+    'kicl-position-sticky',
+    'kicl-inset-block-start-header'
+  )}
+/>
 ```

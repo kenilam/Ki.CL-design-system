@@ -6,7 +6,9 @@
   --kicl--components--input--color: var(--kicl-body-color);
   --kicl--components--input--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input--padding-inline: var(--kicl-gutter);
-  --kicl--components--input--read-only-background-color: var(--kicl-body-background-color);
+  --kicl--components--input--read-only-background-color: var(
+    --kicl-body-background-color
+  );
 
   background-color: var(--kicl--components--input--background-color);
   border: var(--kicl--components--input--border-width) solid

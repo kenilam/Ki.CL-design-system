@@ -3,21 +3,35 @@
  * and the browser silently drops the block, and `--kicl-breakpoint-*` is read
  * as a length.
  */
-$narrow: 16px * 22;
-$mobile: 16px * 30;
-$tablet: 16px * 46;
-$desktop: 16px * 61;
-$wide: 16px * 81;
-$wider: 16px * 90;
+$attenuated: 16px * 22;
+$narrowest: 16px * 30;
+$narrower: 16px * 39;
+$narrow: 16px * 46;
+$normal: 16px * 61;
+$wide: 16px * 64;
+$wider: 16px * 81;
+$widest: 16px * 90;
+$breakpoint-names: (
+  attenuated,
+  narrowest,
+  narrower,
+  narrow,
+  normal,
+  wide,
+  wider,
+  widest
+);
 
 @use 'include-media' with (
   $breakpoints: (
+    'attenuated': $attenuated,
+    'narrowest': $narrowest,
+    'narrower': $narrower,
     'narrow': $narrow,
-    'mobile': $mobile,
-    'tablet': $tablet,
-    'desktop': $desktop,
+    'normal': $normal,
     'wide': $wide,
     'wider': $wider,
+    'widest': $widest,
   )
 );
 
@@ -27,38 +41,50 @@ $wider: 16px * 90;
   }
 }
 
+@mixin attenuated {
+  @include query('≤attenuated') {
+    @content;
+  }
+}
+
+@mixin narrowest {
+  @include query('>attenuated', '≤narrowest') {
+    @content;
+  }
+}
+
+@mixin narrower {
+  @include query('>narrowest', '≤narrower') {
+    @content;
+  }
+}
+
 @mixin narrow {
-  @include query('≤narrow') {
+  @include query('>narrower', '≤narrow') {
     @content;
   }
 }
 
-@mixin mobile {
-  @include query('>narrow', '≤mobile') {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @include query('>mobile', '≤tablet') {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @include query('>tablet', '≤desktop') {
+@mixin normal {
+  @include query('>narrow', '≤normal') {
     @content;
   }
 }
 
 @mixin wide {
-  @include query('>desktop', '≤wide') {
+  @include query('>normal', '≤wide') {
     @content;
   }
 }
 
 @mixin wider {
   @include query('>wide', '≤wider') {
+    @content;
+  }
+}
+
+@mixin widest {
+  @include query('>wider', '≤widest') {
     @content;
   }
 }

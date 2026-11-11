@@ -1,110 +1,30 @@
 import React from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
-// Components
-import { Animation, Heading, Layout, Text } from 'design/components';
-import type { HeadingProps } from 'design/components';
-
-// Copy
-import { useCopy } from 'design/locales/use-copy';
-
-// Icons
-import * as Bs from 'react-icons/bs';
-
 // Spec
 import * as Spec from './spec';
 
-const CLASS_NAME = 'kicl--components--status';
-
-const LEVELS: Spec.Icons = {
-  error: (
-    <Bs.BsExclamationCircle
-      aria-hidden
-      className='kicl-font-size kicl-color-error'
-    />
-  ),
-  info: (
-    <Bs.BsInfoCircle aria-hidden className='kicl-font-size kicl-color-info' />
-  ),
-  warning: (
-    <Bs.BsExclamationOctagon
-      aria-hidden
-      className='kicl-font-size kicl-color-warning'
-    />
-  ),
-};
+// Partials
+import { Provider } from './context';
+import { Root } from './root';
 
 const Status: React.FunctionComponent<Spec.Props> = ({
-  property = 'slide-from-bottom',
-  className: _className,
-  headingLevel = 'h4',
-  in: transitionIn,
-  justifyContent = 'start',
+  headingLevel,
+  justifyContent,
   level,
   message,
   title,
   ...rest
 }) => {
-  const t = useCopy();
-
-  const className = classNames({
-    [`kicl-color-${level}`]: level,
-    [`kicl-text-align-${justifyContent}`]: justifyContent,
-  });
-
-  const Icon = level ? LEVELS[level] : null;
-
-  const hasTitle = Boolean(title) || !message;
-
-  const Title = hasTitle ? (
-    <Layout
-      alignContent='center'
-      alignItems='center'
-      autoFlow='column'
-      gap='narrow'
-      justifyContent={justifyContent}
-    >
-      <Heading
-        dense
-        {...({ is: headingLevel, lookLike: 'h4' } as HeadingProps)}
-      >
-        {Icon}
-        {title || t(`title_${level ?? 'error'}`)}
-      </Heading>
-    </Layout>
-  ) : null;
-
-  const Messages = message ? (
-    <Layout
-      alignItems='center'
-      autoFlow='column'
-      gap='narrow'
-      justifyContent={justifyContent}
-    >
-      <Text
-        className={classNames('kicl-font-size-small', 'kicl-color-grey-700')}
-        is='p'
-      >
-        {hasTitle ? null : Icon}
-        {message}
-      </Text>
-    </Layout>
-  ) : null;
-
   return (
-    <div
-      className={classNames(CLASS_NAME, _className)}
-      role={level === 'error' ? 'alert' : 'status'}
+    <Provider
+      headingLevel={headingLevel}
+      justifyContent={justifyContent}
+      level={level}
+      message={message}
+      title={title}
     >
-      <Animation {...rest} property={property} in={transitionIn}>
-        <section className={className}>
-          {Title}
-          {Messages}
-        </section>
-      </Animation>
-    </div>
+      <Root {...rest} />
+    </Provider>
   );
 };
 

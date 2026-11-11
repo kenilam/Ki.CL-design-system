@@ -26,13 +26,24 @@ import { Placement } from 'design/docs/tokens/previews';
 
 ```tsx
 // Pinned to the top-right corner on a left-to-right page
-<div className='kicl-position-absolute kicl-inset-block-start-0 kicl-inset-inline-end-0' />
+<div
+  className={classNames(
+    'kicl-position-absolute',
+    'kicl-inset-block-start-0',
+    'kicl-inset-inline-end-0'
+  )}
+/>
 
 // 0.5rem in from every edge of its positioned parent
-<div className='kicl-position-absolute kicl-inset-narrow' />
+<div className={classNames('kicl-position-absolute', 'kicl-inset-narrow')} />
 
 // Centred top to bottom, without a transform
-<div className='kicl-position-absolute kicl-inset-block-center' />
+<div
+  className={classNames(
+    'kicl-position-absolute',
+    'kicl-inset-block-center'
+  )}
+/>
 ```
 
 <Copy id='token_sides_part_4' />
@@ -175,7 +186,7 @@ import { Placement } from 'design/docs/tokens/previews';
 
 ```tsx
 // Points to where the next crumb is, in either reading direction
-<Bs.BsChevronRight aria-hidden className='kicl-rtl-mirror' />
+<Tb.TbChevronRight aria-hidden className='kicl-rtl-mirror' />
 ```
 
 <Text>

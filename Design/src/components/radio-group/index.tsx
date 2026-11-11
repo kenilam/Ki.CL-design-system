@@ -1,10 +1,4 @@
-import React, { useId } from 'react';
-
-// Libraries
-import classNames from 'classnames';
-
-// Components
-import { Layout } from 'design/components/layout';
+import React from 'react';
 
 // Spec
 import type { RadioGroupProps } from './spec';
@@ -12,60 +6,25 @@ import type { RadioGroupProps } from './spec';
 // Styles
 import './styles.scss';
 
-// Constants
-import { CLASS_NAME } from './constants';
-
 // Context
-import { RadioGroupContext } from './context';
+import { Provider } from './context';
 
 // Partials
 import { Radio } from './radio';
+import { Root } from './root';
 
 const RadioGroup = React.forwardRef<HTMLFieldSetElement, RadioGroupProps>(
-  (
-    {
-      children,
-      className,
-      defaultValue,
-      legend,
-      name,
-      onValueChange,
-      required,
-      value,
-      ...rest
-    },
-    ref
-  ) => {
-    const reactId = useId();
-
+  ({ defaultValue, name, onValueChange, required, value, ...rest }, ref) => {
     return (
-      <RadioGroupContext.Provider
-        value={{
-          defaultValue,
-          name: name ?? reactId,
-          onValueChange: (next) => {
-            onValueChange?.(next);
-          },
-          required,
-          value,
-        }}
+      <Provider
+        defaultValue={defaultValue}
+        name={name}
+        onValueChange={onValueChange}
+        required={required}
+        value={value}
       >
-        <Layout gap='narrower' justifyItems='start'>
-          <fieldset
-            ref={ref}
-            className={classNames(CLASS_NAME, className)}
-            role='radiogroup'
-            {...rest}
-          >
-            {legend ? (
-              <legend className='kicl-margin-block-end-narrower'>
-                {legend}
-              </legend>
-            ) : null}
-            {children}
-          </fieldset>
-        </Layout>
-      </RadioGroupContext.Provider>
+        <Root ref={ref} {...rest} />
+      </Provider>
     );
   }
 );

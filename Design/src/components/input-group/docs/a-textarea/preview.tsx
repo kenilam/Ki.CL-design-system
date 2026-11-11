@@ -6,7 +6,7 @@ import {
   InputGroupTextarea,
 } from 'design/components';
 
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import type { Props } from 'design/components/input-group/docs/controls';
 
@@ -20,7 +20,7 @@ const Preview: React.FC<Props> = ({ disabled, ...props }) => {
         {...props}
       />
       <InputGroupButton aria-label='Send' type='submit'>
-        <Bs.BsSend aria-hidden />
+        <Tb.TbSend aria-hidden />
       </InputGroupButton>
     </InputGroup>
   );

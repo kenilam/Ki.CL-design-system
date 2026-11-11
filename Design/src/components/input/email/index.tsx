@@ -4,7 +4,7 @@ import React from 'react';
 import { Input } from 'design/components/input';
 
 // Icons
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 // Spec
 import type { FormItemFieldProps } from 'design/components/form';
@@ -19,7 +19,7 @@ const EmailInput = React.forwardRef<HTMLInputElement, Props>(
       <Input
         {...rest}
         autoComplete={autoComplete}
-        before={before ?? <Bs.BsEnvelope aria-hidden />}
+        before={before ?? <Tb.TbMail aria-hidden />}
         inputMode='email'
         ref={ref}
         spellCheck={false}

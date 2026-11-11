@@ -30,7 +30,7 @@
 
           > *:nth-child(odd),
           > *:nth-child(even) {
-            @include mobile {
+            @include narrowest {
               grid-column-end: unset;
               grid-column-start: unset;
             }
@@ -59,14 +59,14 @@
           }
 
           > *:nth-child(odd) {
-            @include tablet {
+            @include query('>narrowest', '≤narrow') {
               grid-column-end: 2;
               grid-column-start: 1;
             }
           }
 
           > *:nth-child(even) {
-            @include tablet {
+            @include query('>narrowest', '≤narrow') {
               grid-column-end: 3;
               grid-column-start: 2;
             }
@@ -74,7 +74,7 @@
 
           > *:nth-child(odd),
           > *:nth-child(even) {
-            @include mobile {
+            @include narrowest {
               grid-column-end: unset;
               grid-column-start: unset;
             }
@@ -149,7 +149,7 @@
       }
 
       &.kicl-layout--wrap--stack > * {
-        @include query('≤mobile') {
+        @include query('≤narrowest') {
           flex-basis: 100%;
         }
       }
@@ -177,7 +177,7 @@
       grid-template-columns: var(--kicl-layout--grid-frames);
       grid-template-rows: unset;
 
-      @include tablet {
+      @include query('>narrowest', '≤narrow') {
         --kicl-layout--auto-flow: column;
       }
     }
@@ -189,7 +189,7 @@
       grid-template-columns: repeat(var(--kicl-columns-count), minmax(0, 1fr));
       grid-template-rows: unset;
 
-      @include query('≤mobile') {
+      @include query('≤narrowest') {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -458,7 +458,7 @@
   .kicl-layout.kicl-layout--span--#{$span} {
     grid-column: span #{$span};
 
-    @include query('≤mobile') {
+    @include query('≤narrowest') {
       grid-column: 1 / -1;
     }
   }
@@ -480,7 +480,7 @@
     );
     grid-template-rows: unset;
 
-    @include query('≤mobile') {
+    @include query('≤narrowest') {
       grid-template-columns: minmax(0, 1fr);
     }
   }

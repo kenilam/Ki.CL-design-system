@@ -82,10 +82,15 @@ import { Overflow } from 'design/docs/tokens/previews';
 <div className='kicl-overflow-y-auto' />
 
 // Scrolling inside it stops at its end instead of moving the page
-<div className='kicl-overflow-y-auto kicl-overscroll-behavior-contain' />
+<div
+  className={classNames(
+    'kicl-overflow-y-auto',
+    'kicl-overscroll-behavior-contain'
+  )}
+/>
 
 // Scrolls sideways with no scrollbar, and fades at the edges
-<ul className='kicl-overflow-x-auto kicl-scroll-fade-inline' />
+<ul className={classNames('kicl-overflow-x-auto', 'kicl-scroll-fade-inline')} />
 
 // Fills the rest of a fit-content parent instead of setting its width
 <div className='kicl-contain-inline-size' />

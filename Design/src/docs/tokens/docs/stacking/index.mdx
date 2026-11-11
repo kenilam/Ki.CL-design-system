@@ -26,10 +26,15 @@ import { Stack } from 'design/docs/tokens/previews';
 
 ```tsx
 // Above the content around it, as a sticky toolbar
-<header className='kicl-position-sticky kicl-z-index-floating' />
+<header
+  className={classNames(
+    'kicl-position-sticky',
+    'kicl-z-index-floating'
+  )}
+/>
 
 // Behind its siblings, as a decorative layer
-<div className='kicl-position-absolute kicl-z-index-behind' />
+<div className={classNames('kicl-position-absolute', 'kicl-z-index-behind')} />
 ```
 
 <Text><Copy id='token_stacking_part_5' /></Text>

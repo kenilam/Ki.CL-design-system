@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Bs from 'react-icons/bs';
+import * as Tb from 'react-icons/tb';
 
 import {
   InputGroup,
@@ -18,7 +18,7 @@ const Preview: React.FC<Props> = ({ disabled, ...props }) => {
         {...props}
       />
       <InputGroupButton aria-label='Send'>
-        <Bs.BsSend aria-hidden />
+        <Tb.TbSend aria-hidden />
       </InputGroupButton>
     </InputGroup>
   );

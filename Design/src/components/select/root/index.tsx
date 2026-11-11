@@ -41,10 +41,10 @@ const Root: React.FunctionComponent<Props> = ({
       className={classNames(
         CLASS_NAME,
         `${CLASS_NAME}--${axis}-${edge}--${align}`,
+        'kicl-inline-size-fit',
         {
           [`${CLASS_NAME}--inline`]: inline,
           'kicl-font-size-small': !inline,
-          'kicl-inline-size-fit': !inline,
         },
         className
       )}

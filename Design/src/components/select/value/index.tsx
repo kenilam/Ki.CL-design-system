@@ -22,12 +22,7 @@ const SelectValue: React.FunctionComponent<SelectValueProps> = ({
   ...rest
 }) => {
   return React.createElement('selectedcontent', {
-    className: classNames(
-      CLASS_NAME,
-      'kicl-overflow-hidden',
-      'kicl-text-nowrap',
-      className
-    ),
+    className: classNames(CLASS_NAME, 'kicl-text-truncate', className),
     ...rest,
   });
 };

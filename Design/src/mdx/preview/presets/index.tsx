@@ -1,17 +1,18 @@
 import React from 'react';
 
 // Components
-import { Segmented } from 'design/components';
+import { Segmented, SegmentedItem } from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
 // Partials
+import { useDocsCopy } from 'design/mdx/copy';
 import { usePreviewContext } from 'design/mdx/preview/context';
-import { Item } from './item';
 
 const Presets: React.FunctionComponent = () => {
   const t = useCopy();
+  const docsCopy = useDocsCopy();
   const { chosen, pick, presets } = usePreviewContext();
 
   if (presets.length < 2) {
@@ -27,8 +28,12 @@ const Presets: React.FunctionComponent = () => {
       value={chosen}
     >
       <legend>{t('docs_preset')}</legend>
-      {presets.map(({ props: { name } }) => {
-        return <Item key={name} name={name} />;
+      {presets.map(({ props: { label, name } }) => {
+        return (
+          <SegmentedItem key={name} value={name}>
+            {docsCopy(label)}
+          </SegmentedItem>
+        );
       })}
     </Segmented>
   );

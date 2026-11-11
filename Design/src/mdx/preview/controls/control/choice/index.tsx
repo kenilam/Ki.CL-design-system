@@ -8,7 +8,6 @@ import { useCopy } from 'design/locales/use-copy';
 
 // Partials
 import { usePreviewContext } from 'design/mdx/preview/context';
-import { Option } from './option';
 import { UNSET, useOptions } from './use-options';
 
 type Props = { name: string };
@@ -38,7 +37,11 @@ const Choice: React.FunctionComponent<Props> = ({ name }) => {
         <SegmentedItem value={UNSET}>{t('docs_default')}</SegmentedItem>
       ) : null}
       {options.map((option) => {
-        return <Option key={option} option={option} />;
+        return (
+          <SegmentedItem key={String(option)} value={String(option)}>
+            {String(option)}
+          </SegmentedItem>
+        );
       })}
     </Segmented>
   );

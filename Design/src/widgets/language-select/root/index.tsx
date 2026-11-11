@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Select } from 'design/components';
+import { Select, SelectTrigger } from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';
@@ -16,8 +16,8 @@ import { useLanguageSelect } from 'design/widgets/language-select/context';
 import type { LanguageSelectProps } from 'design/widgets/language-select';
 
 // Partials
+import { Face } from './face';
 import { Options } from './options';
-import { Trigger } from './trigger';
 
 const CLASS_NAME = 'kicl--widgets--language-select';
 
@@ -64,7 +64,9 @@ const Root = <Tag extends string>({
       }}
       value={value}
     >
-      <Trigger />
+      <SelectTrigger>
+        <Face />
+      </SelectTrigger>
       <Options />
     </Select>
   );

@@ -54,8 +54,9 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
         <SiteLogo />
         {isNarrow ? null : children}
         {before}
-        <ThemeToggle />
+        {isNarrow ? <ThemeToggle /> : null}
         {after}
+        {isNarrow ? null : <ThemeToggle />}
         {isNarrow ? children : null}
       </header>
     </Layout>

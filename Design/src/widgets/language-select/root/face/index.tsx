@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { SelectTrigger, SelectValue } from 'design/components';
+import { SelectValue } from 'design/components';
 
 // Context
 import { useLanguageSelect } from 'design/widgets/language-select/context';
@@ -9,22 +9,23 @@ import { useLanguageSelect } from 'design/widgets/language-select/context';
 // Partials
 import { flagOf } from 'design/widgets/language-select/root/flag-of';
 
-const Trigger: React.FunctionComponent = () => {
+/** Inline, the trigger shows only the flag, or the name's first letter when there is none. */
+const Face: React.FunctionComponent = () => {
   const { inline, options, value } = useLanguageSelect();
+
+  if (!inline) {
+    return <SelectValue />;
+  }
 
   const current = options.find(({ acceptLanguage }) => {
     return acceptLanguage === value;
   });
 
-  let face: React.ReactNode = <SelectValue />;
-
-  if (inline) {
-    face = current
-      ? flagOf(current.acceptLanguage) || [...current.name][0]
-      : undefined;
+  if (!current) {
+    return null;
   }
 
-  return <SelectTrigger>{face}</SelectTrigger>;
+  return flagOf(current.acceptLanguage) || [...current.name][0];
 };
 
-export { Trigger };
+export { Face };

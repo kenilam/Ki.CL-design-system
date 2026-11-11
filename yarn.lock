@@ -453,7 +453,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^6.0.4"
     classnames: "npm:2.5.1"
     glob: "npm:11.1.0"
-    i18next: "npm:26.4.3"
+    i18next: "npm:26.7.2"
     include-media: "npm:2.0.0"
     marked: "npm:18.1.0"
     normalize.css: "npm:8.0.1"
@@ -2685,15 +2685,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:26.4.3":
-  version: 26.4.3
-  resolution: "i18next@npm:26.4.3"
+"i18next@npm:26.7.2":
+  version: 26.7.2
+  resolution: "i18next@npm:26.7.2"
   peerDependencies:
     typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/099480c24c18039d78c9cadb04cdcb24a2aca579a21678bfdde89a2007c7109cc41afc34d74ede73aed6fa51fa3ee44752dc042b9e10e144fe13d367a777ed40
+  checksum: 10c0/671576c1a225e10994cff250dfc44585fcccc4486cda4162caadbefe5287052e56998fe80aa15e36e1c441215b601770702a820fd1dc5511255bc4ad514aa2cf
   languageName: node
   linkType: hard
 

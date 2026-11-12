@@ -9,6 +9,7 @@ import { truncateText } from 'design/helper';
 
 import type { BadgeIs, Props } from './spec';
 import { BadgeLabel } from './label';
+import { levelOf } from './level-of';
 
 import './styles.scss';
 
@@ -21,6 +22,8 @@ const Badge = React.forwardRef<HTMLElement, Props>(
       className,
       is = 'span',
       level,
+      limit,
+      remaining,
       size,
       variant = 'primary',
       ...rest
@@ -28,6 +31,7 @@ const Badge = React.forwardRef<HTMLElement, Props>(
     ref
   ) => {
     const Component = is as BadgeIs;
+    const tone = levelOf({ level, limit, remaining });
 
     return (
       <Layout
@@ -45,7 +49,7 @@ const Badge = React.forwardRef<HTMLElement, Props>(
             CLASS_NAME,
             `${CLASS_NAME}--variant--${variant}`,
             {
-              [`${CLASS_NAME}--level--${level}`]: level,
+              [`${CLASS_NAME}--level--${tone}`]: tone,
               [`${CLASS_NAME}--size--${size}`]: size,
               'kicl-backdrop-blur':
                 variant === 'secondary' || variant === 'ghost',

@@ -1,20 +1,31 @@
-.kicl--components--input {
-  --kicl--components--input--background-color: var(--kicl-surface-color);
+:root {
   --kicl--components--input--border-color: var(--kicl-color-grey-900);
   --kicl--components--input--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input--border-width: var(--kicl-size-1px);
-  --kicl--components--input--color: var(--kicl-body-color);
   --kicl--components--input--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input--padding-inline: var(--kicl-gutter);
-  --kicl--components--input--read-only-background-color: var(
-    --kicl-body-background-color
-  );
+}
 
-  background-color: var(--kicl--components--input--background-color);
+.kicl--theme--dark {
+  --kicl--components--input--border-color: var(--kicl-color-grey);
+}
+
+.kicl--theme--light {
+  --kicl--components--input--border-color: var(--kicl-color-grey-900);
+  --kicl--components--input--color: var(--kicl-color-grey-900);
+}
+
+.kicl--components--input {
+  // The colours are read with a fallback, not set on `:root`, so they follow
+  // the theme and text colour the field sits in.
+  background-color: var(
+    --kicl--components--input--background-color,
+    var(--kicl-surface-color)
+  );
   border: var(--kicl--components--input--border-width) solid
     var(--kicl--components--input--border-color);
   border-radius: var(--kicl--components--input--border-radius);
-  color: var(--kicl--components--input--color);
+  color: var(--kicl--components--input--color, var(--kicl-body-color));
   font: inherit;
   inline-size: 100%;
   max-inline-size: 100%;
@@ -31,7 +42,8 @@
 
   &[readonly] {
     --kicl--components--input--background-color: var(
-      --kicl--components--input--read-only-background-color
+      --kicl--components--input--read-only-background-color,
+      var(--kicl-body-background-color)
     );
   }
 
@@ -42,15 +54,5 @@
 
   &[type='file'] {
     padding-block: var(--kicl-gutter-narrowest);
-  }
-
-  @at-root .kicl--theme--dark & {
-    --kicl--components--input--border-color: var(--kicl-color-grey);
-    --kicl--components--input--color: var(--kicl-body-color);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl--components--input--border-color: var(--kicl-color-grey-900);
-    --kicl--components--input--color: var(--kicl-color-grey-900);
   }
 }

@@ -1,18 +1,4 @@
-// Chrome has no pseudo-element for the filled part of the track, so
-// `RangeInput` passes the value in and the track draws the fill.
-.kicl--components--input.kicl--components--input--range {
-  $input: '--kicl--components--input';
-
-  --kicl--components--input--background-color: transparent;
-  --kicl--components--input--border-width: 0;
-  --kicl--components--input--fill: calc(
-    var(#{$input}--offset) + var(#{$input}--thumb-box) / 2
-  );
-  --kicl--components--input--offset: calc(
-    var(#{$input}--value) * var(#{$input}--travel)
-  );
-  --kicl--components--input--padding-block: var(#{$input}--ring);
-  --kicl--components--input--padding-inline: var(#{$input}--ring);
+:root {
   --kicl--components--input--ring: calc(
     var(--kicl-outline-width) + var(--kicl-size-1px)
   );
@@ -20,14 +6,30 @@
   --kicl--components--input--thumb-box: calc(
     var(--kicl-size) + var(--kicl-size-3px) * 2
   );
-  --kicl--components--input--thumb-dot: radial-gradient(
+  --kicl--components--input--track: var(--kicl-size-3px);
+  --kicl--components--input--track-direction: to right;
+}
+
+// Chrome has no pseudo-element for the filled part of the track, so
+// `RangeInput` passes the value in and the track draws the fill.
+.kicl--components--input--range {
+  $input: '--kicl--components--input';
+  $color: var(#{$input}--color, var(--kicl-body-color));
+  $travel: calc(100% - var(#{$input}--thumb-box));
+  $fill: calc(
+    var(#{$input}--value) * #{$travel} + var(#{$input}--thumb-box) / 2
+  );
+  $thumb-dot: radial-gradient(
     circle closest-side,
-    var(#{$input}--color) calc(100% - var(--kicl-size-1px)),
+    #{$color} calc(100% - var(--kicl-size-1px)),
     transparent
   );
-  --kicl--components--input--track: var(--kicl-size-3px);
-  --kicl--components--input--travel: calc(100% - var(#{$input}--thumb-box));
-  --kicl--components--input--track-direction: to right;
+
+  --kicl--components--input--background-color: transparent;
+  --kicl--components--input--border-width: 0;
+  --kicl--components--input--padding-block: var(#{$input}--ring);
+  --kicl--components--input--padding-inline: var(#{$input}--ring);
+  --kicl--components--input--read-only-background-color: transparent;
 
   appearance: none;
   block-size: calc(var(#{$input}--thumb-box) + var(#{$input}--ring) * 2);
@@ -37,7 +39,7 @@
   &::-webkit-slider-runnable-track {
     background-image: linear-gradient(
       var(#{$input}--track-direction),
-      var(#{$input}--color) var(#{$input}--fill),
+      #{$color} #{$fill},
       var(#{$input}--border-color) 0
     );
     block-size: var(#{$input}--track);
@@ -46,7 +48,7 @@
 
   &::-webkit-slider-thumb {
     appearance: none;
-    background-image: var(#{$input}--thumb-dot);
+    background-image: $thumb-dot;
     background-position: center;
     background-repeat: no-repeat;
     background-size: var(#{$input}--thumb) var(#{$input}--thumb);
@@ -71,13 +73,13 @@
   }
 
   &::-moz-range-progress {
-    background-color: var(#{$input}--color);
+    background-color: $color;
     block-size: var(#{$input}--track);
     border-radius: var(#{$input}--track);
   }
 
   &::-moz-range-thumb {
-    background-image: var(#{$input}--thumb-dot);
+    background-image: $thumb-dot;
     background-position: center;
     background-repeat: no-repeat;
     background-size: var(#{$input}--thumb) var(#{$input}--thumb);

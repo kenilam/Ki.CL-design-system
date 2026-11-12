@@ -8,6 +8,7 @@ import * as Spec from './spec';
 
 // Styles
 import './styles.scss';
+import './styles.variant.scss';
 import './styles.quote.scss';
 import './styles.code.scss';
 import './styles.edit.scss';

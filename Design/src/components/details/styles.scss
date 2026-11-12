@@ -1,5 +1,10 @@
-:root {
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
   --kicl--components--details--border-color: var(--kicl-surface-border-color);
+}
+
+:root {
   --kicl--components--details--border-width: var(--kicl-size-1px);
   --kicl--components--details--content--opacity: 0;
   --kicl--components--details--padding-block-start: 0;

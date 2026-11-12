@@ -3,9 +3,6 @@ import React from 'react';
 // Components
 import { Button, useFormContext } from 'design/components';
 
-// Icons
-import * as Tb from 'react-icons/tb';
-
 // Copy
 import { useCopy } from 'design/locales/use-copy';
 
@@ -19,16 +16,7 @@ const Send: React.FunctionComponent = () => {
   } = useFormContext<Values>();
 
   return (
-    <Button
-      after={
-        isSubmitting ? (
-          <Tb.TbReload aria-hidden className='is-revolving' />
-        ) : null
-      }
-      disabled={isSubmitting}
-      size='small'
-      type='submit'
-    >
+    <Button busy={isSubmitting} size='small' type='submit'>
       {t('action_send')}
     </Button>
   );

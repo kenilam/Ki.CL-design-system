@@ -1,8 +1,6 @@
 .kicl--components--notification__avatar {
-  aspect-ratio: 1;
   background-color: color-mix(in srgb, currentcolor 12%, transparent);
   border-radius: 50%;
-  display: grid;
   grid-area: avatar;
   inline-size: var(--kicl-size-2x);
   place-items: center;

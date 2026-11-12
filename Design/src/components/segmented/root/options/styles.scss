@@ -36,7 +36,6 @@
     --kicl--components--segmented--options--grid-auto-columns
   );
   grid-auto-flow: var(--kicl--components--segmented--options--grid-auto-flow);
-  min-inline-size: 0;
   opacity: var(--kicl--components--segmented--options--opacity);
 
   &::before {

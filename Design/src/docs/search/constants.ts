@@ -12,6 +12,7 @@ type TokenPath = {
 const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'align-self': 'utilities/display',
   'animation-none': 'foundations/motion',
+  appearance: 'utilities/interaction',
   'aspect-ratio': 'foundations/size',
   backdrop: 'utilities/effects',
   'background-clip': 'utilities/effects',
@@ -53,6 +54,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'max-inline-size': 'foundations/size',
   'min-block-size': 'foundations/size',
   'min-inline-size': 'foundations/size',
+  opacity: 'accessibility/visibility',
   outline: 'accessibility/focus',
   overflow: 'utilities/overflow',
   'overscroll-behavior': 'utilities/overflow',

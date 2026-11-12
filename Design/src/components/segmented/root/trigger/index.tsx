@@ -16,9 +16,6 @@ import { useChoice, useSegmented } from 'design/components/segmented/context';
 // Partials
 import { labelOf } from 'design/components/segmented/children';
 
-// Styles
-import './styles.scss';
-
 const CLASS_NAME = 'kicl--components--segmented__trigger';
 
 const SegmentedTrigger: React.FunctionComponent = () => {
@@ -30,7 +27,11 @@ const SegmentedTrigger: React.FunctionComponent = () => {
       <Button
         after={<Tb.TbChevronDown aria-hidden />}
         block={block}
-        className={classNames(CLASS_NAME, 'kicl-min-block-size-field')}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-justify-self-start',
+          'kicl-min-block-size-field'
+        )}
         id={`${id}__trigger`}
         disabled={disabled}
         size='small'

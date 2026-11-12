@@ -42,7 +42,9 @@ const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
             checked={control.checked}
             className={classNames(
               `${CLASS_NAME}__control`,
+              'kicl-appearance-none',
               'kicl-inset-0',
+              'kicl-opacity-0',
               'kicl-position-absolute'
             )}
             defaultChecked={control.defaultChecked}

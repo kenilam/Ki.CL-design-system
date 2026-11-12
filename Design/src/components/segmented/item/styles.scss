@@ -35,10 +35,3 @@
     outline-offset: var(--kicl-size-1px);
   }
 }
-
-// Hidden with opacity, not `display`, so the keyboard and screen readers still
-// reach it.
-.kicl--components--segmented__item__control {
-  appearance: none;
-  opacity: 0;
-}

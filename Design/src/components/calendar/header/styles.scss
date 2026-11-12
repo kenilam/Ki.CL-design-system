@@ -4,7 +4,4 @@
 
   border-block-end: var(--kicl-size-1px) solid var(--kicl-surface-border-color);
   line-height: calc(#{$text} + #{$edges});
-  margin-block-end: var(--kicl-gutter-narrow);
-  padding-block-end: var(--kicl-gutter-narrow);
-  text-align: center;
 }

@@ -34,6 +34,7 @@ const Close: React.FunctionComponent = () => {
   return (
     <Button
       className={classNames(
+        'kicl-align-self-start',
         'kicl-margin-inline-start-auto',
         fullScreen ? 'kicl-position-fixed' : 'kicl-position-sticky',
         'kicl-z-index-floating',

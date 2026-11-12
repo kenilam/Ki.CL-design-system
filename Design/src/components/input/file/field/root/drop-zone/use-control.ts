@@ -29,6 +29,7 @@ const useControl = ({ ref, ...rest }: Props) => {
     className: classNames(
       `${CLASS_NAME}__control`,
       'kicl-inset-0',
+      'kicl-opacity-0',
       'kicl-position-absolute'
     ),
     multiple: field.multiple,

@@ -40,6 +40,7 @@ const SegmentedOptions: React.FunctionComponent = () => {
       <div
         className={classNames(
           CLASS_NAME,
+          'kicl-min-inline-size-0',
           scrolls ? `${CLASS_NAME}--collapse--scroll` : null,
           scrolls && collapsed ? `${CLASS_NAME}--collapsed` : null,
           hasLegend && !isPanel ? 'kicl-padding-block-narrowest' : null,

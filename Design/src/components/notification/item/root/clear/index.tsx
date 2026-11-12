@@ -34,6 +34,7 @@ const Clear: React.FunctionComponent = () => {
       aria-label={t('action_clear_notification')}
       className={classNames(
         `${CLASS_NAME}__clear`,
+        'kicl-padding-narrowest',
         'kicl-position-relative',
         'kicl-z-index-raised'
       )}

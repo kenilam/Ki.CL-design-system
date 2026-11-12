@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Styles
+import './styles.scss';
+
 // Context
 import { useNotification } from 'design/components/notification/item/context';
 

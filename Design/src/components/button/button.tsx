@@ -14,6 +14,7 @@ import { LAYOUT } from './class-names';
 // Styles
 import './styles.scss';
 import './styles.size.scss';
+import './styles.icon.scss';
 import './styles.variant.scss';
 import './styles.disabled.scss';
 

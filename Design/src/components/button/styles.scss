@@ -1,19 +1,6 @@
-.kicl--components--button {
-  @include level-tones('kicl--components--button');
-
-  --kicl-body-color: contrast-color(
-    var(--kicl--components--button--background-color)
-  );
-  --kicl-layout--inline-size: fit-content;
-  --kicl--components--button--background-color: var(
-    --kicl--components--button--tone
-  );
-  --kicl--components--button--border-color: transparent;
+:root {
   --kicl--components--button--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--button--border-width: var(--kicl-size-hair);
-  --kicl--components--button--fill: var(
-    --kicl--components--button--background-color
-  );
   --kicl--components--button--transition-duration: var(
     --kicl-transition-duration-fast
   );
@@ -23,6 +10,13 @@
   --kicl--components--button--transition-timing-function: var(
     --kicl-ease-quint-in-out
   );
+}
+
+.kicl--components--button {
+  @include level-tones('kicl--components--button');
+
+  --kicl--components--badge--margin-block-scale: -1;
+  --kicl-layout--inline-size: fit-content;
 
   border-radius: var(--kicl--components--button--border-radius);
   white-space: nowrap;
@@ -31,10 +25,6 @@
   text-decoration: none;
 
   @include transition('kicl--components--button');
-
-  > .kicl--components--badge {
-    margin-block: calc(-1 * var(--kicl--components--badge--padding-block));
-  }
 
   &:not(&--unstyled) {
     background-color: var(--kicl--components--button--background-color);
@@ -49,22 +39,6 @@
     ) {
       box-shadow: inset 0 0 0 100vmax
         color-mix(in oklab, var(--kicl-body-color) 4%, transparent);
-    }
-  }
-
-  // `--icon` rules out text nodes, which `:has()` can't see.
-  &#{&}--icon:is(:has(> svg), :has(> .kicl--components--spinner)):not(
-    :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
-  ) {
-    --kicl--components--button--border-radius: 50%;
-
-    backdrop-filter: blur(var(--kicl-gutter));
-    display: grid;
-    padding: calc(var(--kicl--components--button--block-size) * 0.2);
-
-    > svg,
-    > .kicl--components--spinner {
-      font-size: calc(var(--kicl--components--button--block-size) * 0.6);
     }
   }
 }

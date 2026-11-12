@@ -1,0 +1,19 @@
+.kicl--components--button {
+  // `--icon` rules out text nodes, which `:has()` can't see.
+  &--icon:is(:has(> svg), :has(> .kicl--components--spinner)):not(
+    :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
+  ) {
+    --kicl--components--button--border-radius: 50%;
+    --kicl--components--spinner--font-size: calc(
+      var(--kicl--components--button--block-size) * 0.6
+    );
+
+    backdrop-filter: blur(var(--kicl-gutter));
+    display: grid;
+    padding: calc(var(--kicl--components--button--block-size) * 0.2);
+
+    > svg {
+      font-size: calc(var(--kicl--components--button--block-size) * 0.6);
+    }
+  }
+}

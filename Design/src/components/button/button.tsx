@@ -50,13 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     ...rest
   } = props;
 
-  const content = getButtonContent({
-    after,
-    before,
-    busy,
-    children,
-    iconOnlyUpTo,
-  });
+  const content = getButtonContent(props);
 
   return (
     <Layout

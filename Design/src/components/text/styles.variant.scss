@@ -1,0 +1,45 @@
+.kicl--components--text {
+  &--level--neutral {
+    --kicl--components--text--color: var(--kicl-body-color);
+    --kicl--components--text--color-secondary: var(--kicl-color-neutral-a64);
+    --kicl--components--text--fill: var(--kicl-color-neutral-a12);
+  }
+
+  @each $level in map.keys(map.remove($levels, 'neutral')) {
+    &--level--#{$level} {
+      --kicl--components--text--color: var(--kicl-color-#{$level});
+      --kicl--components--text--color-secondary: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 80%,
+        transparent
+      );
+      --kicl--components--text--fill: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 20%,
+        transparent
+      );
+      --kicl-heading-status-color: var(--kicl-color-#{$level});
+      --kicl-heading-status-color-secondary: color-mix(
+        in srgb,
+        var(--kicl-color-#{$level}) 80%,
+        transparent
+      );
+    }
+  }
+
+  &--variant--primary {
+    --kicl--components--text--ink: var(--kicl--components--text--color);
+    --kicl--components--text--code--background-color: var(
+      --kicl--components--text--fill
+    );
+    --kicl--components--text--code--border-color: transparent;
+  }
+
+  &--variant--secondary {
+    --kicl--components--text--ink: var(
+      --kicl--components--text--color-secondary
+    );
+    --kicl--components--text--code--background-color: transparent;
+    --kicl--components--text--code--border-color: var(--kicl-color-neutral-a32);
+  }
+}

@@ -1,8 +1,5 @@
 // Components
-import {
-  getButtonClassNames,
-  hasButtonText as hasText,
-} from 'design/components';
+import { getButtonClassNames } from 'design/components';
 
 // Spec
 import type * as Spec from 'design/components/hyper-link/spec';
@@ -29,7 +26,7 @@ type Props = Omit<
 const useAttributes = ({
   block,
   className: _className = '',
-  disabled,
+  disabled: _disabled,
   level,
   onClick: clickHandler,
   size,
@@ -38,6 +35,7 @@ const useAttributes = ({
   ...rest
 }: Props) => {
   const hyperLink = useHyperLink();
+  const disabled = _disabled || hyperLink.busy;
 
   const onClick: Spec.Props['onClick'] = (event) => {
     if (disabled) {
@@ -53,16 +51,23 @@ const useAttributes = ({
         block,
         className: _className,
         disabled,
-        icon: !hasText(hyperLink.before, hyperLink.children, hyperLink.after),
+        icon: hyperLink.isIcon,
+        iconOnlyUpTo: hyperLink.iconOnlyUpTo,
         level,
         size,
         variant,
       })
-    : getHyperLinkClassNames({ block, className: _className, unstyled });
+    : getHyperLinkClassNames({
+        block,
+        className: _className,
+        unstyled,
+        withLine: hyperLink.hasLine,
+      });
 
   return {
     rest,
     shared: {
+      'aria-busy': hyperLink.busy,
       'aria-disabled': disabled,
       className,
       onClick,

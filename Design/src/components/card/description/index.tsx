@@ -1,7 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type { CardDescriptionIs, CardDescriptionProps } from './spec';
+import type {
+  CardDescriptionIs,
+  CardDescriptionProps,
+} from 'design/components/card/spec';
 
 const CLASS_NAME = 'kicl--components--card__description';
 

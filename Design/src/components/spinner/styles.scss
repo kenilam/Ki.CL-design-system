@@ -1,3 +1,8 @@
+:root {
+  --kicl--components--spinner--font-size: 1em;
+  --kicl--components--spinner--vertical-align: baseline;
+}
+
 .kicl--components--spinner {
   // The icon is too small for the animation's relative distance and scale to
   // show, so these are fixed.
@@ -5,12 +10,16 @@
   --kicl--components--animation--zoom-in--scale: 0.5;
   --kicl--components--animation--zoom-out--scale: 1.5;
 
+  flex-shrink: 0;
+  font-size: var(--kicl--components--spinner--font-size);
+  vertical-align: var(--kicl--components--spinner--vertical-align);
+
   &--size--large {
-    font-size: var(--kicl-font-size-moderate);
+    --kicl--components--spinner--font-size: var(--kicl-font-size-moderate);
   }
 
   &--size--small {
-    font-size: var(--kicl-font-size-small);
+    --kicl--components--spinner--font-size: var(--kicl-font-size-small);
   }
 
   &--overlay {

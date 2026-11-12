@@ -1,7 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type { BubbleContentIs, BubbleContentProps } from './spec';
+import type {
+  BubbleContentIs,
+  BubbleContentProps,
+} from 'design/components/bubble/spec';
+
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--bubble__content';
 

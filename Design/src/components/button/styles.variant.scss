@@ -1,31 +1,39 @@
-.kicl--components--button {
-  &:not(&--unstyled) {
-    &.kicl--components--button--variant {
-      &--secondary {
-        --kicl-body-color: var(--kicl--components--button--tone-secondary);
-        --kicl--components--button--background-color: color-mix(
-          in srgb,
-          var(--kicl--components--button--tone-secondary) 10%,
-          transparent
-        );
-      }
+.kicl--components--button--variant {
+  &--primary {
+    --kicl-body-color: contrast-color(
+      var(--kicl--components--button--background-color)
+    );
+    --kicl--components--button--background-color: var(
+      --kicl--components--button--tone
+    );
+    --kicl--components--button--border-color: transparent;
+  }
 
-      &--tertiary {
-        --kicl-body-color: var(--kicl--components--button--tone);
-        --kicl--components--button--background-color: color-mix(
-          in srgb,
-          var(--kicl--components--button--tone-tertiary) 2%,
-          transparent
-        );
-      }
+  &--secondary {
+    --kicl-body-color: var(--kicl--components--button--tone-secondary);
+    --kicl--components--button--background-color: color-mix(
+      in srgb,
+      var(--kicl--components--button--tone-secondary) 10%,
+      transparent
+    );
+    --kicl--components--button--border-color: transparent;
+  }
 
-      &--ghost {
-        --kicl-body-color: var(--kicl--components--button--tone-ghost);
-        --kicl--components--button--background-color: transparent;
-        --kicl--components--button--border-color: var(
-          --kicl--components--button--tone-ghost
-        );
-      }
-    }
+  &--tertiary {
+    --kicl-body-color: var(--kicl--components--button--tone);
+    --kicl--components--button--background-color: color-mix(
+      in srgb,
+      var(--kicl--components--button--tone-tertiary) 2%,
+      transparent
+    );
+    --kicl--components--button--border-color: transparent;
+  }
+
+  &--ghost {
+    --kicl-body-color: var(--kicl--components--button--tone-ghost);
+    --kicl--components--button--background-color: transparent;
+    --kicl--components--button--border-color: var(
+      --kicl--components--button--tone-ghost
+    );
   }
 }

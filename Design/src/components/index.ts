@@ -27,11 +27,14 @@ import {
   type ButtonProps,
   CopyButton,
   type CopyButtonProps,
+  ShareButton,
+  type ShareButtonProps,
   VolumeButton,
   type VolumeButtonProps,
   type GetButtonClassNamesProps,
 } from './button';
 import { getButtonClassNames } from './button/class-names';
+import { getButtonContent } from './button/content';
 import {
   Calendar,
   type CalendarMode,
@@ -126,7 +129,12 @@ import {
 } from './hyper-link';
 import { BackLink } from './hyper-link/back-link';
 import { HomeLink } from './hyper-link/home-link';
-import type { BackLinkProps, HomeLinkProps } from './hyper-link/spec';
+import { MoreLink } from './hyper-link/more-link';
+import type {
+  BackLinkProps,
+  HomeLinkProps,
+  MoreLinkProps,
+} from './hyper-link/spec';
 import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
 import { ZoomableImage, type ZoomableImageProps } from './image/zoomable';
@@ -207,7 +215,12 @@ import {
   type SelectTriggerProps,
   type SelectValueProps,
 } from './select';
-import { Separator, type SeparatorIs, type SeparatorProps } from './separator';
+import {
+  Separator,
+  SEPARATOR_VARIANTS,
+  type SeparatorIs,
+  type SeparatorProps,
+} from './separator';
 import { Skeleton, type SkeletonProps } from './skeleton';
 import { Status, StatusProps } from './status';
 import { Spinner, SpinnerProps } from './spinner';
@@ -299,8 +312,11 @@ export {
   type ButtonProps,
   getButtonClassNames,
   type GetButtonClassNamesProps,
+  getButtonContent,
   CopyButton,
   type CopyButtonProps,
+  ShareButton,
+  type ShareButtonProps,
   VolumeButton,
   type VolumeButtonProps,
   Calendar,
@@ -416,6 +432,8 @@ export {
   type MarkdownProps,
   Menu,
   type MenuProps,
+  MoreLink,
+  type MoreLinkProps,
   Navigation,
   type NavigationProps,
   Notification,
@@ -468,6 +486,7 @@ export {
   SelectValue,
   type SelectValueProps,
   Separator,
+  SEPARATOR_VARIANTS,
   type SeparatorIs,
   type SeparatorProps,
   Skeleton,

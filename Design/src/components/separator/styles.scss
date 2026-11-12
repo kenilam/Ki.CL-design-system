@@ -1,7 +1,17 @@
-.kicl--components--separator {
-  --kicl--components--separator--color: var(--kicl-color-grey-300);
+:root {
   --kicl--components--separator--size: var(--kicl-size-1px);
+}
 
+:root,
+.kicl--theme--light {
+  --kicl--components--separator--color: var(--kicl-color-grey-300);
+}
+
+.kicl--theme--dark {
+  --kicl--components--separator--color: var(--kicl-color-grey-700);
+}
+
+.kicl--components--separator {
   background-color: var(--kicl--components--separator--color);
   border: 0;
 
@@ -17,11 +27,18 @@
     vertical-align: middle;
   }
 
-  @at-root .kicl--theme--dark & {
-    --kicl--components--separator--color: var(--kicl-color-grey-700);
-  }
+  &--variant--gradient {
+    --kicl--components--separator--size: var(--kicl-size-3px);
 
-  @at-root .kicl--theme--light & {
-    --kicl--components--separator--color: var(--kicl-color-grey-300);
+    animation: kicl-gradient-shift var(--kicl-transition-duration-5m) ease
+      infinite;
+    background-image: var(--kicl-gradient-shift);
+    background-size: 1200% 1200%;
+
+    // Paper drops backgrounds unless told to keep them, and nothing moves on it.
+    @media print {
+      animation: none;
+      print-color-adjust: exact;
+    }
   }
 }

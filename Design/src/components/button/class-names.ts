@@ -15,6 +15,7 @@ const getButtonClassNames = ({
   className = '',
   disabled,
   icon,
+  iconOnlyUpTo,
   level,
   size,
   unstyled,
@@ -25,6 +26,8 @@ const getButtonClassNames = ({
     {
       [`${CLASS_NAME}--disabled`]: disabled,
       [`${CLASS_NAME}--icon`]: !unstyled && icon,
+      [`${CLASS_NAME}--icon-up-to--${iconOnlyUpTo}`]:
+        !unstyled && !icon ? iconOnlyUpTo : null,
       [`${CLASS_NAME}--size--${size}`]: !unstyled ? size : null,
       [`${CLASS_NAME}--level--${level}`]: !unstyled ? level : null,
       [`${CLASS_NAME}--variant--${variant}`]: !unstyled ? variant : null,

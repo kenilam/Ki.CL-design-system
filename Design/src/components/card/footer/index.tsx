@@ -3,7 +3,10 @@ import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 
-import type { CardFooterProps, CardSectionIs } from './spec';
+import type {
+  CardFooterProps,
+  CardSectionIs,
+} from 'design/components/card/spec';
 
 const CLASS_NAME = 'kicl--components--card__footer';
 

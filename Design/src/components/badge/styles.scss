@@ -1,20 +1,16 @@
-.kicl--components--badge {
-  @include level-tones('kicl--components--badge');
-
-  --kicl--components--badge--background-color: var(
-    --kicl--components--badge--tone
-  );
-  --kicl--components--badge--border-color: transparent;
-  --kicl--components--badge--color: contrast-color(
-    var(--kicl--components--badge--background-color)
-  );
+:root {
   --kicl--components--badge--border-width: var(--kicl-size-1px);
   --kicl--components--badge--font-size: var(--kicl-font-size-small);
+  --kicl--components--badge--margin-block-scale: 0;
 
   // Set here rather than as utility classes so a caller's utility class
   // replaces them instead of fighting them.
   --kicl--components--badge--padding-block: var(--kicl-gutter-narrowest);
   --kicl--components--badge--padding-inline: var(--kicl-gutter-narrow);
+}
+
+.kicl--components--badge {
+  @include level-tones('kicl--components--badge');
 
   background-color: var(--kicl--components--badge--background-color);
   border: var(--kicl--components--badge--border-width) solid
@@ -23,6 +19,10 @@
   color: var(--kicl--components--badge--color);
   font-size: var(--kicl--components--badge--font-size);
   inline-size: fit-content;
+  margin-block: calc(
+    var(--kicl--components--badge--margin-block-scale) *
+    var(--kicl--components--badge--padding-block)
+  );
   max-inline-size: 100%;
   padding-block: var(--kicl--components--badge--padding-block);
   padding-inline: var(--kicl--components--badge--padding-inline);
@@ -37,18 +37,20 @@
     --kicl--components--badge--font-size: var(--kicl-font-size-smaller);
   }
 
-  :is(svg, .kicl--components--spinner) {
+  svg {
     block-size: 1em;
     flex-shrink: 0;
     inline-size: 1em;
   }
 
-  > .kicl--components--badge__label {
-    opacity: 0.72;
-
-    &::after {
-      content: ':';
-    }
+  &--variant--primary {
+    --kicl--components--badge--background-color: var(
+      --kicl--components--badge--tone
+    );
+    --kicl--components--badge--border-color: transparent;
+    --kicl--components--badge--color: contrast-color(
+      var(--kicl--components--badge--background-color)
+    );
   }
 
   &--variant--secondary {
@@ -57,6 +59,7 @@
       var(--kicl--components--badge--tone-secondary) 10%,
       transparent
     );
+    --kicl--components--badge--border-color: transparent;
     --kicl--components--badge--color: var(
       --kicl--components--badge--tone-secondary
     );
@@ -67,10 +70,8 @@
     --kicl--components--badge--border-color: var(
       --kicl--components--badge--tone-ghost
     );
-    --kicl--components--badge--color: var(--kicl--components--badge--tone-ghost);
+    --kicl--components--badge--color: var(
+      --kicl--components--badge--tone-ghost
+    );
   }
-}
-
-.kicl--components--badge__label {
-  flex-shrink: 0;
 }

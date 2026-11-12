@@ -3,7 +3,12 @@ import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 
-import type { CardHeaderProps, CardSectionIs } from './spec';
+import type {
+  CardHeaderProps,
+  CardSectionIs,
+} from 'design/components/card/spec';
+
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--card__header';
 

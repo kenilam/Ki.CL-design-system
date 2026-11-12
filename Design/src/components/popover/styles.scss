@@ -1,0 +1,89 @@
+:root {
+  --kicl--components--popover--ahead: var(--kicl-gutter-narrower);
+  --kicl--components--popover--back: calc(var(--kicl-gutter-narrower) * -1);
+  --kicl--components--popover--background-color: var(--kicl-surface-color);
+  --kicl--components--popover--border-color: var(--kicl-surface-border-color);
+  --kicl--components--popover--border-radius: var(--kicl-size-half);
+  --kicl--components--popover--enter: 0 var(--kicl--components--popover--back);
+  --kicl--components--popover--inset: var(--kicl-gutter);
+  --kicl--components--popover--offset: var(--kicl-gutter-narrow);
+  --kicl--components--popover--padding: var(--kicl-gutter-narrow);
+}
+
+/*
+ * As wide as the content, up to the window less the inset on each side, so a
+ * trigger near an edge doesn't narrow it. Without `calc-size()` (Safari) the
+ * same cap is a `max-inline-size`; `fit-content` would shrink the popover into
+ * the room left beside the anchor. `:where()` keeps it a default a
+ * component's own width overrides.
+ */
+:where(.kicl--components--popover__content) {
+  inline-size: max-content;
+  max-inline-size: calc(100% - 2 * var(--kicl--components--popover--inset));
+
+  @supports (inline-size: calc-size(max-content, size)) {
+    inline-size: calc-size(
+      max-content,
+      min(size, 100% - 2 * var(--kicl--components--popover--inset))
+    );
+    max-inline-size: none;
+  }
+}
+
+.kicl--components--popover__content {
+  background-color: var(--kicl--components--popover--background-color);
+  border: var(--kicl-size-1px) solid
+    var(--kicl--components--popover--border-color);
+  border-radius: var(--kicl--components--popover--border-radius);
+  max-block-size: calc(100% - 2 * var(--kicl--components--popover--inset));
+  overflow-y: auto;
+  padding: var(--kicl--components--popover--padding);
+
+  /*
+   * The browser centres a popover with `inset: 0` and auto margins. Each
+   * placement clears them for the anchor. Without anchor positioning the
+   * panel stays centred, which is plain but never off-screen.
+   */
+  @supports (position-area: block-end) {
+    position-anchor: var(--kicl--components--popover--anchor);
+  }
+
+  // `allow-discrete` keeps `display` and the top layer through the
+  // transition instead of switching them on the first frame.
+  opacity: 0;
+  transition:
+    opacity var(--kicl-transition-duration-fast),
+    translate var(--kicl-transition-duration-fast),
+    display var(--kicl-transition-duration-fast) allow-discrete,
+    overlay var(--kicl-transition-duration-fast) allow-discrete;
+  translate: var(--kicl--components--popover--enter);
+
+  &:not(:popover-open) {
+    display: none;
+  }
+
+  &:popover-open {
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: var(--kicl--components--popover--enter);
+    }
+  }
+
+  &:popover-open:has(> :only-child:not(table, input)) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+
+    > * {
+      @include scroll-fade;
+
+      min-block-size: 0;
+      overflow-y: auto;
+      padding: var(--kicl--components--popover--padding);
+    }
+  }
+}

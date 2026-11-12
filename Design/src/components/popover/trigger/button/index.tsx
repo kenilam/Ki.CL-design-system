@@ -9,6 +9,9 @@ import { mergeRefs } from 'design/helper';
 // Spec
 import type { PopoverTriggerProps } from 'design/components/popover/spec';
 
+// Styles
+import './styles.scss';
+
 // Constants
 import { CLASS_NAME } from 'design/components/popover/trigger/constants';
 
@@ -51,6 +54,7 @@ const Button: React.FunctionComponent<Props> = ({
       {...shared}
       className={classNames(
         CLASS_NAME,
+        `${CLASS_NAME}--button`,
         'kicl-line-height-narrower',
         { 'kicl-border-radius-sm': block },
         className

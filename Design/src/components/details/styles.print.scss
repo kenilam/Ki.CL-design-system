@@ -1,3 +1,11 @@
+:root {
+  --kicl--components--details--print--border-width: 0;
+  --kicl--components--details--print--padding-block-start: 0;
+  --kicl--components--details--print--summary--margin-block-end: var(
+    --kicl-gutter-narrower
+  );
+}
+
 .kicl--components--details {
   @media print {
     &::details-content {
@@ -7,10 +15,19 @@
       overflow: visible;
     }
 
+    & + & {
+      --kicl--components--details--border-width: var(
+        --kicl--components--details--print--border-width
+      );
+      --kicl--components--details--padding-block-start: var(
+        --kicl--components--details--print--padding-block-start
+      );
+    }
+
     &[open],
     &:not([open]) {
       --kicl--components--details--summary--margin-block-end: var(
-        --kicl-gutter-narrow
+        --kicl--components--details--print--summary--margin-block-end
       );
     }
   }

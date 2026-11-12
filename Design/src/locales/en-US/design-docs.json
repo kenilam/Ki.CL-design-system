@@ -136,7 +136,7 @@
   "date_picker_preset_with_a_label_name": "With a label",
   "date_picker_preset_with_an_error": "For a date that has to be picked and wasn't. The button's border, the name and the message turn red.",
   "date_picker_preset_with_an_error_name": "With an error",
-  "details_intro": "Shows a summary and hides the rest until the user opens it. It's a native `<details>`, so it opens and closes without script, and it's always open when printed.",
+  "details_intro": "Shows a summary and hides the rest until the user opens it. It's a native `<details>`, so it opens and closes without script. On paper it's always open, and Details sit closer together without the line between them.",
   "details_preset_article_section": "For a section of an article that the reader can fold away. The summary becomes a heading at the level you give, and the section keeps to a reading width of eight columns.",
   "details_preset_article_section_name": "Article section",
   "details_preset_basic": "A question with its answer hidden underneath, like one entry in an FAQ. Click the question to show the answer.",

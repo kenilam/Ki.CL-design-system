@@ -1,4 +1,7 @@
 .kicl--components--radio-group {
+  // The stack's gap spaces the labels, so they drop the input height.
+  --kicl--components--choice-label--min-block-size: auto;
+
   min-inline-size: 0;
 
   &:has(input:required) > legend::after {

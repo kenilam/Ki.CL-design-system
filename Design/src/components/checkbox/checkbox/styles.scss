@@ -1,0 +1,73 @@
+:root {
+  --kicl--components--checkbox--checked-color: var(--kicl-color-grey-900);
+  --kicl--components--checkbox--color: var(--kicl-color-grey-900);
+  --kicl--components--checkbox--margin-inline-start: 0;
+  --kicl--components--checkbox--mark: none;
+  --kicl--components--checkbox--size: calc(
+    var(--kicl-size) + var(--kicl-size-2px)
+  );
+}
+
+.kicl--theme--dark {
+  --kicl--components--checkbox--checked-color: var(--kicl-color-white);
+  --kicl--components--checkbox--color: var(--kicl-color-grey);
+}
+
+.kicl--theme--light {
+  --kicl--components--checkbox--checked-color: var(--kicl-color-grey-900);
+  --kicl--components--checkbox--color: var(--kicl-color-grey-900);
+}
+
+.kicl--components--checkbox {
+  $size: var(--kicl--components--checkbox--size);
+
+  appearance: none;
+  block-size: $size;
+
+  // The radius is the same share of the box as an input's radius is of its
+  // height.
+  border: calc(#{$size} / 9) solid var(--kicl--components--checkbox--color);
+  border-radius: calc(#{$size} / 4.5);
+  inline-size: $size;
+  margin-inline-start: var(--kicl--components--checkbox--margin-inline-start);
+  vertical-align: middle;
+
+  // On a pseudo-element because a mask on the input would cut off its focus
+  // outline.
+  &::before {
+    content: '';
+    mask: var(--kicl--components--checkbox--mark) center / 100% no-repeat;
+  }
+
+  // Painted only here: unchecked, the mask is `none`, which would paint the
+  // whole box.
+  &:checked,
+  &:indeterminate {
+    border-color: var(--kicl--components--checkbox--checked-color);
+
+    &::before {
+      background-color: var(--kicl--components--checkbox--checked-color);
+    }
+  }
+
+  &:checked {
+    --kicl--components--checkbox--mark: var(--kicl-icon-check-line);
+  }
+
+  &:indeterminate {
+    --kicl--components--checkbox--mark: var(--kicl-icon-subtract-line);
+  }
+
+  &[aria-invalid='true'],
+  &:user-invalid {
+    --kicl--components--checkbox--color: var(--kicl-color-error);
+  }
+}
+
+.kicl--components--checkbox__label {
+  &:has(> .kicl--components--checkbox:required)::after {
+    color: var(--kicl-color-error);
+    content: '*' / '';
+    margin-inline-start: calc(0.2em - var(--kicl-gutter-narrow));
+  }
+}

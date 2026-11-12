@@ -9,6 +9,9 @@ import {
 // Partials
 import { Checkbox } from 'design/components/checkbox/checkbox';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--checkbox-group__select-all';
 
 const SelectAll: React.FunctionComponent<React.PropsWithChildren> = ({

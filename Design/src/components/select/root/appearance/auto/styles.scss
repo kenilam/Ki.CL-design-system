@@ -1,0 +1,33 @@
+.kicl--components--select__control {
+  appearance: none;
+  opacity: 0;
+
+  &[aria-busy='true'] {
+    cursor: progress;
+  }
+}
+
+.kicl--components--select:has(> .kicl--components--select__control) {
+  outline: var(--kicl-outline-width) var(--kicl-outline-style)
+    var(--kicl-outline-color);
+  outline-offset: var(--kicl-size-1px);
+
+  &:has(> :focus-visible) {
+    --kicl-outline-style: dashed;
+  }
+
+  &:has(> :disabled) {
+    opacity: var(--kicl-disabled-opacity);
+  }
+
+  &:has(> [aria-busy='true']) {
+    --kicl--components--select--icon-display: none;
+    --kicl--components--select--spinner-display: block;
+    --kicl-disabled-opacity: 1;
+  }
+
+  &:has(> [aria-invalid='true']),
+  &:has(> :user-invalid) {
+    border-color: var(--kicl-color-error);
+  }
+}

@@ -1,22 +1,15 @@
-$sides: (
-  block-end: block,
-  block-start: block,
-  inline-start: inline,
-  inline-end: inline,
-);
-
 .kicl--components--select {
   --kicl--components--select--background-color: var(--kicl-surface-color);
   --kicl--components--select--border-color: var(--kicl-color-grey-900);
   --kicl--components--select--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--select--border-width: var(--kicl-size-1px);
   --kicl--components--select--color: var(--kicl-body-color);
-  --kicl--components--select--content-max-block-size: 16rem;
+  --kicl--components--select--icon-display: inline;
+  --kicl--components--select--icon-rotate: 0deg;
   --kicl--components--select--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--select--padding-inline: var(--kicl-gutter);
-  --kicl--components--select--picker-margin-block: var(--kicl-gutter-narrow);
-  --kicl--components--select--picker-margin-inline: 0;
-  --kicl--components--select--position-area: block-end span-inline-end;
+  --kicl--components--select--spinner-display: none;
+  --kicl--components--select--value-opacity: 1;
 
   background-color: var(--kicl--components--select--background-color);
   border: var(--kicl--components--select--border-width) solid
@@ -28,82 +21,16 @@ $sides: (
   padding-block: var(--kicl--components--select--padding-block);
   padding-inline: var(--kicl--components--select--padding-inline);
 
+  &:has(option[value='']:checked) {
+    --kicl--components--select--value-opacity: 0.5;
+  }
+
   &--inline {
     background-color: transparent;
     border-width: 0;
     color: inherit;
     font: inherit;
     padding: 0;
-  }
-
-  @each $side, $axis in $sides {
-    $across: block;
-
-    @if $axis == block {
-      $across: inline;
-    }
-
-    $spans: (
-      start: span-#{$across}-end,
-      center: span-all,
-      end: span-#{$across}-start,
-    );
-
-    @each $align, $span in $spans {
-      &--#{$side}--#{$align} {
-        --kicl--components--select--position-area: #{$side} #{$span};
-
-        @if $axis == inline {
-          --kicl--components--select--picker-margin-block: 0;
-          --kicl--components--select--picker-margin-inline: var(
-            --kicl-gutter-narrow
-          );
-        }
-
-        @if $align == center {
-          .kicl--components--select__item {
-            justify-content: center;
-
-            &::before {
-              content: '';
-              flex-shrink: 0;
-              inline-size: var(--kicl-size);
-            }
-
-            &::checkmark {
-              margin-inline-start: 0;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @supports (appearance: base-select) {
-    &,
-    &::picker(select) {
-      appearance: base-select;
-    }
-
-    // The styleable select is a flex row; its picker icon is taller than a
-    // line of text, which otherwise sits at the top.
-    align-items: center;
-
-    // The trigger draws its own arrow.
-    &::picker-icon {
-      display: none;
-    }
-  }
-
-  &[aria-busy='true'] {
-    --kicl-disabled-opacity: 1;
-
-    cursor: progress;
-  }
-
-  &[aria-invalid='true'],
-  &:user-invalid {
-    border-color: var(--kicl-color-error);
   }
 
   @at-root .kicl--theme--dark & {

@@ -1,0 +1,34 @@
+.kicl--components--select {
+  @supports (appearance: base-select) {
+    &,
+    &::picker(select) {
+      appearance: base-select;
+    }
+
+    // The styleable select is a flex row; its picker icon is taller than a
+    // line of text, which otherwise sits at the top.
+    align-items: center;
+
+    // The trigger draws its own arrow.
+    &::picker-icon {
+      display: none;
+    }
+  }
+
+  &:open {
+    --kicl--components--select--icon-rotate: 180deg;
+  }
+
+  &[aria-busy='true'] {
+    --kicl--components--select--icon-display: none;
+    --kicl--components--select--spinner-display: block;
+    --kicl-disabled-opacity: 1;
+
+    cursor: progress;
+  }
+
+  &[aria-invalid='true'],
+  &:user-invalid {
+    border-color: var(--kicl-color-error);
+  }
+}

@@ -5,6 +5,8 @@ import type { Props } from './spec';
 
 // Styles
 import './styles.scss';
+import './styles.motion.scss';
+import './styles.print.scss';
 
 // Partials
 import { Provider } from './context';

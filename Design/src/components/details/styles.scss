@@ -48,10 +48,6 @@
       var(--kicl--components--details--border-color);
   }
 
-  @supports (interpolate-size: allow-keywords) {
-    interpolate-size: allow-keywords;
-  }
-
   &::details-content {
     block-size: 0;
     opacity: var(--kicl--components--details--content--opacity);
@@ -59,14 +55,6 @@
 
     // Room for a link's underline, which sits below the line.
     overflow-clip-margin: var(--kicl-size-3px);
-    transition-duration: var(
-      --kicl--components--details--content--transition-duration
-    );
-    transition-property: block-size, content-visibility, opacity;
-    transition-timing-function: var(
-      --kicl--components--details--content--transition-timing-function
-    );
-    transition-behavior: allow-discrete;
   }
 
   @each $gap in extreme, none, narrow, narrower, narrowest, normal, wide, wider,
@@ -87,21 +75,5 @@
     --kicl--components--details--content--opacity: 1;
 
     block-size: auto;
-  }
-
-  @media print {
-    &::details-content {
-      block-size: auto;
-      content-visibility: visible;
-      opacity: 1;
-      overflow: visible;
-    }
-
-    &[open],
-    &:not([open]) {
-      --kicl--components--details--summary--margin-block-end: var(
-        --kicl-gutter-narrow
-      );
-    }
   }
 }

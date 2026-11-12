@@ -1,0 +1,17 @@
+.kicl--components--details {
+  @media print {
+    &::details-content {
+      block-size: auto;
+      content-visibility: visible;
+      opacity: 1;
+      overflow: visible;
+    }
+
+    &[open],
+    &:not([open]) {
+      --kicl--components--details--summary--margin-block-end: var(
+        --kicl-gutter-narrow
+      );
+    }
+  }
+}

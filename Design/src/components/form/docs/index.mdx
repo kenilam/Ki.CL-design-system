@@ -2,12 +2,16 @@ import { Preset as Basic } from './basic';
 import { Preset as Contact } from './contact';
 import { Preset as Profile } from './profile';
 import { Preset as BuiltByHand } from './built-by-hand';
+import { Preset as SendError } from './send-error';
 
-<Text><Copy id='form_intro' /></Text>
+<Text>
+  <Copy id='form_intro' />
+</Text>
 
 <Preview span={4}>
   {Basic}
   {Contact}
   {Profile}
   {BuiltByHand}
+  {SendError}
 </Preview>

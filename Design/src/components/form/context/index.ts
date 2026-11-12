@@ -1,16 +1,20 @@
 import type React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+// Spec
+import type { FormMessageProps } from 'design/components/form/spec';
+
 // Partials
 import { useFormField } from './field';
 import { useFormItem } from './item';
 
-function useFieldError() {
+function useFieldError(name?: FormMessageProps['name']) {
   const field = useFormField();
   const form = useFormContext();
+  const path = name ?? field?.name;
 
-  return field && form
-    ? form.getFieldState(field.name, form.formState).error
+  return path && form
+    ? form.getFieldState(path, form.formState).error
     : undefined;
 }
 

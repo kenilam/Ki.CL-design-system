@@ -188,6 +188,8 @@
   "form_preset_contact_name": "Contact",
   "form_preset_profile": "For editing a saved profile, where no field is required.",
   "form_preset_profile_name": "Profile",
+  "form_preset_send_error": "For an error that belongs to the whole form, such as a send that failed. `FormMessage` with `name='root'` shows the message set with `setError('root', …)` and slides it in. Fill in the email and press Send.",
+  "form_preset_send_error_name": "Send error",
   "frame_intro": "Frames a section that fills the window. It's inset by a gap on every side, with rounded corners, and its top follows the site header as it shows and hides. On load it eases from the window's full height into the frame, after `delay` milliseconds, and keeps its width throughout.",
   "frame_preset_basic": "A frame needs the whole window, so it opens in a full-screen dialog, and eases in each time it opens.",
   "frame_preset_basic_name": "Basic",

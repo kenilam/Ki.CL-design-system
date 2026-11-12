@@ -50,6 +50,12 @@ export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
     showLabel?: boolean;
   };
 
+export type MoreLinkProps = Pick<Props, 'className'> & {
+  /** "Read more" by default. */
+  label?: string;
+  to: `#${string}`;
+};
+
 export type BackLinkProps = Pick<Props, 'className'> &
   Partial<Pick<Props, 'relative' | 'to'>> & {
     label?: string;

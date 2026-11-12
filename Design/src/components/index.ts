@@ -129,7 +129,12 @@ import {
 } from './hyper-link';
 import { BackLink } from './hyper-link/back-link';
 import { HomeLink } from './hyper-link/home-link';
-import type { BackLinkProps, HomeLinkProps } from './hyper-link/spec';
+import { MoreLink } from './hyper-link/more-link';
+import type {
+  BackLinkProps,
+  HomeLinkProps,
+  MoreLinkProps,
+} from './hyper-link/spec';
 import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
 import { Input, type InputProps } from './input';
@@ -419,6 +424,8 @@ export {
   type MarkdownProps,
   Menu,
   type MenuProps,
+  MoreLink,
+  type MoreLinkProps,
   Navigation,
   type NavigationProps,
   Notification,

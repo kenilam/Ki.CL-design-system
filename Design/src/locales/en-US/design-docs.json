@@ -230,6 +230,8 @@
   "hyper_link_preset_icon_before_name": "Icon before",
   "hyper_link_preset_icons_both_sides": "The logo says where the link goes and the arrow says it opens another site.",
   "hyper_link_preset_icons_both_sides_name": "Icons both sides",
+  "hyper_link_preset_more": "For the chevron at the foot of a banner that leads down to the rest of the page: `MoreLink`, a link to an `id` on the same page with the look of a large button. Its name, \"Read more\" unless it's given a `label`, is read by screen readers and shown on hover.",
+  "hyper_link_preset_more_name": "More",
   "hyper_link_preset_looks_like_a_button": "For a link that should stand out, like a call to action. It looks like a button but stays a link.",
   "hyper_link_preset_looks_like_a_button_name": "Looks like a button",
   "hyper_link_preset_the_current_page": "A link to the page you're on is marked as the current page: its underline is heavier, and it can't be clicked.",

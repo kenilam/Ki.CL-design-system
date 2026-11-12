@@ -34,3 +34,7 @@
     background-position: 0% 88%;
   }
 }
+
+.kicl-gradient-shift {
+  @include gradient-shift;
+}

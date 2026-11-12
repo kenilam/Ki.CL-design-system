@@ -19,10 +19,8 @@
 
     @container scroll-state(stuck: #{$stuck}) {
       &::before {
-        animation: kicl-gradient-shift var(--kicl-transition-duration-5m) ease
-          infinite;
-        background: var(--kicl-gradient-shift);
-        background-size: 1200% 1200%;
+        @include gradient-shift;
+
         inline-size: 100%;
       }
     }
@@ -37,6 +35,8 @@
     @supports (animation-timeline: scroll()) and
       (not (container-type: scroll-state)) {
       &::before {
+        @include gradient-shift;
+
         animation-duration: var(--kicl-transition-duration-5m), auto;
         animation-fill-mode: none, both;
         animation-iteration-count: infinite, 1;
@@ -45,8 +45,6 @@
           kicl-stuck-line-#{$edge};
         animation-timeline: auto, scroll();
         animation-timing-function: ease, linear;
-        background: var(--kicl-gradient-shift);
-        background-size: 1200% 1200%;
         inline-size: 100%;
         visibility: hidden;
       }

@@ -61,6 +61,8 @@
   "button_preset_copies_a_value_name": "Copies a value",
   "button_preset_copies_icon_only": "Without `showLabel`, only the icon shows, and screen readers still hear its name.",
   "button_preset_copies_icon_only_name": "Copies, icon only",
+  "button_preset_shares_a_link": "For a page people might send on. A click opens the device's share sheet, or copies the address where there isn't one. `value` is the address and `title` the page's name, the document's by default.",
+  "button_preset_shares_a_link_name": "Shares a link",
   "button_preset_sets_the_volume": "For a player’s volume. A click opens a slider above the button, ready for the arrow keys.",
   "button_preset_sets_the_volume_name": "Sets the volume",
   "button_preset_icon_after": "For a button that moves the user on, like Next.",

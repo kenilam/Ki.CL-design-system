@@ -65,6 +65,13 @@ export type CopyButtonProps = LookProps &
     icon?: ReactNode;
   };
 
+export type ShareButtonProps = Omit<CopyButtonProps, 'label'> & {
+  /** Defaults to "Share". */
+  label?: string;
+  /** The title the share sheet gets. Defaults to the document's. */
+  title?: string;
+};
+
 export type VolumeButtonProps = Pick<LookProps, 'size' | 'variant'> &
   Pick<
     ComponentPropsWithoutRef<'input'>,

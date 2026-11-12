@@ -5,13 +5,16 @@ import { Preset as IconsBothSides } from './icons-both-sides';
 import { Preset as OpensAMenu } from './opens-a-menu';
 import { Preset as IconOnly } from './icon-only';
 import { Preset as CopiesAValue } from './copies-a-value';
+import { Preset as SharesALink } from './shares-a-link';
 import { Preset as Busy } from './busy';
 import { Preset as WithACount } from './with-a-count';
 import { Preset as CopiesIconOnly } from './copies-icon-only';
 import { Preset as SetsTheVolume } from './sets-the-volume';
 import { CONTROLS } from './controls';
 
-<Text><Copy id='button_intro' /></Text>
+<Text>
+  <Copy id='button_intro' />
+</Text>
 
 <Preview controls={CONTROLS}>
   {Basic}
@@ -21,6 +24,7 @@ import { CONTROLS } from './controls';
   {OpensAMenu}
   {IconOnly}
   {CopiesAValue}
+  {SharesALink}
   {Busy}
   {WithACount}
   {CopiesIconOnly}

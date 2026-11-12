@@ -248,6 +248,7 @@ import {
 import { CARD_VARIANTS } from './card/spec';
 import { useFormItemControl } from './form/context';
 import { HEADING_LEVELS, type HeadingIs } from './heading/spec';
+import { CLASS_NAME as INPUT_CLASS_NAME } from './input/constants';
 import { CLASS_NAME as INPUT_GROUP_CLASS_NAME } from './input-group/constants';
 import {
   ALIGN_CONTENTS as LAYOUT_ALIGN_CONTENTS,
@@ -508,6 +509,7 @@ export {
   useFormItemControl,
   HEADING_LEVELS,
   type HeadingIs,
+  INPUT_CLASS_NAME,
   INPUT_GROUP_CLASS_NAME,
   LAYOUT_ALIGN_CONTENTS,
   LAYOUT_ALIGN_ITEMS,

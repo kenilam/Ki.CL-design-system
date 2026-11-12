@@ -1,11 +1,4 @@
 .kicl--components--form {
-  display: grid;
-  gap: var(--kicl-gutter-narrow);
-
-  &__item {
-    min-inline-size: 0;
-  }
-
   &__label {
     letter-spacing: 0.01em;
 

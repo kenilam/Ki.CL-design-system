@@ -12,6 +12,9 @@ import { FormMessage } from 'design/components/form/form-message';
 // Spec
 import type { FormItemProps } from 'design/components/form/spec';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--form__item';
 
 const Root: React.FunctionComponent<

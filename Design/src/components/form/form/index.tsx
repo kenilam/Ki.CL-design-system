@@ -7,9 +7,6 @@ import type { FormProps } from 'design/components/form/spec';
 // Partials
 import { Root } from './root';
 
-// Styles
-import 'design/components/form/styles.scss';
-
 /**
  * `noValidate` defaults to true because react-hook-form does the validation.
  * The grid is in the stylesheet, not `Layout`, because callers wrap Form in

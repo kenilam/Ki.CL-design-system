@@ -700,7 +700,7 @@
   "token_spacing_variables": "## Variables",
   "token_stacking_classes": "## Classes\n\nThe pattern is `kicl-z-index-{role}`.",
   "token_stacking_intro": "`--kicl-z-index-{role}` picks a layer by what it's for, not by a number higher than the last one.",
-  "token_stacking_part_5": "`{role}` is `behind`, `base`, `raised`, `floating`, `popover`, `overlay`, `header` or `top`, lowest first.",
+  "token_stacking_part_5": "`{role}` is `nadir`, `behind`, `base`, `raised`, `floating`, `popover`, `overlay`, `global`, `ceiling` or `apex`, lowest first.",
   "token_stacking_variables": "## Variables",
   "token_stacking_z_index": "### z-index\n\nMDN: [`z-index`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/z-index).",
   "token_typography_classes": "## Classes\n\nMost variables have a class with the same name, `kicl-font-size-{name}`, `kicl-font-weight-{name}` and so on:",

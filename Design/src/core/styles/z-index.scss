@@ -1,12 +1,14 @@
 $z-index-levels: (
+  'nadir': -2147483648,
   'behind': -1,
   'base': 0,
   'raised': 1,
   'floating': 2,
   'popover': 5,
   'overlay': 1000,
-  'header': 100001,
-  'top': 100002,
+  'global': 100001,
+  'ceiling': 100002,
+  'apex': 2147483647,
 );
 
 :root {

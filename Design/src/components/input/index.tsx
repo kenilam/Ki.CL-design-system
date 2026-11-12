@@ -9,6 +9,7 @@ import { INPUT_GROUP_CLASS_NAME as INPUT_GROUP } from 'design/components';
 import type { Props } from './spec';
 
 import './styles.scss';
+import './styles.file.scss';
 
 // Partials
 import { Control } from './control';

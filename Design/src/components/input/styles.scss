@@ -51,8 +51,4 @@
   &:user-invalid {
     border-color: var(--kicl-color-error);
   }
-
-  &[type='file'] {
-    padding-block: var(--kicl-gutter-narrowest);
-  }
 }

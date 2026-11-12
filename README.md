@@ -26,9 +26,10 @@ The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types ar
 | `design/core` | `Design/src/core`: the reset, tokens and `kicl-*` utilities. Import it once, before anything else. |
 | `design/core/constants` | `Design/src/core/constants.ts` |
 | `design/docs` | `Docs`: a home page and a page for each component, each with a live preview, presets and their code. A host mounts it under any route that ends in a splat, such as `<Route path='design-system/*' element={<Docs />} />` |
-| `design/hooks` | `useResponsive`, `useResizeObserver`, `useClipboard` |
+| `design/helper` | `readColor`, `mergeRefs`, `CSSUnit` and `truncateText` |
+| `design/hooks` | `useResponsive`, `useResizeObserver`, `useClipboard`, `useNow` |
 | `design/icons` | `Company`, `Logo`, `Menu` and the `IconType` type |
-| `design/router` | The `Router` and the `react-router-dom` APIs the site uses |
+| `design/router` | The `Router`, `useCloseOnNavigate` and the `react-router-dom` APIs the site uses |
 | `design/status` | The HTTP status pages and the route `ErrorElement` |
 | `design/widgets` | `GlobalHeader`, `SiteLogo`, `ContactForm` and `LanguageSelect` |
 

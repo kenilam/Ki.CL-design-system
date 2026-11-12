@@ -1,0 +1,7 @@
+// The snap points count from the top of the window, not from under the header.
+@media (prefers-reduced-motion: no-preference) {
+  :root:has(.kicl-scroll-snap-page) {
+    scroll-padding-block-start: 0;
+    scroll-snap-type: block mandatory;
+  }
+}

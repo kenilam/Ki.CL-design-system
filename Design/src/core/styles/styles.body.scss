@@ -1,61 +1,17 @@
-/*
- * Each theme restates these colours, so a light island inside a dark page, or
- * the reverse, gets its own.
- */
-:root {
-  --kicl-surface-color: var(--kicl-color-white-pure);
-  --kicl-surface-border-color: var(--kicl-color-grey-200);
-  --kicl-surface-glass-color: var(--kicl-color-white-a64);
-  --kicl-body-background-color: var(--kicl-color-white);
-  --kicl-body-color: var(--kicl-color-grey-900);
-}
-
-.kicl--theme--dark {
-  --kicl-body-background-color: var(--kicl-color-black);
-  --kicl-body-color: var(--kicl-color-white);
-  --kicl-color-neutral: var(--kicl-color-white);
-  --kicl-color-warning: var(--kicl-color-yellow);
-
-  @include level-looks(
-    $level-steps-dark,
-    (
-      'neutral': 'white',
-      'warning': 'yellow',
-    )
-  );
-
-  --kicl-surface-color: var(--kicl-color-black-900);
-  --kicl-surface-border-color: var(--kicl-color-black-300);
-  --kicl-surface-glass-color: var(--kicl-color-white-a8);
-
-  @include theme-alphas('white', 'black');
-
-  color: var(--kicl-body-color);
-}
-
-.kicl--theme--light {
-  --kicl-body-background-color: var(--kicl-color-white);
-  --kicl-body-color: var(--kicl-color-grey-900);
-  --kicl-color-neutral: var(--kicl-color-black);
-  --kicl-color-warning: #{$warning};
-
-  @include level-looks($level-steps);
-
-  --kicl-surface-color: var(--kicl-color-white-pure);
-  --kicl-surface-border-color: var(--kicl-color-grey-200);
-  --kicl-surface-glass-color: var(--kicl-color-white-a64);
-
-  @include theme-alphas('black', 'white');
-
-  color: var(--kicl-body-color);
-}
-
 * {
   color: inherit;
 }
 
 html {
   scroll-padding-block-start: var(--kicl--widgets--global-header--block-size);
+}
+
+// Smooth only while a hash link is hovered or focused, so route changes
+// through ScrollRestoration still jump.
+@media (prefers-reduced-motion: no-preference) {
+  html:has(a[href^='#']:is(:hover, :focus)) {
+    scroll-behavior: smooth;
+  }
 }
 
 :target {

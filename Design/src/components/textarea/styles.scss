@@ -1,19 +1,31 @@
-.kicl--components--textarea {
-  --kicl--components--textarea--background-color: var(--kicl-surface-color);
+:root {
   --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
   --kicl--components--textarea--border-radius: var(--kicl-gutter-narrower);
   --kicl--components--textarea--border-width: var(--kicl-size-1px);
-  --kicl--components--textarea--color: var(--kicl-body-color);
   --kicl--components--textarea--min-block-size: var(--kicl-size-8x);
   --kicl--components--textarea--padding-block: var(--kicl-gutter-narrower);
   --kicl--components--textarea--padding-inline: var(--kicl-gutter-narrow);
-  --kicl--components--textarea--read-only-background-color: var(--kicl-body-background-color);
+}
 
-  background-color: var(--kicl--components--textarea--background-color);
+.kicl--theme--dark {
+  --kicl--components--textarea--border-color: var(--kicl-color-grey);
+}
+
+.kicl--theme--light {
+  --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
+}
+
+.kicl--components--textarea {
+  // The colours are read with a fallback, not set on `:root`, so they follow
+  // the theme and text colour the field sits in.
+  background-color: var(
+    --kicl--components--textarea--background-color,
+    var(--kicl-surface-color)
+  );
   border: var(--kicl--components--textarea--border-width) solid
     var(--kicl--components--textarea--border-color);
   border-radius: var(--kicl--components--textarea--border-radius);
-  color: var(--kicl--components--textarea--color);
+  color: var(--kicl--components--textarea--color, var(--kicl-body-color));
   field-sizing: content;
   font: inherit;
   inline-size: 100%;
@@ -46,20 +58,13 @@
 
   &[readonly] {
     --kicl--components--textarea--background-color: var(
-      --kicl--components--textarea--read-only-background-color
+      --kicl--components--textarea--read-only-background-color,
+      var(--kicl-body-background-color)
     );
   }
 
   &[aria-invalid='true'],
   &:user-invalid {
     border-color: var(--kicl-color-error);
-  }
-
-  @at-root .kicl--theme--dark & {
-    --kicl--components--textarea--border-color: var(--kicl-color-grey);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
   }
 }

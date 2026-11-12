@@ -1,7 +1,19 @@
+// Not inherited, so a Text inside a spaced one starts with none.
+@property --kicl--components--text--padding-block-end {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --kicl--components--text--padding-block-start {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 0;
+}
+
 :root {
+  --kicl--components--text--border-radius: var(--kicl-size-3px);
   --kicl--components--text--font-size: inherit;
-  --kicl--components--text--padding-block-end: 0;
-  --kicl--components--text--padding-block-start: 0;
   --kicl--components--text--transition-duration: var(
     --kicl-transition-duration
   );
@@ -12,15 +24,6 @@
 }
 
 .kicl--components--text {
-  --kicl--components--text--color: var(--kicl-body-color);
-
-  // Reset per element, or the sibling spacing below inherits into nested Text.
-  --kicl--components--text--padding-block-end: 0;
-  --kicl--components--text--padding-block-start: 0;
-  --kicl--components--text--color-secondary: var(--kicl-color-neutral-a64);
-  --kicl--components--text--fill: var(--kicl-color-neutral-a12);
-  --kicl--components--text--ink: var(--kicl--components--text--color);
-
   color: var(--kicl--components--text--ink);
   font-size: var(--kicl--components--text--font-size);
   padding-block-end: var(--kicl--components--text--padding-block-end);
@@ -42,54 +45,13 @@
     --kicl--components--text--padding-block-start: var(--kicl-gutter-narrower);
   }
 
-  // Spaced with margin so the start border doesn't run up through empty padding.
-  & + &[data-is='blockquote']:not(&--is-dense),
-  & + &.kicl-look-like-blockquote:not(&--is-dense) {
-    --kicl--components--text--padding-block-start: 0;
-
-    margin-block-start: var(--kicl-gutter);
-  }
-
   &:has(+ a):not(&--is-dense, [data-is='code'], .kicl-look-like-code) {
     --kicl--components--text--padding-block-end: var(--kicl-gutter);
   }
 
   &[data-is='span'] {
-    display: inline-block;
+    display: var(--kicl--components--text--span-display, inline-block);
     white-space-collapse: preserve;
-  }
-
-  &[data-is='blockquote'],
-  &.kicl-look-like-blockquote {
-    --kicl--components--text--border-inline-start-color: var(
-      --kicl-color-grey-300
-    );
-    --kicl--components--text--border-inline-start-width: var(--kicl-size-1px);
-    --kicl--components--text--padding-inline-start: var(--kicl-gutter);
-
-    border-inline-start: var(
-      --kicl--components--text--border-inline-start-width
-    )
-      solid var(--kicl--components--text--border-inline-start-color);
-    display: block;
-    padding-inline-start: var(--kicl--components--text--padding-inline-start);
-  }
-
-  &[data-is='q'],
-  &.kicl-look-like-q {
-    --kicl--components--text--font-style: italic;
-
-    font-style: var(--kicl--components--text--font-style);
-  }
-
-  &.kicl-look-like-q:not([data-is='q']) {
-    &::before {
-      content: open-quote;
-    }
-
-    &::after {
-      content: close-quote;
-    }
   }
 
   &.kicl-look-like-em {
@@ -100,8 +62,10 @@
     font-weight: var(--kicl-font-weight-bold);
   }
 
-  &--variant--secondary {
-    --kicl--components--text--ink: var(--kicl--components--text--color-secondary);
+  &--level--neutral {
+    --kicl--components--text--color: var(--kicl-body-color);
+    --kicl--components--text--color-secondary: var(--kicl-color-neutral-a64);
+    --kicl--components--text--fill: var(--kicl-color-neutral-a12);
   }
 
   @each $level in map.keys(map.remove($levels, 'neutral')) {
@@ -126,110 +90,19 @@
     }
   }
 
-  // Unwrapped, the longest line sets the page's minimum width and overflows on
-  // phones.
-  &[data-is='pre'],
-  &.kicl-look-like-pre {
-    white-space: pre-wrap;
-    word-break: break-all;
-  }
-
-  &.kicl-look-like-pre:not([data-is='pre']) {
-    display: block;
-    font-family: var(--kicl-font-family-mono);
-  }
-
-  &:is([data-is='pre'], .kicl-look-like-pre)
-  > &:is([data-is='code'], .kicl-look-like-code) {
-    display: block;
-    font-weight: var(--kicl-font-weight);
-    padding: var(--kicl-gutter-narrow) var(--kicl-gutter);
-    white-space: pre-wrap;
-  }
-
-  // Block padding on an inline box doesn't move the lines. Inline padding is
-  // needed to keep the fill off punctuation right after it.
-  &[data-is='code'],
-  &[data-is='pre'],
-  &.kicl-look-like-code,
-  &.kicl-look-like-pre {
-    direction: ltr;
-    unicode-bidi: isolate;
-  }
-
-  &[data-is='code'],
-  &.kicl-look-like-code {
-    --kicl--components--text--background-color: var(
+  &--variant--primary {
+    --kicl--components--text--ink: var(--kicl--components--text--color);
+    --kicl--components--text--code--background-color: var(
       --kicl--components--text--fill
     );
-    --kicl--components--text--border-color: transparent;
-    --kicl--components--text--border-radius: var(--kicl-size-3px);
-    --kicl--components--text--border-width: var(--kicl-size-1px);
-    --kicl--components--text--font-size: var(--kicl-font-size-small);
-    --kicl--components--text--offset: var(--kicl-size-3px);
-
-    background-color: var(--kicl--components--text--background-color);
-    border-radius: var(--kicl--components--text--border-radius);
-    box-decoration-break: clone;
-
-    // An inset shadow, not a border, so both variants are the same size.
-    box-shadow: inset 0 0 0 var(--kicl--components--text--border-width)
-      var(--kicl--components--text--border-color);
-    font-family: var(--kicl-font-family-mono);
-    font-weight: var(--kicl-font-weight-bold);
-    padding: var(--kicl--components--text--offset);
-
-    &.kicl--components--text--variant--secondary {
-      --kicl--components--text--background-color: transparent;
-      --kicl--components--text--border-color: var(--kicl-color-neutral-a32);
-    }
+    --kicl--components--text--code--border-color: transparent;
   }
 
-  // `del` keeps its strike so the meaning doesn't rest on colour alone; `ins`
-  // drops its underline, which reads as a link.
-  &[data-is='del'],
-  &[data-is='ins'],
-  &.kicl-look-like-del,
-  &.kicl-look-like-ins {
-    --kicl--components--text--background-color: var(
-      --kicl--components--text--edit-fill
+  &--variant--secondary {
+    --kicl--components--text--ink: var(
+      --kicl--components--text--color-secondary
     );
-    --kicl--components--text--border-radius: var(--kicl-size-3px);
-
-    background-color: var(--kicl--components--text--background-color);
-    border-radius: var(--kicl--components--text--border-radius);
-    box-decoration-break: clone;
-  }
-
-  &[data-is='del'],
-  &.kicl-look-like-del {
-    --kicl--components--text--edit-color: var(--kicl-color-error);
-    --kicl--components--text--edit-fill: color-mix(
-      in srgb,
-      var(--kicl-color-error) 20%,
-      transparent
-    );
-
-    text-decoration-color: var(--kicl--components--text--edit-color);
-    text-decoration-line: line-through;
-  }
-
-  &[data-is='ins'],
-  &.kicl-look-like-ins {
-    --kicl--components--text--edit-color: var(--kicl-color-confirm);
-    --kicl--components--text--edit-fill: color-mix(
-      in srgb,
-      var(--kicl-color-confirm) 20%,
-      transparent
-    );
-
-    text-decoration-line: none;
-  }
-
-  &[data-is='cite'],
-  &.kicl-look-like-cite {
-    --kicl--components--text--font-style: italic;
-
-    font-style: var(--kicl--components--text--font-style);
+    --kicl--components--text--code--background-color: transparent;
+    --kicl--components--text--code--border-color: var(--kicl-color-neutral-a32);
   }
 }

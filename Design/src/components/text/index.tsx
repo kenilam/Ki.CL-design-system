@@ -8,29 +8,42 @@ import * as Spec from './spec';
 
 // Styles
 import './styles.scss';
+import './styles.quote.scss';
+import './styles.code.scss';
+import './styles.edit.scss';
 
 const CLASS_NAME = 'kicl--components--text';
 
 const Text = React.forwardRef<HTMLElement, Spec.Props>(
   (
-    { children, dense, is = 'p', level, lookLike, unstyled, variant, ...rest },
+    {
+      children,
+      dense,
+      is = 'p',
+      level = 'neutral',
+      lookLike,
+      unstyled,
+      variant,
+      ...rest
+    },
     ref
   ) => {
     const looksLikeHeading = /^h[1-6]$/.test(lookLike ?? '');
 
-    const className = classNames(
-      {
-        [CLASS_NAME]: !unstyled,
-        [`kicl-look-like-${lookLike}`]: !unstyled ? lookLike : null,
-        [`${CLASS_NAME}--variant--${variant}`]:
-          !unstyled && !looksLikeHeading ? variant : null,
-        [`${CLASS_NAME}--level--${level}`]: !unstyled ? level : null,
-        [`kicl-look-like-${lookLike}--variant--${variant}`]:
-          !unstyled && looksLikeHeading ? variant : null,
-        [`${CLASS_NAME}--is-dense`]: !unstyled && dense,
-      },
-      rest.className
-    );
+    const className = unstyled
+      ? rest.className
+      : classNames(
+          CLASS_NAME,
+          `${CLASS_NAME}--level--${level}`,
+          `${CLASS_NAME}--variant--${variant ?? 'primary'}`,
+          {
+            [`kicl-look-like-${lookLike}`]: lookLike,
+            [`kicl-look-like-${lookLike}--variant--${variant}`]:
+              looksLikeHeading ? variant : null,
+            [`${CLASS_NAME}--is-dense`]: dense,
+          },
+          rest.className
+        );
 
     const Component = is;
 

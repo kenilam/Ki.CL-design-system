@@ -4,11 +4,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Form, Status, useForm } from 'design/components';
+import { Form, FormMessage, Status, useForm } from 'design/components';
 
 // Partials
 import { Email } from './email';
-import { SendError } from './send-error';
 import { Message } from './message';
 import { Send } from './send';
 
@@ -64,7 +63,7 @@ const ContactForm: React.FunctionComponent<Props> = ({
     >
       <Email />
       <Message />
-      <SendError />
+      <FormMessage name='root' />
       <Send />
     </Form>
   );

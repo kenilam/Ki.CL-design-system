@@ -1,0 +1,4 @@
+// Floating the legend takes it out of the fieldset's border and into the flow.
+.kicl--components--segmented__legend {
+  float: inline-start;
+}

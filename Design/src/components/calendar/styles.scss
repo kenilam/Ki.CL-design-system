@@ -1,36 +1,11 @@
-.kicl--components--calendar {
+:root {
   --kicl--components--calendar--cell-size: var(--kicl-size-3x);
+}
 
+.kicl--components--calendar {
   // Not `table-layout: fixed`: inside a shrink-to-fit box, fixed layout with
   // percentage widths inflates the table.
   border-collapse: separate;
   border-spacing: 0;
   inline-size: fit-content;
-
-  :is(th, td) {
-    inline-size: calc(100% / 7);
-  }
-
-  &__header {
-    border-block-end: var(--kicl-size-1px) solid var(--kicl-surface-border-color);
-    line-height: calc(
-      var(--kicl-font-size-small) * var(--kicl-line-height-narrower) +
-      2 * var(--kicl-gutter-narrow) + var(--kicl-size-1px)
-    );
-    margin-block-end: var(--kicl-gutter-narrow);
-    padding-block-end: var(--kicl-gutter-narrow);
-    text-align: center;
-
-    > :first-child {
-      float: inline-start;
-    }
-
-    > :last-child {
-      float: inline-end;
-    }
-  }
-
-  &__day {
-    min-inline-size: 100%;
-  }
 }

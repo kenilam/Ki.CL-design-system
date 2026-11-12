@@ -12,7 +12,7 @@ import type { Props } from 'design/components/checkbox/spec';
 
 import { useControl } from './use-control';
 
-import 'design/components/checkbox/styles.scss';
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--checkbox';
 
@@ -65,7 +65,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, Props>(
 
     return (
       <Layout {...CHOICE_LABEL_LAYOUT}>
-        <label className={CHOICE_LABEL_CLASS_NAME}>
+        <label
+          className={classNames(
+            `${CLASS_NAME}__label`,
+            CHOICE_LABEL_CLASS_NAME
+          )}
+        >
           {input}
           {truncateText(children)}
         </label>

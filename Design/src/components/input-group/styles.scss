@@ -1,17 +1,48 @@
-.kicl--components--input-group {
-  --kicl--components--input-group--background-color: var(--kicl-surface-color);
+:root {
   --kicl--components--input-group--border-color: var(--kicl-color-grey-900);
   --kicl--components--input-group--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input-group--border-width: var(--kicl-size-1px);
-  --kicl--components--input-group--invalid-border-color: var(
-    --kicl-color-error-secondary
+  --kicl--components--input-group--disabled-opacity: var(
+    --kicl-disabled-opacity
   );
   --kicl--components--input-group--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input-group--padding-inline-end: var(--kicl-gutter);
   --kicl--components--input-group--padding-inline-start: var(--kicl-gutter);
+}
+
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--input-group--background-color: var(--kicl-surface-color);
+  --kicl--components--input-group--invalid-border-color: var(
+    --kicl-color-error-secondary
+  );
   --kicl--components--input-group--read-only-background-color: var(
     --kicl-body-background-color
   );
+}
+
+.kicl--theme--dark {
+  --kicl--components--input-group--border-color: var(--kicl-color-grey);
+}
+
+.kicl--theme--light {
+  --kicl--components--input-group--border-color: var(--kicl-color-grey-900);
+}
+
+.kicl--components--input-group {
+  // The group draws the field, so the controls inside it draw nothing.
+  --kicl--components--input--background-color: transparent;
+  --kicl--components--input--border-radius: 0;
+  --kicl--components--input--border-width: 0;
+  --kicl--components--input--padding-block: 0;
+  --kicl--components--input--padding-inline: 0;
+  --kicl--components--input--read-only-background-color: transparent;
+  --kicl--components--textarea--background-color: transparent;
+  --kicl--components--textarea--border-width: 0;
+  --kicl--components--textarea--padding-block: 0;
+  --kicl--components--textarea--padding-inline: 0;
+  --kicl--components--textarea--read-only-background-color: transparent;
 
   background-color: var(--kicl--components--input-group--background-color);
   border: var(--kicl--components--input-group--border-width) solid
@@ -22,10 +53,6 @@
   padding-block: var(--kicl--components--input-group--padding-block);
   padding-inline: var(--kicl--components--input-group--padding-inline-start)
     var(--kicl--components--input-group--padding-inline-end);
-
-  .kicl--components--input {
-    --kicl--components--input--border-radius: 0;
-  }
 
   &:has(> :not(&__control) + &__control) {
     --kicl--components--input-group--padding-inline-start: var(
@@ -39,64 +66,12 @@
     );
   }
 
-  &:disabled {
-    opacity: var(--kicl-disabled-opacity);
-
-    :disabled {
-      opacity: 1;
-    }
-  }
-
-  &:has(&__control[readonly]) {
-    --kicl--components--input-group--background-color: var(
-      --kicl--components--input-group--read-only-background-color
-    );
-  }
-
-  &:has(&__control:focus-visible) {
-    outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
-    outline-offset: var(--kicl-size-1px);
-  }
-
-  &:has([aria-invalid='true'], :user-invalid) {
-    --kicl-outline-color: var(--kicl-color-error);
-    --kicl--components--input-group--border-color: var(
-      --kicl--components--input-group--invalid-border-color
-    );
-
-    // The theme rules below set the border colour too, and come later.
-    @at-root .kicl--theme--dark &,
-    .kicl--theme--light & {
-      --kicl--components--input-group--border-color: var(
-        --kicl--components--input-group--invalid-border-color
-      );
-    }
-  }
-
-  // Two classes, because the control's own stylesheet loads later and sets
-  // the same properties with one class, so a single class here loses.
-  & &__control {
-    --kicl--components--input--border-width: 0;
-    --kicl--components--input--padding-block: 0;
-    --kicl--components--input--padding-inline: 0;
-    --kicl--components--textarea--border-width: 0;
-    --kicl--components--textarea--padding-block: 0;
-    --kicl--components--textarea--padding-inline: 0;
-
-    background: transparent;
+  &__control {
     flex: 1 1 0;
     min-inline-size: 0;
 
     &:focus-visible {
       --kicl-outline-style: none;
     }
-  }
-
-  @at-root .kicl--theme--dark & {
-    --kicl--components--input-group--border-color: var(--kicl-color-grey);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl--components--input-group--border-color: var(--kicl-color-grey-900);
   }
 }

@@ -62,4 +62,11 @@ export type FormControlProps = React.PropsWithChildren;
 
 export type FormDescriptionProps = React.ComponentPropsWithoutRef<'p'>;
 
-export type FormMessageProps = React.ComponentPropsWithoutRef<'p'>;
+export type FormMessageProps = React.ComponentPropsWithoutRef<'p'> & {
+  /**
+   * `root` shows the form's own error, the one set with
+   * `setError('root', { message })`, such as a failed send. Without it, the
+   * message is the error of the field it sits in.
+   */
+  name?: 'root';
+};

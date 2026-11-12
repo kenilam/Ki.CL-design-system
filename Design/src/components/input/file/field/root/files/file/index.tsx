@@ -16,6 +16,9 @@ import * as Tb from 'react-icons/tb';
 import { useFieldContext } from 'design/components/input/file/field/context';
 import { sizeOf } from './size-of';
 
+// Styles
+import './styles.scss';
+
 // Constants
 import { CLASS_NAME } from 'design/components/input/file/constants';
 

@@ -1,21 +1,38 @@
-.kicl--components--select {
-  --kicl--components--select--background-color: var(--kicl-surface-color);
+:root {
   --kicl--components--select--border-color: var(--kicl-color-grey-900);
   --kicl--components--select--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--select--border-width: var(--kicl-size-1px);
-  --kicl--components--select--color: var(--kicl-body-color);
   --kicl--components--select--icon-display: inline;
   --kicl--components--select--icon-rotate: 0deg;
   --kicl--components--select--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--select--padding-inline: var(--kicl-gutter);
   --kicl--components--select--spinner-display: none;
   --kicl--components--select--value-opacity: 1;
+}
 
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--select--background-color: var(--kicl-surface-color);
+}
+
+.kicl--theme--dark {
+  --kicl--components--select--border-color: var(--kicl-color-grey);
+}
+
+.kicl--theme--light {
+  --kicl--components--select--border-color: var(--kicl-color-grey-900);
+}
+
+.kicl--components--select {
   background-color: var(--kicl--components--select--background-color);
   border: var(--kicl--components--select--border-width) solid
     var(--kicl--components--select--border-color);
   border-radius: var(--kicl--components--select--border-radius);
-  color: var(--kicl--components--select--color);
+
+  // A fallback, not a `:root` default, so it follows a `kicl-color-*` set on
+  // any element above.
+  color: var(--kicl--components--select--color, var(--kicl-body-color));
   max-inline-size: 100%;
   min-inline-size: 0;
   padding-block: var(--kicl--components--select--padding-block);
@@ -31,13 +48,5 @@
     color: inherit;
     font: inherit;
     padding: 0;
-  }
-
-  @at-root .kicl--theme--dark & {
-    --kicl--components--select--border-color: var(--kicl-color-grey);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl--components--select--border-color: var(--kicl-color-grey-900);
   }
 }

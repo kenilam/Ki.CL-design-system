@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Constants
 import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
 
+// Styles
+import './styles.scss';
+
 // Partials
 import { Next } from './next';
 import { Previous } from './previous';

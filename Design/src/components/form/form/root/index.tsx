@@ -7,6 +7,9 @@ import type { FieldValues } from 'react-hook-form';
 // Spec
 import type { FormProps } from 'design/components/form/spec';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--form';
 
 type Props = Pick<

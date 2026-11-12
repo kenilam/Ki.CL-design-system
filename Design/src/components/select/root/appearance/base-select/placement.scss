@@ -5,11 +5,13 @@ $sides: (
   inline-end: inline,
 );
 
-.kicl--components--select {
+:root {
   --kicl--components--select--picker-margin-block: var(--kicl-gutter-narrow);
   --kicl--components--select--picker-margin-inline: 0;
   --kicl--components--select--position-area: block-end span-inline-end;
+}
 
+.kicl--components--select {
   @each $side, $axis in $sides {
     $across: block;
 

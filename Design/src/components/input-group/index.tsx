@@ -11,6 +11,7 @@ import type { InputGroupIs, InputGroupProps } from './spec';
 
 // Styles
 import './styles.scss';
+import './styles.state.scss';
 
 // Constants
 import { CLASS_NAME } from './constants';

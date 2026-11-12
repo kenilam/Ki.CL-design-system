@@ -200,6 +200,8 @@
   "form_preset_contact_name": "Contact",
   "form_preset_profile": "For editing a saved profile, where no field is required.",
   "form_preset_profile_name": "Profile",
+  "form_preset_send_error": "For an error that belongs to the whole form, such as a send that failed. `FormMessage` with `name='root'` shows the message set with `setError('root', …)` and slides it in. Fill in the email and press Send.",
+  "form_preset_send_error_name": "Send error",
   "frame_intro": "Frames a section that fills the window. It's inset by a gap on every side, with rounded corners, and its top follows the site header as it shows and hides. On load it eases from the window's full height into the frame, after `delay` milliseconds, and keeps its width throughout.",
   "frame_preset_basic": "A frame needs the whole window, so it opens in a full-screen dialog, and eases in each time it opens.",
   "frame_preset_basic_name": "Basic",
@@ -765,6 +767,8 @@
   "input_preset_file_input": "For picking a file. Click the zone or drop a file on it. What you picked opens from the line underneath, where you can remove it. With `inline`, it’s a field like the others, with an icon in front.",
   "input_preset_file_input_name": "File input",
   "input_preset_slider": "For a value picked along a range, like a volume or a playback position.",
+  "input_preset_seek": "For moving through a track or a video. `SeekInput` shows the time played and the length on either side of the slider, and a screen reader hears both. Give it `duration` and `elapsed` in seconds, and `onSeek` to move.",
+  "input_preset_seek_name": "Seek",
   "input_preset_slider_name": "Slider",
   "input_preset_vertical_slider": "For a slider in a narrow space, like a volume control in a popover. The lowest value is at the bottom.",
   "input_preset_vertical_slider_name": "Vertical slider"

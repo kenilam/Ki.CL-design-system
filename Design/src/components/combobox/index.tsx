@@ -3,9 +3,6 @@ import React from 'react';
 // Spec
 import type { ComboboxProps } from './spec';
 
-// Styles
-import './styles.scss';
-
 // Partials
 import { ComboboxAnchor } from './anchor';
 import { ComboboxContent } from './content';

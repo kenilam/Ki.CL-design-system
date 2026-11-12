@@ -1,20 +1,38 @@
-.kicl--components--textarea {
-  --kicl--components--textarea--background-color: var(--kicl-surface-color);
+:root {
   --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
   --kicl--components--textarea--border-radius: var(--kicl-gutter-narrower);
   --kicl--components--textarea--border-width: var(--kicl-size-1px);
-  --kicl--components--textarea--color: var(--kicl-body-color);
   --kicl--components--textarea--min-block-size: var(--kicl-size-8x);
   --kicl--components--textarea--padding-block: var(--kicl-gutter-narrower);
   --kicl--components--textarea--padding-inline: var(--kicl-gutter-narrow);
-  --kicl--components--textarea--read-only-background-color: var(--kicl-body-background-color);
+}
 
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--textarea--background-color: var(--kicl-surface-color);
+  --kicl--components--textarea--read-only-background-color: var(
+    --kicl-body-background-color
+  );
+}
+
+.kicl--theme--dark {
+  --kicl--components--textarea--border-color: var(--kicl-color-grey);
+}
+
+.kicl--theme--light {
+  --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
+}
+
+.kicl--components--textarea {
   background-color: var(--kicl--components--textarea--background-color);
   border: var(--kicl--components--textarea--border-width) solid
     var(--kicl--components--textarea--border-color);
   border-radius: var(--kicl--components--textarea--border-radius);
-  color: var(--kicl--components--textarea--color);
-  field-sizing: content;
+
+  // A fallback, not a `:root` default, so it follows a `kicl-color-*` set on
+  // any element above.
+  color: var(--kicl--components--textarea--color, var(--kicl-body-color));
   font: inherit;
   inline-size: 100%;
   max-inline-size: 100%;
@@ -23,6 +41,12 @@
   padding-block: var(--kicl--components--textarea--padding-block);
   padding-inline: var(--kicl--components--textarea--padding-inline);
   resize: vertical;
+
+  // A field that grows with its text has no use for the resize handle.
+  @supports (field-sizing: content) {
+    field-sizing: content;
+    resize: none;
+  }
 
   // `field-sizing: content` would widen the field to fit the placeholder.
   &:placeholder-shown {
@@ -34,10 +58,7 @@
     $padding: var(--kicl--components--textarea--padding-block);
     $border: var(--kicl--components--textarea--border-width);
 
-    min-block-size: max(
-      var(--kicl--components--textarea--min-block-size),
-      calc($lines + 2 * ($padding + $border))
-    );
+    min-block-size: calc($lines + 2 * ($padding + $border));
   }
 
   &:disabled {
@@ -53,13 +74,5 @@
   &[aria-invalid='true'],
   &:user-invalid {
     border-color: var(--kicl-color-error);
-  }
-
-  @at-root .kicl--theme--dark & {
-    --kicl--components--textarea--border-color: var(--kicl-color-grey);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl--components--textarea--border-color: var(--kicl-color-grey-900);
   }
 }

@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { useFieldError, useFormField, useFormItem } from './context';
 import type { FormLabelProps } from './spec';
 
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--form__label';
 
 const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(

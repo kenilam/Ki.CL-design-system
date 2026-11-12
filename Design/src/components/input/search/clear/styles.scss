@@ -1,0 +1,7 @@
+:root {
+  --kicl--components--input--search--clear-display: grid;
+}
+
+.kicl--components--input--search__clear {
+  display: var(--kicl--components--input--search--clear-display);
+}

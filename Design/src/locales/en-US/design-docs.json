@@ -179,6 +179,8 @@
   "dialog_preset_no_title_name": "No title",
   "dialog_preset_not_closable": "For a message the user has to acknowledge. Neither Escape nor a click outside closes it, only the button in the footer.",
   "dialog_preset_not_closable_name": "Not closable",
+  "dialog_preset_wide": "For content that needs more room than a few lines of text, like a table. Without a size, the panel takes up to six of the page’s 12 columns.",
+  "dialog_preset_wide_name": "Wide",
   "form_intro": "A native `form` wired to [react-hook-form](https://react-hook-form.com). Each field's label, description and error point at its control, so a screen reader reads them together.",
   "form_preset_basic": "A short sign-up form. Both fields are required, so pressing Create account with one empty shows an error under it.",
   "form_preset_basic_name": "Basic",

@@ -21,6 +21,7 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
       header,
       id,
       open,
+      size,
       ...rest
     },
     ref
@@ -35,6 +36,7 @@ const Dialog = React.forwardRef<HTMLDialogElement, Spec.Props>(
         header={header}
         id={id}
         open={open}
+        size={size}
       >
         <Root {...rest} ref={ref} />
       </Provider>

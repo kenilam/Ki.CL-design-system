@@ -129,6 +129,7 @@ import { HomeLink } from './hyper-link/home-link';
 import type { BackLinkProps, HomeLinkProps } from './hyper-link/spec';
 import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
+import { ZoomableImage, type ZoomableImageProps } from './image/zoomable';
 import { Input, type InputProps } from './input';
 import { CopyInput } from './input/copy';
 import { EmailInput } from './input/email';
@@ -391,6 +392,8 @@ export {
   type GetHyperLinkClassNamesProps,
   Image,
   type ImageProps,
+  ZoomableImage,
+  type ZoomableImageProps,
   Input,
   type InputProps,
   InputGroup,

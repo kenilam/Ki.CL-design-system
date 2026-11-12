@@ -17,7 +17,6 @@ import { CLASS_NAME } from 'design/components/select/constants';
 // Partials
 import { Placeholder } from 'design/components/select/root/placeholder';
 import { Contents } from './contents';
-import { useCloseOnScroll } from './use-close-on-scroll';
 
 import type { Props } from 'design/components/select/root';
 
@@ -35,12 +34,11 @@ const BaseSelect: React.FunctionComponent<Props> = ({
   ...rest
 }) => {
   const control = useFormItemControl(rest);
-  const attach = useCloseOnScroll(ref);
   const [axis, edge, align = 'start'] = placement.split('-');
 
   return (
     <select
-      ref={attach}
+      ref={ref}
       className={classNames(
         CLASS_NAME,
         `${CLASS_NAME}--${axis}-${edge}--${align}`,

@@ -6,6 +6,14 @@ html {
   scroll-padding-block-start: var(--kicl--widgets--global-header--block-size);
 }
 
+// Smooth only while a hash link is hovered or focused, so route changes
+// through ScrollRestoration still jump.
+@media (prefers-reduced-motion: no-preference) {
+  html:has(a[href^='#']:is(:hover, :focus)) {
+    scroll-behavior: smooth;
+  }
+}
+
 :target {
   scroll-margin-block: var(--kicl-gutter-wide);
 }

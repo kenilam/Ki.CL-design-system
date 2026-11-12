@@ -1,3 +1,5 @@
+$print-font-size: 10pt;
+
 /*
  * `--kicl-print-font-size` has no default here: this file is in the utilities
  * layer, where a declared default would beat a view's.
@@ -6,7 +8,14 @@
   :root {
     --kicl-font-size: 1rem;
 
-    font-size: var(--kicl-print-font-size, 10pt);
+    font-size: var(--kicl-print-font-size, #{$print-font-size});
+  }
+
+  // Scaled like `--kicl-font-size-small`, `-smaller` and `-smallest` on screen.
+  @each $name, $scale in (small: 0.875, smaller: 0.8125, smallest: 0.75) {
+    :root:has(.kicl-print-font-size-#{$name}) {
+      --kicl-print-font-size: #{$print-font-size * $scale};
+    }
   }
 
   // The page's own colour would print as a tint over the whole sheet.
@@ -34,6 +43,14 @@
   .kicl-hidden,
   .kicl-hidden-focusable {
     display: none;
+  }
+
+  .kicl-print-break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  .kicl-print-break-after-avoid {
+    break-after: avoid;
   }
 }
 

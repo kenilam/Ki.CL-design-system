@@ -56,7 +56,7 @@ const Root: React.FunctionComponent<Props> = ({
         'kicl-position-fixed',
         className
       )}
-      closedby={sheet.closable ? 'any' : 'none'}
+      closedby={sheet.closedby}
       id={sheet.id}
       is='dialog'
       popover={sheet.closable ? popover : 'manual'}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Hooks
-import { useOverlayContents } from 'design/hooks';
+import { useClosedBy, useOverlayContents } from 'design/hooks';
 
 // Constants
 import { CLASS_NAME } from 'design/components/dialog/constants';
@@ -36,6 +36,8 @@ const useRoot = (
   if (dialog.closable === 'keyboard') {
     closedby = 'closerequest';
   }
+
+  useClosedBy(node, closedby);
 
   return {
     closedby,

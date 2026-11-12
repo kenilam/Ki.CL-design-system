@@ -1,0 +1,75 @@
+@mixin scroll {
+  --kicl--components--segmented--item--scroll-initial-target: nearest;
+  --kicl--components--segmented--item--scroll-snap-align: start;
+  --kicl--components--segmented--options--grid-auto-columns: max-content;
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: inline mandatory;
+  white-space: nowrap;
+
+  @include scroll-fade(inline);
+
+  scroll-padding-inline: var(--kicl-scroll-fade-distance);
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+:root {
+  --kicl--components--segmented--options--background-color: transparent;
+  --kicl--components--segmented--options--grid-auto-columns: minmax(0, 1fr);
+  --kicl--components--segmented--options--grid-auto-flow: column;
+  --kicl--components--segmented--options--opacity: 1;
+}
+
+.kicl--components--segmented__options {
+  // `anchor-scope` stops two controls on one page sharing the checked anchor.
+  anchor-scope: --kicl--components--segmented--checked;
+  background-color: var(
+    --kicl--components--segmented--options--background-color
+  );
+  border-radius: inherit;
+  grid-auto-columns: var(
+    --kicl--components--segmented--options--grid-auto-columns
+  );
+  grid-auto-flow: var(--kicl--components--segmented--options--grid-auto-flow);
+  min-inline-size: 0;
+  opacity: var(--kicl--components--segmented--options--opacity);
+
+  &::before {
+    background-color: var(--kicl--components--segmented--thumb);
+    border-radius: inherit;
+    content: '';
+    inset: anchor(top) anchor(right) anchor(bottom) anchor(left);
+    position: absolute;
+    position-anchor: --kicl--components--segmented--checked;
+    transition: inset var(--kicl-transition-duration-fast) ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &:not(:has(:checked))::before {
+    content: none;
+  }
+
+  @supports not (anchor-name: --a) {
+    &::before {
+      content: none;
+    }
+  }
+
+  &--collapse--scroll {
+    @include query('≤narrow') {
+      @include scroll;
+    }
+  }
+
+  &--collapsed {
+    @include scroll;
+  }
+}

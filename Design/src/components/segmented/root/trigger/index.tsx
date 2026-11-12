@@ -16,9 +16,11 @@ import { useChoice, useSegmented } from 'design/components/segmented/context';
 // Partials
 import { labelOf } from 'design/components/segmented/children';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--segmented__trigger';
 
-/** Above the `narrow` breakpoint, CSS lays the panel out in place and hides the trigger. */
 const SegmentedTrigger: React.FunctionComponent = () => {
   const { block, children, disabled, id } = useSegmented();
   const { chosen, value } = useChoice();

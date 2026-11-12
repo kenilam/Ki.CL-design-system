@@ -12,6 +12,9 @@ import type { SegmentedItemProps } from 'design/components/segmented/spec';
 // Partials
 import { useControl } from './use-control';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--segmented__item';
 
 const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
@@ -22,8 +25,7 @@ const SegmentedItem = React.forwardRef<HTMLInputElement, SegmentedItemProps>(
     const control = useControl({ onChange, onKeyDown, onPointerDown, value });
 
     return (
-      // Its own SCSS moves `justify-items` in a popover panel, and beats Layout's.
-      <Layout alignItems='center' gap='none' justifyItems='center'>
+      <Layout alignItems='center' gap='none'>
         <label
           className={classNames(
             CLASS_NAME,

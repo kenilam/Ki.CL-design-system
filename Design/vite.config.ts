@@ -8,6 +8,7 @@ import mdx from '@mdx-js/rollup';
 import { federation } from '@module-federation/vite';
 import { compression } from 'vite-plugin-compression2';
 
+import { cleanDevTypes } from './scripts/clean-dev-types.ts';
 import { getStyleLayer, LAYER_ORDER } from './scripts/get-style-layer.ts';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
@@ -28,6 +29,7 @@ export default defineConfig({
   root,
   base: '/design/',
   plugins: [
+    cleanDevTypes(root),
     compression({ algorithms: ['gzip', 'brotliCompress'] }),
     // Before React, which compiles the JSX that MDX outputs.
     { enforce: 'pre', ...mdx() },

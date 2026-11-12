@@ -1,0 +1,31 @@
+.kicl--components--page-indicator__page {
+  $name: '--kicl--components--page-indicator';
+
+  animation-fill-mode: both;
+  animation-name: kicl--components--page-indicator--scroll;
+  animation-range-start: calc((sibling-index() - 1.5) * var(#{$name}--page));
+  animation-range-end: calc((sibling-index() - 0.5) * var(#{$name}--page));
+  animation-timeline: scroll(root block);
+}
+
+@keyframes kicl--components--page-indicator--scroll {
+  0% {
+    scale: 1;
+  }
+
+  10% {
+    scale: 1.4;
+  }
+
+  50% {
+    scale: 1.4;
+  }
+
+  90% {
+    scale: 1.4;
+  }
+
+  100% {
+    scale: 1;
+  }
+}

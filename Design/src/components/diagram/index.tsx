@@ -1,8 +1,5 @@
 import React from 'react';
 
-// Styles
-import './styles.scss';
-
 // Partials
 import { Legend } from './legend';
 import { Provider } from './context';

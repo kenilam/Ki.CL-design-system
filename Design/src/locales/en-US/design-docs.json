@@ -237,6 +237,8 @@
   "image_preset_basic_name": "Basic",
   "image_preset_fails_to_load": "What shows when the file is missing. A warning icon takes the picture's place, and screen readers still get the `alt` text.",
   "image_preset_fails_to_load_name": "Fails to load",
+  "image_preset_opens_full_size": "For a figure worth a closer look, like an illustration in an article. Pressing it opens the picture to fill the window.",
+  "image_preset_opens_full_size_name": "Opens full size",
   "image_preset_own_placeholder": "Swaps the warning icon for one of your own.",
   "image_preset_own_placeholder_name": "Own placeholder",
   "image_preset_round": "For an avatar.",

@@ -4,8 +4,7 @@ import React from 'react';
 import * as Tb from 'react-icons/tb';
 
 // Components
-import { Button } from 'design/components/button';
-import { PopoverTrigger } from 'design/components/popover';
+import { Button, PopoverTrigger } from 'design/components';
 
 // Copy
 import { useCopy } from 'design/locales/use-copy';

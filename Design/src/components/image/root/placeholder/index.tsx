@@ -15,6 +15,9 @@ import { useImage } from 'design/components/image/context';
 // Constants
 import { CLASS_NAME } from 'design/components/image/constants';
 
+// Styles
+import './styles.scss';
+
 const Placeholder: React.FunctionComponent = () => {
   const image = useImage();
 

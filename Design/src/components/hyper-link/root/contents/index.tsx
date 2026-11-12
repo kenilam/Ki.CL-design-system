@@ -16,7 +16,7 @@ const Contents: React.FunctionComponent = () => {
     contents = (
       <>
         {hyperLink.before}
-        {hyperLink.lookLikeButton ? contents : <Line>{contents}</Line>}
+        {hyperLink.hasLine ? <Line>{contents}</Line> : contents}
         {hyperLink.after}
       </>
     );

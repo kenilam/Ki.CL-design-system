@@ -1,0 +1,12 @@
+.kicl--components--hyper-link__line {
+  text-decoration-color: var(
+    --kicl--components--hyper-link--text-decoration--color
+  );
+  text-decoration-line: var(
+    --kicl--components--hyper-link--text-decoration--line
+  );
+  text-decoration-thickness: var(
+    --kicl--components--hyper-link--text-decoration--thickness
+  );
+  text-underline-position: under;
+}

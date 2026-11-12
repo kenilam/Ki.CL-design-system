@@ -12,11 +12,13 @@ const getHyperLinkClassNames = ({
   block,
   className,
   unstyled = false,
+  withLine,
 }: Spec.GetHyperLinkClassNamesProps = {}) => {
   return classNames(
     CLASS_NAME,
     {
       [`${CLASS_NAME}--unstyled`]: unstyled,
+      [`${CLASS_NAME}--with-line`]: withLine,
       'kicl-border-radius-sm': block,
     },
     className

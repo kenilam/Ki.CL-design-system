@@ -58,7 +58,12 @@ const useAttributes = ({
         size,
         variant,
       })
-    : getHyperLinkClassNames({ block, className: _className, unstyled });
+    : getHyperLinkClassNames({
+        block,
+        className: _className,
+        unstyled,
+        withLine: hyperLink.hasLine,
+      });
 
   return {
     rest,

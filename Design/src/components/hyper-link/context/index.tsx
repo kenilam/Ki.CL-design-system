@@ -17,6 +17,7 @@ type Value = Pick<
   'after' | 'before' | 'lookLikeButton' | 'target'
 > & {
   children: Spec.Props['children'];
+  hasLine: boolean;
   isHash: boolean;
 };
 
@@ -39,6 +40,7 @@ const Provider: React.FunctionComponent<Props> = ({
         after,
         before,
         children: contents,
+        hasLine: !lookLikeButton && !!(after || before),
         isHash: status.isHash,
         lookLikeButton,
         target: status.isExternal ? '_blank' : target,

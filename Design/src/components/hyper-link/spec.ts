@@ -33,7 +33,7 @@ export type Props = Required<PropsWithChildren> &
 export type GetHyperLinkClassNamesProps = Pick<
   Props,
   'block' | 'className' | 'unstyled'
->;
+> & { withLine?: boolean };
 
 export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
   LookProps & {

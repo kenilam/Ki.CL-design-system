@@ -4,9 +4,9 @@
 
   min-inline-size: 0;
 
-  &:has(input:required) > legend::after {
-    color: var(--kicl-color-error);
-    content: '*' / '';
-    margin-inline-start: 0.2em;
+  &[aria-invalid='true'] {
+    --kicl--components--radio-group--item--border-color: var(
+      --kicl-color-error
+    );
   }
 }

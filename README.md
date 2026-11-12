@@ -31,7 +31,7 @@ The remote is at `http://localhost:3200/design/remoteEntry.js`, and its types ar
 | `design/icons` | `Company`, `Logo`, `Menu` and the `IconType` type |
 | `design/router` | The `Router`, `useCloseOnNavigate` and the `react-router-dom` APIs the site uses |
 | `design/status` | The HTTP status pages and the route `ErrorElement` |
-| `design/widgets` | `GlobalHeader`, `SiteLogo`, `ContactForm` and `LanguageSelect` |
+| `design/widgets` | `Background`, `GlobalHeader`, `SiteLogo` and `ThemeToggle` |
 
 All the CSS goes out as one stylesheet (`bundleAllCSS`). It loads with whichever module the host imports first.
 

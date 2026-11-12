@@ -503,6 +503,8 @@
   "select_preset_with_an_error": "For a choice that has to be made and wasn't, with the reason under it.",
   "select_preset_with_an_error_name": "With an error",
   "separator_intro": "A line between two things. It renders a `<span>` that screen readers skip. Where the line marks a change of topic, use `is='hr'`: it looks the same and is announced as a separator.",
+  "separator_preset_a_gradient_rule": "A short rule over a title, in the site's five colours drifting slowly. `variant='gradient'` makes the line three pixels thick, and a width class such as `kicl-inline-size-xs` keeps it short. On paper it prints still.",
+  "separator_preset_a_gradient_rule_name": "A gradient rule",
   "separator_preset_a_thematic_break": "For a change of topic between paragraphs. As an `hr`, screen readers announce it.",
   "separator_preset_a_thematic_break_name": "A thematic break",
   "separator_preset_basic": "Splits stacked content, like two parts of a card, with a line across.",

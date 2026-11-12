@@ -214,7 +214,12 @@ import {
   type SelectTriggerProps,
   type SelectValueProps,
 } from './select';
-import { Separator, type SeparatorIs, type SeparatorProps } from './separator';
+import {
+  Separator,
+  SEPARATOR_VARIANTS,
+  type SeparatorIs,
+  type SeparatorProps,
+} from './separator';
 import { Skeleton, type SkeletonProps } from './skeleton';
 import { Status, StatusProps } from './status';
 import { Spinner, SpinnerProps } from './spinner';
@@ -478,6 +483,7 @@ export {
   SelectValue,
   type SelectValueProps,
   Separator,
+  SEPARATOR_VARIANTS,
   type SeparatorIs,
   type SeparatorProps,
   Skeleton,

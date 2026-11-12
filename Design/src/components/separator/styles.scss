@@ -26,4 +26,19 @@
     min-block-size: 1lh;
     vertical-align: middle;
   }
+
+  &--variant--gradient {
+    --kicl--components--separator--size: var(--kicl-size-3px);
+
+    animation: kicl-gradient-shift var(--kicl-transition-duration-5m) ease
+      infinite;
+    background-image: var(--kicl-gradient-shift);
+    background-size: 1200% 1200%;
+
+    // Paper drops backgrounds unless told to keep them, and nothing moves on it.
+    @media print {
+      animation: none;
+      print-color-adjust: exact;
+    }
+  }
 }

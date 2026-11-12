@@ -26,5 +26,50 @@
         inline-size: 100%;
       }
     }
+
+    /*
+     * Safari 26.6 has no scroll-state queries. There a scroll timeline shows
+     * the line while content is scrolled past the box: above a header stuck
+     * to the top, below a footer stuck to the bottom. `visibility` animates as
+     * `visible` everywhere between the two keyframes, and an inactive
+     * timeline, when the scroller doesn't overflow, leaves it hidden.
+     */
+    @supports (animation-timeline: scroll()) and
+      (not (container-type: scroll-state)) {
+      &::before {
+        animation-duration: var(--kicl-transition-duration-5m), auto;
+        animation-fill-mode: none, both;
+        animation-iteration-count: infinite, 1;
+        animation-name:
+          kicl-gradient-shift,
+          kicl-stuck-line-#{$edge};
+        animation-timeline: auto, scroll();
+        animation-timing-function: ease, linear;
+        background: var(--kicl-gradient-shift);
+        background-size: 1200% 1200%;
+        inline-size: 100%;
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+@keyframes kicl-stuck-line-start {
+  from {
+    visibility: visible;
+  }
+
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes kicl-stuck-line-end {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
   }
 }

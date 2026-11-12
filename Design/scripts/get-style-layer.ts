@@ -26,8 +26,12 @@ const LAYER_ORDER = `@layer ${LAYERS.join(', ')};`;
 
 const BASE = [
   'styles.body.scss',
+  'styles.fields.scss',
+  'styles.focus.scss',
   'styles.generic.scss',
   'styles.headings.scss',
+  'styles.interaction.scss',
+  'styles.theme.scss',
 ];
 
 /**

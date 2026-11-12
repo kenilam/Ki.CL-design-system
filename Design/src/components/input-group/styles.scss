@@ -66,32 +66,6 @@
     );
   }
 
-  // The controls inside a disabled group stay as they are, so the fade isn't
-  // applied twice.
-  &:disabled {
-    --kicl-disabled-opacity: 1;
-
-    opacity: var(--kicl--components--input-group--disabled-opacity);
-  }
-
-  &:has(&__control[readonly]) {
-    --kicl--components--input-group--background-color: var(
-      --kicl--components--input-group--read-only-background-color
-    );
-  }
-
-  &:has(&__control:focus-visible) {
-    outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
-    outline-offset: var(--kicl-size-1px);
-  }
-
-  &:has([aria-invalid='true'], :user-invalid) {
-    --kicl-outline-color: var(--kicl-color-error);
-    --kicl--components--input-group--border-color: var(
-      --kicl--components--input-group--invalid-border-color
-    );
-  }
-
   &__control {
     flex: 1 1 0;
     min-inline-size: 0;

@@ -15,9 +15,15 @@ import {
 // Spec
 import * as Spec from 'design/components/page-indicator/spec';
 
+// Constants
+import { CLASS_NAME } from 'design/components/page-indicator/constants';
+
+// Styles
+import './styles.scss';
+
 const Page: React.FunctionComponent<Spec.Page> = ({ id, label }) => {
   return (
-    <ListItem>
+    <ListItem className={`${CLASS_NAME}__page`}>
       <Popover>
         <PopoverTrigger asChild>
           <HyperLink

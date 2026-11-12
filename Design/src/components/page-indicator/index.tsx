@@ -15,7 +15,8 @@ import * as Spec from './spec';
 // Styles
 import './styles.scss';
 
-const CLASS_NAME = 'kicl--components--page-indicator';
+// Constants
+import { CLASS_NAME } from './constants';
 
 const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
   ({ className, pages, style, ...rest }, ref) => {

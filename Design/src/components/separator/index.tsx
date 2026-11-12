@@ -30,9 +30,6 @@ const Separator = React.forwardRef<HTMLElement, Props>(
           CLASS_NAME,
           `${CLASS_NAME}--${orientation}`,
           `${CLASS_NAME}--variant--${variant}`,
-          orientation === 'horizontal'
-            ? ['kicl-display-block', 'kicl-inline-size-full']
-            : 'kicl-display-inline-block',
           className
         )}
         ref={ref as never}

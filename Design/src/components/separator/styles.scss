@@ -17,11 +17,14 @@
 
   &--horizontal {
     block-size: var(--kicl--components--separator--size);
+    display: block;
+    inline-size: 100%;
   }
 
   &--vertical {
     align-self: stretch;
     block-size: auto;
+    display: inline-block;
     inline-size: var(--kicl--components--separator--size);
     min-block-size: 1lh;
     vertical-align: middle;
@@ -30,10 +33,7 @@
   &--variant--gradient {
     --kicl--components--separator--size: var(--kicl-size-3px);
 
-    animation: kicl-gradient-shift var(--kicl-transition-duration-5m) ease
-      infinite;
-    background-image: var(--kicl-gradient-shift);
-    background-size: 1200% 1200%;
+    @include gradient-shift;
 
     // Paper drops backgrounds unless told to keep them, and nothing moves on it.
     @media print {

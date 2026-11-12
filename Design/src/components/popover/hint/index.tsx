@@ -15,8 +15,7 @@ import { useSyncOpen } from './use-sync-open';
 
 /**
  * Only for words: a panel that opens on hover closes before the pointer
- * reaches it, and touch has no hover. Browsers without `interestfor` don't
- * show it, but assistive tech still reads it through `aria-describedby`.
+ * reaches it, and touch has no hover.
  */
 const PopoverHint: React.FC<PopoverHintProps> = ({
   children,

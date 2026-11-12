@@ -1,7 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type { BadgeLabelProps } from './spec';
+import type { BadgeLabelProps } from 'design/components/badge/spec';
+
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--badge__label';
 

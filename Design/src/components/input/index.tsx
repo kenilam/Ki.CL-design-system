@@ -10,6 +10,7 @@ import type { Props } from './spec';
 
 import './styles.scss';
 import './styles.file.scss';
+import './styles.search.scss';
 
 // Partials
 import { Control } from './control';

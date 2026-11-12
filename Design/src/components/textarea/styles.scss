@@ -26,7 +26,6 @@
     var(--kicl--components--textarea--border-color);
   border-radius: var(--kicl--components--textarea--border-radius);
   color: var(--kicl--components--textarea--color, var(--kicl-body-color));
-  field-sizing: content;
   font: inherit;
   inline-size: 100%;
   max-inline-size: 100%;
@@ -35,6 +34,12 @@
   padding-block: var(--kicl--components--textarea--padding-block);
   padding-inline: var(--kicl--components--textarea--padding-inline);
   resize: vertical;
+
+  // A field that grows with its text has no use for the resize handle.
+  @supports (field-sizing: content) {
+    field-sizing: content;
+    resize: none;
+  }
 
   // `field-sizing: content` would widen the field to fit the placeholder.
   &:placeholder-shown {
@@ -46,10 +51,7 @@
     $padding: var(--kicl--components--textarea--padding-block);
     $border: var(--kicl--components--textarea--border-width);
 
-    min-block-size: max(
-      var(--kicl--components--textarea--min-block-size),
-      calc($lines + 2 * ($padding + $border))
-    );
+    min-block-size: calc($lines + 2 * ($padding + $border));
   }
 
   &:disabled {

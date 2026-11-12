@@ -17,12 +17,6 @@ export type BadgeIs =
   'a' | 'abbr' | 'button' | 'div' | 'li' | 'mark' | 'span' | 'time';
 
 type OwnProps = Pick<ButtonProps, 'level' | 'size'> & {
-  limit?: number;
-  /**
-   * With `limit` and no `level`, the level follows how much is left:
-   * `confirm`, `warning` from half the limit, `error` at one or none.
-   */
-  remaining?: number;
   variant?: BadgeVariant;
 };
 

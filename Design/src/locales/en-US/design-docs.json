@@ -24,8 +24,6 @@
   "badge_intro": "A small label for a status, a count or a tag. `variant` is the look and `level` is the meaning, the same as on [Button]({{docs}}components/action/button). Text that doesn't fit on one line ends with an ellipsis.",
   "badge_preset_a_date": "For a date next to a post or a change.",
   "badge_preset_a_date_name": "A date",
-  "badge_preset_allowance": "For how much of a limit is left, like images a person can still make today. Given `remaining` and `limit` and no `level`, the badge picks the level itself: confirm, warning from half the limit, and error at one or none.",
-  "badge_preset_allowance_name": "Allowance",
   "badge_preset_basic": "For a short status next to something, like marking an item as new.",
   "badge_preset_basic_name": "Basic",
   "badge_preset_count": "For a number, like unread messages.",

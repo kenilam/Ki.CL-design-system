@@ -28,6 +28,20 @@ import { Backdrop } from 'design/docs/tokens/previews';
 
 // Darkens a picture so text on it reads
 <figure className={classNames('kicl-position-relative', 'kicl-scrim')} />
+
+// A picture that covers its box, centered, without repeating
+<div
+  className={classNames(
+    'kicl-background-position-center',
+    'kicl-background-repeat-no-repeat',
+    'kicl-background-size-cover'
+  )}
+/>
+
+// Text filled with the gradient its own stylesheet sets
+<h1 className='kicl-background-clip-text' />
 ```
 
 <Copy id='token_effects_part_6' />
+
+<Copy id='token_effects_backgrounds' />

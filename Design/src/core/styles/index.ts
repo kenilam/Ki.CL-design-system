@@ -28,6 +28,8 @@ import './font.scss';
 import './font.languages.scss';
 import './font.text.scss';
 import './gradient-shift.scss';
+// After gradient-shift.scss, whose `background` shorthand resets the clip.
+import './background.scss';
 import './grid.scss';
 import './gutter.scss';
 import './gutter.frame.scss';

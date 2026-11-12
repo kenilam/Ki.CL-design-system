@@ -1,0 +1,41 @@
+.kicl--components--sheet {
+  @each $level in map.keys($levels) {
+    &--level--#{$level} {
+      @if $level == 'neutral' {
+        --kicl--components--sheet--line-gradient: var(--kicl-gradient-shift);
+      } @else {
+        --kicl--components--sheet--line-gradient: var(
+          --kicl--components--card--tone
+        );
+      }
+    }
+  }
+
+  // The card's own blur makes it the backdrop root, so a blur on the header or
+  // footer can't reach the content scrolling underneath. On a glass sheet they
+  // go solid while content is under them.
+  @supports (animation-timeline: scroll()) {
+    &--variant--primary,
+    &--variant--tertiary {
+      --kicl--components--sheet--section-animation-name: none;
+      --kicl--components--sheet--section-background-color: var(
+        --kicl--components--card--background-color
+      );
+    }
+
+    &--variant--secondary {
+      --kicl--components--sheet--section-animation-name: kicl--components--sheet--covered;
+      --kicl--components--sheet--section-background-color: transparent;
+    }
+  }
+}
+
+@keyframes kicl--components--sheet--covered {
+  to {
+    --kicl--components--sheet--cover: var(
+      --kicl--components--card--background-color
+    );
+
+    background-color: var(--kicl-body-background-color);
+  }
+}

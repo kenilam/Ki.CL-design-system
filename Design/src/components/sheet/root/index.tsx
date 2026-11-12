@@ -27,6 +27,7 @@ const Root: React.FunctionComponent<Props> = ({
   children,
   className,
   defaultOpen,
+  level,
   modal,
   onOpenChange,
   popover = 'manual',
@@ -34,6 +35,7 @@ const Root: React.FunctionComponent<Props> = ({
   side = 'inline-end',
   size = 4,
   style,
+  variant = 'primary',
   ...rest
 }) => {
   const node = useRef<HTMLElement | null>(null);
@@ -51,6 +53,8 @@ const Root: React.FunctionComponent<Props> = ({
       className={classNames(
         CLASS_NAME,
         `${CLASS_NAME}--${side}`,
+        `${CLASS_NAME}--level--${level ?? 'neutral'}`,
+        `${CLASS_NAME}--variant--${variant}`,
         'kicl-overflow-y-auto',
         'kicl-padding-none',
         'kicl-position-fixed',
@@ -59,6 +63,7 @@ const Root: React.FunctionComponent<Props> = ({
       closedby={sheet.closedby}
       id={sheet.id}
       is='dialog'
+      level={level}
       popover={sheet.closable ? popover : 'manual'}
       ref={mergeRefs(node, ref)}
       style={
@@ -67,6 +72,7 @@ const Root: React.FunctionComponent<Props> = ({
           ...style,
         } as React.CSSProperties
       }
+      variant={variant}
     >
       {sheet.shown ? <Contents>{children}</Contents> : null}
     </Card>

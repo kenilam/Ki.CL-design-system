@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { CardHeader, type CardHeaderProps } from 'design/components/card';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--sheet__header';
 
 const SheetHeader = React.forwardRef<HTMLElement, CardHeaderProps>(

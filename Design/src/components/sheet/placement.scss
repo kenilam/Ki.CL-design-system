@@ -1,0 +1,62 @@
+.kicl--components--sheet {
+  @include query('>narrow') {
+    $x: calc(
+      var(--kicl--components--sheet--side-inline) *
+      var(--kicl--components--sheet--direction) * #{$shadow-distant-negative}
+    );
+    $y: calc(
+      var(--kicl--components--sheet--side-block) * #{$shadow-distant-negative}
+    );
+
+    @include box-shadow(
+      $x $y ($shadow-distant * 2) rgba($shadow-color, $shadow-alpha-overlay)
+    );
+
+    &--inline-start,
+    &--inline-end {
+      inline-size: var(--kicl--components--sheet--inline-size);
+      inset-block: var(--kicl-inset-block-start) var(--kicl-inset-block-end);
+    }
+
+    &--inline-start {
+      inset-inline: var(--kicl-inset-inline-start) auto;
+    }
+
+    &--inline-end {
+      inset-inline: auto var(--kicl-inset-inline-end);
+    }
+
+    &--block-start,
+    &--block-end {
+      inline-size: auto;
+      inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
+      max-block-size: calc(
+        100dvb - var(--kicl-inset-block-start) - var(--kicl-inset-block-end)
+      );
+    }
+
+    &--block-start {
+      inset-block: var(--kicl-inset-block-start) auto;
+    }
+
+    &--block-end {
+      inset-block: auto var(--kicl-inset-block-end);
+    }
+  }
+
+  @include query('≤narrow') {
+    --kicl--components--card--glass-background-color: var(
+      --kicl--components--sheet--solid-background-color
+    );
+
+    border: 0;
+    border-radius: 0;
+    inline-size: auto;
+    inset: 0;
+
+    // The browser keeps a modal dialog off the screen's edges.
+    max-block-size: none;
+    max-inline-size: none;
+    overscroll-behavior: contain;
+  }
+}

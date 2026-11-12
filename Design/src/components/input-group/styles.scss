@@ -5,12 +5,21 @@
   --kicl--components--input-group--disabled-opacity: var(
     --kicl-disabled-opacity
   );
-  --kicl--components--input-group--invalid-border-color: var(
-    --kicl-color-error-secondary
-  );
   --kicl--components--input-group--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--input-group--padding-inline-end: var(--kicl-gutter);
   --kicl--components--input-group--padding-inline-start: var(--kicl-gutter);
+}
+
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--input-group--background-color: var(--kicl-surface-color);
+  --kicl--components--input-group--invalid-border-color: var(
+    --kicl-color-error-secondary
+  );
+  --kicl--components--input-group--read-only-background-color: var(
+    --kicl-body-background-color
+  );
 }
 
 .kicl--theme--dark {
@@ -35,12 +44,7 @@
   --kicl--components--textarea--padding-inline: 0;
   --kicl--components--textarea--read-only-background-color: transparent;
 
-  // The colours are read with a fallback, not set on `:root`, so they follow
-  // the theme the group sits in.
-  background-color: var(
-    --kicl--components--input-group--background-color,
-    var(--kicl-surface-color)
-  );
+  background-color: var(--kicl--components--input-group--background-color);
   border: var(--kicl--components--input-group--border-width) solid
     var(--kicl--components--input-group--border-color);
   border-radius: var(--kicl--components--input-group--border-radius);
@@ -72,8 +76,7 @@
 
   &:has(&__control[readonly]) {
     --kicl--components--input-group--background-color: var(
-      --kicl--components--input-group--read-only-background-color,
-      var(--kicl-body-background-color)
+      --kicl--components--input-group--read-only-background-color
     );
   }
 

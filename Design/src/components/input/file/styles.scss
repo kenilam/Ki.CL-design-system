@@ -5,18 +5,21 @@
   --kicl--components--input--file--tone: var(--kicl-color-info);
 }
 
-.kicl--components--input--file {
-  // The colours are read with a fallback, not set on `:root`, so they follow
-  // the theme the field sits in.
-  background-color: var(
-    --kicl--components--input--file--background-color,
-    var(--kicl-surface-glass-color)
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--input--file--background-color: var(
+    --kicl-surface-glass-color
   );
+  --kicl--components--input--file--border-color: var(
+    --kicl-surface-border-color
+  );
+}
+
+.kicl--components--input--file {
+  background-color: var(--kicl--components--input--file--background-color);
   border: var(--kicl-size-1px) dashed
-    var(
-      --kicl--components--input--file--border-color,
-      var(--kicl-surface-border-color)
-    );
+    var(--kicl--components--input--file--border-color);
   border-radius: var(--kicl-gutter-narrow);
   cursor: pointer;
   inline-size: 100%;

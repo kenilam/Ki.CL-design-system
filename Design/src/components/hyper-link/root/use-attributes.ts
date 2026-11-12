@@ -1,8 +1,5 @@
 // Components
-import {
-  getButtonClassNames,
-  hasButtonText as hasText,
-} from 'design/components';
+import { getButtonClassNames } from 'design/components';
 
 // Spec
 import type * as Spec from 'design/components/hyper-link/spec';
@@ -54,7 +51,8 @@ const useAttributes = ({
         block,
         className: _className,
         disabled,
-        icon: !hasText(hyperLink.before, hyperLink.children, hyperLink.after),
+        icon: hyperLink.isIcon,
+        iconOnlyUpTo: hyperLink.iconOnlyUpTo,
         level,
         size,
         variant,

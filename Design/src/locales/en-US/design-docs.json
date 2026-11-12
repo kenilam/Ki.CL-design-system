@@ -71,6 +71,8 @@
   "button_preset_icon_before_name": "Icon before",
   "button_preset_icon_only": "For an action everyone knows by its icon, like closing a panel. Give it an `aria-label` so screen readers can say what it does.",
   "button_preset_icon_only_name": "Icon only",
+  "button_preset_icon_only_on_narrow_screens": "For a row of actions that has room for their labels on a wide screen but not on a phone. Up to the breakpoint `iconOnlyUpTo` names, the label is hidden from sight but still read by screen readers, and the button takes the icon-only look. It needs an icon in `before` or `after`. A `HyperLink` with `lookLikeButton` takes it too.",
+  "button_preset_icon_only_on_narrow_screens_name": "Icon only on narrow screens",
   "button_preset_icons_both_sides": "For a button that does two things, like Save and continue.",
   "button_preset_icons_both_sides_name": "Icons both sides",
   "button_preset_opens_a_menu": "Keeps less common actions out of the way. Clicking it opens a menu, and the down arrow shows that it will.",

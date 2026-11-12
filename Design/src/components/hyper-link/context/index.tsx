@@ -1,60 +1,18 @@
 import React, { createContext, useContext } from 'react';
 
-// Spec
-import type * as Spec from 'design/components/hyper-link/spec';
+// Partials
+import { type Props, useValue } from './use-value';
 
-// Components
-import { getButtonContent } from 'design/components';
+const HyperLinkContext = createContext<ReturnType<typeof useValue> | null>(
+  null
+);
 
-// Hooks
-import { useURLStatus } from 'design/components/hyper-link/hooks';
-
-type Props = React.PropsWithChildren<
-  Pick<
-    Spec.Props,
-    'after' | 'before' | 'busy' | 'lookLikeButton' | 'target' | 'to'
-  > & {
-    contents: Spec.Props['children'];
-  }
->;
-
-type Value = Pick<Spec.Props, 'busy' | 'lookLikeButton' | 'target'> &
-  ReturnType<typeof getButtonContent> & {
-    hasLine: boolean;
-    isHash: boolean;
-  };
-
-const HyperLinkContext = createContext<Value | null>(null);
-
-const Provider: React.FunctionComponent<Props> = ({
-  after,
-  before,
-  busy,
+const Provider: React.FunctionComponent<React.PropsWithChildren<Props>> = ({
   children,
-  contents,
-  lookLikeButton,
-  target,
-  to,
+  ...props
 }) => {
-  const status = useURLStatus(to);
-  const content = getButtonContent({
-    after,
-    before,
-    busy,
-    children: contents,
-  });
-
   return (
-    <HyperLinkContext.Provider
-      value={{
-        ...content,
-        busy,
-        hasLine: !lookLikeButton && !!(after || before),
-        isHash: status.isHash,
-        lookLikeButton,
-        target: status.isExternal ? '_blank' : target,
-      }}
-    >
+    <HyperLinkContext.Provider value={useValue(props)}>
       {children}
     </HyperLinkContext.Provider>
   );

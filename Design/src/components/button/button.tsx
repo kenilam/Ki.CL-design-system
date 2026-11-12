@@ -31,6 +31,7 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     children,
     className,
     disabled,
+    iconOnlyUpTo,
     level,
     lookLikeHyperLink = false,
     onClick,
@@ -49,7 +50,13 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     ...rest
   } = props;
 
-  const content = getButtonContent({ after, before, busy, children });
+  const content = getButtonContent({
+    after,
+    before,
+    busy,
+    children,
+    iconOnlyUpTo,
+  });
 
   return (
     <Layout

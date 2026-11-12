@@ -1,19 +1,34 @@
+@mixin -icon-only {
+  $inset: calc(var(--kicl--components--button--block-size) * 0.2);
+
+  --kicl--components--button--border-radius: 50%;
+  --kicl--components--button--padding-block: #{$inset};
+  --kicl--components--button--padding-inline: #{$inset};
+  --kicl--components--spinner--font-size: calc(
+    var(--kicl--components--button--block-size) * 0.6
+  );
+
+  backdrop-filter: blur(var(--kicl-gutter));
+  display: grid;
+
+  > svg {
+    font-size: calc(var(--kicl--components--button--block-size) * 0.6);
+  }
+}
+
 .kicl--components--button {
   // `--icon` rules out text nodes, which `:has()` can't see.
   &--icon:is(:has(> svg), :has(> .kicl--components--spinner)):not(
     :has(> :not(svg, .kicl--components--spinner, .kicl-hidden))
   ) {
-    --kicl--components--button--border-radius: 50%;
-    --kicl--components--spinner--font-size: calc(
-      var(--kicl--components--button--block-size) * 0.6
-    );
+    @include -icon-only;
+  }
 
-    backdrop-filter: blur(var(--kicl-gutter));
-    display: grid;
-    padding: calc(var(--kicl--components--button--block-size) * 0.2);
-
-    > svg {
-      font-size: calc(var(--kicl--components--button--block-size) * 0.6);
+  @each $breakpoint in (narrowest, narrower, narrow) {
+    &--icon-up-to--#{$breakpoint} {
+      @include query('≤#{$breakpoint}') {
+        @include -icon-only;
+      }
     }
   }
 }

@@ -13,6 +13,9 @@ import { useDiagram } from 'design/components/diagram/context';
 import { endsOf } from 'design/components/diagram/root/preview/drawing/edges/ends-of';
 import { roundedPath } from './rounded-path';
 
+// Styles
+import './styles.scss';
+
 type Props = { ends: string };
 
 const Edge: React.FunctionComponent<Props> = ({ ends }) => {

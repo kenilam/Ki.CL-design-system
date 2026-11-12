@@ -1,0 +1,15 @@
+.kicl--components--diagram-box {
+  fill: var(--kicl-surface-color);
+  stroke: var(--kicl-surface-border-color);
+  transition: stroke 200ms ease;
+
+  &--active {
+    stroke: var(--kicl-color-green);
+    stroke-width: 1.5;
+  }
+
+  &--failed {
+    stroke: var(--kicl-color-red);
+    stroke-width: 1.5;
+  }
+}

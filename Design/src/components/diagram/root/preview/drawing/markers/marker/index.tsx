@@ -12,6 +12,9 @@ import { useDiagram } from 'design/components/diagram/context';
 // Spec
 import type { Accent } from 'design/components/diagram/spec';
 
+// Styles
+import './styles.scss';
+
 type Props = { accent?: Accent };
 
 const Marker: React.FunctionComponent<Props> = ({ accent }) => {

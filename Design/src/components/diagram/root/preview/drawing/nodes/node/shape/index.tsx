@@ -12,6 +12,9 @@ import { useDiagram } from 'design/components/diagram/context';
 // Partials
 import { useNode } from 'design/components/diagram/root/preview/drawing/nodes/node/context';
 
+// Styles
+import './styles.scss';
+
 const NodeShape: React.FunctionComponent = () => {
   const { state } = useDiagram();
   const { h, id, shape = 'rect', w, x, y } = useNode();

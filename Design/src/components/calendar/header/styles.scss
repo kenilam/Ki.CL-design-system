@@ -1,0 +1,10 @@
+.kicl--components--calendar__header {
+  $text: calc(var(--kicl-font-size-small) * var(--kicl-line-height-narrower));
+  $edges: calc(2 * var(--kicl-gutter-narrow) + var(--kicl-size-1px));
+
+  border-block-end: var(--kicl-size-1px) solid var(--kicl-surface-border-color);
+  line-height: calc(#{$text} + #{$edges});
+  margin-block-end: var(--kicl-gutter-narrow);
+  padding-block-end: var(--kicl-gutter-narrow);
+  text-align: center;
+}

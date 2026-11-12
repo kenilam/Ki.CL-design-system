@@ -136,6 +136,7 @@ import { FileInput } from './input/file';
 import { PasswordInput } from './input/password';
 import { RangeInput, type RangeInputProps } from './input/range';
 import { SearchInput } from './input/search';
+import { SeekInput, type SeekInputProps } from './input/seek';
 import {
   InputGroup,
   InputGroupButton,
@@ -439,6 +440,8 @@ export {
   RangeInput,
   type RangeInputProps,
   SearchInput,
+  SeekInput,
+  type SeekInputProps,
   ScrollIndicator,
   type ScrollIndicatorProps,
   Segmented,

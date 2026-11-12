@@ -1,4 +1,4 @@
-.kicl--components--select {
+:root {
   --kicl--components--select--content-max-block-size: 16rem;
 }
 
@@ -9,7 +9,7 @@
   border: var(--kicl--components--select--border-width) solid
     var(--kicl-surface-border-color);
   border-radius: var(--kicl--components--popover--border-radius);
-  color: var(--kicl--components--select--color);
+  color: var(--kicl--components--select--color, var(--kicl-body-color));
   margin: 0;
   max-block-size: var(--kicl--components--select--content-max-block-size);
   opacity: 0;

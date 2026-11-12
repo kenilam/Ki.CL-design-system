@@ -660,6 +660,7 @@
   "token_overflow_scroll_fade": "### scroll-fade\n\nMDN: [`mask-image`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image).",
   "token_overflow_variables": "## Variables",
   "token_position_classes": "## Classes\n\nThe pattern is `kicl-position-{keyword}`, where `{keyword}` is any value above.",
+  "token_position_fixed": "`kicl-position-fixed` also sets the inset variables, from `--kicl--components--frame--fixed-inset-{block-start|block-end|inline-start|inline-end}` where those are set and the gutter where they aren't. A page with a Frame sets them, so the inset classes on a fixed element keep it inside the frame and below the header.",
   "token_position_intro": "Classes that set `position`. Place the element with the inset classes on [Sides]({{docs}}tokens/semantics/sides).",
   "token_position_position": "### position\n\nMDN: [`position`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position).",
   "token_position_variables": "## Variables",

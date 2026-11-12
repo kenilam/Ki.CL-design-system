@@ -1,8 +1,36 @@
 $interaction: (
-  'cursor': (auto, default, pointer, grab, grabbing, zoom-in, not-allowed),
-  'touch-action': (auto, none, manipulation, pan-x, pan-y),
-  'user-select': (auto, none, text, all),
-  'overscroll-behavior': (auto, contain, none),
+  'appearance': (
+    auto,
+    none,
+  ),
+  'cursor': (
+    auto,
+    default,
+    pointer,
+    progress,
+    grab,
+    grabbing,
+    zoom-in,
+    not-allowed,
+  ),
+  'touch-action': (
+    auto,
+    none,
+    manipulation,
+    pan-x,
+    pan-y,
+  ),
+  'user-select': (
+    auto,
+    none,
+    text,
+    all,
+  ),
+  'overscroll-behavior': (
+    auto,
+    contain,
+    none,
+  ),
 );
 
 :root {

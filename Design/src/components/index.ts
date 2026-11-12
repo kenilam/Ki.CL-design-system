@@ -27,11 +27,14 @@ import {
   type ButtonProps,
   CopyButton,
   type CopyButtonProps,
+  ShareButton,
+  type ShareButtonProps,
   VolumeButton,
   type VolumeButtonProps,
   type GetButtonClassNamesProps,
 } from './button';
 import { getButtonClassNames } from './button/class-names';
+import { getButtonContent } from './button/content';
 import {
   Calendar,
   type CalendarMode,
@@ -126,9 +129,15 @@ import {
 } from './hyper-link';
 import { BackLink } from './hyper-link/back-link';
 import { HomeLink } from './hyper-link/home-link';
-import type { BackLinkProps, HomeLinkProps } from './hyper-link/spec';
+import { MoreLink } from './hyper-link/more-link';
+import type {
+  BackLinkProps,
+  HomeLinkProps,
+  MoreLinkProps,
+} from './hyper-link/spec';
 import { getHyperLinkClassNames } from './hyper-link/class-names';
 import { Image, ImageProps } from './image';
+import { ZoomableImage, type ZoomableImageProps } from './image/zoomable';
 import { Input, type InputProps } from './input';
 import { CopyInput } from './input/copy';
 import { EmailInput } from './input/email';
@@ -136,6 +145,7 @@ import { FileInput } from './input/file';
 import { PasswordInput } from './input/password';
 import { RangeInput, type RangeInputProps } from './input/range';
 import { SearchInput } from './input/search';
+import { SeekInput, type SeekInputProps } from './input/seek';
 import {
   InputGroup,
   InputGroupButton,
@@ -206,7 +216,12 @@ import {
   type SelectTriggerProps,
   type SelectValueProps,
 } from './select';
-import { Separator, type SeparatorIs, type SeparatorProps } from './separator';
+import {
+  Separator,
+  SEPARATOR_VARIANTS,
+  type SeparatorIs,
+  type SeparatorProps,
+} from './separator';
 import { Skeleton, type SkeletonProps } from './skeleton';
 import { Status, StatusProps } from './status';
 import { Spinner, SpinnerProps } from './spinner';
@@ -248,6 +263,7 @@ import {
 import { CARD_VARIANTS } from './card/spec';
 import { useFormItemControl } from './form/context';
 import { HEADING_LEVELS, type HeadingIs } from './heading/spec';
+import { CLASS_NAME as INPUT_CLASS_NAME } from './input/constants';
 import { CLASS_NAME as INPUT_GROUP_CLASS_NAME } from './input-group/constants';
 import {
   ALIGN_CONTENTS as LAYOUT_ALIGN_CONTENTS,
@@ -298,8 +314,11 @@ export {
   type ButtonProps,
   getButtonClassNames,
   type GetButtonClassNamesProps,
+  getButtonContent,
   CopyButton,
   type CopyButtonProps,
+  ShareButton,
+  type ShareButtonProps,
   VolumeButton,
   type VolumeButtonProps,
   Calendar,
@@ -391,6 +410,8 @@ export {
   type GetHyperLinkClassNamesProps,
   Image,
   type ImageProps,
+  ZoomableImage,
+  type ZoomableImageProps,
   Input,
   type InputProps,
   InputGroup,
@@ -413,6 +434,8 @@ export {
   type MarkdownProps,
   Menu,
   type MenuProps,
+  MoreLink,
+  type MoreLinkProps,
   Navigation,
   type NavigationProps,
   Notification,
@@ -438,6 +461,8 @@ export {
   RangeInput,
   type RangeInputProps,
   SearchInput,
+  SeekInput,
+  type SeekInputProps,
   ScrollIndicator,
   type ScrollIndicatorProps,
   Segmented,
@@ -465,6 +490,7 @@ export {
   SelectValue,
   type SelectValueProps,
   Separator,
+  SEPARATOR_VARIANTS,
   type SeparatorIs,
   type SeparatorProps,
   Skeleton,
@@ -508,6 +534,7 @@ export {
   useFormItemControl,
   HEADING_LEVELS,
   type HeadingIs,
+  INPUT_CLASS_NAME,
   INPUT_GROUP_CLASS_NAME,
   LAYOUT_ALIGN_CONTENTS,
   LAYOUT_ALIGN_ITEMS,

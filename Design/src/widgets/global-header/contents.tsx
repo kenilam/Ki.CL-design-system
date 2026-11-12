@@ -38,7 +38,7 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     'kicl-position-sticky',
     'kicl-print-hidden',
     'kicl-text-transform-uppercase',
-    'kicl-z-index-header',
+    'kicl-z-index-global',
     CLASS_NAME
   );
 

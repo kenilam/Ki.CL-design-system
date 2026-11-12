@@ -7,6 +7,9 @@ import classNames from 'classnames';
 import { List } from 'design/components/list';
 import { ListItem } from 'design/components/list-item';
 
+// Styles
+import './styles.scss';
+
 // Constants
 import { CLASS_NAME } from 'design/components/notification/group/constants';
 

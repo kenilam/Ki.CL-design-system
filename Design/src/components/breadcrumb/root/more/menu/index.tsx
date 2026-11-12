@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { List } from 'design/components/list';
+import { List } from 'design/components';
 
 // Spec
 import type * as Spec from 'design/components/breadcrumb/spec';

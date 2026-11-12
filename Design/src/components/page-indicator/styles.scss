@@ -1,11 +1,13 @@
+:root {
+  --kicl--components--page-indicator--page: 100dvb;
+}
+
 /*
  * Ranges are in page heights, not shares of the whole scroll, because the
  * document is longer than its pages when something follows them.
  */
 .kicl--components--page-indicator {
   $name: '--kicl--components--page-indicator';
-
-  --kicl--components--page-indicator--page: 100dvb;
 
   animation-fill-mode: forwards;
   animation-name: kicl--components--page-indicator--hidden;
@@ -14,14 +16,6 @@
   );
   animation-range-end: calc(var(#{$name}--count) * var(#{$name}--page));
   animation-timeline: scroll(root block);
-
-  li {
-    animation-fill-mode: both;
-    animation-name: kicl--components--page-indicator--scroll;
-    animation-range-start: calc((sibling-index() - 1.5) * var(#{$name}--page));
-    animation-range-end: calc((sibling-index() - 0.5) * var(#{$name}--page));
-    animation-timeline: scroll(root block);
-  }
 
   // Without these there's no way to tell the current dot, so the column hides.
   @supports not (
@@ -48,27 +42,5 @@
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
-  }
-}
-
-@keyframes kicl--components--page-indicator--scroll {
-  0% {
-    scale: 1;
-  }
-
-  10% {
-    scale: 1.4;
-  }
-
-  50% {
-    scale: 1.4;
-  }
-
-  90% {
-    scale: 1.4;
-  }
-
-  100% {
-    scale: 1;
   }
 }

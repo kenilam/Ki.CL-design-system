@@ -18,7 +18,6 @@ import { labelOf } from 'design/components/segmented/children';
 
 const CLASS_NAME = 'kicl--components--segmented__trigger';
 
-/** Above the `narrow` breakpoint, CSS lays the panel out in place and hides the trigger. */
 const SegmentedTrigger: React.FunctionComponent = () => {
   const { block, children, disabled, id } = useSegmented();
   const { chosen, value } = useChoice();
@@ -28,7 +27,11 @@ const SegmentedTrigger: React.FunctionComponent = () => {
       <Button
         after={<Tb.TbChevronDown aria-hidden />}
         block={block}
-        className={classNames(CLASS_NAME, 'kicl-min-block-size-field')}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-justify-self-start',
+          'kicl-min-block-size-field'
+        )}
         id={`${id}__trigger`}
         disabled={disabled}
         size='small'

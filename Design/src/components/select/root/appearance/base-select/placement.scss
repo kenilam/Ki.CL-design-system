@@ -1,0 +1,47 @@
+$sides: (
+  block-end: block,
+  block-start: block,
+  inline-start: inline,
+  inline-end: inline,
+);
+
+:root {
+  --kicl--components--select--picker-margin-block: var(--kicl-gutter-narrow);
+  --kicl--components--select--picker-margin-inline: 0;
+  --kicl--components--select--position-area: block-end span-inline-end;
+}
+
+.kicl--components--select {
+  @each $side, $axis in $sides {
+    $across: block;
+
+    @if $axis == block {
+      $across: inline;
+    }
+
+    $spans: (
+      start: span-#{$across}-end,
+      center: span-all,
+      end: span-#{$across}-start,
+    );
+
+    @each $align, $span in $spans {
+      &--#{$side}--#{$align} {
+        --kicl--components--select--position-area: #{$side} #{$span};
+
+        @if $axis == inline {
+          --kicl--components--select--picker-margin-block: 0;
+          --kicl--components--select--picker-margin-inline: var(
+            --kicl-gutter-narrow
+          );
+        }
+
+        @if $align == center {
+          --kicl--components--select--item-checkmark-margin-inline-start: 0;
+          --kicl--components--select--item-justify-content: center;
+          --kicl--components--select--item-spacer-display: block;
+        }
+      }
+    }
+  }
+}

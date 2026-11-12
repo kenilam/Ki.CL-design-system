@@ -1,6 +1,4 @@
-.kicl--components--segmented {
-  --kicl--components--segmented--track: var(--kicl-color-neutral-a8);
-  --kicl--components--segmented--thumb: var(--kicl-color-neutral-a16);
+:root {
   --kicl--components--segmented--transition-duration: var(
     --kicl-transition-duration-fast
   );
@@ -8,216 +6,37 @@
   --kicl--components--segmented--transition-timing-function: var(
     --kicl-ease-quint-in-out
   );
+}
 
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--segmented--thumb: var(--kicl-color-neutral-a16);
+  --kicl--components--segmented--track: var(--kicl-color-neutral-a8);
+}
+
+.kicl--components--segmented {
   @include transition('kicl--components--segmented');
 
   background-color: var(--kicl--components--segmented--track);
   min-inline-size: 0;
 
   &--with-legend {
+    --kicl--components--segmented--options--background-color: var(
+      --kicl--components--segmented--track
+    );
+
     background-color: transparent;
-
-    // Floating the legend takes it out of the fieldset's border and into the
-    // flow.
-    > legend {
-      float: inline-start;
-    }
-
-    .kicl--components--segmented__options {
-      background-color: var(--kicl--components--segmented--track);
-    }
-  }
-}
-
-// Fades the options rather than the fieldset so the legend stays as it is.
-.kicl--components--segmented:disabled .kicl--components--segmented__options {
-  opacity: var(--kicl-disabled-opacity);
-}
-
-.kicl--components--segmented__options {
-  // `anchor-scope` stops two controls on one page sharing the checked anchor.
-  anchor-scope: --kicl--components--segmented--checked;
-  border-radius: inherit;
-  grid-auto-columns: minmax(0, 1fr);
-  min-inline-size: 0;
-
-  &::before {
-    background-color: var(--kicl--components--segmented--thumb);
-    border-radius: inherit;
-    content: '';
-    inset: anchor(top) anchor(right) anchor(bottom) anchor(left);
-    position: absolute;
-    position-anchor: --kicl--components--segmented--checked;
-    transition: inset var(--kicl-transition-duration-fast) ease;
-
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-    }
   }
 
-  &:not(:has(:checked))::before {
-    content: none;
-  }
-
-  @supports not (anchor-name: --a) {
-    &::before {
-      content: none;
-    }
-  }
-}
-
-.kicl--components--segmented__item {
-  // So the focus ring follows the highlight's corners.
-  border-radius: inherit;
-  color: var(--kicl-color-neutral-a64);
-  transition: color var(--kicl-transition-duration-fast);
-
-  &:hover {
-    color: var(--kicl-body-color);
-  }
-
-  &:has(:checked) {
-    anchor-name: --kicl--components--segmented--checked;
-    color: var(--kicl-body-color);
-
-    @supports not (anchor-name: --a) {
-      background-color: var(--kicl--components--segmented--thumb);
-    }
-  }
-
-  &:has(:focus-visible) {
-    outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
-    outline-offset: var(--kicl-size-1px);
-  }
-}
-
-// Hidden with opacity, not `display`, so the keyboard and screen readers still
-// reach it.
-.kicl--components--segmented__item__control {
-  appearance: none;
-  opacity: 0;
-}
-
-@mixin segmented-scroll {
-  grid-auto-columns: max-content;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scroll-behavior: smooth;
-
-  @include scroll-fade(inline);
-
-  scroll-padding-inline: var(--kicl-scroll-fade-distance);
-
-  @media (prefers-reduced-motion: reduce) {
-    scroll-behavior: auto;
-  }
-
-  .kicl--components--segmented__item {
-    scroll-snap-align: start;
-    white-space: nowrap;
-
-    &:has(:checked) {
-      scroll-initial-target: nearest;
-    }
-  }
-}
-
-.kicl--components--segmented--collapse--scroll {
-  .kicl--components--segmented__options {
-    @include query('≤narrow') {
-      @include segmented-scroll;
-    }
-  }
-
-  &.kicl--components--segmented--collapsed {
-    .kicl--components--segmented__options {
-      @include segmented-scroll;
-    }
-  }
-}
-
-.kicl--components--segmented__popover {
-  background-color: transparent;
-}
-
-.kicl--components--segmented__trigger {
-  justify-self: start;
-}
-
-.kicl--components--segmented__panel {
-  $line: calc(var(--kicl-font-size-small) * var(--kicl-line-height));
-  $item: calc(#{$line} + var(--kicl-gutter-narrower) * 2);
-  $edge: calc(var(--kicl--components--popover--padding) + var(--kicl-size-1px));
-
-  min-block-size: min-content;
-  scroll-padding-block: var(--kicl--components--popover--padding);
-  scroll-snap-type: block mandatory;
-
-  &:has(.kicl--components--segmented__item:nth-child(6)) {
-    min-block-size: calc(#{$item} * 6 + #{$edge} * 2);
-  }
-
-  .kicl--components--segmented__options {
+  &--popover {
     background-color: transparent;
-    grid-auto-columns: auto;
-    grid-auto-flow: row;
   }
 
-  .kicl--components--segmented__item {
-    justify-items: var(--kicl--components--popover--align, start);
-    scroll-snap-align: start;
-  }
-}
-
-@include query('>narrow') {
-  .kicl--components--segmented__popover:not(
-    .kicl--components--segmented__popover--collapsed
-  ) {
-    &:not(.kicl--components--segmented--with-legend) {
-      background-color: var(--kicl--components--segmented--track);
-      padding: var(--kicl-gutter-narrowest);
-    }
-
-    .kicl--components--segmented__trigger {
-      display: none;
-    }
-
-    .kicl--components--segmented__panel {
-      background: none;
-      border: 0;
-      display: block;
-      inline-size: auto;
-      inset: auto;
-      margin: 0;
-      max-block-size: none;
-      min-block-size: auto;
-      opacity: 1;
-      overflow: visible;
-      padding: 0;
-      position: static;
-      translate: none;
-
-      .kicl--components--segmented__options {
-        animation: none;
-        background-color: transparent;
-        grid-auto-columns: minmax(0, 1fr);
-        grid-auto-flow: column;
-        mask-image: none;
-        overflow: visible;
-        padding: 0;
-      }
-
-      .kicl--components--segmented__item {
-        justify-items: center;
-      }
-    }
-
-    &.kicl--components--segmented--with-legend
-    .kicl--components--segmented__panel
-    .kicl--components--segmented__options {
-      background-color: var(--kicl--components--segmented--track);
-      padding: var(--kicl-gutter-narrowest);
-    }
+  // Fades the options rather than the fieldset so the legend stays as it is.
+  &:disabled {
+    --kicl--components--segmented--options--opacity: var(
+      --kicl-disabled-opacity
+    );
   }
 }

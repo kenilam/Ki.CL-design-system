@@ -1,0 +1,55 @@
+.kicl--components--bubble--variant {
+  &--primary {
+    --kicl--components--bubble--backdrop-filter: none;
+    --kicl--components--bubble--background-color: var(
+      --kicl--components--bubble--tone
+    );
+    --kicl--components--bubble--border-color: transparent;
+    --kicl--components--bubble--color: contrast-color(
+      var(--kicl--components--bubble--background-color)
+    );
+    --kicl--components--bubble--hover: var(--kicl-color-page-a16);
+    --kicl--components--bubble--max-inline-size: 80%;
+  }
+
+  &--secondary {
+    --kicl--components--bubble--backdrop-filter: none;
+    --kicl--components--bubble--background-color: color-mix(
+      in srgb,
+      var(--kicl--components--bubble--tone-secondary) 10%,
+      transparent
+    );
+    --kicl--components--bubble--border-color: transparent;
+    --kicl--components--bubble--color: var(
+      --kicl--components--bubble--tone-secondary
+    );
+    --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
+    --kicl--components--bubble--max-inline-size: 80%;
+  }
+
+  &--tertiary {
+    --kicl--components--bubble--backdrop-filter: none;
+    --kicl--components--bubble--background-color: color-mix(
+      in srgb,
+      var(--kicl--components--bubble--tone-tertiary) 2%,
+      transparent
+    );
+    --kicl--components--bubble--border-color: transparent;
+    --kicl--components--bubble--color: var(--kicl--components--bubble--tone);
+    --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
+    --kicl--components--bubble--max-inline-size: 100%;
+  }
+
+  &--ghost {
+    --kicl--components--bubble--backdrop-filter: var(--kicl-backdrop-blur);
+    --kicl--components--bubble--background-color: transparent;
+    --kicl--components--bubble--border-color: var(
+      --kicl--components--bubble--tone-ghost
+    );
+    --kicl--components--bubble--color: var(
+      --kicl--components--bubble--tone-ghost
+    );
+    --kicl--components--bubble--hover: var(--kicl-color-neutral-a8);
+    --kicl--components--bubble--max-inline-size: 80%;
+  }
+}

@@ -6,6 +6,12 @@ import classNames from 'classnames';
 // Components
 import { Layout } from 'design/components';
 
+// Styles
+import './styles.scss';
+
+// Constants
+import { CLASS_NAME } from 'design/components/dialog/constants';
+
 // Partials
 import { Close } from './close';
 import { Footer } from './footer';
@@ -18,6 +24,7 @@ const Panel: React.FunctionComponent<React.PropsWithChildren> = ({
     <Layout alignContent='start'>
       <div
         className={classNames(
+          `${CLASS_NAME}__panel`,
           'kicl-box-shadow-overlay',
           'kicl-margin-inline-auto',
           'kicl-position-relative',

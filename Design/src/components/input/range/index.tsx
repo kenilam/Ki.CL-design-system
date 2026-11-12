@@ -12,6 +12,8 @@ import type { InputProps } from 'design/components/input';
 
 // Styles
 import './styles.scss';
+import './styles.webkit.scss';
+import './styles.moz.scss';
 
 const CLASS_NAME = 'kicl--components--input--range';
 

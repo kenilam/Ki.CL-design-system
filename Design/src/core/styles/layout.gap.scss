@@ -1,0 +1,29 @@
+@mixin make-layout-gap($size: '') {
+  $gap: '';
+
+  @if $size {
+    $gap: '--kicl-gutter-#{$size}';
+  } @else {
+    $gap: '--kicl-gutter';
+  }
+
+  @if $size == 'normal' {
+    $gap: '--kicl-gutter';
+  }
+
+  .kicl-layout {
+    &.kicl-layout--gap--#{$size} {
+      --kicl-layout--gap: var(#{$gap});
+    }
+  }
+}
+
+@include make-layout-gap('none');
+@include make-layout-gap('narrow');
+@include make-layout-gap('narrower');
+@include make-layout-gap('narrowest');
+@include make-layout-gap('normal');
+@include make-layout-gap('wide');
+@include make-layout-gap('wider');
+@include make-layout-gap('widest');
+@include make-layout-gap('extreme');

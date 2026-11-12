@@ -1,0 +1,25 @@
+.kicl--components--sheet__header {
+  --kicl-gradient-shift: var(--kicl--components--sheet--line-gradient);
+
+  background-color: var(
+    --kicl--components--sheet--section-background-color,
+    var(--kicl--components--card--background-color)
+  );
+  background-image: linear-gradient(var(--kicl--components--sheet--cover) 0 0);
+  grid-row: var(--kicl--components--sheet--header-grid-row);
+  grid-template-columns: var(
+    --kicl--components--sheet--header-grid-template-columns
+  );
+
+  @supports (animation-timeline: scroll()) {
+    animation-fill-mode: both;
+    animation-name: var(--kicl--components--sheet--section-animation-name);
+    animation-range: 0 var(--kicl-gutter);
+    animation-timeline: scroll();
+  }
+}
+
+// `:where()` so a `CardAction` keeps its own column.
+:where(.kicl--components--sheet__header) > * {
+  grid-column: var(--kicl--components--sheet--header-child-grid-column);
+}

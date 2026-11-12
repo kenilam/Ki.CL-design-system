@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 // Hooks
-import { useOverlayContents } from 'design/hooks';
+import { useClosedBy, useOverlayContents } from 'design/hooks';
 
 // Spec
 import type { SheetProps } from 'design/components/sheet/spec';
@@ -25,10 +25,14 @@ const useRoot = (
   const sheet = useSheet();
   const shown = useOverlayContents(node, defaultOpen);
   const opening = useRef(defaultOpen);
+  const closedby: React.ComponentProps<'dialog'>['closedby'] = sheet.closable
+    ? 'any'
+    : 'none';
 
   useModal(node, modal);
   useToggle(node, onOpenChange);
   useDismiss(node, sheet.closable);
+  useClosedBy(node, closedby);
 
   useEffect(() => {
     const element = node.current;
@@ -44,6 +48,7 @@ const useRoot = (
 
   return {
     closable: sheet.closable,
+    closedby,
     id: sheet.id,
     labelledBy: sheet.header && !labelled ? `${sheet.id}--header` : undefined,
     shown,

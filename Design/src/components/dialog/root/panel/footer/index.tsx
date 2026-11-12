@@ -13,7 +13,7 @@ const Footer: React.FunctionComponent = () => {
     return null;
   }
 
-  return <footer className={`${CLASS_NAME}--footer`}>{footer}</footer>;
+  return <footer className={`${CLASS_NAME}__footer`}>{footer}</footer>;
 };
 
 export { Footer };

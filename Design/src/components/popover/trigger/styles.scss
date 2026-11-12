@@ -1,31 +1,16 @@
-.kicl--components--popover {
-  // Each popover sets its own anchor name so two on one page don't anchor to
-  // each other.
-  &__trigger {
-    @supports (anchor-name: --a) {
-      anchor-name: var(--kicl--components--popover--anchor);
-    }
+// Each popover sets its own anchor name so two on one page don't anchor to
+// each other.
+.kicl--components--popover__trigger {
+  @supports (anchor-name: --a) {
+    anchor-name: var(--kicl--components--popover--anchor);
+  }
 
-    // A button or link child keeps its own transitions.
-    &:not(.kicl--components--button, .kicl--components--hyper-link) {
-      --kicl--components--popover--trigger--transition-duration: var(
-        --kicl-transition-duration-fast
-      );
-      --kicl--components--popover--trigger--transition-property: border-radius;
-      --kicl--components--popover--trigger--transition-timing-function: var(
-        --kicl-ease-quint-in-out
-      );
+  > svg:last-child:not(:only-child) {
+    transition: rotate var(--kicl-transition-duration-fast)
+      var(--kicl-ease-quint-in-out);
+  }
 
-      @include transition('kicl--components--popover--trigger');
-    }
-
-    > svg:last-child:not(:only-child) {
-      transition: rotate var(--kicl-transition-duration-fast)
-        var(--kicl-ease-quint-in-out);
-    }
-
-    &[aria-expanded='true'] > svg:last-child:not(:only-child) {
-      rotate: 180deg;
-    }
+  &[aria-expanded='true'] > svg:last-child:not(:only-child) {
+    rotate: 180deg;
   }
 }

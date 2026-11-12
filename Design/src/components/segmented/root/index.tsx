@@ -16,15 +16,11 @@ import { SegmentedPanel } from './panel';
 import { SegmentedTrigger } from './trigger';
 import { useClassName } from './use-class-name';
 
-type Props = Pick<SegmentedProps, 'className' | 'collapsed'> &
+type Props = Pick<SegmentedProps, 'className'> &
   Omit<React.ComponentProps<'fieldset'>, 'defaultValue' | 'onChange'>;
 
-const Root: React.FunctionComponent<Props> = ({
-  className,
-  collapsed,
-  ...rest
-}) => {
-  const { disabled, hasLegend, isPopover } = useSegmented();
+const Root: React.FunctionComponent<Props> = ({ className, ...rest }) => {
+  const { disabled, hasLegend, isPanel, isPopover } = useSegmented();
 
   return (
     <Layout
@@ -32,12 +28,12 @@ const Root: React.FunctionComponent<Props> = ({
       justifyItems={isPopover && hasLegend ? 'start' : undefined}
     >
       <fieldset
-        className={useClassName({ className, collapsed })}
+        className={useClassName(className)}
         disabled={disabled}
         {...rest}
       >
         <SegmentedLegend />
-        {isPopover ? (
+        {isPanel ? (
           <>
             <SegmentedTrigger />
             <SegmentedPanel>

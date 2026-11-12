@@ -1,0 +1,17 @@
+.kicl--components--sheet__footer {
+  --kicl-gradient-shift: var(--kicl--components--sheet--line-gradient);
+
+  background-color: var(
+    --kicl--components--sheet--section-background-color,
+    var(--kicl--components--card--background-color)
+  );
+  background-image: linear-gradient(var(--kicl--components--sheet--cover) 0 0);
+
+  @supports (animation-timeline: scroll()) {
+    animation-direction: reverse;
+    animation-fill-mode: both;
+    animation-name: var(--kicl--components--sheet--section-animation-name);
+    animation-range: calc(100% - var(--kicl-gutter)) 100%;
+    animation-timeline: scroll();
+  }
+}

@@ -1,0 +1,44 @@
+.kicl--components--card {
+  &--variant--primary {
+    --kicl--components--card--background-color: var(--kicl-surface-color);
+    --kicl--components--card--variant-border-color: var(
+      --kicl-surface-border-color
+    );
+  }
+
+  &--variant--secondary {
+    --kicl--components--card--background-color: var(
+      --kicl--components--card--glass-background-color
+    );
+    --kicl--components--card--variant-border-color: var(
+      --kicl-surface-border-color
+    );
+  }
+
+  &--variant--tertiary {
+    --kicl--components--card--background-color: var(
+      --kicl--components--card--level-fill
+    );
+    --kicl--components--card--variant-border-color: transparent;
+  }
+
+  &--level--neutral {
+    --kicl--components--card--border-color: var(
+      --kicl--components--card--variant-border-color
+    );
+    --kicl--components--card--level-fill: var(--kicl-surface-color);
+  }
+
+  @each $level in map.keys(map.remove($levels, 'neutral')) {
+    &--level--#{$level} {
+      --kicl--components--card--border-color: var(
+        --kicl--components--card--tone
+      );
+      --kicl--components--card--level-fill: color-mix(
+        in srgb,
+        var(--kicl--components--card--tone) 12%,
+        var(--kicl-surface-color)
+      );
+    }
+  }
+}

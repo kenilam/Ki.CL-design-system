@@ -9,6 +9,9 @@ import { useCopy } from 'design/locales/use-copy';
 // Icons
 import * as Tb from 'react-icons/tb';
 
+// Styles
+import './styles.scss';
+
 // Constants
 import { CLASS_NAME } from 'design/components/input/search/constants';
 

@@ -1,0 +1,44 @@
+// Chrome has no pseudo-element for the filled part of the track, so
+// `RangeInput` passes the value in and the track draws the fill.
+.kicl--components--input--range {
+  $input: '--kicl--components--input';
+  $color: var(#{$input}--color, var(--kicl-body-color));
+  $travel: calc(100% - var(#{$input}--thumb-box));
+  $fill: calc(
+    var(#{$input}--value) * #{$travel} + var(#{$input}--thumb-box) / 2
+  );
+
+  &::-webkit-slider-runnable-track {
+    background-image: linear-gradient(
+      var(#{$input}--track-direction),
+      #{$color} #{$fill},
+      var(#{$input}--border-color) 0
+    );
+    block-size: var(#{$input}--track);
+    border-radius: var(#{$input}--track);
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    background-image: radial-gradient(
+      circle closest-side,
+      #{$color} calc(100% - var(--kicl-size-1px)),
+      transparent
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: var(#{$input}--thumb) var(#{$input}--thumb);
+    block-size: var(#{$input}--thumb-box);
+    border-radius: 50%;
+    inline-size: var(#{$input}--thumb-box);
+    margin-block-start: calc(
+      (var(#{$input}--track) - var(#{$input}--thumb-box)) / 2
+    );
+    outline: var(--kicl-outline-width) var(--kicl-outline-style)
+      var(--kicl-outline-color);
+    outline-offset: var(--kicl-size-1px);
+    transition-duration: var(--kicl-transition-duration-fast);
+    transition-property: background-size;
+    transition-timing-function: var(--kicl-ease-cubic-out);
+  }
+}

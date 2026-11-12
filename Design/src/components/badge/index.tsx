@@ -8,7 +8,7 @@ import { Layout } from 'design/components/layout';
 import { truncateText } from 'design/helper';
 
 import type { BadgeIs, Props } from './spec';
-import { BadgeLabel } from './badge-label';
+import { BadgeLabel } from './label';
 
 import './styles.scss';
 

@@ -1,0 +1,19 @@
+.kicl-background-position-center {
+  background-position: center;
+}
+
+.kicl-background-repeat-no-repeat {
+  background-repeat: no-repeat;
+}
+
+.kicl-background-size-cover {
+  background-size: cover;
+}
+
+// Where text can't clip the background, the text keeps its colour.
+@supports (background-clip: text) {
+  .kicl-background-clip-text {
+    background-clip: text;
+    color: transparent;
+  }
+}

@@ -8,7 +8,16 @@ import './styles.scss';
 const CLASS_NAME = 'kicl--components--separator';
 
 const Separator = React.forwardRef<HTMLElement, Props>(
-  ({ className, is = 'span', orientation = 'horizontal', ...rest }, ref) => {
+  (
+    {
+      className,
+      is = 'span',
+      orientation = 'horizontal',
+      variant = 'solid',
+      ...rest
+    },
+    ref
+  ) => {
     const Component = is as SeparatorIs;
 
     return (
@@ -20,9 +29,7 @@ const Separator = React.forwardRef<HTMLElement, Props>(
         className={classNames(
           CLASS_NAME,
           `${CLASS_NAME}--${orientation}`,
-          orientation === 'horizontal'
-            ? ['kicl-display-block', 'kicl-inline-size-full']
-            : 'kicl-display-inline-block',
+          `${CLASS_NAME}--variant--${variant}`,
           className
         )}
         ref={ref as never}
@@ -35,4 +42,5 @@ const Separator = React.forwardRef<HTMLElement, Props>(
 Separator.displayName = 'Separator';
 
 export type { Props as SeparatorProps, SeparatorIs } from './spec';
+export { SEPARATOR_VARIANTS } from './spec';
 export { Separator };

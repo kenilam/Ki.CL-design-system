@@ -14,6 +14,7 @@ type Props = React.PropsWithChildren<
     | 'header'
     | 'id'
     | 'open'
+    | 'size'
   >
 >;
 
@@ -31,6 +32,7 @@ const Provider: React.FunctionComponent<Props> = ({
   header,
   id,
   open = false,
+  size = 6,
 }) => {
   const generated = useId();
 
@@ -45,6 +47,7 @@ const Provider: React.FunctionComponent<Props> = ({
         header,
         id: id ?? generated,
         open,
+        size,
       }}
     >
       {children}

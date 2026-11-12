@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
 
+// Helpers
+import { mergeRefs } from 'design/helper';
+
 // Spec
 import type { PopoverTriggerProps } from 'design/components/popover/spec';
+
+// Styles
+import './styles.scss';
 
 // Constants
 import { CLASS_NAME } from 'design/components/popover/trigger/constants';
@@ -14,6 +20,7 @@ import { usePopoverIds } from 'design/components/popover/context';
 
 // Partials
 import { useAttributes } from 'design/components/popover/trigger/use-attributes';
+import { useInterest } from 'design/components/popover/trigger/use-interest';
 
 type Props = Omit<PopoverTriggerProps, 'asChild'> & {
   ref?: React.Ref<HTMLButtonElement>;
@@ -30,14 +37,24 @@ const Button: React.FunctionComponent<Props> = ({
 }) => {
   const ids = usePopoverIds();
   const shared = useAttributes();
+  const [node, setNode] = useState<HTMLButtonElement | null>(null);
+  const attach = useCallback(
+    (element: HTMLButtonElement | null) => {
+      mergeRefs(ref, setNode)(element);
+    },
+    [ref]
+  );
+
+  useInterest(node);
 
   return (
     <button
-      ref={ref}
+      ref={attach}
       type='button'
       {...shared}
       className={classNames(
         CLASS_NAME,
+        `${CLASS_NAME}--button`,
         'kicl-line-height-narrower',
         { 'kicl-border-radius-sm': block },
         className

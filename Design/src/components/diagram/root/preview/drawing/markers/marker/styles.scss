@@ -1,0 +1,11 @@
+.kicl--components--diagram-arrow {
+  fill: currentcolor;
+  opacity: 0.55;
+
+  @each $accent in (blue, green, orange, red, yellow) {
+    &--#{$accent} {
+      fill: var(--kicl-color-#{$accent});
+      opacity: 0.9;
+    }
+  }
+}

@@ -2,6 +2,7 @@
   --kicl--components--hyper-link--font-weight: var(--kicl-font-weight);
   --kicl--components--hyper-link--inline-size: fit-content;
   --kicl--components--hyper-link--text-decoration--color: currentcolor;
+  --kicl--components--hyper-link--text-decoration--line: underline;
   --kicl--components--hyper-link--text-decoration--thickness: var(
     --kicl-size-1px
   );
@@ -20,10 +21,11 @@
 }
 
 .kicl--components--hyper-link {
-  --kicl--components--hyper-link--text-color: var(--kicl-body-color);
-
-  color: var(--kicl--components--hyper-link--text-color);
-  fill: var(--kicl--components--hyper-link--text-color);
+  color: var(
+    --kicl--components--hyper-link--text-color,
+    var(--kicl-body-color)
+  );
+  fill: var(--kicl--components--hyper-link--text-color, var(--kicl-body-color));
   inline-size: var(--kicl--components--hyper-link--inline-size);
   text-decoration: none;
 
@@ -31,34 +33,41 @@
 
   // The icons stay inline so a closing arrow follows the last word when the
   // text wraps.
-  > :has(+ #{&}--line),
-  > #{&}--line + :not(.kicl-hidden) {
+  > :has(+ #{&}__line),
+  > #{&}__line + :not(.kicl-hidden) {
     vertical-align: middle;
   }
 
-  > :has(+ #{&}--line) {
+  > :has(+ #{&}__line) {
     margin-inline-end: var(--kicl-gutter-narrower);
   }
 
-  > #{&}--line + :not(.kicl-hidden) {
+  > #{&}__line + :not(.kicl-hidden) {
     margin-inline-start: var(--kicl-gutter-narrower);
   }
 
-  &:not(&--unstyled, :has(> &--line)),
-  &:not(&--unstyled) > &--line {
+  &:not(&--unstyled) {
     font-weight: var(--kicl--components--hyper-link--font-weight);
+  }
+
+  &:not(&--unstyled, &--with-line) {
     text-decoration-color: var(
       --kicl--components--hyper-link--text-decoration--color
     );
-    text-decoration-line: underline;
+    text-decoration-line: var(
+      --kicl--components--hyper-link--text-decoration--line
+    );
     text-decoration-thickness: var(
       --kicl--components--hyper-link--text-decoration--thickness
     );
     text-underline-position: under;
   }
 
-  &:not(&--unstyled, :has(> &--line)):is(:hover, [aria-current]),
-  &:not(&--unstyled):is(:hover, [aria-current]) > &--line {
+  &--unstyled {
+    --kicl--components--hyper-link--text-decoration--line: none;
+  }
+
+  &:is(:hover, [aria-current]) {
     --kicl--components--hyper-link--text-decoration--thickness: var(
       --kicl--components--hyper-link--text-decoration--thickness-active
     );
@@ -66,13 +75,5 @@
 
   &:not(&--unstyled)[aria-current='page']:not([href*='#']) {
     pointer-events: none;
-  }
-}
-
-// Smooth only while a hash link is hovered or focused, so route changes
-// through ScrollRestoration still jump.
-@media (prefers-reduced-motion: no-preference) {
-  html:has(a[href^='#']:is(:hover, :focus)) {
-    scroll-behavior: smooth;
   }
 }

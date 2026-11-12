@@ -22,7 +22,8 @@ const Choice: React.FunctionComponent<Props> = ({
   onValueChange,
   value,
 }) => {
-  // Only the popover needs this: its trigger shows the choice.
+  // The popover's trigger shows the choice, and its options start from it
+  // when they move in or out of the panel.
   const [chosen, setChosen] = useState(defaultValue);
   const pointer = useRef(false);
 

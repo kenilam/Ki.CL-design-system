@@ -1,11 +1,9 @@
-import './styles.scss';
-
 export { Card } from './card';
-export { CardAction } from './card-action';
-export { CardDescription } from './card-description';
-export { CardFooter } from './card-footer';
-export { CardHeader } from './card-header';
-export { CardTitle } from './card-title';
+export { CardAction } from './action';
+export { CardDescription } from './description';
+export { CardFooter } from './footer';
+export { CardHeader } from './header';
+export { CardTitle } from './title';
 export { CARD_SIZES } from './spec';
 export type {
   CardActionProps,

@@ -1,0 +1,8 @@
+.kicl--components--notification__clear {
+  border-radius: 50%;
+  grid-area: clear;
+
+  &:is(:hover, :focus-visible) {
+    background-color: color-mix(in srgb, currentcolor 12%, transparent);
+  }
+}

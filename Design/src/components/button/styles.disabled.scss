@@ -6,4 +6,8 @@
       filter: saturate(0.8);
     }
   }
+
+  &[aria-busy='true'] {
+    cursor: progress;
+  }
 }

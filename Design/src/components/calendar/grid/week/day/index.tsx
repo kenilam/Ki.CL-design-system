@@ -6,6 +6,9 @@ import { Layout } from 'design/components/layout';
 // Styles
 import './styles.scss';
 
+// Constants
+import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
+
 // Helpers
 import { dayLabel } from 'design/components/calendar/helpers';
 
@@ -18,7 +21,7 @@ const Day: React.FunctionComponent<Props> = ({ date }) => {
   const day = useDay(date);
 
   return (
-    <td>
+    <td className={`${CALENDAR}__cell`}>
       <Layout alignItems='center' display='inline-grid' justifyItems='center'>
         <button
           type='button'

@@ -1,5 +1,6 @@
 // The keyframes pan an image sized `1200% 1200%`, so there's room to move.
-:root {
+:root,
+.kicl--theme--light {
   --kicl-gradient-shift: linear-gradient(
     232deg,
     #{shade($orange, 10%)},
@@ -8,17 +9,17 @@
     #{shade($blue, 10%)},
     #{shade($yellow, 10%)}
   );
+}
 
-  @at-root .kicl--theme--dark {
-    --kicl-gradient-shift: linear-gradient(
-      232deg,
-      #{color.adjust($orange, $blackness: 3%)},
-      #{color.adjust($green, $blackness: 3%)},
-      #{color.adjust($red, $blackness: 3%)},
-      #{color.adjust($blue, $blackness: 3%)},
-      #{color.adjust($yellow, $blackness: 3%)}
-    );
-  }
+.kicl--theme--dark {
+  --kicl-gradient-shift: linear-gradient(
+    232deg,
+    #{color.adjust($orange, $blackness: 3%)},
+    #{color.adjust($green, $blackness: 3%)},
+    #{color.adjust($red, $blackness: 3%)},
+    #{color.adjust($blue, $blackness: 3%)},
+    #{color.adjust($yellow, $blackness: 3%)}
+  );
 }
 
 @keyframes kicl-gradient-shift {
@@ -33,4 +34,8 @@
   100% {
     background-position: 0% 88%;
   }
+}
+
+.kicl-gradient-shift {
+  @include gradient-shift;
 }

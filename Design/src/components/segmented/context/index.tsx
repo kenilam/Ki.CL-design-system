@@ -14,6 +14,7 @@ type Props = React.PropsWithChildren<
     | 'aria-label'
     | 'block'
     | 'collapse'
+    | 'collapsed'
     | 'defaultValue'
     | 'disabled'
     | 'name'

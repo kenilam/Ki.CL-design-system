@@ -7,10 +7,12 @@ export const HEADING_LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 
 export type HeadingIs = (typeof HEADING_LEVELS)[number];
 
+export const HEADING_LOOKS = [...HEADING_LEVELS, 'display'] as const;
+
 type OwnProps<Is extends HeadingIs> = PropsWithChildren<{
   dense?: boolean;
   level?: Level;
-  lookLike?: Exclude<HeadingIs, Is>;
+  lookLike?: Exclude<HeadingIs, Is> | 'display';
 }>;
 
 export type Props = {

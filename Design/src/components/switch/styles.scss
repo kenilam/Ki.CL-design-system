@@ -1,12 +1,22 @@
-.kicl--components--switch {
-  --kicl--components--switch--track: var(--kicl-color-grey-300);
+:root {
   --kicl--components--switch--checked: var(--kicl-color-confirm);
   --kicl--components--switch--thumb: var(--kicl-color-white-pure);
+  --kicl--components--switch--track: var(--kicl-color-grey-300);
 
   // Matches the native switch: a 26 by 16 track on a 24-unit square that is
   // 2.5em.
   --kicl--components--switch--unit: calc(2.5em / 24);
+}
 
+.kicl--theme--dark {
+  --kicl--components--switch--track: var(--kicl-color-grey-700);
+}
+
+.kicl--theme--light {
+  --kicl--components--switch--track: var(--kicl-color-grey-300);
+}
+
+.kicl--components--switch {
   appearance: none;
   background-color: var(--kicl--components--switch--track);
   block-size: calc(var(--kicl--components--switch--unit) * 16);
@@ -46,14 +56,6 @@
     &::before {
       margin-inline-start: calc(var(--kicl--components--switch--unit) * 12);
     }
-  }
-
-  @at-root .kicl--theme--dark & {
-    --kicl--components--switch--track: var(--kicl-color-grey-700);
-  }
-
-  @at-root .kicl--theme--light & {
-    --kicl--components--switch--track: var(--kicl-color-grey-300);
   }
 }
 

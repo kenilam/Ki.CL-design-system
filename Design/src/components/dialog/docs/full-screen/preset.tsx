@@ -14,7 +14,7 @@ const name = 'Full screen';
 
 const Preset = (
   <Origin
-    controls={{ dense: null }}
+    controls={{ dense: null, size: null }}
     code={source}
     description={description}
     label='dialog_preset_full_screen_name'

@@ -1,0 +1,40 @@
+:root:lang(ar) {
+  --kicl-font-family: 'roboto', 'noto-sans-arabic', #{$base-font};
+  --kicl-font-family-bold: 'roboto', 'noto-sans-arabic', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-arabic', #{$base-font};
+}
+
+:root:lang(hi) {
+  --kicl-font-family: 'roboto', 'noto-sans-devanagari', #{$base-font};
+  --kicl-font-family-bold: 'roboto', 'noto-sans-devanagari', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-devanagari', #{$base-font};
+}
+
+:root:lang(ja) {
+  --kicl-font-family: 'roboto', 'noto-sans-cjk-jp', #{$base-font};
+  --kicl-font-family-bold: 'roboto', 'noto-sans-cjk-jp', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-cjk-jp', #{$base-font};
+}
+
+:root:lang(ko) {
+  --kicl-font-family: 'roboto', 'noto-sans-cjk-kr', #{$base-font};
+  --kicl-font-family-bold: 'roboto', 'noto-sans-cjk-kr', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-cjk-kr', #{$base-font};
+}
+
+:root:lang(ru),
+:root:lang(vi) {
+  --kicl-font-family-special: 'roboto', #{$base-font};
+}
+
+:root:lang(zh-Hans) {
+  --kicl-font-family: 'roboto', 'source-han-sans-simplified-c', #{$base-font};
+  --kicl-font-family-bold: 'roboto', 'source-han-sans-simplified-c', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', 'source-han-sans-simplified-c', #{$base-font};
+}
+
+:root:lang(zh-Hant) {
+  --kicl-font-family: 'roboto', 'source-han-sans-hong-kong', #{$base-font};
+  --kicl-font-family-bold: 'roboto', 'source-han-sans-hong-kong', #{$base-font};
+  --kicl-font-family-special: 'mic-32-new-web', 'source-han-sans-hong-kong', #{$base-font};
+}

@@ -1,0 +1,60 @@
+input,
+select,
+textarea {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition:
+      background-color 600000s 0s,
+      color 600000s 0s;
+  }
+
+  &::placeholder {
+    color: var(--kicl-body-color);
+    opacity: 0.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+select,
+input {
+  line-height: 1;
+}
+
+/*
+ * iOS Safari zooms into any field under 16px when it takes focus, and only iOS
+ * supports `-webkit-touch-callout`. `!important` keeps this floor above the
+ * `kicl-font-size-*` utilities.
+ */
+@supports (-webkit-touch-callout: none) {
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em) !important;
+  }
+}
+
+input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @at-root .kicl--theme--dark
+  &[type='date' i]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    outline-color: var(--kicl-outline-color);
+    outline-style: var(--kicl-outline-style);
+    outline-width: var(--kicl-outline-width);
+
+    &:not(:focus) {
+      --kicl-outline-style: none;
+    }
+
+    &:focus {
+      --kicl-outline-style: dashed;
+    }
+  }
+}

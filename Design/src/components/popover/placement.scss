@@ -1,0 +1,110 @@
+$sides: (
+  block-end: (
+    axis: block,
+    in: start,
+    out: end,
+    enter: 0 var(--kicl--components--popover--back),
+  ),
+  block-start: (
+    axis: block,
+    in: end,
+    out: start,
+    enter: 0 var(--kicl--components--popover--ahead),
+  ),
+  inline-start: (
+    axis: inline,
+    in: end,
+    out: start,
+    enter: var(--kicl--components--popover--ahead) 0,
+  ),
+  inline-end: (
+    axis: inline,
+    in: start,
+    out: end,
+    enter: var(--kicl--components--popover--back) 0,
+  ),
+);
+$aligns: (start, center, end);
+
+@mixin place-popover($side, $align, $offset) {
+  $place: map.get($sides, $side);
+  $axis: map.get($place, axis);
+  $inset: var(--kicl--components--popover--inset);
+  $across: block;
+  $self: align-self;
+  $other-self: justify-self;
+  $max-block-size: calc(100% - 2 * #{$inset});
+
+  @if $axis == block {
+    $across: inline;
+    $self: justify-self;
+    $other-self: align-self;
+    $max-block-size: calc(100% - #{$inset} - #{$offset});
+  }
+
+  inset: auto;
+  margin-#{$across}: $inset;
+  margin-#{$axis}-#{map.get($place, in)}: $offset;
+  margin-#{$axis}-#{map.get($place, out)}: $inset;
+  max-block-size: $max-block-size;
+  position-area: #{$side} span-all;
+  #{$other-self}: normal;
+
+  @if $align == center {
+    #{$self}: anchor-center;
+  } @else {
+    inset-#{$across}-#{$align}: calc(anchor(#{$align}) - #{$inset});
+    #{$self}: $align;
+  }
+}
+
+.kicl--components--popover__content {
+  @each $side, $place in $sides {
+    $flip: flip-#{map.get($place, axis)};
+
+    @each $align in $aligns {
+      $text: $align;
+
+      @if $side == inline-start {
+        $text: end;
+      } @else if $side == inline-end {
+        $text: start;
+      }
+
+      &--#{$side}--#{$align} {
+        --kicl--components--popover--align: #{$text};
+        --kicl--components--popover--enter: #{map.get($place, enter)};
+
+        @supports (position-area: block-end) {
+          @include place-popover(
+            $side,
+            $align,
+            var(--kicl--components--popover--offset)
+          );
+
+          position-try-fallbacks: var(
+            --kicl--components--popover--fallbacks,
+            #{$flip},
+            --kicl--components--popover--#{$side}--center,
+            --kicl--components--popover--#{$side}--center #{$flip}
+          );
+        }
+      }
+    }
+  }
+}
+
+@each $side, $place in $sides {
+  @each $align in $aligns {
+    @position-try --kicl--components--popover--#{$side}--#{$align} {
+      @include place-popover(
+        $side,
+        $align,
+        var(
+          --kicl--components--popover--fallback-offset,
+          var(--kicl--components--popover--offset)
+        )
+      );
+    }
+  }
+}

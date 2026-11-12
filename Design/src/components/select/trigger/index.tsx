@@ -17,10 +17,6 @@ import type { SelectTriggerProps } from 'design/components/select/spec';
 
 const CLASS_NAME = `${SELECT}__trigger`;
 
-/**
- * Browsers without base-select ignore this button. The `<select>` owns focus,
- * opening and keys.
- */
 const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerProps>(
   ({ children, className, ...rest }, ref) => {
     return (

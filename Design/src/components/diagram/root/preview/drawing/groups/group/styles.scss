@@ -1,0 +1,8 @@
+.kicl--components--diagram-group {
+  fill: var(--kicl-surface-glass-color);
+  stroke: var(--kicl-surface-border-color);
+
+  &-label {
+    opacity: 0.6;
+  }
+}

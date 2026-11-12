@@ -1,0 +1,10 @@
+.kicl--components--checkbox-group {
+  --kicl--components--checkbox--margin-inline-start: 0;
+
+  // The stack's gap spaces the labels, so they drop the input height.
+  --kicl--components--choice-label--min-block-size: auto;
+
+  &--select-all {
+    --kicl--components--checkbox--margin-inline-start: var(--kicl-gutter);
+  }
+}

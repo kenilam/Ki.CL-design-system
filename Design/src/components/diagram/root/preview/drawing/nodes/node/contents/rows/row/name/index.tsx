@@ -19,12 +19,18 @@ const Name: React.FunctionComponent<Props> = ({ name }) => {
     return null;
   }
 
+  let offset = 10;
+
+  if (row.type) {
+    offset = 84;
+  }
+
+  if (row.icon) {
+    offset = 10 + ICON_SIZE + 10;
+  }
+
   return (
-    <text
-      className={`${BASE}-name`}
-      x={x + (row.icon ? 10 + ICON_SIZE + 10 : row.type ? 84 : 10)}
-      y={baseline}
-    >
+    <text className={`${BASE}-name`} x={x + offset} y={baseline}>
       {row.name}
     </text>
   );

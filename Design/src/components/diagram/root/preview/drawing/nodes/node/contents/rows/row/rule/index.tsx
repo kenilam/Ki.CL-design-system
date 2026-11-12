@@ -12,6 +12,9 @@ import type { Row } from 'design/components/diagram/spec';
 // Partials
 import { useRow } from 'design/components/diagram/root/preview/drawing/nodes/node/contents/rows/row/use-row';
 
+// Styles
+import './styles.scss';
+
 type Props = Pick<Row, 'name'>;
 
 const Rule: React.FunctionComponent<Props> = ({ name }) => {

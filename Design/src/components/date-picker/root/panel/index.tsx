@@ -9,6 +9,9 @@ import { useDatePicker } from 'design/components/date-picker/context';
 // Partials
 import { Calendar } from 'design/components/date-picker/root/calendar';
 
+// Styles
+import './styles.scss';
+
 // Constants
 import { CLASS_NAME } from 'design/components/date-picker/constants';
 

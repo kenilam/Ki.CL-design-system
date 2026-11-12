@@ -11,9 +11,14 @@ import * as Spec from './spec';
 import { getClassName } from './class-name';
 import { LAYOUT } from './class-names';
 
+// Partials
+import { getBusyAttributes } from './busy-attributes';
+import { getButtonContent } from './content';
+
 // Styles
 import './styles.scss';
 import './styles.size.scss';
+import './styles.icon.scss';
 import './styles.variant.scss';
 import './styles.disabled.scss';
 
@@ -22,12 +27,14 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     after,
     before,
     block,
+    busy,
     children,
     className,
     disabled,
+    iconOnlyUpTo,
     level,
     lookLikeHyperLink = false,
-    onClick: clickHandler,
+    onClick,
     size,
     type = 'button',
     unstyled,
@@ -43,6 +50,8 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     ...rest
   } = props;
 
+  const content = getButtonContent(props);
+
   return (
     <Layout
       alignContent={alignContent}
@@ -55,15 +64,15 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     >
       <button
         {...rest}
+        {...getBusyAttributes({ busy, onClick })}
         className={getClassName(props)}
         disabled={disabled}
-        onClick={clickHandler}
         ref={ref}
         type={type}
       >
-        {truncateText(before)}
-        {truncateText(children)}
-        {truncateText(after)}
+        {truncateText(content.before)}
+        {truncateText(content.children)}
+        {truncateText(content.after)}
       </button>
     </Layout>
   );

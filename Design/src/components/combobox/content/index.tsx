@@ -18,6 +18,9 @@ import { useComboboxNodes } from 'design/components/combobox/context';
 // Partials
 import { useKeyDown } from './use-key-down';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = `${COMBOBOX}__content`;
 
 const ComboboxContent: React.FC<ComboboxContentProps> = ({

@@ -1,0 +1,24 @@
+.kicl--components--diagram-edge {
+  fill: none;
+  opacity: 0.55;
+  stroke: currentcolor;
+  stroke-width: 1.4;
+
+  &--dashed {
+    stroke-dasharray: 5 4;
+  }
+
+  @each $accent in (blue, green, orange, red, yellow) {
+    &--#{$accent} {
+      opacity: 0.9;
+      stroke: var(--kicl-color-#{$accent});
+    }
+  }
+
+  &-label {
+    paint-order: stroke;
+    stroke: var(--kicl-body-background-color);
+    stroke-linejoin: round;
+    stroke-width: 6px;
+  }
+}

@@ -1,0 +1,14 @@
+:root {
+  --kicl--components--popover--trigger--transition-duration: var(
+    --kicl-transition-duration-fast
+  );
+  --kicl--components--popover--trigger--transition-property: border-radius;
+  --kicl--components--popover--trigger--transition-timing-function: var(
+    --kicl-ease-quint-in-out
+  );
+}
+
+// A Button or HyperLink child keeps its own transitions.
+.kicl--components--popover__trigger--button {
+  @include transition('kicl--components--popover--trigger');
+}

@@ -6,6 +6,8 @@ import { Text } from 'design/components/text';
 import { useFormItem } from './context';
 import type { FormDescriptionProps } from './spec';
 
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--form__description';
 
 const FormDescription = React.forwardRef<

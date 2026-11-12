@@ -1,49 +1,18 @@
 import React, { createContext, useContext } from 'react';
 
-// Spec
-import type * as Spec from 'design/components/hyper-link/spec';
+// Partials
+import { type Props, useValue } from './use-value';
 
-// Hooks
-import { useURLStatus } from 'design/components/hyper-link/hooks';
+const HyperLinkContext = createContext<ReturnType<typeof useValue> | null>(
+  null
+);
 
-type Props = React.PropsWithChildren<
-  Pick<Spec.Props, 'after' | 'before' | 'lookLikeButton' | 'target' | 'to'> & {
-    contents: Spec.Props['children'];
-  }
->;
-
-type Value = Pick<
-  Spec.Props,
-  'after' | 'before' | 'lookLikeButton' | 'target'
-> & {
-  children: Spec.Props['children'];
-  isHash: boolean;
-};
-
-const HyperLinkContext = createContext<Value | null>(null);
-
-const Provider: React.FunctionComponent<Props> = ({
-  after,
-  before,
+const Provider: React.FunctionComponent<React.PropsWithChildren<Props>> = ({
   children,
-  contents,
-  lookLikeButton,
-  target,
-  to,
+  ...props
 }) => {
-  const status = useURLStatus(to);
-
   return (
-    <HyperLinkContext.Provider
-      value={{
-        after,
-        before,
-        children: contents,
-        isHash: status.isHash,
-        lookLikeButton,
-        target: status.isExternal ? '_blank' : target,
-      }}
-    >
+    <HyperLinkContext.Provider value={useValue(props)}>
       {children}
     </HyperLinkContext.Provider>
   );

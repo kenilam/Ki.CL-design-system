@@ -4,7 +4,7 @@ import React from 'react';
 import type { Token, Tokens } from 'marked';
 
 // Components
-import { Text } from 'design/components/text';
+import { Text } from 'design/components';
 
 // Partials
 import { lookOf } from 'design/components/markdown/look';

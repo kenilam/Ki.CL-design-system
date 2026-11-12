@@ -9,6 +9,9 @@ import { useCopy } from 'design/locales/use-copy';
 // Helpers
 import { mergeRefs } from 'design/helper';
 
+// Styles
+import './styles.scss';
+
 // Spec
 import type { NotificationGroupProps } from 'design/components/notification/spec';
 

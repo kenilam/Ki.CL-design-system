@@ -9,15 +9,24 @@ import type { Level, Variant } from 'design/components/spec';
 
 export const BUTTON_SIZES = ['small', 'large'] as const;
 
+export const BUTTON_ICON_ONLY_UP_TO = [
+  'narrowest',
+  'narrower',
+  'narrow',
+] as const;
+
 type Size = (typeof BUTTON_SIZES)[number];
 
 export type ContentProps = PropsWithChildren<{
   after?: ReactNode;
   before?: ReactNode;
+  busy?: boolean;
 }>;
 
 export type LookProps = {
   block?: boolean;
+  /** Up to this breakpoint the label is hidden and only the icon shows. */
+  iconOnlyUpTo?: (typeof BUTTON_ICON_ONLY_UP_TO)[number];
   level?: Level;
   size?: Size;
   variant?: Variant;
@@ -63,6 +72,13 @@ export type CopyButtonProps = LookProps &
     /** A check replaces it after a copy. */
     icon?: ReactNode;
   };
+
+export type ShareButtonProps = Omit<CopyButtonProps, 'label'> & {
+  /** Defaults to "Share". */
+  label?: string;
+  /** The title the share sheet gets. Defaults to the document's. */
+  title?: string;
+};
 
 export type VolumeButtonProps = Pick<LookProps, 'size' | 'variant'> &
   Pick<

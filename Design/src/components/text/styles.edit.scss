@@ -1,0 +1,38 @@
+:root {
+  --kicl--components--text--del--background-color: color-mix(
+    in srgb,
+    var(--kicl-color-error) 20%,
+    transparent
+  );
+  --kicl--components--text--del--color: var(--kicl-color-error);
+  --kicl--components--text--ins--background-color: color-mix(
+    in srgb,
+    var(--kicl-color-confirm) 20%,
+    transparent
+  );
+}
+
+// `del` keeps its strike so the meaning doesn't rest on colour alone; `ins`
+// drops its underline, which reads as a link.
+.kicl--components--text {
+  &[data-is='del'],
+  &[data-is='ins'],
+  &.kicl-look-like-del,
+  &.kicl-look-like-ins {
+    border-radius: var(--kicl--components--text--border-radius);
+    box-decoration-break: clone;
+  }
+
+  &[data-is='del'],
+  &.kicl-look-like-del {
+    background-color: var(--kicl--components--text--del--background-color);
+    text-decoration-color: var(--kicl--components--text--del--color);
+    text-decoration-line: line-through;
+  }
+
+  &[data-is='ins'],
+  &.kicl-look-like-ins {
+    background-color: var(--kicl--components--text--ins--background-color);
+    text-decoration-line: none;
+  }
+}

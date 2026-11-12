@@ -7,9 +7,7 @@ import classNames from 'classnames';
 import * as Tb from 'react-icons/tb';
 
 // Components
-import { HyperLink } from 'design/components/hyper-link';
-import { ListItem } from 'design/components/list-item';
-import { Text } from 'design/components/text';
+import { HyperLink, ListItem, Text } from 'design/components';
 
 // Spec
 import type * as Spec from 'design/components/breadcrumb/spec';

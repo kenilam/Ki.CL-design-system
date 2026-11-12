@@ -1,0 +1,22 @@
+.kicl--components--segmented__panel {
+  $line: calc(var(--kicl-font-size-small) * var(--kicl-line-height));
+  $item: calc(#{$line} + var(--kicl-gutter-narrower) * 2);
+  $edge: calc(var(--kicl--components--popover--padding) + var(--kicl-size-1px));
+
+  --kicl--components--segmented--item--justify-items: var(
+    --kicl--components--popover--align,
+    start
+  );
+  --kicl--components--segmented--item--scroll-snap-align: start;
+  --kicl--components--segmented--options--background-color: transparent;
+  --kicl--components--segmented--options--grid-auto-columns: auto;
+  --kicl--components--segmented--options--grid-auto-flow: row;
+
+  min-block-size: min-content;
+  scroll-padding-block: var(--kicl--components--popover--padding);
+  scroll-snap-type: block mandatory;
+
+  &:has(.kicl--components--segmented__item:nth-child(6)) {
+    min-block-size: calc(#{$item} * 6 + #{$edge} * 2);
+  }
+}

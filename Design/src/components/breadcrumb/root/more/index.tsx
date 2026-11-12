@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Popover, PopoverContent } from 'design/components/popover';
+import { Popover, PopoverContent } from 'design/components';
 
 // Context
 import { useBreadcrumb } from 'design/components/breadcrumb/context';

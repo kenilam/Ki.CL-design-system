@@ -26,15 +26,4 @@
       var(--kicl-color-neutral-a12)
     );
   }
-
-  img {
-    object-fit: var(--kicl--components--image--object-fit);
-  }
-
-  svg {
-    font-size: min(
-      var(--kicl--components--image--block-size),
-      var(--kicl--components--image--inline-size)
-    );
-  }
 }

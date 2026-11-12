@@ -9,6 +9,9 @@ import { Layout } from 'design/components/layout';
 // Spec
 import type { CheckboxGroupProps } from 'design/components/checkbox/spec';
 
+// Styles
+import './styles.scss';
+
 // Partials
 import { Legend } from './legend';
 import { SelectAll } from './select-all';
@@ -30,7 +33,14 @@ const Root: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <Layout gap='narrower' justifyItems='start'>
-      <fieldset className={classNames(CLASS_NAME, className)} {...rest}>
+      <fieldset
+        className={classNames(
+          CLASS_NAME,
+          { [`${CLASS_NAME}--select-all`]: selectAll },
+          className
+        )}
+        {...rest}
+      >
         {legend ? <Legend>{legend}</Legend> : null}
         {selectAll ? <SelectAll>{selectAll}</SelectAll> : null}
         {children}

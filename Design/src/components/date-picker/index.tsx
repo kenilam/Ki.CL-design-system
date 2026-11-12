@@ -9,9 +9,6 @@ import { Provider } from './context';
 // Partials
 import { Root } from './root';
 
-// Styles
-import './styles.scss';
-
 import type { DatePickerProps } from './spec';
 
 const DatePicker: React.FC<DatePickerProps> = ({

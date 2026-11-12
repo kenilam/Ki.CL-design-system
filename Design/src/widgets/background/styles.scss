@@ -20,12 +20,20 @@
   --kicl--widgets--background--ink-2: var(--kicl-color-orange-100);
   --kicl--widgets--background--ink-3: var(--kicl-color-red-200);
   --kicl--widgets--background--ink-4: var(--kicl-color-yellow-200);
+}
 
-  @at-root .kicl--theme--dark {
-    --kicl--widgets--background--paper: var(--kicl-color-black);
-    --kicl--widgets--background--ink-1: var(--kicl-color-blue-900);
-    --kicl--widgets--background--ink-2: var(--kicl-color-blue-800);
-    --kicl--widgets--background--ink-3: var(--kicl-color-orange-900);
-    --kicl--widgets--background--ink-4: var(--kicl-color-black-300);
-  }
+.kicl--theme--dark {
+  --kicl--widgets--background--paper: var(--kicl-color-black);
+  --kicl--widgets--background--ink-1: var(--kicl-color-blue-900);
+  --kicl--widgets--background--ink-2: var(--kicl-color-blue-800);
+  --kicl--widgets--background--ink-3: var(--kicl-color-orange-900);
+  --kicl--widgets--background--ink-4: var(--kicl-color-black-300);
+}
+
+.kicl--theme--light {
+  --kicl--widgets--background--paper: var(--kicl-color-white);
+  --kicl--widgets--background--ink-1: var(--kicl-color-blue-200);
+  --kicl--widgets--background--ink-2: var(--kicl-color-orange-100);
+  --kicl--widgets--background--ink-3: var(--kicl-color-red-200);
+  --kicl--widgets--background--ink-4: var(--kicl-color-yellow-200);
 }

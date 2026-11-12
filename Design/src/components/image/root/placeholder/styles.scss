@@ -1,0 +1,6 @@
+.kicl--components--image--error {
+  font-size: min(
+    var(--kicl--components--image--block-size),
+    var(--kicl--components--image--inline-size)
+  );
+}

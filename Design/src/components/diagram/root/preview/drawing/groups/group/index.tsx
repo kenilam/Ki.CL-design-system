@@ -12,6 +12,9 @@ import { useDiagram } from 'design/components/diagram/context';
 // Spec
 import type { Group as GroupSpec } from 'design/components/diagram/spec';
 
+// Styles
+import './styles.scss';
+
 type Props = Pick<GroupSpec, 'label'>;
 
 const Group: React.FunctionComponent<Props> = ({ label }) => {

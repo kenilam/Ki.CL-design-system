@@ -1,0 +1,18 @@
+.kicl--components--input--file__drop-zone {
+  anchor-name: --kicl--components--input--file;
+
+  &--dragging {
+    --kicl--components--input--file--background-color: color-mix(
+      in srgb,
+      var(--kicl--components--input--file--tone) 8%,
+      transparent
+    );
+    --kicl--components--input--file--border-color: var(
+      --kicl--components--input--file--tone
+    );
+  }
+}
+
+.kicl--components--input--file__control {
+  cursor: inherit;
+}

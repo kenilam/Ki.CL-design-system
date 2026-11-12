@@ -12,6 +12,7 @@ import * as Tb from 'react-icons/tb';
 import './styles.scss';
 
 // Constants
+import { INPUT_CLASS_NAME } from 'design/components';
 import { CLASS_NAME as DATE_PICKER } from 'design/components/date-picker/constants';
 
 // Context
@@ -39,7 +40,7 @@ const Trigger: React.FunctionComponent = () => {
         {...props}
         disabled={disabled}
         className={classNames(
-          'kicl--components--input',
+          INPUT_CLASS_NAME,
           `${DATE_PICKER}__trigger`,
           'kicl-font-size-small',
           'kicl-inline-size-auto',

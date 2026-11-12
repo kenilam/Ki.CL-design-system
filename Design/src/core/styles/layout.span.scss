@@ -1,0 +1,13 @@
+@for $span from 1 through 12 {
+  .kicl-layout.kicl-layout--span--#{$span} {
+    grid-column: span #{$span};
+
+    @include query('≤narrowest') {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.kicl-layout.kicl-layout--span--full {
+  grid-column: 1 / -1;
+}

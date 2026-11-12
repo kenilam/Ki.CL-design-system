@@ -32,63 +32,6 @@
   --kicl-font-style-oblique: oblique;
 }
 
-:root:lang(ar) {
-  --kicl-font-family: 'roboto', 'noto-sans-arabic', #{$base-font};
-  --kicl-font-family-bold: 'roboto', 'noto-sans-arabic', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-arabic', #{$base-font};
-}
-
-:root:lang(hi) {
-  --kicl-font-family: 'roboto', 'noto-sans-devanagari', #{$base-font};
-  --kicl-font-family-bold: 'roboto', 'noto-sans-devanagari', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-devanagari', #{$base-font};
-}
-
-:root:lang(ja) {
-  --kicl-font-family: 'roboto', 'noto-sans-cjk-jp', #{$base-font};
-  --kicl-font-family-bold: 'roboto', 'noto-sans-cjk-jp', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-cjk-jp', #{$base-font};
-}
-
-:root:lang(ko) {
-  --kicl-font-family: 'roboto', 'noto-sans-cjk-kr', #{$base-font};
-  --kicl-font-family-bold: 'roboto', 'noto-sans-cjk-kr', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', 'noto-sans-cjk-kr', #{$base-font};
-}
-
-:root:lang(ru),
-:root:lang(vi) {
-  --kicl-font-family-special: 'roboto', #{$base-font};
-}
-
-:root:lang(zh-Hans) {
-  --kicl-font-family: 'roboto', 'source-han-sans-simplified-c', #{$base-font};
-  --kicl-font-family-bold: 'roboto', 'source-han-sans-simplified-c', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', 'source-han-sans-simplified-c', #{$base-font};
-}
-
-:root:lang(zh-Hant) {
-  --kicl-font-family: 'roboto', 'source-han-sans-hong-kong', #{$base-font};
-  --kicl-font-family-bold: 'roboto', 'source-han-sans-hong-kong', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', 'source-han-sans-hong-kong', #{$base-font};
-}
-
-.kicl-text-transform-capitalize {
-  text-transform: capitalize;
-}
-
-.kicl-text-transform-lowercase {
-  text-transform: lowercase;
-}
-
-.kicl-text-transform-none {
-  text-transform: none;
-}
-
-.kicl-text-transform-uppercase {
-  text-transform: uppercase;
-}
-
 .kicl-font-style-normal {
   font-style: normal;
 }
@@ -99,36 +42,6 @@
 
 .kicl-font-style-oblique {
   font-style: oblique;
-}
-
-.kicl-text-align-start {
-  text-align: start;
-}
-
-.kicl-text-align-center {
-  text-align: center;
-}
-
-.kicl-text-align-end {
-  text-align: end;
-}
-
-.kicl-text-align-justify {
-  text-align: justify;
-}
-
-// The size limits let it shrink below its text and keep it inside a grid cell
-// it isn't stretched to.
-.kicl-text-truncate {
-  max-inline-size: 100%;
-  min-inline-size: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.kicl-text-nowrap {
-  white-space: nowrap;
 }
 
 @include make-variable-class('font-family');
@@ -185,11 +98,3 @@
 @include make-variable-class('line-height');
 @include make-variable-class('line-height', 'wide');
 @include make-variable-class('line-height', 'dense');
-
-:root {
-  --kicl-text-wrap-balance: balance;
-  --kicl-text-wrap-pretty: pretty;
-}
-
-@include make-variable-class('text-wrap', 'balance');
-@include make-variable-class('text-wrap', 'pretty');

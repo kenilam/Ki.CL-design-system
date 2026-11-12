@@ -4,7 +4,13 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Constants
-import { BLOCK, FRAME } from 'design/docs/tokens/previews/constants';
+import { FRAME } from 'design/docs/tokens/previews/constants';
+import { APEX, NADIR } from './constants';
+
+// Partials
+import { Apex } from './apex';
+import { Deck } from './deck';
+import { Nadir } from './nadir';
 
 type Props = {
   name: string;
@@ -21,27 +27,9 @@ const Stack: React.FunctionComponent<Props> = ({ name }) => {
       )}
       style={{ zoom: 0.5 }}
     >
-      <span
-        className={classNames(
-          'kicl-background-color-grey-200',
-          'kicl-border-radius-xs',
-          'kicl-inset-block-start-narrow',
-          'kicl-inset-inline-start-narrow',
-          'kicl-padding-wide',
-          'kicl-position-absolute',
-          'kicl-z-index-base'
-        )}
-      />
-      <span
-        className={classNames(
-          BLOCK,
-          'kicl-inset-block-start-wide',
-          'kicl-inset-inline-start-wide',
-          'kicl-padding-wide',
-          'kicl-position-absolute',
-          `kicl-${name}`
-        )}
-      />
+      {name === APEX ? <Apex /> : null}
+      <Deck name={name} />
+      {name === NADIR ? <Nadir /> : null}
     </div>
   );
 };

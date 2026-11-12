@@ -1,0 +1,24 @@
+.kicl--components--notification {
+  align-items: center;
+  box-shadow: 0 #{$shadow-distant-overlay} #{$shadow-distant-overlay * 2.5}
+    #{rgba($shadow-color, $shadow-alpha-overlay)};
+  column-gap: var(--kicl-gutter-narrow);
+  grid-template-areas: 'title' 'message';
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 0;
+
+  &:has(> &__avatar) {
+    grid-template-areas: 'avatar title' 'avatar message';
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  &:has(> &__clear) {
+    grid-template-areas: 'title clear' 'message clear';
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+
+  &:has(> &__avatar):has(> &__clear) {
+    grid-template-areas: 'avatar title clear' 'avatar message clear';
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
+  }
+}

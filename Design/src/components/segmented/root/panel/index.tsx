@@ -6,6 +6,9 @@ import { PopoverContent } from 'design/components/popover';
 // Context
 import { useSegmented } from 'design/components/segmented/context';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--segmented__panel';
 
 const SegmentedPanel: React.FunctionComponent<React.PropsWithChildren> = ({

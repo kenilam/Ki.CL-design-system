@@ -27,3 +27,15 @@
   --kicl-ease-sine-in-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   --kicl-ease-sharp-in-out: cubic-bezier(0.4, 0, 0.6, 1);
 }
+
+$curves:
+  in, out, back-in, back-out, back-in-out, circ-in, circ-out, circ-in-out,
+  cubic-in, cubic-out, cubic-in-out, expo-in, expo-out, expo-in-out, quad-in,
+  quad-out, quad-in-out, quart-in, quart-out, quart-in-out, quint-in, quint-out,
+  quint-in-out, sine-in, sine-out, sine-in-out, sharp-in-out;
+
+@each $curve in $curves {
+  .kicl-ease-#{$curve} {
+    transition-timing-function: var(--kicl-ease-#{$curve});
+  }
+}

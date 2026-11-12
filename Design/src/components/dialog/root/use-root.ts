@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Hooks
-import { useOverlayContents } from 'design/hooks';
+import { useClosedBy, useOverlayContents } from 'design/hooks';
 
 // Constants
 import { CLASS_NAME } from 'design/components/dialog/constants';
@@ -37,6 +37,8 @@ const useRoot = (
     closedby = 'closerequest';
   }
 
+  useClosedBy(node, closedby);
+
   return {
     closedby,
     id: dialog.id,
@@ -45,6 +47,7 @@ const useRoot = (
       [`${CLASS_NAME}--is-closable`]: dialog.closable,
       [`${CLASS_NAME}--is-dense`]: dialog.dense,
       [`${CLASS_NAME}--is-full-screen`]: dialog.fullScreen,
+      [`${CLASS_NAME}--size--${dialog.size}`]: !dialog.fullScreen,
     },
     shown,
   };

@@ -1,0 +1,46 @@
+$gaps: (
+  none,
+  narrowest,
+  narrower,
+  narrow,
+  normal,
+  wide,
+  wider,
+  widest,
+  extreme
+);
+
+.kicl--components--popover__content {
+  @each $gap in $gaps {
+    $token: --kicl-gutter-#{$gap};
+
+    @if $gap == normal {
+      $token: --kicl-gutter;
+    }
+
+    &--offset--#{$gap} {
+      --kicl--components--popover--offset: var(#{$token});
+    }
+  }
+
+  &--variant--primary {
+    --kicl--components--popover--background-color: var(--kicl-surface-color);
+    --kicl--components--popover--border-color: var(--kicl-surface-border-color);
+  }
+
+  &--variant--secondary {
+    --kicl--components--popover--background-color: var(
+      --kicl-surface-glass-color
+    );
+    --kicl--components--popover--border-color: var(--kicl-surface-border-color);
+  }
+
+  &--variant--tertiary {
+    --kicl--components--popover--background-color: color-mix(
+      in srgb,
+      var(--kicl-surface-glass-color) 50%,
+      transparent
+    );
+    --kicl--components--popover--border-color: transparent;
+  }
+}

@@ -1,0 +1,37 @@
+:root {
+  --kicl-outline-color: var(--kicl-color-grey-700);
+  --kicl-outline-style: none;
+  --kicl-outline-width: var(--kicl-size-1px);
+}
+
+.kicl--theme--dark {
+  --kicl-outline-color: var(--kicl-color-white-700);
+}
+
+.kicl--theme--light {
+  --kicl-outline-color: var(--kicl-color-grey-900);
+}
+
+// Only script focuses these (`#main` after a route change), so they don't need
+// a focus ring.
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+a,
+textarea,
+select,
+option,
+input,
+button,
+summary,
+video {
+  outline-color: var(--kicl-outline-color);
+  outline-style: var(--kicl-outline-style);
+  outline-offset: var(--kicl-size-1px);
+  outline-width: var(--kicl-outline-width);
+
+  &:focus-visible {
+    --kicl-outline-style: dashed;
+  }
+}

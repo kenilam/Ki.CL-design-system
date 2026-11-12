@@ -7,14 +7,20 @@ import {
   CardTitle,
   Form,
   FormField,
-  Spinner,
   Status,
   Text,
   Textarea,
 } from 'design/components';
 
 type Values = { message: string };
-type Phase = 'idle' | 'sending' | 'failed' | 'sent';
+
+const LABELS = {
+  failed: 'Try again',
+  idle: 'Send',
+  sending: 'Sending',
+};
+
+type Phase = keyof typeof LABELS | 'sent';
 
 const Preview: React.FC = () => {
   const [phase, setPhase] = useState<Phase>('idle');
@@ -62,18 +68,8 @@ const Preview: React.FC = () => {
               return <Textarea {...field} label='Message' />;
             }}
           />
-          <Button
-            aria-disabled={phase === 'sending'}
-            before={
-              phase === 'sending' ? <Spinner position='inline' /> : undefined
-            }
-            type='submit'
-          >
-            {phase === 'sending'
-              ? 'Sending'
-              : phase === 'failed'
-                ? 'Try again'
-                : 'Send'}
+          <Button busy={phase === 'sending'} type='submit'>
+            {LABELS[phase]}
           </Button>
           {phase === 'failed' ? (
             <Status

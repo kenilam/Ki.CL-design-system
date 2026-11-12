@@ -17,6 +17,9 @@ import { useFieldContext } from 'design/components/input/file/field/context';
 import { Prompt } from './prompt';
 import { useControl } from './use-control';
 
+// Styles
+import './styles.scss';
+
 // Constants
 import { CLASS_NAME } from 'design/components/input/file/constants';
 
@@ -50,7 +53,8 @@ const DropZone: React.FunctionComponent<Props> = ({
       <label
         className={classNames(
           CLASS_NAME,
-          { [`${CLASS_NAME}--dragging`]: dragging },
+          `${CLASS_NAME}__drop-zone`,
+          { [`${CLASS_NAME}__drop-zone--dragging`]: dragging },
           'kicl-backdrop-blur',
           'kicl-padding',
           'kicl-position-relative',

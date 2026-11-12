@@ -1,11 +1,13 @@
 import { Preset as Basic } from './basic';
 import { Preset as Footer } from './footer';
+import { Preset as Alert } from './alert';
 import { Preset as CloseIcon } from './close-icon';
 import { Preset as KeyboardOnly } from './keyboard-only';
 import { Preset as NotClosable } from './not-closable';
 import { Preset as NoTitle } from './no-title';
 import { Preset as FullScreen } from './full-screen';
 import { Preset as LongContent } from './long-content';
+import { Preset as Wide } from './wide';
 import { CONTROLS } from './controls';
 
 <Text><Copy id='dialog_intro' /></Text>
@@ -13,10 +15,12 @@ import { CONTROLS } from './controls';
 <Preview controls={CONTROLS}>
   {Basic}
   {Footer}
+  {Alert}
   {CloseIcon}
   {KeyboardOnly}
   {NotClosable}
   {NoTitle}
   {FullScreen}
   {LongContent}
+  {Wide}
 </Preview>

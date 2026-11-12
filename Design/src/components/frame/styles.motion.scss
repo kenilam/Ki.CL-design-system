@@ -1,0 +1,33 @@
+.kicl--components--frame {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    animation-delay: var(--kicl--components--frame--delay);
+    animation-duration: var(--kicl-transition-duration-slow);
+    animation-fill-mode: backwards;
+    animation-timing-function: var(--kicl-ease-sine-out);
+
+    &--in {
+      animation-name: kicl--components--frame--in;
+    }
+
+    // `block-size: auto` can't be animated, so this eases the minimum height.
+    &--grow.kicl--components--frame--in {
+      animation-name: kicl--components--frame--grow-in;
+    }
+  }
+}
+
+@keyframes kicl--components--frame--in {
+  from {
+    block-size: 100dvb;
+    border-radius: 0;
+    margin-block: 0;
+  }
+}
+
+@keyframes kicl--components--frame--grow-in {
+  from {
+    border-radius: 0;
+    margin-block: 0;
+    min-block-size: 100dvb;
+  }
+}

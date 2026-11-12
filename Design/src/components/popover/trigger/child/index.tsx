@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 // Libraries
 import classNames from 'classnames';
+
+// Helpers
+import { mergeRefs } from 'design/helper';
 
 // Spec
 import type { PopoverTriggerProps } from 'design/components/popover/spec';
@@ -15,6 +18,7 @@ import { usePopoverIds } from 'design/components/popover/context';
 // Partials
 import { toggle } from './toggle';
 import { useAttributes } from 'design/components/popover/trigger/use-attributes';
+import { useInterest } from 'design/components/popover/trigger/use-interest';
 
 type Props = Omit<PopoverTriggerProps, 'asChild'> & {
   ref?: React.Ref<HTMLButtonElement>;
@@ -32,9 +36,18 @@ const Child: React.FunctionComponent<Props> = ({
 }) => {
   const ids = usePopoverIds();
   const shared = useAttributes();
+  const [node, setNode] = useState<HTMLElement | null>(null);
+  const attach = useCallback(
+    (element: HTMLElement | null) => {
+      mergeRefs(ref, setNode)(element);
+    },
+    [ref]
+  );
   const child = children as React.ReactElement<
     React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }
   >;
+
+  useInterest(node);
 
   return React.cloneElement(child, {
     ...shared,
@@ -60,7 +73,7 @@ const Child: React.FunctionComponent<Props> = ({
       event.preventDefault();
       toggle(panel, event.currentTarget);
     },
-    ref: ref as React.Ref<HTMLElement>,
+    ref: attach,
   });
 };
 

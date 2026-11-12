@@ -1,0 +1,45 @@
+:root {
+  --kicl--components--text--border-inline-start-color: var(
+    --kicl-color-grey-300
+  );
+  --kicl--components--text--border-inline-start-width: var(--kicl-size-1px);
+  --kicl--components--text--font-style: italic;
+  --kicl--components--text--padding-inline-start: var(--kicl-gutter);
+}
+
+.kicl--components--text {
+  // Spaced with margin so the start border doesn't run up through empty padding.
+  & + &[data-is='blockquote']:not(&--is-dense),
+  & + &.kicl-look-like-blockquote:not(&--is-dense) {
+    --kicl--components--text--padding-block-start: 0;
+
+    margin-block-start: var(--kicl-gutter);
+  }
+
+  &[data-is='blockquote'],
+  &.kicl-look-like-blockquote {
+    border-inline-start: var(
+      --kicl--components--text--border-inline-start-width
+    )
+      solid var(--kicl--components--text--border-inline-start-color);
+    display: block;
+    padding-inline-start: var(--kicl--components--text--padding-inline-start);
+  }
+
+  &[data-is='q'],
+  &.kicl-look-like-q,
+  &[data-is='cite'],
+  &.kicl-look-like-cite {
+    font-style: var(--kicl--components--text--font-style);
+  }
+
+  &.kicl-look-like-q:not([data-is='q']) {
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+}

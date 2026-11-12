@@ -1,0 +1,8 @@
+.kicl--components--badge__label {
+  flex-shrink: 0;
+  opacity: 0.72;
+
+  &::after {
+    content: ':';
+  }
+}

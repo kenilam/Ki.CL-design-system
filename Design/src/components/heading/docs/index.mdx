@@ -1,12 +1,16 @@
 import { Preset as Basic } from './basic';
 import { Preset as TwoHeadings } from './two-headings';
 import { Preset as SmallSectionTitle } from './small-section-title';
+import { Preset as Display } from './display';
 import { CONTROLS } from './controls';
 
-<Text><Copy id='heading_intro' /></Text>
+<Text>
+  <Copy id='heading_intro' />
+</Text>
 
 <Preview controls={CONTROLS}>
   {Basic}
   {TwoHeadings}
   {SmallSectionTitle}
+  {Display}
 </Preview>

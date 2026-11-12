@@ -1,0 +1,47 @@
+import React from 'react';
+import classNames from 'classnames';
+
+import { Layout } from 'design/components/layout';
+
+import type {
+  CardFooterProps,
+  CardSectionIs,
+} from 'design/components/card/spec';
+
+const CLASS_NAME = 'kicl--components--card__footer';
+
+const CardFooter = React.forwardRef<HTMLElement, CardFooterProps>(
+  (
+    { children, className, is = 'footer', justifyContent = 'stretch', ...rest },
+    ref
+  ) => {
+    const Component = is as CardSectionIs;
+
+    return (
+      <Layout
+        alignItems='center'
+        autoFlow='column'
+        gap='narrowest'
+        justifyContent={justifyContent}
+        ref={ref}
+      >
+        <Component
+          {...(rest as React.HTMLAttributes<HTMLElement>)}
+          className={classNames(
+            'kicl-padding-block',
+            'kicl-position-sticky',
+            'kicl-inset-block-end-0',
+            CLASS_NAME,
+            className
+          )}
+        >
+          {children}
+        </Component>
+      </Layout>
+    );
+  }
+);
+
+CardFooter.displayName = 'CardFooter';
+
+export { CardFooter };

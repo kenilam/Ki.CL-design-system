@@ -1,0 +1,9 @@
+.kicl--components--notification__title {
+  grid-area: title;
+
+  :is(a, button)::after {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+}

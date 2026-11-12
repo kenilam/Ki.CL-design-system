@@ -196,6 +196,8 @@
   "heading_intro": "A title, from `h1` to `h6`. `is` sets its place in the outline and `lookLike` its size, so the two can differ.",
   "heading_preset_basic": "The page's main title, an `h1` that looks like one.",
   "heading_preset_basic_name": "Basic",
+  "heading_preset_display": "For the title a landing page or a banner opens with. `lookLike='display'` sets it larger than any level, with tighter lines, and leaves its place in the outline to `is`.",
+  "heading_preset_display_name": "Display",
   "heading_preset_small_section_title": "For a section title that should look smaller than its level.",
   "heading_preset_small_section_title_name": "Small section title",
   "heading_preset_two_headings": "A section title with a smaller one under it, an `h2` then an `h3`.",

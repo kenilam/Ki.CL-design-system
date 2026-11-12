@@ -29,7 +29,9 @@ const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
       {
         [`${CLASS_NAME}--is-dense`]: dense,
         [`${CLASS_NAME}--level--${level}`]: level,
-        [`kicl-look-like-${lookLike}`]: lookLike && lookLike !== is,
+        [`${CLASS_NAME}--look-like--display`]: lookLike === 'display',
+        [`kicl-look-like-${lookLike}`]:
+          lookLike && lookLike !== is && lookLike !== 'display',
       },
       origin
     );

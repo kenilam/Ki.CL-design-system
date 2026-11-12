@@ -30,6 +30,7 @@ import './font.text.scss';
 import './gradient-shift.scss';
 import './grid.scss';
 import './gutter.scss';
+import './gutter.frame.scss';
 import './inset.scss';
 import './interaction.scss';
 import './layout.scss';

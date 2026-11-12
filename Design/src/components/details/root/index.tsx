@@ -4,6 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
+import { Heading } from 'design/components';
 import { Marker } from 'design/components/details/marker';
 
 // Spec
@@ -22,25 +23,36 @@ const Root: React.FunctionComponent<
   children,
   className,
   gap,
+  heading,
   marker = true,
   onToggle,
   summary,
   ...rest
 }) => {
   const toggle = useToggle(onToggle);
+  const space = gap ?? (heading ? 'narrow' : undefined);
 
   return (
     <details
       {...rest}
       className={classNames(
         CLASS_NAME,
-        { [`${CLASS_NAME}--gap--${gap}`]: gap },
+        {
+          [`${CLASS_NAME}--gap--${space}`]: space,
+          [`${CLASS_NAME}--heading`]: heading,
+        },
         className
       )}
       onToggle={toggle}
     >
       <Summary>
-        {summary}
+        {heading ? (
+          <Heading dense is={heading} lookLike='h1'>
+            {summary}
+          </Heading>
+        ) : (
+          summary
+        )}
         {marker ? <Marker /> : null}
       </Summary>
       {children}

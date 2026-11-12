@@ -7,6 +7,7 @@
 :root {
   --kicl--components--details--border-width: var(--kicl-size-1px);
   --kicl--components--details--content--opacity: 0;
+  --kicl--components--details--heading--max-inline-size: var(--kicl-columns-8);
   --kicl--components--details--padding-block-start: 0;
   --kicl--components--details--content--transition-duration: var(
     --kicl-transition-duration
@@ -40,6 +41,13 @@
   }
 
   padding-block-start: var(--kicl--components--details--padding-block-start);
+
+  &--heading {
+    max-inline-size: min(
+      100%,
+      var(--kicl--components--details--heading--max-inline-size)
+    );
+  }
 
   & + & {
     --kicl--components--details--padding-block-start: var(--kicl-gutter);

@@ -9,6 +9,12 @@ import type * as Spec from 'design/components/image/spec';
 // Context
 import { useImage } from 'design/components/image/context';
 
+// Constants
+import { CLASS_NAME } from 'design/components/image/constants';
+
+// Styles
+import './styles.scss';
+
 const Picture: React.FunctionComponent = () => {
   const image = useImage();
 
@@ -33,6 +39,7 @@ const Picture: React.FunctionComponent = () => {
   return (
     <img
       className={classNames(
+        `${CLASS_NAME}__picture`,
         'kicl-block-size-full',
         'kicl-display-block',
         'kicl-inline-size-full'

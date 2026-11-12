@@ -21,7 +21,7 @@ import { useDialog } from 'design/components/dialog/context';
 // Partials
 import { Icon } from './icon';
 
-const CLASS_NAME = `${DIALOG}--close`;
+const CLASS_NAME = `${DIALOG}__close`;
 
 const Close: React.FunctionComponent = () => {
   const { closable, fullScreen, id } = useDialog();
@@ -34,6 +34,7 @@ const Close: React.FunctionComponent = () => {
   return (
     <Button
       className={classNames(
+        'kicl-align-self-start',
         'kicl-margin-inline-start-auto',
         fullScreen ? 'kicl-position-fixed' : 'kicl-position-sticky',
         'kicl-z-index-floating',

@@ -1,10 +1,17 @@
-.kicl--components--calendar__day {
-  --kicl--components--calendar--day--inset: var(--kicl-gutter-narrower);
+:root {
   --kicl--components--calendar--day--fill: transparent;
+  --kicl--components--calendar--day--inset: var(--kicl-gutter-narrower);
+}
 
+.kicl--components--calendar__cell {
+  inline-size: calc(100% / 7);
+}
+
+.kicl--components--calendar__day {
   block-size: var(--kicl--components--calendar--cell-size);
   inline-size: var(--kicl--components--calendar--cell-size);
   isolation: isolate;
+  min-inline-size: 100%;
 
   // The ring sits inside the cell: the days touch, so outside it would cross a neighbour.
   outline-offset: calc(var(--kicl-size-1px) * -1);
@@ -18,13 +25,7 @@
     z-index: -1;
   }
 
-  &:hover:not(
-    :disabled,
-    #{&}--selected,
-    #{&}--range-start,
-    #{&}--range-middle,
-    #{&}--range-end
-  ) {
+  &:hover:not(:disabled, [aria-pressed='true']) {
     --kicl--components--calendar--day--fill: var(--kicl-color-neutral-a16);
   }
 

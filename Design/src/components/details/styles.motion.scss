@@ -1,0 +1,46 @@
+.kicl--components--details {
+  @supports (interpolate-size: allow-keywords) {
+    interpolate-size: allow-keywords;
+  }
+
+  &::details-content {
+    transition-duration: var(
+      --kicl--components--details--content--transition-duration
+    );
+    transition-property: block-size, content-visibility, opacity;
+    transition-timing-function: var(
+      --kicl--components--details--content--transition-timing-function
+    );
+    transition-behavior: allow-discrete;
+  }
+}
+
+/*
+ * Safari has `::details-content` but not `interpolate-size`, so the content
+ * can't animate its height to `auto`. A grid row going from `0fr` to `1fr`
+ * gives the same open and close.
+ */
+@supports not (interpolate-size: allow-keywords) {
+  @media not print {
+    .kicl--components--details {
+      display: grid;
+      grid-template-rows: auto 0fr;
+      transition-duration: var(
+        --kicl--components--details--content--transition-duration
+      );
+      transition-property: grid-template-rows;
+      transition-timing-function: var(
+        --kicl--components--details--content--transition-timing-function
+      );
+
+      &[open] {
+        grid-template-rows: auto 1fr;
+      }
+
+      &::details-content {
+        block-size: auto;
+        min-block-size: 0;
+      }
+    }
+  }
+}

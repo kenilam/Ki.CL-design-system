@@ -14,8 +14,24 @@
 
 // Out of sight, keeping its space, so what's beside it doesn't move
 <svg className='kicl-visibility-hidden' />
+
+// See-through, still taking clicks, keys and focus
+<select className='kicl-opacity-0' />
 ```
 
 <Copy id='token_visibility_part_3' />
+
+<Copy id='token_visibility_on_paper' />
+
+```tsx
+// Moves to the next sheet whole rather than splitting
+<article className='kicl-print-break-inside-avoid' />
+
+// Stays on the same sheet as the paragraph under it
+<h2 className='kicl-print-break-after-avoid' />
+
+// The whole page prints a step smaller
+<main className='kicl-print-font-size-small' />
+```
 
 <Copy id='token_visibility_references' />

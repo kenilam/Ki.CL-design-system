@@ -6,6 +6,9 @@ import { Layout } from 'design/components';
 // Spec
 import * as Spec from './spec';
 
+// Styles
+import './styles.scss';
+
 type ListItemProps = Required<PropsWithChildren> & Spec.Props;
 
 const CLASS_NAME = 'kicl--components--list-item';

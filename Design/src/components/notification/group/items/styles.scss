@@ -1,0 +1,47 @@
+$group: '--kicl--components--notification-group';
+$collapsed: var(#{$group}--collapsed);
+$direction: var(#{$group}--direction);
+$index: var(#{$group}--index);
+$depth: min(#{$index}, 2);
+$gap: var(--kicl-gutter-narrow);
+$peek: var(--kicl-gutter-narrower);
+$motion: var(--kicl-transition-duration-fast) var(--kicl-ease-quint-in-out);
+
+.kicl--components--notification-group__list {
+  display: var(#{$group}--list-display);
+  flex-direction: var(#{$group}--list-flex-direction);
+  isolation: isolate;
+  pointer-events: var(#{$group}--list-pointer-events);
+}
+
+.kicl--components--notification-group__item {
+  pointer-events: auto;
+  transform-origin: var(#{$group}--item-transform-origin);
+  transition:
+    filter $motion,
+    opacity $motion,
+    scale $motion,
+    translate $motion;
+  z-index: calc(-1 * #{$index});
+
+  &:nth-child(n + 2) {
+    filter: saturate(
+      calc(1 - #{$collapsed} * #{$depth} * var(#{$group}--saturation))
+    );
+    pointer-events: var(#{$group}--item-pointer-events);
+    scale: calc(1 - #{$collapsed} * #{$depth} * var(#{$group}--narrow));
+    translate: 0
+      calc(
+        #{$collapsed} * #{$direction} *
+        (#{$depth} * #{$peek} - #{$index} * (100% + #{$gap}))
+      );
+  }
+
+  &:nth-child(n + 4) {
+    opacity: calc(1 - #{$collapsed});
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

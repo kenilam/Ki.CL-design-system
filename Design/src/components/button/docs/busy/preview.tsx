@@ -1,13 +1,14 @@
 import React from 'react';
+import * as Tb from 'react-icons/tb';
 
-import { Button, Spinner } from 'design/components';
+import { Button } from 'design/components';
 
 import type { Props } from 'design/components/button/docs/controls';
 
 const Preview: React.FC<Props> = (props) => {
   return (
-    <Button aria-disabled before={<Spinner position='inline' />} {...props}>
-      Saving
+    <Button after={<Tb.TbSend aria-hidden />} busy {...props}>
+      Send
     </Button>
   );
 };

@@ -1,9 +1,7 @@
-import './styles.scss';
-
 export { Bubble } from './bubble';
-export { BubbleContent } from './bubble-content';
-export { BubbleGroup } from './bubble-group';
-export { BubbleReactions } from './bubble-reactions';
+export { BubbleContent } from './content';
+export { BubbleGroup } from './group';
+export { BubbleReactions } from './reactions';
 export { BUBBLE_VARIANTS } from './spec';
 export type {
   BubbleContentIs,

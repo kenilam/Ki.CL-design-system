@@ -1,0 +1,9 @@
+.kicl--components--image--zoomable__full {
+  $dialog: '--kicl--components--dialog';
+
+  --kicl--components--image--block-size: calc(
+    var(#{$dialog}--min-block-size) - var(--kicl-gutter-wide) * 2
+  );
+  --kicl--components--image--inline-size: auto;
+  --kicl--components--image--object-fit: contain;
+}

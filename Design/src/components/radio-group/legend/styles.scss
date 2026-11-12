@@ -1,0 +1,5 @@
+.kicl--components--radio-group__legend--required::after {
+  color: var(--kicl-color-error);
+  content: '*' / '';
+  margin-inline-start: 0.2em;
+}

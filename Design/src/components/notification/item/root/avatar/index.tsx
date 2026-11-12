@@ -1,5 +1,11 @@
 import React from 'react';
 
+// Libraries
+import classNames from 'classnames';
+
+// Styles
+import './styles.scss';
+
 // Context
 import { useNotification } from 'design/components/notification/item/context';
 
@@ -14,7 +20,14 @@ const Avatar: React.FunctionComponent = () => {
   }
 
   return (
-    <span aria-hidden className={`${CLASS_NAME}__avatar`}>
+    <span
+      aria-hidden
+      className={classNames(
+        `${CLASS_NAME}__avatar`,
+        'kicl-aspect-ratio-square',
+        'kicl-display-grid'
+      )}
+    >
       {avatar}
     </span>
   );

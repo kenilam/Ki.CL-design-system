@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { Layout } from 'design/components/layout';
+import { Layout } from 'design/components';
 
 // Helpers
 import { mergeRefs } from 'design/helper';

@@ -38,6 +38,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
         aria-label={rest['aria-label']}
         block={block}
         collapse={collapse}
+        collapsed={collapsed}
         defaultValue={defaultValue}
         disabled={disabled}
         name={name}
@@ -47,7 +48,7 @@ const Segmented = React.forwardRef<HTMLFieldSetElement, SegmentedProps>(
         value={value}
         variant={variant}
       >
-        <Root className={className} collapsed={collapsed} ref={ref} {...rest} />
+        <Root className={className} ref={ref} {...rest} />
       </Provider>
     );
   }

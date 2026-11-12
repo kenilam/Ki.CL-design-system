@@ -11,8 +11,22 @@ import {
   Text,
 } from 'design/components';
 
+const STATUSES = {
+  idle: null,
+  saved: (
+    <>
+      <Tb.TbCheck aria-hidden /> Saved
+    </>
+  ),
+  saving: (
+    <>
+      <Spinner position='inline' /> Saving
+    </>
+  ),
+};
+
 const Preview: React.FC = () => {
-  const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const [state, setState] = useState<keyof typeof STATUSES>('idle');
 
   const save = () => {
     setState('saving');
@@ -46,16 +60,7 @@ const Preview: React.FC = () => {
             level={state === 'saved' ? 'confirm' : undefined}
             role='status'
           >
-            {state === 'saving' ? (
-              <>
-                <Spinner position='inline' /> Saving
-              </>
-            ) : null}
-            {state === 'saved' ? (
-              <>
-                <Tb.TbCheck aria-hidden /> Saved
-              </>
-            ) : null}
+            {STATUSES[state]}
           </Text>
         </p>
       </Layout>

@@ -9,6 +9,9 @@ import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
 // Helpers
 import { weekdays } from 'design/components/calendar/helpers';
 
+// Styles
+import './styles.scss';
+
 type Props = Pick<ReturnType<typeof weekdays>[number], 'long'>;
 
 const Weekday: React.FunctionComponent<Props> = ({ long }) => {

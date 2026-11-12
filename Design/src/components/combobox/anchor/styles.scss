@@ -1,0 +1,5 @@
+.kicl--components--combobox__anchor {
+  @supports (anchor-name: --a) {
+    anchor-name: var(--kicl--components--popover--anchor);
+  }
+}

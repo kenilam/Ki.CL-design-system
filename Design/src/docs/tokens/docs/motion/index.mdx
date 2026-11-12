@@ -72,28 +72,6 @@ import { Duration, Easing, Instant } from 'design/docs/tokens/previews';
   preview={Easing}
 />
 
-<Copy id='token_motion_body_transition' />
-
-<Variables
-  fill={12}
-  names={['body-transition-duration']}
-  property='transition-duration'
-  preview={Duration}
-/>
-
-<Variables
-  fill={12}
-  names={['body-transition-property']}
-  property='transition-property'
-/>
-
-<Variables
-  fill={12}
-  names={['body-transition-timing-function']}
-  property='transition-timing-function'
-  preview={Easing}
-/>
-
 <Copy id='token_motion_scroll_reveal' />
 
 <Variables
@@ -109,6 +87,9 @@ import { Duration, Easing, Instant } from 'design/docs/tokens/previews';
 
 // Fades in as it scrolls into view, from below
 <li className='kicl-scroll-reveal' />
+
+// The slowly panning five-color gradient as its background
+<div className='kicl-gradient-shift' />
 
 // A spinning icon that stops for anyone who asks for less motion
 <svg className='kicl-animation-none-reduced-motion' />

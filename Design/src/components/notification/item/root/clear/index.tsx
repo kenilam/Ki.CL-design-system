@@ -12,6 +12,9 @@ import { useCopy } from 'design/locales/use-copy';
 // Icons
 import * as Tb from 'react-icons/tb';
 
+// Styles
+import './styles.scss';
+
 // Context
 import { useNotification } from 'design/components/notification/item/context';
 
@@ -31,6 +34,7 @@ const Clear: React.FunctionComponent = () => {
       aria-label={t('action_clear_notification')}
       className={classNames(
         `${CLASS_NAME}__clear`,
+        'kicl-padding-narrowest',
         'kicl-position-relative',
         'kicl-z-index-raised'
       )}

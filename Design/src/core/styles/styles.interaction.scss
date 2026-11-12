@@ -1,0 +1,44 @@
+:root {
+  --kicl-disabled-opacity: 0.4;
+}
+
+a,
+button,
+input[type='checkbox'],
+input[type='radio'],
+label,
+select {
+  // Only while enabled: disabled is `not-allowed` below, and a type selector
+  // would outrank it.
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+// Fieldsets are left out: their controls fade on their own, so the legend and
+// labels stay readable.
+*:disabled:not(fieldset),
+*[aria-disabled='true'] {
+  opacity: var(--kicl-disabled-opacity);
+  cursor: not-allowed;
+
+  *:disabled,
+  *[aria-disabled='true'] {
+    opacity: 1;
+  }
+}
+
+label:has(:disabled),
+label:has([aria-disabled='true']),
+:disabled label,
+fieldset:disabled {
+  cursor: not-allowed;
+}
+
+a,
+button {
+  &.disabled,
+  &[aria-disabled='true'] {
+    pointer-events: none;
+  }
+}

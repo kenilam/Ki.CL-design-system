@@ -8,7 +8,9 @@ import { mergeRefs } from 'design/helper';
 import type { PopoverContentProps } from 'design/components/popover/spec';
 
 // Styles
-import './styles.scss';
+import 'design/components/popover/styles.scss';
+import 'design/components/popover/modifiers.scss';
+import 'design/components/popover/placement.scss';
 
 // Class names
 import { getContentClassNames } from 'design/components/popover/class-names';

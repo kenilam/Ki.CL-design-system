@@ -1,0 +1,5 @@
+.kicl--components--combobox__content {
+  @supports (position-area: block-end) {
+    inline-size: anchor-size(inline);
+  }
+}

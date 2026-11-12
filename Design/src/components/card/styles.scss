@@ -1,18 +1,25 @@
-.kicl--components--card {
-  @include level-tones('kicl--components--card');
-
-  --kicl--components--card--background-color: var(--kicl-surface-color);
-  --kicl--components--card--border-color: var(--kicl-surface-border-color);
+:root {
   --kicl--components--card--border-radius: var(--kicl-size);
   --kicl--components--card--border-width: var(--kicl-size-1px);
-  --kicl--components--card--color: var(--kicl-body-color);
   --kicl--components--card--spacing: var(--kicl-gutter);
+}
+
+:root,
+.kicl--theme--dark,
+.kicl--theme--light {
+  --kicl--components--card--glass-background-color: var(
+    --kicl-surface-glass-color
+  );
+}
+
+.kicl--components--card {
+  @include level-tones('kicl--components--card');
 
   background-color: var(--kicl--components--card--background-color);
   border: var(--kicl--components--card--border-width) solid
     var(--kicl--components--card--border-color);
   border-radius: var(--kicl--components--card--border-radius);
-  color: var(--kicl--components--card--color);
+  color: var(--kicl--components--card--color, var(--kicl-body-color));
   inline-size: 100%;
   max-inline-size: 100%;
   overflow: hidden;
@@ -27,66 +34,8 @@
     overflow: visible;
   }
 
-  &--size--fit {
-    inline-size: fit-content;
-  }
-
-  &[class*='kicl--components--card--level--']:not(&--level--neutral) {
-    --kicl--components--card--border-color: var(--kicl--components--card--tone);
-  }
-
   &:target {
     outline: var(--kicl-outline-width) dashed var(--kicl-color-info);
     outline-offset: var(--kicl-size-1px);
   }
-
-  &--size--xs,
-  &--size--sm {
-    --kicl--components--card--spacing: var(--kicl-gutter-narrow);
-  }
-
-  &--variant--secondary {
-    --kicl--components--card--background-color: var(--kicl-surface-glass-color);
-  }
-
-  &--variant--tertiary {
-    --kicl--components--card--border-color: transparent;
-
-    &[class*='kicl--components--card--level--']:not(
-      .kicl--components--card--level--neutral
-    ) {
-      --kicl--components--card--background-color: color-mix(
-        in srgb,
-        var(--kicl--components--card--tone) 12%,
-        var(--kicl-surface-color)
-      );
-    }
-  }
-}
-
-.kicl--components--card__header {
-  // Here rather than as a utility, so `kicl-padding-block-end-*` replaces it.
-  grid-auto-rows: min-content;
-  padding-block-end: var(--kicl-gutter-narrow);
-
-  &:has(.kicl--components--card__action) {
-    align-items: start;
-    grid-template-columns: 1fr auto;
-  }
-
-  &:has(.kicl--components--card__action):not(
-    :has(.kicl--components--card__description)
-  ) {
-    align-items: center;
-  }
-
-  &:has(.kicl--components--card__description) {
-    grid-template-rows: auto auto;
-  }
-}
-
-.kicl--components--card__action {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
 }

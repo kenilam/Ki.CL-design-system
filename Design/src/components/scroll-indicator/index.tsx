@@ -25,7 +25,7 @@ const ScrollIndicator = React.forwardRef<HTMLDivElement, Spec.Props>(
           'kicl-inset-inline-start-0',
           'kicl-position-fixed',
           'kicl-print-hidden',
-          'kicl-z-index-top',
+          'kicl-z-index-ceiling',
           className
         )}
         ref={ref}

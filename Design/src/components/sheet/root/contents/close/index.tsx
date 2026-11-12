@@ -12,6 +12,9 @@ import { useCopy } from 'design/locales/use-copy';
 // Icons
 import * as Tb from 'react-icons/tb';
 
+// Styles
+import './styles.scss';
+
 // Context
 import { useSheet } from 'design/components/sheet/context';
 
@@ -30,6 +33,9 @@ const Close: React.FunctionComponent = () => {
       aria-label={t('action_close_sheet')}
       className={classNames(
         CLASS_NAME,
+        'kicl-align-self-start',
+        'kicl-margin',
+        'kicl-margin-inline-start-none',
         'kicl-position-sticky',
         'kicl-z-index-floating'
       )}

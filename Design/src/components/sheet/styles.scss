@@ -4,38 +4,64 @@
   initial-value: transparent;
 }
 
-.kicl--components--sheet {
-  --kicl--components--sheet--side-inline: 1;
+:root {
+  --kicl--components--sheet--direction: 1;
+  --kicl--components--sheet--foot: ;
+  --kicl--components--sheet--head: ;
+  --kicl--components--sheet--header-child-grid-column: auto;
+  --kicl--components--sheet--header-grid-row: auto;
+  --kicl--components--sheet--header-grid-template-columns: none;
+  --kicl--components--sheet--section-animation-name: none;
   --kicl--components--sheet--side-block: 0;
+  --kicl--components--sheet--side-inline: 1;
   --kicl--components--sheet--solid-background-color: var(
     --kicl-color-white-100
   );
+}
 
-  @at-root .kicl--theme--dark & {
-    --kicl--components--sheet--solid-background-color: var(
-      --kicl-color-black-800
-    );
-  }
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--sheet--line-gradient: var(--kicl-gradient-shift);
+}
 
-  @at-root .kicl--theme--light & {
-    --kicl--components--sheet--solid-background-color: var(
-      --kicl-color-white-100
-    );
-  }
+.kicl--theme--dark {
+  --kicl--components--sheet--solid-background-color: var(
+    --kicl-color-black-800
+  );
+}
 
-  // The inline axis turns around in right-to-left text; `translate` and `box-shadow` don't.
-  --kicl--components--sheet--direction: 1;
-  --kicl--components--sheet--x: calc(
+.kicl--theme--light {
+  --kicl--components--sheet--solid-background-color: var(
+    --kicl-color-white-100
+  );
+}
+
+.kicl--components--sheet {
+  $x: calc(
     var(--kicl--components--sheet--side-inline) *
     var(--kicl--components--sheet--direction)
   );
-  --kicl--components--sheet--y: var(--kicl--components--sheet--side-block);
-  --kicl--components--sheet--from: calc(
-    var(--kicl--components--sheet--x) * var(--kicl-gutter-wide)
-  )
-    calc(var(--kicl--components--sheet--y) * var(--kicl-gutter-wide));
+  $from: calc(#{$x} * var(--kicl-gutter-wide))
+    calc(var(--kicl--components--sheet--side-block) * var(--kicl-gutter-wide));
+
+  // The inline axis turns around in right-to-left text; `translate` and `box-shadow` don't.
+  &:dir(rtl) {
+    --kicl--components--sheet--direction: -1;
+  }
+
+  @each $side, $inline, $block in (inline-start, -1, 0), (inline-end, 1, 0),
+    (block-start, 0, -1), (block-end, 0, 1) {
+    &--#{$side} {
+      --kicl--components--sheet--side-inline: #{$inline};
+      --kicl--components--sheet--side-block: #{$block};
+    }
+  }
 
   block-size: auto;
+  grid-template-rows:
+    var(--kicl--components--sheet--head) 1fr
+    var(--kicl--components--sheet--foot);
   opacity: 1;
   transition:
     display var(--kicl-transition-duration-fast) allow-discrete,
@@ -44,35 +70,17 @@
     translate var(--kicl-transition-duration-fast);
   translate: 0 0;
 
-  &:dir(rtl) {
-    --kicl--components--sheet--direction: -1;
-  }
-
-  &--inline-start {
-    --kicl--components--sheet--side-inline: -1;
-  }
-
-  &--block-start {
-    --kicl--components--sheet--side-inline: 0;
-    --kicl--components--sheet--side-block: -1;
-  }
-
-  &--block-end {
-    --kicl--components--sheet--side-inline: 0;
-    --kicl--components--sheet--side-block: 1;
-  }
-
   // Card's own `display` would keep it on screen while closed. Open modal, it
   // matches `[open]` instead of `:popover-open`.
   &:not(:popover-open, [open]) {
     display: none;
     opacity: 0;
-    translate: var(--kicl--components--sheet--from);
+    translate: $from;
   }
 
   @starting-style {
     opacity: 0;
-    translate: var(--kicl--components--sheet--from);
+    translate: $from;
   }
 
   &::backdrop {
@@ -101,154 +109,28 @@
     }
   }
 
-  @include query('>narrow') {
-    $x: calc(var(--kicl--components--sheet--x) * #{$shadow-distant-negative});
-    $y: calc(var(--kicl--components--sheet--y) * #{$shadow-distant-negative});
-
-    @include box-shadow(
-      $x $y ($shadow-distant * 2) rgba($shadow-color, $shadow-alpha-overlay)
-    );
-
-    &--inline-start,
-    &--inline-end {
-      inline-size: var(--kicl--components--sheet--inline-size);
-      inset-block: var(--kicl-inset-block-start) var(--kicl-inset-block-end);
-    }
-
-    &--inline-start {
-      inset-inline: var(--kicl-inset-inline-start) auto;
-    }
-
-    &--inline-end {
-      inset-inline: auto var(--kicl-inset-inline-end);
-    }
-
-    &--block-start,
-    &--block-end {
-      inline-size: auto;
-      inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
-      max-block-size: calc(
-        100dvb - var(--kicl-inset-block-start) - var(--kicl-inset-block-end)
-      );
-    }
-
-    &--block-start {
-      inset-block: var(--kicl-inset-block-start) auto;
-    }
-
-    &--block-end {
-      inset-block: auto var(--kicl-inset-block-end);
-    }
-  }
-
-  @include query('≤narrow') {
-    border: 0;
-    border-radius: 0;
-    inline-size: auto;
-    inset: 0;
-
-    // The browser keeps a modal dialog off the screen's edges.
-    max-block-size: none;
-    max-inline-size: none;
-    overscroll-behavior: contain;
-
-    &.kicl--components--card--variant--secondary {
-      --kicl--components--card--background-color: var(
-        --kicl--components--sheet--solid-background-color
-      );
-    }
-  }
-
-  --kicl--components--sheet--head: ;
-  --kicl--components--sheet--foot: ;
-  --kicl-layout--grid-frames: var(--kicl--components--sheet--head) 1fr
-    var(--kicl--components--sheet--foot);
-
-  &:has(> .kicl--components--card__header, > &__close) {
+  &:has(> &__header, > &__close) {
     --kicl--components--sheet--head: max-content;
   }
 
-  &:has(> .kicl--components--card__footer) {
+  &:has(> &__footer) {
     --kicl--components--sheet--foot: max-content;
   }
 
   &:has(> &__close) {
+    --kicl--components--sheet--header-child-grid-column: 1;
+    --kicl--components--sheet--header-grid-row: 1;
+    --kicl--components--sheet--header-grid-template-columns: subgrid;
+
     column-gap: var(--kicl-gutter-narrow);
     grid-template-columns: 1fr auto;
 
     > * {
       grid-column: 1 / -1;
     }
-
-    > .kicl--components--card__header {
-      grid-row: 1;
-      grid-template-columns: subgrid;
-
-      > * {
-        grid-column: 1;
-      }
-    }
-
-    > .kicl--components--sheet__close {
-      align-self: start;
-      grid-area: 1 / 2;
-      inset-block-start: var(--kicl-gutter);
-      margin: var(--kicl-gutter);
-      margin-inline-start: 0;
-    }
-  }
-
-  &__header,
-  &__footer {
-    background-color: var(--kicl--components--card--background-color);
-  }
-
-  &[class*='kicl--components--card--level--']:not(
-    .kicl--components--card--level--neutral
-  ) {
-    > .kicl--components--sheet__header,
-    > .kicl--components--sheet__footer {
-      --kicl-gradient-shift: var(--kicl--components--card--tone);
-    }
-  }
-
-  // The card's own blur makes it the backdrop root, so a blur here can't reach
-  // the content scrolling underneath. They go solid while content is under them.
-  @supports (animation-timeline: scroll()) {
-    &.kicl--components--card--variant--secondary {
-      > .kicl--components--sheet__header,
-      > .kicl--components--sheet__footer {
-        animation-fill-mode: both;
-        animation-name: kicl--components--sheet--covered;
-        animation-timeline: scroll();
-        background-color: transparent;
-        background-image: linear-gradient(
-          var(--kicl--components--sheet--cover) 0 0
-        );
-      }
-
-      > .kicl--components--sheet__header {
-        animation-range: 0 var(--kicl-gutter);
-      }
-
-      > .kicl--components--sheet__footer {
-        animation-direction: reverse;
-        animation-range: calc(100% - var(--kicl-gutter)) 100%;
-      }
-    }
   }
 }
 
 :root:has(.kicl--components--sheet:modal) {
   overflow: hidden;
-}
-
-@keyframes kicl--components--sheet--covered {
-  to {
-    --kicl--components--sheet--cover: var(
-      --kicl--components--card--background-color
-    );
-
-    background-color: var(--kicl-body-background-color);
-  }
 }

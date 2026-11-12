@@ -1,0 +1,20 @@
+.kicl--components--card__header {
+  // Here rather than as a utility, so `kicl-padding-block-end-*` replaces it.
+  grid-auto-rows: min-content;
+  padding-block-end: var(--kicl-gutter-narrow);
+
+  &:has(.kicl--components--card__action) {
+    align-items: start;
+    grid-template-columns: 1fr auto;
+  }
+
+  &:has(.kicl--components--card__action):not(
+    :has(.kicl--components--card__description)
+  ) {
+    align-items: center;
+  }
+
+  &:has(.kicl--components--card__description) {
+    grid-template-rows: auto auto;
+  }
+}

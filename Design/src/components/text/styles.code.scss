@@ -1,0 +1,53 @@
+:root {
+  --kicl--components--text--border-width: var(--kicl-size-1px);
+  --kicl--components--text--offset: var(--kicl-size-3px);
+}
+
+.kicl--components--text {
+  // Unwrapped, the longest line sets the page's minimum width and overflows on
+  // phones.
+  &[data-is='pre'],
+  &.kicl-look-like-pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  &.kicl-look-like-pre:not([data-is='pre']) {
+    display: block;
+    font-family: var(--kicl-font-family-mono);
+  }
+
+  &:is([data-is='pre'], .kicl-look-like-pre)
+  > &:is([data-is='code'], .kicl-look-like-code) {
+    display: block;
+    font-weight: var(--kicl-font-weight);
+    padding: var(--kicl-gutter-narrow) var(--kicl-gutter);
+    white-space: pre-wrap;
+  }
+
+  // Block padding on an inline box doesn't move the lines. Inline padding is
+  // needed to keep the fill off punctuation right after it.
+  &[data-is='code'],
+  &[data-is='pre'],
+  &.kicl-look-like-code,
+  &.kicl-look-like-pre {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  &[data-is='code'],
+  &.kicl-look-like-code {
+    --kicl--components--text--font-size: var(--kicl-font-size-small);
+
+    background-color: var(--kicl--components--text--code--background-color);
+    border-radius: var(--kicl--components--text--border-radius);
+    box-decoration-break: clone;
+
+    // An inset shadow, not a border, so both variants are the same size.
+    box-shadow: inset 0 0 0 var(--kicl--components--text--border-width)
+      var(--kicl--components--text--code--border-color);
+    font-family: var(--kicl-font-family-mono);
+    font-weight: var(--kicl-font-weight-bold);
+    padding: var(--kicl--components--text--offset);
+  }
+}

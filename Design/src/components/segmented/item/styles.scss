@@ -1,0 +1,37 @@
+:root {
+  --kicl--components--segmented--item--justify-items: center;
+  --kicl--components--segmented--item--scroll-initial-target: none;
+  --kicl--components--segmented--item--scroll-snap-align: none;
+}
+
+.kicl--components--segmented__item {
+  // So the focus ring follows the highlight's corners.
+  border-radius: inherit;
+  color: var(--kicl-color-neutral-a64);
+  justify-items: var(--kicl--components--segmented--item--justify-items);
+  scroll-snap-align: var(
+    --kicl--components--segmented--item--scroll-snap-align
+  );
+  transition: color var(--kicl-transition-duration-fast);
+
+  &:hover {
+    color: var(--kicl-body-color);
+  }
+
+  &:has(:checked) {
+    anchor-name: --kicl--components--segmented--checked;
+    color: var(--kicl-body-color);
+    scroll-initial-target: var(
+      --kicl--components--segmented--item--scroll-initial-target
+    );
+
+    @supports not (anchor-name: --a) {
+      background-color: var(--kicl--components--segmented--thumb);
+    }
+  }
+
+  &:has(:focus-visible) {
+    outline: var(--kicl-outline-width) dashed var(--kicl-outline-color);
+    outline-offset: var(--kicl-size-1px);
+  }
+}

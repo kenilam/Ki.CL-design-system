@@ -1,0 +1,31 @@
+import React from 'react';
+import classNames from 'classnames';
+
+import type { CardTitleIs, CardTitleProps } from 'design/components/card/spec';
+
+const CLASS_NAME = 'kicl--components--card__title';
+
+const CardTitle = React.forwardRef<HTMLElement, CardTitleProps>(
+  ({ children, className, is, ...rest }, ref) => {
+    const Component = is as CardTitleIs;
+
+    return (
+      <Component
+        {...(rest as React.HTMLAttributes<HTMLElement>)}
+        className={classNames(
+          CLASS_NAME,
+          'kicl-font-weight-bold',
+          'kicl-line-height-narrow',
+          className
+        )}
+        ref={ref as never}
+      >
+        {children}
+      </Component>
+    );
+  }
+);
+
+CardTitle.displayName = 'CardTitle';
+
+export { CardTitle };

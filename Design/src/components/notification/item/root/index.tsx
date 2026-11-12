@@ -7,6 +7,9 @@ import classNames from 'classnames';
 import { Animation } from 'design/components/animation';
 import { Card } from 'design/components/card';
 
+// Styles
+import './styles.scss';
+
 // Spec
 import type { NotificationProps } from 'design/components/notification/spec';
 

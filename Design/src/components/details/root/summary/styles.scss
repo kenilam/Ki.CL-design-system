@@ -1,0 +1,22 @@
+.kicl--components--details__summary {
+  list-style: none;
+  margin-block-end: var(
+    --kicl--components--details--summary--margin-block-end
+  );
+  scroll-margin-block: var(--kicl-gutter-wide);
+  transition-duration: var(
+    --kicl--components--details--content--transition-duration
+  );
+  transition-property: margin-block-end;
+  transition-timing-function: var(
+    --kicl--components--details--content--transition-timing-function
+  );
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::marker {
+    content: '';
+  }
+}

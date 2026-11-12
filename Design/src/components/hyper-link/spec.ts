@@ -18,11 +18,13 @@ export type Props = Required<PropsWithChildren> &
   Pick<ComponentPropsWithoutRef<'button'>, 'disabled'> &
   (
     | (LookProps &
+        Pick<ContentProps, 'busy'> &
         Pick<LayoutProps, 'frames' | 'justifyContent'> & {
           lookLikeButton: true;
           unstyled?: never;
         })
     | (NoLookProps & {
+        busy?: never;
         frames?: never;
         justifyContent?: never;
         lookLikeButton?: false;
@@ -33,7 +35,7 @@ export type Props = Required<PropsWithChildren> &
 export type GetHyperLinkClassNamesProps = Pick<
   Props,
   'block' | 'className' | 'unstyled'
->;
+> & { withLine?: boolean };
 
 export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
   LookProps & {
@@ -47,6 +49,12 @@ export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
      */
     showLabel?: boolean;
   };
+
+export type MoreLinkProps = Pick<Props, 'className'> & {
+  /** "Read more" by default. */
+  label?: string;
+  to: `#${string}`;
+};
 
 export type BackLinkProps = Pick<Props, 'className'> &
   Partial<Pick<Props, 'relative' | 'to'>> & {

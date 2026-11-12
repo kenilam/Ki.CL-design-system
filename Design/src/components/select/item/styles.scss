@@ -1,7 +1,14 @@
+:root {
+  --kicl--components--select--item-checkmark-margin-inline-start: auto;
+  --kicl--components--select--item-justify-content: normal;
+  --kicl--components--select--item-spacer-display: none;
+}
+
 .kicl--components--select__item {
   // The select's focus ring style is inherited, so each option resets it.
   --kicl-outline-style: none;
 
+  justify-content: var(--kicl--components--select--item-justify-content);
   scroll-snap-align: start;
 
   @supports (animation-timeline: view()) {
@@ -27,12 +34,21 @@
     --kicl-outline-style: dashed;
   }
 
+  &::before {
+    content: '';
+    display: var(--kicl--components--select--item-spacer-display);
+    flex-shrink: 0;
+    inline-size: var(--kicl-size);
+  }
+
   &::checkmark {
     background-color: currentcolor;
     block-size: var(--kicl-size);
     content: '';
     inline-size: var(--kicl-size);
-    margin-inline-start: auto;
+    margin-inline-start: var(
+      --kicl--components--select--item-checkmark-margin-inline-start
+    );
     mask: var(--kicl-icon-check-line) center / contain no-repeat;
     order: 1;
   }

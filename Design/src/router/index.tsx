@@ -29,6 +29,9 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
+// Hooks
+import { useCloseOnNavigate } from './use-close-on-navigate';
+
 const Router: React.FunctionComponent<PropsWithChildren> = ({ children }) => {
   const router = createBrowserRouter(createRoutesFromElements(children));
 
@@ -50,6 +53,7 @@ export {
   isRouteErrorResponse,
   redirect,
   resolvePath,
+  useCloseOnNavigate,
   useLocation,
   useMatch,
   useNavigate,

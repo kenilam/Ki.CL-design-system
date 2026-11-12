@@ -1,13 +1,14 @@
-.kicl--components--list--list-style {
-  list-style-position: outside;
-  padding-inline-start: var(--kicl-gutter-wide);
+.kicl--components--list {
+  --kicl--components--list-item--display: initial;
+  --kicl--components--text--span-display: initial;
 
-  > .kicl--components--list-item {
-    display: list-item;
+  &--list-style {
+    --kicl--components--list-item--display: list-item;
 
     // An inline-block too wide for the line drops below its marker.
-    > .kicl--components--text[data-is='span'] {
-      display: inline;
-    }
+    --kicl--components--text--span-display: inline;
+
+    list-style-position: outside;
+    padding-inline-start: var(--kicl-gutter-wide);
   }
 }

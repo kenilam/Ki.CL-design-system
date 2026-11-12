@@ -18,7 +18,7 @@ const useControl = ({ onChange, onKeyDown, onPointerDown, value }: Props) => {
 
   return {
     checked: controlled ? choice.value === value : undefined,
-    defaultChecked: controlled ? undefined : choice.defaultValue === value,
+    defaultChecked: controlled ? undefined : choice.chosen === value,
     name: choice.name ?? id,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       onChange?.(event);

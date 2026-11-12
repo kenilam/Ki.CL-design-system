@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 
 // Context
 import {
+  usePopoverInterest,
   usePopoverOpen,
   usePopoverParts,
 } from 'design/components/popover/context';
 
 const useSyncOpen = (nodeRef: React.RefObject<HTMLDivElement | null>) => {
   const { content, setHint } = usePopoverParts();
+  const { interested } = usePopoverInterest();
   const { open } = usePopoverOpen();
 
   useEffect(() => {
@@ -20,21 +22,28 @@ const useSyncOpen = (nodeRef: React.RefObject<HTMLDivElement | null>) => {
 
   useEffect(() => {
     const node = nodeRef.current;
+    const native = 'interestForElement' in HTMLButtonElement.prototype;
 
-    if (!node || content) {
+    if (!node || (content && native)) {
       return;
+    }
+
+    let show = open;
+
+    if (!native) {
+      show = content ? interested && !open : open || interested;
     }
 
     const shown = node.matches(':popover-open');
 
-    if (open && !shown) {
+    if (show && !shown) {
       node.showPopover();
     }
 
-    if (!open && shown) {
+    if (!show && shown) {
       node.hidePopover();
     }
-  }, [content, nodeRef, open]);
+  }, [content, interested, nodeRef, open]);
 };
 
 export { useSyncOpen };

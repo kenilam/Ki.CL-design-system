@@ -1,17 +1,10 @@
-import React from 'react';
-
-// Libraries
-import classNames from 'classnames';
+import React, { Suspense } from 'react';
 
 // Components
-import { useFormItemControl } from 'design/components';
+import { Spinner } from 'design/components';
 
-// Constants
-import { CLASS_NAME } from 'design/components/select/constants';
-
-// Partials
-import { Contents } from './contents';
-import { Placeholder } from './placeholder';
+// Context
+import { Provider } from 'design/components/select/context';
 
 import type { SelectProps } from 'design/components/select/spec';
 
@@ -19,54 +12,29 @@ type Props = Omit<SelectProps, 'description' | 'label' | 'layout'> & {
   ref?: React.Ref<HTMLSelectElement>;
 };
 
-const Root: React.FunctionComponent<Props> = ({
-  children,
-  className,
-  defaultValue,
-  inline,
-  onChange,
-  onValueChange,
-  placeholder,
-  placement = 'block-end',
-  ref,
-  value,
-  ...rest
-}) => {
-  const control = useFormItemControl(rest);
-  const [axis, edge, align = 'start'] = placement.split('-');
+const VERSIONS = {
+  true: React.lazy(async () => {
+    const { BaseSelect } = await import('./appearance/base-select');
+
+    return { default: BaseSelect };
+  }),
+  false: React.lazy(async () => {
+    const { Auto } = await import('./appearance/auto');
+
+    return { default: Auto };
+  }),
+};
+
+const Root: React.FunctionComponent<Props> = (props) => {
+  const Version = VERSIONS[String(CSS.supports('appearance', 'base-select'))];
 
   return (
-    <select
-      ref={ref}
-      className={classNames(
-        CLASS_NAME,
-        `${CLASS_NAME}--${axis}-${edge}--${align}`,
-        'kicl-inline-size-fit',
-        {
-          [`${CLASS_NAME}--inline`]: inline,
-          'kicl-font-size-small': !inline,
-        },
-        className
-      )}
-      value={value}
-      defaultValue={
-        value === undefined && placeholder !== undefined
-          ? (defaultValue ?? '')
-          : defaultValue
-      }
-      onChange={(event) => {
-        onChange?.(event);
-        onValueChange?.(event.currentTarget.value);
-      }}
-      {...rest}
-      {...control}
-    >
-      <Contents>{children}</Contents>
-      {placeholder !== undefined ? (
-        <Placeholder>{placeholder}</Placeholder>
-      ) : null}
-    </select>
+    <Provider>
+      <Suspense fallback={<Spinner position='inline' />}>
+        <Version {...props} />
+      </Suspense>
+    </Provider>
   );
 };
 
-export { Root };
+export { Root, type Props };

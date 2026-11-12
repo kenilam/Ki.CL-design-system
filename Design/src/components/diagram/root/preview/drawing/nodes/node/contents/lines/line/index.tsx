@@ -10,6 +10,9 @@ import {
   titleYOf,
 } from 'design/components/diagram/root/preview/drawing/nodes/node/contents/lines/title-y';
 
+// Styles
+import './styles.scss';
+
 const LINE_START = 18;
 
 type Props = { line: string };

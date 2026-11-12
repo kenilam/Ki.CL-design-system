@@ -39,6 +39,17 @@
   }
 }
 
+:root,
+.kicl--theme--light {
+  --kicl--components--frame--background-color: var(--kicl-color-grey-200);
+  --kicl--components--frame--border-color: var(--kicl-color-grey-300);
+}
+
+.kicl--theme--dark {
+  --kicl--components--frame--background-color: var(--kicl-color-neutral-a8);
+  --kicl--components--frame--border-color: transparent;
+}
+
 /*
  * Set on the body, not the root, because the header sets its offset on the
  * body. There's no gap under the header, or a picture bleeding past the frame
@@ -56,13 +67,27 @@ body {
   );
 }
 
+:root:has(.kicl--components--frame) body {
+  $frame: '--kicl--components--frame';
+
+  --kicl--components--frame--fixed-inset-block-start: calc(
+    var(#{$frame}--top) + var(--kicl-gutter)
+  );
+  --kicl--components--frame--fixed-inset-block-end: calc(
+    var(#{$frame}--gap) + var(--kicl-gutter)
+  );
+  --kicl--components--frame--fixed-inset-inline-start: calc(
+    var(#{$frame}--gap) + var(--kicl-gutter)
+  );
+  --kicl--components--frame--fixed-inset-inline-end: calc(
+    var(#{$frame}--gap) + var(--kicl-gutter)
+  );
+}
+
 // In the `wrappers` layer, above `components`, so the frame's sizing and
 // clipping beat the styles of the component it lands on.
 .kicl--components--frame {
   $frame: '--kicl--components--frame';
-
-  --kicl--components--frame--background-color: var(--kicl-color-grey-200);
-  --kicl--components--frame--border-color: var(--kicl-color-grey-300);
 
   background-color: var(#{$frame}--background-color);
   block-size: var(#{$frame}--block-size);
@@ -79,108 +104,18 @@ body {
   min-inline-size: 0;
   overflow: clip;
 
-  @at-root .kicl--theme--dark & {
-    --kicl--components--frame--background-color: var(--kicl-color-neutral-a8);
-    --kicl--components--frame--border-color: transparent;
-  }
-
-  &.kicl--components--frame--unclipped {
+  &--unclipped {
     overflow: visible;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation-delay: var(#{$frame}--delay);
-    animation-duration: var(--kicl-transition-duration-slow);
-    animation-fill-mode: backwards;
-    animation-name: var(#{$frame}--in, none);
-    animation-timing-function: var(--kicl-ease-sine-out);
-
-    &.kicl--components--frame--in {
-      #{$frame}--in: kicl--components--frame--in;
-    }
   }
 
   // A growing frame is taller than the window, so it keeps the header's room
   // above it instead of following `--top`, which would move the whole page.
-  &.kicl--components--frame--grow {
+  &--grow {
     block-size: auto;
     margin-block-start: max(
       var(#{$frame}--gap),
       var(--kicl--widgets--global-header--room, 0px)
     );
     min-block-size: var(#{$frame}--block-size);
-
-    // `block-size: auto` can't be animated, so this eases the minimum height.
-    &.kicl--components--frame--in {
-      #{$frame}--in: kicl--components--frame--grow-in;
-    }
-  }
-
-  // A fixed box repeats on every printed page, so `::before` draws the
-  // frame's border on each sheet.
-  @media print {
-    &,
-    &.kicl--components--frame--grow {
-      animation: none;
-      background-color: transparent;
-      block-size: auto;
-      border: 0;
-      border-radius: 0;
-      box-decoration-break: clone;
-      contain: none;
-
-      // A block breaks between sheets more cleanly than a grid does.
-      display: block;
-      inline-size: auto;
-      margin: 0;
-      min-block-size: 0;
-      overflow: visible;
-    }
-
-    &::before {
-      border: var(--kicl-size-1px) solid var(#{$frame}--border-color);
-      border-radius: var(#{$frame}--radius);
-      content: '';
-      inset: 0;
-      position: fixed;
-      z-index: -1;
-    }
-  }
-}
-
-// The named page goes on the whole document, not the frame, because changing
-// page after the frame forces a break and prints an empty last sheet.
-@media print {
-  :root:has(.kicl--components--frame) {
-    page: kicl-frame;
-  }
-}
-
-@page kicl-frame {
-  margin: 6mm;
-}
-
-:root:has(.kicl--components--frame) .kicl-position-fixed {
-  $frame: '--kicl--components--frame';
-
-  --kicl-inset-block-start: calc(var(#{$frame}--top) + var(--kicl-gutter));
-  --kicl-inset-block-end: calc(var(#{$frame}--gap) + var(--kicl-gutter));
-  --kicl-inset-inline-start: calc(var(#{$frame}--gap) + var(--kicl-gutter));
-  --kicl-inset-inline-end: calc(var(#{$frame}--gap) + var(--kicl-gutter));
-}
-
-@keyframes kicl--components--frame--in {
-  from {
-    block-size: 100dvb;
-    border-radius: 0;
-    margin-block: 0;
-  }
-}
-
-@keyframes kicl--components--frame--grow-in {
-  from {
-    border-radius: 0;
-    margin-block: 0;
-    min-block-size: 100dvb;
   }
 }

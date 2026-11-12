@@ -1,0 +1,34 @@
+import React from 'react';
+import classNames from 'classnames';
+
+import { Layout } from 'design/components/layout';
+
+import type {
+  BubbleGroupIs,
+  BubbleGroupProps,
+} from 'design/components/bubble/spec';
+
+import './styles.scss';
+
+const CLASS_NAME = 'kicl--components--bubble__group';
+
+const BubbleGroup = React.forwardRef<HTMLElement, BubbleGroupProps>(
+  ({ children, className, is = 'ol', ...rest }, ref) => {
+    const Component = is as BubbleGroupIs;
+
+    return (
+      <Layout gap='narrow' ref={ref}>
+        <Component
+          {...(rest as React.HTMLAttributes<HTMLElement>)}
+          className={classNames(CLASS_NAME, className)}
+        >
+          {children}
+        </Component>
+      </Layout>
+    );
+  }
+);
+
+BubbleGroup.displayName = 'BubbleGroup';
+
+export { BubbleGroup };

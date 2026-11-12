@@ -1,22 +1,22 @@
-.kicl--components--button {
+:root {
   --kicl--components--button--padding-block: var(--kicl-gutter-narrow);
   --kicl--components--button--padding-inline: var(--kicl-gutter);
   --kicl--components--button--block-size: calc(
     1lh + 2 * var(--kicl--components--button--padding-block)
   );
+}
 
+.kicl--components--button {
   &:not(&--unstyled) {
     padding-block: var(--kicl--components--button--padding-block);
     padding-inline: var(--kicl--components--button--padding-inline);
+  }
 
-    &.kicl--components--button--size {
-      &--large {
-        font-size: var(--kicl-font-size-moderate);
-      }
+  &--size--large {
+    font-size: var(--kicl-font-size-moderate);
+  }
 
-      &--small {
-        font-size: var(--kicl-font-size-small);
-      }
-    }
+  &--size--small {
+    font-size: var(--kicl-font-size-small);
   }
 }

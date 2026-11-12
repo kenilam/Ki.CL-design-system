@@ -1,15 +1,4 @@
-.kicl--components--input--file {
-  &__files {
-    inline-size: anchor-size(--kicl--components--input--file inline);
-    position-try-order: most-block-size;
-  }
-
-  &__file {
-    background-color: color-mix(
-      in srgb,
-      var(--kicl-body-color) 4%,
-      transparent
-    );
-    border-radius: var(--kicl-gutter-narrow);
-  }
+.kicl--components--input--file__files {
+  inline-size: anchor-size(--kicl--components--input--file inline);
+  position-try-order: most-block-size;
 }

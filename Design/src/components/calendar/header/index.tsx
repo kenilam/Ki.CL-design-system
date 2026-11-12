@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Constants
 import { CLASS_NAME as CALENDAR } from 'design/components/calendar/constants';
 
+// Styles
+import './styles.scss';
+
 // Partials
 import { Next } from './next';
 import { Previous } from './previous';
@@ -14,7 +17,13 @@ import { Title } from './title';
 const Header: React.FunctionComponent = () => {
   return (
     <caption
-      className={classNames(`${CALENDAR}__header`, 'kicl-font-size-small')}
+      className={classNames(
+        `${CALENDAR}__header`,
+        'kicl-font-size-small',
+        'kicl-margin-block-end-narrow',
+        'kicl-padding-block-end-narrow',
+        'kicl-text-align-center'
+      )}
     >
       <Previous />
       <Title />

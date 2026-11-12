@@ -1,32 +1,18 @@
 import React from 'react';
 
-// Libraries
-import classNames from 'classnames';
-
 // Constants
 import { BASE, CYLINDER_EDGE } from 'design/components/diagram/constants';
 
-// Context
-import { useDiagram } from 'design/components/diagram/context';
-
 // Partials
 import { useNode } from 'design/components/diagram/root/preview/drawing/nodes/node/context';
+import { useBoxClassName } from './use-box-class-name';
 
 // Styles
 import './styles.scss';
 
 const NodeShape: React.FunctionComponent = () => {
-  const { state } = useDiagram();
-  const { h, id, shape = 'rect', w, x, y } = useNode();
-  const modifier =
-    id && state?.failed?.includes(id)
-      ? 'failed'
-      : id && state?.active?.includes(id)
-        ? 'active'
-        : undefined;
-  const boxClassName = classNames(`${BASE}-box`, {
-    [`${BASE}-box--${modifier}`]: modifier,
-  });
+  const { h, shape = 'rect', w, x, y } = useNode();
+  const boxClassName = useBoxClassName();
 
   if (shape === 'cylinder') {
     const e = CYLINDER_EDGE;

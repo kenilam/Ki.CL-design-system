@@ -1,0 +1,6 @@
+.kicl--components--list-item:not([hidden]) {
+  display: var(
+    --kicl--components--list-item--display,
+    var(--kicl-layout--display)
+  );
+}

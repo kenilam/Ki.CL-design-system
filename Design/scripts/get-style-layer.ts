@@ -34,7 +34,14 @@ const BASE = [
  * `.kicl-layout` sits below `components`: `Layout` clones its classes onto the
  * child it wraps, and the child component should win.
  */
-const LAYOUT = ['layout.scss'];
+const LAYOUT = [
+  'layout.scss',
+  'layout.grid.scss',
+  'layout.align.scss',
+  'layout.gap.scss',
+  'layout.frames.scss',
+  'layout.span.scss',
+];
 
 /**
  * Components that clone their class onto a child. `wrappers` sits above

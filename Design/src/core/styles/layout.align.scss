@@ -1,0 +1,67 @@
+.kicl-layout {
+  &#{&}--align-content {
+    @mixin align-content($justify) {
+      &--#{$justify} {
+        align-content: #{$justify};
+      }
+    }
+
+    @include align-content('baseline');
+    @include align-content('center');
+    @include align-content('end');
+    @include align-content('revert');
+    @include align-content('start');
+    @include align-content('stretch');
+    @include align-content('space-around');
+    @include align-content('space-between');
+    @include align-content('space-evenly');
+  }
+
+  &#{&}--align-items {
+    @mixin align-items($justify) {
+      &--#{$justify} {
+        align-items: #{$justify};
+      }
+    }
+
+    @include align-items('baseline');
+    @include align-items('center');
+    @include align-items('end');
+    @include align-items('revert');
+    @include align-items('start');
+    @include align-items('stretch');
+  }
+
+  &#{&}--justify-items {
+    @mixin justify-items($justify) {
+      &--#{$justify} {
+        justify-items: #{$justify};
+      }
+    }
+
+    @include justify-items('baseline');
+    @include justify-items('center');
+    @include justify-items('end');
+    @include justify-items('revert');
+    @include justify-items('start');
+    @include justify-items('stretch');
+  }
+
+  &#{&}--justify-content {
+    @mixin justify-content($justify) {
+      &--#{$justify} {
+        justify-content: #{$justify};
+      }
+    }
+
+    @include justify-content('baseline');
+    @include justify-content('center');
+    @include justify-content('end');
+    @include justify-content('revert');
+    @include justify-content('start');
+    @include justify-content('stretch');
+    @include justify-content('space-around');
+    @include justify-content('space-between');
+    @include justify-content('space-evenly');
+  }
+}

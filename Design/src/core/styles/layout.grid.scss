@@ -1,0 +1,50 @@
+.kicl-layout {
+  &.kicl-layout--display--grid,
+  &.kicl-layout--display--inline-grid {
+    grid-auto-flow: var(--kicl-layout--auto-flow);
+
+    &.kicl-layout--row {
+      grid-template-columns: unset;
+      grid-template-rows: var(--kicl-layout--grid-frames);
+    }
+
+    &.kicl-layout--column {
+      grid-template-columns: var(--kicl-layout--grid-frames);
+      grid-template-rows: unset;
+
+      @include query('>narrowest', '≤narrow') {
+        --kicl-layout--auto-flow: column;
+      }
+    }
+
+    // Kept after `--row` and `--column` so it wins at the same specificity.
+    &.kicl-layout--columns {
+      --kicl-layout--auto-flow: row;
+
+      grid-template-columns: repeat(var(--kicl-columns-count), minmax(0, 1fr));
+      grid-template-rows: unset;
+
+      @include query('≤narrowest') {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  }
+}
+
+// Three classes, to outrank the row flow's `grid-template-columns: unset`.
+@for $span from 1 through 12 {
+  .kicl-layout.kicl-layout--display--grid.kicl-layout--fill--#{$span},
+  .kicl-layout.kicl-layout--display--inline-grid.kicl-layout--fill--#{$span} {
+    --kicl-layout--auto-flow: row;
+
+    grid-template-columns: repeat(
+      #{math.floor(math.div(12, $span))},
+      minmax(0, 1fr)
+    );
+    grid-template-rows: unset;
+
+    @include query('≤narrowest') {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

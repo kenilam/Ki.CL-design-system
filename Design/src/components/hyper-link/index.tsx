@@ -11,11 +11,12 @@ import { Provider } from './context';
 import { Root } from './root';
 
 const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
-  ({ after, before, children, lookLikeButton, target, ...rest }, ref) => {
+  ({ after, before, busy, children, lookLikeButton, target, ...rest }, ref) => {
     return (
       <Provider
         after={after}
         before={before}
+        busy={busy}
         contents={children}
         lookLikeButton={lookLikeButton}
         target={target}

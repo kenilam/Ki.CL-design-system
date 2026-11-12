@@ -29,7 +29,7 @@ type Props = Omit<
 const useAttributes = ({
   block,
   className: _className = '',
-  disabled,
+  disabled: _disabled,
   level,
   onClick: clickHandler,
   size,
@@ -38,6 +38,7 @@ const useAttributes = ({
   ...rest
 }: Props) => {
   const hyperLink = useHyperLink();
+  const disabled = _disabled || hyperLink.busy;
 
   const onClick: Spec.Props['onClick'] = (event) => {
     if (disabled) {
@@ -68,6 +69,7 @@ const useAttributes = ({
   return {
     rest,
     shared: {
+      'aria-busy': hyperLink.busy,
       'aria-disabled': disabled,
       className,
       onClick,

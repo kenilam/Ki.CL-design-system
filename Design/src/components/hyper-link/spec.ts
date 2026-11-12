@@ -18,11 +18,13 @@ export type Props = Required<PropsWithChildren> &
   Pick<ComponentPropsWithoutRef<'button'>, 'disabled'> &
   (
     | (LookProps &
+        Pick<ContentProps, 'busy'> &
         Pick<LayoutProps, 'frames' | 'justifyContent'> & {
           lookLikeButton: true;
           unstyled?: never;
         })
     | (NoLookProps & {
+        busy?: never;
         frames?: never;
         justifyContent?: never;
         lookLikeButton?: false;

@@ -14,6 +14,7 @@ type Size = (typeof BUTTON_SIZES)[number];
 export type ContentProps = PropsWithChildren<{
   after?: ReactNode;
   before?: ReactNode;
+  busy?: boolean;
 }>;
 
 export type LookProps = {

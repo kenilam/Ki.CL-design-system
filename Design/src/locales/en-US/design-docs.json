@@ -55,7 +55,7 @@
   "button_intro": "Use a button when clicking it does something, like sending a form or opening a dialog. If it takes the user to another page, use a [HyperLink]({{docs}}components/action/hyper-link) instead.",
   "button_preset_basic": "The everyday button. Its label says what happens when you click it.",
   "button_preset_basic_name": "Basic",
-  "button_preset_busy": "While an action runs. `aria-disabled` keeps the button in the tab order and announced, where `disabled` would take it out.",
+  "button_preset_busy": "While an action runs. `busy` puts a spinner in place of the icon after the label, or of the icon itself on an icon-only button, and a click does nothing until it's over. The button keeps its place in the tab order and is announced as busy. A `HyperLink` with `lookLikeButton` takes it too.",
   "button_preset_busy_name": "Busy",
   "button_preset_copies_a_value": "For text the user will paste somewhere else, like an install command. After a click it says Copied for a moment.",
   "button_preset_copies_a_value_name": "Copies a value",

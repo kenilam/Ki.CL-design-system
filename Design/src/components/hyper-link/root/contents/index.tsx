@@ -10,7 +10,7 @@ import { NewTab } from './new-tab';
 const Contents: React.FunctionComponent = () => {
   const hyperLink = useHyperLink();
 
-  let contents = hyperLink.children as React.ReactNode;
+  let contents = hyperLink.children;
 
   if (hyperLink.after || hyperLink.before) {
     contents = (

@@ -32,6 +32,7 @@ import {
   type GetButtonClassNamesProps,
 } from './button';
 import { getButtonClassNames } from './button/class-names';
+import { getButtonContent } from './button/content';
 import {
   Calendar,
   type CalendarMode,
@@ -298,6 +299,7 @@ export {
   type ButtonProps,
   getButtonClassNames,
   type GetButtonClassNamesProps,
+  getButtonContent,
   CopyButton,
   type CopyButtonProps,
   VolumeButton,

@@ -47,6 +47,7 @@ import './overflow.scss';
 import './scrim.scss';
 import './scroll-fade.scss';
 import './scroll-reveal.scss';
+import './scroll-snap.scss';
 import './shadow.scss';
 import './pointer-events.scss';
 import './position.scss';

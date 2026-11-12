@@ -64,6 +64,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   scrim: 'utilities/effects',
   'scroll-fade': 'utilities/overflow',
   'scroll-reveal': 'foundations/motion',
+  'scroll-snap': 'utilities/overflow',
   'scrollbar-none': 'utilities/overflow',
   size: 'foundations/size',
   'stuck-line': 'utilities/overflow',

@@ -1,3 +1,7 @@
+.kicl--components--select {
+  --kicl--components--select--content-max-block-size: 16rem;
+}
+
 // Margins go on both sides because CSS can't tell which side the browser
 // placed the picker on.
 .kicl--components--select::picker(select) {

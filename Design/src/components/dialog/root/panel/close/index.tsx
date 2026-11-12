@@ -21,7 +21,7 @@ import { useDialog } from 'design/components/dialog/context';
 // Partials
 import { Icon } from './icon';
 
-const CLASS_NAME = `${DIALOG}--close`;
+const CLASS_NAME = `${DIALOG}__close`;
 
 const Close: React.FunctionComponent = () => {
   const { closable, fullScreen, id } = useDialog();

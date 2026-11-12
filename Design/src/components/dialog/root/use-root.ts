@@ -47,6 +47,7 @@ const useRoot = (
       [`${CLASS_NAME}--is-closable`]: dialog.closable,
       [`${CLASS_NAME}--is-dense`]: dialog.dense,
       [`${CLASS_NAME}--is-full-screen`]: dialog.fullScreen,
+      [`${CLASS_NAME}--size--${dialog.size}`]: !dialog.fullScreen,
     },
     shown,
   };

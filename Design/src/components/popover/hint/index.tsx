@@ -4,6 +4,11 @@ import { createPortal } from 'react-dom';
 // Spec
 import type { PopoverHintProps } from 'design/components/popover/spec';
 
+// Styles
+import 'design/components/popover/styles.scss';
+import 'design/components/popover/modifiers.scss';
+import 'design/components/popover/placement.scss';
+
 // Class names
 import { getContentClassNames } from 'design/components/popover/class-names';
 

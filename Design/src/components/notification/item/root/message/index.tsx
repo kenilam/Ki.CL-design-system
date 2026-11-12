@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { Text } from 'design/components/text';
 
+// Styles
+import './styles.scss';
+
 // Context
 import { useNotification } from 'design/components/notification/item/context';
 

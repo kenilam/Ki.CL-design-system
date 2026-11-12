@@ -7,6 +7,9 @@ import classNames from 'classnames';
 import { CardTitle } from 'design/components/card';
 import { HyperLink } from 'design/components/hyper-link';
 
+// Styles
+import './styles.scss';
+
 // Context
 import { useNotification } from 'design/components/notification/item/context';
 

@@ -6,6 +6,9 @@ import classNames from 'classnames';
 // Components
 import { CardFooter, type CardFooterProps } from 'design/components/card';
 
+// Styles
+import './styles.scss';
+
 const CLASS_NAME = 'kicl--components--sheet__footer';
 
 const SheetFooter = React.forwardRef<HTMLElement, CardFooterProps>(

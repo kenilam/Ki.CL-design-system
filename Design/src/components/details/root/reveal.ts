@@ -1,8 +1,5 @@
 const reveal = (details: HTMLDetailsElement) => {
-  const { transitionDuration } = getComputedStyle(
-    details,
-    '::details-content'
-  );
+  const { transitionDuration } = getComputedStyle(details, '::details-content');
   const end = performance.now() + parseFloat(transitionDuration) * 1000;
   const summary = details.querySelector(':scope > summary');
   const last = details.lastElementChild;

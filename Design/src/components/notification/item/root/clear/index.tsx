@@ -12,6 +12,9 @@ import { useCopy } from 'design/locales/use-copy';
 // Icons
 import * as Tb from 'react-icons/tb';
 
+// Styles
+import './styles.scss';
+
 // Context
 import { useNotification } from 'design/components/notification/item/context';
 

@@ -9,6 +9,8 @@ import type { SheetProps } from './spec';
 
 // Styles
 import './styles.scss';
+import './modifiers.scss';
+import './placement.scss';
 
 /** Code that closes the sheet should call `close()` when `open` is set, `hidePopover()` otherwise. */
 const Sheet = React.forwardRef<HTMLElement, SheetProps>(

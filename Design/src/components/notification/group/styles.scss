@@ -1,0 +1,104 @@
+$direction: var(--kicl--components--notification-group--direction);
+$peek: var(--kicl-gutter-narrower);
+
+:root {
+  --kicl--components--notification-group--collapsed: 0;
+  --kicl--components--notification-group--direction: 1;
+  --kicl--components--notification-group--item-pointer-events: auto;
+  --kicl--components--notification-group--item-transform-origin: 50% 100%;
+  --kicl--components--notification-group--list-display: grid;
+  --kicl--components--notification-group--list-flex-direction: row;
+  --kicl--components--notification-group--list-pointer-events: none;
+  --kicl--components--notification-group--narrow: 0.04;
+  --kicl--components--notification-group--saturation: 0.4;
+}
+
+.kicl--components--notification-group {
+  @each $side in inline-start, inline-end, block-start, block-end {
+    &--#{$side} {
+      @if $side == block-end {
+        --kicl--components--notification-group--direction: -1;
+        --kicl--components--notification-group--item-transform-origin: 50% 0;
+        --kicl--components--notification-group--list-display: flex;
+        --kicl--components--notification-group--list-flex-direction: column-reverse;
+      } @else {
+        --kicl--components--notification-group--direction: 1;
+        --kicl--components--notification-group--item-transform-origin: 50% 100%;
+        --kicl--components--notification-group--list-display: grid;
+        --kicl--components--notification-group--list-flex-direction: row;
+      }
+    }
+  }
+
+  &:is(:hover, :focus-within) {
+    --kicl--components--notification-group--collapsed: 0;
+    --kicl--components--notification-group--item-pointer-events: auto;
+    --kicl--components--notification-group--list-pointer-events: auto;
+  }
+
+  &:not(:hover, :focus-within) {
+    --kicl--components--notification-group--list-pointer-events: none;
+
+    @media (hover: hover) {
+      --kicl--components--notification-group--collapsed: 1;
+      --kicl--components--notification-group--item-pointer-events: none;
+    }
+  }
+
+  background: none;
+  border: 0;
+  color: inherit;
+  inline-size: fit-content;
+  inset-block: var(--kicl-inset-block-start) auto;
+  max-inline-size: var(--kicl-columns-4);
+  min-inline-size: var(--kicl-columns-3);
+  opacity: 1;
+  overflow: visible;
+  padding: 0;
+  pointer-events: none;
+  transition:
+    display var(--kicl-transition-duration-fast) allow-discrete,
+    opacity var(--kicl-transition-duration-fast),
+    overlay var(--kicl-transition-duration-fast) allow-discrete,
+    translate var(--kicl-transition-duration-fast);
+  translate: 0 0;
+
+  &--inline-start {
+    inset-inline: var(--kicl-inset-inline-start) auto;
+  }
+
+  &--inline-end {
+    inset-inline: auto var(--kicl-inset-inline-end);
+  }
+
+  &--block-start,
+  &--block-end {
+    inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
+    margin-inline: auto;
+  }
+
+  &--block-end {
+    inset-block: auto var(--kicl-inset-block-end);
+  }
+
+  &:not(:popover-open) {
+    display: none;
+    opacity: 0;
+    translate: 0 calc(-1 * #{$direction} * #{$peek});
+  }
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 calc(-1 * #{$direction} * #{$peek});
+  }
+
+  @include query('≤narrow') {
+    inline-size: auto;
+    inset-inline: var(--kicl-inset-inline-start) var(--kicl-inset-inline-end);
+    min-inline-size: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

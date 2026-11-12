@@ -1,21 +1,18 @@
-.kicl--components--dialog {
-  &--is-full-screen &--close {
-    inset-inline-end: var(--kicl-gutter);
-    margin-block-start: 0;
-    margin-inline-end: 0;
-  }
+/* Not stretched, so the sticky button stays stuck for the panel's whole
+ * height, not just its row. */
+.kicl--components--dialog__close {
+  $offset: calc(
+    -1 *
+    var(
+      --kicl--components--dialog--close-offset,
+      var(--kicl--components--dialog--padding-inline) / 2
+    )
+  );
 
-  /* Not stretched, so the sticky button stays stuck for the panel's whole
-   * height, not just its row. */
-  &--close {
-    align-self: start;
-    grid-area: 1 / 1;
-    inset-block-start: var(--kicl-gutter);
-    margin-block-start: calc(
-      -1 * var(--kicl--components--dialog--padding-inline) / 2
-    );
-    margin-inline-end: calc(
-      -1 * var(--kicl--components--dialog--padding-inline) / 2
-    );
-  }
+  align-self: start;
+  grid-area: 1 / 1;
+  inset-block-start: var(--kicl-gutter);
+  inset-inline-end: var(--kicl--components--dialog--close-inset-inline-end);
+  margin-block-start: $offset;
+  margin-inline-end: $offset;
 }

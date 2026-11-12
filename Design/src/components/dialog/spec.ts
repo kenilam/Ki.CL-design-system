@@ -3,7 +3,13 @@ import React from 'react';
 // Icons
 import { IconType } from 'design/icons';
 
-/** Named by its `header`, or by `aria-label` or `aria-labelledby` if none. */
+// Spec
+import type { ColumnSpan } from 'design/components/spec';
+
+/**
+ * Named by its `header`, or by `aria-label` or `aria-labelledby` if none. With
+ * `role='alertdialog'` its contents are centred.
+ */
 export type Props = React.ComponentPropsWithoutRef<'dialog'> & {
   footer?: React.ReactNode;
   header?: React.ReactNode;
@@ -11,10 +17,13 @@ export type Props = React.ComponentPropsWithoutRef<'dialog'> & {
     | {
         dense?: boolean;
         fullScreen?: never;
+        /** The most columns of the 12-column page the panel takes. */
+        size?: ColumnSpan;
       }
     | {
         dense?: never;
         fullScreen?: boolean;
+        size?: never;
       }
   ) &
   (

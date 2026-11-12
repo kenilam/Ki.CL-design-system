@@ -3,10 +3,14 @@ import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 
-import { CardFooter } from './card-footer';
-import { CardHeader } from './card-header';
+import { CardFooter } from './footer';
+import { CardHeader } from './header';
 
 import type { CardIs, CardProps } from './spec';
+
+import './styles.scss';
+import './styles.size.scss';
+import './styles.variant.scss';
 
 const CLASS_NAME = 'kicl--components--card';
 
@@ -20,7 +24,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
       header,
       is,
       size = 'default',
-      level,
+      level = 'neutral',
       variant = 'primary',
       ...rest
     },
@@ -40,7 +44,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
             CLASS_NAME,
             `${CLASS_NAME}--size--${size}`,
             `${CLASS_NAME}--variant--${variant}`,
-            level ? `${CLASS_NAME}--level--${level}` : null,
+            `${CLASS_NAME}--level--${level}`,
             variant === 'secondary' ? 'kicl-backdrop-blur' : null,
             typeof size === 'number'
               ? `kicl-inline-size-columns-${size}`

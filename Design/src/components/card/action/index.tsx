@@ -1,7 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import type { CardActionProps } from './spec';
+import type { CardActionProps } from 'design/components/card/spec';
+
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--card__action';
 

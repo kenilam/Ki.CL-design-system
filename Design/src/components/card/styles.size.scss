@@ -1,0 +1,22 @@
+.kicl--components--card--size {
+  @each $size in (default, fit, md, lg, xl, xxl, max) {
+    &--#{$size} {
+      --kicl--components--card--spacing: var(--kicl-gutter);
+    }
+  }
+
+  @for $span from 1 through 12 {
+    &--#{$span} {
+      --kicl--components--card--spacing: var(--kicl-gutter);
+    }
+  }
+
+  &--xs,
+  &--sm {
+    --kicl--components--card--spacing: var(--kicl-gutter-narrow);
+  }
+
+  &--fit {
+    inline-size: fit-content;
+  }
+}

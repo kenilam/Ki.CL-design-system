@@ -11,13 +11,18 @@
   --kicl--components--sheet--header-child-grid-column: auto;
   --kicl--components--sheet--header-grid-row: auto;
   --kicl--components--sheet--header-grid-template-columns: none;
-  --kicl--components--sheet--line-gradient: var(--kicl-gradient-shift);
   --kicl--components--sheet--section-animation-name: none;
   --kicl--components--sheet--side-block: 0;
   --kicl--components--sheet--side-inline: 1;
   --kicl--components--sheet--solid-background-color: var(
     --kicl-color-white-100
   );
+}
+
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--sheet--line-gradient: var(--kicl-gradient-shift);
 }
 
 .kicl--theme--dark {

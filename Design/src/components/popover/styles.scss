@@ -1,8 +1,13 @@
+:root,
+.kicl--theme--light,
+.kicl--theme--dark {
+  --kicl--components--popover--background-color: var(--kicl-surface-color);
+  --kicl--components--popover--border-color: var(--kicl-surface-border-color);
+}
+
 :root {
   --kicl--components--popover--ahead: var(--kicl-gutter-narrower);
   --kicl--components--popover--back: calc(var(--kicl-gutter-narrower) * -1);
-  --kicl--components--popover--background-color: var(--kicl-surface-color);
-  --kicl--components--popover--border-color: var(--kicl-surface-border-color);
   --kicl--components--popover--border-radius: var(--kicl-size-half);
   --kicl--components--popover--enter: 0 var(--kicl--components--popover--back);
   --kicl--components--popover--inset: var(--kicl-gutter);

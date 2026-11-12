@@ -1,0 +1,53 @@
+.kicl-text-transform-capitalize {
+  text-transform: capitalize;
+}
+
+.kicl-text-transform-lowercase {
+  text-transform: lowercase;
+}
+
+.kicl-text-transform-none {
+  text-transform: none;
+}
+
+.kicl-text-transform-uppercase {
+  text-transform: uppercase;
+}
+
+.kicl-text-align-start {
+  text-align: start;
+}
+
+.kicl-text-align-center {
+  text-align: center;
+}
+
+.kicl-text-align-end {
+  text-align: end;
+}
+
+.kicl-text-align-justify {
+  text-align: justify;
+}
+
+// The size limits let it shrink below its text and keep it inside a grid cell
+// it isn't stretched to.
+.kicl-text-truncate {
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kicl-text-nowrap {
+  white-space: nowrap;
+}
+
+:root {
+  --kicl-text-wrap-balance: balance;
+  --kicl-text-wrap-pretty: pretty;
+}
+
+@include make-variable-class('text-wrap', 'balance');
+@include make-variable-class('text-wrap', 'pretty');

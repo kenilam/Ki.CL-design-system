@@ -25,6 +25,8 @@ import './display.scss';
 import './duration.scss';
 import './ease.scss';
 import './font.scss';
+import './font.languages.scss';
+import './font.text.scss';
 import './gradient-shift.scss';
 import './grid.scss';
 import './gutter.scss';

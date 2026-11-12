@@ -4,9 +4,7 @@ import React from 'react';
 import type { Token } from 'marked';
 
 // Components
-import { HyperLink } from 'design/components/hyper-link';
-import { Image } from 'design/components/image';
-import { Text } from 'design/components/text';
+import { HyperLink, Image, Text } from 'design/components';
 
 // Partials
 import { CodeSpan } from './code-span';

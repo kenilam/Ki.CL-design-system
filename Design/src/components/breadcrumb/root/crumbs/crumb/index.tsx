@@ -4,7 +4,7 @@ import React from 'react';
 import * as Tb from 'react-icons/tb';
 
 // Components
-import { HyperLink } from 'design/components/hyper-link';
+import { HyperLink } from 'design/components';
 
 // Spec
 import type * as Spec from 'design/components/breadcrumb/spec';

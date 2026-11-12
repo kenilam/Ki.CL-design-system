@@ -4,12 +4,8 @@ import React from 'react';
 import type { Token, Tokens } from 'marked';
 
 // Components
-import { Heading } from 'design/components/heading';
+import { Heading, List, ListItem, Separator, Text } from 'design/components';
 import type { HeadingIs } from 'design/components';
-import { List } from 'design/components/list';
-import { ListItem } from 'design/components/list-item';
-import { Separator } from 'design/components/separator';
-import { Text } from 'design/components/text';
 
 // Partials
 import { renderInline } from './render-inline';

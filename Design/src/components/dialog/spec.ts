@@ -6,7 +6,10 @@ import { IconType } from 'design/icons';
 // Spec
 import type { ColumnSpan } from 'design/components/spec';
 
-/** Named by its `header`, or by `aria-label` or `aria-labelledby` if none. */
+/**
+ * Named by its `header`, or by `aria-label` or `aria-labelledby` if none. With
+ * `role='alertdialog'` its contents are centred.
+ */
 export type Props = React.ComponentPropsWithoutRef<'dialog'> & {
   footer?: React.ReactNode;
   header?: React.ReactNode;

@@ -13,6 +13,8 @@
   --kicl--components--dialog--opacity--starting-style: 1;
   --kicl--components--dialog--padding-block: var(--kicl-gutter-wide);
   --kicl--components--dialog--padding-inline: var(--kicl-gutter-wide);
+  --kicl--components--dialog--panel-justify-content: normal;
+  --kicl--components--dialog--panel-justify-items: normal;
   --kicl--components--dialog--panel-opacity: 1;
   --kicl--components--dialog--panel-translate: none;
   --kicl--components--dialog--panel-view-transition-name: none;
@@ -60,6 +62,14 @@
         var(--kicl--components--dialog--section-offset)
       );
     --kicl--components--dialog--panel-view-transition-name: none;
+  }
+
+  &[role='alertdialog'] {
+    --kicl--components--dialog--panel-justify-content: center;
+    --kicl--components--dialog--panel-justify-items: center;
+    --kicl--components--dialog--panel-padding-block-end: calc(
+      var(--kicl--components--dialog--padding-block) + var(--kicl-gutter-wide)
+    );
   }
 
   &--is-closable {

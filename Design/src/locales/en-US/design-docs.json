@@ -165,6 +165,8 @@
   "diagram_preset_table": "For a database table. Each line in the box is one of the table’s columns, with its type and an optional key or note.",
   "diagram_preset_table_name": "Table",
   "dialog_intro": "Opens over the page and keeps focus until it's closed. Use it when the user has to answer something before going on. It's a native `<dialog>` opened as a modal.",
+  "dialog_preset_alert": "For a question that stops the user until they answer it, like signing out everywhere. As an `alertdialog`, its contents are centred with more room below them.",
+  "dialog_preset_alert_name": "Alert",
   "dialog_preset_basic": "A title, some text and a close button. Escape or a click outside closes it too.",
   "dialog_preset_basic_name": "Basic",
   "dialog_preset_close_icon": "Swaps the X on the close button for another icon.",

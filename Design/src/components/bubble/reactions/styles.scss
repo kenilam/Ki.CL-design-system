@@ -1,0 +1,11 @@
+.kicl--components--bubble__reactions {
+  background-color: var(--kicl-surface-color);
+  box-shadow: 0 0 0 var(--kicl-size-3px) var(--kicl-body-background-color);
+  padding-block: var(--kicl-gutter-narrowest);
+  padding-inline: var(--kicl-gutter-narrower);
+  translate: 0 75%;
+
+  &:has(button) {
+    padding: 0;
+  }
+}

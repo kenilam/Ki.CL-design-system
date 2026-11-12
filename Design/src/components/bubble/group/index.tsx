@@ -3,7 +3,12 @@ import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 
-import type { BubbleGroupIs, BubbleGroupProps } from './spec';
+import type {
+  BubbleGroupIs,
+  BubbleGroupProps,
+} from 'design/components/bubble/spec';
+
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--bubble__group';
 

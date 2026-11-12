@@ -3,7 +3,12 @@ import classNames from 'classnames';
 
 import { Layout } from 'design/components/layout';
 
-import type { BubbleReactionsIs, BubbleReactionsProps } from './spec';
+import type {
+  BubbleReactionsIs,
+  BubbleReactionsProps,
+} from 'design/components/bubble/spec';
+
+import './styles.scss';
 
 const CLASS_NAME = 'kicl--components--bubble__reactions';
 

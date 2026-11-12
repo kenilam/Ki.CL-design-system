@@ -1,0 +1,35 @@
+.kicl--components--bubble__content {
+  --kicl--components--spinner--vertical-align: middle;
+
+  backdrop-filter: var(--kicl--components--bubble--backdrop-filter);
+  background-color: var(--kicl--components--bubble--background-color);
+  border: var(--kicl--components--bubble--border-width) solid
+    var(--kicl--components--bubble--border-color);
+  border-radius: var(--kicl--components--bubble--border-radius);
+  color: var(--kicl--components--bubble--color);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  padding-block: var(--kicl--components--bubble--padding-block);
+  padding-inline: var(--kicl--components--bubble--padding-inline);
+
+  svg {
+    block-size: 1em;
+    inline-size: 1em;
+    vertical-align: middle;
+  }
+
+  &:is(a, button) {
+    cursor: pointer;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    transition: box-shadow 0.15s ease;
+
+    &:hover {
+      box-shadow: inset 0 0 0 100vmax var(--kicl--components--bubble--hover);
+    }
+  }
+}

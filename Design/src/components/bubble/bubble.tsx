@@ -5,6 +5,9 @@ import { Layout } from 'design/components/layout';
 
 import type { BubbleIs, BubbleProps } from './spec';
 
+import './styles.scss';
+import './styles.variant.scss';
+
 const CLASS_NAME = 'kicl--components--bubble';
 
 const Bubble = React.forwardRef<HTMLElement, BubbleProps>(

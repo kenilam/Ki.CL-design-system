@@ -9,6 +9,12 @@ import type * as Spec from 'design/components/video/spec';
 // Context
 import { useStatus, useVideo } from 'design/components/video/context';
 
+// Constants
+import { CLASS_NAME } from 'design/components/video/constants';
+
+// Styles
+import './styles.scss';
+
 const Player: React.FunctionComponent = () => {
   const { captions, onLoadedData, onLoadStart, src, ...rest } = useVideo();
   const { setLoading } = useStatus();
@@ -40,7 +46,11 @@ const Player: React.FunctionComponent = () => {
     <video
       {...rest}
       ref={video}
-      className={classNames('kicl-block-size-full', 'kicl-inline-size-full')}
+      className={classNames(
+        `${CLASS_NAME}__player`,
+        'kicl-block-size-full',
+        'kicl-inline-size-full'
+      )}
       onLoadStart={onStart}
       onLoadedData={onLoaded}
     >

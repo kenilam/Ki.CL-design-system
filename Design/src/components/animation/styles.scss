@@ -36,7 +36,7 @@
   /* Shortened rather than removed so `transitionend` still fires and the
    * child unmounts. */
   @media (prefers-reduced-motion: reduce) {
-    --kicl--components--animation--transition-delay: 0s;
-    --kicl--components--animation--transition-duration: 1ms;
+    transition-delay: 0s;
+    transition-duration: 1ms;
   }
 }

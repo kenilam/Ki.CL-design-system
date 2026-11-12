@@ -3,6 +3,7 @@ import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 import { useClipboard } from './use-clipboard';
+import { useClosedBy } from './use-closed-by';
 import { useOverlayContents } from './use-overlay-contents';
 import { usePrinting } from './use-printing';
 import { useResizeObserver } from './use-resize-observer';
@@ -19,6 +20,7 @@ export {
   type TFunction,
   type Theme,
   useClipboard,
+  useClosedBy,
   useOverlayContents,
   usePrinting,
   useResizeObserver,

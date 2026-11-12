@@ -1,0 +1,42 @@
+// A fixed box repeats on every printed page, so `::before` draws the frame's
+// border on each sheet.
+.kicl--components--frame {
+  @media print {
+    animation: none;
+    background-color: transparent;
+    block-size: auto;
+    border: 0;
+    border-radius: 0;
+    box-decoration-break: clone;
+    contain: none;
+
+    // A block breaks between sheets more cleanly than a grid does.
+    display: block;
+    inline-size: auto;
+    margin: 0;
+    min-block-size: 0;
+    overflow: visible;
+
+    &::before {
+      border: var(--kicl-size-1px) solid
+        var(--kicl--components--frame--border-color);
+      border-radius: var(--kicl--components--frame--radius);
+      content: '';
+      inset: 0;
+      position: fixed;
+      z-index: -1;
+    }
+  }
+}
+
+// The named page goes on the whole document, not the frame, because changing
+// page after the frame forces a break and prints an empty last sheet.
+@media print {
+  :root:has(.kicl--components--frame) {
+    page: kicl-frame;
+  }
+}
+
+@page kicl-frame {
+  margin: 6mm;
+}

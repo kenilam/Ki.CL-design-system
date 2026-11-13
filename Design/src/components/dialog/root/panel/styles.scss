@@ -21,6 +21,7 @@
   max-inline-size: var(--kicl--components--dialog--max-inline-size);
   min-block-size: var(--kicl--components--dialog--min-block-size);
   opacity: var(--kicl--components--dialog--panel-opacity);
+  overflow-wrap: anywhere;
   padding-block: var(--kicl--components--dialog--padding-block);
   padding-block-end: var(
     --kicl--components--dialog--panel-padding-block-end,

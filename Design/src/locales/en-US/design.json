@@ -67,6 +67,7 @@
   "component_calendar": "Calendar",
   "component_card": "Card",
   "component_checkbox": "Checkbox",
+  "component_code_block": "Code block",
   "component_combobox": "Combobox",
   "component_date_picker": "Date picker",
   "component_details": "Details",

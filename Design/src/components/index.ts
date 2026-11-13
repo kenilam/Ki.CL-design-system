@@ -72,6 +72,11 @@ import {
   type CheckedState,
 } from './checkbox';
 import {
+  CODE_BLOCK_LANGUAGES,
+  CodeBlock,
+  type CodeBlockProps,
+} from './code-block';
+import {
   Combobox,
   ComboboxAnchor,
   ComboboxContent,
@@ -351,6 +356,9 @@ export {
   type CheckboxGroupProps,
   type CheckboxProps,
   type CheckedState,
+  CODE_BLOCK_LANGUAGES,
+  CodeBlock,
+  type CodeBlockProps,
   Combobox,
   ComboboxAnchor,
   type ComboboxAnchorProps,

@@ -108,6 +108,12 @@ export const PAGES = {
         return import('design/components/markdown/docs/index.mdx');
       }),
     },
+    'code-block': {
+      context: 'code_block',
+      Content: lazy(() => {
+        return import('design/components/code-block/docs/index.mdx');
+      }),
+    },
     badge: {
       context: 'badge',
       Content: lazy(() => {

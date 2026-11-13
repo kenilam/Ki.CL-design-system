@@ -25,6 +25,7 @@ const Piece: React.FunctionComponent<Props> = ({ children, order }) => {
       delay={animatedText.delay + animatedText.stagger * order}
       duration={animatedText.duration}
       easing={animatedText.easing}
+      in={animatedText.in}
       property={property}
     >
       <span aria-hidden className='kicl-display-inline-block'>

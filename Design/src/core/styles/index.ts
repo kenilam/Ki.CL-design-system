@@ -1,3 +1,7 @@
+// Fonts
+import '@fontsource-variable/inter/opsz.css';
+import '@fontsource-variable/jetbrains-mono';
+
 // Global Styles
 import './reset.css';
 
@@ -11,6 +15,7 @@ import './styles.interaction.scss';
 import './styles.fields.scss';
 import './styles.theme.scss';
 import './styles.body.scss';
+import './styles.view-transition.scss';
 import './styles.headings.scss';
 
 // Variables

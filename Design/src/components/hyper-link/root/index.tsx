@@ -30,6 +30,7 @@ const Root: React.FunctionComponent<Props> = ({
   justifyContent = LAYOUT.justifyContent,
   ref,
   to,
+  viewTransition = true,
   ...props
 }) => {
   const { isHash, lookLikeButton } = useHyperLink();
@@ -43,7 +44,14 @@ const Root: React.FunctionComponent<Props> = ({
         <Contents />
       </a>
     ) : (
-      <NavLink {...rest} {...shared} end={end} ref={ref} to={to}>
+      <NavLink
+        {...rest}
+        {...shared}
+        end={end}
+        ref={ref}
+        to={to}
+        viewTransition={viewTransition}
+      >
         <Contents />
       </NavLink>
     );

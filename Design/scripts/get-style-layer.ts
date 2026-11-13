@@ -32,6 +32,7 @@ const BASE = [
   'styles.headings.scss',
   'styles.interaction.scss',
   'styles.theme.scss',
+  'styles.view-transition.scss',
 ];
 
 /**

@@ -24,6 +24,7 @@ type Props = Omit<
   | 'delay'
   | 'duration'
   | 'easing'
+  | 'in'
   | 'property'
   | 'split'
   | 'stagger'
@@ -49,7 +50,7 @@ const Root: React.FunctionComponent<Props> = ({ className, ref, ...props }) => {
       )}
       ref={ref}
     >
-      {animatedText.replaced ? animatedText.text : <Words />}
+      <Words />
     </Text>
   );
 
@@ -62,6 +63,7 @@ const Root: React.FunctionComponent<Props> = ({ className, ref, ...props }) => {
       delay={animatedText.delay}
       duration={animatedText.duration}
       easing={animatedText.easing}
+      in={animatedText.in}
       property={animatedText.property}
     >
       {root}

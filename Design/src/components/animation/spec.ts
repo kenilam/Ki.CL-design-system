@@ -38,6 +38,7 @@ export const EASINGS = [
   'ease-quint-out',
   'ease-quint-in-out',
   'ease-sharp-in-out',
+  'ease-standard-in-out',
   'ease-sine-in',
   'ease-sine-out',
   'ease-sine-in-out',

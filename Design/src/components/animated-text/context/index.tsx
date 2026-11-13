@@ -15,20 +15,18 @@ type Props = React.PropsWithChildren<
   Options & { text: Spec.Props['children'] }
 >;
 
-type Value = Required<Omit<Options, 'easing'>> &
-  Pick<Options, 'easing'> &
-  ReturnType<typeof useText>;
+type Value = Required<Options> & ReturnType<typeof useText>;
 
 const AnimatedTextContext = createContext<Value | null>(null);
 
 const Provider: React.FunctionComponent<Props> = ({
   children,
   delay = 0,
-  duration = 'fastest',
-  easing,
-  property = 'slide-from-top',
-  split = 'letter',
-  stagger = 10,
+  duration = 'slower',
+  easing = 'ease-standard-in-out',
+  property = 'slide-from-bottom',
+  split = 'word',
+  stagger = 50,
   text,
 }) => {
   const { replaced, text: shown } = useText(text);

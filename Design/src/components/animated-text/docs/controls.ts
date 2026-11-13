@@ -10,10 +10,10 @@ import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 
 export const CONTROLS = {
-  split: { options: ANIMATED_TEXT_SPLITS, default: 'letter' },
-  property: { options: PROPERTIES, default: 'slide-from-top' },
-  duration: { options: DURATIONS, default: 'fastest' },
-  easing: EASINGS,
+  split: { options: ANIMATED_TEXT_SPLITS, default: 'word' },
+  property: { options: PROPERTIES, default: 'slide-from-bottom' },
+  duration: { options: DURATIONS, default: 'slower' },
+  easing: { options: EASINGS, default: 'ease-standard-in-out' },
   lookLike: TEXT_LOOK_LIKES,
   variant: { options: TEXT_VARIANTS, default: 'primary' },
   level: { options: LEVELS, default: 'neutral' },

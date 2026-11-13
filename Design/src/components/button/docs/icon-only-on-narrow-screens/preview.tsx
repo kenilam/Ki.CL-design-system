@@ -3,9 +3,10 @@ import * as Tb from 'react-icons/tb';
 
 import { Button } from 'design/components';
 
+import type { ButtonProps } from 'design/components';
 import type { Props } from 'design/components/button/docs/controls';
 
-const Preview: React.FC<Props> = (props) => {
+const Preview: React.FC<Props & Pick<ButtonProps, 'block'>> = (props) => {
   return (
     <Button
       before={<Tb.TbPrinter aria-hidden />}

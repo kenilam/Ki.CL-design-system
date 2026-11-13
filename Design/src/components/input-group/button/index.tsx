@@ -20,13 +20,29 @@ const CLASS_NAME = `${INPUT_GROUP}__button`;
 const InputGroupButton = React.forwardRef<
   HTMLButtonElement,
   InputGroupButtonProps
->(({ className, size = 'small', variant = 'ghost', ...rest }, ref) => {
+>((props, ref) => {
+  if (props.variant === 'primary') {
+    const { className, size = 'small', variant, ...rest } = props;
+
+    return (
+      <Button
+        {...rest}
+        className={classNames(CLASS_NAME, className)}
+        ref={ref}
+        size={size}
+        variant={variant}
+      />
+    );
+  }
+
+  const { className, variant, ...rest } = props;
+
   return (
     <Button
       {...rest}
-      {...(variant === 'ghost' ? ({ unstyled: true } as const) : { size })}
       className={classNames(CLASS_NAME, className)}
       ref={ref}
+      unstyled
     />
   );
 });

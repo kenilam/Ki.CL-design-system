@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
+import type { ButtonBlockProps, ButtonLookProps } from 'design/components';
 import type { ButtonProps } from 'design/components/button';
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
 import type { Variant } from 'design/components/spec';
@@ -18,12 +19,15 @@ export type InputGroupProps = PolymorphicIsProps<
 
 export type InputGroupButtonProps = Pick<
   ButtonProps,
-  'after' | 'before' | 'block' | 'busy' | 'children'
+  'after' | 'before' | 'busy' | 'children'
 > &
   ComponentPropsWithoutRef<'button'> &
   (
-    | { size?: never; variant?: Extract<Variant, 'ghost'> }
-    | { size?: ButtonProps['size']; variant: Extract<Variant, 'primary'> }
+    | { block?: never; size?: never; variant?: Extract<Variant, 'ghost'> }
+    | (ButtonBlockProps &
+        Pick<ButtonLookProps, 'block' | 'size'> & {
+          variant: Extract<Variant, 'primary'>;
+        })
   );
 
 export type InputGroupInputProps = ComponentPropsWithoutRef<'input'>;

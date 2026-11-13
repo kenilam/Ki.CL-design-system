@@ -29,7 +29,7 @@ const useAttributes = ({
   disabled: _disabled,
   level,
   onClick: clickHandler,
-  size,
+  size = 'small',
   unstyled,
   variant,
   ...rest
@@ -58,7 +58,6 @@ const useAttributes = ({
         variant,
       })
     : getHyperLinkClassNames({
-        block,
         className: _className,
         unstyled,
         withLine: hyperLink.hasLine,

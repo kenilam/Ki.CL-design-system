@@ -27,7 +27,6 @@ type Props = Omit<PopoverTriggerProps, 'asChild'> & {
 };
 
 const Button: React.FunctionComponent<Props> = ({
-  block,
   children,
   className,
   onClick,
@@ -56,7 +55,6 @@ const Button: React.FunctionComponent<Props> = ({
         CLASS_NAME,
         `${CLASS_NAME}--button`,
         'kicl-line-height-narrower',
-        { 'kicl-border-radius-sm': block },
         className
       )}
       /*

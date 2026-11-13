@@ -23,7 +23,20 @@ strong {
 // The `*` rule above clears the browser's `mark` background, so set it again.
 mark {
   background-color: var(--kicl-color-warning);
-  color: contrast-color(var(--kicl-color-warning));
+  color: var(--kicl-color-black-pure);
+
+  @supports (color: contrast-color(red)) {
+    color: contrast-color(var(--kicl-color-warning));
+  }
+}
+
+::selection {
+  background-color: var(--kicl-color-green-300);
+  color: var(--kicl-color-black-pure);
+
+  @supports (color: contrast-color(red)) {
+    color: contrast-color(var(--kicl-color-green-300));
+  }
 }
 
 svg:not([fill]) {

@@ -22,7 +22,7 @@ const getClassName = ({
   variant,
 }: Spec.Props) => {
   if (lookLikeHyperLink) {
-    return getHyperLinkClassNames({ block, className, unstyled });
+    return getHyperLinkClassNames({ className, unstyled });
   }
 
   return getButtonClassNames({

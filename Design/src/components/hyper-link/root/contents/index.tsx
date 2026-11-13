@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Helpers
+import { truncateText } from 'design/helper';
+
 // Context
 import { useHyperLink } from 'design/components/hyper-link/context';
 
@@ -10,7 +13,9 @@ import { NewTab } from './new-tab';
 const Contents: React.FunctionComponent = () => {
   const hyperLink = useHyperLink();
 
-  let contents = hyperLink.children;
+  let contents = hyperLink.lookLikeButton
+    ? truncateText(hyperLink.children)
+    : hyperLink.children;
 
   if (hyperLink.after || hyperLink.before) {
     contents = (

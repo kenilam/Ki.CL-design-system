@@ -30,7 +30,6 @@ const Page: React.FunctionComponent<Props> = ({ category, component }) => {
   return (
     <ListItem>
       <HyperLink
-        block
         className='kicl-inline-size-full'
         lookLikeButton
         to={parsePath(`${PATH}/${category}/${component}`)}

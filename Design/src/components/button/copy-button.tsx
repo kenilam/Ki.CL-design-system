@@ -18,6 +18,7 @@ import { Button } from './button';
 const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
   (
     {
+      block,
       copiedLabel,
       icon = <Tb.TbFiles aria-hidden />,
       label,
@@ -54,6 +55,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
       <Button
         {...rest}
         aria-label={name}
+        block={block}
         level={copied ? 'confirm' : level}
         onClick={onClick}
         ref={ref}

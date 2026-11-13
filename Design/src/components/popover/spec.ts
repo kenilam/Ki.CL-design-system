@@ -1,7 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import { ALIGNS, SIDES, VARIANTS } from 'design/components/spec';
-import type { ButtonLookProps } from 'design/components';
 import type { Align, Gap, Side, Variant } from 'design/components/spec';
 
 export type PopoverProps = {
@@ -16,11 +15,10 @@ export type PopoverProps = {
   inline?: boolean;
 };
 
-export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> &
-  Pick<ButtonLookProps, 'block'> & {
-    /** If the child has its own `id`, name the panel with `aria-label`. */
-    asChild?: boolean;
-  };
+export type PopoverTriggerProps = ComponentPropsWithoutRef<'button'> & {
+  /** If the child has its own `id`, name the panel with `aria-label`. */
+  asChild?: boolean;
+};
 
 /** The panel flips to the opposite side when there's no room. */
 export type { Side as PopoverSide } from 'design/components/spec';

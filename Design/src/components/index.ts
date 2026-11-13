@@ -261,6 +261,7 @@ import {
 } from './button/class-names';
 import {
   BUTTON_SIZES,
+  type BlockProps as ButtonBlockProps,
   type ContentProps as ButtonContentProps,
   type LookProps as ButtonLookProps,
   type NoLookProps as ButtonNoLookProps,
@@ -535,6 +536,7 @@ export {
   BUTTON_LAYOUT,
   hasButtonText,
   BUTTON_SIZES,
+  type ButtonBlockProps,
   type ButtonContentProps,
   type ButtonLookProps,
   type ButtonNoLookProps,

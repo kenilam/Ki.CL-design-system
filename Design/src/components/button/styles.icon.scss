@@ -1,18 +1,19 @@
 @mixin -icon-only {
-  $inset: calc(var(--kicl--components--button--block-size) * 0.2);
+  $block-size: var(--kicl--components--button--block-size);
+  $icon-size: var(--kicl--components--button--icon-size);
+  $inset: calc((#{$block-size} - #{$icon-size}) / 2);
 
   --kicl--components--button--border-radius: 50%;
   --kicl--components--button--padding-block: #{$inset};
   --kicl--components--button--padding-inline: #{$inset};
-  --kicl--components--spinner--font-size: calc(
-    var(--kicl--components--button--block-size) * 0.6
-  );
+  --kicl--components--button--padding-inline-icon: #{$inset};
+  --kicl--components--spinner--font-size: #{$icon-size};
 
   backdrop-filter: blur(var(--kicl-gutter));
   display: grid;
 
   > svg {
-    font-size: calc(var(--kicl--components--button--block-size) * 0.6);
+    font-size: $icon-size;
   }
 }
 

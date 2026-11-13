@@ -14,7 +14,7 @@ const Trigger: React.FunctionComponent = () => {
 
   return (
     <PopoverTrigger asChild>
-      <Button aria-label={t('label_breadcrumb_more')} block unstyled>
+      <Button aria-label={t('label_breadcrumb_more')} unstyled>
         <Tb.TbDots aria-hidden />
       </Button>
     </PopoverTrigger>

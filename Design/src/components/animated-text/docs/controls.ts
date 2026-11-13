@@ -14,6 +14,7 @@ export const CONTROLS = {
   property: { options: PROPERTIES, default: 'slide-from-bottom' },
   duration: { options: DURATIONS, default: 'slower' },
   easing: { options: EASINGS, default: 'ease-standard-in-out' },
+  in: { options: 'boolean', live: true },
   lookLike: TEXT_LOOK_LIKES,
   variant: { options: TEXT_VARIANTS, default: 'primary' },
   level: { options: LEVELS, default: 'neutral' },

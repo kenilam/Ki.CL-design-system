@@ -30,7 +30,7 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
   const { isNarrow } = useResponsive();
 
   const className = classNames(
-    'kicl-backdrop',
+    'kicl-background-color-body',
     'kicl-font-size-small',
     'kicl-inline-size-full',
     'kicl-inset-block-start-0',

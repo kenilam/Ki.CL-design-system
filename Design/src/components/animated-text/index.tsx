@@ -12,7 +12,17 @@ import { Root } from './root';
 
 const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
   (
-    { children, delay, duration, easing, property, split, stagger, ...props },
+    {
+      children,
+      delay,
+      duration,
+      easing,
+      in: transitionIn,
+      property,
+      split,
+      stagger,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -20,6 +30,7 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
         delay={delay}
         duration={duration}
         easing={easing}
+        in={transitionIn}
         property={property}
         split={split}
         stagger={stagger}

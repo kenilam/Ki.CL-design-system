@@ -1,8 +1,9 @@
 :root {
-  --kicl-font-family: 'roboto', #{$base-font};
-  --kicl-font-family-bold: 'roboto', #{$base-font};
-  --kicl-font-family-special: 'mic-32-new-web', #{$base-font};
-  --kicl-font-family-mono: 'roboto-mono', ui-monospace, 'Menlo', monospace;
+  --kicl-font-family: 'Inter Variable', #{$base-font};
+  --kicl-font-family-bold: 'Inter Variable', #{$base-font};
+  --kicl-font-family-special: 'Inter Variable', #{$base-font};
+  --kicl-font-family-mono: 'JetBrains Mono Variable', ui-monospace, 'Menlo',
+    monospace;
   --kicl-font-size: #{$base-font-size};
   --kicl-font-size-smallest: 0.75rem;
   --kicl-font-size-smaller: 0.8125rem;
@@ -12,8 +13,13 @@
   --kicl-font-size-large: 2rem;
   --kicl-font-size-larger: 3rem;
   --kicl-font-size-largest: 4rem;
+  --kicl-font-size-headline: clamp(
+    var(--kicl-font-size-large),
+    5dvi,
+    var(--kicl-font-size-largest)
+  );
   --kicl-font-size-huge: clamp(var(--kicl-font-size-large), 12dvi, 5rem);
-  --kicl-font-size-extreme: min(25dvw, 10rem);
+  --kicl-font-size-extreme: min(18dvi, 10rem);
   --kicl-font-weight-lightest: 100;
   --kicl-font-weight-lighter: 200;
   --kicl-font-weight-light: 300;
@@ -21,7 +27,9 @@
   --kicl-font-weight-bold: 600;
   --kicl-font-weight-bolder: 700;
   --kicl-font-weight-boldest: 800;
-  --kicl-letter-spacing: 0.08rem;
+  --kicl-letter-spacing: -0.011em;
+  --kicl-letter-spacing-tight: -0.04em;
+  --kicl-letter-spacing-tighter: -0.06em;
   --kicl-line-height-dense: 0.7;
   --kicl-line-height-narrowest: 0.8;
   --kicl-line-height-narrower: 1;
@@ -60,6 +68,10 @@
   line-height: var(--kicl-line-height-narrower);
 }
 
+@include make-variable-class('font-size', 'headline') {
+  line-height: var(--kicl-line-height-narrow);
+}
+
 @include make-variable-class('font-size', 'huge') {
   line-height: var(--kicl-line-height-narrower);
 }
@@ -92,6 +104,8 @@
 @include make-variable-class('font-weight', 'bolder');
 @include make-variable-class('font-weight', 'boldest');
 @include make-variable-class('letter-spacing');
+@include make-variable-class('letter-spacing', 'tight');
+@include make-variable-class('letter-spacing', 'tighter');
 @include make-variable-class('line-height', 'narrowest');
 @include make-variable-class('line-height', 'narrower');
 @include make-variable-class('line-height', 'narrow');

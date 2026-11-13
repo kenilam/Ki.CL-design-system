@@ -3,7 +3,7 @@ import type { AnimationProps, TextProps } from 'design/components';
 export const ANIMATED_TEXT_SPLITS = ['letter', 'word'] as const;
 
 export type Props = Omit<TextProps, 'children'> &
-  Pick<AnimationProps, 'delay' | 'duration' | 'easing' | 'property'> & {
+  Pick<AnimationProps, 'delay' | 'duration' | 'easing' | 'in' | 'property'> & {
     /** Milliseconds added per piece. */
     stagger?: number;
     split?: (typeof ANIMATED_TEXT_SPLITS)[number];

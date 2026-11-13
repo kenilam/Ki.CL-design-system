@@ -15,7 +15,9 @@
   );
   --kicl-heading-font-family: var(--kicl-font-family-special);
   --kicl-heading-font-size: var(--kicl-font-size);
-  --kicl-heading-font-weight: var(--kicl-font-weight-bolder);
+  --kicl-heading-font-weight: var(--kicl-font-weight-bold);
+  --kicl-heading-letter-spacing: var(--kicl-letter-spacing-tight);
+  --kicl-heading-line-height: var(--kicl-line-height-narrow);
 
   /*
    * Separate so a variant can scale any level. Folding it into
@@ -31,15 +33,12 @@
     var(--kicl-heading-font-size) * var(--kicl-heading-font-size-scale)
   );
   font-weight: var(--kicl-heading-font-weight);
-  line-height: var(--kicl-line-height);
+  letter-spacing: var(--kicl-heading-letter-spacing);
+  line-height: var(--kicl-heading-line-height);
 
   @include transition('kicl-heading');
 }
 
-/*
- * Levels step down in size rather than weight, since the brand face shows no
- * difference between its heavier weights.
- */
 @mixin heading-size($level) {
   @if $level == 1 {
     --kicl-heading-font-size: var(--kicl-font-size-large);

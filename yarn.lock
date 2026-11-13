@@ -307,6 +307,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/inter@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/inter@npm:5.3.0"
+  checksum: 10c0/46fbe41e8482a718f99634c8254346c6081d615415059be12e177224c903d688199125967825e75d4b8122668fd83f70880e11d4e02d08c20b503c65fe2a96d1
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/jetbrains-mono@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/jetbrains-mono@npm:5.3.0"
+  checksum: 10c0/ba983321b530a56696b12390a377c79a962376a33359eeda37c9a2141450802e0b630e6c232d90aab0281179e623d01c77d1bc8059ce595fe865fbc6d6022ffb
+  languageName: node
+  linkType: hard
+
 "@hookform/resolvers@npm:5.5.7":
   version: 5.5.7
   resolution: "@hookform/resolvers@npm:5.5.7"
@@ -443,6 +457,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ki-cl/design@workspace:Design"
   dependencies:
+    "@fontsource-variable/inter": "npm:5.3.0"
+    "@fontsource-variable/jetbrains-mono": "npm:5.3.0"
     "@hookform/resolvers": "npm:5.5.7"
     "@mdx-js/rollup": "npm:^3.1.1"
     "@module-federation/vite": "npm:^1.20.0"

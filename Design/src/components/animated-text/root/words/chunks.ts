@@ -28,4 +28,21 @@ const toChunks = (text: string) => {
   return chunks;
 };
 
-export { SPACE, toChunks };
+const toParts = (text: string) => {
+  let order = 0;
+  let start = 0;
+
+  return text.split('**').map((value, index) => {
+    const chunks = toChunks(value);
+    const part = { chunks, order, start, strong: index % 2 === 1 };
+
+    order += chunks.filter((chunk) => {
+      return !SPACE.test(chunk);
+    }).length;
+    start += value.length;
+
+    return part;
+  });
+};
+
+export { SPACE, toChunks, toParts };

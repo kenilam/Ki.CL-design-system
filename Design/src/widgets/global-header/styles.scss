@@ -36,6 +36,7 @@
     opacity var(--kicl-transition-duration) var(--kicl-ease-sine-out),
     translate var(--kicl-transition-duration) var(--kicl-ease-sine-out),
     visibility var(--kicl-transition-duration);
+  view-transition-name: kicl-global-header;
 
   @include -scrolled-down {
     translate: 0 -100%;
@@ -43,6 +44,12 @@
     // Out of the tab order while it is out of view.
     visibility: hidden;
   }
+}
+
+::view-transition-group(kicl-global-header),
+::view-transition-old(kicl-global-header),
+::view-transition-new(kicl-global-header) {
+  animation: none;
 }
 
 // Registered as a length so it can transition with the header.

@@ -16,8 +16,8 @@
 
   &--look-like--display {
     --kicl-heading-font-size: var(--kicl-font-size-huge);
-
-    line-height: var(--kicl-line-height-narrower);
+    --kicl-heading-letter-spacing: var(--kicl-letter-spacing-tighter);
+    --kicl-heading-line-height: var(--kicl-line-height-narrower);
   }
 
   // Neutral is the body colour, so it needs no rule.

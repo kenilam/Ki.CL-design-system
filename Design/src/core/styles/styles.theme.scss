@@ -7,7 +7,7 @@
   --kicl-surface-border-color: var(--kicl-color-grey-200);
   --kicl-surface-glass-color: var(--kicl-color-white-a64);
   --kicl-body-background-color: var(--kicl-color-white);
-  --kicl-body-color: var(--kicl-color-grey-900);
+  --kicl-body-color: var(--kicl-color-black);
 }
 
 .kicl--theme--dark {
@@ -35,7 +35,7 @@
 
 .kicl--theme--light {
   --kicl-body-background-color: var(--kicl-color-white);
-  --kicl-body-color: var(--kicl-color-grey-900);
+  --kicl-body-color: var(--kicl-color-black);
   --kicl-color-neutral: var(--kicl-color-black);
   --kicl-color-warning: #{$warning};
 

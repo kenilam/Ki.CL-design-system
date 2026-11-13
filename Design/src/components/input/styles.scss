@@ -1,5 +1,5 @@
 :root {
-  --kicl--components--input--border-color: var(--kicl-color-grey-900);
+  --kicl--components--input--border-color: var(--kicl-color-black);
   --kicl--components--input--border-radius: var(--kicl-gutter-narrow);
   --kicl--components--input--border-width: var(--kicl-size-1px);
   --kicl--components--input--padding-block: var(--kicl-gutter-narrow);
@@ -20,8 +20,8 @@
 }
 
 .kicl--theme--light {
-  --kicl--components--input--border-color: var(--kicl-color-grey-900);
-  --kicl--components--input--color: var(--kicl-color-grey-900);
+  --kicl--components--input--border-color: var(--kicl-color-black);
+  --kicl--components--input--color: var(--kicl-color-black);
 }
 
 .kicl--components--input {

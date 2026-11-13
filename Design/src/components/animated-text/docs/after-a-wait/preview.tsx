@@ -7,7 +7,7 @@ import type { Props } from 'design/components/animated-text/docs/controls';
 const Preview: React.FC<Props> = (props) => {
   return (
     <AnimatedText delay={600} key='delay' {...props}>
-      Hello there
+      Hello there, it’s nice to see you again.
     </AnimatedText>
   );
 };

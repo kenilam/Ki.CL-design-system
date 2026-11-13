@@ -45,6 +45,7 @@ const Root: React.FunctionComponent<Props> = ({ className, ref, ...props }) => {
       {...(props as React.ComponentProps<typeof Text>)}
       className={classNames(
         CLASS_NAME,
+        `${CLASS_NAME}--property--${animatedText.property}`,
         { 'kicl-display-inline-block': zoom },
         className
       )}

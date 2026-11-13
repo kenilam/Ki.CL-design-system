@@ -7,6 +7,7 @@ import * as Spec from './spec';
 import './styles.scss';
 import './styles.blur.scss';
 import './styles.fade.scss';
+import './styles.slide.scss';
 import './styles.slide-from-top.scss';
 import './styles.slide-from-left.scss';
 import './styles.slide-from-right.scss';

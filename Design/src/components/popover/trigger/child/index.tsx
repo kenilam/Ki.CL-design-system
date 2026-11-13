@@ -26,7 +26,6 @@ type Props = Omit<PopoverTriggerProps, 'asChild'> & {
 
 // `popovertarget` only works on buttons, so the child toggles by script.
 const Child: React.FunctionComponent<Props> = ({
-  block,
   children,
   className,
   onClick,
@@ -53,12 +52,7 @@ const Child: React.FunctionComponent<Props> = ({
     ...shared,
     ...(rest as React.HTMLAttributes<HTMLElement>),
     ...child.props,
-    className: classNames(
-      CLASS_NAME,
-      { 'kicl-border-radius-sm': block },
-      className,
-      child.props.className
-    ),
+    className: classNames(CLASS_NAME, className, child.props.className),
     style: { ...ids.anchorStyle, ...style, ...child.props.style },
     onClick: (event: React.MouseEvent<HTMLElement>) => {
       child.props.onClick?.(event);

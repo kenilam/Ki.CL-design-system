@@ -18,6 +18,7 @@ import { Button } from './button';
 const ShareButton = React.forwardRef<HTMLButtonElement, ShareButtonProps>(
   (
     {
+      block,
       copiedLabel,
       icon = <Tb.TbShare aria-hidden />,
       label,
@@ -63,6 +64,7 @@ const ShareButton = React.forwardRef<HTMLButtonElement, ShareButtonProps>(
       <Button
         {...rest}
         aria-label={name}
+        block={block}
         level={copied ? 'confirm' : level}
         onClick={onClick}
         ref={ref}

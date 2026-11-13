@@ -24,7 +24,7 @@ const Trigger: React.FunctionComponent = () => {
       <Button
         after={<Tb.TbChevronDown aria-hidden />}
         before={<Tb.TbFile aria-hidden />}
-        className='kicl-text-truncate'
+        className={classNames('kicl-font-size-small', 'kicl-text-truncate')}
         size='small'
         type='button'
         variant='tertiary'

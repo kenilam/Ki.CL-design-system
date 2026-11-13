@@ -15,6 +15,7 @@ import { HyperLink } from './index';
 const HomeLink = React.forwardRef<HTMLAnchorElement, HomeLinkProps>(
   (
     {
+      block,
       icon = <Tb.TbHome aria-hidden />,
       label,
       showLabel,
@@ -40,6 +41,7 @@ const HomeLink = React.forwardRef<HTMLAnchorElement, HomeLinkProps>(
       <HyperLink
         {...rest}
         aria-label={name}
+        block={block}
         lookLikeButton
         ref={ref}
         variant={variant}

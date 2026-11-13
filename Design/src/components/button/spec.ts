@@ -1,6 +1,7 @@
 import type {
   ComponentPropsWithoutRef,
   PropsWithChildren,
+  ReactElement,
   ReactNode,
 } from 'react';
 
@@ -24,6 +25,10 @@ export type ContentProps = PropsWithChildren<{
 }>;
 
 export type LookProps = {
+  /**
+   * An icon-only button keeps the regular button's corner instead of
+   * becoming a circle.
+   */
   block?: boolean;
   /** Up to this breakpoint the label is hidden and only the icon shows. */
   iconOnlyUpTo?: (typeof BUTTON_ICON_ONLY_UP_TO)[number];
@@ -32,8 +37,18 @@ export type LookProps = {
   variant?: Variant;
 };
 
-export type NoLookProps = Pick<LookProps, 'block'> & {
-  [Key in Exclude<keyof LookProps, 'block'>]?: never;
+/**
+ * `block` needs an icon-only button: an element as the child, or a label that
+ * `iconOnlyUpTo` hides. TypeScript can't tell an icon from any other element,
+ * so it only rules out a text child.
+ */
+export type BlockProps =
+  | { children: ReactElement }
+  | Required<Pick<LookProps, 'iconOnlyUpTo'>>
+  | { block?: never };
+
+export type NoLookProps = {
+  [Key in keyof LookProps]?: never;
 };
 
 export type Props = Required<PropsWithChildren> &
@@ -49,7 +64,7 @@ export type Props = Required<PropsWithChildren> &
     | 'justifyItems'
   > &
   (
-    | (LookProps & { lookLikeHyperLink?: false; unstyled?: false })
+    | (LookProps & BlockProps & { lookLikeHyperLink?: false; unstyled?: false })
     | (NoLookProps & { lookLikeHyperLink?: false; unstyled: true })
     | (NoLookProps & { lookLikeHyperLink: true; unstyled?: boolean })
   );
@@ -60,20 +75,27 @@ export type GetButtonClassNamesProps = LookProps &
     unstyled?: boolean;
   };
 
-export type CopyButtonProps = LookProps &
+type ClipboardProps = LookProps &
   Pick<ComponentPropsWithoutRef<'button'>, 'className' | 'disabled'> & {
     value: string | (() => string);
-    /** Defaults to "Copy". */
-    label?: string;
     /** Shown briefly after a copy. Defaults to "Copied". */
     copiedLabel?: string;
-    /** Without it, only the icon shows and the label is its accessible name. */
-    showLabel?: boolean;
     /** A check replaces it after a copy. */
-    icon?: ReactNode;
-  };
+    icon?: ReactElement;
+  } & (
+    | {
+        /** Without it, only the icon shows and the label is its accessible name. */
+        showLabel?: false;
+      }
+    | { block?: never; showLabel: true }
+  );
 
-export type ShareButtonProps = Omit<CopyButtonProps, 'label'> & {
+export type CopyButtonProps = ClipboardProps & {
+  /** Defaults to "Copy". */
+  label?: string;
+};
+
+export type ShareButtonProps = ClipboardProps & {
   /** Defaults to "Share". */
   label?: string;
   /** The title the share sheet gets. Defaults to the document's. */

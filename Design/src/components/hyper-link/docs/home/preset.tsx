@@ -20,11 +20,12 @@ const Preset = (
   <Origin
     code={source}
     controls={{
+      block: { options: 'boolean', when: { showLabel: false } },
       disabled: null,
       level: { default: 'neutral', options: LEVELS },
       lookLikeButton: null,
       showLabel: 'boolean',
-      size: BUTTON_SIZES,
+      size: { default: 'small', options: BUTTON_SIZES },
       unstyled: null,
       variant: { default: 'secondary', options: VARIANTS },
     }}

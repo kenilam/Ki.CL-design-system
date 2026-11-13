@@ -14,7 +14,7 @@ const name = 'Copies, icon only';
 
 const Preset = (
   <Origin
-    controls={{ lookLikeHyperLink: null, unstyled: null }}
+    controls={{ block: 'boolean', lookLikeHyperLink: null, unstyled: null }}
     code={source}
     description={description}
     label='button_preset_copies_icon_only_name'

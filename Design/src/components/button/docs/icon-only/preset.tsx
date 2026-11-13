@@ -15,6 +15,9 @@ const name = 'Icon only';
 const Preset = (
   <Origin
     code={source}
+    controls={{
+      block: { options: 'boolean', when: { lookLikeHyperLink: false } },
+    }}
     description={description}
     label='button_preset_icon_only_name'
     name={name}

@@ -57,7 +57,7 @@ const LAYOUT = {
   alignContent: 'center',
   alignItems: 'center',
   autoFlow: 'column',
-  gap: 'narrow',
+  gap: 'narrower',
   justifyContent: 'start',
   justifyItems: 'start',
 } as const;

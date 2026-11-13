@@ -15,5 +15,8 @@
     --kicl--components--button--block-size: calc(
       var(--kicl-line-height) * 1em + 2 * (#{$gutter} - #{$border})
     );
+    --kicl--components--button--icon-size: calc(
+      var(--kicl--components--button--block-size) * 0.6
+    );
   }
 }

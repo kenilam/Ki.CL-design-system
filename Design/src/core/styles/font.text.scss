@@ -44,6 +44,11 @@
   white-space: nowrap;
 }
 
+.kicl-text-hyphenate {
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
+
 :root {
   --kicl-text-wrap-balance: balance;
   --kicl-text-wrap-pretty: pretty;

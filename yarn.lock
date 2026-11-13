@@ -471,7 +471,7 @@ __metadata:
     glob: "npm:11.1.0"
     i18next: "npm:26.4.3"
     include-media: "npm:2.0.0"
-    marked: "npm:18.1.0"
+    marked: "npm:18.2.0"
     normalize.css: "npm:8.0.1"
     prism-react-renderer: "npm:^2.4.1"
     react: "npm:19.3.1"
@@ -3164,12 +3164,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:18.1.0":
-  version: 18.1.0
-  resolution: "marked@npm:18.1.0"
+"marked@npm:18.2.0":
+  version: 18.2.0
+  resolution: "marked@npm:18.2.0"
   bin:
     marked: bin/marked.js
-  checksum: 10c0/6022a30a15d25fe0eb2958f84ebb45518290e512b61afbf9a0b9452297b30cb5f1af8289fc0057a83fa8232e6115d902d85546aba5036063a97f93be88f4df70
+  checksum: 10c0/7766e5564cc6dbe3e8d6ee0091f3a4656002dd993817e68c5510e2ff1fa1d6456c9bcd18af1a4a5e8ea87382832a07026c109ab333913f125d51c93f29ba9017
   languageName: node
   linkType: hard
 

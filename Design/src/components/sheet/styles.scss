@@ -124,11 +124,11 @@
 
     column-gap: var(--kicl-gutter-narrow);
     grid-template-columns: 1fr auto;
-
-    > * {
-      grid-column: 1 / -1;
-    }
   }
+}
+
+:where(.kicl--components--sheet:has(> .kicl--components--sheet__close)) > * {
+  grid-column: 1 / -1;
 }
 
 :root:has(.kicl--components--sheet:modal) {

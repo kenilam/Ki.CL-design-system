@@ -2,4 +2,16 @@
   --kicl--components--animation--slide--distance: var(--kicl-gutter-narrow);
   --kicl--components--animation--zoom-in--scale: 0.2;
   --kicl--components--animation--zoom-out--scale: 1.5;
+
+  &--property--slide-from-left {
+    --kicl--components--animation--clip: none;
+
+    clip-path: inset(-100vmax -100vmax -100vmax 0);
+  }
+
+  &--property--slide-from-right {
+    --kicl--components--animation--clip: none;
+
+    clip-path: inset(-100vmax 0 -100vmax -100vmax);
+  }
 }

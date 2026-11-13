@@ -11,6 +11,7 @@
     --kicl-ease-expo-out
   );
   --kicl--components--animation--slide--distance: min(var(--kicl-size-2x), 10%);
+  --kicl--components--animation--slide--clip-margin: 0.25em;
   --kicl--components--animation--zoom-in--scale: 0.8;
   --kicl--components--animation--zoom-out--scale: 1.2;
 }

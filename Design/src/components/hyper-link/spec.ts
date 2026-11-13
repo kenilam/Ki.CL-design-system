@@ -1,10 +1,15 @@
-import { ComponentPropsWithoutRef, PropsWithChildren, ReactNode } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  PropsWithChildren,
+  ReactElement,
+} from 'react';
 
 // Routes
 import { NavLinkProps } from 'design/router';
 
 // Components
 import type {
+  ButtonBlockProps as BlockProps,
   ButtonContentProps as ContentProps,
   ButtonLookProps as LookProps,
   ButtonNoLookProps as NoLookProps,
@@ -18,6 +23,7 @@ export type Props = Required<PropsWithChildren> &
   Pick<ComponentPropsWithoutRef<'button'>, 'disabled'> &
   (
     | (LookProps &
+        BlockProps &
         Pick<ContentProps, 'busy'> &
         Pick<LayoutProps, 'frames' | 'justifyContent'> & {
           lookLikeButton: true;
@@ -34,21 +40,25 @@ export type Props = Required<PropsWithChildren> &
 
 export type GetHyperLinkClassNamesProps = Pick<
   Props,
-  'block' | 'className' | 'unstyled'
+  'className' | 'unstyled'
 > & { withLine?: boolean };
 
 export type HomeLinkProps = Pick<Props, 'className' | 'to'> &
   LookProps & {
     /** A house by default. */
-    icon?: ReactNode;
+    icon?: ReactElement;
     /** "Home" by default. */
     label?: string;
-    /**
-     * Without it the link shows only the icon, and the label becomes its
-     * accessible name.
-     */
-    showLabel?: boolean;
-  };
+  } & (
+    | {
+        /**
+         * Without it the link shows only the icon, and the label becomes its
+         * accessible name.
+         */
+        showLabel?: false;
+      }
+    | { block?: never; showLabel: true }
+  );
 
 export type MoreLinkProps = Pick<Props, 'className'> & {
   /** "Read more" by default. */

@@ -1,22 +1,19 @@
 import type React from 'react';
 
-import type {
-  ButtonLookProps,
-  PopoverPlacement,
-  PopoverVariant,
-} from 'design/components';
+import type { PopoverPlacement, PopoverVariant } from 'design/components';
 
 export type SegmentedProps = Omit<
   React.ComponentPropsWithoutRef<'fieldset'>,
   'onChange' | 'defaultValue'
-> &
-  Pick<ButtonLookProps, 'block'> & {
-    value?: string;
-    defaultValue?: string;
-    /** `pointer` is false when the arrow keys made the choice. */
-    onValueChange?: (value: string, details: { pointer: boolean }) => void;
-    name?: string;
-  } & (
+> & {
+  /** Takes a button's corner instead of the rounder one. */
+  block?: boolean;
+  value?: string;
+  defaultValue?: string;
+  /** `pointer` is false when the arrow keys made the choice. */
+  onValueChange?: (value: string, details: { pointer: boolean }) => void;
+  name?: string;
+} & (
     | {
         /** Applies at the `narrow` breakpoint and below. */
         collapse: 'popover';

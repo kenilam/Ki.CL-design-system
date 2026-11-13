@@ -19,6 +19,7 @@ const Preset = (
   <Origin
     code={source}
     controls={{
+      block: 'boolean',
       iconOnlyUpTo: { default: 'narrow', options: BUTTON_ICON_ONLY_UP_TO },
       lookLikeHyperLink: null,
       unstyled: null,

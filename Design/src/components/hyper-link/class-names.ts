@@ -9,7 +9,6 @@ import * as Spec from './spec';
 const CLASS_NAME = 'kicl--components--hyper-link';
 
 const getHyperLinkClassNames = ({
-  block,
   className,
   unstyled = false,
   withLine,
@@ -19,7 +18,6 @@ const getHyperLinkClassNames = ({
     {
       [`${CLASS_NAME}--unstyled`]: unstyled,
       [`${CLASS_NAME}--with-line`]: withLine,
-      'kicl-border-radius-sm': block,
     },
     className
   );

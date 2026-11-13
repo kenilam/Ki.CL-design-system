@@ -1,22 +1,47 @@
+@mixin -size($scale) {
+  $padding-block: calc(var(--kicl-gutter-narrow) * #{$scale});
+  $padding-inline: calc(var(--kicl-gutter) * #{$scale});
+
+  --kicl--components--button--padding-block: #{$padding-block};
+  --kicl--components--button--padding-inline: #{$padding-inline};
+  --kicl--components--button--padding-inline-icon: calc(
+    #{$padding-inline} * 0.75
+  );
+  --kicl--components--button--block-size: calc(1lh + 2 * #{$padding-block});
+}
+
 :root {
-  --kicl--components--button--padding-block: var(--kicl-gutter-narrow);
-  --kicl--components--button--padding-inline: var(--kicl-gutter);
-  --kicl--components--button--block-size: calc(
-    1lh + 2 * var(--kicl--components--button--padding-block)
+  @include -size(1);
+
+  --kicl--components--button--icon-size: calc(
+    var(--kicl--components--button--block-size) * 0.6
   );
 }
 
 .kicl--components--button {
+  $icon: ':is(svg, .kicl--components--spinner)';
+  $shown: ':not(.kicl-hidden)';
+
   &:not(&--unstyled) {
     padding-block: var(--kicl--components--button--padding-block);
     padding-inline: var(--kicl--components--button--padding-inline);
+
+    &:has(> #{$icon}:nth-child(1 of #{$shown})) {
+      padding-inline-start: var(
+        --kicl--components--button--padding-inline-icon
+      );
+    }
+
+    &:has(> #{$icon}:nth-last-child(1 of #{$shown})) {
+      padding-inline-end: var(--kicl--components--button--padding-inline-icon);
+    }
   }
 
   &--size--large {
-    font-size: var(--kicl-font-size-moderate);
+    @include -size(1.25);
   }
 
   &--size--small {
-    font-size: var(--kicl-font-size-small);
+    @include -size(0.625);
   }
 }

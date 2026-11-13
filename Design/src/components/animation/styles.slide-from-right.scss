@@ -1,6 +1,11 @@
 .kicl--components--animation--property--slide-from-right {
   --kicl--components--animation--property--slide-from-right--distance: 0;
   --kicl--components--animation--property--slide-from-right--opacity: 1;
+  --kicl--components--animation--clip-from: inset(
+    -100vmax
+    var(--kicl--components--animation--slide--distance) -100vmax -100vmax
+  );
+  --kicl--components--animation--clip-to: inset(-100vmax 0 -100vmax -100vmax);
   --kicl--components--animation--transition-property: opacity, translate;
 
   opacity: var(

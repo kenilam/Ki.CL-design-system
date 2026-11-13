@@ -1,6 +1,14 @@
 .kicl--components--animation--property--slide-from-top {
   --kicl--components--animation--property--slide-from-top--distance: 0;
   --kicl--components--animation--property--slide-from-top--opacity: 1;
+  --kicl--components--animation--clip-from: inset(
+    var(--kicl--components--animation--slide--distance) -100vmax -100vmax
+  );
+  --kicl--components--animation--clip-to: inset(
+    calc(
+      -1 * var(--kicl--components--animation--slide--clip-margin)
+    ) -100vmax -100vmax
+  );
   --kicl--components--animation--transition-property: opacity, translate;
 
   opacity: var(

@@ -1,0 +1,52 @@
+:is(
+  .kicl--components--animation--property--slide-from-bottom,
+  .kicl--components--animation--property--slide-from-left,
+  .kicl--components--animation--property--slide-from-right,
+  .kicl--components--animation--property--slide-from-top
+) {
+  animation: kicl--components--animation--clip-in
+    var(--kicl--components--animation--transition-duration)
+    var(--kicl--components--animation--transition-timing-function)
+    var(--kicl--components--animation--transition-delay) backwards;
+
+  &:not([data-animation-in]) {
+    animation-fill-mode: forwards;
+    animation-name: kicl--components--animation--clip-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes kicl--components--animation--clip-in {
+  from {
+    clip-path: var(
+      --kicl--components--animation--clip,
+      var(--kicl--components--animation--clip-from)
+    );
+  }
+
+  to {
+    clip-path: var(
+      --kicl--components--animation--clip,
+      var(--kicl--components--animation--clip-to)
+    );
+  }
+}
+
+@keyframes kicl--components--animation--clip-out {
+  from {
+    clip-path: var(
+      --kicl--components--animation--clip,
+      var(--kicl--components--animation--clip-to)
+    );
+  }
+
+  to {
+    clip-path: var(
+      --kicl--components--animation--clip,
+      var(--kicl--components--animation--clip-from)
+    );
+  }
+}

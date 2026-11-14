@@ -19,6 +19,7 @@ const List = React.forwardRef<HTMLOListElement | HTMLUListElement, Spec.Props>(
       gap = 'normal',
       is: Component = 'ul',
       listStyleType,
+      separated = false,
       style,
       ...rest
     },
@@ -29,7 +30,8 @@ const List = React.forwardRef<HTMLOListElement | HTMLUListElement, Spec.Props>(
         <Component
           className={classNames(
             CLASS_NAME,
-            listStyleType ? `${CLASS_NAME}--list-style` : null
+            listStyleType ? `${CLASS_NAME}--list-style` : null,
+            { [`${CLASS_NAME}--separated`]: separated }
           )}
           ref={ref as never}
           style={{ ...style, listStyleType }}

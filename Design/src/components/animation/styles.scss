@@ -22,16 +22,19 @@
   transition-behavior: allow-discrete;
   transition-delay: var(--kicl--components--animation--transition-delay);
   transition-duration: var(--kicl--components--animation--transition-duration);
-  transition-property: var(--kicl--components--animation--transition-property), display;
+  transition-property: var(--kicl--components--animation--transition-property), display, visibility;
   transition-timing-function: var(
     --kicl--components--animation--transition-timing-function
   );
-  will-change: var(--kicl--components--animation--transition-property);
 
-  &:not([data-animation-in]) {
+  &:not([data-animation-in], .kicl--components--animation--hold) {
     /* `!important` because the `utilities` layer sits above `wrappers`, so a
      * display utility would otherwise win. */
     display: none !important;
+  }
+
+  &--hold:not([data-animation-in]) {
+    visibility: hidden;
   }
 
   /* Shortened rather than removed so `transitionend` still fires and the

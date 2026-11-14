@@ -89,3 +89,13 @@ import { Display } from 'design/docs/tokens/previews';
   </ListItem>
 </List>
 ```
+
+<Copy id='token_display_grid_placement' />
+
+```tsx
+// A title in the second column and a note under it in the third
+<div className='kicl-grid-template-rows-1fr-auto'>
+  <Heading className='kicl-grid-column-2' />
+  <Text className={classNames('kicl-grid-column-3', 'kicl-grid-row-2')} />
+</div>
+```

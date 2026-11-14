@@ -42,3 +42,11 @@
     }
   }
 }
+
+// The text clips its overflow to truncate, which in Firefox and Safari also
+// cuts off an underline drawn under it. The padding leaves room for the line.
+button.kicl--components--hyper-link > .kicl-text-truncate {
+  margin-block-end: calc(var(--kicl-gutter-narrower) * -1);
+  padding-block-end: var(--kicl-gutter-narrower);
+  text-decoration: inherit;
+}

@@ -45,3 +45,13 @@ import { Backdrop } from 'design/docs/tokens/previews';
 <Copy id='token_effects_part_6' />
 
 <Copy id='token_effects_backgrounds' />
+
+<Copy id='token_effects_tone_clamp' />
+
+```tsx
+// A canvas behind the page's text
+<div className={classNames('kicl-background-color-body', 'kicl-position-fixed')}>
+  <canvas />
+  <div className={classNames('kicl-inset-0', 'kicl-position-absolute', 'kicl-tone-clamp')} />
+</div>
+```

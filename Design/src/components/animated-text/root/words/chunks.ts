@@ -2,7 +2,9 @@ const SEGMENTER = new Intl.Segmenter(undefined, { granularity: 'word' });
 
 const OPENING = /^[\p{Ps}\p{Pi}]+$/u;
 
-const SPACE = /^\s+$/;
+const NO_BREAK = /[\u00a0\u202f]$/;
+
+const SPACE = /^[^\S\u00a0\u202f]+$/;
 
 const toChunks = (text: string) => {
   const chunks: string[] = [];
@@ -14,7 +16,7 @@ const toChunks = (text: string) => {
       last !== undefined &&
       !SPACE.test(last) &&
       !SPACE.test(segment) &&
-      (open || !isWordLike);
+      (open || !isWordLike || NO_BREAK.test(last));
 
     if (joins) {
       chunks[chunks.length - 1] = last + segment;

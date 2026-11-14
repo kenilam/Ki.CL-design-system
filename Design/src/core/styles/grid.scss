@@ -2,6 +2,22 @@
   grid-template-rows: subgrid;
 }
 
+.kicl-grid-column-full {
+  grid-column: 1 / -1;
+}
+
+@for $line from 1 through 12 {
+  .kicl-grid-column-#{$line} {
+    grid-column-start: #{$line};
+  }
+}
+
+@for $line from 1 through 6 {
+  .kicl-grid-row-#{$line} {
+    grid-row-start: #{$line};
+  }
+}
+
 @for $span from 1 through 6 {
   .kicl-grid-row-span-#{$span} {
     grid-row: span #{$span};

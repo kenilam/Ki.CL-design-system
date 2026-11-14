@@ -8,7 +8,14 @@ import { useText } from './use-text';
 
 type Options = Pick<
   Spec.Props,
-  'delay' | 'duration' | 'easing' | 'in' | 'property' | 'split' | 'stagger'
+  | 'delay'
+  | 'duration'
+  | 'easing'
+  | 'hold'
+  | 'in'
+  | 'property'
+  | 'split'
+  | 'stagger'
 >;
 
 type Props = React.PropsWithChildren<
@@ -24,6 +31,7 @@ const Provider: React.FunctionComponent<Props> = ({
   delay = 0,
   duration = 'slower',
   easing = 'ease-standard-in-out',
+  hold = false,
   in: transitionIn = true,
   property = 'slide-from-bottom',
   split = 'word',
@@ -38,6 +46,7 @@ const Provider: React.FunctionComponent<Props> = ({
         delay,
         duration,
         easing,
+        hold,
         in: transitionIn,
         property,
         replaced,

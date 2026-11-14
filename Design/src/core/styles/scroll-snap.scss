@@ -5,3 +5,9 @@
     scroll-snap-type: block mandatory;
   }
 }
+
+@each $value in start, center, end {
+  .kicl-scroll-snap-align-#{$value} {
+    scroll-snap-align: #{$value};
+  }
+}

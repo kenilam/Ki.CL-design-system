@@ -73,6 +73,10 @@
   max-block-size: calc(100dvb / 3);
 }
 
+.kicl-padding-block-end-screen-quarter {
+  padding-block-end: 25dvb;
+}
+
 .kicl-min-block-size-field {
   min-block-size: var(--kicl-field-block-size);
 }

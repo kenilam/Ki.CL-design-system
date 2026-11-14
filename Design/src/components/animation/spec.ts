@@ -65,6 +65,8 @@ export type Options = {
   easing?: Easing;
   property?: Property;
   className?: string;
+  /** Keeps its place in the layout while it is out, hidden. */
+  hold?: boolean;
   in?: boolean;
   nodeRef?: Ref<HTMLElement | null>;
 };

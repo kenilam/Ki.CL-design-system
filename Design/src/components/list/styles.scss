@@ -1,3 +1,12 @@
+:root,
+.kicl--theme--light {
+  --kicl--components--list--separator-color: var(--kicl-color-grey-300);
+}
+
+.kicl--theme--dark {
+  --kicl--components--list--separator-color: var(--kicl-color-grey-700);
+}
+
 .kicl--components--list {
   --kicl--components--list-item--display: initial;
   --kicl--components--text--span-display: initial;
@@ -10,5 +19,43 @@
 
     list-style-position: outside;
     padding-inline-start: var(--kicl-gutter-wide);
+  }
+
+  &--separated {
+    $line: var(--kicl-size-1px) solid
+      var(--kicl--components--list--separator-color);
+
+    > * + * {
+      border-block-start: $line;
+      padding-block-start: var(--kicl-layout--gap);
+    }
+
+    &.kicl-layout--display--flex:not(.kicl-layout--column),
+    &.kicl-layout--column:not(.kicl-layout--display--flex) {
+      $focus-ring: calc(var(--kicl-outline-width) + var(--kicl-size-1px));
+
+      --kicl--components--list--separator-offset: calc(
+        (var(--kicl-layout--gap) + var(--kicl-size-1px)) * -1
+      );
+
+      column-gap: calc(var(--kicl-layout--gap) * 2 + var(--kicl-size-1px));
+      margin-inline-start: calc($focus-ring * -1);
+      overflow-x: clip;
+      padding-inline-start: $focus-ring;
+
+      > * {
+        border-block-start: 0;
+        padding-block-start: 0;
+        position: relative;
+
+        &::before {
+          border-inline-start: $line;
+          content: '';
+          inset-block: 0;
+          inset-inline-start: var(--kicl--components--list--separator-offset);
+          position: absolute;
+        }
+      }
+    }
   }
 }

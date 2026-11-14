@@ -1,0 +1,12 @@
+// After the Layout styles and as specific as them, so these also work on a
+// Layout, which sets its own tracks.
+:is(.kicl-layout, *) {
+  &.kicl-grid-template-rows-1fr-auto {
+    grid-template-rows: 1fr auto;
+  }
+
+  // One column that can be narrower than its longest word.
+  &.kicl-grid-template-columns-shrink {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

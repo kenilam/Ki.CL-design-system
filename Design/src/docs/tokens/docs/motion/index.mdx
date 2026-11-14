@@ -97,3 +97,24 @@ import { Duration, Easing, Instant } from 'design/docs/tokens/previews';
 ```
 
 <Copy id='token_motion_part_8' />
+
+<Copy id='token_motion_scroll_progress' />
+
+```tsx
+// Each row is lit and full size while it crosses the middle of the window
+<li className={classNames('kicl-scroll-focus', 'kicl-scroll-focus-scale')}>
+  <Heading className={classNames('kicl-scroll-focus-color-a64', 'kicl-scroll-shift-narrow')} />
+  <Text className={classNames('kicl-scroll-focus-color-a80', 'kicl-scroll-shift-wide')} />
+</li>
+
+// A hero whose title leaves faster than its text
+<section className='kicl-scroll-leave'>
+  <Heading className='kicl-scroll-leave-far' />
+  <Text className='kicl-scroll-leave-near' />
+</section>
+
+// A footer that rises in, with its title a step behind
+<footer className={classNames('kicl-scroll-enter', 'kicl-scroll-enter-far')}>
+  <Heading className='kicl-scroll-enter-far' />
+</footer>
+```

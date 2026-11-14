@@ -18,12 +18,12 @@ const Switch: React.FunctionComponent = () => {
 
   return (
     <Layout
-      alignItems='center'
+      alignItems='baseline'
       autoFlow='column'
       gap='narrow'
       justifyContent='start'
     >
-      <div>
+      <header>
         <Heading>{name}</Heading>
         <Popover>
           <Trigger />
@@ -33,7 +33,7 @@ const Switch: React.FunctionComponent = () => {
             </List>
           </PopoverContent>
         </Popover>
-      </div>
+      </header>
     </Layout>
   );
 };

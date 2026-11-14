@@ -18,7 +18,7 @@ const Header: React.FunctionComponent = () => {
       frames='max-content--1fr'
       justifyContent='start'
     >
-      <header
+      <div
         className={classNames(
           'kicl-inset-block-start-header',
           'kicl-padding-block-narrow',
@@ -39,7 +39,7 @@ const Header: React.FunctionComponent = () => {
         />
         <Menu />
         <Crumbs />
-      </header>
+      </div>
     </Layout>
   );
 };

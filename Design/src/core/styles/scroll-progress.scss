@@ -1,0 +1,165 @@
+:root {
+  --kicl-scroll-focus-scale: 0.84;
+  --kicl-scroll-leave-distance: 24dvb;
+}
+
+@property --kicl-scroll-focus {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --kicl-scroll-shift {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --kicl-scroll-leave {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --kicl-scroll-enter {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+@mixin scroll-driven {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @content;
+    }
+  }
+}
+
+// Sets the numbers below on an element and everything inside it. Without
+// scroll timelines they keep their resting values: in focus, not shifted.
+.kicl-scroll-focus {
+  @include scroll-driven {
+    animation:
+      kicl-scroll-focus linear both,
+      kicl-scroll-shift linear both;
+    animation-timeline: view(), view();
+  }
+}
+
+.kicl-scroll-leave {
+  @include scroll-driven {
+    animation: kicl-scroll-leave linear both;
+    animation-range: exit 0% exit 50%;
+    animation-timeline: view();
+  }
+}
+
+.kicl-scroll-enter {
+  @include scroll-driven {
+    animation: kicl-scroll-enter linear both;
+    animation-range: entry;
+    animation-timeline: view();
+  }
+}
+
+.kicl-scroll-focus-scale {
+  scale: calc(
+    var(--kicl-scroll-focus-scale) + var(--kicl-scroll-focus) *
+    (1 - var(--kicl-scroll-focus-scale))
+  );
+  transform-origin: 0 50%;
+
+  &:dir(rtl) {
+    transform-origin: 100% 50%;
+  }
+}
+
+.kicl-scroll-focus-reveal {
+  opacity: var(--kicl-scroll-focus);
+  translate: 0 calc((1 - var(--kicl-scroll-focus)) * var(--kicl-gutter-wide));
+}
+
+.kicl-scroll-focus-reveal-start {
+  opacity: var(--kicl-scroll-focus);
+  translate: calc((1 - var(--kicl-scroll-focus)) * var(--kicl-gutter-wide) * -1)
+    0;
+}
+
+.kicl-scroll-focus-reveal-end {
+  opacity: var(--kicl-scroll-focus);
+  translate: calc((1 - var(--kicl-scroll-focus)) * var(--kicl-gutter-wide)) 0;
+}
+
+@each $alpha in 64, 80 {
+  .kicl-scroll-focus-color-a#{$alpha} {
+    color: color-mix(
+      in srgb,
+      var(--kicl-body-color) calc(var(--kicl-scroll-focus) * 100%),
+      var(--kicl-color-neutral-a#{$alpha})
+    );
+  }
+}
+
+@each $name, $distance in ('-narrow': '-narrow', '': '', '-wide': '-wide') {
+  .kicl-scroll-shift#{$name} {
+    translate: 0
+      calc(var(--kicl-scroll-shift) * var(--kicl-gutter#{$distance}));
+  }
+}
+
+@each $name, $times in ('near': 1, 'far': 2) {
+  .kicl-scroll-leave-#{$name} {
+    opacity: calc(1 - var(--kicl-scroll-leave));
+    translate: 0
+      calc(
+        var(--kicl-scroll-leave) *
+        var(--kicl-scroll-leave-distance) * -#{$times}
+      );
+  }
+}
+
+@each $name, $distance in ('near': 'wider', 'far': 'extreme') {
+  .kicl-scroll-enter-#{$name} {
+    translate: 0
+      calc(var(--kicl-scroll-enter) * var(--kicl-gutter-#{$distance}));
+  }
+}
+
+@keyframes kicl-scroll-focus {
+  0%,
+  36% {
+    --kicl-scroll-focus: 0;
+  }
+
+  46%,
+  54% {
+    --kicl-scroll-focus: 1;
+  }
+
+  64%,
+  100% {
+    --kicl-scroll-focus: 0;
+  }
+}
+
+@keyframes kicl-scroll-shift {
+  from {
+    --kicl-scroll-shift: 1;
+  }
+
+  to {
+    --kicl-scroll-shift: -1;
+  }
+}
+
+@keyframes kicl-scroll-leave {
+  to {
+    --kicl-scroll-leave: 1;
+  }
+}
+
+@keyframes kicl-scroll-enter {
+  from {
+    --kicl-scroll-enter: 1;
+  }
+}

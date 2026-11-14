@@ -7,4 +7,7 @@ export const LIST_IS = ['ul', 'ol'] as const;
 
 export type Props = LayoutProps &
   PolymorphicIsProps<(typeof LIST_IS)[number], object, 'ul'> &
-  Pick<React.CSSProperties, 'listStyleType'>;
+  Pick<React.CSSProperties, 'listStyleType'> & {
+    /** A line between items, along the way the list runs. */
+    separated?: boolean;
+  };

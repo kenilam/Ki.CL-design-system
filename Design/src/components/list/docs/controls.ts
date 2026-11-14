@@ -79,6 +79,7 @@ export const CONTROLS = {
   justifyItems: { options: ALIGN_ITEMS, default: 'stretch' },
   justifyContent: { options: ALIGN_CONTENTS, default: 'stretch' },
   wrap: 'boolean',
+  separated: 'boolean',
 } satisfies ControlsSpec;
 
 export const FLEX_CONTROLS = {

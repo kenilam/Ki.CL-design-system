@@ -24,6 +24,7 @@ type Props = Omit<
   | 'delay'
   | 'duration'
   | 'easing'
+  | 'hold'
   | 'in'
   | 'property'
   | 'split'
@@ -64,6 +65,7 @@ const Root: React.FunctionComponent<Props> = ({ className, ref, ...props }) => {
       delay={animatedText.delay}
       duration={animatedText.duration}
       easing={animatedText.easing}
+      hold={animatedText.hold}
       in={animatedText.in}
       property={animatedText.property}
     >

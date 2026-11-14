@@ -25,7 +25,7 @@ type Child = {
 };
 
 type Options = Required<
-  Pick<Spec.Options, 'duration' | 'easing' | 'in' | 'property'>
+  Pick<Spec.Options, 'duration' | 'easing' | 'hold' | 'in' | 'property'>
 > &
   Pick<Spec.Options, 'className' | 'nodeRef'> &
   Pick<ReturnType<typeof useLeave>, 'leave'> & {
@@ -40,6 +40,7 @@ const clone = (
     delay,
     duration,
     easing,
+    hold,
     in: transitionIn,
     leave,
     nodeRef,
@@ -60,6 +61,7 @@ const clone = (
       className: classNames(
         CLASS_NAME,
         `${CLASS_NAME}--property--${property}`,
+        { [`${CLASS_NAME}--hold`]: hold },
         props.className,
         className
       ),

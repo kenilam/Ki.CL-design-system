@@ -11,6 +11,7 @@ export const CONTROLS = {
   duration: { options: DURATIONS, default: 'fast' },
   easing: { options: EASINGS, default: 'ease-sharp-in-out' },
   in: { options: 'boolean', live: true },
+  hold: 'boolean',
 } satisfies ControlsSpec;
 
 // Not `Controlled`: the props' index signature would lose each key's type.

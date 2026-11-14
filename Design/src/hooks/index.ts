@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useClipboard } from './use-clipboard';
 import { useClosedBy } from './use-closed-by';
+import { useInView } from './use-in-view';
 import { useNow } from './use-now';
 import { useOverlayContents } from './use-overlay-contents';
 import { usePrinting } from './use-printing';
@@ -22,6 +23,7 @@ export {
   type Theme,
   useClipboard,
   useClosedBy,
+  useInView,
   useNow,
   useOverlayContents,
   usePrinting,

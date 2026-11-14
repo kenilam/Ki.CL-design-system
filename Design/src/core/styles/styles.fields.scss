@@ -11,8 +11,8 @@ textarea {
   }
 
   &::placeholder {
-    color: var(--kicl-body-color);
-    opacity: 0.5;
+    color: var(--kicl-color-neutral-48);
+    opacity: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -77,6 +77,9 @@ $level-steps: (
 
 // `black-a8` is black at 8% opacity.
 $alphas: (4, 8, 12, 16, 24, 32, 48, 64, 80);
+
+// `neutral-64` is the text color mixed 64% into the page color, with no alpha.
+$tones: (48, 64, 80);
 $level-steps-dark: (
   'secondary': 600,
   'tertiary': 700,
@@ -100,5 +103,13 @@ $level-steps-dark: (
   @each $alpha in $alphas {
     --kicl-color-neutral-a#{$alpha}: var(--kicl-color-#{$ink}-a#{$alpha});
     --kicl-color-page-a#{$alpha}: var(--kicl-color-#{$page}-a#{$alpha});
+  }
+
+  @each $tone in $tones {
+    --kicl-color-neutral-#{$tone}: color-mix(
+      in srgb,
+      var(--kicl-color-#{$ink}) #{$tone + 0%},
+      var(--kicl-color-#{$page})
+    );
   }
 }

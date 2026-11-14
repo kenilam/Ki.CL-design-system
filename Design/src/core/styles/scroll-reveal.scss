@@ -16,7 +16,7 @@
   }
 }
 
-@mixin make-scroll-reveal-class($identifier, $from) {
+@mixin make-scroll-reveal-class($identifier, $from, $from-rtl: $from) {
   $name: 'kicl-scroll-reveal';
 
   @if $identifier {
@@ -33,14 +33,20 @@
           kicl-scroll-reveal-out linear forwards;
         animation-range: entry, exit;
         animation-timeline: view(), view();
+
+        @if $from-rtl != $from {
+          &:dir(rtl) {
+            --kicl-scroll-reveal-from: #{$from-rtl};
+          }
+        }
       }
     }
   }
 }
 
+$before: calc(var(--kicl-scroll-reveal-distance) * -1) 0;
+$after: var(--kicl-scroll-reveal-distance) 0;
+
 @include make-scroll-reveal-class(null, 0 var(--kicl-scroll-reveal-distance));
-@include make-scroll-reveal-class(
-  'start',
-  calc(var(--kicl-scroll-reveal-distance) * -1) 0
-);
-@include make-scroll-reveal-class('end', var(--kicl-scroll-reveal-distance) 0);
+@include make-scroll-reveal-class('start', $before, $after);
+@include make-scroll-reveal-class('end', $after, $before);

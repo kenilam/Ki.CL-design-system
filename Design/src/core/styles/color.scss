@@ -77,6 +77,10 @@
   }
 }
 
+@each $tone in $tones {
+  @include make-color-variable-class('neutral-#{$tone}');
+}
+
 @each $level in map.keys($levels) {
   @include make-color-variable-class($level);
 

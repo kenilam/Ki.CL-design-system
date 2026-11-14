@@ -1,0 +1,12 @@
+import { Preset as Basic } from './basic';
+import { Preset as ALongSentence } from './a-long-sentence';
+import { CONTROLS } from './controls';
+
+<Text>
+  <Copy id='animated_text' />
+</Text>
+
+<Preview controls={CONTROLS} replay>
+  {Basic}
+  {ALongSentence}
+</Preview>

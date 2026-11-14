@@ -349,6 +349,69 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/noto-sans-arabic@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/noto-sans-arabic@npm:5.3.0"
+  checksum: 10c0/13f6b40409e0d4f180a1fb73be22d6cba22da7d393c8f2dfc3149ace5c53ed59d179c3c17f3fef5117160bfb32b6ae8571522c6bf48cd531f3a31e6dc7fa0411
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/noto-sans-devanagari@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/noto-sans-devanagari@npm:5.3.0"
+  checksum: 10c0/7a3569bdca5b7669aa078d7ddc74dbf2f31760b85ff7012773db5337015e166c7c372ee87491be7a9b6bf4e658c31d3efd0647a216937d2a3967868d0372e39d
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/noto-sans-hk@npm:5.3.1":
+  version: 5.3.1
+  resolution: "@fontsource-variable/noto-sans-hk@npm:5.3.1"
+  checksum: 10c0/362c902b655c97001b3bc8bd5c6bdaee2a02b98ccc3552047e3bf30093c128206762f507f018956280aff9cba3c4f48b04e1cfbe7a6b836d7b8e7dc26c21187b
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/noto-sans-jp@npm:5.3.1":
+  version: 5.3.1
+  resolution: "@fontsource-variable/noto-sans-jp@npm:5.3.1"
+  checksum: 10c0/695254075273786900a3d170c2ff7a6d7a564d9ed00153def67814afafcfcea538986a47a34396fdec946715798d2d2592fa22b624f8c1648cb2baae369f5c78
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/noto-sans-kr@npm:5.3.1":
+  version: 5.3.1
+  resolution: "@fontsource-variable/noto-sans-kr@npm:5.3.1"
+  checksum: 10c0/9cc61ea4fe83a26c287d250c270c0cca6092c8d120eda979605ef2c4a6226391fad225b3e4ae8b83b14b0fa50886702eac397d5ac4a967fb7d86d02e1f8f4d4f
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/noto-sans-sc@npm:5.3.1":
+  version: 5.3.1
+  resolution: "@fontsource-variable/noto-sans-sc@npm:5.3.1"
+  checksum: 10c0/5911690b2b43187a986783c0666bab074fd92815dc3fe845c99c1bf145d45a240fb8648ac50938750ba84f11795841a7bed15c8f9e66b76a32837c9cb28065ec
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/sometype-mono@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/sometype-mono@npm:5.3.0"
+  checksum: 10c0/e53d0789a2d855b1860e5d41a3d1263ea423477278c5c05cc80a54ae508830b1f290f12c590d64fd6213a13da1b7eef5038cf10d1d54c6448fecdaa48f201c22
+  languageName: node
+  linkType: hard
+
+"@fontsource/barlow-semi-condensed@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource/barlow-semi-condensed@npm:5.3.0"
+  checksum: 10c0/13a9473f53778df55c79ab42b1a58d59ce9a236a18812003594cd48a86f14332760381131d509c6be9ca9ce81177a9a2e9ed05631130dfe32baf2122eead7fe9
+  languageName: node
+  linkType: hard
+
+"@fontsource/barlow@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource/barlow@npm:5.3.0"
+  checksum: 10c0/2efe5abb3dac2ef2eb3ae9a3fd5acdc6955daf85efc1b5439081003e2d67ea90d62aae1d54fd1dcf6fc0eccfc815174bb77e70120a4973c0142431827d0b9c6d
+  languageName: node
+  linkType: hard
+
 "@hookform/resolvers@npm:5.5.7":
   version: 5.5.7
   resolution: "@hookform/resolvers@npm:5.5.7"
@@ -487,6 +550,15 @@ __metadata:
   dependencies:
     "@fontsource-variable/inter": "npm:5.3.0"
     "@fontsource-variable/jetbrains-mono": "npm:5.3.0"
+    "@fontsource-variable/noto-sans-arabic": "npm:5.3.0"
+    "@fontsource-variable/noto-sans-devanagari": "npm:5.3.0"
+    "@fontsource-variable/noto-sans-hk": "npm:5.3.1"
+    "@fontsource-variable/noto-sans-jp": "npm:5.3.1"
+    "@fontsource-variable/noto-sans-kr": "npm:5.3.1"
+    "@fontsource-variable/noto-sans-sc": "npm:5.3.1"
+    "@fontsource-variable/sometype-mono": "npm:5.3.0"
+    "@fontsource/barlow": "npm:5.3.0"
+    "@fontsource/barlow-semi-condensed": "npm:5.3.0"
     "@hookform/resolvers": "npm:5.5.7"
     "@mdx-js/rollup": "npm:^3.1.1"
     "@module-federation/vite": "npm:^1.20.0"

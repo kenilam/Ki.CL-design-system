@@ -237,7 +237,7 @@ import {
   type SwitchProps,
 } from './switch';
 import { Table, type TableProps } from './table';
-import { AnimatedText, AnimatedTextProps } from './animated-text';
+import * as Animated from './animated';
 import {
   Text,
   type TextIs,
@@ -288,9 +288,14 @@ import {
 import { TEXT_LOOK_LIKES, TEXT_VARIANTS } from './text/spec';
 import { LEVELS, VARIANTS, GAPS, COLUMN_SPANS } from './spec';
 
+const AnimatedText = Animated.Text;
+
+type AnimatedTextProps = Animated.TextProps;
+
 export {
   Animation,
   type AnimationProps,
+  Animated,
   AnimatedText,
   type AnimatedTextProps,
   BackLink,

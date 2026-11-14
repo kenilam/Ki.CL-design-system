@@ -23,11 +23,12 @@
   // Neutral is the body colour, so it needs no rule.
   @each $level in map.keys(map.remove($levels, 'neutral')) {
     &--level--#{$level} {
+      --kicl-heading-font-weight-level: var(--kicl-font-weight-step);
       --kicl-heading-status-color: var(--kicl-color-#{$level});
       --kicl-heading-status-color-secondary: color-mix(
         in srgb,
         var(--kicl-color-#{$level}) 80%,
-        transparent
+        var(--kicl-body-background-color)
       );
     }
   }

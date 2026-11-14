@@ -10,7 +10,11 @@ type Props = { seconds: number };
 
 const Time: React.FunctionComponent<Props> = ({ seconds }) => {
   return (
-    <Text dateTime={`PT${seconds}S`} is='time'>
+    <Text
+      className='kicl-font-family-mono'
+      dateTime={`PT${seconds}S`}
+      is='time'
+    >
       {clockOf(seconds)}
     </Text>
   );

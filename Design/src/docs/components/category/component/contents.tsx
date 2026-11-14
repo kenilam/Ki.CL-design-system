@@ -1,16 +1,17 @@
 import React, { Suspense } from 'react';
 
-import { Heading, Spinner } from 'design/components';
+import { Spinner } from 'design/components';
 
 import { Status404 } from 'design/status';
 
 import { Header } from './header';
+import { Title } from './title';
 import { COMPONENTS } from 'design/mdx';
 
 import { useComponentContext } from './use-component-context';
 
 const Contents: React.FunctionComponent = () => {
-  const { Content, name } = useComponentContext();
+  const { Content } = useComponentContext();
 
   if (!Content) {
     return <Status404 />;
@@ -19,7 +20,7 @@ const Contents: React.FunctionComponent = () => {
   return (
     <>
       <Header />
-      <Heading>{name}</Heading>
+      <Title />
       <Suspense fallback={<Spinner />}>
         <Content components={COMPONENTS} />
       </Suspense>

@@ -1,8 +1,29 @@
+$variable: (
+  'inter/opsz',
+  'jetbrains-mono/index',
+  'noto-sans-arabic/wght',
+  'noto-sans-devanagari/wght',
+  'sometype-mono/wght'
+);
+
+@each $face in $variable {
+  @include meta.load-css('@fontsource-variable/#{$face}.css');
+}
+
+@each $weight in (300, 400, 500, 600, 700, 800) {
+  @include meta.load-css('@fontsource/barlow/#{$weight}.css');
+}
+
+@each $weight in (400, 500, 600, 700, 800) {
+  @include meta.load-css('@fontsource/barlow-semi-condensed/#{$weight}.css');
+}
+
 :root {
-  --kicl-font-family: 'Inter Variable', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', #{$base-font};
-  --kicl-font-family-mono: 'JetBrains Mono Variable', ui-monospace, 'Menlo',
+  --kicl-font-family: 'Barlow', 'Inter Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Inter Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Inter Variable', #{$base-font};
+  --kicl-font-family-mono:
+    'Sometype Mono Variable', 'JetBrains Mono Variable', ui-monospace, 'Menlo',
     monospace;
   --kicl-font-size: #{$base-font-size};
   --kicl-font-size-smallest: 0.75rem;
@@ -27,9 +48,10 @@
   --kicl-font-weight-bold: 600;
   --kicl-font-weight-bolder: 700;
   --kicl-font-weight-boldest: 800;
-  --kicl-letter-spacing: -0.011em;
-  --kicl-letter-spacing-tight: -0.04em;
-  --kicl-letter-spacing-tighter: -0.06em;
+  --kicl-font-weight-step: 100;
+  --kicl-letter-spacing: 0;
+  --kicl-letter-spacing-tight: -0.01em;
+  --kicl-letter-spacing-tighter: -0.02em;
   --kicl-line-height-dense: 0.7;
   --kicl-line-height-narrowest: 0.8;
   --kicl-line-height-narrower: 1;

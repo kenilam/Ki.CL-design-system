@@ -2,10 +2,10 @@
   --kicl--components--animation--property--slide-from-bottom--distance: 0;
   --kicl--components--animation--property--slide-from-bottom--opacity: 1;
   --kicl--components--animation--clip-from: inset(
-    -100vmax -100vmax var(--kicl--components--animation--slide--distance)
+    -100% -100% var(--kicl--components--animation--slide--distance)
   );
   --kicl--components--animation--clip-to: inset(
-    -100vmax -100vmax
+    -100% -100%
     calc(-1 * var(--kicl--components--animation--slide--clip-margin))
   );
   --kicl--components--animation--transition-property: opacity, translate;

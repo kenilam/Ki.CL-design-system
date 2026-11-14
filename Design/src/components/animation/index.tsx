@@ -33,13 +33,14 @@ const Animation: FunctionComponent<Props> = ({
   property = 'fade',
   children,
   className,
+  hold = false,
   in: transitionIn = true,
   nodeRef,
   ...rest
 }) => {
   const { left, leave } = useLeave(transitionIn);
 
-  if (!transitionIn && left) {
+  if (!transitionIn && left && !hold) {
     return null;
   }
 
@@ -54,6 +55,7 @@ const Animation: FunctionComponent<Props> = ({
     delay,
     duration,
     easing,
+    hold,
     in: transitionIn,
     leave,
     nodeRef,

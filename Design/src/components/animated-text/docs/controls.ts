@@ -15,6 +15,7 @@ export const CONTROLS = {
   duration: { options: DURATIONS, default: 'slower' },
   easing: { options: EASINGS, default: 'ease-standard-in-out' },
   in: { options: 'boolean', live: true },
+  hold: 'boolean',
   lookLike: TEXT_LOOK_LIKES,
   variant: { options: TEXT_VARIANTS, default: 'primary' },
   level: { options: LEVELS, default: 'neutral' },

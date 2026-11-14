@@ -17,6 +17,7 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
       delay,
       duration,
       easing,
+      hold,
       in: transitionIn,
       property,
       split,
@@ -30,6 +31,7 @@ const AnimatedText = React.forwardRef<HTMLElement, Spec.Props>(
         delay={delay}
         duration={duration}
         easing={easing}
+        hold={hold}
         in={transitionIn}
         property={property}
         split={split}

@@ -1,0 +1,7 @@
+// Trims the space above the capitals, so text lines up with what is beside it.
+.kicl-text-box-trim-start {
+  @supports (text-box-trim: trim-start) {
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-start;
+  }
+}

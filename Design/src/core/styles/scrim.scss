@@ -9,10 +9,8 @@
   &::after {
     background-image: linear-gradient(
       180deg,
-      var(--kicl-scrim-top)
-      0%,
-      var(--kicl-scrim-foot)
-      100%
+      var(--kicl-scrim-top) 0%,
+      var(--kicl-scrim-foot) 100%
     );
     content: '';
     inset: 0;
@@ -20,4 +18,24 @@
     position: absolute;
     z-index: var(--kicl-z-index-raised);
   }
+}
+
+:root,
+.kicl--theme--light {
+  --kicl-tone-clamp-blend-mode: lighten;
+}
+
+.kicl--theme--dark {
+  --kicl-tone-clamp-blend-mode: darken;
+}
+
+// Over a picture or a canvas on the page's own color: nothing under it gets
+// further from the page than a third of the way to the text color.
+.kicl-tone-clamp {
+  background-color: color-mix(
+    in srgb,
+    var(--kicl-body-color) 32%,
+    var(--kicl-body-background-color)
+  );
+  mix-blend-mode: var(--kicl-tone-clamp-blend-mode);
 }

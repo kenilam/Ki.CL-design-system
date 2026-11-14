@@ -79,23 +79,37 @@
   translate: 0 calc((1 - var(--kicl-scroll-focus)) * var(--kicl-gutter-wide));
 }
 
-.kicl-scroll-focus-reveal-start {
-  opacity: var(--kicl-scroll-focus);
-  translate: calc((1 - var(--kicl-scroll-focus)) * var(--kicl-gutter-wide) * -1)
-    0;
-}
+@each $name, $side in ('start': -1, 'end': 1) {
+  .kicl-scroll-focus-reveal-#{$name} {
+    --kicl-scroll-focus-reveal-distance: calc(
+      var(--kicl-gutter-wide) * #{$side}
+    );
 
-.kicl-scroll-focus-reveal-end {
-  opacity: var(--kicl-scroll-focus);
-  translate: calc((1 - var(--kicl-scroll-focus)) * var(--kicl-gutter-wide)) 0;
+    opacity: var(--kicl-scroll-focus);
+    translate: calc(
+      (1 - var(--kicl-scroll-focus)) *
+      var(--kicl-scroll-focus-reveal-distance)
+    )
+      0;
+
+    &:dir(rtl) {
+      --kicl-scroll-focus-reveal-distance: calc(
+        var(--kicl-gutter-wide) * #{$side * -1}
+      );
+    }
+  }
 }
 
 @each $alpha in 64, 80 {
   .kicl-scroll-focus-color-a#{$alpha} {
+    --kicl-scroll-focus-color-amount: calc(
+      #{$alpha}% + var(--kicl-scroll-focus) * #{100 - $alpha}%
+    );
+
     color: color-mix(
       in srgb,
-      var(--kicl-body-color) calc(var(--kicl-scroll-focus) * 100%),
-      var(--kicl-color-neutral-a#{$alpha})
+      var(--kicl-body-color) var(--kicl-scroll-focus-color-amount),
+      var(--kicl-body-background-color)
     );
   }
 }

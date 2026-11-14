@@ -1,7 +1,3 @@
-// Fonts
-import '@fontsource-variable/inter/opsz.css';
-import '@fontsource-variable/jetbrains-mono';
-
 // Global Styles
 import './reset.css';
 
@@ -31,6 +27,7 @@ import './duration.scss';
 import './ease.scss';
 import './font.scss';
 import './font.languages.scss';
+import './font.languages';
 import './font.text.scss';
 import './gradient-shift.scss';
 // After gradient-shift.scss, whose `background` shorthand resets the clip.

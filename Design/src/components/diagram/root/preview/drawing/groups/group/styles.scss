@@ -3,6 +3,6 @@
   stroke: var(--kicl-surface-border-color);
 
   &-label {
-    opacity: 0.6;
+    color: color-mix(in srgb, currentcolor 60%, var(--kicl-surface-color));
   }
 }

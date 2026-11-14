@@ -150,12 +150,6 @@ export const PAGES = {
         return import('design/components/diagram/docs/index.mdx');
       }),
     },
-    'animated-text': {
-      context: 'animated_text',
-      Content: lazy(() => {
-        return import('design/components/animated-text/docs/index.mdx');
-      }),
-    },
   },
   feedback: {
     spinner: {
@@ -272,11 +266,33 @@ export const PAGES = {
         return import('design/components/separator/docs/index.mdx');
       }),
     },
+  },
+  motion: {
     animation: {
       context: 'animation',
       Content: lazy(() => {
         return import('design/components/animation/docs/index.mdx');
       }),
+    },
+    animated: {
+      context: 'animated',
+      Content: lazy(() => {
+        return import('design/components/animated/text/docs/index.mdx');
+      }),
+      parts: {
+        text: {
+          context: 'animated_text',
+          Content: lazy(() => {
+            return import('design/components/animated/text/docs/index.mdx');
+          }),
+        },
+        heading: {
+          context: 'animated_heading',
+          Content: lazy(() => {
+            return import('design/components/animated/heading/docs/index.mdx');
+          }),
+        },
+      },
     },
   },
 } as const;

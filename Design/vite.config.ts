@@ -22,7 +22,7 @@ const partials = glob
   })
   .join('');
 
-const prelude = `@use 'sass:color';@use 'sass:list';@use 'sass:map';@use 'sass:math';${partials}`;
+const prelude = `@use 'sass:color';@use 'sass:list';@use 'sass:map';@use 'sass:math';@use 'sass:meta';${partials}`;
 
 // Served at /design/* - base must match so chunk URLs resolve.
 export default defineConfig({

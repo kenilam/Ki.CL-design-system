@@ -11,8 +11,9 @@
   .kicl-look-like-h#{$level}--variant--secondary {
     --kicl-heading-font-color: var(
       --kicl-heading-status-color-secondary,
-      var(--kicl-color-neutral-a64)
+      var(--kicl-color-neutral-64)
     );
     --kicl-heading-font-size-scale: 0.8;
+    --kicl-heading-font-weight-variant: calc(var(--kicl-font-weight-step) * -1);
   }
 }

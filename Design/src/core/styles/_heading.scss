@@ -16,7 +16,7 @@
   --kicl-heading-font-family: var(--kicl-font-family-special);
   --kicl-heading-font-size: var(--kicl-font-size);
   --kicl-heading-font-weight: var(--kicl-font-weight-bold);
-  --kicl-heading-letter-spacing: var(--kicl-letter-spacing-tight);
+  --kicl-heading-letter-spacing: var(--kicl-letter-spacing);
   --kicl-heading-line-height: var(--kicl-line-height-narrow);
 
   /*
@@ -32,7 +32,11 @@
   font-size: calc(
     var(--kicl-heading-font-size) * var(--kicl-heading-font-size-scale)
   );
-  font-weight: var(--kicl-heading-font-weight);
+  font-weight: calc(
+    var(--kicl-heading-font-weight) +
+    var(--kicl-heading-font-weight-level, 0) +
+    var(--kicl-heading-font-weight-variant, 0)
+  );
   letter-spacing: var(--kicl-heading-letter-spacing);
   line-height: var(--kicl-heading-line-height);
 
@@ -42,8 +46,10 @@
 @mixin heading-size($level) {
   @if $level == 1 {
     --kicl-heading-font-size: var(--kicl-font-size-large);
+    --kicl-heading-font-weight: var(--kicl-font-weight-bolder);
   } @else if $level == 2 {
     --kicl-heading-font-size: var(--kicl-font-size-medium);
+    --kicl-heading-font-weight: var(--kicl-font-weight-bolder);
   } @else if $level == 3 {
     --kicl-heading-font-size: var(--kicl-font-size-moderate);
   } @else if $level == 5 or $level == 6 {
@@ -53,7 +59,7 @@
   @if $level == 6 {
     --kicl-heading-font-color: var(
       --kicl-heading-status-color-secondary,
-      var(--kicl-color-neutral-a64)
+      var(--kicl-color-neutral-64)
     );
 
     text-transform: uppercase;

@@ -1,39 +1,41 @@
 :root:lang(ar) {
-  --kicl-font-family: 'Inter Variable', 'noto-sans-arabic', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', 'noto-sans-arabic', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', 'noto-sans-arabic', #{$base-font};
+  --kicl-font-family: 'Barlow', 'Noto Sans Arabic Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Noto Sans Arabic Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Noto Sans Arabic Variable', #{$base-font};
+  --kicl-font-family-mono: 'Sometype Mono Variable', 'Noto Sans Arabic Variable', ui-monospace, 'Menlo', monospace;
 }
 
 :root:lang(hi) {
-  --kicl-font-family: 'Inter Variable', 'noto-sans-devanagari', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', 'noto-sans-devanagari', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', 'noto-sans-devanagari', #{$base-font};
+  --kicl-font-family: 'Barlow', 'Noto Sans Devanagari Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Noto Sans Devanagari Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Noto Sans Devanagari Variable', #{$base-font};
 }
 
 :root:lang(ja) {
-  --kicl-font-family: 'Inter Variable', 'noto-sans-cjk-jp', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', 'noto-sans-cjk-jp', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', 'noto-sans-cjk-jp', #{$base-font};
+  --kicl-font-family: 'Barlow', 'Noto Sans JP Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Noto Sans JP Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Noto Sans JP Variable', #{$base-font};
 }
 
 :root:lang(ko) {
-  --kicl-font-family: 'Inter Variable', 'noto-sans-cjk-kr', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', 'noto-sans-cjk-kr', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', 'noto-sans-cjk-kr', #{$base-font};
+  --kicl-font-family: 'Barlow', 'Noto Sans KR Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Noto Sans KR Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Noto Sans KR Variable', #{$base-font};
 }
 
 :root:lang(zh-Hans) {
-  --kicl-font-family: 'Inter Variable', 'source-han-sans-simplified-c', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', 'source-han-sans-simplified-c', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', 'source-han-sans-simplified-c', #{$base-font};
+  --kicl-font-family: 'Barlow', 'Noto Sans SC Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Noto Sans SC Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Noto Sans SC Variable', #{$base-font};
 }
 
 :root:lang(zh-Hant) {
-  --kicl-font-family: 'Inter Variable', 'source-han-sans-hong-kong', #{$base-font};
-  --kicl-font-family-bold: 'Inter Variable', 'source-han-sans-hong-kong', #{$base-font};
-  --kicl-font-family-special: 'Inter Variable', 'source-han-sans-hong-kong', #{$base-font};
+  --kicl-font-family: 'Barlow', 'Noto Sans HK Variable', #{$base-font};
+  --kicl-font-family-bold: 'Barlow', 'Noto Sans HK Variable', #{$base-font};
+  --kicl-font-family-special: 'Barlow Semi Condensed', 'Noto Sans HK Variable', #{$base-font};
 }
 
+:root:lang(ar),
 :root:lang(ja),
 :root:lang(ko),
 :root:lang(zh-Hans),

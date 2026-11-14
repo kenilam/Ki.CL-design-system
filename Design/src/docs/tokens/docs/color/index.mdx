@@ -4,13 +4,17 @@ import { Variables } from 'design/docs/tokens/variables';
 import { Opacity } from 'design/docs/tokens/previews';
 import { ALL, HUES, LEVEL_SWATCHES, NEUTRALS, PURE } from './constants';
 
-<Text><Copy id='token_color_intro' /></Text>
+<Text>
+  <Copy id='token_color_intro' />
+</Text>
 
 <Copy id='token_color_neutrals' />
 
 <Palette swatches={NEUTRALS} />
 
-<Text><Copy id='token_color_part_3' /></Text>
+<Text>
+  <Copy id='token_color_part_3' />
+</Text>
 
 <Palette swatches={PURE} />
 
@@ -65,6 +69,7 @@ import { ALL, HUES, LEVEL_SWATCHES, NEUTRALS, PURE } from './constants';
       )
     ),
     'surface-glass-color',
+    ...[48, 64, 80].map((tone) => `color-neutral-${tone}`),
   ]}
 />
 

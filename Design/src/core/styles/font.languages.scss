@@ -45,3 +45,11 @@
   --kicl-letter-spacing-tighter: 0;
   --kicl-line-height-narrower: var(--kicl-line-height-narrow);
 }
+
+:root:lang(ja),
+:root:lang(ko),
+:root:lang(zh-Hans),
+:root:lang(zh-Hant) {
+  --kicl-font-size-huge: clamp(var(--kicl-font-size-large), 8.4dvi, 3.5rem);
+  --kicl-font-size-extreme: min(12.6dvi, 7rem);
+}

@@ -17,8 +17,10 @@
   scroll-padding-block-start: 0;
 }
 
+// Also while the page is at its end, where a trackpad's bounce counts as
+// scrolling up and would bring the header back over the last section.
 @mixin -scrolled-down {
-  @container kicl-page scroll-state((scrolled: bottom) and (scrollable: top)) {
+  @container kicl-page scroll-state((scrollable: top) and ((scrolled: bottom) or (not (scrollable: bottom)))) {
     @content;
   }
 }

@@ -14,6 +14,7 @@ export const CONTROLS = {
   },
   level: { options: LEVELS, default: 'neutral', when: LOOK },
   size: { options: BUTTON_SIZES, when: LOOK },
+  display: { options: 'boolean', when: LOOK },
   unstyled: { options: 'boolean', when: { lookLikeHyperLink: true } },
   disabled: 'boolean',
 } as const satisfies ControlsSpec;
@@ -22,5 +23,11 @@ export const CONTROLS = {
 // stage may pass `lookLikeHyperLink` and `unstyled` in their place.
 export type Props = Pick<
   ButtonProps & { lookLikeHyperLink?: false },
-  'className' | 'disabled' | 'level' | 'lookLikeHyperLink' | 'size' | 'variant'
+  | 'className'
+  | 'disabled'
+  | 'display'
+  | 'level'
+  | 'lookLikeHyperLink'
+  | 'size'
+  | 'variant'
 > & { unstyled?: false };

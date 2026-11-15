@@ -27,6 +27,12 @@
   initial-value: 0;
 }
 
+@property --kicl-scroll-exit {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
 @mixin scroll-driven {
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
@@ -132,6 +138,28 @@
   }
 }
 
+.kicl-scroll-exit {
+  @include scroll-driven {
+    animation: kicl-scroll-exit linear both;
+    animation-range: exit;
+    animation-timeline: view();
+    container-type: size;
+  }
+}
+
+.kicl-scroll-exit-trail {
+  @include scroll-driven {
+    translate: 0 min(calc(var(--kicl-scroll-exit) * 50cqb), calc(50cqb - 50%));
+  }
+
+  @supports not (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      inset-block-start: 0;
+      position: sticky;
+    }
+  }
+}
+
 @each $name, $distance in ('near': 'wider', 'far': 'extreme') {
   .kicl-scroll-enter-#{$name} {
     translate: 0
@@ -175,5 +203,11 @@
 @keyframes kicl-scroll-enter {
   from {
     --kicl-scroll-enter: 1;
+  }
+}
+
+@keyframes kicl-scroll-exit {
+  to {
+    --kicl-scroll-exit: 1;
   }
 }

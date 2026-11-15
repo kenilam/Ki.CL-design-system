@@ -56,3 +56,23 @@
 
 @include make-variable-class('text-wrap', 'balance');
 @include make-variable-class('text-wrap', 'pretty');
+
+:root {
+  --kicl-overflow-wrap-normal: normal;
+  --kicl-overflow-wrap-anywhere: anywhere;
+  --kicl-overflow-wrap-break-word: break-word;
+}
+
+@include make-variable-class('overflow-wrap', 'normal');
+@include make-variable-class('overflow-wrap', 'anywhere');
+@include make-variable-class('overflow-wrap', 'break-word');
+
+:root {
+  --kicl-hyphens-auto: auto;
+  --kicl-hyphens-manual: manual;
+  --kicl-hyphens-none: none;
+}
+
+@include make-variable-class('hyphens', 'auto');
+@include make-variable-class('hyphens', 'manual');
+@include make-variable-class('hyphens', 'none');

@@ -15,7 +15,10 @@ h6 {
 }
 
 :is(h1, h2, h3, h4, h5, h6) :is(b, strong) {
+  color: var(--kicl-heading-status-color, inherit);
   font-weight: inherit;
+
+  @include transition('kicl-heading');
 }
 
 @each $level in (1, 2, 3, 4, 5, 6) {

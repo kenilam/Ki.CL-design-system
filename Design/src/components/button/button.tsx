@@ -31,6 +31,7 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
     children,
     className,
     disabled,
+    display,
     iconOnlyUpTo,
     level,
     lookLikeHyperLink = false,

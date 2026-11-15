@@ -30,6 +30,8 @@ export type LookProps = {
    * becoming a circle.
    */
   block?: boolean;
+  /** The label is in capitals, like a heading with the display look. */
+  display?: boolean;
   /** Up to this breakpoint the label is hidden and only the icon shows. */
   iconOnlyUpTo?: (typeof BUTTON_ICON_ONLY_UP_TO)[number];
   level?: Level;

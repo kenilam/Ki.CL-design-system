@@ -14,6 +14,7 @@ const getButtonClassNames = ({
   block,
   className = '',
   disabled,
+  display,
   icon,
   iconOnlyUpTo,
   level,
@@ -35,7 +36,7 @@ const getButtonClassNames = ({
       'kicl-backdrop-blur': !unstyled && variant === 'ghost',
       'kicl-border-radius-sm': block,
       'kicl-line-height-narrower': !unstyled,
-      'kicl-text-transform-uppercase': !unstyled,
+      'kicl-text-transform-uppercase': !unstyled && display,
     },
     'kicl-overflow-hidden',
     className

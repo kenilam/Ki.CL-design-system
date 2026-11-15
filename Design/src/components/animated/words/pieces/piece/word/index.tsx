@@ -6,6 +6,7 @@ import { usePiece } from 'design/components/animated/words/context';
 import { useMotion } from 'design/components/animated/words/use-motion';
 
 import type { Props } from 'design/components/animated/words/pieces/piece';
+import { Mark } from 'design/components/animated/words/pieces/piece/mark';
 
 const Word: React.FunctionComponent<Props> = ({ offset }) => {
   const { order, spans } = usePiece(offset);
@@ -14,13 +15,11 @@ const Word: React.FunctionComponent<Props> = ({ offset }) => {
   return (
     <Animation {...toMotion(order)}>
       <span aria-hidden className='kicl-display-inline-block'>
-        {spans.map(({ at, strong, text }) => {
-          return strong === null ? (
-            <React.Fragment key={at}>{text}</React.Fragment>
-          ) : (
-            <strong data-strong={strong} key={at}>
+        {spans.map(({ at, link, strong, text }) => {
+          return (
+            <Mark key={at} link={link} strong={strong}>
               {text}
-            </strong>
+            </Mark>
           );
         })}
       </span>

@@ -129,6 +129,7 @@ import {
 import { Heading, HeadingProps } from './heading';
 import {
   HyperLink,
+  HyperLinkLine,
   GetHyperLinkClassNamesProps,
   HyperLinkProps,
 } from './hyper-link';
@@ -419,6 +420,7 @@ export {
   HomeLink,
   type HomeLinkProps,
   HyperLink,
+  HyperLinkLine,
   type HyperLinkProps,
   getHyperLinkClassNames,
   type GetHyperLinkClassNamesProps,

@@ -19,7 +19,7 @@ const useTheme = () => {
 
   const chosen = useSyncExternalStore(subscribe, readCookie);
 
-  const theme: Theme = chosen ?? (isLightColorSchemePrefers ? 'light' : 'dark');
+  const theme: Theme = chosen ?? 'light';
 
   useEffect(() => {
     document.body.classList.toggle(DARK_THEME_CLASS_NAME, theme === 'dark');

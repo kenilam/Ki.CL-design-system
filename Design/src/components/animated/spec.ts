@@ -9,6 +9,9 @@ export type Options = Pick<
   /** Milliseconds added per piece. */
   stagger?: number;
   split?: (typeof ANIMATED_SPLITS)[number];
-  /** Wrap words in `**` to make them `strong`. */
+  /**
+   * Wrap words in `**` to make them `strong`, or write `[label](url)` to make
+   * them a link.
+   */
   children?: number | string | false | null;
 };

@@ -95,6 +95,7 @@ export default defineConfig({
     },
   },
   build: {
+    cssTarget: ['chrome130', 'firefox140', 'safari26'],
     target: 'esnext',
     outDir: 'dist',
     modulePreload: false,

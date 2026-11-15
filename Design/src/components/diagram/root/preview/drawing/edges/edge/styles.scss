@@ -8,7 +8,7 @@
     stroke-dasharray: 5 4;
   }
 
-  @each $accent in (blue, green, orange, red, yellow) {
+  @each $accent in ('blue', 'green', 'orange', 'red', 'yellow') {
     &--#{$accent} {
       opacity: 0.9;
       stroke: var(--kicl-color-#{$accent});

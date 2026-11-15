@@ -1,0 +1,48 @@
+:root,
+.kicl--theme--light {
+  --kicl--components--heading--blend: screen;
+}
+
+.kicl--theme--dark {
+  --kicl--components--heading--blend: multiply;
+}
+
+.kicl--components--heading {
+  &--has-media {
+    display: grid;
+    isolation: isolate;
+  }
+
+  &__media,
+  &__text {
+    grid-area: 1 / 1;
+  }
+
+  &__media {
+    clip-path: inset(var(--kicl-size-1px));
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      background: var(--kicl--components--heading--tone, transparent);
+      content: '';
+      inset: 0;
+      position: absolute;
+    }
+  }
+
+  &__text {
+    background: var(--kicl-body-background-color);
+    mix-blend-mode: var(--kicl--components--heading--blend);
+  }
+
+  @media print, (forced-colors: active) {
+    &__media {
+      display: none;
+    }
+
+    &__text {
+      mix-blend-mode: normal;
+    }
+  }
+}

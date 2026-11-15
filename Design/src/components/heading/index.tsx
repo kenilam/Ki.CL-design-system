@@ -6,10 +6,14 @@ import classNames from 'classnames';
 // Spec
 import * as Spec from './spec';
 
+// Partials
+import { Media } from './media';
+
 // Styles
 import './styles.scss';
 
-const CLASS_NAME = 'kicl--components--heading';
+// Constants
+import { CLASS_NAME } from './constants';
 
 const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
   (
@@ -20,6 +24,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
       is = 'h1',
       level,
       lookLike,
+      media,
       ...rest
     },
     ref
@@ -27,6 +32,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
     const className = classNames(
       CLASS_NAME,
       {
+        [`${CLASS_NAME}--has-media`]: media,
         [`${CLASS_NAME}--is-dense`]: dense,
         [`${CLASS_NAME}--level--${level}`]: level,
         [`${CLASS_NAME}--look-like--display`]: lookLike === 'display',
@@ -45,7 +51,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
         className={className}
         ref={ref}
       >
-        {children}
+        {media ? <Media media={media}>{children}</Media> : children}
       </Component>
     );
   }

@@ -9,6 +9,7 @@ import './styles.scss';
 // Partials
 import { Provider } from './context';
 import { Root } from './root';
+import { Line as HyperLinkLine } from './root/contents/line';
 
 const HyperLink = React.forwardRef<HTMLAnchorElement, Spec.Props>(
   (
@@ -47,4 +48,9 @@ type HyperLinkProps = Spec.Props;
 
 type GetHyperLinkClassNamesProps = Spec.GetHyperLinkClassNamesProps;
 
-export { HyperLink, type GetHyperLinkClassNamesProps, type HyperLinkProps };
+export {
+  HyperLink,
+  HyperLinkLine,
+  type GetHyperLinkClassNamesProps,
+  type HyperLinkProps,
+};

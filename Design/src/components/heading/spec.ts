@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, ReactElement } from 'react';
 
 import type { PolymorphicIsProps } from 'design/components/polymorphic';
 import type { Level } from 'design/components/spec';
@@ -13,6 +13,11 @@ type OwnProps<Is extends HeadingIs> = PropsWithChildren<{
   dense?: boolean;
   level?: Level;
   lookLike?: Exclude<HeadingIs, Is> | 'display';
+  /**
+   * A canvas or video that shows only through the letters. The page behind
+   * the heading has to be the plain body colour.
+   */
+  media?: ReactElement;
 }>;
 
 export type Props = {

@@ -18,6 +18,10 @@
     --kicl-heading-font-size: var(--kicl-font-size-huge);
     --kicl-heading-letter-spacing: var(--kicl-letter-spacing-tighter);
     --kicl-heading-line-height: var(--kicl-line-height-narrower);
+
+    @include query('≤narrow') {
+      text-align: start;
+    }
   }
 
   // Neutral is the body colour, so it needs no rule.

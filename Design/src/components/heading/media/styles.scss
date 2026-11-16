@@ -36,6 +36,14 @@
     mix-blend-mode: var(--kicl--components--heading--blend);
   }
 
+  // A stacking context is painted after the text around it, which would put
+  // the heading last in a PDF's reading order.
+  @media print {
+    &--has-media {
+      isolation: auto;
+    }
+  }
+
   @media print, (forced-colors: active) {
     &__media {
       display: none;

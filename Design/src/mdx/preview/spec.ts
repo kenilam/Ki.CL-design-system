@@ -15,6 +15,11 @@ export type Control = {
    * the control is hidden and the prop left out.
    */
   when?: Values;
+  /**
+   * Props that rule this one out, such as `{ property: 'scramble' }` for
+   * `split`. While they hold, the control is hidden and the prop left out.
+   */
+  unless?: Values;
   /** Another prop whose value this list leaves out, such as `is` for `lookLike`. */
   except?: string;
   /**
@@ -42,8 +47,16 @@ export const controlOf = (control: Control | Control['options']): Control => {
     : (control as Control);
 };
 
-export const isAllowed = (control: Control, values: Values) => {
-  return Object.entries(control.when ?? {}).every(([name, value]) => {
+const holds = (wanted: Values, values: Values) => {
+  return Object.entries(wanted).every(([name, value]) => {
     return (values[name] ?? false) === value;
   });
+};
+
+export const isAllowed = (control: Control, values: Values) => {
+  if (control.unless && holds(control.unless, values)) {
+    return false;
+  }
+
+  return holds(control.when ?? {}, values);
 };

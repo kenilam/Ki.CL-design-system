@@ -1,0 +1,13 @@
+.kicl--components--animation--property--appear {
+  --kicl--components--animation--transition-property: visibility;
+
+  visibility: visible;
+
+  @starting-style {
+    visibility: hidden;
+  }
+
+  &:not([data-animation-in]) {
+    visibility: hidden;
+  }
+}

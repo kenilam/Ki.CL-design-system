@@ -1,4 +1,5 @@
 :root {
+  --kicl-scroll-focus-distance: 20dvb;
   --kicl-scroll-focus-scale: 0.84;
   --kicl-scroll-leave-distance: 24dvb;
 }
@@ -33,9 +34,11 @@
   initial-value: 0;
 }
 
+// Screens only: a sheet of paper has no scroll position, so on paper the
+// numbers keep their resting values.
 @mixin scroll-driven {
   @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
+    @media screen and (prefers-reduced-motion: no-preference) {
       @content;
     }
   }
@@ -49,6 +52,23 @@
       kicl-scroll-focus linear both,
       kicl-scroll-shift linear both;
     animation-timeline: view(), view();
+  }
+}
+
+// For an element that can be taller than the window: in focus for as long
+// as the middle of the window is inside it. `kicl-scroll-focus` goes by the
+// element's own middle, so a tall one is out of focus at both of its ends.
+.kicl-scroll-focus-within {
+  @include scroll-driven {
+    animation:
+      kicl-scroll-focus-in linear both,
+      kicl-scroll-focus-out linear forwards,
+      kicl-scroll-shift linear both;
+    animation-range:
+      cover 0% cover min(var(--kicl-scroll-focus-distance), 50%),
+      cover max(calc(100% - var(--kicl-scroll-focus-distance)), 50%) cover 100%,
+      normal;
+    animation-timeline: view(block 50% 50%), view(block 50% 50%), view();
   }
 }
 
@@ -184,6 +204,26 @@
   }
 }
 
+@keyframes kicl-scroll-focus-in {
+  from {
+    --kicl-scroll-focus: 0;
+  }
+
+  to {
+    --kicl-scroll-focus: 1;
+  }
+}
+
+@keyframes kicl-scroll-focus-out {
+  from {
+    --kicl-scroll-focus: 1;
+  }
+
+  to {
+    --kicl-scroll-focus: 0;
+  }
+}
+
 @keyframes kicl-scroll-shift {
   from {
     --kicl-scroll-shift: 1;
@@ -209,5 +249,18 @@
 @keyframes kicl-scroll-exit {
   to {
     --kicl-scroll-exit: 1;
+  }
+}
+
+/*
+ * On paper nothing follows the scroll. A `scale` or `translate` of any value,
+ * even one that changes nothing, makes a layer that a PDF paints after the
+ * text around it, which would put that text out of reading order.
+ */
+@media print {
+  [class*='kicl-scroll-'] {
+    opacity: 1;
+    scale: none;
+    translate: none;
   }
 }

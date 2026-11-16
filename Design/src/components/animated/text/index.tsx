@@ -9,6 +9,7 @@ import type * as Spec from './spec';
 const Text = React.forwardRef<HTMLElement, Spec.Props>(
   (
     {
+      characterSet,
       children,
       delay,
       duration,
@@ -24,6 +25,7 @@ const Text = React.forwardRef<HTMLElement, Spec.Props>(
   ) => {
     return (
       <Provider
+        characterSet={characterSet}
         delay={delay}
         duration={duration}
         easing={easing}

@@ -9,6 +9,7 @@ import type * as Spec from './spec';
 const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
   (
     {
+      characterSet,
       children,
       delay,
       duration,
@@ -24,6 +25,7 @@ const Heading = React.forwardRef<HTMLHeadingElement, Spec.Props>(
   ) => {
     return (
       <Provider
+        characterSet={characterSet}
         delay={delay}
         duration={duration}
         easing={easing}

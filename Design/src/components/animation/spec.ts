@@ -47,6 +47,7 @@ export const EASINGS = [
 export type Easing = (typeof EASINGS)[number];
 
 export const PROPERTIES = [
+  'appear',
   'blur',
   'fade',
   'slide-from-bottom',

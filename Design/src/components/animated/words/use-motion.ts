@@ -4,6 +4,8 @@ import { ZOOMS } from 'design/components/animated/constants';
 
 const useMotion = () => {
   const animated = useAnimated();
+  const property =
+    animated.property === 'scramble' ? 'appear' : animated.property;
 
   return (order: number) => {
     return {
@@ -12,7 +14,7 @@ const useMotion = () => {
       easing: animated.easing,
       hold: animated.hold,
       in: animated.in,
-      property: ZOOMS.includes(animated.property) ? 'fade' : animated.property,
+      property: ZOOMS.includes(property) ? 'fade' : property,
     } as const;
   };
 };

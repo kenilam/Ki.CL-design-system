@@ -9,7 +9,6 @@ const Preview: React.FC<Props> = (props) => {
     <Animated.Text
       className='kicl-max-inline-size-columns-6'
       key='sentence'
-      split='word'
       stagger={80}
       {...props}
     >

@@ -2,6 +2,8 @@ import React, { createContext, useContext } from 'react';
 
 import type { Options } from 'design/components/animated/spec';
 
+import { CHARACTER_SET } from 'design/components/animated/constants';
+
 import { useText } from './use-text';
 
 type Props = React.PropsWithChildren<
@@ -13,6 +15,7 @@ type Value = Required<Omit<Options, 'children'>> & ReturnType<typeof useText>;
 const AnimatedContext = createContext<Value | null>(null);
 
 const Provider: React.FunctionComponent<Props> = ({
+  characterSet = CHARACTER_SET,
   children,
   delay = 0,
   duration = 'slower',
@@ -30,13 +33,14 @@ const Provider: React.FunctionComponent<Props> = ({
     <AnimatedContext.Provider
       value={{
         ...shown,
+        characterSet,
         delay,
         duration,
         easing,
         hold,
         in: transitionIn,
         property,
-        split,
+        split: property === 'scramble' ? 'letter' : split,
         stagger,
       }}
     >

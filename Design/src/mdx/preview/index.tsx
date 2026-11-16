@@ -15,8 +15,13 @@ import type { usePreview } from './context/use-preview';
 export type Controlled<
   Component extends React.ElementType,
   Key extends keyof React.ComponentPropsWithoutRef<Component>,
-> = Partial<Pick<React.ComponentPropsWithoutRef<Component>, Key>> &
-  Pick<React.HTMLAttributes<HTMLElement>, 'className'>;
+> =
+  React.ComponentPropsWithoutRef<Component> extends infer Each
+    ? Each extends unknown
+      ? Partial<Pick<Each, Key & keyof Each>> &
+          Pick<React.HTMLAttributes<HTMLElement>, 'className'>
+      : never
+    : never;
 
 export type { ControlsSpec } from './spec';
 

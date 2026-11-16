@@ -48,6 +48,7 @@ const PAGE_BY_PREFIX: Record<string, TokenPath | null> = {
   'justify-self': 'utilities/display',
   layout: null,
   'letter-spacing': 'foundations/typography',
+  'line-clamp': 'foundations/typography',
   'line-height': 'foundations/typography',
   'look-like': 'foundations/typography',
   margin: 'semantics/spacing',

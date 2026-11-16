@@ -1,0 +1,28 @@
+@mixin at-rest {
+  animation: none;
+  clip-path: none;
+  filter: none;
+  opacity: 1;
+  scale: none;
+  transition: none;
+  translate: none;
+  visibility: visible;
+}
+
+/*
+ * On paper nothing waits to come in. Chrome starts a transition when the
+ * print styles change a value, and a PDF paints what is in transition after
+ * the text around it, out of reading order. So the component puts the
+ * resting values on before the page is laid out for paper. The media rule
+ * covers a browser that prints without saying so first.
+ */
+.kicl--components--animation.kicl--components--animation--is-printing {
+  @include at-rest;
+}
+
+@media print {
+  .kicl--components--animation,
+  .kicl--components--animation:not([data-animation-in]) {
+    @include at-rest;
+  }
+}

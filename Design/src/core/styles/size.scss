@@ -53,12 +53,20 @@
 @include make-size-variable-class('inline-size', 'full', 'full');
 @include make-size-variable-class('block-size', 'full', 'full');
 
-.kicl-block-size-screen {
-  block-size: 100dvb;
-}
+// A sheet of paper is not a screen: on paper these would stretch a block to
+// the height of the page.
+@media screen {
+  .kicl-block-size-screen {
+    block-size: 100dvb;
+  }
 
-.kicl-min-block-size-screen {
-  min-block-size: 100dvb;
+  .kicl-min-block-size-screen {
+    min-block-size: 100dvb;
+  }
+
+  .kicl-padding-block-end-screen-quarter {
+    padding-block-end: 25dvb;
+  }
 }
 
 .kicl-max-block-size-screen {
@@ -71,10 +79,6 @@
 
 .kicl-max-block-size-screen-third {
   max-block-size: calc(100dvb / 3);
-}
-
-.kicl-padding-block-end-screen-quarter {
-  padding-block-end: 25dvb;
 }
 
 .kicl-min-block-size-field {

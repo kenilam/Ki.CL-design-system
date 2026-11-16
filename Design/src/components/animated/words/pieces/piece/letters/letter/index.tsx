@@ -1,24 +1,37 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import { Animation } from 'design/components';
 
-import { usePiece, useWords } from 'design/components/animated/words/context';
-import { Mark } from 'design/components/animated/words/pieces/piece/mark';
 import { useMotion } from 'design/components/animated/words/use-motion';
+
+import { Glyph } from './glyph';
+import { Scrambled } from './scrambled';
+import { useScramble } from './use-scramble';
 
 type Props = { at: number };
 
 const Letter: React.FunctionComponent<Props> = ({ at }) => {
-  const { links, marks } = useWords();
-  const { offset, text } = usePiece(at);
   const toMotion = useMotion();
+  const { glyph, start, stop } = useScramble(at);
 
   return (
     <Animation {...toMotion(at)}>
-      <span aria-hidden className='kicl-display-inline-block'>
-        <Mark link={links[at] ?? null} strong={marks[at] ?? null}>
-          {text[at - offset]}
-        </Mark>
+      <span
+        aria-hidden
+        className={classNames('kicl-display-inline-block', {
+          'kicl-position-relative': glyph !== null,
+        })}
+        onTransitionCancel={stop}
+        onTransitionEnd={stop}
+        onTransitionRun={start}
+      >
+        {glyph === null ? (
+          <Glyph at={at} />
+        ) : (
+          <Scrambled at={at}>{glyph}</Scrambled>
+        )}
       </span>
     </Animation>
   );

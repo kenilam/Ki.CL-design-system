@@ -3,6 +3,13 @@
   --kicl--components--animation--zoom-in--scale: 0.2;
   --kicl--components--animation--zoom-out--scale: 1.5;
 
+  /* Centred on its letter, whichever way the text runs. */
+  &__glyph {
+    inset-block-start: 0;
+    left: 50%;
+    translate: -50%;
+  }
+
   &--property--slide-from-left {
     --kicl--components--animation--clip: none;
   }

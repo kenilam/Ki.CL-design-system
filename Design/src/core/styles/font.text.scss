@@ -40,6 +40,16 @@
   white-space: nowrap;
 }
 
+// Browsers still read the line limit from the prefixed property, and only on
+// a `-webkit-box`. `line-clamp` is there for when they read it directly.
+.kicl-line-clamp-2 {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
 .kicl-text-nowrap {
   white-space: nowrap;
 }

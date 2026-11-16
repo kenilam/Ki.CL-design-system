@@ -5,6 +5,7 @@ import * as Spec from './spec';
 
 // Styles
 import './styles.scss';
+import './styles.appear.scss';
 import './styles.blur.scss';
 import './styles.fade.scss';
 import './styles.slide.scss';
@@ -14,6 +15,10 @@ import './styles.slide-from-right.scss';
 import './styles.slide-from-bottom.scss';
 import './styles.zoom-in.scss';
 import './styles.zoom-out.scss';
+import './styles.print.scss';
+
+// Hooks
+import { usePrinting } from 'design/hooks';
 
 // Partials
 import { clone } from './clone';
@@ -39,6 +44,7 @@ const Animation: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const { left, leave } = useLeave(transitionIn);
+  const printing = usePrinting();
 
   if (!transitionIn && left && !hold) {
     return null;
@@ -59,6 +65,7 @@ const Animation: FunctionComponent<Props> = ({
     in: transitionIn,
     leave,
     nodeRef,
+    printing,
     property,
     rest,
   });

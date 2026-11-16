@@ -11,7 +11,7 @@ type Props = Pick<React.ComponentProps<typeof Animation>, 'children'>;
 const Zoom: React.FunctionComponent<Props> = ({ children }) => {
   const animated = useAnimated();
 
-  if (!ZOOMS.includes(animated.property)) {
+  if (animated.property === 'scramble' || !ZOOMS.includes(animated.property)) {
     return children;
   }
 

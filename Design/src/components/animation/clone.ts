@@ -30,6 +30,7 @@ type Options = Required<
   Pick<Spec.Options, 'className' | 'nodeRef'> &
   Pick<ReturnType<typeof useLeave>, 'leave'> & {
     delay?: number | string;
+    printing: boolean;
     rest: Record<string, unknown>;
   };
 
@@ -44,6 +45,7 @@ const clone = (
     in: transitionIn,
     leave,
     nodeRef,
+    printing,
     property,
     rest,
   }: Options
@@ -61,7 +63,10 @@ const clone = (
       className: classNames(
         CLASS_NAME,
         `${CLASS_NAME}--property--${property}`,
-        { [`${CLASS_NAME}--hold`]: hold },
+        {
+          [`${CLASS_NAME}--hold`]: hold,
+          [`${CLASS_NAME}--is-printing`]: printing,
+        },
         props.className,
         className
       ),

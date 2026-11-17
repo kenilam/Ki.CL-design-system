@@ -1,4 +1,7 @@
 :root {
+  --kicl--components--page-indicator--inline-size: calc(
+    var(--kicl-gutter) * 1.5 + var(--kicl-size-3px)
+  );
   --kicl--components--page-indicator--page: 100dvb;
 }
 
@@ -9,6 +12,7 @@
 .kicl--components--page-indicator {
   $name: '--kicl--components--page-indicator';
 
+  inline-size: var(#{$name}--inline-size);
   animation-fill-mode: forwards;
   animation-name: kicl--components--page-indicator--hidden;
   animation-range-start: calc(

@@ -27,7 +27,8 @@ import './styles.scss';
 type Props = Pick<Spec.Page, 'id'>;
 
 const Page: React.FunctionComponent<Props> = ({ id }) => {
-  const page = usePageIndicator().find((item) => {
+  const { current, pages } = usePageIndicator();
+  const page = pages.find((item) => {
     return item.id === id;
   });
 
@@ -44,6 +45,7 @@ const Page: React.FunctionComponent<Props> = ({ id }) => {
              * The hint repeats the link's hidden text, so it isn't
              * read twice.
              */
+            aria-current={current === id ? 'location' : undefined}
             aria-describedby={undefined}
             className={classNames(
               'kicl-padding-narrower',

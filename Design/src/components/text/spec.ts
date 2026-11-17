@@ -15,6 +15,7 @@ export const TEXT_IS = [
   'ins',
   'pre',
   'q',
+  'small',
   'strong',
   'time',
 ] as const satisfies readonly (keyof JSX.IntrinsicElements)[];
@@ -37,6 +38,7 @@ export const TEXT_LOOK_LIKES = [
   'ins',
   'pre',
   'q',
+  'small',
   'strong',
 ] as const satisfies readonly (keyof JSX.IntrinsicElements)[];
 

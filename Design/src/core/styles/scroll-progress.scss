@@ -1,5 +1,6 @@
 :root {
   --kicl-scroll-focus-distance: 20dvb;
+  --kicl-scroll-focus-origin: 50%;
   --kicl-scroll-focus-scale: 0.84;
   --kicl-scroll-leave-distance: 24dvb;
 }
@@ -93,10 +94,10 @@
     var(--kicl-scroll-focus-scale) + var(--kicl-scroll-focus) *
     (1 - var(--kicl-scroll-focus-scale))
   );
-  transform-origin: 0 50%;
+  transform-origin: 0 var(--kicl-scroll-focus-origin);
 
   &:dir(rtl) {
-    transform-origin: 100% 50%;
+    transform-origin: 100% var(--kicl-scroll-focus-origin);
   }
 }
 

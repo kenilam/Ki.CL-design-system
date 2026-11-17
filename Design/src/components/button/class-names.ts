@@ -14,7 +14,7 @@ const getButtonClassNames = ({
   block,
   className = '',
   disabled,
-  display,
+  display = true,
   icon,
   iconOnlyUpTo,
   level,

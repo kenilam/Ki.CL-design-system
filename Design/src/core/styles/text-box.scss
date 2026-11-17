@@ -1,7 +1,13 @@
+// A token, so a page can leave the trim out on paper, where it would move the
+// lines and the page breaks with them.
+:root {
+  --kicl-text-box-trim-start: trim-start;
+}
+
 // Trims the space above the capitals, so text lines up with what is beside it.
 .kicl-text-box-trim-start {
   @supports (text-box-trim: trim-start) {
     text-box-edge: cap alphabetic;
-    text-box-trim: trim-start;
+    text-box-trim: var(--kicl-text-box-trim-start);
   }
 }

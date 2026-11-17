@@ -11,9 +11,9 @@ import { Provider } from './context';
 import { Root } from './root';
 
 const PageIndicator = React.forwardRef<HTMLElement, Spec.Props>(
-  ({ pages, ...rest }, ref) => {
+  ({ current, pages, ...rest }, ref) => {
     return (
-      <Provider pages={pages}>
+      <Provider current={current} pages={pages}>
         <Root {...rest} ref={ref} />
       </Provider>
     );

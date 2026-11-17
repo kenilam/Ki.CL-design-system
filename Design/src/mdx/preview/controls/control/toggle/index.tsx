@@ -9,13 +9,14 @@ import { usePreviewContext } from 'design/mdx/preview/context';
 type Props = { name: string };
 
 const Toggle: React.FunctionComponent<Props> = ({ name }) => {
-  const { set, values } = usePreviewContext();
+  const { controls, set, values } = usePreviewContext();
+  const fallback = controls[name].default;
 
   return (
     <Switch
-      checked={Boolean(values[name])}
+      checked={Boolean(values[name] ?? fallback)}
       onCheckedChange={(checked) => {
-        set(name, checked);
+        set(name, checked === fallback ? undefined : checked);
       }}
       size='small'
     >

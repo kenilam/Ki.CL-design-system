@@ -58,6 +58,11 @@
     font-style: italic;
   }
 
+  &[data-is='small'],
+  &.kicl-look-like-small {
+    --kicl--components--text--font-size: var(--kicl-font-size-small);
+  }
+
   &.kicl-look-like-strong {
     font-weight: var(--kicl-font-weight-bold);
   }

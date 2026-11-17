@@ -3,6 +3,35 @@
   --kicl--components--animation--zoom-in--scale: 0.2;
   --kicl--components--animation--zoom-out--scale: 1.5;
 
+  /*
+   * Each word draws its own underline, since a line on the link can't reach
+   * into the words' boxes. The link's own line would only fall under the
+   * spaces, a little lower than the words' and before they appear.
+   */
+  & &__link.kicl--components--hyper-link {
+    text-decoration-line: none;
+  }
+
+  // "Under" goes by each box's own lowest descent, which differs between a
+  // word's box and the space beside it. The font's position is the same for
+  // both, so the pieces of the line meet.
+  & &__link .kicl--components--hyper-link__line,
+  &__space {
+    text-underline-position: from-font;
+  }
+
+  &__space {
+    text-decoration-color: var(
+      --kicl--components--hyper-link--text-decoration--color
+    );
+    text-decoration-line: var(
+      --kicl--components--hyper-link--text-decoration--line
+    );
+    text-decoration-thickness: var(
+      --kicl--components--hyper-link--text-decoration--thickness
+    );
+  }
+
   /* Centred on its letter, whichever way the text runs. */
   &__glyph {
     inset-block-start: 0;

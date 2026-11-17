@@ -7,9 +7,10 @@ export type Control = {
   options: readonly (string | number)[] | 'boolean';
   /**
    * The component's own default, if it's in the list. Choosing it sets no
-   * prop, so the list needs no "Default".
+   * prop, so the list needs no "Default". `true` for a boolean that is on
+   * until it is turned off.
    */
-  default?: string | number;
+  default?: string | number | boolean;
   /**
    * Props this one needs, such as `{ lookLikeButton: true }`. Until they hold,
    * the control is hidden and the prop left out.

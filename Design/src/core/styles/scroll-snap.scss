@@ -11,3 +11,17 @@
     scroll-snap-align: #{$value};
   }
 }
+
+// For a row too tall to centre: it stops with its top under the header, with
+// a little air, where the page's own snap points count from the top of the
+// window. It scales from its top edge, because a snap point follows the scaled
+// box, and a row scaled from its middle would stop short and then grow past
+// the point.
+.kicl-scroll-snap-align-header {
+  --kicl-scroll-focus-origin: 0%;
+
+  scroll-margin-block-start: calc(
+    var(--kicl--widgets--global-header--block-size) + var(--kicl-gutter-narrow)
+  );
+  scroll-snap-align: start;
+}

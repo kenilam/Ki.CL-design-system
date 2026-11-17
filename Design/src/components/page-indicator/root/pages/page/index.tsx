@@ -53,7 +53,7 @@ const Page: React.FunctionComponent<Props> = ({ id }) => {
             )}
             lookLikeButton
             size='small'
-            to={`#${id}`}
+            to={{ hash: id }}
             variant='ghost'
           >
             <span className='kicl-hidden'>{page.label}</span>

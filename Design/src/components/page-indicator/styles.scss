@@ -44,3 +44,33 @@
     visibility: hidden;
   }
 }
+
+// Moves with its content. It fills the positioned element it is placed in, and
+// the rail inside, one window tall, stays put once its top reaches the
+// window's and goes when that element's end comes into view. The column
+// leaves as whatever follows arrives.
+.kicl--components--page-indicator__rail {
+  align-content: center;
+  block-size: 100dvb;
+  display: grid;
+  inset-block-start: 0;
+  justify-items: end;
+  padding-inline-end: var(--kicl--components--frame--page-inset);
+}
+
+// The page says which section is being read, so the scroll position decides
+// nothing.
+.kicl--components--page-indicator--follows-current {
+  animation: none;
+  visibility: visible;
+
+  .kicl--components--page-indicator__page {
+    animation: none;
+    scale: 1;
+    transition: scale var(--kicl-transition-duration-fast);
+
+    &:has([aria-current]) {
+      scale: 1.4;
+    }
+  }
+}

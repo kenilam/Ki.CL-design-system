@@ -14,7 +14,7 @@ export const CONTROLS = {
   },
   level: { options: LEVELS, default: 'neutral', when: LOOK },
   size: { options: BUTTON_SIZES, when: LOOK },
-  display: { options: 'boolean', when: LOOK },
+  display: { options: 'boolean', default: true, when: LOOK },
   unstyled: { options: 'boolean', when: { lookLikeHyperLink: true } },
   disabled: 'boolean',
 } as const satisfies ControlsSpec;

@@ -3,26 +3,32 @@ import React, { createContext, useContext } from 'react';
 // Spec
 import type * as Spec from 'design/components/page-indicator/spec';
 
-type Props = React.PropsWithChildren<Pick<Spec.Props, 'pages'>>;
+type Value = Pick<Spec.Props, 'current' | 'pages'>;
 
-const PageIndicatorContext = createContext<Spec.Props['pages'] | null>(null);
+type Props = React.PropsWithChildren<Value>;
 
-const Provider: React.FunctionComponent<Props> = ({ children, pages }) => {
+const PageIndicatorContext = createContext<Value | null>(null);
+
+const Provider: React.FunctionComponent<Props> = ({
+  children,
+  current,
+  pages,
+}) => {
   return (
-    <PageIndicatorContext.Provider value={pages}>
+    <PageIndicatorContext.Provider value={{ current, pages }}>
       {children}
     </PageIndicatorContext.Provider>
   );
 };
 
 const usePageIndicator = () => {
-  const pages = useContext(PageIndicatorContext);
+  const value = useContext(PageIndicatorContext);
 
-  if (!pages) {
+  if (!value) {
     throw new Error('usePageIndicator needs a PageIndicator around it.');
   }
 
-  return pages;
+  return value;
 };
 
 export { Provider, usePageIndicator };

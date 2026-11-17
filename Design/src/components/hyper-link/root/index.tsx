@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Routes
-import { NavLink } from 'design/router';
+import { Link, NavLink } from 'design/router';
 
 // Components
 import { Layout } from 'design/components/layout';
@@ -15,8 +15,14 @@ import { useHyperLink } from 'design/components/hyper-link/context';
 
 // Partials
 import { getAnchorProps } from './anchor-props';
+import { getLinkProps } from './link-props';
 import { Contents } from './contents';
 import { useAttributes } from './use-attributes';
+
+const KINDS = {
+  object: { false: 'page', true: 'section' },
+  string: { false: 'page', true: 'anchor' },
+} as const;
 
 type Props = Omit<
   Spec.Props,
@@ -36,14 +42,21 @@ const Root: React.FunctionComponent<Props> = ({
   const { isHash, lookLikeButton } = useHyperLink();
   const { rest, shared } = useAttributes(props);
 
-  // A same-page hash uses a plain anchor because the router would swallow
-  // the click; the browser then handles the jump and focus.
-  const Link =
-    isHash && typeof to === 'string' ? (
-      <a {...getAnchorProps(rest)} {...shared} href={to} ref={ref}>
+  // A `#id` string is a plain anchor, so the browser jumps, focuses and sets
+  // `:target`. A `{ hash }` object goes through the router, which then owns
+  // the history entry, with no page transition and no active state.
+  const kind =
+    typeof to === 'string'
+      ? KINDS.string[String(isHash)]
+      : KINDS.object[String(isHash)];
+
+  const links = {
+    anchor: (
+      <a {...getAnchorProps(rest)} {...shared} href={String(to)} ref={ref}>
         <Contents />
       </a>
-    ) : (
+    ),
+    page: (
       <NavLink
         {...rest}
         {...shared}
@@ -54,10 +67,22 @@ const Root: React.FunctionComponent<Props> = ({
       >
         <Contents />
       </NavLink>
-    );
+    ),
+    section: (
+      <Link
+        {...getLinkProps(rest)}
+        {...shared}
+        ref={ref}
+        to={to}
+        viewTransition={false}
+      >
+        <Contents />
+      </Link>
+    ),
+  };
 
   if (!lookLikeButton) {
-    return Link;
+    return links[kind];
   }
 
   return (
@@ -67,7 +92,7 @@ const Root: React.FunctionComponent<Props> = ({
       frames={frames}
       justifyContent={justifyContent}
     >
-      {Link}
+      {links[kind]}
     </Layout>
   );
 };

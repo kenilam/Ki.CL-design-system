@@ -30,8 +30,8 @@ const useURLStatus = (to: Spec.Props['to']) => {
 
   return {
     isExternal: false,
-    isHash: false,
-    isSearch: false,
+    isHash: !!to.hash,
+    isSearch: !!to.search,
   };
 };
 

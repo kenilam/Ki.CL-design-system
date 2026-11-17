@@ -28,6 +28,7 @@
   fill: var(--kicl--components--hyper-link--text-color, var(--kicl-body-color));
   inline-size: var(--kicl--components--hyper-link--inline-size);
   text-decoration: none;
+  text-transform: inherit;
 
   @include transition('kicl--components--hyper-link');
 

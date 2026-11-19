@@ -41,12 +41,7 @@ const Page: React.FunctionComponent<Props> = ({ id }) => {
       <Popover>
         <PopoverTrigger asChild>
           <HyperLink
-            /*
-             * The hint repeats the link's hidden text, so it isn't
-             * read twice.
-             */
             aria-current={current === id ? 'location' : undefined}
-            aria-describedby={undefined}
             className={classNames(
               'kicl-padding-narrower',
               'kicl-pointer-events-auto'

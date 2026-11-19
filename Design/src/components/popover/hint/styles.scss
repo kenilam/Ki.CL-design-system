@@ -1,0 +1,78 @@
+:root {
+  --kicl--components--popover--hint--arrow: var(--kicl-size-half);
+}
+
+// Opacity alone: a `translate` would make the hint the arrows' containing
+// block, and they'd lose the trigger.
+.kicl--components--popover__hint {
+  --kicl--components--popover--background-color: var(--kicl-surface-color);
+  --kicl--components--popover--border-color: transparent;
+  --kicl--components--popover--padding: var(--kicl-gutter-narrower)
+    var(--kicl-gutter-narrow);
+
+  clip-path: inset(calc(var(--kicl--components--popover--hint--arrow) * -1));
+  translate: none;
+
+  &:popover-open {
+    translate: none;
+
+    @starting-style {
+      translate: none;
+    }
+  }
+
+  @include theme-inverse;
+}
+
+/*
+ * An arrow on each side of the trigger, since CSS can't tell which way the
+ * hint flipped. The clip hides the one the hint isn't next to.
+ */
+@supports (position-area: block-end) {
+  $arrow: var(--kicl--components--popover--hint--arrow);
+  $offset: var(--kicl--components--popover--offset);
+
+  .kicl--components--popover__hint {
+    &::before,
+    &::after {
+      background-color: var(--kicl--components--popover--background-color);
+      block-size: $arrow;
+      content: '';
+      inline-size: $arrow;
+      inset: auto;
+      position: fixed;
+      position-anchor: var(--kicl--components--popover--anchor);
+      rotate: 45deg;
+    }
+
+    &[class*='__content--block-'] {
+      &::before,
+      &::after {
+        inset-inline-start: calc(anchor(center) - #{$arrow} / 2);
+      }
+
+      &::before {
+        inset-block-start: calc(anchor(start) - #{$offset} - #{$arrow} / 2);
+      }
+
+      &::after {
+        inset-block-start: calc(anchor(end) + #{$offset} - #{$arrow} / 2);
+      }
+    }
+
+    &[class*='__content--inline-'] {
+      &::before,
+      &::after {
+        inset-block-start: calc(anchor(center) - #{$arrow} / 2);
+      }
+
+      &::before {
+        inset-inline-start: calc(anchor(start) - #{$offset} - #{$arrow} / 2);
+      }
+
+      &::after {
+        inset-inline-start: calc(anchor(end) + #{$offset} - #{$arrow} / 2);
+      }
+    }
+  }
+}

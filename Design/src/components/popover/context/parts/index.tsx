@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 
+type Hint = 'decoration' | 'description' | null;
+
 type Value = {
   /** So the trigger only points at parts that are rendered. */
   content: boolean;
   setContent: (content: boolean) => void;
-  hint: boolean;
-  setHint: (hint: boolean) => void;
+  hint: Hint;
+  setHint: (hint: Hint) => void;
 };
 
 const PartsContext = createContext<Value | null>(null);
@@ -14,7 +16,7 @@ const Parts: React.FunctionComponent<React.PropsWithChildren> = ({
   children,
 }) => {
   const [content, setContent] = useState(false);
-  const [hint, setHint] = useState(false);
+  const [hint, setHint] = useState<Hint>(null);
 
   return (
     <PartsContext.Provider value={{ content, hint, setContent, setHint }}>

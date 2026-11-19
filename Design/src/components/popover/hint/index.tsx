@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 
+// Libraries
+import classNames from 'classnames';
+
 // Spec
 import type { PopoverHintProps } from 'design/components/popover/spec';
 
@@ -8,9 +11,13 @@ import type { PopoverHintProps } from 'design/components/popover/spec';
 import 'design/components/popover/styles.scss';
 import 'design/components/popover/modifiers.scss';
 import 'design/components/popover/placement.scss';
+import './styles.scss';
+
+// Constants
+import { CLASS_NAME } from 'design/components/popover/constants';
 
 // Class names
-import { getContentClassNames } from 'design/components/popover/class-names';
+import { getPlacementClassNames } from 'design/components/popover/class-names';
 
 // Context
 import { usePopoverIds } from 'design/components/popover/context';
@@ -26,15 +33,14 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
   children,
   className,
   offset,
-  placement = 'block-start',
+  placement = 'block-start-center',
   style,
-  variant,
   ...rest
 }) => {
   const ids = usePopoverIds();
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
-  useSyncOpen(nodeRef);
+  useSyncOpen(nodeRef, String(rest['aria-hidden']) === 'true');
 
   const hint = (
     <div
@@ -42,12 +48,11 @@ const PopoverHint: React.FC<PopoverHintProps> = ({
       id={`${ids.id}__hint`}
       popover='hint'
       role='tooltip'
-      className={getContentClassNames({
-        className,
-        offset,
-        placement,
-        variant,
-      })}
+      className={classNames(
+        getPlacementClassNames({ offset, placement }),
+        `${CLASS_NAME}__hint`,
+        className
+      )}
       style={
         {
           ...ids.anchorStyle,

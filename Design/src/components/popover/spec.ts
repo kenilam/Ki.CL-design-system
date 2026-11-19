@@ -56,5 +56,11 @@ export type PopoverContentProps = ComponentPropsWithoutRef<'section'> & {
   variant?: PopoverVariant;
 };
 
-/** Text only, since the trigger reads it through `aria-describedby`. */
-export type PopoverHintProps = Omit<PopoverContentProps, 'forceMount' | 'role'>;
+/**
+ * Text only, since the trigger reads it through `aria-describedby`. With
+ * `aria-hidden` it only shows the trigger's own name, and describes nothing.
+ */
+export type PopoverHintProps = Omit<
+  PopoverContentProps,
+  'forceMount' | 'role' | 'variant'
+>;

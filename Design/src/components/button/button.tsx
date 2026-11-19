@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Components
+import { NameHint } from 'design/components';
 import { Layout } from 'design/components/layout';
 import { truncateText } from 'design/helper';
 
@@ -9,7 +10,7 @@ import * as Spec from './spec';
 
 // Class names
 import { getClassName } from './class-name';
-import { LAYOUT } from './class-names';
+import { LAYOUT, hasText } from './class-names';
 
 // Partials
 import { getBusyAttributes } from './busy-attributes';
@@ -52,6 +53,9 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
   } = props;
 
   const content = getButtonContent(props);
+  const label = hasText(before, children, after)
+    ? undefined
+    : rest['aria-label'];
 
   return (
     <Layout
@@ -63,18 +67,20 @@ const Button = React.forwardRef<HTMLButtonElement, Spec.Props>((props, ref) => {
       justifyContent={justifyContent}
       justifyItems={justifyItems}
     >
-      <button
-        {...rest}
-        {...getBusyAttributes({ busy, onClick })}
-        className={getClassName(props)}
-        disabled={disabled}
-        ref={ref}
-        type={type}
-      >
-        {truncateText(content.before)}
-        {truncateText(content.children)}
-        {truncateText(content.after)}
-      </button>
+      <NameHint label={label}>
+        <button
+          {...rest}
+          {...getBusyAttributes({ busy, onClick })}
+          className={getClassName(props)}
+          disabled={disabled}
+          ref={ref}
+          type={type}
+        >
+          {truncateText(content.before)}
+          {truncateText(content.children)}
+          {truncateText(content.after)}
+        </button>
+      </NameHint>
     </Layout>
   );
 });

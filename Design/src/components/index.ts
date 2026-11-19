@@ -182,6 +182,7 @@ import {
 } from './page-indicator';
 import { ScrollIndicator, type ScrollIndicatorProps } from './scroll-indicator';
 import {
+  NameHint,
   Popover,
   PopoverContent,
   PopoverHint,
@@ -558,6 +559,7 @@ export {
   LAYOUT_AUTO_FLOWS,
   LAYOUT_DISPLAYS,
   LIST_IS,
+  NameHint,
   usePopover,
   POPOVER_PLACEMENTS,
   POPOVER_VARIANTS,

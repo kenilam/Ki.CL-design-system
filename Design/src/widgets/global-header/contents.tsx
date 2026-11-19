@@ -42,6 +42,8 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
     CLASS_NAME
   );
 
+  const themeToggle = <ThemeToggle block size='small' variant='tertiary' />;
+
   return (
     <Layout
       alignItems='center'
@@ -54,9 +56,9 @@ const Contents: React.FunctionComponent<Spec.GlobalHeaderProps> = ({
         <SiteLogo />
         {isNarrow ? null : children}
         {before}
-        {isNarrow ? <ThemeToggle /> : null}
+        {isNarrow ? themeToggle : null}
         {after}
-        {isNarrow ? null : <ThemeToggle />}
+        {isNarrow ? null : themeToggle}
         {isNarrow ? children : null}
       </header>
     </Layout>

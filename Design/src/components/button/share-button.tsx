@@ -68,7 +68,6 @@ const ShareButton = React.forwardRef<HTMLButtonElement, ShareButtonProps>(
         level={copied ? 'confirm' : level}
         onClick={onClick}
         ref={ref}
-        title={name}
       >
         {mark}
       </Button>

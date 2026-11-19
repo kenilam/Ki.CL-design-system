@@ -13,7 +13,7 @@ import type { PopoverTriggerProps } from 'design/components/popover/spec';
 import { CLASS_NAME } from 'design/components/popover/trigger/constants';
 
 // Context
-import { usePopoverIds } from 'design/components/popover/context';
+import { Trigger, usePopoverIds } from 'design/components/popover/context';
 
 // Partials
 import { toggle } from './toggle';
@@ -48,7 +48,7 @@ const Child: React.FunctionComponent<Props> = ({
 
   useInterest(node);
 
-  return React.cloneElement(child, {
+  const element = React.cloneElement(child, {
     ...shared,
     ...(rest as React.HTMLAttributes<HTMLElement>),
     ...child.props,
@@ -69,6 +69,8 @@ const Child: React.FunctionComponent<Props> = ({
     },
     ref: attach,
   });
+
+  return <Trigger>{element}</Trigger>;
 };
 
 export { Child };

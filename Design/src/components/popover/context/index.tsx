@@ -8,6 +8,7 @@ import { Ids, usePopoverIds } from './ids';
 import { Interest, usePopoverInterest } from './interest';
 import { Open, usePopoverOpen } from './open';
 import { Parts, usePopoverParts } from './parts';
+import { Trigger, usePopoverTrigger } from './trigger';
 
 const Provider: React.FunctionComponent<PopoverProps> = ({
   children,
@@ -38,4 +39,6 @@ export {
   usePopoverInterest,
   usePopoverOpen,
   usePopoverParts,
+  usePopoverTrigger,
+  Trigger,
 };

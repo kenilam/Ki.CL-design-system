@@ -100,7 +100,6 @@ export default defineConfig({
     outDir: 'dist',
     modulePreload: false,
     cssCodeSplit: false,
-    sourcemap: true,
   },
   server: {
     port: Number(env.PORT) || 3200,

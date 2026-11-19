@@ -2,7 +2,7 @@ import React from 'react';
 
 // Libraries
 import classNames from 'classnames';
-import { Highlight, themes } from 'prism-react-renderer';
+import { Highlight } from 'prism-react-renderer';
 
 // Components
 import { Text } from 'design/components';
@@ -15,6 +15,7 @@ import { renderLines } from './render-lines';
 
 // Spec
 import * as Spec from './spec';
+import { THEMES } from './themes';
 
 const CodeBlock: React.FunctionComponent<Spec.Props> = ({
   children,
@@ -27,7 +28,7 @@ const CodeBlock: React.FunctionComponent<Spec.Props> = ({
     <Highlight
       code={children}
       language={language}
-      theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
+      theme={theme === 'dark' ? THEMES.dark : THEMES.light}
     >
       {(highlight) => {
         return (

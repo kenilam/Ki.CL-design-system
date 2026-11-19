@@ -9,17 +9,13 @@ import {
 // The defaults of `interest-delay-start` and `interest-delay-end`.
 const DELAY = { end: 250, start: 500 };
 
-/** Safari has no `interestfor`, so hover and keyboard focus show the hint here. */
+/** `interestfor` works only on links and buttons, and Safari and Firefox have none, so hover and keyboard focus show the hint here. */
 const useInterest = (trigger: HTMLElement | null) => {
   const { hint } = usePopoverParts();
   const { setInterested } = usePopoverInterest();
 
   useEffect(() => {
-    if (
-      !trigger ||
-      !hint ||
-      'interestForElement' in HTMLButtonElement.prototype
-    ) {
+    if (!trigger || !hint || 'interestForElement' in trigger) {
       return;
     }
 
@@ -48,10 +44,8 @@ const useInterest = (trigger: HTMLElement | null) => {
       later(false, DELAY.end);
     };
 
-    const dismiss = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        later(false, 0);
-      }
+    const dismiss = () => {
+      later(false, 0);
     };
 
     trigger.addEventListener('pointerenter', enter);
@@ -59,6 +53,7 @@ const useInterest = (trigger: HTMLElement | null) => {
     trigger.addEventListener('focus', focus);
     trigger.addEventListener('blur', leave);
     trigger.addEventListener('keydown', dismiss);
+    trigger.addEventListener('pointerdown', dismiss);
 
     return () => {
       clearTimeout(timer);
@@ -67,6 +62,7 @@ const useInterest = (trigger: HTMLElement | null) => {
       trigger.removeEventListener('focus', focus);
       trigger.removeEventListener('blur', leave);
       trigger.removeEventListener('keydown', dismiss);
+      trigger.removeEventListener('pointerdown', dismiss);
     };
   }, [hint, setInterested, trigger]);
 };

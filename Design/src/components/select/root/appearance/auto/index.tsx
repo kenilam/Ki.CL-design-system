@@ -3,6 +3,9 @@ import React from 'react';
 // Libraries
 import classNames from 'classnames';
 
+// Components
+import { NameHint } from 'design/components';
+
 // Styles
 import './styles.scss';
 
@@ -41,12 +44,14 @@ const Auto: React.FunctionComponent<Props> = ({
       )}
     >
       <Face>{children}</Face>
-      <select {...control}>
-        <Options>{children}</Options>
-        {rest.placeholder !== undefined ? (
-          <Placeholder>{rest.placeholder}</Placeholder>
-        ) : null}
-      </select>
+      <NameHint label={rest['aria-label']}>
+        <select {...control}>
+          <Options>{children}</Options>
+          {rest.placeholder !== undefined ? (
+            <Placeholder>{rest.placeholder}</Placeholder>
+          ) : null}
+        </select>
+      </NameHint>
     </span>
   );
 };

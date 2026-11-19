@@ -5,7 +5,11 @@
 // Opacity alone: a `translate` would make the hint the arrows' containing
 // block, and they'd lose the trigger.
 .kicl--components--popover__hint {
-  --kicl--components--popover--background-color: var(--kicl-surface-color);
+  --kicl--components--popover--background-color: color-mix(
+    in srgb,
+    var(--kicl-surface-color),
+    var(--kicl-color-white) 10%
+  );
   --kicl--components--popover--border-color: transparent;
   --kicl--components--popover--padding: var(--kicl-gutter-narrower)
     var(--kicl-gutter-narrow);

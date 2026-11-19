@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 // Context
 import {
+  usePopoverIds,
   usePopoverInterest,
   usePopoverOpen,
   usePopoverParts,
@@ -11,6 +12,7 @@ const useSyncOpen = (
   nodeRef: React.RefObject<HTMLDivElement | null>,
   hidden: boolean
 ) => {
+  const { id } = usePopoverIds();
   const { content, setHint } = usePopoverParts();
   const { interested } = usePopoverInterest();
   const { open } = usePopoverOpen();
@@ -25,7 +27,8 @@ const useSyncOpen = (
 
   useEffect(() => {
     const node = nodeRef.current;
-    const native = 'interestForElement' in HTMLButtonElement.prototype;
+    const trigger = document.querySelector(`[interestfor='${id}__hint']`);
+    const native = trigger !== null && 'interestForElement' in trigger;
 
     if (!node || (content && native)) {
       return;
@@ -46,7 +49,7 @@ const useSyncOpen = (
     if (!show && shown) {
       node.hidePopover();
     }
-  }, [content, interested, nodeRef, open]);
+  }, [content, id, interested, nodeRef, open]);
 };
 
 export { useSyncOpen };

@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 // Components
-import { useFormItemControl } from 'design/components';
+import { NameHint, useFormItemControl } from 'design/components';
 
 // Styles
 import './picker.scss';
@@ -37,36 +37,38 @@ const BaseSelect: React.FunctionComponent<Props> = ({
   const [axis, edge, align = 'start'] = placement.split('-');
 
   return (
-    <select
-      ref={ref}
-      className={classNames(
-        CLASS_NAME,
-        `${CLASS_NAME}--${axis}-${edge}--${align}`,
-        'kicl-inline-size-fit',
-        {
-          [`${CLASS_NAME}--inline`]: inline,
-          'kicl-font-size-small': !inline,
-        },
-        className
-      )}
-      value={value}
-      defaultValue={
-        value === undefined && placeholder !== undefined
-          ? (defaultValue ?? '')
-          : defaultValue
-      }
-      onChange={(event) => {
-        onChange?.(event);
-        onValueChange?.(event.currentTarget.value);
-      }}
-      {...rest}
-      {...control}
-    >
-      <Contents>{children}</Contents>
-      {placeholder !== undefined ? (
-        <Placeholder>{placeholder}</Placeholder>
-      ) : null}
-    </select>
+    <NameHint label={rest['aria-label']}>
+      <select
+        ref={ref}
+        className={classNames(
+          CLASS_NAME,
+          `${CLASS_NAME}--${axis}-${edge}--${align}`,
+          'kicl-inline-size-fit',
+          {
+            [`${CLASS_NAME}--inline`]: inline,
+            'kicl-font-size-small': !inline,
+          },
+          className
+        )}
+        value={value}
+        defaultValue={
+          value === undefined && placeholder !== undefined
+            ? (defaultValue ?? '')
+            : defaultValue
+        }
+        onChange={(event) => {
+          onChange?.(event);
+          onValueChange?.(event.currentTarget.value);
+        }}
+        {...rest}
+        {...control}
+      >
+        <Contents>{children}</Contents>
+        {placeholder !== undefined ? (
+          <Placeholder>{placeholder}</Placeholder>
+        ) : null}
+      </select>
+    </NameHint>
   );
 };
 

@@ -7,18 +7,21 @@ import {
   usePopoverParts,
 } from 'design/components/popover/context';
 
-const useSyncOpen = (nodeRef: React.RefObject<HTMLDivElement | null>) => {
+const useSyncOpen = (
+  nodeRef: React.RefObject<HTMLDivElement | null>,
+  hidden: boolean
+) => {
   const { content, setHint } = usePopoverParts();
   const { interested } = usePopoverInterest();
   const { open } = usePopoverOpen();
 
   useEffect(() => {
-    setHint(true);
+    setHint(hidden ? 'decoration' : 'description');
 
     return () => {
-      setHint(false);
+      setHint(null);
     };
-  }, [setHint]);
+  }, [hidden, setHint]);
 
   useEffect(() => {
     const node = nodeRef.current;

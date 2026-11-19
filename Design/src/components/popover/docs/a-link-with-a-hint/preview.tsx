@@ -7,15 +7,15 @@ import {
   PopoverTrigger,
 } from 'design/components';
 
-import type { Props } from 'design/components/popover/docs/controls';
+import type { HintProps } from 'design/components/popover/docs/controls';
 
-const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
+const Preview: React.FC<HintProps> = ({ offset, placement, ...props }) => {
   return (
     <Popover {...props}>
       <PopoverTrigger asChild>
         <HyperLink to='#delivery'>Delivery</HyperLink>
       </PopoverTrigger>
-      <PopoverHint offset={offset} placement={placement} variant={variant}>
+      <PopoverHint offset={offset} placement={placement}>
         Free over £50, in two to three days.
       </PopoverHint>
     </Popover>

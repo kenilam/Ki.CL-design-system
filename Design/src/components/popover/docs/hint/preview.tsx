@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Badge, Popover, PopoverHint, PopoverTrigger } from 'design/components';
 
-import type { Props } from 'design/components/popover/docs/controls';
+import type { HintProps } from 'design/components/popover/docs/controls';
 
-const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
+const Preview: React.FC<HintProps> = ({ offset, placement, ...props }) => {
   return (
     <Popover {...props}>
       <PopoverTrigger>
@@ -12,7 +12,7 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
           Hover me
         </Badge>
       </PopoverTrigger>
-      <PopoverHint offset={offset} placement={placement} variant={variant}>
+      <PopoverHint offset={offset} placement={placement}>
         Shown while this is hovered or focused.
       </PopoverHint>
     </Popover>

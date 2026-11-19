@@ -24,7 +24,6 @@ const MoreLink = React.forwardRef<HTMLAnchorElement, MoreLinkProps>(
         lookLikeButton
         ref={ref}
         size='large'
-        title={name}
         variant='secondary'
       >
         <Tb.TbChevronDown aria-hidden />

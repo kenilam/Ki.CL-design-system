@@ -5,7 +5,7 @@ import { Link, NavLink } from 'design/router';
 
 // Components
 import { Layout } from 'design/components/layout';
-import { BUTTON_LAYOUT as LAYOUT } from 'design/components';
+import { BUTTON_LAYOUT as LAYOUT, NameHint } from 'design/components';
 
 // Spec
 import type * as Spec from 'design/components/hyper-link/spec';
@@ -39,7 +39,7 @@ const Root: React.FunctionComponent<Props> = ({
   viewTransition = true,
   ...props
 }) => {
-  const { isHash, lookLikeButton } = useHyperLink();
+  const { isHash, isIcon, lookLikeButton } = useHyperLink();
   const { rest, shared } = useAttributes(props);
 
   // A `#id` string is a plain anchor, so the browser jumps, focuses and sets
@@ -81,8 +81,14 @@ const Root: React.FunctionComponent<Props> = ({
     ),
   };
 
+  const link = (
+    <NameHint label={isIcon ? rest['aria-label'] : undefined}>
+      {links[kind]}
+    </NameHint>
+  );
+
   if (!lookLikeButton) {
-    return links[kind];
+    return link;
   }
 
   return (
@@ -92,7 +98,7 @@ const Root: React.FunctionComponent<Props> = ({
       frames={frames}
       justifyContent={justifyContent}
     >
-      {links[kind]}
+      {link}
     </Layout>
   );
 };

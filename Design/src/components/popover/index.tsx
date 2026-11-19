@@ -6,6 +6,7 @@ import type { PopoverProps } from './spec';
 // Partials
 import { PopoverContent } from './content';
 import { PopoverHint } from './hint';
+import { NameHint } from './name-hint';
 import { Provider } from './context';
 import { PopoverTrigger } from './trigger';
 
@@ -39,4 +40,4 @@ export type {
   PopoverVariant,
 } from './spec';
 
-export { PopoverContent, PopoverHint, PopoverTrigger, Popover };
+export { NameHint, PopoverContent, PopoverHint, PopoverTrigger, Popover };

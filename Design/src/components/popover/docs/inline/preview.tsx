@@ -5,9 +5,9 @@ import * as Tb from 'react-icons/tb';
 
 import { Popover, PopoverHint, PopoverTrigger, Text } from 'design/components';
 
-import type { Props } from 'design/components/popover/docs/controls';
+import type { HintProps } from 'design/components/popover/docs/controls';
 
-const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
+const Preview: React.FC<HintProps> = ({ offset, placement, ...props }) => {
   return (
     <Text>
       Sunlight takes about{' '}
@@ -18,7 +18,7 @@ const Preview: React.FC<Props> = ({ offset, placement, variant, ...props }) => {
         <PopoverTrigger aria-label='How long exactly'>
           <Tb.TbInfoCircle aria-hidden />
         </PopoverTrigger>
-        <PopoverHint offset={offset} placement={placement} variant={variant}>
+        <PopoverHint offset={offset} placement={placement}>
           8 minutes and 20 seconds, on average.
         </PopoverHint>
       </Popover>{' '}

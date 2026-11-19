@@ -17,13 +17,13 @@ import * as Tb from 'react-icons/tb';
 
 const CLASS_NAME = 'kicl--widgets--theme-toggle';
 
-type Look = Pick<React.ComponentProps<typeof Button>, 'size' | 'variant'>;
-
-/** Without a `variant` it's a bare icon. */
-type ThemeToggleProps = Pick<React.ComponentProps<typeof Button>, 'className'> &
-  ((Look & Required<Pick<Look, 'variant'>>) | { [Key in keyof Look]?: never });
+type ThemeToggleProps = Pick<
+  React.ComponentProps<typeof Button>,
+  'block' | 'className' | 'size' | 'variant'
+>;
 
 const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
+  block,
   className,
   size,
   variant,
@@ -37,15 +37,16 @@ const ThemeToggle: React.FunctionComponent<ThemeToggleProps> = ({
 
   return (
     <Button
-      aria-pressed={isDark}
-      className={classNames('kicl-font-size', CLASS_NAME, className)}
+      aria-label={isDark ? t('label_light_theme') : t('label_dark_theme')}
+      block={block}
+      className={classNames(CLASS_NAME, className)}
       onClick={() => {
         setTheme(isDark ? 'light' : 'dark');
       }}
-      {...(variant ? { size, variant } : ({ unstyled: true } as const))}
+      size={size}
+      variant={variant}
     >
       <Icon aria-hidden />
-      <span className='kicl-hidden'>{t('label_dark_theme')}</span>
     </Button>
   );
 };

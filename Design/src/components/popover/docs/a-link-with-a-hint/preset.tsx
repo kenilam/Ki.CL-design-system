@@ -3,6 +3,7 @@ import React from 'react';
 // Partials
 import { Copy } from 'design/mdx/copy';
 import { Preset as Origin } from 'design/mdx/preview';
+import { HINT_CONTROLS } from 'design/components/popover/docs/controls';
 
 // Preview
 import { Preview } from './preview';
@@ -15,6 +16,7 @@ const name = 'A link with a hint';
 const Preset = (
   <Origin
     code={source}
+    controls={HINT_CONTROLS}
     description={description}
     label='popover_preset_a_link_with_a_hint_name'
     name={name}

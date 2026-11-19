@@ -11,19 +11,28 @@ type Props = Pick<
   'className' | 'offset' | 'placement' | 'variant'
 >;
 
-const getContentClassNames = ({
-  className,
+const getPlacementClassNames = ({
   offset = 'narrow',
   placement = 'block-end',
-  variant = 'primary',
-}: Props) => {
+}: Pick<Props, 'offset' | 'placement'>) => {
   const [axis, edge, align = 'start'] = placement.split('-');
 
   return classNames(
     'kicl-font-size-small',
     CLASS_NAME,
     `${CLASS_NAME}--${axis}-${edge}--${align}`,
-    `${CLASS_NAME}--offset--${offset}`,
+    `${CLASS_NAME}--offset--${offset}`
+  );
+};
+
+const getContentClassNames = ({
+  className,
+  offset,
+  placement,
+  variant = 'primary',
+}: Props) => {
+  return classNames(
+    getPlacementClassNames({ offset, placement }),
     `${CLASS_NAME}--variant--${variant}`,
     'kicl-box-shadow-overlay',
     variant !== 'primary' ? 'kicl-backdrop-blur' : null,
@@ -31,4 +40,4 @@ const getContentClassNames = ({
   );
 };
 
-export { CLASS_NAME, getContentClassNames };
+export { CLASS_NAME, getContentClassNames, getPlacementClassNames };

@@ -59,7 +59,6 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
         level={copied ? 'confirm' : level}
         onClick={onClick}
         ref={ref}
-        title={name}
       >
         {mark}
       </Button>

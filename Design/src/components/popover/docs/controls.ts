@@ -1,4 +1,4 @@
-import type { Popover, PopoverContent } from 'design/components';
+import type { Popover, PopoverContent, PopoverHint } from 'design/components';
 import type { Controlled, ControlsSpec } from 'design/mdx/preview';
 import {
   POPOVER_PLACEMENTS,
@@ -25,9 +25,13 @@ export const CONTROLS = {
 export const HINT_CONTROLS = {
   placement: {
     options: POPOVER_PLACEMENTS,
-    default: 'block-start-start',
+    default: 'block-start-center',
   },
-} satisfies ControlsSpec;
+  variant: null,
+};
 
 export type Props = Controlled<typeof Popover, 'open'> &
   Controlled<typeof PopoverContent, 'offset' | 'placement' | 'variant'>;
+
+export type HintProps = Controlled<typeof Popover, 'open'> &
+  Controlled<typeof PopoverHint, 'offset' | 'placement'>;

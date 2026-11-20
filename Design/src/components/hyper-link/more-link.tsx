@@ -13,7 +13,7 @@ import type { MoreLinkProps } from './spec';
 import { HyperLink } from './index';
 
 const MoreLink = React.forwardRef<HTMLAnchorElement, MoreLinkProps>(
-  ({ label, ...rest }, ref) => {
+  ({ label, to, ...rest }, ref) => {
     const t = useCopy();
     const name = label ?? t('action_read_more');
 
@@ -24,6 +24,7 @@ const MoreLink = React.forwardRef<HTMLAnchorElement, MoreLinkProps>(
         lookLikeButton
         ref={ref}
         size='large'
+        to={{ hash: to }}
         variant='secondary'
       >
         <Tb.TbChevronDown aria-hidden />

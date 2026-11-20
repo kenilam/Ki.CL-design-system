@@ -20,12 +20,7 @@ const Root: React.FunctionComponent<Props> = ({ className, ref }) => {
   return (
     <Layout alignItems='stretch' justifyItems='stretch' ref={ref}>
       <figure
-        className={classNames(
-          CLASS_NAME,
-          'kicl-overflow-hidden',
-          'kicl-position-relative',
-          className
-        )}
+        className={classNames(CLASS_NAME, 'kicl-overflow-hidden', className)}
       >
         <Player />
         <Loading />

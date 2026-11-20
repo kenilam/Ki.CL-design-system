@@ -1,5 +1,9 @@
 // Chrome has no pseudo-element for the filled part of the track, so
-// `RangeInput` passes the value in and the track draws the fill.
+// `RangeInput` passes the value in and the track draws the fill. A component
+// that draws its own track sets `--kicl--components--input--track-image`, and
+// `--track-fill` to hide Firefox's fill. `--track-ring` outlines a track that
+// can fade into the background, and `--thumb-shadow` lifts a thumb that can
+// fade into its track.
 .kicl--components--input--range {
   $input: '--kicl--components--input';
   $color: var(#{$input}--color, var(--kicl-body-color));
@@ -9,13 +13,17 @@
   );
 
   &::-webkit-slider-runnable-track {
-    background-image: linear-gradient(
-      var(#{$input}--track-direction),
-      #{$color} #{$fill},
-      var(#{$input}--border-color) 0
+    background-image: var(
+      #{$input}--track-image,
+      linear-gradient(
+        var(#{$input}--track-direction),
+        #{$color} #{$fill},
+        var(#{$input}--border-color) 0
+      )
     );
     block-size: var(#{$input}--track);
     border-radius: var(#{$input}--track);
+    box-shadow: var(#{$input}--track-ring, none);
   }
 
   &::-webkit-slider-thumb {
@@ -30,6 +38,7 @@
     background-size: var(#{$input}--thumb) var(#{$input}--thumb);
     block-size: var(#{$input}--thumb-box);
     border-radius: 50%;
+    filter: var(#{$input}--thumb-shadow, none);
     inline-size: var(#{$input}--thumb-box);
     margin-block-start: calc(
       (var(#{$input}--track) - var(#{$input}--thumb-box)) / 2

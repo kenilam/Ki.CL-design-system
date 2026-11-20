@@ -1,0 +1,106 @@
+:root,
+.kicl--theme--dark,
+.kicl--theme--light {
+  $input: '--kicl--components--input';
+
+  --kicl--components--color-picker--c: 0;
+  --kicl--components--color-picker--h: 0;
+  --kicl--components--color-picker--l: 0.5;
+  --kicl--components--color-picker--radius: var(--kicl-size);
+  --kicl--components--color-picker--row: calc(
+    var(#{$input}--thumb-box) + var(#{$input}--ring) * 2
+  );
+  --kicl--components--color-picker--ring: var(--kicl-color-neutral-a16);
+  --kicl--components--color-picker--value: transparent;
+}
+
+.kicl--components--color-picker {
+  $picker: '--kicl--components--color-picker';
+  $input: '--kicl--components--input';
+  $c: var(#{$picker}--c);
+  $h: var(#{$picker}--h);
+  $l: var(#{$picker}--l);
+  $direction: var(#{$input}--track-direction);
+  $shade: color-mix(in srgb, var(--kicl-color-black-pure) 35%, transparent);
+
+  &__swatch,
+  &__preview {
+    background-color: var(#{$picker}--value);
+    box-shadow: inset 0 0 0 var(--kicl-size-1px) var(#{$picker}--ring);
+  }
+
+  &__swatch {
+    block-size: 1em;
+    flex-shrink: 0;
+    inline-size: 1em;
+  }
+
+  &__preview {
+    block-size: var(--kicl-size-6x);
+    border-radius: var(#{$picker}--radius);
+  }
+
+  // As tall as a slider, so the values and the sliders below them are evenly spaced.
+  &__format {
+    min-block-size: var(#{$picker}--row);
+  }
+
+  &__panel {
+    #{$picker}--radius: var(--kicl--components--popover--border-radius);
+  }
+
+  // A short window leaves the popover room for the sliders only.
+  @include query('height≤narrowest') {
+    &__panel &__preview,
+    &__panel &__value {
+      display: none;
+    }
+  }
+
+  // Each track shows where its slider leads from the color picked now. The
+  // thumb is white with a soft shadow, so it stands out on light and dark
+  // tracks alike.
+  &__channel {
+    $shade: color-mix(in srgb, var(--kicl-color-black-pure) 35%, transparent);
+    $edge: drop-shadow(0 0 var(--kicl-size-1px) #{$shade});
+    $lift: drop-shadow(0 var(--kicl-size-1px) var(--kicl-size-2px) #{$shade});
+
+    --kicl--components--input--track: var(--kicl-size-half);
+    --kicl--components--input--color: var(--kicl-color-white-pure);
+    --kicl--components--input--thumb-shadow: #{$edge} #{$lift};
+    --kicl--components--input--track-fill: transparent;
+    --kicl--components--input--track-ring: inset 0 0 0 var(--kicl-size-1px)
+      var(#{$picker}--ring);
+
+    &:dir(rtl) {
+      --kicl--components--input--track-direction: to left;
+    }
+
+    &--l {
+      --kicl--components--input--track-image: linear-gradient(
+        #{$direction} in oklch,
+        oklch(0% #{$c} #{$h}),
+        oklch(100% #{$c} #{$h})
+      );
+    }
+
+    // In OKLab, where a line out from grey keeps one hue. Chrome draws the
+    // same stops in OKLCH through other hues.
+    &--c {
+      --kicl--components--input--track-image: linear-gradient(
+        #{$direction} in oklab,
+        oklch(#{$l} 0 #{$h}),
+        oklch(#{$l} 0.37 #{$h})
+      );
+    }
+
+    // A minimum chroma keeps the hues apart while the color is grey.
+    &--h {
+      --kicl--components--input--track-image: linear-gradient(
+        #{$direction} in oklch longer hue,
+        oklch(#{$l} max(#{$c}, 0.1) 0deg),
+        oklch(#{$l} max(#{$c}, 0.1) 360deg)
+      );
+    }
+  }
+}

@@ -7,7 +7,9 @@
 :root {
   --kicl--components--sheet--direction: 1;
   --kicl--components--sheet--foot: ;
+  --kicl--components--sheet--footer-block-size: 0px;
   --kicl--components--sheet--head: ;
+  --kicl--components--sheet--header-block-size: 0px;
   --kicl--components--sheet--header-child-grid-column: auto;
   --kicl--components--sheet--header-grid-row: auto;
   --kicl--components--sheet--header-grid-template-columns: none;
@@ -63,6 +65,10 @@
     var(--kicl--components--sheet--head) 1fr
     var(--kicl--components--sheet--foot);
   opacity: 1;
+
+  // Content scrolled into view stops clear of the stuck header and footer.
+  scroll-padding-block: var(--kicl--components--sheet--header-block-size)
+    var(--kicl--components--sheet--footer-block-size);
   transition:
     display var(--kicl-transition-duration-fast) allow-discrete,
     opacity var(--kicl-transition-duration-fast),

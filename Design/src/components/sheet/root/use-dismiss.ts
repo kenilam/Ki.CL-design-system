@@ -33,10 +33,12 @@ const useDismiss = (
       }
     };
 
-    // A manual popover ignores Escape; a modal dialog handles it itself.
+    // A manual popover ignores Escape; a modal dialog handles it itself. An
+    // Escape something above the sheet handled, like a hint, is left alone.
     const keydown = (event: KeyboardEvent) => {
       if (
         event.key === 'Escape' &&
+        !event.defaultPrevented &&
         dismissable.current &&
         element.matches(':popover-open')
       ) {

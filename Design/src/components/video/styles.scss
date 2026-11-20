@@ -1,5 +1,6 @@
 :root {
   --kicl--components--video--background: var(--kicl-color-white);
+  --kicl--components--video--object-fit: contain;
 }
 
 .kicl--theme--dark {
@@ -12,4 +13,7 @@
 
 .kicl--components--video {
   background: var(--kicl--components--video--background);
+
+  // Here rather than a utility, so a caller's `kicl-position-*` class wins.
+  position: relative;
 }

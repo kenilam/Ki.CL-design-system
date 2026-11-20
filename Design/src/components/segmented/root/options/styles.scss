@@ -71,4 +71,10 @@
   &--collapsed {
     @include scroll;
   }
+
+  // An option keeps its label on one line, so the row breaks between options instead.
+  &--collapse--stack > * {
+    flex: 1 1 max-content;
+    white-space: nowrap;
+  }
 }

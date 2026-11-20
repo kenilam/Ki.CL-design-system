@@ -77,8 +77,13 @@
     }
   }
 
+  // Only `display` waits for the open state: the rest stays while the popover
+  // fades out, when `display` is held at flex and a row would reflow it.
   &:popover-open:has(> :only-child:not(table, input)) {
     display: flex;
+  }
+
+  &:has(> :only-child:not(table, input)) {
     flex-direction: column;
     overflow: hidden;
     padding: 0;

@@ -72,6 +72,12 @@ import {
   type CheckedState,
 } from './checkbox';
 import {
+  COLOR_PICKER_PRESENTATIONS,
+  ColorPicker,
+  type ColorPickerPresentation,
+  type ColorPickerProps,
+} from './color-picker';
+import {
   CODE_BLOCK_LANGUAGES,
   CodeBlock,
   type CodeBlockProps,
@@ -360,6 +366,10 @@ export {
   type CardTitleIs,
   type CardTitleProps,
   Checkbox,
+  COLOR_PICKER_PRESENTATIONS,
+  ColorPicker,
+  type ColorPickerPresentation,
+  type ColorPickerProps,
   CheckboxGroup,
   type CheckboxGroupProps,
   type CheckboxProps,

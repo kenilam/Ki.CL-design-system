@@ -53,8 +53,8 @@ const Player: React.FunctionComponent = () => {
       )}
       onLoadStart={onStart}
       onLoadedData={onLoaded}
+      src={src}
     >
-      <source src={src} type='video/mp4' />
       {captions ? (
         <track default kind='captions' src={captions} srcLang='en' />
       ) : null}

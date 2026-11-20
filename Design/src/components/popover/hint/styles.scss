@@ -14,8 +14,19 @@
   --kicl--components--popover--padding: var(--kicl-gutter-narrower)
     var(--kicl-gutter-narrow);
 
+  $shade: color-mix(in srgb, var(--kicl-color-black-pure) 30%, transparent);
+
+  // A shadow rather than a filter, which would make the hint the arrows'
+  // containing block.
+  box-shadow: 0 var(--kicl-size-1px) var(--kicl-size-3px) $shade;
   clip-path: inset(calc(var(--kicl--components--popover--hint--arrow) * -1));
+  max-inline-size: var(--kicl-columns-3);
+
+  // Its own type, not its trigger's: a hint inside a label or a button would
+  // take the trigger's capitals and its single line.
+  text-transform: none;
   translate: none;
+  white-space: normal;
 
   &:popover-open {
     translate: none;
@@ -25,7 +36,11 @@
     }
   }
 
-  @include theme-inverse;
+  // The opposite of the page's theme, unless the hint carries a theme of its
+  // own from the part its trigger is in.
+  &:not(.kicl--theme--dark, .kicl--theme--light) {
+    @include theme-inverse;
+  }
 }
 
 /*

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 // Context
 import {
-  usePopoverIds,
   usePopoverInterest,
   usePopoverOpen,
   usePopoverParts,
@@ -12,9 +11,8 @@ const useSyncOpen = (
   nodeRef: React.RefObject<HTMLDivElement | null>,
   hidden: boolean
 ) => {
-  const { id } = usePopoverIds();
   const { content, setHint } = usePopoverParts();
-  const { interested } = usePopoverInterest();
+  const { interested, setInterested } = usePopoverInterest();
   const { open } = usePopoverOpen();
 
   useEffect(() => {
@@ -25,21 +23,35 @@ const useSyncOpen = (
     };
   }, [hidden, setHint]);
 
+  // Kept in step if the hint is closed some other way.
   useEffect(() => {
     const node = nodeRef.current;
-    const trigger = document.querySelector(`[interestfor='${id}__hint']`);
-    const native = trigger !== null && 'interestForElement' in trigger;
 
-    if (!node || (content && native)) {
+    if (!node) {
       return;
     }
 
-    let show = open;
+    const toggled = (event: Event) => {
+      if ((event as ToggleEvent).newState === 'closed') {
+        setInterested(false);
+      }
+    };
 
-    if (!native) {
-      show = content ? interested && !open : open || interested;
+    node.addEventListener('toggle', toggled);
+
+    return () => {
+      node.removeEventListener('toggle', toggled);
+    };
+  }, [nodeRef, setInterested]);
+
+  useEffect(() => {
+    const node = nodeRef.current;
+
+    if (!node) {
+      return;
     }
 
+    const show = content ? interested && !open : open || interested;
     const shown = node.matches(':popover-open');
 
     if (show && !shown) {
@@ -49,7 +61,7 @@ const useSyncOpen = (
     if (!show && shown) {
       node.hidePopover();
     }
-  }, [content, id, interested, nodeRef, open]);
+  }, [content, interested, nodeRef, open]);
 };
 
 export { useSyncOpen };

@@ -21,7 +21,7 @@ const CardFooter = React.forwardRef<HTMLElement, CardFooterProps>(
       <Layout
         alignItems='center'
         autoFlow='column'
-        gap='narrowest'
+        gap='narrow'
         justifyContent={justifyContent}
         ref={ref}
       >

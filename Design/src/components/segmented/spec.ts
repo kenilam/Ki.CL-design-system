@@ -29,6 +29,13 @@ export type SegmentedProps = Omit<
         variant?: never;
       }
     | {
+        /** Puts each option on its own line once they no longer fit on one. */
+        collapse: 'stack';
+        collapsed?: never;
+        placement?: never;
+        variant?: never;
+      }
+    | {
         /** Without it, the options share the width at any size. */
         collapse?: never;
         collapsed?: never;

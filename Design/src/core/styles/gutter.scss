@@ -57,6 +57,18 @@ $gutter-properties: (
   @include make-gutter-variable-classes($property);
 }
 
+.kicl-margin-block-auto {
+  margin-block: auto;
+}
+
+.kicl-margin-block-end-auto {
+  margin-block-end: auto;
+}
+
+.kicl-margin-block-start-auto {
+  margin-block-start: auto;
+}
+
 .kicl-margin-inline-auto {
   margin-inline: auto;
 }

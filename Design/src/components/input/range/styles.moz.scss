@@ -4,12 +4,14 @@
 
   &::-moz-range-track {
     background-color: var(#{$input}--border-color);
+    background-image: var(#{$input}--track-image, none);
     block-size: var(#{$input}--track);
     border-radius: var(#{$input}--track);
+    box-shadow: var(#{$input}--track-ring, none);
   }
 
   &::-moz-range-progress {
-    background-color: $color;
+    background-color: var(#{$input}--track-fill, #{$color});
     block-size: var(#{$input}--track);
     border-radius: var(#{$input}--track);
   }
@@ -26,6 +28,7 @@
     block-size: var(#{$input}--thumb-box);
     border: 0;
     border-radius: 50%;
+    filter: var(#{$input}--thumb-shadow, none);
     inline-size: var(#{$input}--thumb-box);
     outline: var(--kicl-outline-width) var(--kicl-outline-style)
       var(--kicl-outline-color);

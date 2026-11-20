@@ -26,20 +26,35 @@ $sides: (
 );
 $aligns: (start, center, end);
 
-@mixin place-popover($side, $align, $offset) {
+// Capped at the window, not at the room on its side, so a popover that
+// doesn't fit overflows and the browser tries the next position. `$fit` is the
+// last resort: capped at the room on its side, which has to be at least half
+// the window beside the anchor, so it lands on the side with more room.
+@mixin place-popover($side, $align, $offset, $fit: false) {
   $place: map.get($sides, $side);
   $axis: map.get($place, axis);
   $inset: var(--kicl--components--popover--inset);
   $across: block;
   $self: align-self;
   $other-self: justify-self;
-  $max-block-size: calc(100% - 2 * #{$inset});
+  $max-block-size: calc(100dvb - 2 * #{$inset});
 
   @if $axis == block {
     $across: inline;
     $self: justify-self;
     $other-self: align-self;
-    $max-block-size: calc(100% - #{$inset} - #{$offset});
+  }
+
+  @if $fit {
+    $max-block-size: calc(100% - 2 * #{$inset});
+
+    @if $axis == block {
+      $max-block-size: calc(100% - #{$inset} - #{$offset});
+
+      min-block-size: calc(
+        (100dvb - anchor-size(block)) / 2 - #{$inset} - #{$offset}
+      );
+    }
   }
 
   inset: auto;
@@ -86,7 +101,9 @@ $aligns: (start, center, end);
             --kicl--components--popover--fallbacks,
             #{$flip},
             --kicl--components--popover--#{$side}--center,
-            --kicl--components--popover--#{$side}--center #{$flip}
+            --kicl--components--popover--#{$side}--center #{$flip},
+            --kicl--components--popover--#{$side}--#{$align}--fit,
+            --kicl--components--popover--#{$side}--#{$align}--fit #{$flip}
           );
         }
       }
@@ -104,6 +121,18 @@ $aligns: (start, center, end);
           --kicl--components--popover--fallback-offset,
           var(--kicl--components--popover--offset)
         )
+      );
+    }
+
+    @position-try --kicl--components--popover--#{$side}--#{$align}--fit {
+      @include place-popover(
+        $side,
+        $align,
+        var(
+          --kicl--components--popover--fallback-offset,
+          var(--kicl--components--popover--offset)
+        ),
+        true
       );
     }
   }

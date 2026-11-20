@@ -40,6 +40,12 @@ export const PAGES = {
         return import('design/components/checkbox/docs/index.mdx');
       }),
     },
+    'color-picker': {
+      context: 'color_picker',
+      Content: lazy(() => {
+        return import('design/components/color-picker/docs/index.mdx');
+      }),
+    },
     'radio-group': {
       context: 'radio_group',
       Content: lazy(() => {

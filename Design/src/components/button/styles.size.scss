@@ -20,6 +20,8 @@
 
 .kicl--components--button {
   $icon: ':is(svg, .kicl--components--spinner)';
+  $badge: '.kicl--components--badge';
+  $badge-inset: calc(var(--kicl--components--button--padding-block) / 2);
   $shown: ':not(.kicl-hidden)';
 
   &:not(&--unstyled) {
@@ -34,6 +36,24 @@
 
     &:has(> #{$icon}:nth-last-child(1 of #{$shown})) {
       padding-inline-end: var(--kicl--components--button--padding-inline-icon);
+    }
+
+    // A badge at either end sits as far from that edge as from the top and
+    // bottom, and reaches into the padding rather than making the button
+    // taller.
+    &:has(> #{$badge}:nth-child(1 of #{$shown})) {
+      padding-inline-start: $badge-inset;
+    }
+
+    &:has(> #{$badge}:nth-last-child(1 of #{$shown})) {
+      padding-inline-end: $badge-inset;
+    }
+
+    > #{$badge} {
+      --kicl--components--badge--padding-block: 0;
+
+      align-self: stretch;
+      margin-block: calc(#{$badge-inset} * -1);
     }
   }
 

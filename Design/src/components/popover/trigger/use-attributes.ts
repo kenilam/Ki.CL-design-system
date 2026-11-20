@@ -18,8 +18,6 @@ const useAttributes = () => {
         }
       : null),
     id: `${id}__trigger`,
-    // `interestfor` isn't in React's DOM types yet, so it's passed as written.
-    ...(parts.hint ? { interestfor: `${id}__hint` } : null),
     ...(parts.hint === 'description'
       ? { 'aria-describedby': `${id}__hint` }
       : null),

@@ -34,15 +34,17 @@ const SegmentedOptions: React.FunctionComponent = () => {
   const { children, collapse, collapsed, hasLegend, isPanel } = useSegmented();
   const { options } = legendOf(children);
   const scrolls = collapse === 'scroll';
+  const stacks = collapse === 'stack';
 
   return (
-    <Layout gap='none'>
+    <Layout display={stacks ? 'flex' : undefined} gap='none' wrap={stacks}>
       <div
         className={classNames(
           CLASS_NAME,
           'kicl-min-inline-size-0',
           scrolls ? `${CLASS_NAME}--collapse--scroll` : null,
           scrolls && collapsed ? `${CLASS_NAME}--collapsed` : null,
+          stacks ? `${CLASS_NAME}--collapse--stack` : null,
           hasLegend && !isPanel ? 'kicl-padding-block-narrowest' : null,
           hasLegend && !isPanel ? 'kicl-padding-inline-narrowest' : null,
           'kicl-position-relative'

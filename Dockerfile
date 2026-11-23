@@ -1,4 +1,4 @@
-# Design system image for Cloud Run, built the same way as Ki.CL-back's.
+# Design system image for Cloud Run, built the same way as Ki.CL-api's.
 #
 # The remote is built here rather than at boot, so a cold start never waits on
 # a build that could fail after the service reports healthy.

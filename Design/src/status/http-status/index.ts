@@ -4,6 +4,7 @@ import { Status404 } from './status-404';
 import { Status410 } from './status-410';
 import { Status429 } from './status-429';
 import { Status500 } from './status-500';
+import { Status503 } from './status-503';
 
 const HttpStatus = {
   204: Status204,
@@ -12,6 +13,7 @@ const HttpStatus = {
   410: Status410,
   429: Status429,
   500: Status500,
+  503: Status503,
 } as const;
 
 export {
@@ -21,5 +23,6 @@ export {
   Status410,
   Status429,
   Status500,
+  Status503,
   HttpStatus,
 };

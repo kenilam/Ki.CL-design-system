@@ -234,6 +234,7 @@
   "title_410": "410: Gone",
   "title_429": "429: Too many requests",
   "title_500": "500: Internal server error",
+  "title_503": "503: Service unavailable",
   "title_error": "Something went wrong",
   "title_info": "Did you know?",
   "title_warning": "Warning",

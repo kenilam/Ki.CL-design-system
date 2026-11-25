@@ -7,6 +7,7 @@ import {
   Status410,
   Status429,
   Status500,
+  Status503,
 } from './http-status';
 
 export {
@@ -18,4 +19,5 @@ export {
   Status410,
   Status429,
   Status500,
+  Status503,
 };

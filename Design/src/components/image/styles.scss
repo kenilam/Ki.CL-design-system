@@ -20,6 +20,15 @@
   // Here rather than a utility, so a caller's `kicl-position-*` class wins.
   position: relative;
 
+  // While it loads, its spinner sizes to it, so a thumbnail's spinner fits inside.
+  &--is-loading {
+    container-type: inline-size;
+  }
+
+  > .kicl--components--spinner {
+    --kicl--components--spinner--font-size: min(var(--kicl-font-size-large), 50cqi);
+  }
+
   &--is-loading,
   &--has-error {
     --kicl--components--image--background-color: var(

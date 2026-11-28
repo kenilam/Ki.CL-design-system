@@ -639,14 +639,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@module-federation/dts-plugin@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/dts-plugin@npm:2.9.3"
+"@module-federation/dts-plugin@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/dts-plugin@npm:2.9.4"
   dependencies:
-    "@module-federation/error-codes": "npm:2.9.3"
-    "@module-federation/managers": "npm:2.9.3"
-    "@module-federation/sdk": "npm:2.9.3"
-    "@module-federation/third-party-dts-extractor": "npm:2.9.3"
+    "@module-federation/error-codes": "npm:2.9.4"
+    "@module-federation/managers": "npm:2.9.4"
+    "@module-federation/sdk": "npm:2.9.4"
+    "@module-federation/third-party-dts-extractor": "npm:2.9.4"
     adm-zip: "npm:^0.6.1"
     isomorphic-ws: "npm:5.0.0"
     undici: "npm:7.30.1"
@@ -657,71 +657,71 @@ __metadata:
   peerDependenciesMeta:
     vue-tsc:
       optional: true
-  checksum: 10c0/e7edc1201344d44adeb5a4869753ebdff742db64400a09e513a1b68ac5fab188e2829c1d7bb5ab6e9552bb2e9c3cf9f624656049ce6a395ab62acfaf7b6223f6
+  checksum: 10c0/d043f30aecddbdbe32971c08ee7babec8e82492f7da318d5dbeb3bc395b6e951553e4145b401af5d7ff6215404cb335aa85f47d056875cadb6d92f6a399df265
   languageName: node
   linkType: hard
 
-"@module-federation/error-codes@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/error-codes@npm:2.9.3"
-  checksum: 10c0/1aa4f0ac7d7e2c6e20dcf44039928932a069d8919107b6f3d5a718230c3c4247a10821e90bb5dbe2bc4bbee73a6b200596c07205f73e802840cb9e7421ddd74a
+"@module-federation/error-codes@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/error-codes@npm:2.9.4"
+  checksum: 10c0/ef8d948ae26568bfd7e7ca2205e973ce4f12b711d1b3651dc5ca1a7de3f9f26f3c2922598a7c5c1eba751bdc9de16cefab27f6c675d4eb69ab22120d6e6aed20
   languageName: node
   linkType: hard
 
-"@module-federation/managers@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/managers@npm:2.9.3"
+"@module-federation/managers@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/managers@npm:2.9.4"
   dependencies:
-    "@module-federation/sdk": "npm:2.9.3"
-  checksum: 10c0/7a24de125a2b963979f87cf9ff394031c0b318c3a52d6bd7fcce71e3974091dcd117ceaf82440465ec22ebfe5c2db1069eaa8e6df26af2de4b6cd9d46f2519e1
+    "@module-federation/sdk": "npm:2.9.4"
+  checksum: 10c0/f3ac680f84d9742c125960b7a61ec44e18cf22e05434480dcd3eae3072eb3e24bd5b48a72fa5675718663497023139dded49992baf9e4c1032706bd5b537e957
   languageName: node
   linkType: hard
 
-"@module-federation/runtime-core@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/runtime-core@npm:2.9.3"
+"@module-federation/runtime-core@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/runtime-core@npm:2.9.4"
   dependencies:
-    "@module-federation/error-codes": "npm:2.9.3"
-    "@module-federation/sdk": "npm:2.9.3"
-  checksum: 10c0/9c6aac5570a223913d6c1325ad4b9c0a2a728ac65190b0ccb6e2e512f6afcae9eb861b0b63fe7d713754f67108303a8ed64acc0369e19276cf513bc752c1666e
+    "@module-federation/error-codes": "npm:2.9.4"
+    "@module-federation/sdk": "npm:2.9.4"
+  checksum: 10c0/1ce79d05352d140a1bac359ce31c89c7513f4bb9c4fceda3a7e75e0492e081dfec3e9257cc2d4a357b43f673069d4da2aded6bb098390e42557f25ae32db5a8e
   languageName: node
   linkType: hard
 
-"@module-federation/runtime@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/runtime@npm:2.9.3"
+"@module-federation/runtime@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/runtime@npm:2.9.4"
   dependencies:
-    "@module-federation/error-codes": "npm:2.9.3"
-    "@module-federation/runtime-core": "npm:2.9.3"
-    "@module-federation/sdk": "npm:2.9.3"
-  checksum: 10c0/cf2dd73d078720d30850770907817603df284e1855c02dd435183b04b848b3b1556207479812a4e1e1ce01dea37792e39279bc8b4aa056d93465f05327b20575
+    "@module-federation/error-codes": "npm:2.9.4"
+    "@module-federation/runtime-core": "npm:2.9.4"
+    "@module-federation/sdk": "npm:2.9.4"
+  checksum: 10c0/506e187562c121cf0e94194225d9e314d100ae6d65933e228b3f8f965e153b562a73589c74c69a7b5ae79b4ee4afba7934edbfb0022a3014f3290db3349b8cd0
   languageName: node
   linkType: hard
 
-"@module-federation/sdk@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/sdk@npm:2.9.3"
-  checksum: 10c0/82584160ea309c6cae4055002390af5a84f38bf46025bbb264e7b4e1dbe82b42d0af93c80abeee2d9d8d136ddb0a4119940da413c4471b363c4b6d8b19424fb5
+"@module-federation/sdk@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/sdk@npm:2.9.4"
+  checksum: 10c0/cdda067cd65425c6ee598fa6d2ef73d7feeb29f1f29601ab01c9041270c39fb67e7ef97cef47d5f973b04784116e40c0f97fb06a781ab9dd069918a2bce4f175
   languageName: node
   linkType: hard
 
-"@module-federation/third-party-dts-extractor@npm:2.9.3":
-  version: 2.9.3
-  resolution: "@module-federation/third-party-dts-extractor@npm:2.9.3"
-  checksum: 10c0/edb34ba6d5aaa350f0eab00b647ecc33f81a0c8e2b375d0b1421b49ef06a9d0ea67ef5afba6727019ee698ea7abc440680bed7c0ae3df08f6b3fbdf244d946a6
+"@module-federation/third-party-dts-extractor@npm:2.9.4":
+  version: 2.9.4
+  resolution: "@module-federation/third-party-dts-extractor@npm:2.9.4"
+  checksum: 10c0/f9fa09dfe3f6686b8b1b01dfb9cd5fb30e39d7567adedeb87f28bedfcf3f439b0e28ce792b17e735d6d6fdbe8e58728b6e9ba4e3ccde4381b6f44b0f9d398a32
   languageName: node
   linkType: hard
 
 "@module-federation/vite@npm:^1.20.0":
-  version: 1.24.1
-  resolution: "@module-federation/vite@npm:1.24.1"
+  version: 1.25.1
+  resolution: "@module-federation/vite@npm:1.25.1"
   dependencies:
-    "@module-federation/dts-plugin": "npm:2.9.3"
-    "@module-federation/runtime": "npm:2.9.3"
-    "@module-federation/sdk": "npm:2.9.3"
+    "@module-federation/dts-plugin": "npm:2.9.4"
+    "@module-federation/runtime": "npm:2.9.4"
+    "@module-federation/sdk": "npm:2.9.4"
   peerDependencies:
     vite: ^5.1.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
-  checksum: 10c0/1a069ea77e01a4748bb5cd7f52f40debc96f8e441b07043d1a13f2f9f37bf382990bbf03bf336fba7e8c0707f07445798d3bc7dd906478f08e1b1477ac6d4cfd
+  checksum: 10c0/9927ec4606bbd5fd45d835a2bb87ad3ae3746147855d5e378c2a7eaa707724796fdb327e90f09ac400b9fe9ce1e9f14c8140cbaba66535b2b60f0d2c9231511c
   languageName: node
   linkType: hard
 

@@ -10,11 +10,7 @@ const Loading: React.FunctionComponent = () => {
   const { isLoading } = useImage();
 
   return (
-    <Spinner
-      className='kicl-font-size-large'
-      in={isLoading}
-      duration='faster'
-    />
+    <Spinner in={isLoading} duration='faster' />
   );
 };
 

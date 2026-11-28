@@ -12,6 +12,9 @@ import { cleanDevTypes } from './scripts/clean-dev-types.ts';
 import { getStyleLayer, LAYER_ORDER } from './scripts/get-style-layer.ts';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
+
+// Files kept in the buckets come from dev, so a page runs locally without Google Cloud credentials.
+const DEV_URL = 'https://dev.ki-cl.com';
 const src = path.resolve(root, 'src');
 const env = loadEnv('development', path.resolve(root, '..'), '');
 
@@ -104,5 +107,9 @@ export default defineConfig({
   server: {
     port: Number(env.PORT) || 3200,
     strictPort: true,
+    proxy: {
+      '/assets/': { target: DEV_URL, changeOrigin: true, secure: true },
+      '^/experiments/[^/]+/files/': { target: DEV_URL, changeOrigin: true, secure: true },
+    },
   },
 });
